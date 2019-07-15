@@ -1,0 +1,532 @@
+# Distribuciones de frecuencia
+
+```{r}
+tabla_frec <- function(datos, digits = 2, name = "") {
+  tbl <- table(datos)
+  mrgns <- round(addmargins(tbl), digits)
+  names(mrgns) <- sub("Sum", "Total", names(mrgns))
+  props <- round(addmargins(prop.table(tbl)), digits)
+  names(props) <- sub("Sum", "Total", names(props))
+  res <- data.frame(names(mrgns), c(mrgns), c(props))
+  res <- unname(res)
+  colnames(res) <- c(name, "f", "f'")
+  res
+}
+```
+
+Una vez identificadas las variables y reconocido su nivel de medición, es necesario darle a la matriz de datos un formato que permita hacer lecturas de los resultados, ya que es imposible observar una tabla que tenga gran cantidad de filas (casos) y muchas columnas (variables).
+El siguiente fragmento de matriz de datos:
+
+```{r}
+eph.3.18 <- read.csv("bases/archivostxt/usu_individual_T318.txt", sep=";")
+eph.3.18$CH06[eph.3.18$CH06 == -1] <- 0
+head(eph.3.18[,-c(1, 4:8, 10,13:177)])
+```
+
+Muestra las primeras variables y primeros casos correspondiente a la aplicación del cuestionario individual de la Encuesta Permanente de Hogares @INDEC2018 del tercer trimestre de 2018, que tiene `r length(eph.3.18$CH04)` casos. Las variables están codificadas, tanto en su nombre como en sus categorías. Por ejemplo, CH06 es la edad y los números representan años cumplidos, CH04 es sexo y sus categorías son 1 = varones, 2 = mujeres. Esas codificaciones están en el documento *Diseño de Registro de la Base Usuario de la EPH* @INDEC2009
+
+Cada columna de la matriz de datos contiene los valores que se han observado en cada uno de los individuos (filas); si se observa verticalmente, cada columna es una secuencia de números, que algunos programas denominan vector. Para el caso de CH04 (sexo), los primeros 25 valores de esta columna son:
+
+```{r echo=FALSE}
+head(eph.3.18$CH04, n = 25)
+```
+
+Así presentada, la secuencia se llama serie simple y solo puede analizarse cuando son muy pocos casos, sería imposible en este ejemplo, con `r length(eph.3.18$CH04)` filas.
+
+El más elemental de los resúmenes consiste en contar, para una variable determinada, cuantas apariciones tiene cada categoría. En la columna encabezada CH04 (sexo) pueden contarse cuántos unos (1s) y cuántos doses (2s) hay en total.
+
+## Tablas de distribución de frecuencia
+
+Las tablas resumen los recuentos, en este ejemplo:
+
+```{r}
+aux_table <- addmargins(table(eph.3.18$CH04))
+names(aux_table) <- sub("Sum", "Total", names(aux_table))
+kableExtra::kable_styling(
+  knitr::kable(aux_table, format = "pandoc", booktabs = TRUE, align = "cc",
+               escape = FALSE,
+               caption = "Distribución por sexos."),
+  latex_options = "striped", full_width = FALSE)
+```
+
+Cuando se rotulan la variable y sus categorías:
+
+```{r}
+eph.3.18$sexo <- as.factor(eph.3.18$CH04)
+levels(eph.3.18$sexo) <- c("varones", "mujeres")
+aux_table <- addmargins(table(eph.3.18$sexo))
+names(aux_table) <- sub("Sum", "Total", names(aux_table))
+kableExtra::kable_styling(
+  knitr::kable(aux_table, format = "pandoc", booktabs = TRUE, align = "lc",
+               escape = FALSE, col.names = c("sexo", "casos"),
+               caption = "Distribución por sexos (categorías rotuladas."),
+  latex_options = "striped", full_width = FALSE)
+```
+
+A la cantidad de casos, que proviene del recuento del número de unos y doses en la columna de sexo, se lo llama técnicamente frecuencia absoluta simple y se la indica como f. La tabla resulta entonces:
+
+```{r}
+kableExtra::kable_styling(
+  knitr::kable(aux_table, format = "pandoc", booktabs = TRUE, align = "lc",
+               escape = FALSE, col.names = c("sexo", "f"),
+               caption = "Distribución por sexos: frecuencia absoluta."),
+  latex_options = "striped", full_width = FALSE)
+```
+
+El total de `r length(eph.3.18$sexo)` casos resulta de la suma de todas las frecuencias absolutas simples, de manera breve, esto se indica así: $$\sum_{i=1}^{k}f_i =n$$
+
+Que se lee "La sumatoria de las frecuencias (f) desde 1 hasta k es igual al total de observaciones (n)".
+En esa expresión:
+
+- $\sum$ es el símbolo de suma o sumatoria e indica la realización de esa operación (sumar).
+
+- Las $f_i$ son las frecuencias absolutas simples. El subíndice i va cambiando entre categorías.
+
+- La expresión $i=1$ señala desde qué valor de i se inicia la suma, así como k señala la última categoría a sumar. En el ejemplo de las tablas, el valor de k es 2 (solo hay dos categorías), por lo que solo hay dos frecuencias a sumar: $f_1$ y $f_2$, correspondientes a las cantidades de varones y de mujeres.
+
+- n es el total de casos (observaciones).
+
+Lo mismo puede indicarse como:
+
+$$f_1 + f_2 + ⋯ + f_k = n$$
+
+Que, en el caso de la tabla anterior resulta simplemente: 
+
+$$f_1 + f_2 = 27219 + 29660 = 56879$$
+
+||
+|:--:|
+| La **frecuencia absoluta simple** de cada valor de la variable es el número de casos que asumen ese valor. Se indica $f$. |
+
+Si se quisieran comparar estas frecuencias con las de otra matriz de datos que tuviera un número total de casos diferente de `r length(eph.3.18$sexo)`, sería inadecuado usar los valores absolutos aquí presentados. Por ejemplo, la comparación de la distribución por sexos entre las personas que trabajan en el sector estatal y en el sector privado.
+
+```{r}
+estatal <- subset(eph.3.18, eph.3.18$PP04A == 1)
+por_sexos_estatal <- addmargins(table(estatal$CH04))
+names(por_sexos_estatal) <- sub("Sum", "Total", names(por_sexos_estatal))
+kableExtra::kable_styling(
+  knitr::kable(por_sexos_estatal, format = "pandoc", booktabs = TRUE, align = "cc",
+               escape = FALSE, col.names = c("sexo (sector estatal)", "f"),
+               caption = "Distribución por sexos según sector de trabajo."),
+  latex_options = "striped", full_width = FALSE)
+
+
+privado <- subset(eph.3.18, eph.3.18$PP04A == 2)
+por_sexos_privado <- addmargins(table(privado$CH04))
+names(por_sexos_privado) <- sub("Sum", "Total", names(por_sexos_privado))
+kableExtra::kable_styling(
+  knitr::kable(por_sexos_privado, format = "pandoc", booktabs = TRUE, align = "cc",
+               escape = FALSE, col.names = c("sexo (sector privado)", "f")),
+  latex_options = "striped", full_width = FALSE)
+```
+
+No es clara la comparación entre el número de mujeres en los dos sectores, porque la cantidad total de casos es muy diferente, por eso es necesario comparar el peso relativo de las mujeres respecto del total, y no su número absoluto, se trata de su contribución al total de casos.
+
+Para calcularlo se divide el número de mujeres en el total general. En el ejemplo, para el sector estatal es `r round(por_sexos_estatal[2] / por_sexos_estatal[3], 3)` que es el `r round(por_sexos_estatal[2] / por_sexos_estatal[3] * 100, 1)`% de los casos. Es decir que las mujeres constituyen una proporción de `r round(por_sexos_estatal[2] / por_sexos_estatal[3], 3)` o bien que representan el `r round(por_sexos_estatal[2] / por_sexos_estatal[3] * 100, 1)`% del total. Mientras que en la segunda tabla, la proporción de mujeres es `r  round(por_sexos_privado[2] / por_sexos_privado[3], 3)` que es el `r round(por_sexos_privado[2] / por_sexos_privado[3] * 100, 1)`% de los casos.
+
+Estas proporciones se denominan frecuencias relativas simples, se simbolizan como $f'$ (efe prima), y se calculan dividiendo la frecuencia absoluta por el total. Ahora puede completarse la tabla anterior agregando otra columna.
+
+```{r}
+privp <- round(addmargins(prop.table(table(privado$CH04))), 2)
+names(privp) <- sub("Sum", "Total", names(privp))
+aux_table <- cbind(names(privp), por_sexos_privado, privp)
+rownames(aux_table) <- NULL
+kableExtra::kable_styling(
+  knitr::kable(aux_table, format = "pandoc", booktabs = TRUE, align = "ccc",
+               escape = FALSE,
+               col.names = c("sexo (sector privado)", "f", "f'"),
+               caption = "Distribución por sexos sector privado: frecuencias relativas."),
+  latex_options = "striped", full_width = FALSE)
+```
+
+El valor 1 que resulta de sumar las dos frecuencias relativas corresponde al 100% de los casos, es decir a las `r nrow(privado)` observaciones. Usando la misma simbología que antes: $$\sum_{i=1}^{k} f'_i =1$$
+
+Que afirma que la suma de las frecuencias relativas simples ($f’$) es igual a uno.
+La salida para la variable ESTADO tiene la siguiente forma:
+
+```{r}
+aux_table <- addmargins(prop.table(table(eph.3.18$ESTADO)))
+names(aux_table) <- sub("Sum", "Total", names(aux_table))
+kableExtra::kable_styling(
+  knitr::kable(aux_table, format = "pandoc", booktabs = TRUE, align = "cc",
+               escape = FALSE, digits = c(0, 2),
+               col.names = c("ESTADO", "f'"),
+               caption = "Condición laboral."),
+  latex_options = "striped", full_width = FALSE)
+```
+
+Cuando se codifica, queda:
+
+```{r}
+eph.3.18$ESTADO <- as.factor((eph.3.18$ESTADO))
+levels(eph.3.18$ESTADO) <- c("entrevista no realizada", "ocupado", "desocupado", "inactivo", "menor de 10 años")
+aux_table <- addmargins(prop.table(table(eph.3.18$ESTADO)))
+names(aux_table) <- sub("Sum", "Total", names(aux_table))
+kableExtra::kable_styling(
+  knitr::kable(aux_table, format = "pandoc", booktabs = TRUE, align = "lc",
+               escape = FALSE, digits = c(0, 2),
+               col.names = c("ESTADO", "f'"),
+               caption = "Condición laboral (categorías rotuladas)."),
+  latex_options = "striped", full_width = FALSE)
+```
+
+Al construir estas tablas de distribución de frecuencias se renuncia a una parte de la información que estaba en la matriz de datos. En ella se podía seguir por la fila a cada individuo y describirlo en cada uno de sus aspectos relevados (variables). Por el contrario, la tabla de distribución de frecuencias de sexo solo dice que hay `r sum(eph.3.18$sexo == "varones")` varones y `r sum(eph.3.18$sexo == "mujeres")` mujeres o, en la tabla de ESTADO, que hay `r sum(eph.3.18$ESTADO == "ocupado")` ocupados, `r sum(eph.3.18$ESTADO == "desocupado")` desocupados, etc., pero no se informa quiénes son. Esta pérdida de información es parte inevitable del proceso en el que se resumen datos, cuanto más sintética sea la presentación, tanta más información habremos perdido. Esto puede visualizarse como el proceso en el que se "toma distancia" de los datos originales: cada vez se tiene una mejor visión de conjunto, pero al mismo tiempo se pierden detalles.
+
+||
+|:--:|
+| La **frecuencia relativa simple** de cada valor de la variable es la proporción de casos que asumen ese valor. Se indica $f'$. |
+
+Los dos ejemplos mostrados hasta aquí corresponden a variables medidas a nivel nominal, por lo que los números no son más que códigos, no representan orden ni puede considerarse la distancia entre ellos. ¿Qué cambia con un nivel de medición más elevado? Con el mismo principio usado para las variables nominales, la forma de la tabla de distribución de frecuencia para la edad (CH06) de estudiantes universitarios sería:
+
+```{r}
+edad <- subset(
+  eph.3.18, eph.3.18$NIVEL_ED == 5 &
+    eph.3.18$CH10 == 1 &
+    eph.3.18$CH06 < 55)$CH06
+aux_table <- tabla_frec(edad, digits = 2, "edad")
+kableExtra::kable_styling(
+  knitr::kable(aux_table, format = "pandoc", booktabs = TRUE, align = "ccc",
+               escape = FALSE, row.names = FALSE,
+               caption = "Distribución por edades."),
+  latex_options = "striped", full_width = FALSE)
+```
+
+Sobre esta tabla se pueden calcular otras frecuencias, que respondan a preguntas como ¿cuántos alumnos de menos de 20 años fueron encuestados? Para saber eso, hay que contar cuántos casos hay con edades menores a 20: con 17, 18 o 19 años hay `r sum(edad < 20)` casos, que provienen de sumar las frecuencias de esas categorías (`r sum(edad == 17)`+`r sum(edad == 18)`+`r sum(edad == 19)`). 
+Así, además de indicar cuántos casos (o qué porcentaje de ellos) tiene determinados valores de la variable, resulta de interés mostrar cuantos (y también que porcentaje) tienen valores iguales o menores a uno determinado. Esto va a ser indicado por las frecuencias acumuladas, que responden a la pregunta por la cantidad de casos que hay por debajo de una categoría de la variable. Pero solo para variables medidas a escala ordinal o superior, porque con variables nominales no se pueden hacer juicios de orden, como decir que una categoría es mayor o menor que otra. El cálculo de las frecuencias acumuladas consiste en contar las frecuencias de la categoría que interesa y sumarla a las frecuencias de las categorías anteriores a ella. En el ejemplo de la distribución de las edades de estudiantes universitarios resulta:
+
+```{r echo=FALSE}
+edad_frec <- tabla_frec(edad, digits = 3, "edad")
+edad_frec[, "F"] <- cumsum(edad_frec[, "f"])
+edad_frec[, "F'"] <- cumsum(edad_frec[, "f'"])
+edad_frec[nrow(edad_frec), c("F", "F'")] <- ""
+edad_frec[nrow(edad_frec) - 1, "F'"] <- 1
+kableExtra::kable_styling(
+  knitr::kable(edad_frec, format = "pandoc", booktabs = TRUE, align = "ccccc",
+               escape = FALSE, row.names = FALSE,
+               caption = "Distribución por edades: frecuencias acumuladas."),
+  latex_options = "striped", full_width = FALSE)
+```
+
+Se agregaron dos columnas más, las frecuencias acumuladas absolutas (F) y relativas (F'). Las primeras se obtuvieron sumando a la frecuencia absoluta de cada categoría, las frecuencias absolutas de las categorías anteriores a ella. Así, la primera categoría tiene frecuencia acumulada igual a la absoluta simple, porque no hay ningún caso por debajo de 17 años; la segunda es `r edad_frec[2, "F"]`, que proviene de contar los `r edad_frec[2, "f"]` de la segunda categoría y sumarle los `r edad_frec[1, "f"]` de la anterior y del mismo modo se construyen las siguientes. La última categoría tiene por frecuencia absoluta acumulada al total de casos (en el ejemplo `r edad_frec[nrow(edad_frec)-1, "F"]`), porque todos (los `r edad_frec[nrow(edad_frec)-1, "F"]`) están en esa categoría o por debajo de ella, es decir, todos tienen de `r edad_frec[nrow(edad_frec)-1, "edad"]` años para abajo. La lectura que hacemos de estas frecuencias es que, por ejemplo, "hay `r sum(edad <= 20)` alumnos que tienen 20 años o menos."
+
+||
+|:--:|
+| La **frecuencia absoluta acumulada** de cada valor de la variable es la cantidad de casos que asumen ese valor y todos los valores menores a él. Se indica $F$. |
+
+La última columna de la tabla es la transformación en relativas de las frecuencias absolutas acumuladas y se logra con el mismo procedimiento que se usó para las relativas simples; el de dividir por el total de casos. Se denominan frecuencias acumuladas relativas. La lectura de una de estas frecuencias es, por ejemplo, que el 46% de los alumnos que respondieron tiene 22 años o menos. Notemos la diferencia con la frecuencia relativa simple: el 9.7% de los alumnos tiene exactamente 22 años. La frecuencia relativa simple es la fracción de casos que tienen una determinada categoría (o valor) de la variable, la frecuencia relativa acumulada es la fracción de casos que tiene un valor de la variable o cualquiera de los anteriores a ese valor. Por eso la lectura del ejemplo es "22 años" en la simple y "22 años o menos" en la acumulada.
+
+||
+|:--:|
+| La **frecuencia relativa acumulada** de cada valor de la variable es la proporción de casos que asumen ese valor y todos los valores menores a él. Se indica $F'$. |
+
+## Recategorización
+
+Como se señaló al final del capítulo 1, hay dos situaciones en que se apela a la presentación de los valores de la variable en forma agrupada, es decir que se recategoriza la variable en intervalos: si se trata de una variable discreta con muchas categorías (como la edad) o si es una variable continua.
+
+### Variable discreta con muchas categorías
+
+La construcción de intervalos es una elección; podríamos optar por mostrar todas las categorías, con lo que quedaría una tabla grande, pero muy detallada; o bien agrupar para ganar en sencillez de presentación. Es muy común optar por la construcción de intervalos, de manera de mantener la cantidad de categorías entre cinco y diez. En tablas en que se precisa mostrar mucho detalle, se opta por la enumeración de todas las categorías.
+
+### Variable continua
+
+Si la variable es continua la recategorización es necesaria, porque no es posible mostrar "todas las categorías" de una variable continua, ya que éstas son, en teoría, infinitas . Para resolver el problema de la exclusión mutua no es posible pasar de un valor al siguiente, por lo que se utiliza un criterio de intervalos abiertos o cerrados. Esto quiere decir que si una categoría es 1,75 - 1,85, se entiende que entran en el intervalo todos quienes tengan estatura superior a 1,75 (excluido este valor) hasta 1,85 (incluido). Se dice que este intervalo es abierto a la izquierda (excluye al valor inicial) y cerrado a la derecha (incluye al valor final). Una persona de 1,75 se contará en el intervalo anterior: 1,65 - 1,75, que sí incluye al 1,75 y excluye al 1,65. A continuación se usará la convención de intervalos abiertos a la izquierda y cerrados a la derecha, eso se indica $(L_i; L_s]$.
+
+Se utilizan tres criterios para recategorizar variables: intervalos iguales, intervalos proporcionales e intervalos teóricos.
+
+#### Intervalos iguales:
+
+Se organizan los valores de la variable para lograr que el campo de variación quede dividido en tantos intervalos como se desee siendo ellos de igual amplitud. Si es una variable discreta y la cantidad de categorías originales no es múltiplo de número de intervalos que se desean, la cantidad de valores en cada uno no será idéntica, sino aproximadamente igual. La variable edad, con cuatro categorías queda, según este criterio, así: 
+
+```{r}
+edad4 <- factor(cut(subset(
+  eph.3.18, eph.3.18$NIVEL_ED == 5 &
+    eph.3.18$CH10 == 1 &
+    eph.3.18$CH06 < 55)$CH06, breaks = 4))
+tabla2 <- table(edad4)
+kableExtra::kable_styling(
+  knitr::kable(tabla2, format = "pandoc", booktabs = TRUE, align = "lc",
+               escape = FALSE, row.names = FALSE, 
+               col.names = c("EdadCat", "f"),
+               caption = "Categorización de la edad en intervalos de igual amplitud."),
+  latex_options = "striped", full_width = FALSE)
+```
+
+Los intervalos son de la misma amplitud, pero el primero de ellos tiene más del 70% de las observaciones, con lo que se pierde detalle de la distribuciión.
+
+#### Criterio proporcional
+
+Este criterio busca que los intervalos incluyan aproximadamente a la misma cantidad de casos, por lo que su amplitud puede ser diferente. En el capítulo siguiente se verá que los puntos para establecer los cortes de intervalos, se llaman percentiles. Por ahora interesa que con este criterio se logran grupos homogéneos en términos de cantidad de observaciones. la edad de los estudiantes, con cuatro intervalos resulta así categorizada:
+
+```{r}
+universitarios <- subset(
+  eph.3.18, eph.3.18$NIVEL_ED == 5 &
+    eph.3.18$CH10 == 1 &
+    eph.3.18$CH06 < 55
+)
+
+universitarios$edad4.p <- factor(cut(
+  universitarios$CH06,
+  breaks = c(
+    min(universitarios$CH06),
+    quantile(universitarios$CH06, .25),
+    quantile(universitarios$CH06, .5),
+    quantile(universitarios$CH06, .75),
+    max(universitarios$CH06)
+  )
+))
+
+tabla3 <- table(universitarios$edad4.p)
+
+kableExtra::kable_styling(
+  knitr::kable(tabla3, format = "pandoc", booktabs = TRUE, align = "lc",
+               escape = FALSE, row.names = FALSE, 
+               col.names = c("EdadCat", "f"),
+               caption = "Categorización de la edad en intervalos proporcionales."),
+  latex_options = "striped", full_width = FALSE)
+```
+
+Ahora la distribución está más equilibrada (hay alrededor de 1000 casos en cada una), y los intervalos tienen amplitud diferente. El último intervalo, de 26 años de  amplitud, tiene casi la misma cantidad de casos que el primero, que cubre tres años.
+
+#### Criterio teórico
+
+Aquí la decisión por el lugar donde establecer los puntos de corte para definir los intervalos es del investigador y debe estar fundamentada. Si se considera que la edad esperada de los alumnos observados es entre 19 y 20 años, se pueden hacer cuatro intervalos con quienes tienen menos de esa edad, quienes tienen la edad esperada, los que tienen más de esa edad y los más mayores (superan los 40 años). Los intervalos resultan así:
+
+```{r}
+universitarios$edad4.t <- factor(cut(
+  universitarios$CH06,
+  breaks = c(
+    min(universitarios$CH06),
+    18,
+    20,
+    40,
+    max(universitarios$CH06)
+  )
+))
+
+tabla4 <- table(universitarios$edad4.t)
+
+kableExtra::kable_styling(
+  knitr::kable(tabla4, format = "pandoc", booktabs = TRUE, align = "lc",
+               escape = FALSE, row.names = FALSE, 
+               col.names = c("EdadCat", "f"),
+               caption = "Categorización de la edad con un criterio teórico."),
+  latex_options = "striped", full_width = FALSE)
+```
+
+El intervalo (18,20] incluye las edades de 19 y 20 años, porque es abierto a la izquierda.
+
+## La presentación gráfica de los resultados
+
+En la misma dirección de ofrecer una presentación de los datos recogidos que sea accesible para la interpretación, se muestran a continuación las representaciones gráficas que más se usan para describir información cuantitativa. Nuevamente aquí se debe aceptar la pérdida de parte de la información que se muestra, en aras del impacto visual y facilidad de lectura que proveen los gráficos.
+Cuando se trata de variables nominales, normalmente con pocas categorías, son adecuados los *gráficos de barras*. Veamos un ejemplo para la tabla de la "ESTADO":
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Condición laboral: frecuencias absolutas (barras adyacentes)."}
+eph.3.18$ESTADO <- as.factor(eph.3.18$ESTADO)
+levels(eph.3.18$ESTADO) <- c(NA, "ocupado", "desocupado", "inactivo", NA)
+ggplot(eph.3.18) + 
+  geom_bar(aes(ESTADO), fill = "green") + 
+  xlab("actividad") + 
+  ylab("casos") + 
+  theme_tufte()
+```
+
+La categoría NA (not available) reúne a quienes no respondieron al cuestionario y a los menores de 10 años, que no se les hace la pregunta.
+
+```{r fig.cap="Condición laboral: frecuencias absolutas (barras apiladas)."}
+estado.tabla <- as.data.frame(table(eph.3.18$ESTADO))
+names(estado.tabla) <- c("estado", "f")
+ggplot(estado.tabla) +
+  geom_bar(aes(x = "", y = f, fill = estado), width = 1, stat = "identity") +
+  theme_tufte() +
+  ylab("Frecuencia absoluta") +
+  xlab("estado")
+```
+
+O bien, en relativos:
+
+```{r fig.cap="Condición laboral: frecuencias relativas (barras apiladas)."}
+estado.tabla.p <- as.data.frame(prop.table(table(eph.3.18$ESTADO)))
+names(estado.tabla.p) <- c("estado", "fr")
+ggplot(estado.tabla.p) +
+  geom_bar(aes(x = "", y = fr, fill = estado), width = 1, stat = "identity") +
+  theme_tufte() +
+  ylab("Frecuencia relativa") +
+  xlab("estado")
+```
+
+Para variables categóricas también se usa el *gráfico de sectores*
+
+```{r fig.cap="Condición laboral: frecuencias relativas (gráfico de sectores)."}
+ggplot(estado.tabla.p) +
+  geom_bar(aes(x = "", y = fr, fill = estado), width = 1, stat = "identity") +
+  theme_tufte() +
+  ylab("Frecuencia relativa") +
+  xlab("estado") +
+  coord_polar("y") +
+  scale_fill_brewer(palette = "Dark2") +
+  theme(axis.text.x = element_blank())
+```
+
+
+Este gráfico solo es adecuado cuando la variable tiene pocas categorías (no más de cuatro) y además cuando las frecuencias difieren sustancialmente. De lo contrario, resulta muy difícil apreciar diferencias entre ángulos, éstas son mucho más claras entre alturas de barras. La opción de agregar una leyenda con los porcentajes resuelve este problema, pero hace perder parte de la claridad visual del gráfico.
+
+La representación gráfica de la tabla de frecuencias de variables cuantitativas (categorizadas), se llama histograma:
+
+```{r fig.cap="Histograma de edades."}
+ggplot(eph.3.18) +
+  geom_histogram(aes(CH06), fill = "green", binwidth = 1) + xlab("edad") +
+  ylab("f") +
+  theme_tufte()
+```
+
+El ancho de los rectángulos es la amplitud de las categorías que resultan de la categorización. Esta siempre se realiza con el criterio de intervalos iguales, que puede regularse, por ejemplo, si se toman intervalos de 5 años, el histograma queda:
+
+```{r fig.cap="Histograma de edades: categorías de 5 años."}
+ggplot(eph.3.18) +
+  geom_histogram(aes(CH06), fill = "green", binwidth = 5) +
+  xlab("edad") +
+  ylab("f") +
+  theme_tufte()
+```
+
+Cuando estos rectángulos se unen en sus puntos medios por una poligonal, resulta el *polígono de frecuencias*:
+
+```{r fig.cap="Polígono de frecuencias de las edades sobre el histograma."}
+ggplot(eph.3.18) +
+  geom_histogram(aes(CH06), fill = "green", binwidth = 5) +
+  xlab("edad") +
+  ylab("f") +
+  theme_tufte() +
+  geom_freqpoly(aes(CH06), binwidth = 5)
+```
+
+En este gráfico se agregaron dos intervalos, uno anterior al primero y uno posterior al último, cuyas frecuencias son cero, con el objetivo de "cerrar" el polígono sobre el eje horizontal.
+El área que queda bajo este polígono es igual a la que encierran los rectángulos del histograma, y valdrá n si se grafican frecuencias absolutas ó 1 si son las relativas.
+
+Si se muestra solo el polígono, se tiene una representacón simplificada de la distribución que sirve para apreciar aspectos que se verán más adelante: forma, dispersión, simetría, etc. Además es preferible presentar en el eje vertical, frecuencias relativas antes que absolutas.
+
+```{r fig.cap="Polígono de frecuencias de las edades."}
+ggplot(eph.3.18) +
+  geom_freqpoly(aes(CH06, y = (..count..) / sum(..count..)), binwidth = 5) +
+  xlab("edad") +
+  ylab("f'") +
+  theme_tufte()
+```
+
+En variables cuantitativas es posible calcular frecuencias acumuladas, por lo que también ellas pueden representarse gráficamente. Si la variable es discreta, cada valor aporta su frecuencia, que "salta" en el valor siguiente, por eso el gráfico tiene forma escalonada. Nuevamente, con la variable edad (CH06) de la EPH es:
+
+```{r fig.cap="Ojiva de las edades."}
+ggplot(eph.3.18) +
+  stat_ecdf(geom = "step", aes(CH06)) +
+  xlab("edad") +
+  ylab("F'") +
+  theme_tufte()
+```
+
+En el que el eje horizontal se indican los valores de la variable discreta edad y en el vertical las frecuencias acumuladas de cada categoría (de cada valor discreto).
+Si la variable es continua, las frecuencias se van acumulando gradualmente a medida que aumenta el valor de la variable, el siguiente gráfico muestra las frecuencias acumuladas de los pesos de un conjunto grande de niños (de la base **bayley**):
+
+```{r fig.cap="Ojiva de los pesos al nacer."}
+bayley <- read.csv("bases/archivostxt/bayley.txt", sep = ";", dec = ",")
+set.seed(8818) # semilla para los random numbers
+bayley$peso.nac <- rnorm(454, 3000, 500) # hubo que inventarlo, porque no estaba
+
+ggplot(bayley) +
+  stat_ecdf(aes(peso.nac)) +
+  xlab("peso al nacer (en gramos)") +
+  ylab("F'") +
+  theme_tufte()
+```
+
+Debido a que en la práctica las variables nunca son completamente continuas, siempre habra "escalones" cuyo tamaño es el de la minima medición posible de la variable (la apreciación del instrumento de medicion).
+
+Este gráfico se llama ojiva de Galton  y tiene otra virtud además de la claridad visual, ya que permite interpolar valores no observados, o que no aparecen en la tabla. Así, con el gráfico podemos responder a la pregunta ¿Qué proporción de niños tiene `r round(quantile(bayley$peso.nac, .17), 0)` g o menos? La respuesta consiste en buscar el valor `r round(quantile(bayley$peso.nac, .17), 0)` gramos en el eje x, e identificar la frecuencia acumulada que le corresponde. 
+
+```{r fig.cap="Estimación de la frecuencia acumulada para un valor del peso al nacer."}
+ggplot(bayley) +
+  stat_ecdf(aes(peso.nac)) +
+  geom_segment(aes(
+    x = quantile(bayley$peso.nac, .17),
+    y = 0,
+    yend = .17,
+    xend = quantile(bayley$peso.nac, .17)
+  )) +
+  geom_segment(aes(
+    xend = 0,
+    yend = .17,
+    x = quantile(bayley$peso.nac, .17),
+    y = .17
+  ),
+  arrow = arrow(length = unit(0.1, "inches"))
+  ) +
+  xlab("peso al nacer (en gramos)") +
+  ylab("F'") +
+  theme_tufte()
+```
+
+En este ejemplo, la ordenada (valor en el eje vertical) correspondiente a los `r round(quantile(bayley$peso.nac, .17), 0)` gramos es aproximadamente 0,17, este resultado se lee diciendo que, de esta muestra, el 17% de los niños nació con `r round(quantile(bayley$peso.nac, .17), 0)` gramos o menos. En los capítulos siguientes veremos otras aplicaciones útiles de este procedimiento.
+
+Además, el establecimiento de los límites de los intervalos según el criterio proporcional, puede realizarse en base a este gráfico. Según cuántos intervalos se quiera construir, se ubican los puntos correspondientes a las frecuencias acumuladas en el eje vertical y se buscan los valores de la variable (eje horizontal), que delimitan los intervalos. Por ejemplo, para cuatro intervalos, cada uno debe contener aproximadamente el 25% de los casos, que corresponden a las frecuencias acumuladas de 25, 50 y 75%.
+
+```{r echo=FALSE, fig.cap="Identificación de los valores de la variable para determinadas frecuencias absolutas."}
+ggplot(bayley) +
+  stat_ecdf(aes(peso.nac)) +
+  geom_segment(aes(
+    x = 0,
+    xend = quantile(bayley$peso.nac, .25),
+    y = .25,
+    yend = .25)) +
+  geom_segment(aes(
+    xend = quantile(bayley$peso.nac, .25),
+    yend = 0,
+    x = quantile(bayley$peso.nac, .25),
+    y = .25),
+    arrow = arrow(type = "closed", length = unit(0.1, "inches"))) +
+  geom_segment(aes(
+    x = 0,
+    xend = quantile(bayley$peso.nac, .5),
+    y = .5,
+    yend = .5)) +
+  geom_segment(aes(
+    xend = quantile(bayley$peso.nac, .5),
+    yend = 0,
+    x = quantile(bayley$peso.nac, .5),
+    y = .5),
+    arrow = arrow(type = "closed", length = unit(0.1, "inches"))) +
+  geom_segment(aes(
+    x = 0,
+    xend = quantile(bayley$peso.nac, .75),
+    y = .75,
+    yend = .75)) +
+  geom_segment(aes(
+    xend = quantile(bayley$peso.nac, .75),
+    yend = 0,
+    x = quantile(bayley$peso.nac, .75),
+    y = .75),
+    arrow = arrow(type = "closed", length = unit(0.1, "inches"))) +
+  xlab("peso al nacer (en gramos)") +
+  ylab("F'") +
+  theme_tufte()
+```
+
+Los valores hallados corresponden a `r round(quantile(bayley$peso.nac, .25), 0)`, `r round(quantile(bayley$peso.nac, .5), 0)` y `r round(quantile(bayley$peso.nac, .75), 0)` gramos. Que quiere decir que un cuarto de los niños nació con pesos entre el mínimo y `r round(quantile(bayley$peso.nac, .25), 0)`, otro cuarto pesó entre `r round(quantile(bayley$peso.nac, .25), 0)` y `r round(quantile(bayley$peso.nac, .5), 0)` gramos, y así con los demás. La distribución de frecuencias de esta variable así categorizada resulta:
+
+```{r}
+peso.nac4 <- factor(cut(
+  bayley$peso.nac,
+  breaks = c(
+    min(bayley$peso.nac),
+    quantile(bayley$peso.nac, .25),
+    quantile(bayley$peso.nac, .5),
+    quantile(bayley$peso.nac, .75),
+    max(bayley$peso.nac)),
+  dig.lab = 5))
+
+tabla5 <- round(table(peso.nac4), 0)
+kableExtra::kable_styling(
+  knitr::kable(tabla5, format = "pandoc", booktabs = TRUE, align = "lc",
+               escape = FALSE, row.names = FALSE, 
+               col.names = c("Peso.nacCat", "f"),
+               caption = "Distribución de los pesos al nacer categorizados en cuatro intervalos proporcionales."),
+  latex_options = "striped", full_width = FALSE)
+```

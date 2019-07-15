@@ -1,0 +1,530 @@
+# Los datos estadísticos
+
+En este capítulo se desarrollan procedimientos para presentar la información de manera accesible para que pueda ser analizada y luego interpretada. Para poder extraer significado de los datos recogidos es necesario primero dedicar un esfuerzo a organizarlos, a presentarlos de manera comprensible, una operación previa a la aplicación de las técnicas de análisis que se verán más adelante.
+
+La ciencia se interesa por la producción de conocimiento validado, uno de cuyos requisitos es que pueda ser comunicado de manera inequívoca, que se confronten las conclusiones a que llegan y los métodos que usan diferentes investigadores. Esto implica la necesidad de usar un lenguaje que permita el intercambio entre investigadores y que dependa, en el menor grado posible, de las impresiones subjetivas o de las interpretaciones que cada investigador individual dé a los conceptos. Se busca un vocabulario tan unívoco como sea posible. Un modo de acercarse a lograr esta comunicabilidad de las ideas, de los métodos y de los resultados, es definir, de la manera más precisa posible, los elementos acerca de los que se habla.
+
+Alguna vez hemos dado con expresiones como "esta persona es más inteligente que aquella". ¿Qué se quiere decir exactamente con eso?, la afirmación podría provenir de algún evento en que se vio a esa persona actuando de manera que llamaríamos inteligente, aunque esto también puede confundirse con astucia: no es infrecuente usar el adjetivo inteligente para un estafador, alguien a quien le resulta fácil engañar a otros; y, a la inversa, sería poco inteligente quien se deja engañar con facilidad. O bien, a menudo decimos que alguien es inteligente porque obtiene buenos resultados en sus estudios. Esto es parte de la imprecisión en la definición de un concepto. Si se dispone de una definición de inteligencia, se puede saber cuándo aplicar esa idea a alguien, cuándo una conducta es inteligente, inclusive, cómo ayudar a desarrollar la inteligencia. Si se puede definir el concepto con el que se trabaja, se pueden indicar ciertas operaciones a realizar para evaluarlo y así conocer cuál es el nivel de inteligencia de un sujeto en particular.
+
+Luego de definir el concepto con el que se trabaja, se requiere diseñar un instrumento que refleje esa definición y finalmente aplicar este instrumento a las personas que se evaluarán. Al hacer esto último se obtiene un resultado que, si se expresa de manera cuantitativa, permite hacer comparaciones del aspecto que representa ese concepto, entre personas, entre grupos, etc.
+
+¿Pueden compararse personas? La respuesta es no, porque cada persona tiene una infinidad de aspectos que la caracterizan y la hacen única. Por el contrario lo que sí pueden compararse son características claramente definidas de las personas. Del mismo modo no se pueden comparar escuelas, ni hogares, ni países si no se especifica en qué aspecto se realiza la comparación. O dicho de otro modo, cuál es la característica que se compara, y cómo se mide esa característica.
+
+Podemos decir que una persona tiene más escolarización formal que otra, indicando con eso que ha aprobado más años de la escuela o de la universidad. Podemos decir que un hogar es diferente a otro si uno se compone de una pareja sola y el otro incluye tres hijos. Un país puede tener más habitantes, un régimen político diferente, o mayor libertad de expresión que otro. En todos los casos especificamos una característica (un rasgo o un estado), sobre la base del cual hacemos la comparación.
+
+## La selección de la información pertinente
+
+Cuando se ha decidido quienes son los sujetos de la observación; es decir, una vez que se sabe a quiénes se observará, deben elegirse ciertas características de esos sujetos para observar . Cada unidad que resulta de interés para la investigación tiene un conjunto muy grande de características observables y siempre se realiza una selección de esas características. Se trata de un recorte que permite comprender mejor ciertos aspectos, dejando de lado otros. La información que seleccionamos para observar se denomina pertinente para la investigación.
+
+Cuando se decide cuál es la información pertinente, se la puede recabar de varios individuos y cambiar la óptica desde el caso particular a la regularidad colectiva. Es un cambio desde el individuo hacia el grupo. La siguiente es una lista que indica el área en que les gustaría trabajar cuando se reciban, a nueve estudiantes de primer año de Psicología:
+
+```{r}
+preferencia <- tibble::tribble(
+  ~Alumno,     ~Área,
+  "Susana",    "Clínica",
+  "Marcos",    "Laboral",
+  "Daniel",    "Clínica",
+  "Federico",  "Social",
+  "María",     "Clínica",
+  "Pedro",     "Educacional",
+  "Eugenia",   "Clínica",
+  "Mabel",     "Educacional",
+  "Francisco", "Laboral"
+)
+kableExtra::kable_styling(
+  knitr::kable(preferencia, format = "pandoc", booktabs = TRUE, align = "lr",
+               caption = "Área de trabajo preferida."),
+  latex_options = "striped")
+```
+
+La lista los individualiza, los reconoce por su nombre, indica qué área le gustaría a cada uno y solo eso, no se sabe la edad de cada uno, ni sus intereses políticos ni el deporte favorito, solo se seleccionó como pertinente para este ejemplo, el área en que le gustaría trabajar. Si ahora se transforma esa lista en una tabla:
+
+```{r}
+aux <- as.data.frame(table(preferencia[,2]))
+colnames(aux) <- c("Área", "Casos")
+kableExtra::kable_styling(
+  knitr::kable(aux, format = "pandoc", booktabs = TRUE, align = "lr",
+               caption = "Área de trabajo preferida."),
+  latex_options = "striped")
+```
+
+Se lee que Clínica es un área preferida por cuatro alumnos, Laboral y Educacional por dos y a Social solo la menciona uno. Las personas desaparecieron, ya no hay nombres, hemos abstraído para referirnos al área preferida, no a los alumnos. En la tabla se ve que lo más frecuente es que se prefiera Clínica, y que Social es poco frecuente. Se pasó de la lista de individuos a la tabla de valores. Nos despegamos de los casos a fin de buscar la regularidad en el conjunto. Más adelante diremos que se ha pasado de la matriz de datos a la distribución de frecuencias, que constituye una reducción o un primer resumen de la información disponible.
+
+Consideremos el siguiente cuestionario, que se aplicó en 2019 a personas con edades 18 y 35 años. 
+
+```{r cuestionario, fig.cap="Cuestionario 2019", fig.asp = 0.1, fig.width = 3, fig.align='center'}
+knitr::include_graphics("imagenes/cuestionario2019_01.png")
+knitr::include_graphics("imagenes/cuestionario2019_02.png")
+```
+
+Este instrumento de producción de datos que es el cuestionario, se dirige a una población definida: personas entre 18 y 35 años. En él se solicita información sobre un conjunto seleccionado de características; los ítems numerados desde P1 hasta P16. Se trata de unos pocos aspectos de cada persona los que interesan para esta investigación; no se tiene en cuenta, por ejemplo la opinión política de quienes responden, ni su estatura o la región en que viven. Estas últimas y muchas más son características de estas personas, pero están fuera del alcance de la investigación. Esto muestra a qué nos referimos con que la información seleccionada constituye un recorte, es una parcialización de los individuos que responden, en la que se eligen solo los aspectos que son de interés para una investigación particular.
+
+El cuestionario tiene 16 ítems, cada persona que lo responde marca una sola de las opciones indicadas en cada ítem. Una vez completados los cuestionarios, la información está "en bruto" y es necesario ordenarla para poder tener una visión de conjunto. Eso se logra organizando los datos recogidos en la *matriz de datos* que tiene, para el cuestionario mostrado, la siguiente forma:
+
+<!-- JCR: Que se desea hacer con esto? -->
+```{r}
+base.2019 <- read.csv("bases/archivostxt/base2019.txt", header = TRUE, sep = ";", dec = ".", na.strings = 999)
+base.2019 <- base.2019[, -c(1:5, 7)]
+names(base.2019) <- c(
+  "sexo", "edad", "acceso.redes", "red.usada", "red.otra", "tiempo.red", "con.q.vive", "relacion.otros", "q.aporta", "q.aporta.amigos", "edad.partida", "razon.partida", "razon.partida.otra", "calidad.sueño",
+  "preocupacion", "golpeo", "robo", "cuanto.da", "comision"
+)
+
+base.2019$sexo <- as.factor(base.2019$sexo)
+levels(base.2019$sexo) <- c("varón", "mujer")
+
+base.2019$con.q.vive <- as.factor(base.2019$con.q.vive)
+levels(base.2019$con.q.vive) <- c(
+  "flia.origen", "flia.nueva",
+  "hermanes.o.amigues", "solo",
+  "con.otres"
+)
+table(base.2019$q.aporta)
+base.2019$q.aporta <- as.factor(base.2019$q.aporta)
+levels(base.2019$q.aporta) <- c(
+  "el.mismo", "flia.origen",
+  "flia.nueva", "entre.amigos"
+)
+
+base.2019$acceso.redes <- as.factor(base.2019$acceso.redes)
+levels(base.2019$acceso.redes) <- c("si", "no")
+
+base.2019$red.usada <- as.factor(base.2019$red.usada)
+levels(base.2019$red.usada) <- c(
+  "Instagram", "Facebook", "Twitter",
+  "Linkedin", "Tinder/Grindr/happn",
+  "Snapchat", "Ninguna", "Otra"
+)
+
+table(base.2019$razon.partida)
+base.2019$razon.partida <- as.factor(base.2019$razon.partida)
+levels(base.2019$razon.partida) <- c("estudio", "nueva.flia", "ganas", "otras")
+head(base.2019)
+```
+
+Este ordenamiento de la información tiene filas (horizontales) y columnas (verticales), en esta imagen solo se ven las primeras filas de la matriz, y además, porque no cabe horizontalmente, está subdividida en cuatro bloques de variables (columnas). Cada fila es un individuo y cada columna es un ítem. La primera fila (que continúa en los cuatro bloques) muestra los nombres de los ítems del cuestionario y las seis filas mostradas, las respuestas dadas por los encuestados. Así, la persona que respondió al primer cuestionario es una mujer, que tiene 19 años, tiene acceso a redes sociales y la que más usa es Instagram, como no respodió "otra",  en la columna siguiente tiene NA, que indica que no hay dato allí (Not Available), vive "con otres" y aportan entre amigos y así sigue toda la fila correspondiente a esa persona. 
+
+La matriz de datos contiene toda la información que será insumo de los análisis posteriores, luego será necesario definir qué es cada elemento que la constituye.
+
+||
+|:--:|
+| La matriz de datos es un arreglo en el que cada fila (horizontal) representa un individuo del cual proviene la información, cada columna (vertical) es un aspecto de los individuos, que se ha seleccionado para observar, y cada celda es el valor que tiene el individuo de la fila en el aspecto de la columna correspondiente. |
+
+### Los individuos
+
+Hemos dicho que cada fila representa un caso, un individuo al que se observa. Este individuo puede ser una persona como en este ejemplo, pero también una entidad colectiva: un hogar, una empresa, una escuela. Cada una de ellas se denomina *unidad de análisis*.
+
+Es importante que las unidades de análisis estén claras para la interpretación de los resultados. Por ejemplo, si se afirma que "las personas de menores recursos acceden menos frecuentemente a la educación superior", hablamos de personas, y éstas son las unidades de análisis. Y es muy diferente a decir que "en los países más pobres, es menor la proporción de personas que acceden a la educación superior", porque aquí las unidades de análisis son los países.
+<!-- No logro centrar este texto, -> <- no anda-->
+<!-- JCR: Asi esta bien? -->
+
+||
+|:--:|
+| Las **unidades de análisis** son los entes individuales acerca de los que se analizan sus cualidades. |
+
+Si las unidades de análisis fuesen escuelas, sus características, dependiendo de la investigación de que se trate, podrían ser: dependencia (estatal o privada), nivel (primaria, secundaria, ambas), cantidad de alumnos, turnos (mañana, tarde, ambos), etc. Si se tratara de hogares, puede observarse: cantidad de miembros, composición, actividad económica, etc.
+
+### Las variables
+
+Cada columna de la matriz de datos es un ítem del cuestionario, es decir un aspecto seleccionado de las unidades de análisis sobre el que se llama la atención. Esos aspectos se denominan variables. Así, el sexo es una variable, como lo es con quién vive, cuánto daría en el experimento, etc. Cada ítem del cuestionario se constituye en una variable, a veces su expresión interrogativa en el cuestionario se transforma en algo más abreviado, como: "¿Cuánto tiempo (en minutos) estuviste conectado/a a las redes sociales en el día de ayer?" se vuela "tiempo.red". Las variables son los aspectos de los individuos que se someterán al análisis. Su cualidad central es la que le da nombre: la de variar.
+
+||
+|:--:|
+| Una **variable** es una característica de las unidades de análisis que puede asumir diferentes valores en cada una de ellas. |
+
+Cada vez que se haga referencia a una variable, debe conocerse cuál es la unidad de análisis a la que se refiere, si no resulta claro, se debe indicar. Es diferente afirmar que un país es rico que decir que sus habitantes lo son.
+
+### Las categorías
+
+El cuerpo de la matriz de datos tiene números que corresponden a las respuestas que cada respondente dio a cada ítem. El primer caso tiene un número 2 en la primera columna, que quiere decir que esa persona respondió que es una mujer. En esta pregunta, se podía elegir entre dos respuestas diferentes (varón, mujer), en el lenguaje que estamos introduciendo, diremos que esta variable (sexo) puede asumir dos *categorías* diferentes. Para el primer caso, la variable sexo asume la categoría 2. Las categorías son las "posibilidades" que tiene una variable, dentro de las cuales a todas las unidades de análisis les corresponde una y solo una.
+
+||
+|:--:|
+| Las **categorías** de una variable son los valores que ésta puede asumir. |
+
+Cada vez que se define una variable —es decir cada vez que se selecciona un aspecto de las unidades de análisis para observar—, debe indicarse también el conjunto de categorías que le corresponden, aunque a veces esto está implícito. Si la variable es nivel de escolaridad alcanzado, pueden considerarse las siguientes categorías: ninguno, primario incompleto, primario completo, secundario incompleto, secundario completo, terciario o universitario incompleto, terciario o universitario completo y postgrado. Si tratamos con la variable edad, sus categorías son valores numéricos, entre cero y un máximo de años que se fija según el caso.
+
+Hay dos propiedades que debemos asegurar que cumplan las categorías que construyamos. La primera se llama *exclusión mutua*, es decir que cada categoría excluya a todas las demás. Dicho de otra manera, si a un individuo le corresponde una categoría, entonces sabemos que no le corresponde ninguna otra. Si analizamos hogares y a cada persona le preguntamos por su parentesco, sin indicar con quién, tendremos una categorización defectuosa, porque una persona del hogar puede al mismo tiempo ser hijo y hermano, o hijo y padre, si conviven tres generaciones. En cualquiera de los dos casos, a una misma persona le corresponderían dos categorías y se viola el requisito de exclusión mutua. Esto se resuelve estableciendo respecto de quién se declara el parentesco, y todos los integrantes del hogar lo refieren a la misma persona.
+
+Al analizar los tipos de lectura preferida, nos equivocaríamos si los categorizáramos como de ficción, de misterio, policiales, románticas, biográficas, de aventuras; ya que la categoría ficción puede incluir misterio, policiales, novelas románticas o de aventuras. 
+
+También se comete ese error si se clasifica a las escuelas como céntricas, parroquiales, urbanas y rurales. Dado que una escuela puede ser al mismo tiempo parroquial y urbana. Es necesario separar, para que quede claro, lo que interesa en el análisis: si lo que queremos distinguir son escuelas céntricas de barriales, entonces la variable será la ubicación geográfica y no importa si la escuela depende de una iglesia o del estado; es decir, identificar la variable y luego sus categorías.
+
+||
+|:--:|
+| Las categorías de una variable son **mutuamente excluyentes** si a cada individuo le corresponde no más de una categoría. |
+
+El segundo requisito que solicitaremos a las categorías de una variable es que agoten todas las posibilidades de variación, es decir, que todos los valores posibles estén contemplados. Esta cualidad se llama *exhaustividad*.
+
+Veamos qué sucede si no respetamos este requisito. Si evaluamos la variable situación conyugal y ofrecemos como categorías: casado, soltero, divorciado, viudo; las personas que estén viviendo juntas sin estar casadas no encuentran un lugar donde ubicarse, como tampoco lo encuentran quienes están separados sin haberse divorciado. Para resolver esto es necesario, o bien incluir estas categorías explícitamente: casado, unido, soltero, separado, divorciado, viudo; ampliando así el número de categorías, o bien fusionarlas con las existentes: casado o unido, soltero, separado o divorciado, viudo.
+Con la edad, las categorías son valores numéricos que pueden ir del cero hasta el un máximo, pero ¿dónde fijarlo? Si se eligiera un límite como 100 años, algunas personas quedarían fuera, quizás sean pocas, pero no pueden quedar sin categoría donde incluirse. Por lo demás, puede haber solo una persona de 103 años, otra de 105, por lo que no se justifica seguir extendiendo categorías. Una solución frecuente es la de tomar una categoría "abierta final", fijando como última categoría 100 y más, e incluir allí a todas las personas que declaren una edad de 100 años o superior. Puede verse que esta opción conlleva una pérdida de información, ya que no sabemos la edad exacta de quienes se ubican en esa categoría. Aceptamos esa pérdida a cambio de reducir el número de categorías de la variable, luego volveremos sobre eso.
+
+Algunas preguntas de cuestionarios, luego de un conjunto de opciones para responder, incluyen una categoría que dice "Otro… especificar". Se trata de casos de categorizaciones en las que no se sabe de antemano cuáles son todas las respuestas posibles; son frecuentes en las encuestas de opinión. Por ejemplo, si alguien declara que en las próximas elecciones va a votar en blanco y preguntamos por qué, podemos conocer de antemano algunas de las respuestas posibles, pero debemos dejar espacio para que los encuestados expresen razones que no habíamos previsto. De este modo aseguramos la exhaustividad de las categorías. En el cuestionario del ejemplo, la P7 tiene, en la opción 5, la posibilidad de otras alternativas de convivencia, aparte de las ofrecidas.
+
+||
+|:--:|
+| Las categorías de una variable son **exhaustivas** si todo individuo tiene alguna categoría que le corresponda. |
+
+En algunas situaciones, el número de categorías de una variable es parte de la decisión del investigador. Hay casos en que las categorías están establecidas de antemano: por ejemplo, en la variable sexo se tiende a usar como categorías las de varón y mujer; sin embargo, si estamos frente a un estudio que trate precisamente sobre orientación sexual de las personas, deberá considerarse un espectro más amplio de categorías, o bien ofrecer preguntas abiertas, sin establecer categorías de antemano. Como ha sido el caso de P2 en el cuestionario, que no ha sido cargada en la matriz de datos, porque requiere una codificación posterior.
+
+Como se señaló,en la edad de las personas suele elegirse terminar las categorías con "100 y más". De hecho, también se podrían mantener las edades exactas hasta 109 años y cerrar con 110 y más. Qué se elija depende de cuánta información y cuánta claridad se decida que tenga la clasificación; lamentablemente, no es posible lograr al mismo tiempo el máximo de información y de claridad en la presentación.
+
+## Los símbolos numéricos
+
+Las categorías pueden tener diferente naturaleza: algunas se expresan con números (como la edad) y otras con palabras (como la carrera que cursa), otras en graduaciones (como el grado de acuerdo); sin embargo es muy común representar con números a las categorías, aun cuando lo que se observe no sea numérico. Así, en la variable nivel de educación, pueden codificarse las categorías de la siguiente manera:
+
+<!-- JCR: Esto debia ser una tabla, cierto? -->
+```{r}
+aux_table <- tibble::tribble(
+  ~Código, ~"Máximo nivel de educación formal alcanzado",
+  1,       "ninguno",
+  2,       "primario incompleto",
+  3,       "primario completo",
+  4,       "secundario incompleto",
+  5,       "secundario completo",
+  6,       "terciario o universitario incompleto",
+  7,       "terciario o universitario completo",
+  8,       "postgrado"
+)
+kableExtra::kable_styling(
+  knitr::kable(aux_table, format = "pandoc", booktabs = TRUE, align = "cl",
+               caption = "Nivel de educación alcanzado."),
+  latex_options = "striped")
+```
+
+Hemos usado números para referirnos a las categorías a fin de simplificar la notación.
+
+De manera equivalente podemos codificar las categorías de otras variables:
+
+```{r}
+aux_table <- tibble::tribble(
+  ~Código, ~Sexo,
+  1,       "Varón",
+  2,       "Mujer"
+)
+kableExtra::kable_styling(
+  knitr::kable(aux_table, format = "pandoc", booktabs = TRUE, align = "cc",
+               caption = "Distribución por sexos."),
+  latex_options = "striped")
+```
+
+```{r}
+aux_table <- tibble::tribble(
+  ~Código, ~"Estoy muy satisfecho con el modo en que he progresado en mi carrera",
+  1,       "Completamente en desacuerdo",
+  2,       "En desacuerdo",
+  3,       "Indiferente",
+  4,       "De acuerdo",
+  5,       "Completamente de acuerdo"
+)
+kableExtra::kable_styling(
+  knitr::kable(aux_table, format = "pandoc", booktabs = TRUE, align = "cl",
+               caption = "Satisfacción con el progreso en la carrera."),
+  latex_options = "striped")
+```
+
+En las variables cuyas categorías son numéricas, no es necesario hacer ninguna codificación. Así, la edad quedará expresada de manera numérica directamente por la cantidad de años, como sucede con la cantidad de materias aprobadas. En estos casos, la exclusión mutua y la exhaustividad se cumplen.
+
+### La medición
+
+En Ciencias Sociales tiene plena vigencia el debate acerca de las posibilidades de medición de los fenómenos que se estudian. Buena parte de la discusión gira en torno a una definición de medición, ya que según qué sea lo que se considere como tal, se tratará de una medición o no. La posición más tradicional corresponde a lo que el sentido común trata como medición: la estatura, las distancias, el peso, etc. Esta definición demanda que los números que codifican a las categorías tengan algunas propiedades para considerarlos como mediciones. Se conoce como teoría clásica de la medición, y desde ese punto de vista sería muy difícil realizar mediciones sobre las variables que manejamos en Ciencias Sociales. Una definición menos restrictiva es la que propuso @Stevens1946, según la cual:
+
+<!-- JCR: Esto va centrado? Me parecio -->
+||
+|:--:|
+| "medir es asignar números a los objetos según cierta regla, de manera que los números asignados en la medición, no representan propiamente cantidades, sino relaciones". |
+
+Esta última definición, basada en la teoría representacional de la medición, es la que adoptaremos en este curso aunque la discusión sigue vigente. Desde esta definición, evaluar una variable para una unidad de análisis dada, equivale a medir esa unidad de análisis en el aspecto que la variable expresa.
+
+Aun cuando se adopte una definición amplia de lo que es medir, podemos intuir que no se mide una opinión del mismo modo que se mide el salario o la estatura. Esto sugiere que, dentro de las variables de las que hemos hablado hasta aquí habrá que reconocer diferencias, y estas diferencias vendrán dadas por el significado que tengan los números que asignamos a las categorías, es decir, por las reglas que ligan los números con lo que se observa.
+
+||
+|:--:|
+| El **nivel de medición** de una variable está determinado por el significado que tengan los símbolos numéricos que se asignan a las categorías. |
+
+Existe una graduación en el significado que tienen los números, y por eso se habla de niveles, que pueden ser más altos o más bajos. En la variable sexo, haber elegido 1 para varones y 2 para mujeres es de una arbitrariedad total (de la que alguien podría quejarse). Si la codificación hubiese sido al revés, habría estado igual de bien, y también habría estado bien usar el número 25 para representar a los varones y el 38 para las mujeres, aunque esto resulta un poco incómodo. Por el contrario, en la variable edad, asignar el número 20 a quien tiene 20 años, parece totalmente "natural" ¿qué otro número podríamos haber asignado? ¿Qué sucede con el nivel de educación? En el ejemplo elegimos numerar las categorías del 1 al 8; habría habido otras opciones, por ejemplo usar solo números pares o números impares u otra secuencia arbitraria, pero algo importante es que cualquier secuencia que se elija debe respetar el orden de las categorías de la variable, por lo que los números deben reflejarlo; no habría sido correcto usar números que no vayan aumentando, como lo hacen los niveles de educación.
+
+Así entonces, hay grados diferentes en la libertad que existe para asignar los números a las categorías. Esas diferencias distinguen los niveles de medición de las variables.
+
+## Niveles de medición
+
+Según la mayor o menor arbitrariedad que exista en la relación que liga los números a las categorías, hablaremos de diferentes niveles de medición: cuánta más restricción haya en la asignación de los números a las categorías, más alto será el nivel de medición de las variables. Si los números se asignan de manera totalmente arbitraria, el nivel de medición es el más bajo de todos y se llama *nivel nominal* (como en la variable sexo); si los números deben respetar el orden de las categorías (como en la educación), la variable se llama de *nivel ordinal*. Por ahora, nos detenemos en estos dos niveles.
+
+### El nivel nominal
+
+Es el nivel más elemental de medición: las variables de este nivel tienen categorías que son solo nombres (de allí que se llamen nominales). La asignación de códigos numéricos cumple la función de designar las categorías, es decir, de distinguirlas una de otras. Sexo, área de especialización preferida (UA = estudiantes de Psicología), carrera que cursa (UA = estudiantes universitarios); cuyas codificaciones podrían ser:
+
+```{r}
+aux_table <- tibble::tribble(
+  ~Código, ~Carrera,     ~Código, ~Área,
+  1,       "Psicología", 1,       "Clínica",
+  2,       "Filosofía",  2,       "Educacional",
+  3,       "Medicina",   3,       "Jurídica",
+  4,       "Otras",      4,       "Laboral",
+  "",      "",           5,       "Sanitaria",
+  "",      "",           6,       "Social",
+  "",      "",           7,       "Experimental",
+  "",      "",           8,       "Otra"
+)
+kableExtra::kable_styling(
+  knitr::kable(aux_table, format = "pandoc", booktabs = TRUE, align = "clcl",
+               label = "nivelNomCod",
+               caption = "Ejemplos de codificación de variables nominales."),
+  latex_options = "striped")
+```
+
+<!-- JCR: Poner 3 renglones mas arriba -->
+
+Por comodidad, se empieza en el 1 y desde allí correlativamente, pero no hay ninguna prohibición para codificar con cualquier conjunto de números. Aun con esta amplia libertad para elegir los códigos numéricos, hay algo que no se puede hacer: no es válido usar el mismo número más de una vez. Si hiciéramos esto, confundiríamos las categorías que corresponden a cada individuo. Así, a un estudiante de Psicología, le asignamos el valor 1 en la variable "carrera", y no podría usarse ese mismo número en la misma variable también para alguien que estudia Medicina. Diremos que la condición que deben cumplir los números en este nivel de medición es que: a categorías diferentes correspondan números distintos. 
+
+Entonces, en este nivel de medición a cada categoría puede asignarse, de manera arbitraria, uno y solo un número. Esta forma de asignar los valores numéricos solo implica que éstos designan las categorías (que las distinguen a una de otra), por eso, no es posible tratarlos como números en cuanto a sus propiedades aritméticas. En particular no puede sumárselos: nada puede significar que se sumen los números 1 y 2 que codifican a las carreras de Psicología y Filosofía.
+
+||
+|:--:|
+| Una variable está medida a nivel **nominal** si los números que representan cada categoría son asignados de manera arbitraria y solo cumplen con la función de designar y distinguir categorías diferentes. |
+
+Para unidades de análisis medidas a través de una variable de nivel nominal, es posible saber si corresponden a la misma categoría o a una diferente, es decir si tienen la misma cualidad (o atributo) o una diferente.
+<!-- PROBLEMA CON LAS REFERENCIAS, ESAS TABLAS ESTÁN HECHAS A MANO, ¿SE PODRÁN REFERENCIAR? -->
+<!-- JCR: Creo que eso es lo que querias. -->
+En la tabla \@ref(tab:nivelNomCod) si a un alumno le corresponde el número 1 y a otro también, solo podemos decir que coinciden en esta variable, ambos estudian la misma carrera (Psicología), si a uno le corresponde el 1 y a otro el 3, sabremos que el primero estudia Psicología y el otro Medicina. El hecho que el número 3 sea más grande que el 1, no tiene ninguna interpretación en este nivel de medición, no puede decirse que Psicología sea menos que Medicina. Como tampoco vale que 3 sea el triple de 1.
+
+Si 1 y 2 son dos categorías de una variable medida a nivel nominal, el único tipo de relación que puede establecerse entre ellas es $1\neq2$, es decir que 1 es diferente de 2.
+
+La regla de transformación de una escala nominal en otra es que cualquier número puede cambiarse por cualquiera a condición de no repetir ninguno. La escala nominal 1, 2, 3, 4 puede cambiarse por la 5, 8, 4, 2. Aunque no es obligatorio, en la práctica, lo más frecuente es usar los primeros números naturales para codificar las categorías.
+
+### El nivel ordinal
+
+Aquí subimos un nivel, ya que a los números que solo tienen la propiedad de designar en las variables nominales, se agrega otra: la de reflejar el orden que existe entre las categorías.
+Simplemente ahora se trata de variables cuyas categorías indican alguna cualidad de las unidades de análisis que crece en una dirección. Eso equivale a decir que se pueden hacer entre ellas, juicios de orden, tales como una categoría es mayor que otra, una categoría es menor que otra. El grado de escolarización cumple con ese requisito: efectivamente, el "primario incompleto" es un nivel de estudios superior a "ninguno", pero inferior a "primario completo".
+Los valores numéricos que representan las categorías rescatan ahora una propiedad adicional: el orden. Además de poder distinguir si dos sujetos tienen la misma característica analizada o una distinta como en el nivel nominal, ahora también podemos saber si un individuo tiene esa característica en mayor o menor grado. Así como "ninguno" es menor que "primario incompleto", los números correspondientes cumplen con que 1 es menor que 2 y resulta más sencillo escribirlo como $1 < 2$.
+
+||
+|:--:|
+| Una variable está medida a nivel **ordinal** si los números que representan cada categoría son asignados de manera que respeten el orden según aumenta o disminuye la característica que la variable mide. |
+
+Estos números designan las categorías y son expresión de la jerarquía que hay entre ellas. Otro ejemplos de variable medida a nivel ordinal y su correspondiente codificación numérica es la pregunta ¿Alguna vez en tu vida golpeaste a alguien tan fuerte que necesitó atención médica u hospitalaria? (P14) del cuestionario, que fue codificada de manera creciente con la intensidad:
+
+```{r}
+aux_table <- tibble::tribble(
+  ~Código, ~P14,
+  "1.",    "Nunca",
+  "2.",    "Una vez",
+  "3.",    "Dos o tres veces",
+  "4.",    "De cuatro a seis veces",
+  "5.",    "Más de seis veces"
+)
+kableExtra::kable_styling(
+  knitr::kable(aux_table, format = "pandoc", booktabs = TRUE, align = "cl",
+               caption = "Ejemplo de codificación de una variable ordinal."),
+  latex_options = "striped")
+```
+
+De aquí en adelante ya no usaremos una columna especial de la tabla para indicar el código, simplemente lo señalamos junto al nombre de la categoría, encabezado con el nombre abreviado de la variable:
+
+```{r}
+aux_table <- tibble::tribble(
+  ~Golpeo,
+  "1. Nunca",
+  "2. Una vez",
+  "3. Dos o tres veces",
+  "4. De cuatro a seis veces",
+  "5. Más de seis veces"
+)
+kableExtra::kable_styling(
+  knitr::kable(aux_table, format = "pandoc", booktabs = TRUE, align = "l",
+               caption = "Ejemplo de una variable ordinal codificada."),
+  latex_options = "striped")
+```
+
+Acerca del significado de los valores numéricos en las variables de nivel ordinal, si bien hemos agregado el orden, aun no es posible hacer operaciones con ellos. Es decir, no es posible sumar dos valores y que la suma tenga algún significado. Por ejemplo, en la última variable, no es cierto que $3 = 2+1$, porque no es cierto que "dos o tres veces" sea lo mismo que "nunca" más "una vez". Tampoco es válido restarlos, veamos que la diferencia entre 1 y 2 es 1 y la diferencia entre 4 y 5 también es 1, pero eso no tiene un correlato entre las categorías: no es cierto que haya la misma distancia entre "nunca" y "una vez" que entre "de cuatro a seis" y "más de seis", simplemente porque no tenemos definida la idea de *distancia* para esta variable.
+
+Si 1 y 2 son dos categorías de una variable medida a nivel ordinal, se pueden establecer las relaciones: $1 \neq 2$ y $1<2$, es decir que, uno es diferente que dos y que uno es menor que dos. A la relación de distinción que existe entre categorías de la escala nominal se agrega la relación de orden.
+
+La regla de transformación de una escala ordinal en otra consiste en cambiar los números por cualquiera, a condición que no se repita ninguno (como en la nominal) y además, que sigan el mismo orden. La escala ordinal 1, 2, 3, 4 puede cambiarse por la 5, 8, 15, 23. Nuevamente, esto es poco común y suelen usarse números correlativos.
+
+Los dos niveles (o escalas) de medición siguientes se llaman intervalares y proporcionales y usan las codificaciones numéricas con un significado un poco diferente al visto hasta aquí. La principal diferencia es que el grado de arbitrariedad para asignar los números se reduce sustancialmente. En primer lugar, las escalas intervalares conservan las distancias entre los valores. En las variables medidas a nivel proporcional, además de conservarse la distancia, se verifica la proporcionalidad de los valores: es decir que, recién en estas escalas, cuatro será el doble de dos.
+
+### El nivel intervalar
+
+Veamos un ejemplo antes de definir este nivel. Cuando decimos que estamos en el año 2020, hacemos implícitamente una afirmación que supone una medición del tiempo transcurrido desde un determinado evento, cuya elección no es única. En cierto modo decimos "han transcurrido 2020 años desde el momento que se acordó usar como inicio de este calendario". En culturas no cristianas, el origen en la medición de los tiempos puede ubicarse en otro momento y, en consecuencia, el año actual es otro. En el calendario judío, por ejemplo, el presente es el año 5780. Hay entonces cierto grado de arbitrariedad en la ubicación del punto desde donde empezar a contar los años. Lo que podría llamarse el "año cero", no es necesariamente el mismo. Sin embargo, el tiempo transcurrido entre 1975 y 2005 es de treinta años, como lo es el tiempo transcurrido entre 5735 y 5765. Es decir que la transformación que lleva los años de un calendario al otro, conserva las distancias. Independientemente de la escala con que hayamos medido el año, la diferencia entre dos años, se mantiene constante. Eso sucede porque las dos escalas (en este ejemplo, la medición del tiempo según las tradiciones cristiana y judía) se distinguen solo en la elección del origen (la posición del cero) pero no en la definición de lo que es un año. Para ambas escalas un año corresponde a una vuelta de la tierra al sol, por lo que la unidad de medición es la misma. Si alguien tiene 30 años en el calendario cristiano, también tiene 30 años con el calendario judío; porque, aunque tanto el año de nacimiento como el actual sean diferentes en los dos calendarios, la diferencia (el tiempo transcurrido) entre las dos fechas es la misma. Ubicar el cero en un momento (en un determinado hecho histórico) o en otro es una elección; ese cero no indica la "ausencia de tiempo". En este caso, cero no quiere decir "nada", sino "origen elegido".
+
+Una forma de medir la inteligencia es la de observar cuántos problemas de una serie de dificultad creciente es cada uno capaz de resolver correctamente. Pero, ¿podría decirse que quien no resuelve ninguno de ellos tiene inteligencia cero?, esto es claramente incorrecto, porque la ubicación del cero no implica la ausencia de lo que estamos midiendo (ausencia de inteligencia en este caso).
+
+Las escalas intervalares, mantienen las propiedades de las escalas ordinales y nominales, es decir, los números designan categorías y permiten ordenarlas; pero además permiten decir a qué distancia está una de otra, porque cada categoría se expresa también en sentido cuantitativo. La medición intervalar implica construir una escala en la que las categorías están proporcionalmente distanciadas entre sí. Esto permite especificar la distancia que separa a cada categoría de las demás. Este nivel de medición requiere que se establezca algún tipo de unidad de medida que pueda ser considerado por todos como una norma común y que sea repetible, esto es, que se pueda aplicar reiteradamente a los mismos individuos produciendo los mismos resultados.
+
+La medición de los rendimientos individuales por medio de pruebas suele expresarse en puntajes que provienen del tiempo requerido para realizar una determinada tarea o de la cantidad de trabajo realizado. En este tipo de prueba, es común que los puntajes partan de un mínimo establecido (por ejemplo el mínimo tiempo posible de ejecución o la mínima cantidad de tareas que una persona puede realizar en una prueba) y esto constituye el puntaje mínimo o la categoría más baja. Los puntajes de las pruebas mentales varían de acuerdo con el rendimiento y un mayor rendimiento siempre significará un mayor puntaje. Por ejemplo, el manual original del Inventario de Depresión de Beck-II (@Upton2013) establece niveles (ordinales) para los puntajes (intervalares) que resultan de la aplicación del instrumento:
+
+```{r}
+aux_table <- tibble::tribble(
+  ~"Puntaje en la escala", ~"Significado",
+  "0 - 13",                "depresión mínima",
+  "14 - 19",               "depresión leve",
+  "20 - 28",               "depresión moderada",
+  "29 - 63",               "depresión grave"
+)
+kableExtra::kable_styling(
+  knitr::kable(aux_table, format = "pandoc", booktabs = TRUE, align = "ll",
+               caption = "Ejemplo de codificación de rangos de puntajes para una variable intervalar."),
+  latex_options = "striped")
+```
+
+De este modo se ha bajado el nivel de medición, de intervalar a ordinal.
+
+A nivel intervalar, ya es posible expresar la regla de transformación de manera formal; así, si x e y representan la medición del mismo atributo en diferentes escalas, puede obtenerse y a partir de x a través de la siguiente operación:
+
+$$y = b_0 + b_1*x$$
+
+Se usan los símbolos $b_0$ y $b_1$ para indicar dos números fijos elegidos arbitrariamente. El primero de ellos indica el desplazamiento en el origen de la escala: allí donde $x$ valga 0, y tomará el valor de $b_0$. Por su parte, $b_1$ es un factor de escala, que modifica el tamaño de la unidad de medida. 
+
+En el ejemplo de la medición del año según dos calendarios diferentes, si x es la medición en el calendario cristiano e y con el calendario judío, la relación es: 
+
+$$y = 3760 + x$$
+
+En la que $b_0$ se reemplazó por 3760 y $b_0$ ha desaparecido, es decir que vale 1 (que no tiene efecto cuando multiplica a x). El valor 3760 representa el cambio en el origen: cuando el calendario cristiano marcó cero (hipotéticamente, porque su implementación es posterior a esa época), el judío indicaba el año 3760. El 1 correspondiente a b1, indica que no hay cambio en el tamaño de la unidad, como dijimos antes, ambas culturas acuerdan en que el año es una vuelta de la tierra al sol .
+
+||
+|:--:|
+| Una variable está medida a nivel **intervalar** cuando las distancias entre las categorías son proporcionales. |
+
+Si 1, 2, 3 y 4 son categorías de una variable medida a nivel intervalar, se pueden establecer las relaciones:
+
+$$1 \neq 2$$
+$$1 < 2$$
+$$2 - 1 = 4 - 3$$
+
+Se agrega la conservación de las distancias a las propiedades que ya tenía la escala anterior.
+
+### El nivel proporcional
+
+Este es el último nivel de medición que trataremos y es el más intuitivo, es el único nivel considerado efectivamente como medición por la teoría clásica, ya que en él se integran todas las propiedades de los niveles anteriores y además se agrega la proporcionalidad de los valores numéricos y el carácter absoluto del cero. Recién a este nivel, los números se comportan realmente como números, ya que se puede operar con ellos del modo al que estamos acostumbrados (sumarlos, multiplicarlos, etc.). ¿Qué variables pueden medirse a este nivel? Todas aquellas para las cuales tengan sentido las dos propiedades adicionales que esta escala incorpora: proporcionalidad de valores y cero absoluto. La cantidad de errores ortográficos cometidos en una prueba de dictado, admite el valor cero como correspondiente a "no errores", es la ausencia de lo que se mide, se trata de un cero absoluto. Además, cometer 10 errores es el doble que cometer 5. Por eso, la variable Número de errores ortográficos cometidos es de nivel proporcional. El tiempo que una persona tarda en resolver una tarea, si se mide en minutos, admite considerar que 4 minutos es el doble de 2, por lo que estamos también en presencia de una escala proporcional, aunque el cero no sea un valor observable. También es proporcional la variable ingresos mensuales del hogar o el número de materias aprobadas.
+
+En general, los valores que provengan de procesos de conteo (como el número de errores) serán siempre proporcionales, como también aquellos que hagan referencia a una unidad de medida estándar como el tiempo  o la distancia.
+
+La expresión formal de la regla de transformación entre escalas proporcionales es, si $x$ e $y$ representan la medición del mismo atributo en diferentes escalas:
+
+$$y = b_1 * x$$
+
+En la que ahora solo tenemos un número fijo: $b_1$, que es el factor de escala, que modifica el tamaño de la unidad de medida. Esto simplemente significa que pueden cambiarse las unidades con que se miden las variables proporcionales. Por ejemplo para pasar de metros a centímetros:
+
+$$y = 100 * x$$
+
+Donde x es la medida en metros e y la misma medida expresada en centímetros. Si $x=3$ metros entonces $y=300$ centímetros 
+
+De horas a minutos
+
+$$y = 60 * x$$
+
+El factor 60 transforma a las horas (x) en minutos (y). Si $x=2$ horas entonces $y=120$ minutos
+
+Otro ejemplo, si el tiempo que tardan sujetos experimentales para reconocer una expresión facial se mide en milisegundos (x), esa medición se puede pasar a segundos (y), dividiendo por mil.
+
+$$y=\dfrac{1}{1000}*x$$
+
+Ninguna de esas transformaciones pueden modificar la posición del cero, porque en esta escala es absoluto: allí donde x valga cero, y deberá también valer cero, por eso no aparece el término b0 que estaba en las intervalares. Cero metros son también cero centímetros y cero horas son cero minutos.
+
+||
+|:--:|
+| Una variable está medida a nivel **proporcional** cuando sus valores respetan relaciones de proporcionalidad y, en consecuencia, el cero tiene un valor absoluto. |
+
+Si 1, 2, 3 y 4 son categorías de una variable medida a nivel proporcional, se pueden establecer las relaciones:
+
+$$1 \neq 2$$
+$$1 < 2$$
+$$2 - 1 = 4 - 3$$
+$$4 = 2 * 2$$
+
+#### Una subdivisión en las escalas proporcionales
+
+Entre las variables medidas a nivel proporcional, debe hacerse una diferenciación, según los valores solo puedan ser números enteros o admitan números decimales, porque cambia la forma de presentación. El primer tipo es el que se llama variable **discreta**, los siguientes son ejemplos de ella:
+
+```{r}
+aux_table <- tibble::tribble(
+  ~"Cantidad de aplazos", ~"Número de materias aprobadas", 
+  "0",                     "0",
+  "1",                     "1",
+  "2",                     "2",
+  "3",                     "3",
+  "4",                     "4",
+  "5",                     "5",
+  "6",                     "6",
+  "",                      "7 o más",
+)
+kableExtra::kable_styling(
+  knitr::kable(aux_table, format = "pandoc", booktabs = TRUE, align = "cc",
+               caption = "Ejemplos de variable proporcional discreta."),
+  latex_options = "striped")
+```
+
+Aquí podría suceder que la variable tenga un gran número de valores. En el ejemplo de la cantidad de materias aprobadas, puede restringirse a las aprobadas por alumnos de primer año y en condición de regular, de modo que el máximo sea de 6. Pero si fueran alumnos de toda la carrera, la cantidad podría ir desde cero hasta el número total de materias. En esos casos, resultaría poco claro hacer la lista con todos los valores posibles. 
+
+Cuando una variable discreta tiene una cantidad grande de valores, el problema de la presentación de las categorías se resuelve agrupándolas. Esto se llama recategorización porque consiste en construir nuevas categorías (volver a categorizar) a partir de las originales de la variable, a fin de resumir la información. Por ejemplo, la primera categoría puede incluir a quienes aprobaron una materia o ninguna, la segunda a los que aprobaron dos o tres y así sucesivamente:
+
+```{r}
+aux_table <- tibble::tribble(
+  ~"Número de materias aprobadas",
+  "0-1",
+  "2-3",
+  "4-6"
+)
+kableExtra::kable_styling(
+  knitr::kable(aux_table, format = "pandoc", booktabs = TRUE, align = "c",
+               caption = "Ejemplo de recategorización de una variable discreta."),
+  latex_options = "striped")
+```
+
+Cuando la variable admite números decimales se la llama **continua**, y allí el problema es mayor, porque el número de valores puede ser muy elevado y la única opción es la de construir categorías.
+
+```{r}
+aux_table <- tibble::tribble(
+  ~"Estatura (en metros)",
+  "hasta 1,55",
+  "1,55 - 1,65",
+  "1.65 - 1.75",
+  "1,75 - 1,85",
+  "1,85 - 1,95",
+  "1,95 - 2,05",
+  "más de 2,05",
+)
+kableExtra::kable_styling(
+  knitr::kable(aux_table, format = "pandoc", booktabs = TRUE, align = "c",
+               caption = "Ejemplo de recategorización de una variable continua"),
+  latex_options = "striped")
+```
+
+En el próximo capítulo nos detendremos en las formas de construir estos agrupamientos y despejaremos las dudas que provengan de la diferente cantidad de valores que se agruparon en la variable discreta de este ejemplo (las dos primera categorías contienen dos valores cada una, y la tercera tres) y la aparente superposición entre el inicio de una categoría y el fin de la anterior en el caso de la continua, que sería una violación de la exclusión mutua, porque alguien con una talla de 1,85 podría ir a la cuarta o a la quinta categoría.
+
+## Resumen de los niveles de medición
+
+```{r}
+aux_table <- tibble::tribble(
+  ~"Nivel de medición", ~"Significado de los símbolos numéricos", ~"Condición para cambio de escala", ~"Ubicación del cero",
+  "Nominal", "Designan, distinguen", "No repetir los números", "Sin significado",
+  "Ordinal", "Expresan orden", "Respetar el orden ascendente o descendente", "Sin signifcado",
+  "Intervalar", "Proporcionalidad de distancias", "$y = b_0 + b_1*x$", "Arbitrario",
+  "Proporcional", "Proporcionalidad de valores", "$y = b_1*x$", "Absoluto"
+)
+kableExtra::kable_styling(
+  knitr::kable(aux_table, format = "markdown", booktabs = TRUE, align = "llll",
+               escape = FALSE),
+  latex_options = "striped", full_width = FALSE)
+```
+
+------------------------------------------------
+
+Ejemplos de diferentes niveles de medición
+
+- Nominales:
+
+Valores (supervivencia vs autoexpresión, tradicionales vs racionales) @Inglehart2018, @Norris2011
+
+- Ordinales:
+
+Las escalas de compromiso politico, acuerdo partidario y consistencia ideológica (@Doherty2016), la pobreza medida según Línea de pobreza (@INDEC2016), el grado de acuerdo en escalas de actitud @Robinson2014
+
+- Cuantitativas discretas:
+
+Cantidad de partidos políticos, tipo de vivienda @INDEC2018, cantidad de palabras recordadas en una prueba de memoria
+
+- Cuantitativas continuas:
+
+Tiempo requerido para completar una tarea, ingreso per cápita familiar @INDEC2018, gasto total en campaña electoral @MoralesQuiroga2010
