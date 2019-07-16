@@ -1,0 +1,1312 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 2 Distribuciones de frecuencia | Estadística para Ciencias Sociales con R</title>
+  <meta name="description" content="Capítulo 2 Distribuciones de frecuencia | Estadística para Ciencias Sociales con R" />
+  <meta name="generator" content="bookdown 0.11 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 2 Distribuciones de frecuencia | Estadística para Ciencias Sociales con R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 2 Distribuciones de frecuencia | Estadística para Ciencias Sociales con R" />
+  
+  
+  
+
+<meta name="author" content="Eduardo Bologna" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="los-datos-estadisticos.html">
+<link rel="next" href="la-expresion-resumida-de-la-informacion.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Estadística para Ciencias Sociales con R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="los-datos-estadisticos.html"><a href="los-datos-estadisticos.html"><i class="fa fa-check"></i><b>1</b> Los datos estadísticos</a><ul>
+<li class="chapter" data-level="1.1" data-path="los-datos-estadisticos.html"><a href="los-datos-estadisticos.html#la-seleccion-de-la-informacion-pertinente"><i class="fa fa-check"></i><b>1.1</b> La selección de la información pertinente</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="los-datos-estadisticos.html"><a href="los-datos-estadisticos.html#los-individuos"><i class="fa fa-check"></i><b>1.1.1</b> Los individuos</a></li>
+<li class="chapter" data-level="1.1.2" data-path="los-datos-estadisticos.html"><a href="los-datos-estadisticos.html#las-variables"><i class="fa fa-check"></i><b>1.1.2</b> Las variables</a></li>
+<li class="chapter" data-level="1.1.3" data-path="los-datos-estadisticos.html"><a href="los-datos-estadisticos.html#las-categorias"><i class="fa fa-check"></i><b>1.1.3</b> Las categorías</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="los-datos-estadisticos.html"><a href="los-datos-estadisticos.html#los-simbolos-numericos"><i class="fa fa-check"></i><b>1.2</b> Los símbolos numéricos</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="los-datos-estadisticos.html"><a href="los-datos-estadisticos.html#la-medicion"><i class="fa fa-check"></i><b>1.2.1</b> La medición</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="los-datos-estadisticos.html"><a href="los-datos-estadisticos.html#niveles-de-medicion"><i class="fa fa-check"></i><b>1.3</b> Niveles de medición</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="los-datos-estadisticos.html"><a href="los-datos-estadisticos.html#el-nivel-nominal"><i class="fa fa-check"></i><b>1.3.1</b> El nivel nominal</a></li>
+<li class="chapter" data-level="1.3.2" data-path="los-datos-estadisticos.html"><a href="los-datos-estadisticos.html#el-nivel-ordinal"><i class="fa fa-check"></i><b>1.3.2</b> El nivel ordinal</a></li>
+<li class="chapter" data-level="1.3.3" data-path="los-datos-estadisticos.html"><a href="los-datos-estadisticos.html#el-nivel-intervalar"><i class="fa fa-check"></i><b>1.3.3</b> El nivel intervalar</a></li>
+<li class="chapter" data-level="1.3.4" data-path="los-datos-estadisticos.html"><a href="los-datos-estadisticos.html#el-nivel-proporcional"><i class="fa fa-check"></i><b>1.3.4</b> El nivel proporcional</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="los-datos-estadisticos.html"><a href="los-datos-estadisticos.html#resumen-de-los-niveles-de-medicion"><i class="fa fa-check"></i><b>1.4</b> Resumen de los niveles de medición</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html"><i class="fa fa-check"></i><b>2</b> Distribuciones de frecuencia</a><ul>
+<li class="chapter" data-level="2.1" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#tablas-de-distribucion-de-frecuencia"><i class="fa fa-check"></i><b>2.1</b> Tablas de distribución de frecuencia</a></li>
+<li class="chapter" data-level="2.2" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#recategorizacion"><i class="fa fa-check"></i><b>2.2</b> Recategorización</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#variable-discreta-con-muchas-categorias"><i class="fa fa-check"></i><b>2.2.1</b> Variable discreta con muchas categorías</a></li>
+<li class="chapter" data-level="2.2.2" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#variable-continua"><i class="fa fa-check"></i><b>2.2.2</b> Variable continua</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#la-presentacion-grafica-de-los-resultados"><i class="fa fa-check"></i><b>2.3</b> La presentación gráfica de los resultados</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="la-expresion-resumida-de-la-informacion.html"><a href="la-expresion-resumida-de-la-informacion.html"><i class="fa fa-check"></i><b>3</b> La expresión resumida de la información</a><ul>
+<li class="chapter" data-level="3.1" data-path="la-expresion-resumida-de-la-informacion.html"><a href="la-expresion-resumida-de-la-informacion.html#medidas-de-posicion"><i class="fa fa-check"></i><b>3.1</b> Medidas de posición</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="la-expresion-resumida-de-la-informacion.html"><a href="la-expresion-resumida-de-la-informacion.html#variables-nominales-proporciones"><i class="fa fa-check"></i><b>3.1.1</b> Variables nominales: proporciones</a></li>
+<li class="chapter" data-level="3.1.2" data-path="la-expresion-resumida-de-la-informacion.html"><a href="la-expresion-resumida-de-la-informacion.html#variables-nominales-tasas"><i class="fa fa-check"></i><b>3.1.2</b> Variables nominales: tasas</a></li>
+<li class="chapter" data-level="3.1.3" data-path="la-expresion-resumida-de-la-informacion.html"><a href="la-expresion-resumida-de-la-informacion.html#variables-nominales-razones"><i class="fa fa-check"></i><b>3.1.3</b> Variables nominales: razones</a></li>
+<li class="chapter" data-level="3.1.4" data-path="la-expresion-resumida-de-la-informacion.html"><a href="la-expresion-resumida-de-la-informacion.html#variables-nominales-el-modo"><i class="fa fa-check"></i><b>3.1.4</b> Variables nominales: el modo</a></li>
+<li class="chapter" data-level="3.1.5" data-path="la-expresion-resumida-de-la-informacion.html"><a href="la-expresion-resumida-de-la-informacion.html#variables-ordinales-percentiles"><i class="fa fa-check"></i><b>3.1.5</b> Variables ordinales: percentiles</a></li>
+<li class="chapter" data-level="3.1.6" data-path="la-expresion-resumida-de-la-informacion.html"><a href="la-expresion-resumida-de-la-informacion.html#variables-ordinales-la-mediana"><i class="fa fa-check"></i><b>3.1.6</b> Variables ordinales: la mediana</a></li>
+<li class="chapter" data-level="3.1.7" data-path="la-expresion-resumida-de-la-informacion.html"><a href="la-expresion-resumida-de-la-informacion.html#los-cuartiles"><i class="fa fa-check"></i><b>3.1.7</b> Los cuartiles</a></li>
+<li class="chapter" data-level="3.1.8" data-path="la-expresion-resumida-de-la-informacion.html"><a href="la-expresion-resumida-de-la-informacion.html#los-percentiles"><i class="fa fa-check"></i><b>3.1.8</b> Los percentiles</a></li>
+<li class="chapter" data-level="3.1.9" data-path="la-expresion-resumida-de-la-informacion.html"><a href="la-expresion-resumida-de-la-informacion.html#hacerlo-en-r"><i class="fa fa-check"></i><b>3.1.9</b> Hacerlo en R</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="la-expresion-resumida-de-la-informacion.html"><a href="la-expresion-resumida-de-la-informacion.html#la-forma-de-la-distribucion"><i class="fa fa-check"></i><b>3.2</b> La forma de la distribución</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="la-expresion-resumida-de-la-informacion.html"><a href="la-expresion-resumida-de-la-informacion.html#asimetria"><i class="fa fa-check"></i><b>3.2.1</b> Asimetría</a></li>
+<li class="chapter" data-level="3.2.2" data-path="la-expresion-resumida-de-la-informacion.html"><a href="la-expresion-resumida-de-la-informacion.html#curtosis"><i class="fa fa-check"></i><b>3.2.2</b> Curtosis</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="la-expresion-resumida-de-la-informacion.html"><a href="la-expresion-resumida-de-la-informacion.html#box-plots"><i class="fa fa-check"></i><b>3.3</b> Box-plots</a></li>
+<li class="chapter" data-level="3.4" data-path="la-expresion-resumida-de-la-informacion.html"><a href="la-expresion-resumida-de-la-informacion.html#medidas-de-dispersion"><i class="fa fa-check"></i><b>3.4</b> Medidas de dispersión</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="la-expresion-resumida-de-la-informacion.html"><a href="la-expresion-resumida-de-la-informacion.html#recorrido"><i class="fa fa-check"></i><b>3.4.1</b> Recorrido</a></li>
+<li class="chapter" data-level="3.4.2" data-path="la-expresion-resumida-de-la-informacion.html"><a href="la-expresion-resumida-de-la-informacion.html#amplitud-intercuartilica"><i class="fa fa-check"></i><b>3.4.2</b> Amplitud intercuartílica</a></li>
+<li class="chapter" data-level="3.4.3" data-path="la-expresion-resumida-de-la-informacion.html"><a href="la-expresion-resumida-de-la-informacion.html#medidas-de-dispersion-basadas-en-la-media"><i class="fa fa-check"></i><b>3.4.3</b> Medidas de dispersión basadas en la media</a></li>
+<li class="chapter" data-level="3.4.4" data-path="la-expresion-resumida-de-la-informacion.html"><a href="la-expresion-resumida-de-la-informacion.html#varianza"><i class="fa fa-check"></i><b>3.4.4</b> Varianza</a></li>
+<li class="chapter" data-level="3.4.5" data-path="la-expresion-resumida-de-la-informacion.html"><a href="la-expresion-resumida-de-la-informacion.html#desviacion-estandar"><i class="fa fa-check"></i><b>3.4.5</b> Desviación estándar</a></li>
+<li class="chapter" data-level="3.4.6" data-path="la-expresion-resumida-de-la-informacion.html"><a href="la-expresion-resumida-de-la-informacion.html#coeficiente-de-variacion"><i class="fa fa-check"></i><b>3.4.6</b> Coeficiente de variación</a></li>
+<li class="chapter" data-level="3.4.7" data-path="la-expresion-resumida-de-la-informacion.html"><a href="la-expresion-resumida-de-la-informacion.html#hacerlo-en-r-1"><i class="fa fa-check"></i><b>3.4.7</b> Hacerlo en R</a></li>
+<li class="chapter" data-level="3.4.8" data-path="la-expresion-resumida-de-la-informacion.html"><a href="la-expresion-resumida-de-la-informacion.html#box-plots-y-dispersion"><i class="fa fa-check"></i><b>3.4.8</b> Box-plots y dispersión</a></li>
+<li class="chapter" data-level="3.4.9" data-path="la-expresion-resumida-de-la-informacion.html"><a href="la-expresion-resumida-de-la-informacion.html#medida-de-la-dispersion-cuando-no-hay-distancias"><i class="fa fa-check"></i><b>3.4.9</b> Medida de la dispersión cuando no hay distancias</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="la-expresion-resumida-de-la-informacion.html"><a href="la-expresion-resumida-de-la-informacion.html#el-individuo-en-relacion-a-su-grupo"><i class="fa fa-check"></i><b>3.5</b> El individuo en relación a su grupo</a></li>
+<li class="chapter" data-level="3.6" data-path="la-expresion-resumida-de-la-informacion.html"><a href="la-expresion-resumida-de-la-informacion.html#resumen-de-medidas-descriptivas"><i class="fa fa-check"></i><b>3.6</b> Resumen de medidas descriptivas</a><ul>
+<li class="chapter" data-level="3.6.1" data-path="la-expresion-resumida-de-la-informacion.html"><a href="la-expresion-resumida-de-la-informacion.html#medidas-de-posicion-1"><i class="fa fa-check"></i><b>3.6.1</b> Medidas de posición</a></li>
+<li class="chapter" data-level="3.6.2" data-path="la-expresion-resumida-de-la-informacion.html"><a href="la-expresion-resumida-de-la-informacion.html#medidas-de-dispersion-1"><i class="fa fa-check"></i><b>3.6.2</b> Medidas de dispersión</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Generado con bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Estadística para Ciencias Sociales con R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="distribuciones-de-frecuencia" class="section level1">
+<h1><span class="header-section-number">Capítulo 2</span> Distribuciones de frecuencia</h1>
+<p>Una vez identificadas las variables y reconocido su nivel de medición, es necesario darle a la matriz de datos un formato que permita hacer lecturas de los resultados, ya que es imposible observar una tabla que tenga gran cantidad de filas (casos) y muchas columnas (variables).
+El siguiente fragmento de matriz de datos:</p>
+<pre><code>##   ANO4 TRIMESTRE AGLOMERADO CH03 CH04
+## 1 2018         3          2    1    2
+## 2 2018         3          2    1    1
+## 3 2018         3          2    6    2
+## 4 2018         3          2    3    1
+## 5 2018         3          2    1    1
+## 6 2018         3          2    2    2</code></pre>
+<p>Muestra las primeras variables y primeros casos correspondiente a la aplicación del cuestionario individual de la Encuesta Permanente de Hogares <span class="citation">INDEC (<a href="#ref-INDEC2018">2018</a>)</span> del tercer trimestre de 2018, que tiene 56879 casos. Las variables están codificadas, tanto en su nombre como en sus categorías. Por ejemplo, CH06 es la edad y los números representan años cumplidos, CH04 es sexo y sus categorías son 1 = varones, 2 = mujeres. Esas codificaciones están en el documento <em>Diseño de Registro de la Base Usuario de la EPH</em> <span class="citation">none (<a href="#ref-INDEC2009">8818</a><a href="#ref-INDEC2009">a</a>)</span></p>
+<p>Cada columna de la matriz de datos contiene los valores que se han observado en cada uno de los individuos (filas); si se observa verticalmente, cada columna es una secuencia de números, que algunos programas denominan vector. Para el caso de CH04 (sexo), los primeros 25 valores de esta columna son:</p>
+<pre><code>##  [1] 2 1 2 1 1 2 1 2 2 1 1 2 1 1 2 1 1 1 1 2 1 1 1 2 1</code></pre>
+<p>Así presentada, la secuencia se llama serie simple y solo puede analizarse cuando son muy pocos casos, sería imposible en este ejemplo, con 56879 filas.</p>
+<p>El más elemental de los resúmenes consiste en contar, para una variable determinada, cuantas apariciones tiene cada categoría. En la columna encabezada CH04 (sexo) pueden contarse cuántos unos (1s) y cuántos doses (2s) hay en total.</p>
+<div id="tablas-de-distribucion-de-frecuencia" class="section level2">
+<h2><span class="header-section-number">2.1</span> Tablas de distribución de frecuencia</h2>
+<p>Las tablas resumen los recuentos, en este ejemplo:</p>
+<table>
+<caption><span id="tab:unnamed-chunk-19">Tabla 2.1: </span>Distribución por sexos.</caption>
+<thead>
+<tr class="header">
+<th align="center">Var1</th>
+<th align="center">Freq</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">1</td>
+<td align="center">27219</td>
+</tr>
+<tr class="even">
+<td align="center">2</td>
+<td align="center">29660</td>
+</tr>
+<tr class="odd">
+<td align="center">Total</td>
+<td align="center">56879</td>
+</tr>
+</tbody>
+</table>
+<p>Cuando se rotulan la variable y sus categorías:</p>
+<table>
+<caption><span id="tab:unnamed-chunk-20">Tabla 2.2: </span>Distribución por sexos (categorías rotuladas.</caption>
+<thead>
+<tr class="header">
+<th align="left">sexo</th>
+<th align="center">casos</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">varones</td>
+<td align="center">27219</td>
+</tr>
+<tr class="even">
+<td align="left">mujeres</td>
+<td align="center">29660</td>
+</tr>
+<tr class="odd">
+<td align="left">Total</td>
+<td align="center">56879</td>
+</tr>
+</tbody>
+</table>
+<p>A la cantidad de casos, que proviene del recuento del número de unos y doses en la columna de sexo, se lo llama técnicamente frecuencia absoluta simple y se la indica como f. La tabla resulta entonces:</p>
+<table>
+<caption><span id="tab:unnamed-chunk-21">Tabla 2.3: </span>Distribución por sexos: frecuencia absoluta.</caption>
+<thead>
+<tr class="header">
+<th align="left">sexo</th>
+<th align="center">f</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">varones</td>
+<td align="center">27219</td>
+</tr>
+<tr class="even">
+<td align="left">mujeres</td>
+<td align="center">29660</td>
+</tr>
+<tr class="odd">
+<td align="left">Total</td>
+<td align="center">56879</td>
+</tr>
+</tbody>
+</table>
+<p>El total de 56879 casos resulta de la suma de todas las frecuencias absolutas simples, de manera breve, esto se indica así: <span class="math display">\[\sum_{i=1}^{k}f_i =n\]</span></p>
+<p>Que se lee “La sumatoria de las frecuencias (f) desde 1 hasta k es igual al total de observaciones (n)”.
+En esa expresión:</p>
+<ul>
+<li><p><span class="math inline">\(\sum\)</span> es el símbolo de suma o sumatoria e indica la realización de esa operación (sumar).</p></li>
+<li><p>Las <span class="math inline">\(f_i\)</span> son las frecuencias absolutas simples. El subíndice i va cambiando entre categorías.</p></li>
+<li><p>La expresión <span class="math inline">\(i=1\)</span> señala desde qué valor de i se inicia la suma, así como k señala la última categoría a sumar. En el ejemplo de las tablas, el valor de k es 2 (solo hay dos categorías), por lo que solo hay dos frecuencias a sumar: <span class="math inline">\(f_1\)</span> y <span class="math inline">\(f_2\)</span>, correspondientes a las cantidades de varones y de mujeres.</p></li>
+<li><p>n es el total de casos (observaciones).</p></li>
+</ul>
+<p>Lo mismo puede indicarse como:</p>
+<p><span class="math display">\[f_1 + f_2 + ⋯ + f_k = n\]</span></p>
+<p>Que, en el caso de la tabla anterior resulta simplemente:</p>
+<p><span class="math display">\[f_1 + f_2 = 27219 + 29660 = 56879\]</span></p>
+<table>
+<colgroup>
+<col width="100%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="center">La <strong>frecuencia absoluta simple</strong> de cada valor de la variable es el número de casos que asumen ese valor. Se indica <span class="math inline">\(f\)</span>.</td>
+</tr>
+</tbody>
+</table>
+<p>Si se quisieran comparar estas frecuencias con las de otra matriz de datos que tuviera un número total de casos diferente de 56879, sería inadecuado usar los valores absolutos aquí presentados. Por ejemplo, la comparación de la distribución por sexos entre las personas que trabajan en el sector estatal y en el sector privado.</p>
+<table>
+<caption><span id="tab:unnamed-chunk-22">Tabla 2.4: </span>Distribución por sexos según sector de trabajo.</caption>
+<thead>
+<tr class="header">
+<th align="center">sexo (sector estatal)</th>
+<th align="center">f</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">1</td>
+<td align="center">2468</td>
+</tr>
+<tr class="even">
+<td align="center">2</td>
+<td align="center">2810</td>
+</tr>
+<tr class="odd">
+<td align="center">Total</td>
+<td align="center">5278</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th align="center">sexo (sector privado)</th>
+<th align="center">f</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">1</td>
+<td align="center">10618</td>
+</tr>
+<tr class="even">
+<td align="center">2</td>
+<td align="center">7276</td>
+</tr>
+<tr class="odd">
+<td align="center">Total</td>
+<td align="center">17894</td>
+</tr>
+</tbody>
+</table>
+<p>No es clara la comparación entre el número de mujeres en los dos sectores, porque la cantidad total de casos es muy diferente, por eso es necesario comparar el peso relativo de las mujeres respecto del total, y no su número absoluto, se trata de su contribución al total de casos.</p>
+<p>Para calcularlo se divide el número de mujeres en el total general. En el ejemplo, para el sector estatal es 0.532 que es el 53.2% de los casos. Es decir que las mujeres constituyen una proporción de 0.532 o bien que representan el 53.2% del total. Mientras que en la segunda tabla, la proporción de mujeres es 0.407 que es el 40.7% de los casos.</p>
+<p>Estas proporciones se denominan frecuencias relativas simples, se simbolizan como <span class="math inline">\(f&#39;\)</span> (efe prima), y se calculan dividiendo la frecuencia absoluta por el total. Ahora puede completarse la tabla anterior agregando otra columna.</p>
+<table>
+<caption><span id="tab:unnamed-chunk-23">Tabla 2.5: </span>Distribución por sexos sector privado: frecuencias relativas.</caption>
+<thead>
+<tr class="header">
+<th align="center">sexo (sector privado)</th>
+<th align="center">f</th>
+<th align="center">f’</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">1</td>
+<td align="center">10618</td>
+<td align="center">0.59</td>
+</tr>
+<tr class="even">
+<td align="center">2</td>
+<td align="center">7276</td>
+<td align="center">0.41</td>
+</tr>
+<tr class="odd">
+<td align="center">Total</td>
+<td align="center">17894</td>
+<td align="center">1</td>
+</tr>
+</tbody>
+</table>
+<p>El valor 1 que resulta de sumar las dos frecuencias relativas corresponde al 100% de los casos, es decir a las 17894 observaciones. Usando la misma simbología que antes: <span class="math display">\[\sum_{i=1}^{k} f&#39;_i =1\]</span></p>
+<p>Que afirma que la suma de las frecuencias relativas simples (<span class="math inline">\(f’\)</span>) es igual a uno.
+La salida para la variable ESTADO tiene la siguiente forma:</p>
+<table>
+<caption><span id="tab:unnamed-chunk-24">Tabla 2.6: </span>Condición laboral.</caption>
+<thead>
+<tr class="header">
+<th align="center">ESTADO</th>
+<th align="center">f’</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">0</td>
+<td align="center">0.00</td>
+</tr>
+<tr class="even">
+<td align="center">1</td>
+<td align="center">0.41</td>
+</tr>
+<tr class="odd">
+<td align="center">2</td>
+<td align="center">0.03</td>
+</tr>
+<tr class="even">
+<td align="center">3</td>
+<td align="center">0.41</td>
+</tr>
+<tr class="odd">
+<td align="center">4</td>
+<td align="center">0.15</td>
+</tr>
+<tr class="even">
+<td align="center">Total</td>
+<td align="center">1.00</td>
+</tr>
+</tbody>
+</table>
+<p>Cuando se codifica, queda:</p>
+<table>
+<caption><span id="tab:unnamed-chunk-25">Tabla 2.7: </span>Condición laboral (categorías rotuladas).</caption>
+<thead>
+<tr class="header">
+<th align="left">ESTADO</th>
+<th align="center">f’</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">entrevista no realizada</td>
+<td align="center">0.00</td>
+</tr>
+<tr class="even">
+<td align="left">ocupado</td>
+<td align="center">0.41</td>
+</tr>
+<tr class="odd">
+<td align="left">desocupado</td>
+<td align="center">0.03</td>
+</tr>
+<tr class="even">
+<td align="left">inactivo</td>
+<td align="center">0.41</td>
+</tr>
+<tr class="odd">
+<td align="left">menor de 10 años</td>
+<td align="center">0.15</td>
+</tr>
+<tr class="even">
+<td align="left">Total</td>
+<td align="center">1.00</td>
+</tr>
+</tbody>
+</table>
+<p>Al construir estas tablas de distribución de frecuencias se renuncia a una parte de la información que estaba en la matriz de datos. En ella se podía seguir por la fila a cada individuo y describirlo en cada uno de sus aspectos relevados (variables). Por el contrario, la tabla de distribución de frecuencias de sexo solo dice que hay 27219 varones y 29660 mujeres o, en la tabla de ESTADO, que hay 23398 ocupados, 1870 desocupados, etc., pero no se informa quiénes son. Esta pérdida de información es parte inevitable del proceso en el que se resumen datos, cuanto más sintética sea la presentación, tanta más información habremos perdido. Esto puede visualizarse como el proceso en el que se “toma distancia” de los datos originales: cada vez se tiene una mejor visión de conjunto, pero al mismo tiempo se pierden detalles.</p>
+<table>
+<colgroup>
+<col width="100%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="center">La <strong>frecuencia relativa simple</strong> de cada valor de la variable es la proporción de casos que asumen ese valor. Se indica <span class="math inline">\(f&#39;\)</span>.</td>
+</tr>
+</tbody>
+</table>
+<p>Los dos ejemplos mostrados hasta aquí corresponden a variables medidas a nivel nominal, por lo que los números no son más que códigos, no representan orden ni puede considerarse la distancia entre ellos. ¿Qué cambia con un nivel de medición más elevado? Con el mismo principio usado para las variables nominales, la forma de la tabla de distribución de frecuencia para la edad (CH06) de estudiantes universitarios sería:</p>
+<table>
+<caption><span id="tab:unnamed-chunk-26">Tabla 2.8: </span>Distribución por edades.</caption>
+<thead>
+<tr class="header">
+<th align="center">edad</th>
+<th align="center">f</th>
+<th align="center">f’</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">17</td>
+<td align="center">8</td>
+<td align="center">0.00</td>
+</tr>
+<tr class="even">
+<td align="center">18</td>
+<td align="center">247</td>
+<td align="center">0.07</td>
+</tr>
+<tr class="odd">
+<td align="center">19</td>
+<td align="center">355</td>
+<td align="center">0.09</td>
+</tr>
+<tr class="even">
+<td align="center">20</td>
+<td align="center">377</td>
+<td align="center">0.10</td>
+</tr>
+<tr class="odd">
+<td align="center">21</td>
+<td align="center">372</td>
+<td align="center">0.10</td>
+</tr>
+<tr class="even">
+<td align="center">22</td>
+<td align="center">364</td>
+<td align="center">0.10</td>
+</tr>
+<tr class="odd">
+<td align="center">23</td>
+<td align="center">331</td>
+<td align="center">0.09</td>
+</tr>
+<tr class="even">
+<td align="center">24</td>
+<td align="center">241</td>
+<td align="center">0.06</td>
+</tr>
+<tr class="odd">
+<td align="center">25</td>
+<td align="center">237</td>
+<td align="center">0.06</td>
+</tr>
+<tr class="even">
+<td align="center">26</td>
+<td align="center">188</td>
+<td align="center">0.05</td>
+</tr>
+<tr class="odd">
+<td align="center">27</td>
+<td align="center">156</td>
+<td align="center">0.04</td>
+</tr>
+<tr class="even">
+<td align="center">28</td>
+<td align="center">134</td>
+<td align="center">0.04</td>
+</tr>
+<tr class="odd">
+<td align="center">29</td>
+<td align="center">98</td>
+<td align="center">0.03</td>
+</tr>
+<tr class="even">
+<td align="center">30</td>
+<td align="center">84</td>
+<td align="center">0.02</td>
+</tr>
+<tr class="odd">
+<td align="center">31</td>
+<td align="center">76</td>
+<td align="center">0.02</td>
+</tr>
+<tr class="even">
+<td align="center">32</td>
+<td align="center">65</td>
+<td align="center">0.02</td>
+</tr>
+<tr class="odd">
+<td align="center">33</td>
+<td align="center">61</td>
+<td align="center">0.02</td>
+</tr>
+<tr class="even">
+<td align="center">34</td>
+<td align="center">36</td>
+<td align="center">0.01</td>
+</tr>
+<tr class="odd">
+<td align="center">35</td>
+<td align="center">46</td>
+<td align="center">0.01</td>
+</tr>
+<tr class="even">
+<td align="center">36</td>
+<td align="center">44</td>
+<td align="center">0.01</td>
+</tr>
+<tr class="odd">
+<td align="center">37</td>
+<td align="center">20</td>
+<td align="center">0.01</td>
+</tr>
+<tr class="even">
+<td align="center">38</td>
+<td align="center">21</td>
+<td align="center">0.01</td>
+</tr>
+<tr class="odd">
+<td align="center">39</td>
+<td align="center">27</td>
+<td align="center">0.01</td>
+</tr>
+<tr class="even">
+<td align="center">40</td>
+<td align="center">21</td>
+<td align="center">0.01</td>
+</tr>
+<tr class="odd">
+<td align="center">41</td>
+<td align="center">18</td>
+<td align="center">0.00</td>
+</tr>
+<tr class="even">
+<td align="center">42</td>
+<td align="center">14</td>
+<td align="center">0.00</td>
+</tr>
+<tr class="odd">
+<td align="center">43</td>
+<td align="center">19</td>
+<td align="center">0.01</td>
+</tr>
+<tr class="even">
+<td align="center">44</td>
+<td align="center">18</td>
+<td align="center">0.00</td>
+</tr>
+<tr class="odd">
+<td align="center">45</td>
+<td align="center">4</td>
+<td align="center">0.00</td>
+</tr>
+<tr class="even">
+<td align="center">46</td>
+<td align="center">10</td>
+<td align="center">0.00</td>
+</tr>
+<tr class="odd">
+<td align="center">47</td>
+<td align="center">7</td>
+<td align="center">0.00</td>
+</tr>
+<tr class="even">
+<td align="center">48</td>
+<td align="center">8</td>
+<td align="center">0.00</td>
+</tr>
+<tr class="odd">
+<td align="center">49</td>
+<td align="center">4</td>
+<td align="center">0.00</td>
+</tr>
+<tr class="even">
+<td align="center">50</td>
+<td align="center">6</td>
+<td align="center">0.00</td>
+</tr>
+<tr class="odd">
+<td align="center">51</td>
+<td align="center">7</td>
+<td align="center">0.00</td>
+</tr>
+<tr class="even">
+<td align="center">52</td>
+<td align="center">10</td>
+<td align="center">0.00</td>
+</tr>
+<tr class="odd">
+<td align="center">53</td>
+<td align="center">3</td>
+<td align="center">0.00</td>
+</tr>
+<tr class="even">
+<td align="center">54</td>
+<td align="center">5</td>
+<td align="center">0.00</td>
+</tr>
+<tr class="odd">
+<td align="center">Total</td>
+<td align="center">3742</td>
+<td align="center">1.00</td>
+</tr>
+</tbody>
+</table>
+<p>Sobre esta tabla se pueden calcular otras frecuencias, que respondan a preguntas como ¿cuántos alumnos de menos de 20 años fueron encuestados? Para saber eso, hay que contar cuántos casos hay con edades menores a 20: con 17, 18 o 19 años hay 610 casos, que provienen de sumar las frecuencias de esas categorías (8+247+355).
+Así, además de indicar cuántos casos (o qué porcentaje de ellos) tiene determinados valores de la variable, resulta de interés mostrar cuantos (y también que porcentaje) tienen valores iguales o menores a uno determinado. Esto va a ser indicado por las frecuencias acumuladas, que responden a la pregunta por la cantidad de casos que hay por debajo de una categoría de la variable. Pero solo para variables medidas a escala ordinal o superior, porque con variables nominales no se pueden hacer juicios de orden, como decir que una categoría es mayor o menor que otra. El cálculo de las frecuencias acumuladas consiste en contar las frecuencias de la categoría que interesa y sumarla a las frecuencias de las categorías anteriores a ella. En el ejemplo de la distribución de las edades de estudiantes universitarios resulta:</p>
+<table>
+<caption><span id="tab:unnamed-chunk-27">Tabla 2.9: </span>Distribución por edades: frecuencias acumuladas.</caption>
+<thead>
+<tr class="header">
+<th align="center">edad</th>
+<th align="center">f</th>
+<th align="center">f’</th>
+<th align="center">F</th>
+<th align="center">F’</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">17</td>
+<td align="center">8</td>
+<td align="center">0.002</td>
+<td align="center">8</td>
+<td align="center">0.002</td>
+</tr>
+<tr class="even">
+<td align="center">18</td>
+<td align="center">247</td>
+<td align="center">0.066</td>
+<td align="center">255</td>
+<td align="center">0.068</td>
+</tr>
+<tr class="odd">
+<td align="center">19</td>
+<td align="center">355</td>
+<td align="center">0.095</td>
+<td align="center">610</td>
+<td align="center">0.163</td>
+</tr>
+<tr class="even">
+<td align="center">20</td>
+<td align="center">377</td>
+<td align="center">0.101</td>
+<td align="center">987</td>
+<td align="center">0.264</td>
+</tr>
+<tr class="odd">
+<td align="center">21</td>
+<td align="center">372</td>
+<td align="center">0.099</td>
+<td align="center">1359</td>
+<td align="center">0.363</td>
+</tr>
+<tr class="even">
+<td align="center">22</td>
+<td align="center">364</td>
+<td align="center">0.097</td>
+<td align="center">1723</td>
+<td align="center">0.46</td>
+</tr>
+<tr class="odd">
+<td align="center">23</td>
+<td align="center">331</td>
+<td align="center">0.088</td>
+<td align="center">2054</td>
+<td align="center">0.548</td>
+</tr>
+<tr class="even">
+<td align="center">24</td>
+<td align="center">241</td>
+<td align="center">0.064</td>
+<td align="center">2295</td>
+<td align="center">0.612</td>
+</tr>
+<tr class="odd">
+<td align="center">25</td>
+<td align="center">237</td>
+<td align="center">0.063</td>
+<td align="center">2532</td>
+<td align="center">0.675</td>
+</tr>
+<tr class="even">
+<td align="center">26</td>
+<td align="center">188</td>
+<td align="center">0.050</td>
+<td align="center">2720</td>
+<td align="center">0.725</td>
+</tr>
+<tr class="odd">
+<td align="center">27</td>
+<td align="center">156</td>
+<td align="center">0.042</td>
+<td align="center">2876</td>
+<td align="center">0.767</td>
+</tr>
+<tr class="even">
+<td align="center">28</td>
+<td align="center">134</td>
+<td align="center">0.036</td>
+<td align="center">3010</td>
+<td align="center">0.803</td>
+</tr>
+<tr class="odd">
+<td align="center">29</td>
+<td align="center">98</td>
+<td align="center">0.026</td>
+<td align="center">3108</td>
+<td align="center">0.829</td>
+</tr>
+<tr class="even">
+<td align="center">30</td>
+<td align="center">84</td>
+<td align="center">0.022</td>
+<td align="center">3192</td>
+<td align="center">0.851</td>
+</tr>
+<tr class="odd">
+<td align="center">31</td>
+<td align="center">76</td>
+<td align="center">0.020</td>
+<td align="center">3268</td>
+<td align="center">0.871</td>
+</tr>
+<tr class="even">
+<td align="center">32</td>
+<td align="center">65</td>
+<td align="center">0.017</td>
+<td align="center">3333</td>
+<td align="center">0.888</td>
+</tr>
+<tr class="odd">
+<td align="center">33</td>
+<td align="center">61</td>
+<td align="center">0.016</td>
+<td align="center">3394</td>
+<td align="center">0.904</td>
+</tr>
+<tr class="even">
+<td align="center">34</td>
+<td align="center">36</td>
+<td align="center">0.010</td>
+<td align="center">3430</td>
+<td align="center">0.914</td>
+</tr>
+<tr class="odd">
+<td align="center">35</td>
+<td align="center">46</td>
+<td align="center">0.012</td>
+<td align="center">3476</td>
+<td align="center">0.926</td>
+</tr>
+<tr class="even">
+<td align="center">36</td>
+<td align="center">44</td>
+<td align="center">0.012</td>
+<td align="center">3520</td>
+<td align="center">0.938</td>
+</tr>
+<tr class="odd">
+<td align="center">37</td>
+<td align="center">20</td>
+<td align="center">0.005</td>
+<td align="center">3540</td>
+<td align="center">0.943</td>
+</tr>
+<tr class="even">
+<td align="center">38</td>
+<td align="center">21</td>
+<td align="center">0.006</td>
+<td align="center">3561</td>
+<td align="center">0.949</td>
+</tr>
+<tr class="odd">
+<td align="center">39</td>
+<td align="center">27</td>
+<td align="center">0.007</td>
+<td align="center">3588</td>
+<td align="center">0.956</td>
+</tr>
+<tr class="even">
+<td align="center">40</td>
+<td align="center">21</td>
+<td align="center">0.006</td>
+<td align="center">3609</td>
+<td align="center">0.962</td>
+</tr>
+<tr class="odd">
+<td align="center">41</td>
+<td align="center">18</td>
+<td align="center">0.005</td>
+<td align="center">3627</td>
+<td align="center">0.967</td>
+</tr>
+<tr class="even">
+<td align="center">42</td>
+<td align="center">14</td>
+<td align="center">0.004</td>
+<td align="center">3641</td>
+<td align="center">0.971</td>
+</tr>
+<tr class="odd">
+<td align="center">43</td>
+<td align="center">19</td>
+<td align="center">0.005</td>
+<td align="center">3660</td>
+<td align="center">0.976</td>
+</tr>
+<tr class="even">
+<td align="center">44</td>
+<td align="center">18</td>
+<td align="center">0.005</td>
+<td align="center">3678</td>
+<td align="center">0.981</td>
+</tr>
+<tr class="odd">
+<td align="center">45</td>
+<td align="center">4</td>
+<td align="center">0.001</td>
+<td align="center">3682</td>
+<td align="center">0.982</td>
+</tr>
+<tr class="even">
+<td align="center">46</td>
+<td align="center">10</td>
+<td align="center">0.003</td>
+<td align="center">3692</td>
+<td align="center">0.985</td>
+</tr>
+<tr class="odd">
+<td align="center">47</td>
+<td align="center">7</td>
+<td align="center">0.002</td>
+<td align="center">3699</td>
+<td align="center">0.987</td>
+</tr>
+<tr class="even">
+<td align="center">48</td>
+<td align="center">8</td>
+<td align="center">0.002</td>
+<td align="center">3707</td>
+<td align="center">0.989</td>
+</tr>
+<tr class="odd">
+<td align="center">49</td>
+<td align="center">4</td>
+<td align="center">0.001</td>
+<td align="center">3711</td>
+<td align="center">0.99</td>
+</tr>
+<tr class="even">
+<td align="center">50</td>
+<td align="center">6</td>
+<td align="center">0.002</td>
+<td align="center">3717</td>
+<td align="center">0.992</td>
+</tr>
+<tr class="odd">
+<td align="center">51</td>
+<td align="center">7</td>
+<td align="center">0.002</td>
+<td align="center">3724</td>
+<td align="center">0.994</td>
+</tr>
+<tr class="even">
+<td align="center">52</td>
+<td align="center">10</td>
+<td align="center">0.003</td>
+<td align="center">3734</td>
+<td align="center">0.997</td>
+</tr>
+<tr class="odd">
+<td align="center">53</td>
+<td align="center">3</td>
+<td align="center">0.001</td>
+<td align="center">3737</td>
+<td align="center">0.998</td>
+</tr>
+<tr class="even">
+<td align="center">54</td>
+<td align="center">5</td>
+<td align="center">0.001</td>
+<td align="center">3742</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td align="center">Total</td>
+<td align="center">3742</td>
+<td align="center">1.000</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<p>Se agregaron dos columnas más, las frecuencias acumuladas absolutas (F) y relativas (F’). Las primeras se obtuvieron sumando a la frecuencia absoluta de cada categoría, las frecuencias absolutas de las categorías anteriores a ella. Así, la primera categoría tiene frecuencia acumulada igual a la absoluta simple, porque no hay ningún caso por debajo de 17 años; la segunda es 255, que proviene de contar los 247 de la segunda categoría y sumarle los 8 de la anterior y del mismo modo se construyen las siguientes. La última categoría tiene por frecuencia absoluta acumulada al total de casos (en el ejemplo 3742), porque todos (los 3742) están en esa categoría o por debajo de ella, es decir, todos tienen de 54 años para abajo. La lectura que hacemos de estas frecuencias es que, por ejemplo, “hay 987 alumnos que tienen 20 años o menos.”</p>
+<table>
+<colgroup>
+<col width="100%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="center">La <strong>frecuencia absoluta acumulada</strong> de cada valor de la variable es la cantidad de casos que asumen ese valor y todos los valores menores a él. Se indica <span class="math inline">\(F\)</span>.</td>
+</tr>
+</tbody>
+</table>
+<p>La última columna de la tabla es la transformación en relativas de las frecuencias absolutas acumuladas y se logra con el mismo procedimiento que se usó para las relativas simples; el de dividir por el total de casos. Se denominan frecuencias acumuladas relativas. La lectura de una de estas frecuencias es, por ejemplo, que el 46% de los alumnos que respondieron tiene 22 años o menos. Notemos la diferencia con la frecuencia relativa simple: el 9.7% de los alumnos tiene exactamente 22 años. La frecuencia relativa simple es la fracción de casos que tienen una determinada categoría (o valor) de la variable, la frecuencia relativa acumulada es la fracción de casos que tiene un valor de la variable o cualquiera de los anteriores a ese valor. Por eso la lectura del ejemplo es “22 años” en la simple y “22 años o menos” en la acumulada.</p>
+<table>
+<colgroup>
+<col width="100%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="center">La <strong>frecuencia relativa acumulada</strong> de cada valor de la variable es la proporción de casos que asumen ese valor y todos los valores menores a él. Se indica <span class="math inline">\(F&#39;\)</span>.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="recategorizacion" class="section level2">
+<h2><span class="header-section-number">2.2</span> Recategorización</h2>
+<p>Como se señaló al final del capítulo 1, hay dos situaciones en que se apela a la presentación de los valores de la variable en forma agrupada, es decir que se recategoriza la variable en intervalos: si se trata de una variable discreta con muchas categorías (como la edad) o si es una variable continua.</p>
+<div id="variable-discreta-con-muchas-categorias" class="section level3">
+<h3><span class="header-section-number">2.2.1</span> Variable discreta con muchas categorías</h3>
+<p>La construcción de intervalos es una elección; podríamos optar por mostrar todas las categorías, con lo que quedaría una tabla grande, pero muy detallada; o bien agrupar para ganar en sencillez de presentación. Es muy común optar por la construcción de intervalos, de manera de mantener la cantidad de categorías entre cinco y diez. En tablas en que se precisa mostrar mucho detalle, se opta por la enumeración de todas las categorías.</p>
+</div>
+<div id="variable-continua" class="section level3">
+<h3><span class="header-section-number">2.2.2</span> Variable continua</h3>
+<p>Si la variable es continua la recategorización es necesaria, porque no es posible mostrar “todas las categorías” de una variable continua, ya que éstas son, en teoría, infinitas . Para resolver el problema de la exclusión mutua no es posible pasar de un valor al siguiente, por lo que se utiliza un criterio de intervalos abiertos o cerrados. Esto quiere decir que si una categoría es 1,75 - 1,85, se entiende que entran en el intervalo todos quienes tengan estatura superior a 1,75 (excluido este valor) hasta 1,85 (incluido). Se dice que este intervalo es abierto a la izquierda (excluye al valor inicial) y cerrado a la derecha (incluye al valor final). Una persona de 1,75 se contará en el intervalo anterior: 1,65 - 1,75, que sí incluye al 1,75 y excluye al 1,65. A continuación se usará la convención de intervalos abiertos a la izquierda y cerrados a la derecha, eso se indica <span class="math inline">\((L_i; L_s]\)</span>.</p>
+<p>Se utilizan tres criterios para recategorizar variables: intervalos iguales, intervalos proporcionales e intervalos teóricos.</p>
+<div id="intervalos-iguales" class="section level4">
+<h4><span class="header-section-number">2.2.2.1</span> Intervalos iguales:</h4>
+<p>Se organizan los valores de la variable para lograr que el campo de variación quede dividido en tantos intervalos como se desee siendo ellos de igual amplitud. Si es una variable discreta y la cantidad de categorías originales no es múltiplo de número de intervalos que se desean, la cantidad de valores en cada uno no será idéntica, sino aproximadamente igual. La variable edad, con cuatro categorías queda, según este criterio, así:</p>
+<table>
+<caption><span id="tab:unnamed-chunk-28">Tabla 2.10: </span>Categorización de la edad en intervalos de igual amplitud.</caption>
+<thead>
+<tr class="header">
+<th align="left">EdadCat</th>
+<th align="center">f</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">(17,26.2]</td>
+<td align="center">2720</td>
+</tr>
+<tr class="even">
+<td align="left">(26.2,35.5]</td>
+<td align="center">756</td>
+</tr>
+<tr class="odd">
+<td align="left">(35.5,44.8]</td>
+<td align="center">202</td>
+</tr>
+<tr class="even">
+<td align="left">(44.8,54]</td>
+<td align="center">64</td>
+</tr>
+</tbody>
+</table>
+<p>Los intervalos son de la misma amplitud, pero el primero de ellos tiene más del 70% de las observaciones, con lo que se pierde detalle de la distribuciión.</p>
+</div>
+<div id="criterio-proporcional" class="section level4">
+<h4><span class="header-section-number">2.2.2.2</span> Criterio proporcional</h4>
+<p>Este criterio busca que los intervalos incluyan aproximadamente a la misma cantidad de casos, por lo que su amplitud puede ser diferente. En el capítulo siguiente se verá que los puntos para establecer los cortes de intervalos, se llaman percentiles. Por ahora interesa que con este criterio se logran grupos homogéneos en términos de cantidad de observaciones. la edad de los estudiantes, con cuatro intervalos resulta así categorizada:</p>
+<table>
+<caption><span id="tab:unnamed-chunk-29">Tabla 2.11: </span>Categorización de la edad en intervalos proporcionales.</caption>
+<thead>
+<tr class="header">
+<th align="left">EdadCat</th>
+<th align="center">f</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">(17,20]</td>
+<td align="center">979</td>
+</tr>
+<tr class="even">
+<td align="left">(20,23]</td>
+<td align="center">1067</td>
+</tr>
+<tr class="odd">
+<td align="left">(23,27]</td>
+<td align="center">822</td>
+</tr>
+<tr class="even">
+<td align="left">(27,54]</td>
+<td align="center">866</td>
+</tr>
+</tbody>
+</table>
+<p>Ahora la distribución está más equilibrada (hay alrededor de 1000 casos en cada una), y los intervalos tienen amplitud diferente. El último intervalo, de 26 años de amplitud, tiene casi la misma cantidad de casos que el primero, que cubre tres años.</p>
+</div>
+<div id="criterio-teorico" class="section level4">
+<h4><span class="header-section-number">2.2.2.3</span> Criterio teórico</h4>
+<p>Aquí la decisión por el lugar donde establecer los puntos de corte para definir los intervalos es del investigador y debe estar fundamentada. Si se considera que la edad esperada de los alumnos observados es entre 19 y 20 años, se pueden hacer cuatro intervalos con quienes tienen menos de esa edad, quienes tienen la edad esperada, los que tienen más de esa edad y los más mayores (superan los 40 años). Los intervalos resultan así:</p>
+<table>
+<caption><span id="tab:unnamed-chunk-30">Tabla 2.12: </span>Categorización de la edad con un criterio teórico.</caption>
+<thead>
+<tr class="header">
+<th align="left">EdadCat</th>
+<th align="center">f</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">(17,18]</td>
+<td align="center">247</td>
+</tr>
+<tr class="even">
+<td align="left">(18,20]</td>
+<td align="center">732</td>
+</tr>
+<tr class="odd">
+<td align="left">(20,40]</td>
+<td align="center">2622</td>
+</tr>
+<tr class="even">
+<td align="left">(40,54]</td>
+<td align="center">133</td>
+</tr>
+</tbody>
+</table>
+<p>El intervalo (18,20] incluye las edades de 19 y 20 años, porque es abierto a la izquierda.</p>
+</div>
+</div>
+</div>
+<div id="la-presentacion-grafica-de-los-resultados" class="section level2">
+<h2><span class="header-section-number">2.3</span> La presentación gráfica de los resultados</h2>
+<p>En la misma dirección de ofrecer una presentación de los datos recogidos que sea accesible para la interpretación, se muestran a continuación las representaciones gráficas que más se usan para describir información cuantitativa. Nuevamente aquí se debe aceptar la pérdida de parte de la información que se muestra, en aras del impacto visual y facilidad de lectura que proveen los gráficos.
+Cuando se trata de variables nominales, normalmente con pocas categorías, son adecuados los <em>gráficos de barras</em>. Veamos un ejemplo para la tabla de la “ESTADO”:</p>
+<div class="figure"><span id="fig:unnamed-chunk-31"></span>
+<img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-31-1.png" alt="Condición laboral: frecuencias absolutas (barras adyacentes)." width="672" />
+<p class="caption">
+Figura 2.1: Condición laboral: frecuencias absolutas (barras adyacentes).
+</p>
+</div>
+<p>La categoría NA (not available) reúne a quienes no respondieron al cuestionario y a los menores de 10 años, que no se les hace la pregunta.</p>
+<div class="figure"><span id="fig:unnamed-chunk-32"></span>
+<img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-32-1.png" alt="Condición laboral: frecuencias absolutas (barras apiladas)." width="672" />
+<p class="caption">
+Figura 2.2: Condición laboral: frecuencias absolutas (barras apiladas).
+</p>
+</div>
+<p>O bien, en relativos:</p>
+<div class="figure"><span id="fig:unnamed-chunk-33"></span>
+<img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-33-1.png" alt="Condición laboral: frecuencias relativas (barras apiladas)." width="672" />
+<p class="caption">
+Figura 2.3: Condición laboral: frecuencias relativas (barras apiladas).
+</p>
+</div>
+<p>Para variables categóricas también se usa el <em>gráfico de sectores</em></p>
+<div class="figure"><span id="fig:unnamed-chunk-34"></span>
+<img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-34-1.png" alt="Condición laboral: frecuencias relativas (gráfico de sectores)." width="672" />
+<p class="caption">
+Figura 2.4: Condición laboral: frecuencias relativas (gráfico de sectores).
+</p>
+</div>
+<p>Este gráfico solo es adecuado cuando la variable tiene pocas categorías (no más de cuatro) y además cuando las frecuencias difieren sustancialmente. De lo contrario, resulta muy difícil apreciar diferencias entre ángulos, éstas son mucho más claras entre alturas de barras. La opción de agregar una leyenda con los porcentajes resuelve este problema, pero hace perder parte de la claridad visual del gráfico.</p>
+<p>La representación gráfica de la tabla de frecuencias de variables cuantitativas (categorizadas), se llama histograma:</p>
+<div class="figure"><span id="fig:unnamed-chunk-35"></span>
+<img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-35-1.png" alt="Histograma de edades." width="672" />
+<p class="caption">
+Figura 2.5: Histograma de edades.
+</p>
+</div>
+<p>El ancho de los rectángulos es la amplitud de las categorías que resultan de la categorización. Esta siempre se realiza con el criterio de intervalos iguales, que puede regularse, por ejemplo, si se toman intervalos de 5 años, el histograma queda:</p>
+<div class="figure"><span id="fig:unnamed-chunk-36"></span>
+<img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-36-1.png" alt="Histograma de edades: categorías de 5 años." width="672" />
+<p class="caption">
+Figura 2.6: Histograma de edades: categorías de 5 años.
+</p>
+</div>
+<p>Cuando estos rectángulos se unen en sus puntos medios por una poligonal, resulta el <em>polígono de frecuencias</em>:</p>
+<div class="figure"><span id="fig:unnamed-chunk-37"></span>
+<img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-37-1.png" alt="Polígono de frecuencias de las edades sobre el histograma." width="672" />
+<p class="caption">
+Figura 2.7: Polígono de frecuencias de las edades sobre el histograma.
+</p>
+</div>
+<p>En este gráfico se agregaron dos intervalos, uno anterior al primero y uno posterior al último, cuyas frecuencias son cero, con el objetivo de “cerrar” el polígono sobre el eje horizontal.
+El área que queda bajo este polígono es igual a la que encierran los rectángulos del histograma, y valdrá n si se grafican frecuencias absolutas ó 1 si son las relativas.</p>
+<p>Si se muestra solo el polígono, se tiene una representacón simplificada de la distribución que sirve para apreciar aspectos que se verán más adelante: forma, dispersión, simetría, etc. Además es preferible presentar en el eje vertical, frecuencias relativas antes que absolutas.</p>
+<div class="figure"><span id="fig:unnamed-chunk-38"></span>
+<img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-38-1.png" alt="Polígono de frecuencias de las edades." width="672" />
+<p class="caption">
+Figura 2.8: Polígono de frecuencias de las edades.
+</p>
+</div>
+<p>En variables cuantitativas es posible calcular frecuencias acumuladas, por lo que también ellas pueden representarse gráficamente. Si la variable es discreta, cada valor aporta su frecuencia, que “salta” en el valor siguiente, por eso el gráfico tiene forma escalonada. Nuevamente, con la variable edad (CH06) de la EPH es:</p>
+<div class="figure"><span id="fig:unnamed-chunk-39"></span>
+<img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-39-1.png" alt="Ojiva de las edades." width="672" />
+<p class="caption">
+Figura 2.9: Ojiva de las edades.
+</p>
+</div>
+<p>En el que el eje horizontal se indican los valores de la variable discreta edad y en el vertical las frecuencias acumuladas de cada categoría (de cada valor discreto).
+Si la variable es continua, las frecuencias se van acumulando gradualmente a medida que aumenta el valor de la variable, el siguiente gráfico muestra las frecuencias acumuladas de los pesos de un conjunto grande de niños (de la base <strong>bayley</strong>):</p>
+<div class="figure"><span id="fig:unnamed-chunk-40"></span>
+<img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-40-1.png" alt="Ojiva de los pesos al nacer." width="672" />
+<p class="caption">
+Figura 2.10: Ojiva de los pesos al nacer.
+</p>
+</div>
+<p>Debido a que en la práctica las variables nunca son completamente continuas, siempre habra “escalones” cuyo tamaño es el de la minima medición posible de la variable (la apreciación del instrumento de medicion).</p>
+<p>Este gráfico se llama ojiva de Galton y tiene otra virtud además de la claridad visual, ya que permite interpolar valores no observados, o que no aparecen en la tabla. Así, con el gráfico podemos responder a la pregunta ¿Qué proporción de niños tiene 2512 g o menos? La respuesta consiste en buscar el valor 2512 gramos en el eje x, e identificar la frecuencia acumulada que le corresponde.</p>
+<div class="figure"><span id="fig:unnamed-chunk-41"></span>
+<img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-41-1.png" alt="Estimación de la frecuencia acumulada para un valor del peso al nacer." width="672" />
+<p class="caption">
+Figura 2.11: Estimación de la frecuencia acumulada para un valor del peso al nacer.
+</p>
+</div>
+<p>En este ejemplo, la ordenada (valor en el eje vertical) correspondiente a los 2512 gramos es aproximadamente 0,17, este resultado se lee diciendo que, de esta muestra, el 17% de los niños nació con 2512 gramos o menos. En los capítulos siguientes veremos otras aplicaciones útiles de este procedimiento.</p>
+<p>Además, el establecimiento de los límites de los intervalos según el criterio proporcional, puede realizarse en base a este gráfico. Según cuántos intervalos se quiera construir, se ubican los puntos correspondientes a las frecuencias acumuladas en el eje vertical y se buscan los valores de la variable (eje horizontal), que delimitan los intervalos. Por ejemplo, para cuatro intervalos, cada uno debe contener aproximadamente el 25% de los casos, que corresponden a las frecuencias acumuladas de 25, 50 y 75%.</p>
+<div class="figure"><span id="fig:unnamed-chunk-42"></span>
+<img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-42-1.png" alt="Identificación de los valores de la variable para determinadas frecuencias absolutas." width="672" />
+<p class="caption">
+Figura 2.12: Identificación de los valores de la variable para determinadas frecuencias absolutas.
+</p>
+</div>
+<p>Los valores hallados corresponden a 2646, 2968 y 3320 gramos. Que quiere decir que un cuarto de los niños nació con pesos entre el mínimo y 2646, otro cuarto pesó entre 2646 y 2968 gramos, y así con los demás. La distribución de frecuencias de esta variable así categorizada resulta:</p>
+<table>
+<caption><span id="tab:unnamed-chunk-43">Tabla 2.13: </span>Distribución de los pesos al nacer categorizados en cuatro intervalos proporcionales.</caption>
+<thead>
+<tr class="header">
+<th align="left">Peso.nacCat</th>
+<th align="center">f</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">(1302.5,2646.5]</td>
+<td align="center">113</td>
+</tr>
+<tr class="even">
+<td align="left">(2646.5,2967.5]</td>
+<td align="center">113</td>
+</tr>
+<tr class="odd">
+<td align="left">(2967.5,3319.8]</td>
+<td align="center">113</td>
+</tr>
+<tr class="even">
+<td align="left">(3319.8,4268.5]</td>
+<td align="center">114</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-INDEC2018">
+<p>INDEC. 2018. “Censo 2001.” <a href="https://www.indec.gov.ar/nivel4{\_}default.asp?id{\_}tema{\_}1=2{\&amp;}id{\_}tema{\_}2=41{\&amp;}id{\_}tema{\_}3=134">https://www.indec.gov.ar/nivel4{\_}default.asp?id{\_}tema{\_}1=2{\&amp;}id{\_}tema{\_}2=41{\&amp;}id{\_}tema{\_}3=134</a>.</p>
+</div>
+<div id="ref-INDEC2009">
+<p>none. 8818a.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="los-datos-estadisticos.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="la-expresion-resumida-de-la-informacion.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["EstadisticaParaCienciasSocialesConR.pdf", "EstadisticaParaCienciasSocialesConR.epub", "EstadisticaParaCienciasSocialesConR.mobi"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

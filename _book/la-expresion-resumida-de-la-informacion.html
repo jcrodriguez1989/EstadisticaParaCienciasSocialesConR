@@ -1,0 +1,2836 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 3 La expresión resumida de la información | Estadística para Ciencias Sociales con R</title>
+  <meta name="description" content="Capítulo 3 La expresión resumida de la información | Estadística para Ciencias Sociales con R" />
+  <meta name="generator" content="bookdown 0.11 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 3 La expresión resumida de la información | Estadística para Ciencias Sociales con R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 3 La expresión resumida de la información | Estadística para Ciencias Sociales con R" />
+  
+  
+  
+
+<meta name="author" content="Eduardo Bologna" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="distribuciones-de-frecuencia.html">
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Estadística para Ciencias Sociales con R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="los-datos-estadisticos.html"><a href="los-datos-estadisticos.html"><i class="fa fa-check"></i><b>1</b> Los datos estadísticos</a><ul>
+<li class="chapter" data-level="1.1" data-path="los-datos-estadisticos.html"><a href="los-datos-estadisticos.html#la-seleccion-de-la-informacion-pertinente"><i class="fa fa-check"></i><b>1.1</b> La selección de la información pertinente</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="los-datos-estadisticos.html"><a href="los-datos-estadisticos.html#los-individuos"><i class="fa fa-check"></i><b>1.1.1</b> Los individuos</a></li>
+<li class="chapter" data-level="1.1.2" data-path="los-datos-estadisticos.html"><a href="los-datos-estadisticos.html#las-variables"><i class="fa fa-check"></i><b>1.1.2</b> Las variables</a></li>
+<li class="chapter" data-level="1.1.3" data-path="los-datos-estadisticos.html"><a href="los-datos-estadisticos.html#las-categorias"><i class="fa fa-check"></i><b>1.1.3</b> Las categorías</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="los-datos-estadisticos.html"><a href="los-datos-estadisticos.html#los-simbolos-numericos"><i class="fa fa-check"></i><b>1.2</b> Los símbolos numéricos</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="los-datos-estadisticos.html"><a href="los-datos-estadisticos.html#la-medicion"><i class="fa fa-check"></i><b>1.2.1</b> La medición</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="los-datos-estadisticos.html"><a href="los-datos-estadisticos.html#niveles-de-medicion"><i class="fa fa-check"></i><b>1.3</b> Niveles de medición</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="los-datos-estadisticos.html"><a href="los-datos-estadisticos.html#el-nivel-nominal"><i class="fa fa-check"></i><b>1.3.1</b> El nivel nominal</a></li>
+<li class="chapter" data-level="1.3.2" data-path="los-datos-estadisticos.html"><a href="los-datos-estadisticos.html#el-nivel-ordinal"><i class="fa fa-check"></i><b>1.3.2</b> El nivel ordinal</a></li>
+<li class="chapter" data-level="1.3.3" data-path="los-datos-estadisticos.html"><a href="los-datos-estadisticos.html#el-nivel-intervalar"><i class="fa fa-check"></i><b>1.3.3</b> El nivel intervalar</a></li>
+<li class="chapter" data-level="1.3.4" data-path="los-datos-estadisticos.html"><a href="los-datos-estadisticos.html#el-nivel-proporcional"><i class="fa fa-check"></i><b>1.3.4</b> El nivel proporcional</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="los-datos-estadisticos.html"><a href="los-datos-estadisticos.html#resumen-de-los-niveles-de-medicion"><i class="fa fa-check"></i><b>1.4</b> Resumen de los niveles de medición</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html"><i class="fa fa-check"></i><b>2</b> Distribuciones de frecuencia</a><ul>
+<li class="chapter" data-level="2.1" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#tablas-de-distribucion-de-frecuencia"><i class="fa fa-check"></i><b>2.1</b> Tablas de distribución de frecuencia</a></li>
+<li class="chapter" data-level="2.2" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#recategorizacion"><i class="fa fa-check"></i><b>2.2</b> Recategorización</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#variable-discreta-con-muchas-categorias"><i class="fa fa-check"></i><b>2.2.1</b> Variable discreta con muchas categorías</a></li>
+<li class="chapter" data-level="2.2.2" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#variable-continua"><i class="fa fa-check"></i><b>2.2.2</b> Variable continua</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#la-presentacion-grafica-de-los-resultados"><i class="fa fa-check"></i><b>2.3</b> La presentación gráfica de los resultados</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="la-expresion-resumida-de-la-informacion.html"><a href="la-expresion-resumida-de-la-informacion.html"><i class="fa fa-check"></i><b>3</b> La expresión resumida de la información</a><ul>
+<li class="chapter" data-level="3.1" data-path="la-expresion-resumida-de-la-informacion.html"><a href="la-expresion-resumida-de-la-informacion.html#medidas-de-posicion"><i class="fa fa-check"></i><b>3.1</b> Medidas de posición</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="la-expresion-resumida-de-la-informacion.html"><a href="la-expresion-resumida-de-la-informacion.html#variables-nominales-proporciones"><i class="fa fa-check"></i><b>3.1.1</b> Variables nominales: proporciones</a></li>
+<li class="chapter" data-level="3.1.2" data-path="la-expresion-resumida-de-la-informacion.html"><a href="la-expresion-resumida-de-la-informacion.html#variables-nominales-tasas"><i class="fa fa-check"></i><b>3.1.2</b> Variables nominales: tasas</a></li>
+<li class="chapter" data-level="3.1.3" data-path="la-expresion-resumida-de-la-informacion.html"><a href="la-expresion-resumida-de-la-informacion.html#variables-nominales-razones"><i class="fa fa-check"></i><b>3.1.3</b> Variables nominales: razones</a></li>
+<li class="chapter" data-level="3.1.4" data-path="la-expresion-resumida-de-la-informacion.html"><a href="la-expresion-resumida-de-la-informacion.html#variables-nominales-el-modo"><i class="fa fa-check"></i><b>3.1.4</b> Variables nominales: el modo</a></li>
+<li class="chapter" data-level="3.1.5" data-path="la-expresion-resumida-de-la-informacion.html"><a href="la-expresion-resumida-de-la-informacion.html#variables-ordinales-percentiles"><i class="fa fa-check"></i><b>3.1.5</b> Variables ordinales: percentiles</a></li>
+<li class="chapter" data-level="3.1.6" data-path="la-expresion-resumida-de-la-informacion.html"><a href="la-expresion-resumida-de-la-informacion.html#variables-ordinales-la-mediana"><i class="fa fa-check"></i><b>3.1.6</b> Variables ordinales: la mediana</a></li>
+<li class="chapter" data-level="3.1.7" data-path="la-expresion-resumida-de-la-informacion.html"><a href="la-expresion-resumida-de-la-informacion.html#los-cuartiles"><i class="fa fa-check"></i><b>3.1.7</b> Los cuartiles</a></li>
+<li class="chapter" data-level="3.1.8" data-path="la-expresion-resumida-de-la-informacion.html"><a href="la-expresion-resumida-de-la-informacion.html#los-percentiles"><i class="fa fa-check"></i><b>3.1.8</b> Los percentiles</a></li>
+<li class="chapter" data-level="3.1.9" data-path="la-expresion-resumida-de-la-informacion.html"><a href="la-expresion-resumida-de-la-informacion.html#hacerlo-en-r"><i class="fa fa-check"></i><b>3.1.9</b> Hacerlo en R</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="la-expresion-resumida-de-la-informacion.html"><a href="la-expresion-resumida-de-la-informacion.html#la-forma-de-la-distribucion"><i class="fa fa-check"></i><b>3.2</b> La forma de la distribución</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="la-expresion-resumida-de-la-informacion.html"><a href="la-expresion-resumida-de-la-informacion.html#asimetria"><i class="fa fa-check"></i><b>3.2.1</b> Asimetría</a></li>
+<li class="chapter" data-level="3.2.2" data-path="la-expresion-resumida-de-la-informacion.html"><a href="la-expresion-resumida-de-la-informacion.html#curtosis"><i class="fa fa-check"></i><b>3.2.2</b> Curtosis</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="la-expresion-resumida-de-la-informacion.html"><a href="la-expresion-resumida-de-la-informacion.html#box-plots"><i class="fa fa-check"></i><b>3.3</b> Box-plots</a></li>
+<li class="chapter" data-level="3.4" data-path="la-expresion-resumida-de-la-informacion.html"><a href="la-expresion-resumida-de-la-informacion.html#medidas-de-dispersion"><i class="fa fa-check"></i><b>3.4</b> Medidas de dispersión</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="la-expresion-resumida-de-la-informacion.html"><a href="la-expresion-resumida-de-la-informacion.html#recorrido"><i class="fa fa-check"></i><b>3.4.1</b> Recorrido</a></li>
+<li class="chapter" data-level="3.4.2" data-path="la-expresion-resumida-de-la-informacion.html"><a href="la-expresion-resumida-de-la-informacion.html#amplitud-intercuartilica"><i class="fa fa-check"></i><b>3.4.2</b> Amplitud intercuartílica</a></li>
+<li class="chapter" data-level="3.4.3" data-path="la-expresion-resumida-de-la-informacion.html"><a href="la-expresion-resumida-de-la-informacion.html#medidas-de-dispersion-basadas-en-la-media"><i class="fa fa-check"></i><b>3.4.3</b> Medidas de dispersión basadas en la media</a></li>
+<li class="chapter" data-level="3.4.4" data-path="la-expresion-resumida-de-la-informacion.html"><a href="la-expresion-resumida-de-la-informacion.html#varianza"><i class="fa fa-check"></i><b>3.4.4</b> Varianza</a></li>
+<li class="chapter" data-level="3.4.5" data-path="la-expresion-resumida-de-la-informacion.html"><a href="la-expresion-resumida-de-la-informacion.html#desviacion-estandar"><i class="fa fa-check"></i><b>3.4.5</b> Desviación estándar</a></li>
+<li class="chapter" data-level="3.4.6" data-path="la-expresion-resumida-de-la-informacion.html"><a href="la-expresion-resumida-de-la-informacion.html#coeficiente-de-variacion"><i class="fa fa-check"></i><b>3.4.6</b> Coeficiente de variación</a></li>
+<li class="chapter" data-level="3.4.7" data-path="la-expresion-resumida-de-la-informacion.html"><a href="la-expresion-resumida-de-la-informacion.html#hacerlo-en-r-1"><i class="fa fa-check"></i><b>3.4.7</b> Hacerlo en R</a></li>
+<li class="chapter" data-level="3.4.8" data-path="la-expresion-resumida-de-la-informacion.html"><a href="la-expresion-resumida-de-la-informacion.html#box-plots-y-dispersion"><i class="fa fa-check"></i><b>3.4.8</b> Box-plots y dispersión</a></li>
+<li class="chapter" data-level="3.4.9" data-path="la-expresion-resumida-de-la-informacion.html"><a href="la-expresion-resumida-de-la-informacion.html#medida-de-la-dispersion-cuando-no-hay-distancias"><i class="fa fa-check"></i><b>3.4.9</b> Medida de la dispersión cuando no hay distancias</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="la-expresion-resumida-de-la-informacion.html"><a href="la-expresion-resumida-de-la-informacion.html#el-individuo-en-relacion-a-su-grupo"><i class="fa fa-check"></i><b>3.5</b> El individuo en relación a su grupo</a></li>
+<li class="chapter" data-level="3.6" data-path="la-expresion-resumida-de-la-informacion.html"><a href="la-expresion-resumida-de-la-informacion.html#resumen-de-medidas-descriptivas"><i class="fa fa-check"></i><b>3.6</b> Resumen de medidas descriptivas</a><ul>
+<li class="chapter" data-level="3.6.1" data-path="la-expresion-resumida-de-la-informacion.html"><a href="la-expresion-resumida-de-la-informacion.html#medidas-de-posicion-1"><i class="fa fa-check"></i><b>3.6.1</b> Medidas de posición</a></li>
+<li class="chapter" data-level="3.6.2" data-path="la-expresion-resumida-de-la-informacion.html"><a href="la-expresion-resumida-de-la-informacion.html#medidas-de-dispersion-1"><i class="fa fa-check"></i><b>3.6.2</b> Medidas de dispersión</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Generado con bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Estadística para Ciencias Sociales con R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="la-expresion-resumida-de-la-informacion" class="section level1">
+<h1><span class="header-section-number">Capítulo 3</span> La expresión resumida de la información</h1>
+<p>La segunda etapa en la descripción de datos consiste en calcular medidas que los resuman, que los expresen de manera sintética. Esta etapa implica un nuevo alejamiento de la información bruta, ya que se pierde de vista no solo a los individuos -presentes en la matriz de datos-, sino también a las distribuciones de frecuencia. La ventaja de resumir es la posibilidad de presentar la información de modo muy sintético; con unas pocas medidas descriptivas se ofrece bastante información sobre los datos que se observan.</p>
+<p>Estas medidas requieren operaciones de diferente nivel de complejidad, por lo que apelan a diferentes propiedades de las escalas de medición, entonces no serán las mismas las medidas que se puedan calcular en una escala nominal que en una ordinal, intervalar o proporcional.</p>
+<p>El objetivo de describir el conjunto de datos se logrará indicando tres tipos diferentes de medidas. En primer lugar, haremos referencia a las medidas de <strong>posición</strong>. Estas medidas indican en torno a qué valores se distribuyen las observaciones. En segundo lugar, mencionaremos las medidas de <strong>dispersión</strong> (conocidas también como de <strong>variabilidad</strong>), que muestran si los datos están concentrados alrededor de las medidas de centralidad o si están alejados de esas medidas centrales. En tercer lugar, se describe la <strong>forma</strong> que toma la distribución, medida con dos indicadores: <strong>simetría</strong> y <strong>curtosis</strong>.</p>
+<p>A los fines de la notación usada para referirse a cada una de estas
+medidas descriptivas, asumiremos que trabajamos sobre datos provenientes de una muestra, de la que <em>n</em> representa la cantidad de casos observados.</p>
+<div id="medidas-de-posicion" class="section level2">
+<h2><span class="header-section-number">3.1</span> Medidas de posición</h2>
+<p>Como las operaciones que pueda hacerse entre las categorías dependen del nivel de medición de las variables, las medidas que se puedan calcular también dependerán del nivel de medición. Por eso las presentaremos separadamente para cada nivel, siempre recordando que las operaciones que son válidas a un determinado nivel de medición también son válidas para niveles más altos. Por ejemplo: lo que pueda hacerse con variables nominales, vale también para ordinales y métricas, con los ajustes de casa caso.</p>
+<div id="variables-nominales-proporciones" class="section level3">
+<h3><span class="header-section-number">3.1.1</span> Variables nominales: proporciones</h3>
+<p>Cuando se trabaja con una variable de nivel nominal, una manera
+sintética de presentar la información que ofrece la tabla de
+distribución de frecuencias es indicando la <strong>proporción</strong> de casos que se encuentran en una determinada categoría. Se trata de la frecuencia relativa simple (f’) de una categoría particular. La siguiente es la distribución de las respuestas a la pregunta “¿Con cuál de las siguientes frases está Ud. más de acuerdo?” (P8STGBS), proveniente de la base latinobarómetro:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">¿Con qué frase está más de acuerdo?</th>
+<th align="center">f</th>
+<th align="center">f’</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Se puede confiar en la mayoría de las personas</td>
+<td align="center">0.143</td>
+<td align="center">14.3</td>
+</tr>
+<tr class="even">
+<td align="left">Uno nunca es lo suficientemente cuidadoso en el trato con los demás</td>
+<td align="center">0.857</td>
+<td align="center">85.7</td>
+</tr>
+<tr class="odd">
+<td align="left">Total</td>
+<td align="center">1</td>
+<td align="center">100</td>
+</tr>
+</tbody>
+</table>
+<p>Podemos indicar la proporción de personas que respondió que se puede confiar caso como 0.143, que puede también expresarse como 14.3%. La elección de cuál categoría se elige para indicar la proporción depende de los objetivos de la descripción. Al elegir una categoría se llama la atención sobre ella, se la destaca, ya que la proporción restante incluye a todas las demás categorías, los “otros”. Esa proporción restante se obtiene restando de 1 (uno) la proporción indicada, o restando de 100 (cien) si ha expresado como porcentaje. En este ejemplo, diremos que 0.857 (que proviene de hacer 0.857) es la proporción de quienes no creen que se pueda confiar, o bien que éstos representan el 85.7% (85.7).</p>
+<table>
+<colgroup>
+<col width="100%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="center">La <strong>proporción</strong> es la frecuencia relativa correspondiente a una categoría particular. Usualmente se expresa como porcentaje. Se indica como <span class="math inline">\(p\)</span>.</td>
+</tr>
+</tbody>
+</table>
+<p>Esta medida descriptiva se usa a menudo cuando la variable nominal tiene solo dos categorías (variable dicotómica), ya que se presenta la proporción de una de ellas e inmediatamente se sabe que el complemento es la proporción de la otra.</p>
+<p>Esta medida ya apareció al definir la proporción como el cociente entre la frecuencia propia de la categoría y el total de casos. Esta
+proporción puede también indicarse en variables de nivel de medición
+superior al nominal, pero no resulta de interés cuando hay gran cantidad de categorías. Así, por ejemplo, si se trata de la distribución de las notas de un parcial, no resulta útil indicar cuál es la proporción de cada calificación e indicar algo como “el 20% sacó 8” (lo que se vería en una tabla de distribución de frecuencias de las notas). Por el contrario, es común construir variables nominales a partir de las notas y, sí es de mucho interés indicar, por ejemplo, la proporción de <em>promocionados</em>, o la proporción de quienes <em>quedaron libres</em>, luego de haber categorizado las notas con un criterio teórico (el que define quiénes son los promocionados, regulares y libres)</p>
+</div>
+<div id="variables-nominales-tasas" class="section level3">
+<h3><span class="header-section-number">3.1.2</span> Variables nominales: tasas</h3>
+<p>Se define habitualmente como <strong>tasa</strong> a la frecuencia relativa de un
+fenómeno en referencia a una población total, con la característica de tener en cuenta un período de tiempo. También es común el uso del
+término cuando se trata de hechos de poca incidencia, es decir que su
+frecuencia es pequeña. En esos casos se la suele expresar cada 1.000,
+cada 10.000, o inclusive cada 100.000 casos, en lugar de porciento. Por ejemplo, la tasa de desocupación en Argentina se define como la proporción de personas desocupadas, respecto del total de personas activas. Estas últimas son quienes tienen una ocupación o que sin tenerla la están buscando activamente. Está compuesta por la población ocupada más la población desocupada arrobaINDEC2018.</p>
+<p>Las tasas de mortalidad por causas, indican la proporción de muertes ocurridas en un período de tiempo (usualmente un año), en un espacio geográfico (país, provincia, etc) por una determinada causa, respecto del total de la población que vivía a la mitad de ese año.</p>
+</div>
+<div id="variables-nominales-razones" class="section level3">
+<h3><span class="header-section-number">3.1.3</span> Variables nominales: razones</h3>
+<p>La palabra <strong>razones</strong> se usa a menudo para referirse a cocientes
+calculados entre conjuntos que no tienen elementos en común. Por
+ejemplo, se llama razón de masculinidad a la cantidad de hombres por
+cada 100 mujeres que hay en una población. Se obtiene dividiendo el
+total de varones por el total de mujeres (y luego multiplicando por
+100), que son dos conjuntos que no se superponen. Esta medida se conoce también como índice de masculinidad.</p>
+<p>Según el censo de 2010, la siguiente es el distribución por sexos de la población de Argentina en ese momento:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">sexo</th>
+<th align="center">personas</th>
+<th align="center">prop.sexos</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">varones</td>
+<td align="center">19523766</td>
+<td align="center">0.487</td>
+</tr>
+<tr class="even">
+<td align="left">mujeres</td>
+<td align="center">20593330</td>
+<td align="center">0.513</td>
+</tr>
+<tr class="odd">
+<td align="left">Total</td>
+<td align="center">40117096</td>
+<td align="center">1.000</td>
+</tr>
+</tbody>
+</table>
+<p>La proporción de varones es 48.7% y la de mujeres de 51.3%; se calculan respecto de la población total. La razón de feminidad se obtiene dividiendo el total de mujeres en el de varones y a la inversa para la de masculinidad. El cociente <span class="math inline">\(\frac{20593330}{19523766}*100\)</span>, que es 105.5 indica que hay en la población 105 mujeres por cada 100 varones.</p>
+<p>La diferencia entre una razón y una tasa es que en la primera, el numerador no está incluido en el denominador. Las tasas a veces son llamadas <strong>ratio</strong>.</p>
+</div>
+<div id="variables-nominales-el-modo" class="section level3">
+<h3><span class="header-section-number">3.1.4</span> Variables nominales: el modo</h3>
+<p>El <strong>modo</strong>, o <strong>moda</strong>, o <strong>valor modal</strong> es el valor de la variable
+(la categoría) que tiene la mayor frecuencia. Dicho de otra manera, el valor de la variable más frecuentemente observado. Esta medida no requiere ningún cálculo, no exige ninguna propiedad de la escala de
+medición, por lo tanto se puede indicar en variables desde el nivel
+nominal, es decir en todos los niveles de medición.</p>
+<p>Por ejemplo, la variable <em>carrera que cursa</em>, tiene la siguiente distribución:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">carrera</th>
+<th align="center">f</th>
+<th align="center">f’</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Educación</td>
+<td align="center">44</td>
+<td align="center">0.29</td>
+</tr>
+<tr class="even">
+<td align="left">Psicología</td>
+<td align="center">48</td>
+<td align="center">0.32</td>
+</tr>
+<tr class="odd">
+<td align="left">Psicopedagogía</td>
+<td align="center">58</td>
+<td align="center">0.39</td>
+</tr>
+<tr class="even">
+<td align="left">Total</td>
+<td align="center">150</td>
+<td align="center">1.00</td>
+</tr>
+</tbody>
+</table>
+<p>El modo es Psicopedagogía, que es la categoría de mayor frecuencia. Debe cuidarse de no cometer el error de señalar la frecuencia 58 como el modo; el modo no es la frecuencia más alta, sino la categoría de la variable que tiene mayor frecuencia. Para hallarlo, se identifica la más alta de las frecuencias y se señala la categoría que le corresponde. Puede usarse la frecuencia absoluta o la relativa para determinar cuál es el modo de la distribución.</p>
+<p>La pregunta “¿Con cuál de las siguientes frases está Ud. más
+de acuerdo?” (P8STGBS), procedente de la base Latinobarómetro, tiene la siguiente distribución de frecuencias:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">P8STGBS</th>
+<th align="center">f</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">La democracia es preferible a cualquier otra forma de gobierno</td>
+<td align="center">10785</td>
+</tr>
+<tr class="even">
+<td align="left">En algunas circunstancias, un gobierno autoritario puede ser preferible a uno democrático</td>
+<td align="center">2526</td>
+</tr>
+<tr class="odd">
+<td align="left">A la gente como uno, nos da lo mismo un régimen democrático que uno no democrático</td>
+<td align="center">5075</td>
+</tr>
+</tbody>
+</table>
+<p>Allí, la categoría modal es la que privilegia a la democracia como sistema de gobierno.</p>
+<p>Si se trata de una variable de mayor nivel de medición, no hay ninguna diferencia. La variable <em>concepto que los docentes asignan a los alumnos</em> tiene la distribución de frecuencias siguiente:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">concepto</th>
+<th align="center">f</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Excelente</td>
+<td align="center">150</td>
+</tr>
+<tr class="even">
+<td align="left">Muy bueno</td>
+<td align="center">350</td>
+</tr>
+<tr class="odd">
+<td align="left">Bueno</td>
+<td align="center">200</td>
+</tr>
+<tr class="even">
+<td align="left">Satisfactorio</td>
+<td align="center">120</td>
+</tr>
+<tr class="odd">
+<td align="left">No satisfactorio</td>
+<td align="center">50</td>
+</tr>
+<tr class="even">
+<td align="left">Total</td>
+<td align="center">870</td>
+</tr>
+</tbody>
+</table>
+<p>En este ejemplo, 350 es la frecuencia más alta, por lo tanto, la
+categoría que a ella corresponde es el modo: el modo de la distribución es “Muy bueno”.</p>
+<table>
+<colgroup>
+<col width="100%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="center">El <strong>modo</strong> es la categoría -o el valor- de la variable que tiene mayor frecuencia. Se indica <span class="math inline">\(M_o\)</span>.</td>
+</tr>
+</tbody>
+</table>
+<p>Cuando se trabaja sobre variables intervalares o proporcionales
+discretas no hay diferencia en la identificación del modo de la
+distribución. El <em>número de materias que tienen aprobadas alumnos que han terminado de cursar el primer año</em> de su carrera se distribuye así:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Cantidad de materias aprobadas</th>
+<th align="center">f</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">0</td>
+<td align="center">30</td>
+</tr>
+<tr class="even">
+<td align="left">1</td>
+<td align="center">150</td>
+</tr>
+<tr class="odd">
+<td align="left">2</td>
+<td align="center">200</td>
+</tr>
+<tr class="even">
+<td align="left">3</td>
+<td align="center">300</td>
+</tr>
+<tr class="odd">
+<td align="left">4</td>
+<td align="center">250</td>
+</tr>
+<tr class="even">
+<td align="left">5</td>
+<td align="center">200</td>
+</tr>
+<tr class="odd">
+<td align="left">6</td>
+<td align="center">20</td>
+</tr>
+<tr class="even">
+<td align="left">Total</td>
+<td align="center">1150</td>
+</tr>
+</tbody>
+</table>
+<p>En esta distribución, el modo es 3 materias aprobadas (<span class="math inline">\(M_o = 3\)</span>), que es la categoría que tiene mayor frecuencia. Expresamos esto como “la mayor cantidad de alumnos que terminaron de cursar primer año han aprobado tres materias”.</p>
+<p>Puede suceder que en una distribución no haya una única categoría de
+mayor frecuencia, sino que dos o más compartan la mayor frecuencia. Para 160 alumnos clasificados según la facultad en que cursan su carrera, tenemos:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Facultad a la que pertenece</th>
+<th align="center">f</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Arquitectura</td>
+<td align="center">50</td>
+</tr>
+<tr class="even">
+<td align="left">Ingeniería</td>
+<td align="center">40</td>
+</tr>
+<tr class="odd">
+<td align="left">Psicología</td>
+<td align="center">50</td>
+</tr>
+<tr class="even">
+<td align="left">Sociales</td>
+<td align="center">20</td>
+</tr>
+<tr class="odd">
+<td align="left">Total</td>
+<td align="center">160</td>
+</tr>
+</tbody>
+</table>
+<p>Vemos aquí que hay dos categorías que presentan la mayor frecuencia:
+Arquitectura y Psicología. Decimos en este caso que la distribución es <strong>bimodal</strong> que quiere decir que tiene dos modos.</p>
+<table>
+<colgroup>
+<col width="100%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="center">Una distribución es <strong>bimodal</strong> cuando dos categorías tienen la mayor frecuencia. Si son más las categorías que comparten la mayor frecuencia, la distribución se denomina <strong>multimodal</strong>.</td>
+</tr>
+</tbody>
+</table>
+<p>Una representación gráfica de una distribución bimodal, para la variable <em>número de respuestas correctas en una prueba de opción múltiple</em>, la siguiente:</p>
+<p><img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-51-1.png" width="672" /></p>
+<p>Como modo en 6 y 9 aciertos, por eso se llama bimodal.</p>
+<p>La moda tiene el inconveniente de ser independiente de la mayor parte de los datos, por lo que es sensible a cambios en los valores de la
+distribución. En efecto, las siguientes dos muestras de 130 escuelas
+tienen la misma moda (<span class="math inline">\(M_o = Pública\)</span>), aunque son muy dispares:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Gestión de la escuela</th>
+<th align="center">f</th>
+<th align="left">Gestión de la escuela</th>
+<th align="center">f</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Pública</td>
+<td align="center">50</td>
+<td align="left">Pública</td>
+<td align="center">100</td>
+</tr>
+<tr class="even">
+<td align="left">Privada laica</td>
+<td align="center">45</td>
+<td align="left">Privada laica</td>
+<td align="center">20</td>
+</tr>
+<tr class="odd">
+<td align="left">Privada confesional</td>
+<td align="center">35</td>
+<td align="left">Privada confesional</td>
+<td align="center">10</td>
+</tr>
+<tr class="even">
+<td align="left">Total</td>
+<td align="center">130</td>
+<td align="left">Total</td>
+<td align="center">130</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="variables-ordinales-percentiles" class="section level3">
+<h3><span class="header-section-number">3.1.5</span> Variables ordinales: percentiles</h3>
+<p>Como ya hemos visto, cuando las categorías de la variable están
+ordenadas pueden hacerse juicios como “mayor que” (<span class="math inline">\(&gt;\)</span>) o “menor que”
+(<span class="math inline">\(&lt;\)</span>), y el nivel de medición es ordinal. En este tipo de variables
+puede calcularse un conjunto de medidas de posición, que usan esa propiedad: la del orden entre categorías. Se trata de los <strong>percentiles</strong>, que se podrán también calcular para escalas superiores (intervalar y proporcional) pero no para escalas nominales, en las que el orden entre categorías no está presente.
+Los percentiles usan las frecuencias relativas acumuladas, por eso solo existen para variables de nivel superior al nominal. Veamos la presentación por medio de un ejemplo, con la tabla siguiente que tiene calculadas las frecuencias acumuladas y se muestran solo ellas:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">edad</th>
+<th align="center">F’</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">17</td>
+<td align="center">0.00</td>
+</tr>
+<tr class="even">
+<td align="center">18</td>
+<td align="center">0.07</td>
+</tr>
+<tr class="odd">
+<td align="center">19</td>
+<td align="center">0.16</td>
+</tr>
+<tr class="even">
+<td align="center">20</td>
+<td align="center">0.26</td>
+</tr>
+<tr class="odd">
+<td align="center">21</td>
+<td align="center">0.36</td>
+</tr>
+<tr class="even">
+<td align="center">22</td>
+<td align="center">0.46</td>
+</tr>
+<tr class="odd">
+<td align="center">23</td>
+<td align="center">0.55</td>
+</tr>
+<tr class="even">
+<td align="center">24</td>
+<td align="center">0.61</td>
+</tr>
+<tr class="odd">
+<td align="center">25</td>
+<td align="center">0.68</td>
+</tr>
+<tr class="even">
+<td align="center">26</td>
+<td align="center">0.73</td>
+</tr>
+<tr class="odd">
+<td align="center">27</td>
+<td align="center">0.77</td>
+</tr>
+<tr class="even">
+<td align="center">28</td>
+<td align="center">0.80</td>
+</tr>
+<tr class="odd">
+<td align="center">29</td>
+<td align="center">0.83</td>
+</tr>
+<tr class="even">
+<td align="center">30</td>
+<td align="center">0.85</td>
+</tr>
+<tr class="odd">
+<td align="center">31</td>
+<td align="center">0.87</td>
+</tr>
+<tr class="even">
+<td align="center">32</td>
+<td align="center">0.89</td>
+</tr>
+<tr class="odd">
+<td align="center">33</td>
+<td align="center">0.91</td>
+</tr>
+<tr class="even">
+<td align="center">34</td>
+<td align="center">0.92</td>
+</tr>
+<tr class="odd">
+<td align="center">35</td>
+<td align="center">0.93</td>
+</tr>
+<tr class="even">
+<td align="center">36</td>
+<td align="center">0.94</td>
+</tr>
+<tr class="odd">
+<td align="center">37</td>
+<td align="center">0.95</td>
+</tr>
+<tr class="even">
+<td align="center">38</td>
+<td align="center">0.95</td>
+</tr>
+<tr class="odd">
+<td align="center">39</td>
+<td align="center">0.96</td>
+</tr>
+<tr class="even">
+<td align="center">40</td>
+<td align="center">0.96</td>
+</tr>
+<tr class="odd">
+<td align="center">41</td>
+<td align="center">0.97</td>
+</tr>
+<tr class="even">
+<td align="center">42</td>
+<td align="center">0.97</td>
+</tr>
+<tr class="odd">
+<td align="center">43</td>
+<td align="center">0.98</td>
+</tr>
+<tr class="even">
+<td align="center">44</td>
+<td align="center">0.98</td>
+</tr>
+<tr class="odd">
+<td align="center">45</td>
+<td align="center">0.98</td>
+</tr>
+<tr class="even">
+<td align="center">46</td>
+<td align="center">0.99</td>
+</tr>
+<tr class="odd">
+<td align="center">47</td>
+<td align="center">0.99</td>
+</tr>
+<tr class="even">
+<td align="center">48</td>
+<td align="center">0.99</td>
+</tr>
+<tr class="odd">
+<td align="center">49</td>
+<td align="center">0.99</td>
+</tr>
+<tr class="even">
+<td align="center">50</td>
+<td align="center">0.99</td>
+</tr>
+<tr class="odd">
+<td align="center">51</td>
+<td align="center">1.00</td>
+</tr>
+<tr class="even">
+<td align="center">52</td>
+<td align="center">1.00</td>
+</tr>
+<tr class="odd">
+<td align="center">53</td>
+<td align="center">1.00</td>
+</tr>
+<tr class="even">
+<td align="center">54</td>
+<td align="center">1.00</td>
+</tr>
+</tbody>
+</table>
+<p>La frecuencia acumulada 0.26 indica que el 26% de los estudiantes tiene 20 años o menos. Se dice que el valor 20 años es el percentil 26 y se indica <span class="math inline">\(P_{26}\)</span>. El “percentil” en sí mismo no es una medida descriptiva, para que lo sea se debe especificar <em>qué</em> percentil es el que se calcula. En este ejemplo, cada frecuencia acumulada conduce a un percentil particular. El percentil 68 de la variable es 25 años, y se escribe <span class="math inline">\(P_{68} = 25\)</span> años. Estas medidas se definen como el valor de la variable que deja por debajo un determinado porcentaje de observaciones.</p>
+<p>Los percentiles tienen utilidad como medidas resumen cuando hay un volumen importante de observaciones, de lo contrario, es preferible mostrar la serie de datos. Su aplicación es que permiten describir cada valor de la variable de manera relativa al conjunto completo. Si la nota de un individuo corresponde al percentil 95, se sabe que es una nota alta, porque el 95% de todos los sujetos tiene una nota com esa o inferior. Eso puede expresarse diferente como: solo el 5% del conjunto tiene nota superior a la de él.</p>
+<p>A continuación veremos algunos medidas que se definen del mismo modo que los percentiles; en base a las frecuencias relativas acumuladas.</p>
+</div>
+<div id="variables-ordinales-la-mediana" class="section level3">
+<h3><span class="header-section-number">3.1.6</span> Variables ordinales: la mediana</h3>
+<p>La <strong>mediana</strong> es el percentil 50, es decir que se define como el valor de la variable que deja por debajo la mitad del total de observaciones. Es importante tener en cuenta que se trata de la mitad de los casos y no la mitad de las categorías. La siguiente distribución presenta en serie simple ordenada el número de sesiones de psicoterapia que recibieron 9 pacientes internados en un hospital:</p>
+<p><span class="math display">\[2, 2, 3, 5, 7, 10, 15, 19, 50\]</span></p>
+<p>La mediana de estos datos es 7, porque es el valor que deja cuatro casos por debajo y también cuatro casos por encima. Atención a que la serie simple debe estar ordenada para poder identificar a la mediana.</p>
+<p>Si la cantidad de observaciones fuera par como por ejemplo:</p>
+<p><span class="math display">\[2, 2, 3, 5, 7, 10, 15, 19\]</span></p>
+<p>El punto de corte correspondiente a la mitad de las observaciones se
+ubica entre 5 y 7, en este caso, la mediana es el promedio entre los dos valores centrales, que es 6.</p>
+<p>Cuando hay valores repetidos en la parte central no resulta posible
+indicar la mediana, por ejemplo si la serie fuera:</p>
+<p><span class="math display">\[2, 3, 7, 7, 7, 10, 15, 19\]</span></p>
+<p>No puede señalarse a 7 como la mediana, porque es superado por tres
+valores (10, 15 y 19) pero supera solo a dos (2 y 3).</p>
+<p>La mediana es una medida muy adecuada cuando se necesitan resumir datos que provienen de escalas ordinales o de nivel superior. Sin embargo, su cálculo no aporta nada en series simples con pocos casos (como los que acabamos de ver) ya que allí es más sencillo mostrar el conjunto completo de datos y no usar medidas resumen. Los ejemplos sirven para ilustrar el concepto, pero no se usa en la práctica. Las operaciones de resumen se justifican cuando se tiene un conjunto grande de datos.</p>
+<table>
+<colgroup>
+<col width="100%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="center">Se denomina <strong>mediana</strong> al valor de la variable que deja por debajo a la mitad de las observaciones. La mediana deja la misma cantidad de casos por debajo y por encima de ella. Se indica <span class="math inline">\(M_{dn}\)</span>.</td>
+</tr>
+</tbody>
+</table>
+<p>Veamos la forma de reconocer a la mediana cuando los datos están
+presentados en una distribución de frecuencias. La siguiente es una
+clasificación de hogares por nivel socioeconómico:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Nivel socioeconómico</th>
+<th align="center">f (número de hogares)</th>
+<th align="center">F</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Marginal</td>
+<td align="center">40</td>
+<td align="center">40</td>
+</tr>
+<tr class="even">
+<td align="left">Bajo</td>
+<td align="center">100</td>
+<td align="center">140</td>
+</tr>
+<tr class="odd">
+<td align="left">Medio-bajo</td>
+<td align="center">120</td>
+<td align="center">260</td>
+</tr>
+<tr class="even">
+<td align="left">Medio</td>
+<td align="center">150</td>
+<td align="center">410</td>
+</tr>
+<tr class="odd">
+<td align="left">Alto</td>
+<td align="center">30</td>
+<td align="center">440</td>
+</tr>
+<tr class="even">
+<td align="left">Total</td>
+<td align="center">440</td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<p>El valor de la variable que acumula el 50% de los casos, es el que ocupa el lugar 220, que es mitad de los 440 casos del total. La serie ordenada de esta distribución, coloca a los 40 hogares marginales en lso primeros 40 lugares, pero indistintamente, porque no hay orden entre los hogares al interior de la categoría. Según la tabla, hasta la categoría “medio-bajo” se acumulan 260 hogares y hasta la categoría anterior hay 140 acumulados. De manera que el hogar que ocupa el lugar 220 (de la serie ordenada) es uno de los que se encuentran en la categoría “medio-bajo”. Diremos así que la mediana de esta distribución es “medio-bajo”. Como puede verse, esta categoría no acumula exactamente la mitad de las observaciones, pero es la que contiene a la observación que supera a la mitad y es superada por la otra mitad. Por esa razón la leemos como la mediana, diciendo que la mitad de los hogares tiene un nivel socioeconómico medio-bajo o inferior a ese. Decir que el que acumula 220 casos es “uno de los hogares de la categoría medio-bajo” es impreciso, porque todos los hogares son equivalentes en su nivel socioeconómico al interior de la categoría.</p>
+<p>Esta imprecisión también aparece si se trata de
+una variable cuantitativa discreta. Si la variable es el <em>número de síntomas</em> a partir de los cuales fueron diagnosticados de esquizofrenia un conjunto de pacientes:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Cantidad de síntomas</th>
+<th align="center">f (número de pacientes)</th>
+<th align="center">F</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">2</td>
+<td align="center">30</td>
+<td align="center">30</td>
+</tr>
+<tr class="even">
+<td align="left">3</td>
+<td align="center">60</td>
+<td align="center">90</td>
+</tr>
+<tr class="odd">
+<td align="left">4</td>
+<td align="center">70</td>
+<td align="center">160</td>
+</tr>
+<tr class="even">
+<td align="left">5</td>
+<td align="center">90</td>
+<td align="center">250</td>
+</tr>
+<tr class="odd">
+<td align="left">Total</td>
+<td align="center">250</td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<p>La mitad del número total de casos es de 125 (<span class="math inline">\(250/2\)</span> ó <span class="math inline">\((1/2)*250\)</span>), ¿cuál
+es el caso que ocupa ese lugar? Vemos que hasta 3 síntomas se acumulan
+90 pacientes y 160 hasta los 4. El paciente que ocupa el puesto 125 en
+la serie simple ordenada es uno de los que fueron diagnosticados a
+partir de 4 síntomas. Por esa razón indicamos a la mediana con ese
+valor: 4, <span class="math inline">\(M_{dn} = 4\)</span>. Nuevamente encontramos que no es exactamente el
+valor que acumula la mitad, sino uno de los que están en la categoría
+dentro de la cual se acumula la mitad de los casos. La primera categoría
+que tenga una frecuencia acumulada superior al 50% será la que contenga
+a la mediana. Es así porque la clase anterior no alcanza a acumular la
+mitad de las observaciones. La lectura del resultado es que la mitad de
+los pacientes fue diagnosticada de esquizofrenia en presencia de cuatro
+síntomas o menos.</p>
+<p>Sea la variable <em>número de materias aprobadas</em>:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Número de materias aprobadas</th>
+<th align="center">f</th>
+<th align="center">F</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">0</td>
+<td align="center">30</td>
+<td align="center">30</td>
+</tr>
+<tr class="even">
+<td align="left">1</td>
+<td align="center">150</td>
+<td align="center">180</td>
+</tr>
+<tr class="odd">
+<td align="left">2</td>
+<td align="center">200</td>
+<td align="center">380</td>
+</tr>
+<tr class="even">
+<td align="left">3</td>
+<td align="center">300</td>
+<td align="center">680</td>
+</tr>
+<tr class="odd">
+<td align="left">4</td>
+<td align="center">250</td>
+<td align="center">930</td>
+</tr>
+<tr class="even">
+<td align="left">5</td>
+<td align="center">200</td>
+<td align="center">1130</td>
+</tr>
+<tr class="odd">
+<td align="left">6</td>
+<td align="center">20</td>
+<td align="center">1150</td>
+</tr>
+<tr class="even">
+<td align="left">Total</td>
+<td align="center">1150</td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<p>La mitad de 1150 es 575, la primera frecuencia acumulada que supera a
+575 es 680, que corresponde al valor 3. La mediana de esta distribución es entonces tres materias aprobadas y diremos que el 50% de los alumnos aprobó tres materias o menos.</p>
+<p>Cuando se trata de variables de nivel intervalar o proporcional y con
+categorías agrupadas, el cálculo anterior puede refinarse. Así, primero se identifica la categoría (el intervalo) en que se encuentra la mediana, igual que en los dos ejemplos anteriores y luego se interpola dentro del intervalo para encontrar su valor exacto.</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Tiempo de reacción (en segundos)</th>
+<th align="center">f</th>
+<th align="center">F</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">1.0 - 1.5</td>
+<td align="center">5</td>
+<td align="center">5</td>
+</tr>
+<tr class="even">
+<td align="left">1.5 - 2.0</td>
+<td align="center">7</td>
+<td align="center">12</td>
+</tr>
+<tr class="odd">
+<td align="left">2.0 - 2.5</td>
+<td align="center">6</td>
+<td align="center">18</td>
+</tr>
+<tr class="even">
+<td align="left">2.5 - 3.0</td>
+<td align="center">3</td>
+<td align="center">21</td>
+</tr>
+<tr class="odd">
+<td align="left">3.0 - 3.5</td>
+<td align="center">8</td>
+<td align="center">29</td>
+</tr>
+<tr class="even">
+<td align="left">3.5 - 4.0</td>
+<td align="center">5</td>
+<td align="center">34</td>
+</tr>
+<tr class="odd">
+<td align="left">Total</td>
+<td align="center">34</td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<p>La mitad de las 34 observaciones es 17, por lo que debe encontrarse una
+observación que tenga frecuencia acumulada de 17. Ese valor no aparece
+en la F, el primero que lo supera es 18, entonces la mediana estará en
+el intervalo 2,0-2,5. Esto es así porque hasta 2,0 se acumulan 12 casos
+(la F de la categoría anterior) y hasta 2,5 se acumulan 18. Nuestros 17
+casos se acumulan para un valor de la variable que está entre 2,0 y 2,5.</p>
+<p>Debemos ahora encontrar qué valor exactamente es la mediana, dentro del
+intervalo 2,0-2,5. La fórmula para este procedimiento es la siguiente:</p>
+<p><span class="math display">\[M_{dn} = l_{i} + i*\left( \frac{\frac{n}{2} - F_d}{f_{p}} \right)\]</span></p>
+<p>En la que:</p>
+<ul>
+<li><p><span class="math inline">\(l_i\)</span> indica el límite inferior del intervalo en que se encuentra la mediana, en este caso es 80.</p></li>
+<li><p><span class="math inline">\(i\)</span> es la amplitud del intervalo, es decir la diferencia entre los límites <span class="math inline">\(2.0-2.5 = 0.5\)</span>.</p></li>
+<li><p><span class="math inline">\(\frac{n}{2}\)</span> es la mitad del número total de observaciones, es este caso, 17.</p></li>
+<li><p><span class="math inline">\(F_d\)</span> es la frecuencia acumulada por <strong>d</strong>ebajo de la categoría que contiene la mediana, en esta tabla es 12.</p></li>
+<li><p><span class="math inline">\(f_p\)</span> es la frecuencia <strong>p</strong>ropia del intervalo en que se encuentra la mediana. Es la frecuencia absoluta (no la acumulada), en este ejemplo es 6.</p></li>
+</ul>
+<p>Reemplazando resulta:</p>
+<p><span class="math display">\[M_{dn} = 2.0 + 0.5*\left( \frac{17 - 12}{6} \right) = 2.0 + 0.5*\left( \frac{5}{6} \right) = 2.42\]</span></p>
+<p>Conviene detenerse en el orden en que se realizaron las operaciones. El
+signo más (+) separa términos, por lo que debe primero resolverse el
+segundo de ellos y luego recién sumar 2.0. Un error frecuente es el de
+sumar <span class="math inline">\(2.0 + 0.5\)</span> y luego multiplicar por el resultado del paréntesis, eso
+es incorrecto.</p>
+<p>Por cierto que debe verificarse que el valor encontrado se ubique dentro
+del intervalo; en este ejemplo, la mediana no podría ser menor que 2.0
+ni mayor que 2.5. Observemos también que el número de categorías de la
+variable, que es de 6, no participa en el cálculo de la mediana, de
+ningún modo se trata de una categoría que esté “al medio”.</p>
+<p>El resultado obtenido nos dice, según la definición de la mediana que
+“el 50% de los sujetos experimentales reaccionó en un tiempo de 2.42
+segundos o inferior”. Es muy importante la última parte de la lectura,
+porque cuando decimos “o inferior” incluimos los valores por debajo del indicado. De lo contrario, si se omite “o menos” se estaría diciendo que la mitad de los sujetos tardó <em>exactamente</em> 2.42 segundos.</p>
+<p>La mediana encontrada, de 2.42, es un valor razonable a partir de la
+observación de la tabla: la categoría de la mediana acumulaba 18 casos,
+que es apenas más que la mitad de las observaciones (17), por lo que era
+de esperar que la mediana apareciera cerca del límite superior del
+intervalo, que es lo que sucedió.</p>
+<p>Este procedimiento para calcular la mediana es imperfecto, porque supone que los valores están distribuidos de manera uniforme dentro de cada intervalo. Si los 6 valores que contiene el intervalo 2.0 – 2.5, fueran
+todos iguales a 2.01, por ejemplo, la mediana sería un número bastante
+menor al que se calculó con este método. El uso de la interpolación solo
+se justifica en situaciones en que la única información disponible es la
+tabla con los valores agrupados; por el contrario, si se cuenta con la
+matriz de datos, el cálculo debe hacerse usando todos los valores
+observados de la variable. Como esto es largo para hacer manualmente, se
+solicita a un software especializado.</p>
+<p><em>Variables métricas: la media o promedio</em></p>
+<p>Si se ha alcanzado un nivel de medición intervalar o proporcional, es
+posible hacer uso de las propiedades que estas escalas tienen.
+Recordemos que además de designar y ordenar, las escalas intervalares
+conservan las distancias entre observaciones, y las proporcionales
+agregan la proporcionalidad de los valores absolutos y el carácter
+absoluto del cero. En este nivel los números que representan las
+categorías (o valores) pueden tratarse como tales y se puede operar con ellos. Antes de dar una definición de la media o promedio, veamos la idea intuitiva que tenemos, ya que se trata de una medida de mucho uso.
+Cuando queremos calcular un promedio “sumamos y dividimos por la
+cantidad de casos”. Así, si tres personas cometen 5, 8 y 12 errores cada uno, el promedio de esa variable (número de errores) es
+<span class="math inline">\(\frac{5 + 8 + 12}{3} = \frac{25}{3} = 8.33\)</span>. Usaremos la expresión
+<span class="math inline">\(\overline{x}\)</span> para referirnos a la media, con lo que el resultado se
+escribe: <span class="math inline">\(\overline{x} = 8.33\)</span> errores.</p>
+<p>¿Cómo extenderemos esta forma de cálculo al caso en que la variable no
+está presentada en serie simple sino en distribución de frecuencias?
+Recordando que la frecuencia indica la cantidad de veces que cada valor
+se repite, por lo que habrá que considerar cada valor tantas veces como
+lo indique su frecuencia absoluta simple. Veamos un ejemplo en el que se
+cuenta el número de materias aprobadas:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Número de materias aprobadas</th>
+<th align="center">f</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">0</td>
+<td align="center">30</td>
+</tr>
+<tr class="even">
+<td align="left">1</td>
+<td align="center">150</td>
+</tr>
+<tr class="odd">
+<td align="left">2</td>
+<td align="center">200</td>
+</tr>
+<tr class="even">
+<td align="left">3</td>
+<td align="center">300</td>
+</tr>
+<tr class="odd">
+<td align="left">4</td>
+<td align="center">250</td>
+</tr>
+<tr class="even">
+<td align="left">5</td>
+<td align="center">200</td>
+</tr>
+<tr class="odd">
+<td align="left">6</td>
+<td align="center">20</td>
+</tr>
+<tr class="even">
+<td align="left">Total</td>
+<td align="center">1150</td>
+</tr>
+</tbody>
+</table>
+<p>El valor 0 (cero) está repetido 30 veces, lo que indica que hay 30
+alumnos que no han aprobado aún ninguna materia. Del mismo modo, 150
+alumnos aprobaron 1 materia, etc., por lo que si estuvieran presentados
+en serie simple, se sumarían los 1150 valores (30 veces el 0, 150 veces
+el 1, etc.) y esa suma se dividiría por 1150. Para hacerlo sobre la
+distribución de frecuencia, se multiplica cada valor de la variable por
+su frecuencia (que es equivalente a sumarlo tantas veces como aparece) y
+se divide por el total de casos. Resulta:</p>
+<p><span class="math display">\[\overline{x} = \frac{0*30 + 1*150 + 2*200 + 3*300 + 4*250 + 5*200 + 6*20}{1150} = 3.10\]</span></p>
+<p>La expresión formal de este cálculo es:</p>
+<p><span class="math display">\[\overline{x} = \frac{\sum_{i = 1}^{k}{x_{i}*f_{i}}}{n}\]</span></p>
+<p>En la que <span class="math inline">\(x_i\)</span> es cada valor de la variable, <span class="math inline">\(f_i\)</span> es su frecuencia
+absoluta simple, <span class="math inline">\(k\)</span> es el número de categorías y <span class="math inline">\(n\)</span> es el total de
+observaciones. La fórmula indica que cada valor de la variable (<span class="math inline">\(x_i\)</span>)
+se multiplica por su frecuencia (<span class="math inline">\(f_i\)</span>), se suman desde el primero
+(<span class="math inline">\(i=1\)</span>) hasta el último (<span class="math inline">\(k\)</span>) y el resultado se divide por el total de
+casos (<span class="math inline">\(n\)</span>).</p>
+<p>Veamos que no se trató como podríamos haber pensado rápidamente, de
+sumar desde el cero hasta el seis y dividir por siete. Haber hecho eso
+habría implicado dos errores: el primero es el de no considerar cuántas
+veces está repetido cada valor (su frecuencia absoluta simple), el
+segundo es el de confundir el número de casos (1150) con el número de
+categorías (7). Este último error puede provenir de una confusión entre
+la presentación en serie simple o en distribución de frecuencias. Cuando
+se observa una serie simple, los valores “sueltos” de la variable
+coinciden con sus categorías, pero cuando se agrupa, cada categoría
+incluye cierta cantidad de casos que tienen el mismo valor, lo cual está
+indicado en la frecuencia de cada categoría.</p>
+<p>En el ejemplo anterior entonces, el número promedio de materias
+aprobadas es 3.10. Este número no es entero y no es un valor que se
+pueda observar; nadie tiene 3.10 materias aprobadas. Sin embargo, es
+valioso para caracterizar a la distribución completa y para hacer
+comparaciones. Por ejemplo, si en un grupo de alumnos la media es de
+3,10 materias aprobadas y en otro de 3.90; puede decirse que en el
+segundo grupo los alumnos han aprobado -en promedio-, más materias;
+aunque ninguno haya aprobado 3.10 ni 3.90 materias.</p>
+<p>Por el momento ofreceremos una definición operacional de la media, más
+adelante podrá darse una definición conceptual, basada en sus
+propiedades.</p>
+<table>
+<colgroup>
+<col width="100%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="center">La <strong>media</strong> (o promedio) es un valor de la variable obtenido sumando todas las observaciones multiplicadas por su frecuencia absoluta y dividiendo el resultado en el número total de casos. Se indica como <span class="math inline">\(\overline{x}\)</span> (equis media).</td>
+</tr>
+</tbody>
+</table>
+<p>Cuando la distribución de frecuencias presenta los datos agrupados,
+aparece el problema de no tener un único valor en cada categoría. Por
+ejemplo y nuevamente en el caso de los tiempos de reacción:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Tiempo de reacción (en segundos)</th>
+<th align="center">f</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">1.0 - 1.5</td>
+<td align="center">5</td>
+</tr>
+<tr class="even">
+<td align="left">1.5 - 2.0</td>
+<td align="center">7</td>
+</tr>
+<tr class="odd">
+<td align="left">2.0 - 2.5</td>
+<td align="center">6</td>
+</tr>
+<tr class="even">
+<td align="left">2.5 - 3.0</td>
+<td align="center">3</td>
+</tr>
+<tr class="odd">
+<td align="left">3.0 - 3.5</td>
+<td align="center">8</td>
+</tr>
+<tr class="even">
+<td align="left">3.5 - 4.0</td>
+<td align="center">5</td>
+</tr>
+<tr class="odd">
+<td align="left">Total</td>
+<td align="center">34</td>
+</tr>
+</tbody>
+</table>
+<p>Aquí no hay un valor único en cada categoría, sino un intervalo que
+incluye diferentes valores. Esto se resuelve considerando, para cada
+intervalo, su <strong>marca de clase</strong> (el punto medio), que es el promedio de
+los extremos de cada intervalo. La siguiente tabla agrega las marcas de
+clase de cada intervalo, indicadas como <span class="math inline">\(x&#39;\)</span>:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Tiempo de reacción (en segundos)</th>
+<th align="center">x’</th>
+<th align="center">f</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">1.0 - 1.5</td>
+<td align="center">1.25</td>
+<td align="center">5</td>
+</tr>
+<tr class="even">
+<td align="left">1.5 - 2.0</td>
+<td align="center">1.75</td>
+<td align="center">7</td>
+</tr>
+<tr class="odd">
+<td align="left">2.0 - 2.5</td>
+<td align="center">2.25</td>
+<td align="center">6</td>
+</tr>
+<tr class="even">
+<td align="left">2.5 - 3.0</td>
+<td align="center">2.75</td>
+<td align="center">3</td>
+</tr>
+<tr class="odd">
+<td align="left">3.0 - 3.5</td>
+<td align="center">3.25</td>
+<td align="center">8</td>
+</tr>
+<tr class="even">
+<td align="left">3.5 - 4.0</td>
+<td align="center">3.75</td>
+<td align="center">5</td>
+</tr>
+<tr class="odd">
+<td align="left">Total</td>
+<td align="center"></td>
+<td align="center">34</td>
+</tr>
+</tbody>
+</table>
+<p>Ahora puede usarse el método anterior para calcular la media, tomando
+las marcas de clase como los valores de la variable:</p>
+<p><span class="math display">\[\overline{x} = \frac{1.25*5 + 1.75*7 + 2.25*6 + 2.75*3 + 3.25*8 + 3.75*5}{34} = 2.5\]</span></p>
+<p>Resulta así que el tiempo promedio de reacción es de 2.5 segundos. Este
+procedimiento es impreciso, porque asigna a todos los casos que están
+dentro de cada categoría el mismo valor (el centro del intervalo) y se
+justifica en situaciones en que la única información disponible es la
+tabla con los valores agrupados; si se cuenta con la matriz de datos, el
+cálculo debe hacerse usando todos los valores observados de la variable,
+recurriendo a un software especializado cuando sean muchos datos.</p>
+<p>Si bien la media es una medida muy valiosa para resumir un conjunto de
+datos, a veces se hace un uso abusivo de ella, al aplicarla a variables
+que no tienen el nivel de medición adecuado para autorizar su uso. Un
+ejemplo de esto es el caso de las calificaciones escolares, que solo
+permiten ordenar a los alumnos según los resultados, pero que no
+implican la proporcionalidad de los valores (quien obtiene 10 no sabe el
+doble que quien obtiene 5). Aun así, es habitual que se calcule
+incorrectamente el “promedio de las notas”.</p>
+</div>
+<div id="los-cuartiles" class="section level3">
+<h3><span class="header-section-number">3.1.7</span> Los cuartiles</h3>
+<p>Si la variable tiene un nivel de medición ordinal o superior, entonces
+podemos usar el mismo razonamiento con el que definimos la mediana para
+hacer cortes más finos en una distribución de frecuencia. Así, si la
+mediana nos indica el valor de la variable que deja por debajo la mitad
+de los casos, es lícito preguntar también por el valor que deja por
+debajo un cuarto de los casos, o también el que deja por debajo las tres
+cuartas partes de las observaciones. Estos puntos de corte se denominan
+respectivamente: primer cuartil y tercer cuartil.</p>
+<p>El primer cuartil es el valor de la variable que deja por debajo un
+cuarto, o el 25% del total de observaciones.</p>
+<p>El tercer cuartil es el valor que deja por debajo las tres cuartas
+partes o el 75% del total de observaciones. Como se ve, tanto el modo de
+cálculo como la interpretación son análogos a la mediana. Veamos su
+aplicación a los ejemplos anteriores:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Número de materias aprobadas</th>
+<th align="center">f</th>
+<th align="center">F</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">0</td>
+<td align="center">30</td>
+<td align="center">30</td>
+</tr>
+<tr class="even">
+<td align="left">1</td>
+<td align="center">150</td>
+<td align="center">180</td>
+</tr>
+<tr class="odd">
+<td align="left">2</td>
+<td align="center">200</td>
+<td align="center">380</td>
+</tr>
+<tr class="even">
+<td align="left">3</td>
+<td align="center">300</td>
+<td align="center">680</td>
+</tr>
+<tr class="odd">
+<td align="left">4</td>
+<td align="center">250</td>
+<td align="center">930</td>
+</tr>
+<tr class="even">
+<td align="left">5</td>
+<td align="center">200</td>
+<td align="center">1130</td>
+</tr>
+<tr class="odd">
+<td align="left">6</td>
+<td align="center">20</td>
+<td align="center">1150</td>
+</tr>
+<tr class="even">
+<td align="left">Total</td>
+<td align="center">1150</td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<p>Para encontrar el primer cuartil será ahora necesario buscar un cuarto
+del total de casos: 287.5 (<span class="math inline">\(\frac{1}{4}*1150\)</span>). La pregunta ahora es ¿cuál es
+la primera frecuencia acumulada que supera a 287.5? se trata de 380, que
+corresponde al valor 2 y éste es entonces el primer cuartil. Leemos así
+que un cuarto del total de alumnos tiene dos materias aprobadas o menos.
+También puede decirse que el 25% de los alumnos aprobó dos materias o
+menos. Si se toma la cantidad de materias aprobadas como un indicador
+del ritmo más rápido o más lento de avance en la carrera, aquí se lee
+que el 25% que avanza con más lentitud no llegó a aprobar tres materias</p>
+<table>
+<colgroup>
+<col width="100%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="center">El <strong>primer cuartil</strong> es el valor de la variable que deja un cuarto (25%) de los casos por debajo y tres cuartos (75%) por encima. Se indica <span class="math inline">\(Q_1\)</span>.</td>
+</tr>
+</tbody>
+</table>
+<p>Idéntico razonamiento seguimos para calcular el tercer cuartil: las tres
+cuartas partes del total es 862.5 (<span class="math inline">\(\frac{3}{4}*1150\)</span>). Buscamos luego la
+primera frecuencia acumulada que supera a ese valor y hallamos que es
+930 y que su categoría correspondiente es 4. Entonces el tercer cuartil
+es 4 materias aprobadas. La lectura será: las tres cuartas partes (o el
+75%) de los alumnos aprobó cuatro materias o menos. Esto último implica
+que el 25% restante aprobó más de cuatro materias. Así, el grupo que
+avanza más rápido en la carrera aprobó más de cuatro materias en su
+primer año.</p>
+<table>
+<colgroup>
+<col width="100%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="center">El <strong>tercer cuartil</strong> es el valor de la variable que deja tres cuartos (75%) de los casos por debajo y un cuarto (25%) por encima. Se indica <span class="math inline">\(Q_3\)</span>.</td>
+</tr>
+</tbody>
+</table>
+<p>Cuando se trata de distribuciones con categorías agrupadas, procedemos
+como antes con una leve modificación en la fórmula:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Tiempo de reacción (en segundos)</th>
+<th align="center">f</th>
+<th align="center">F</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">1.0 - 1.5</td>
+<td align="center">5</td>
+<td align="center">5</td>
+</tr>
+<tr class="even">
+<td align="left">1.5 - 2.0</td>
+<td align="center">7</td>
+<td align="center">12</td>
+</tr>
+<tr class="odd">
+<td align="left">2.0 - 2.5</td>
+<td align="center">6</td>
+<td align="center">18</td>
+</tr>
+<tr class="even">
+<td align="left">2.5 - 3.0</td>
+<td align="center">3</td>
+<td align="center">21</td>
+</tr>
+<tr class="odd">
+<td align="left">3.0 - 3.5</td>
+<td align="center">8</td>
+<td align="center">29</td>
+</tr>
+<tr class="even">
+<td align="left">3.5 - 4.0</td>
+<td align="center">5</td>
+<td align="center">34</td>
+</tr>
+<tr class="odd">
+<td align="left">Total</td>
+<td align="center">34</td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<p>Para el primer cuartil debe hallarse la primera frecuencia que supera a
+un cuarto de las observaciones, de las 34, un cuarto es 8.5 y la primera
+frecuencia mayor que ese número es 12, por lo que el primer cuartil se
+encuentra en la categoría 1.5-2.0. Para interpolar en valor exacto
+usamos una expresión equivalente a la de la mediana:</p>
+<p><span class="math display">\[Q_{1} = l_{i} + i*\left( \frac{\frac{n}{4} - f_{d}}{f_{p}} \right)\]</span></p>
+<p>En la que se cambia <span class="math inline">\(\frac{n}{2}\)</span> por <span class="math inline">\(\frac{n}{4}\)</span> y lo demás mantiene
+el mismo significado. Aplicándola a estos datos resulta:</p>
+<p><span class="math display">\[Q_{1} = 1.5 + 0.5*\left( \frac{8.5 - 5}{7} \right) = 1.5 + 0.5*\left( 0.5 \right) = 1.75\]</span></p>
+<p>Leemos en resultado como: el 25% de los sujetos reaccionó en un tiempo
+de 1.75s o menos.</p>
+<p>Para el tercer cuartil la fórmula se transforma en:</p>
+<p><span class="math display">\[Q_{3} = l_{i} + i*\left( \frac{\frac{3*n}{4} - f_{d}}{f_{p}} \right)\]</span></p>
+<p>Cuyo cambio consiste en que va <span class="math inline">\(\frac{3*n}{4}\)</span> en lugar de <span class="math inline">\(\frac{n}{4}\)</span>
+y manteniendo el resto de los símbolos con el mismo significado.</p>
+<p>Usando esta expresión, verifique el lector que para la distribución de
+los tiempos de reacción, el tercer cuartil es 3.28.</p>
+<p>No hemos hecho mención a un “segundo cuartil”, que sería el valor de la
+variable que acumula las dos cuartas partes de los casos, pero como las
+dos cuartas partes es la mitad, se trata simplemente de la mediana
+<span class="math inline">\(Q_{2} = M_{dn}\)</span>.</p>
+</div>
+<div id="los-percentiles" class="section level3">
+<h3><span class="header-section-number">3.1.8</span> Los percentiles</h3>
+<p>Por el mismo camino pueden definirse cortes en otros puntos de la
+distribución, los más frecuentemente usados, por su generalidad, se
+conocen como percentiles. Se trata de valores de la variable que dejan
+por debajo (acumulan) distintos porcentajes de casos.</p>
+<table>
+<colgroup>
+<col width="100%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="center">El <strong>percentil <span class="math inline">\(r\)</span></strong> de una distribución es el valor de la variable que deja el <span class="math inline">\(r\)</span> por ciento de los casos por debajo de él y <span class="math inline">\((1-r)\)</span> por ciento de los casos por encima. Se indica <span class="math inline">\(P_r\)</span>.</td>
+</tr>
+</tbody>
+</table>
+<p>Así por ejemplo, el percentil 10 (indicado como <span class="math inline">\(P_{10}\)</span>) es el valor de
+la variable que acumula el 10% de las observaciones. Se representa de
+modo general un percentil dado como <span class="math inline">\(P_r\)</span> en el que <span class="math inline">\(r\)</span> indica el
+porcentaje del que se trata. La expresión para el cálculo de cualquier
+percentil es:</p>
+<p><span class="math display">\[P_{r} = l_{i} + i*\left( \frac{\frac{r}{100}*n - f_{d}}{f_{p}} \right)\]</span></p>
+<p>Son fáciles de observar las siguientes equivalencias:</p>
+<p><span class="math display">\[Q_{1} = P_{25}\]</span>
+<span class="math display">\[M_{dn} = P_{50}\]</span>
+<span class="math display">\[Q_{3} = P_{75}\]</span></p>
+<p>También suelen mencionarse, en algunas publicaciones, otros puntos de
+corte, como por ejemplo los quintiles, muy comunes para establecer cortes en los niveles de ingreso. Esta medida representa valores
+que acumulan quintos (20%) de la distribución. La equivalencia es la
+siguiente:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Quintil:</th>
+<th align="center">Equivale a:</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Primero</td>
+<td align="center"><span class="math inline">\(P_{20}\)</span></td>
+</tr>
+<tr class="even">
+<td align="left">Segundo</td>
+<td align="center"><span class="math inline">\(P_{40}\)</span></td>
+</tr>
+<tr class="odd">
+<td align="left">Tercero</td>
+<td align="center"><span class="math inline">\(P_{60}\)</span></td>
+</tr>
+<tr class="even">
+<td align="left">Cuarto</td>
+<td align="center"><span class="math inline">\(P_{80}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Así, el primer quintil de ingresos representa el valor de ingreso que deja por debajo al 20% de menores ingresos,</p>
+<p>Para los cálculos con la fórmula de interpolación se reemplaza el
+<span class="math inline">\(\frac{n}{2}\)</span> de la mediana por <span class="math inline">\(\frac{r}{100}\)</span> para el percentil <span class="math inline">\(r\)</span>.
+Esta manera de calcular los percentiles tiene la misma limitación
+mencionada para la mediana.</p>
+<p>Resulta entonces que la mediana, los muartiles y los quintiles son solo casos particulares de un conjunto de medidas general: los percentiles. Esta medidas tienen en cuenta el orden de las categorías y se calculan en base a lafrecuencia acumulada (absoluta o relativa). Por el contrario, la media tiene en cuenta los valores de la variable y las frecuencias simples (absolutas o relativas).</p>
+<p>Para ser precisos, debe decirse que los percentiles son también casos particulares, de los llamados <em>cuantiles</em>, que son valores de la variable que acumulan una proporciónn dada de la distribucion. La particularidad de los percentiles es que hacen los cortes en 100. No existe por ejemplo, el percentil 22.5, solo el 22 o el 23; el valor que acumula 22.5% de los casos se llama cuantil .225. Debido a que no usamos cortes tan precisos, nos quedaremos con los percentiles como los más finos.</p>
+<div id="obtencion-grafica-de-los-percentiles" class="section level4">
+<h4><span class="header-section-number">3.1.8.1</span> Obtención gráfica de los percentiles</h4>
+<p>Todas las medidas que hacen uso de las frecuencias acumuladas (mediana, cuartiles, quintiles, percentiles) pueden obtenerse de manera aproximada a través del gráfico de frecuencias acumuladas, la ojiva de Galton. Veamos el recorte de los niveles de ingresos salariales en cinco grupos, por medio de los quintiles:</p>
+<p><img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-64-1.png" width="672" /></p>
+<p>Los quintiles de esta distribución son los siguientes:</p>
+<ul>
+<li><span class="math inline">\(P_{20} =\)</span> 7000</li>
+<li><span class="math inline">\(P_{40} =\)</span> 12000</li>
+<li><span class="math inline">\(P_{60} =\)</span> 16000</li>
+<li><span class="math inline">\(P_{80} =\)</span> 21000</li>
+</ul>
+<p>Y representan valores de ingreso salarial que contienen un qunito de los asalariados cada uno.</p>
+</div>
+</div>
+<div id="hacerlo-en-r" class="section level3">
+<h3><span class="header-section-number">3.1.9</span> Hacerlo en R</h3>
+<p>Los nombres de las medidas descriptivas en R están en inglés, por lo que hay que recordarlas. Para el caso de la variable ingreso salarial (<code>PP08D1</code> en los microdatos de la EPH), hemos generado una base nueva que solo contiene personas que trabajan como obreros o empleados (son asalariados), sobre ella, las medidas de posición se piden así:</p>
+<!-- JCR: Deberiamos decir como conseguir este dataset -->
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">attach</span>(eph.<span class="dv">3</span>.<span class="fl">18.</span>asal)
+<span class="kw">length</span>(PP08D1) <span class="co"># cantidad de casos (n)</span></code></pre>
+<pre><code>## [1] 13410</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mean</span>(PP08D1) <span class="co"># la media</span></code></pre>
+<pre><code>## [1] 14586.19</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">median</span>(PP08D1) <span class="co"># la mediana</span></code></pre>
+<pre><code>## [1] 15000</code></pre>
+<p>Para los percentiles, se debe especificar cuál o cuáles <em>cuantiles</em> se piden:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">quantile</span>(PP08D1, <span class="fl">.2</span>) <span class="co"># percentil 20</span></code></pre>
+<pre><code>##  20% 
+## 7000</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">quantile</span>(PP08D1, <span class="fl">.05</span>) <span class="co"># percentil 5</span></code></pre>
+<pre><code>##   5% 
+## 3000</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">quantile</span>(PP08D1, <span class="fl">.95</span>) <span class="co"># percentil 95</span></code></pre>
+<pre><code>##   95% 
+## 30000</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">quantile</span>(PP08D1, <span class="fl">.5</span>) <span class="co"># percentil 50, coincide con la mediana</span></code></pre>
+<pre><code>##   50% 
+## 15000</code></pre>
+<p>Si se necesitan varios juntos, por ejemplo los quintiles, se usa el comando <code>c</code>, para “concatenar” los valores:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">quantile</span>(PP08D1, <span class="kw">c</span>(.<span class="dv">2</span>, <span class="fl">.4</span>, <span class="fl">.6</span>, <span class="fl">.8</span>))</code></pre>
+<pre><code>##   20%   40%   60%   80% 
+##  7000 12000 16000 21000</code></pre>
+<p>Esta descripción de los datos se lee:
+En la muestra de 13410 personas que trabajan como obreros o empleados, el salario promedio es de 14586.19. El 50% tiene salario de 15000, el 20% de más bajos salarios está de 7000 para abajo y el 5% de los menores salarios son de 3000 o menos. El 95% tiene salario de 30000 o menos; que es lo mismo que decir que el 5% de los salarios superan los 30000.</p>
+<p>Para realizar la categorización con los tres criterios vistos antes, se cuenta en R con la función <code>cut</code> que se aplica sobre una variable cuantitativa y se controla la cantidad de intervalos y la forma de construirlos en el argumento “breaks”. Por ejemlo, para categorizar la edad de la base EPH en cuatro intervalos de igual amplitud, se indica ese número en el argumento. El resultado de esa categorización se guarda en una nueva variable a la que llamamos z y luego se solicita su distribución de frecuencia:</p>
+<pre class="sourceCode r"><code class="sourceCode r">z &lt;-<span class="st"> </span><span class="kw">cut</span>(eph.<span class="fl">3.18</span><span class="op">$</span>CH06, <span class="dt">breaks =</span> <span class="dv">4</span>)
+<span class="kw">table</span>(z)</code></pre>
+<pre><code>## z
+## (-0.101,25.2]   (25.2,50.5]   (50.5,75.8]    (75.8,101] 
+##         23233         18769         12342          2535</code></pre>
+<p>El límite inferior del primer intervalo es negativo por la aplicación de una fórmula de cálculo de las amplitudes, cuando se edita para presentarla, ese número debe ser cero.</p>
+<p>La otra opción del argumento “breaks” es indicarle un vector con los límites de los intervalos que se desea. La categorización con criterio proporcional debe indicar que los puntos de corte sean los percentiles correspondientes a la cantidad requerida, para cuatro intervalos, se indica el mínimo de la variable como inicio, luego los cuartiles y termina en el máximo:</p>
+<pre class="sourceCode r"><code class="sourceCode r">t &lt;-<span class="st"> </span><span class="kw">cut</span>(eph.<span class="fl">3.18</span><span class="op">$</span>CH06, <span class="dt">breaks =</span> <span class="kw">c</span>(
+  <span class="kw">min</span>(eph.<span class="fl">3.18</span><span class="op">$</span>CH06),
+  <span class="kw">quantile</span>(eph.<span class="fl">3.18</span><span class="op">$</span>CH06, <span class="fl">.25</span>),
+  <span class="kw">quantile</span>(eph.<span class="fl">3.18</span><span class="op">$</span>CH06, <span class="fl">.5</span>),
+  <span class="kw">quantile</span>(eph.<span class="fl">3.18</span><span class="op">$</span>CH06, <span class="fl">.75</span>),
+  <span class="kw">max</span>(eph.<span class="fl">3.18</span><span class="op">$</span>CH06)
+))
+<span class="kw">table</span>(t)</code></pre>
+<pre><code>## t
+##   (0,16]  (16,32]  (32,52] (52,101] 
+##    13913    14280    14292    13673</code></pre>
+<p>Con estos cortes, los grupos tienen cantidades de casos similares.</p>
+<p>Si el criterio es teórico, se eligen los puntos de corte y se indican en “breaks”. Para hacer cuatro grupos de: hasta 14 años, de 15 a 44, de 45 a 64 y 65 o más, se solicita:</p>
+<pre class="sourceCode r"><code class="sourceCode r">u &lt;-<span class="st"> </span><span class="kw">cut</span>(eph.<span class="fl">3.18</span><span class="op">$</span>CH06, <span class="dt">breaks =</span> <span class="kw">c</span>(
+  <span class="kw">min</span>(eph.<span class="fl">3.18</span><span class="op">$</span>CH06),
+  <span class="dv">14</span>,
+  <span class="dv">44</span>,
+  <span class="dv">64</span>,
+  <span class="kw">max</span>(eph.<span class="fl">3.18</span><span class="op">$</span>CH06)
+))
+<span class="kw">table</span>(u)</code></pre>
+<pre><code>## u
+##   (0,14]  (14,44]  (44,64] (64,101] 
+##    12052    25333    11780     6993</code></pre>
+</div>
+</div>
+<div id="la-forma-de-la-distribucion" class="section level2">
+<h2><span class="header-section-number">3.2</span> La forma de la distribución</h2>
+<p>La media es una medida muy completa como resumen de los datos, ya que
+los considera a todos con la frecuencia de cada uno. Opera como un punto
+de equilibrio en un conjunto de datos. Sin embargo esto puede ser una
+dificultad en algunos tipos de distribución. Consideremos el siguiente
+ejemplo simple:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">x</th>
+<th align="center">f</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">3</td>
+<td align="center">16</td>
+</tr>
+<tr class="even">
+<td align="left">4</td>
+<td align="center">7</td>
+</tr>
+<tr class="odd">
+<td align="left">5</td>
+<td align="center">5</td>
+</tr>
+<tr class="even">
+<td align="left">6</td>
+<td align="center">6</td>
+</tr>
+<tr class="odd">
+<td align="left">10</td>
+<td align="center">3</td>
+</tr>
+<tr class="even">
+<td align="left">Total</td>
+<td align="center">37</td>
+</tr>
+</tbody>
+</table>
+<p>Estos datos muestran una marcada concentración en el valor 3, donde se
+encuentra la mitad de las observaciones. El resto de los valores son
+superiores y hay uno extremo, el 10, que tiene poca frecuencia: hay solo
+tres observaciones con ese valor. Veamos cuál es el efecto de esta forma
+de distribuirse de los datos. La media es:</p>
+<pre><code>## [1] 4.51</code></pre>
+<p><span class="math display">\[\overline{x} = \frac{3*16 + 4*7 + 5*5 + 6*6 + 10*3}{37} = 4.51\]</span></p>
+<p>A pesar de la concentración en 3 que se observa, la media es superior a 4, que es un resultado contrario a lo que intuitivamente esperaríamos,
+porque habríamos supuesto que se ubicaría más cerca de 3, ya que 3
+parece ser un valor muy “representativo” de esta distribución, sin
+embargo, la media da un número bastante más grande. Esto se debe a la
+presencia de valores extremos, en este ejemplo el 10. Aunque este número
+tiene poca frecuencia, su efecto es de “tirar de la media” hacia valores
+más grandes. Esto sucede siempre con la media y proviene de su
+característica de tener en cuenta todos los valores de la distribución.
+Por esa razón, cuando la distribución se presenta como la anterior, la
+media no es una buena medida de centralidad.</p>
+<p>Este inconveniente de la media aparece a menudo en las discusiones
+salariales por sectores. A menudo se escucha que no se justifica un
+aumento porque el salario promedio de todos los empleados del sector es
+de <em>X pesos</em>. Argumento al que se contrapone (expresado de diferentes
+maneras) que ese promedio incluye al personal que tiene salarios muy
+altos. Se trata de distribuciones asimétricas, que tienen la mayor parte
+de los casos con salarios bajos o intermedios y unos pocos casos con
+salarios muy superiores, por eso cuando se calcula la media se obtiene
+un resultado que representa mal al conjunto de datos.</p>
+<p>El histograma siguiente muestra la forma de la distribución anterior:</p>
+<p><img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-74-1.png" width="672" /></p>
+<p>En el gráfico se ve el carácter atípico del valor 10, que aparece muy
+alejado de la parte principal de la distribución. Decimos en este caso
+que la distribución es asimétrica.</p>
+<div id="asimetria" class="section level3">
+<h3><span class="header-section-number">3.2.1</span> Asimetría</h3>
+<p>La <strong>asimetría</strong> de una distribución se indica señalando hacia dónde se
+sitúan los valores extremos. Si, como en este ejemplo, los valores
+extremos son mayores que la mayor parte de los datos, la asimetría es
+<strong>hacia la derecha</strong>.</p>
+<p>La asimetría puede ser en sentido opuesto, si hay observaciones
+particularmente pequeñas y en ese caso se tratará de una distribución
+<strong>asimétrica hacia la izquierda</strong>. Como en el ejemplo siguiente:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">X</th>
+<th align="center">F</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">100</td>
+<td align="center">5</td>
+</tr>
+<tr class="even">
+<td align="left">200</td>
+<td align="center">10</td>
+</tr>
+<tr class="odd">
+<td align="left">300</td>
+<td align="center">20</td>
+</tr>
+<tr class="even">
+<td align="left">400</td>
+<td align="center">20</td>
+</tr>
+<tr class="odd">
+<td align="left">500</td>
+<td align="center">50</td>
+</tr>
+<tr class="even">
+<td align="left">600</td>
+<td align="center">70</td>
+</tr>
+<tr class="odd">
+<td align="left">Total</td>
+<td align="center">175</td>
+</tr>
+</tbody>
+</table>
+<p>Cuyo histograma es:</p>
+<p><img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-76-1.png" width="672" /></p>
+<p>Aquí los valores extremos se encuentran por debajo del grupo principal
+de datos y la media se inclinará hacia los valores más pequeños. Así,
+aunque la mayoría de los casos se encuentra entre 500 y 600, la media
+es:</p>
+<pre><code>## [1] 477.14</code></pre>
+<p><span class="math display">\[\overline{x} = \frac{100*5 + 200*10 + 300*20 + 400*20 + 500*50 + 600*70}{175} = 477,14\]</span></p>
+<p>Un resultado que está por debajo de esos valores que concentran muchos
+casos. Decimos ahora que la asimetría es hacia la izquierda.</p>
+<p>Los siguientes histogramas, son ejemplos de formas posibles en cuanto a simetría:</p>
+<p><img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-78-1.png" width="672" /><img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-78-2.png" width="672" /><img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-78-3.png" width="672" /></p>
+<p>La asimetría puede evaluarse directamente a partir de las medidas de
+centralidad, ya que la posición relativa de la media y la mediana
+indican hacia dónde ésta sucede. Cuando la media y la mediana coinciden,
+la distribución es simétrica, es decir carece de asimetría. Si la media
+supera a la mediana, se trata de una distribución asimétrica a la
+derecha y si la media es menor que la mediana, la asimetría será hacia
+la izquierda.</p>
+<p>En estas distribuciones las medias y medianas son:</p>
+<ul>
+<li>x1: media = -0.0551901, mediana = -0.0270521</li>
+<li>x2: media = 10.1045686, mediana = 7.0312563</li>
+<li>x3: media = 9.8993681, mediana = 9.6869492</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Posición relativa de la media y la mediana:</th>
+<th align="center">Asimetría de la Distribución:</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><span class="math inline">\(\overline{x} = M_{dn}\)</span></td>
+<td align="center">Simétrica</td>
+</tr>
+<tr class="even">
+<td align="center"><span class="math inline">\(\overline{x} &gt; M_{dn}\)</span></td>
+<td align="center">Asimétrica a la derecha</td>
+</tr>
+<tr class="odd">
+<td align="center"><span class="math inline">\(\overline{x} &lt; M_{dn}\)</span></td>
+<td align="center">Asimétrica a la izquierda</td>
+</tr>
+</tbody>
+</table>
+<table>
+<colgroup>
+<col width="100%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="center">Una distribución es <strong>simétrica</strong> si la media coincide con la mediana. La distribución se llama asimétrica a la derecha si la media es mayor que la mediana, y asimétrica a la izquierda si la media es menor que la mediana.</td>
+</tr>
+</tbody>
+</table>
+<p><img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-79-1.png" width="672" /><img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-79-2.png" width="672" /><img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-79-3.png" width="672" /></p>
+<p>La evaluación cuantitativa de la asimetría de una distribución permite la comparación entre distribuciones en cuanto al grado de asimetría, para indicar cuando una distribución es más asimétrica que otra. Para hacerlo se usan los <em>coeficientes de asimetría</em>. Estos coeficientes miden dos aspectos
+de la asimetría: hacia qué lado sucede y cuán acentuada es. Su signo
+positivo indica asimetría hacia la derecha y negativo hacia la
+izquierda. El valor absoluto del coeficiente indica si es muy asimétrica
+o poco. Por ejemplo, una distribución cuya asimetría vale 1,5 es más
+asimétrica que una con coeficiente 1,2, y ambas son asimétricas hacia la
+derecha. Cuando la distribución es simétrica, el coeficiente vale cero,
+no es positivo ni negativo. Uno de los más frecuentemente usados es el
+coeficiente de asimetría de Fisher[^18], que se calcula como:</p>
+<p><span class="math display">\[g_{1} = \frac{\sum_{i = 1}^{n}{\left( x_{i} - \overline{x} \right)^{3}*f_{i}}}{n*s^{3}}\]</span></p>
+<p>Y cuya interpretación es:</p>
+<ul>
+<li><p><span class="math inline">\(g_{1} = 0\)</span> La distribución es simétrica.</p></li>
+<li><p><span class="math inline">\(g_{1} &gt; 0\)</span> Asimétrica hacia la derecha.</p></li>
+<li><p><span class="math inline">\(g_{1} &lt; 0\)</span> Asimétrica hacia la izquierda.</p></li>
+</ul>
+<p>En la práctica, es improbable que el coeficiente valga exactamente cero,
+por lo que se considera simétrica a una distribución cuyo coeficiente
+esté entre -0,5 y 0,5.</p>
+</div>
+<div id="curtosis" class="section level3">
+<h3><span class="header-section-number">3.2.2</span> Curtosis</h3>
+<p>Además de la simetría, disponemos de otro indicador de la forma de la
+distribución, una medida de cuán “puntiaguda” es la curva, se denomina
+curtosis y distingue distribuciones con forma estrecha y elevada de que
+tienen forma amplia y baja. Como en los siguientes gráficos:</p>
+<p><img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-80-1.png" width="672" /><img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-80-2.png" width="672" /><img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-80-3.png" width="672" /></p>
+<p>Estos tres ejemplos corresponden a distribuciones simétricas, pero
+también pueden ser asimétricas.</p>
+<p>La curtosis se mide con un coeficiente específico, que vale cero para
+distribuciones mesocúrticas, es negativo para las platicúrticas y
+positivo para las leptocúrticas. Su cálculo es:</p>
+<p><span class="math display">\[g_{2} = \frac{\sum_{i = 1}^{n}{\left( x_{i} - \overline{x} \right)^{4}*f_{i}}}{n*s^{4}} - 3\]</span></p>
+<p>Su interpretación es:</p>
+<ul>
+<li><p><span class="math inline">\(g_{2} = 0\)</span> La distribución es mesocúrtica</p></li>
+<li><p><span class="math inline">\(g_{2} &gt; 0\)</span> Leptocúrtica</p></li>
+<li><p><span class="math inline">\(g_{2} &lt; 0\)</span> Platicúrtica</p></li>
+</ul>
+<p>Con datos reales, muy raramente el valor será exactamente cero, por lo
+que se trata como mesocúrtica a una distribución cuyo coeficiente se
+encuentre entre -0,5 y 0,5.</p>
+</div>
+</div>
+<div id="box-plots" class="section level2">
+<h2><span class="header-section-number">3.3</span> Box-plots</h2>
+<p>Un gráfico que puede resumir de manera muy compacta la información sobre
+una distribución de frecuencias es el que se llama <strong>diagrama de caja</strong>,
+o también <strong>diagrama de caja y bigotes</strong> o <strong>box-plot</strong>, que fue
+propuesto por John Tukey en 1977.
+Aplicado a las edades de estudiantes universitarios de la EPH genera:</p>
+<p><img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-81-1.png" width="672" /></p>
+<p>Este gráfico representa sobre el eje vertical los valores de la variable y muestra una “caja” delimitada por los cuartiles 1 y 3. Según la definición de los cuartiles, esa caja contiene al 50% central de los casos. Dentro de la caja se muestra la mediana en la línea horizontal. Se aprecia la concentración de casos en los valores bajos de la variable y unos pocos casos extremos que acusan la asimetría hacia la derecha de la distribución.</p>
+<p>El box-plot es adecuado para comparar grupos, en este ejemplo, se puede incluir la condición de actividad de los estudiantes y obtener:</p>
+<p><img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-82-1.png" width="672" /></p>
+<p>Se observa que, aunque en todos los grupos hay estudiantes con edades altas, los inactivos (que no trabajan ni buscan trabajo) son los que se concentran en la edades más bajas.</p>
+<p>Además de la caja, se ven dos segmentos que se extienden hasta los
+valores máximo y mínimo de la distribución. La longitud de estos segmentos (llamados a veces “bigotes”) depende de una caracteírística de la distribución que se trata en el apartado siguiente: la
+dispersión.</p>
+<p><img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-83-1.png" width="672" /><img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-83-2.png" width="672" /><img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-83-3.png" width="672" /></p>
+</div>
+<div id="medidas-de-dispersion" class="section level2">
+<h2><span class="header-section-number">3.4</span> Medidas de dispersión</h2>
+<p>Además de indicar alrededor de qué valores se distribuyen los datos,también es necesario indicar si se encuentran concentrados alrededor deesos valores (si son cercanos a ellos) o dispersos (si están alejados).Por ejemplo, un promedio de 20 sesiones de psicoterapia puede provenir de cuatro casos que utilizaron 18, 19, 21 y 22 sesiones o de otros cuatro que hayan insumido 5, 10, 30 y 35 sesiones. En la primer situación las cuatro observaciones son cercanas entre sí, están concentradas, mientras que en la segunda están lejos, dispersas. Diremos que en el primer caso la distribución es homogénea o que presenta poca dispersión y en el segundo que es heterogénea o que presenta mucha dispersión.</p>
+<p>Conocer esto tiene importancia para poder evaluar la calidad de las medidas de centralidad, en particular de la media. Esto es así porque en una distribución muy dispersa, la media será un promedio de valores muy diferentes entre sí y no será tan fiel a los datos como si estos valores fueran similares. La media de 20 sesiones del primer ejemplo es una mejor medida resumen que la misma media de 20 del segundo, porque la primera representa mejor los datos de origen. Debido a esto, decimos que en la primera de las situaciones del ejemplo, la media es más <em>representativa</em> de los datos de los que proviene.</p>
+<p>Nos ocuparemos ahora del modo en que puede medirse esa dispersión, cómo transformarla en una medida resumen que indique brevemente si los datos están dispersos o concentrados.</p>
+<div id="recorrido" class="section level3">
+<h3><span class="header-section-number">3.4.1</span> Recorrido</h3>
+<p>Una primera aproximación al problema es la de considerar la distancia que hay entre los valores extremos, entre el más pequeño y el más grande. Si usamos este procedimiento en el ejemplo anterior vemos que en la primera distribución hay 4 unidades entre la primera y la última observación (de 18 a 22) y en la segunda hay 30 unidades de extremo a extremo (de 5 a 35). Por lo que ésta sería una medida de la dispersión.
+Esta medida se llama recorrido, se indica con la letra <span class="math inline">\(R\)</span> y la expresión formal de su cálculo es:</p>
+<p><span class="math display">\[R = x_{\max} - x_{\min}\]</span></p>
+<p>Donde <span class="math inline">\(x_{\max}\)</span> y <span class="math inline">\(x_{\min}\)</span> representan a los valores máximo y mínimo
+respectivamente. En las distribuciones del ejemplo, los recorridos son
+<span class="math inline">\(R=4\)</span> y <span class="math inline">\(R=30\)</span> respectivamente, que resumen la mayor dispersión de la
+segunda.</p>
+<table>
+<colgroup>
+<col width="100%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="center">Se llama <strong>recorrido</strong> de una distribución a la diferencia entre los valores máximo y mínimo de la variable. Se indica <span class="math inline">\(R\)</span>.</td>
+</tr>
+</tbody>
+</table>
+<p>Cuando la distribución tiene más casos, el recorrido es insuficiente
+como medida de dispersión, ya que está determinado solo por los valores
+extremos. Por ejemplo, las dos siguientes series tienen la misma media,
+igual a 8:</p>
+<p><span class="math display">\[2, 8, 8, 8, 8, 8, 14\]</span></p>
+<p>7, 8, 8, 8, 8, 8, 9</p>
+<p>El recorrido vale 12 para la primera (<span class="math inline">\(R=14–2\)</span>) y 2 para la segunda
+(<span class="math inline">\(R=9–7\)</span>) es una diferencia muy acentuada aunque las dos distribuciones
+solo difieren en los valores extremos. Dicho de otra manera, si sucede
+que hay un caso (o unos pocos) que tiene un valor excepcionalmente alto
+(o bajo), el recorrido dará un valor alto, indicando gran dispersión, lo
+que nos puede hacer pensar que todos los datos están dispersos. Por esa
+razón se dice que es una medida “gruesa” de la variabilidad de los
+datos.</p>
+</div>
+<div id="amplitud-intercuartilica" class="section level3">
+<h3><span class="header-section-number">3.4.2</span> Amplitud intercuartílica</h3>
+<p>Un modo de afinar la calidad de esta medida es la de tomar la distancia
+que hay, no ya entre los valores extremos, sino entre los cuartiles
+primero y tercero. La medida que usa esta distancia se llama amplitud
+intercuartílica y es simplemente la diferencia entre el tercer cuartil y
+el primero:</p>
+<p><span class="math display">\[AIQ = Q_{3}{- Q}_{1}\]</span></p>
+<p>Si bien tampoco es ésta una medida que considere todas las observaciones
+-ya que solo tiene en cuenta los dos cuartiles-, es mejor que el
+recorrido, porque deja de lado los valores extremos, aquellos que
+pertenecen al 25% más bajo y al 25% más alto de la distribución.</p>
+<table>
+<colgroup>
+<col width="100%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="center">La <strong>amplitud intercuartílica</strong> es la diferencia entre los cuartiles tercero y primero. Se indica <span class="math inline">\(AIQ\)</span>.</td>
+</tr>
+</tbody>
+</table>
+<p>Gráficamente, esta medida es la altura de la caja del Box-plot. Algunos autores prefieren informar como medida de dispersión a la mitad de la distancia entre los cuartiles 1 y 3, a la que se denomina <em>semi recorrido intercuartilar</em>, y se abrevia SRIC. No tiene diferencia conceptual con la AIQ, porque ambas consideran distancia entre cuartiles, solo difieren en la convención de informar la distancia completa (AIC) o su mitad (SRIC).</p>
+<table>
+<colgroup>
+<col width="100%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="center">El <strong>semi recorrido intercuartilar</strong> es la mitad de la amplitud intercuartílica. Se indica <span class="math inline">\(SRIC\)</span>.</td>
+</tr>
+</tbody>
+</table>
+<p>Que en el Box-plot representa al mitad de la altura de la caja.</p>
+<p><span class="math display">\[SRIC = \frac{Q_{3}{- Q}_{1}}{2}\]</span></p>
+</div>
+<div id="medidas-de-dispersion-basadas-en-la-media" class="section level3">
+<h3><span class="header-section-number">3.4.3</span> Medidas de dispersión basadas en la media</h3>
+<p>Las medidas de variabilidad que más se usan son las que tienen en cuenta
+todas las observaciones, es decir aquellas que están basadas en la
+media. Una manera de ver si el conjunto de datos está concentrado o
+disperso, consiste en observar la distancia de la media a la que se
+encuentra cada observación, luego esas distancias individuales pueden
+promediarse y tener una idea global de qué tan lejos están los casos del
+promedio. Intentemos hacer eso y veamos qué limitación aparece.</p>
+<p>Tomemos un conjunto pequeño de datos, presentado en serie simple:</p>
+<p><span class="math display">\[5, 7, 9, 11\]</span></p>
+<p>La media es 8, como lo es la mediana. Aunque no hay modo, ya que todos
+los valores tienen frecuencia igual a uno, la distribución es simétrica.
+Hemos elegido así el ejemplo solo para darle simplicidad, no es una
+condición necesaria para lo que sigue.</p>
+<p>Consideremos las distancias desde cada observación hasta la media,
+restando a cada una de ellas el valor 8 (la media):</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center"><span class="math inline">\(x_{i}\)</span></th>
+<th align="center"><span class="math inline">\(x_{i} - \overline{x}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">5</td>
+<td align="center">-3</td>
+</tr>
+<tr class="even">
+<td align="center">7</td>
+<td align="center">-1</td>
+</tr>
+<tr class="odd">
+<td align="center">9</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td align="center">11</td>
+<td align="center">3</td>
+</tr>
+</tbody>
+</table>
+<p>Las distancias positivas corresponden a valores superiores a la media y
+las negativas a los inferiores, si un valor acertara en la media, su
+distancia sería cero. Si sumamos todas las diferencias
+<span class="math inline">\(x_{i} - \overline{x}\)</span>, el resultado es cero (<span class="math inline">\(-3-1+1+3=0\)</span>); además, éstas
+son simétricas, como efecto de la forma de la distribución original.
+Pero el hecho que la suma sea cero no depende de la distribución, sino que es una propiedad de la media. Por ser la media un punto de equilibrio entre las observaciones, las que se distancian por
+encima de ella están compensadas por las que lo hacen por debajo.</p>
+<p>Los valores <span class="math inline">\(x_{i} - \overline{x}\)</span> se llaman desvíos, que indican cuánto
+se aleja cada observación de la media. Como vemos pueden ser positivos o
+negativos según se trate de observaciones que superen a la media o que
+estén por debajo de ella. Acabamos de ver también que su suma vale cero,
+es decir que <span class="math inline">\(\sum_{i = 1}^{n}{\left( x_{i} - \overline{x} \right) = 0}\)</span>
+y que esta es una cualidad de la media, que no depende de los
+datos.</p>
+<p>La representación gráfica de esta propiedad puede verse pensando en una analogía física; como si cada caso graficado en el histograma fuese un bloque de ciert0, situado en el valor de la variable. Con esa idea, la ubicación de la media es el punto donde habria que apoyar el histograma para que éste quede en equilibrio:</p>
+<p><img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-84-1.png" width="672" /></p>
+<p>El punto (triángulo) del gráfico equivale al punto de apoyo que permite el equilibrio de ese “objeto”.</p>
+<p>Tan importante es esta propiedad que la usaremos para dar
+una definición más completa de la media:</p>
+<table>
+<colgroup>
+<col width="100%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="center">La <strong>media</strong> es el valor de la variable que anula la suma de los desvíos en torno suyo.</td>
+</tr>
+</tbody>
+</table>
+<p>El tema que nos ocupa en este momento, es el de medición de la
+variabilidad del conjunto de casos, y entonces, la consecuencia de esta propiedad es que no será posible usar la suma de los desvíos como indicador de dispersión, ya que da siempre cero, con datos homogéneos o heterogéneos.</p>
+<p>A fin de resolver este problema vamos a eliminar el signo, usando el
+hecho que todo número elevado a una potencia par es positivo, sin
+importar el signo que haya tenido el número. Elevaremos entonces al
+cuadrado cada una de los desvíos y así se perderá su signo y ya no será cero la suma de todos ellos.</p>
+</div>
+<div id="varianza" class="section level3">
+<h3><span class="header-section-number">3.4.4</span> Varianza</h3>
+<p>Usando ese recurso, definimos la varianza, a la que simbolizaremos como <span class="math inline">\(V(x)\)</span> o más frecuentemente como <span class="math inline">\(s^2\)</span> de la siguiente forma:</p>
+<p><span class="math display">\[s^{2} = \frac{\sum_{i = 1}^{n}\left( x_{i} - \overline{x} \right)^{2}}{n - 1}\]</span></p>
+<table>
+<colgroup>
+<col width="100%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="center">Se llama <strong>varianza</strong> de una distribución a la suma de los cuadrados de los desvíos alrededor de la media, dividida por el total de observaciones menos uno. Se indica <span class="math inline">\(s^2\)</span>.</td>
+</tr>
+</tbody>
+</table>
+<p>Es una medida muy valiosa de la dispersión que tiene un conjunto de
+datos, cuanto mayor es, tanto más dispersos éstos se encuentran, es
+decir, son más heterogéneos. No puede ser negativa, porque es una suma de cuadrados y solo es cero si todos los desvíos son cero, es decir si todas las observaciones coinciden con la media.</p>
+<p>Hay tres propiedades de la varianza que señalaremos porque serán
+necesarias más adelante:</p>
+<p>-La varianza de una constante es cero. Esto resulta claro ya que la
+varianza mide la dispersión y si todas las observaciones son iguales no hay dispersión:</p>
+<p><span class="math display">\[V\left( k \right) = 0\]</span></p>
+<p>-La varianza de una constante que multiplica a una variable es la
+constante elevada al cuadrado multiplicada por la varianza de la
+variable:</p>
+<p><span class="math display">\[V\left( k*x \right) = k^{2}*V(x)\]</span></p>
+<p>-La varianza de la suma de dos variables independientes es la suma de
+las varianzas de cada una de ellas:</p>
+<p><span class="math display">\[V\left( x + y \right) = V\left( x \right) + V(y)\]</span></p>
+<p>A los fines de la interpretación, la varianza presenta dos
+inconvenientes. Uno es que sus unidades están elevadas al cuadrado; por lo que, si medimos <em>número de errores</em>, la varianza quedará expresada en <em>número de errores al cuadrado</em> una entidad que no tiene significado, como tampoco lo tienen <em>hijos al cuadrado</em> para la fecundidad, <em>pesos al cuadrado</em> para ingresos o <em>segundos al cuadrado</em> para los tiempos de reacción.</p>
+<p>El otro inconveniente es que no tiene límite superior, puede ser muy
+grande y no tenemos con qué compararla para saber si indica una gran
+variabilidad o si es grande porque los valores de la variable lo son.</p>
+</div>
+<div id="desviacion-estandar" class="section level3">
+<h3><span class="header-section-number">3.4.5</span> Desviación estándar</h3>
+<p>Para resolver el primer inconveniente, definiremos una medida derivada de la varianza, que se denomina desviación estándar (en algunos textos y programas de análisis de datos es llamada desviación típica). Esta medida, indicada con la letra <span class="math inline">\(s\)</span> es la raíz cuadrada de la varianza:</p>
+<p><span class="math display">\[s = \sqrt{\frac{\sum_{i = 1}^{n}\left( x_{i} - \overline{x} \right)^{2}}{n - 1}}\]</span></p>
+<p>O más simplemente:</p>
+<p><span class="math display">\[s = \sqrt{s^{2}}\]</span></p>
+<table>
+<tbody>
+<tr class="odd">
+<td align="center">La <strong>desviación estándar</strong> es la raíz cuadrada de la varianza. Se indica <span class="math inline">\(s\)</span>.</td>
+</tr>
+</tbody>
+</table>
+<p>Ahora, por el sencillo trámite de introducir una raíz cuadrada, las
+unidades de <em>s</em> son las mismas que las de la variable original y no hay problemas con la interpretación del valor.</p>
+</div>
+<div id="coeficiente-de-variacion" class="section level3">
+<h3><span class="header-section-number">3.4.6</span> Coeficiente de variación</h3>
+<p>Para hacer frente al problema de la magnitud de la varianza y de la comparación de la dispersión entre medidas expresadas en diferentes unidades -que sigue siéndolo para la desviación estándar-, definimos una medida relativa de la dispersión: el coeficiente de variación, indicado como CV como el cociente entre la desviación estándar y la media:</p>
+<p><span class="math display">\[CV=\frac{s}{\overline{x}}*100\]</span></p>
+<p>Esta medida carece de unidades, porque la media tiene las mismas que las de la desviación estándar, por lo que se trata de una medida relativa de la dispersión. Indica la importancia relativa de la desviación estándar respecto de la media. El factor 100 que acompaña al cociente cumple la función de expresarlo como porcentaje, por comodidad para la lectura.</p>
+<table>
+<colgroup>
+<col width="100%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="center">El <strong>coeficiente de variación</strong> expresa de manera relativa la dispersión, midiendo el peso de la desviación estándar comparado con la media. Se indica <span class="math inline">\(CV\)</span>.</td>
+</tr>
+</tbody>
+</table>
+<p>Conocer la dispersión de una distribución de frecuencias es muy
+necesario para poder decidir si la media es una medida adecuada para
+resumir los datos, y esto no sucede si hay mucha dispersión. Para
+aclarar esto veamos un ejemplo: sea un grupo de seis alumnos que hacen una prueba y que obtienen las siguientes notas: 2, 2, 2, 2, 10, 10. Si calculamos la media obtenemos 4.6666667 4,7. Este número no representa lo que sucede con los seis alumnos, quienes tuvieron resultados muy dispares: cuatro de ellos obtuvieron 2 y los otros dos, 10. Si calculamos el CV, resultado es 88.5253336 100%, un valor muy elevado, indicativo que la media no es una medida adecuada para sintetizar al conjunto de datos.</p>
+<p>Muchas de las críticas mal fundadas hacia la Estadística se equivocan por ignorancia, porque calculan la media cuando no corresponde usarla.</p>
+<p>En la práctica se considera que si el coeficiente de variación es menor al 10% (algunas referencias ponen como límite al 15%), la distribución tiene poca dispersión y entonces podemos confiar en la media como medida de centralidad y tratarla como representativa de los datos que resume. Si el CV supera estos valores, la media no alcanza para resumir los datos y es necesario acompañarla de otras medidas, como la mediana, los cuartiles, el mínimo y máximo.</p>
+<p>Calcularemos por única vez las medidas de dispersión de manera manual
+para un pequeño conjunto de datos, a fin de seguir de cerca las
+operaciones que involucra. Se trata de seis pacientes diagnosticados de depresión a partir de cinco o más de los síntomas que indica el manual DSM IV y que para cada uno de ellos observamos (como variable) el número de síntomas que llevaron al diagnóstico:</p>
+<table>
+<colgroup>
+<col width="6%" />
+<col width="20%" />
+<col width="22%" />
+<col width="50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Paciente</th>
+<th align="center"><span class="math inline">\(x_{i}\)</span> (número de síntomas)</th>
+<th align="center"><span class="math inline">\(x_{i} - \overline{x}\)</span> (desvíos)</th>
+<th align="center"><span class="math inline">\({{(x}_{i} - \overline{x})}^{2}\)</span> (cuadrados de los desvíos)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">1</td>
+<td align="center">5</td>
+<td align="center">-2</td>
+<td align="center">4</td>
+</tr>
+<tr class="even">
+<td align="center">2</td>
+<td align="center">6</td>
+<td align="center">-1</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td align="center">3</td>
+<td align="center">6</td>
+<td align="center">-1</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td align="center">4</td>
+<td align="center">8</td>
+<td align="center">1</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td align="center">5</td>
+<td align="center">8</td>
+<td align="center">1</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td align="center">6</td>
+<td align="center">9</td>
+<td align="center">2</td>
+<td align="center">4</td>
+</tr>
+</tbody>
+</table>
+<p><span class="math display">\[\overline{x} = \frac{5 + 6 + 6 + 8 + 8 + 9}{6} = 7\]</span></p>
+<p><span class="math display">\[\sum_{i = 1}^{6}{\left( x_{i} - \overline{x} \right)^{2} = 4 + 1 + 1 + 1 + 1 + 4 = 12}\]</span></p>
+<p><span class="math display">\[s^{2} = \frac{\sum_{i = 1}^{6}\left( x_{i} - \overline{x} \right)^{2}}{n - 1} = \frac{12}{6 - 1} = 2,4\]</span></p>
+<p><span class="math display">\[s = \sqrt{s^{2}} = \sqrt{2,4} = 1,55\]</span></p>
+<p><span class="math display">\[CV = \frac{s}{\overline{x}}*100 = \frac{1,55}{7}*100 = 22,13\%\]</span></p>
+<p>La lectura de este resultado es que para el conjunto de seis personas a las que se observa, el número promedio de síntomas a través de los
+cuales es diagnosticada la depresión es de siete. Sin embargo este
+número de síntomas es bastante variable según los pacientes y,
+seguramente también según los terapeutas.</p>
+</div>
+<div id="hacerlo-en-r-1" class="section level3">
+<h3><span class="header-section-number">3.4.7</span> Hacerlo en R</h3>
+<p>La solicitud de estas medidas es directa en R, para la base de la aplicación del test de Bayley, los pesos al nacer tienen las siguientes medidas de dispersión:</p>
+<!-- JCR: Deberiamos decir como conseguir este dataset -->
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">attach</span>(bayley)
+R &lt;-<span class="st"> </span><span class="kw">max</span>(peso.nac) <span class="op">-</span><span class="st"> </span><span class="kw">min</span>(peso.nac)
+<span class="kw">names</span>(R) &lt;-<span class="st"> &quot;R&quot;</span>
+<span class="kw">round</span>(R, <span class="dv">2</span>)</code></pre>
+<pre><code>##       R 
+## 2556.17</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">AIQ &lt;-<span class="st"> </span><span class="kw">quantile</span>(peso.nac, <span class="fl">.75</span>) <span class="op">-</span><span class="st"> </span><span class="kw">quantile</span>(peso.nac, <span class="fl">.25</span>)
+<span class="kw">names</span>(AIQ) &lt;-<span class="st"> &quot;AIQ&quot;</span>
+<span class="kw">round</span>(AIQ, <span class="dv">2</span>)</code></pre>
+<pre><code>##    AIQ 
+## 723.44</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">SRIC &lt;-<span class="st"> </span>(<span class="kw">quantile</span>(peso.nac, <span class="fl">.75</span>) <span class="op">-</span><span class="st"> </span><span class="kw">quantile</span>(peso.nac, <span class="fl">.25</span>)) <span class="op">/</span><span class="st"> </span><span class="dv">2</span>
+<span class="kw">names</span>(SRIC) &lt;-<span class="st"> &quot;SRIC&quot;</span>
+<span class="kw">round</span>(SRIC, <span class="dv">2</span>)</code></pre>
+<pre><code>##   SRIC 
+## 361.72</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">var &lt;-<span class="st"> </span><span class="kw">var</span>(peso.nac)
+<span class="kw">names</span>(var) &lt;-<span class="st"> &quot;s2&quot;</span>
+<span class="kw">round</span>(var, <span class="dv">2</span>)</code></pre>
+<pre><code>##       s2 
+## 275657.1</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">s &lt;-<span class="st"> </span><span class="kw">sd</span>(peso.nac)
+<span class="kw">names</span>(s) &lt;-<span class="st"> &quot;s&quot;</span>
+<span class="kw">round</span>(s, <span class="dv">2</span>)</code></pre>
+<pre><code>##      s 
+## 525.03</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">CV &lt;-<span class="st"> </span><span class="kw">sd</span>(peso.nac) <span class="op">/</span><span class="st"> </span><span class="kw">mean</span>(peso.nac) <span class="op">*</span><span class="st"> </span><span class="dv">100</span>
+<span class="kw">names</span>(CV) &lt;-<span class="st"> &quot;CV&quot;</span>
+<span class="kw">round</span>(CV, <span class="dv">2</span>)</code></pre>
+<pre><code>##    CV 
+## 17.48</code></pre>
+<p>La medida relativa de la variabilidad (el <span class="math inline">\(CV\)</span>) es adecuada para comparar variables que tienen diferentes unidades, por ejemplo para responder ¿qué es más variable, el peso o la estatura de los niños? Es decir, ¿en cuál de esas dos medidas se diferencian más? Las siguientes son las salidas descriptivas</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">c</span>(
+  <span class="kw">summary</span>(peso.nac),
+  <span class="dt">s =</span> <span class="kw">sd</span>(peso.nac),
+  <span class="dt">CV =</span> <span class="kw">sd</span>(peso.nac) <span class="op">/</span><span class="st"> </span><span class="kw">mean</span>(peso.nac) <span class="op">*</span><span class="st"> </span><span class="dv">100</span>
+)</code></pre>
+<pre><code>##       Min.    1st Qu.     Median       Mean    3rd Qu.       Max. 
+## 1688.44216 2621.47906 3039.29470 3003.11229 3344.92156 4244.60759 
+##          s         CV 
+##  525.03057   17.48288</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">c</span>(
+  <span class="kw">summary</span>(long.nac),
+  <span class="dt">s =</span> <span class="kw">sd</span>(long.nac),
+  <span class="dt">CV =</span> <span class="kw">sd</span>(long.nac) <span class="op">/</span><span class="st"> </span><span class="kw">mean</span>(long.nac) <span class="op">*</span><span class="st"> </span><span class="dv">100</span>
+)</code></pre>
+<pre><code>##       Min.    1st Qu.     Median       Mean    3rd Qu.       Max. 
+##  -8.273813  46.605750  69.620296  68.575299  90.348782 177.598711 
+##          s         CV 
+##  30.500100  44.476802</code></pre>
+<!-- AJUSTAR PRESENTACIÓN DE ESTOS RESULTADOS DE FORMA TABULAR-->
+<p>Se trata los 454 niños y niñas, evaluados en dos aspectos; su
+peso y su talla al naces, el primero en gramos y la segunda en centímetros. La comparación de las desviaciones estándar no da
+información sobre la diferente variabilidad, porque dependen de esas
+unidades de medida; una está expresada en gramos y la otra en centímetros. Por el contrario, los coeficientes de variación,
+(17% para el peso y 766% para la talla) indican que hay más
+diferencias entre entre las longitudes de los recién nacidos que entre los pesos al nacer.</p>
+</div>
+<div id="box-plots-y-dispersion" class="section level3">
+<h3><span class="header-section-number">3.4.8</span> Box-plots y dispersión</h3>
+<p>La observación del diagrama de caja (box-plot) nos da también indicios acerca de la dispersión de la variable que se analiza. Cuando la caja es larga estamos en presencia de distribuciones muy dispersas en la parte central, los cuartiles están lejanos, hay mucha amplitud intercuartilar.
+Mientras que si la caja es corta, se trata de una concentración de datos
+de la parte central de la distribución. La longitud de los bigotes
+señala la mayor o menor concentración de los datos en las zonas
+extremas. Como dijimos antes, el box-plot es un gráfico que ayuda a
+explorar los datos, a hacerse una idea inicial de la distribución y esto puede ser muy valioso cuando se trata de interpretarlos, porque permite sugerir hipótesis que expliquen la distribución que se observa.</p>
+<p>Haciendo uso de la amplitud intercuartílica estableceremos criterios
+para detectar valores que destaquen por alejarse sustancialmente del
+grupo mayoritario. Se trata de mediciones atípicas o excepcionalmente
+extremas, porque sean excesivamente grandes o excesivamente pequeñas. La
+identificación de estos valores es importante en la etapa exploratoria
+de los datos porque obliga a mirarlos en detalle. Puede tratarse de un
+error de medición o bien de un sujeto (o unos pocos) que se aparta de
+manera excepcional del grupo y que merece un análisis más detallado y
+particularizado.</p>
+<p>Tukey (1977) analiza la distancia de los casos a los cuartiles y sugiere
+tratar como “lejanas” a las observaciones que se encuentren a más de una
+amplitud intercuartílica y media (<span class="math inline">\(1.5*AIQ\)</span>) por debajo del primer
+cuartil o por encima del tercero, pero a menos de tres veces la amplitud
+intercuartílica (<span class="math inline">\(3*AIQ\)</span>). Además, aquellas observaciones que estén más
+allá de tres AIQ por debajo del primer cuartil o por encima del tercero
+se denominan “muy lejanas”. Este criterio determina entonces zonas en
+las que pueden hallarse las observaciones y según en cuál de ellas se
+encuentren, se las identifica como “cercanas”, “lejanas” o “muy
+lejanas”. Las zonas son las siguientes:</p>
+<ul>
+<li>Cercanas: Entre <span class="math inline">\(Q_1\)</span> y <span class="math inline">\(Q_1-1.5*AIQ\)</span> o bien entre <span class="math inline">\(Q_3\)</span> y <span class="math inline">\(Q_3+1.5*AIQ\)</span></li>
+<li>Lejanas: Entre <span class="math inline">\(Q_1-1.5*AIQ\)</span> y <span class="math inline">\(Q_1-3*AIQ\)</span> o entre <span class="math inline">\(Q_3+1.5*AIQ\)</span> y <span class="math inline">\(Q_3+3*AIQ\)</span></li>
+<li>Muy lejanas: Menores que <span class="math inline">\(Q_1-3*AIQ\)</span> o mayores que <span class="math inline">\(Q_3+3*AIQ\)</span></li>
+</ul>
+<p>La división en zonas puede verse más claramente en un box-plot. En ese gráfico se toma la distancia entre los cuartiles tercero y
+primero (la amplitud intercuartílica) como unidad de medida, luego se calcula una vez y media esa medida (<span class="math inline">\(1.5*AIQ\)</span>) y tres veces esa
+medida (<span class="math inline">\(3*AIQ\)</span>) como puntos de corte para decidir cuándo una observación se aleja excepcionalmente del grupo. Los segmentos del box plot se cortan si se alcanza el máximo de la distribución (hacia arriba) o el mínimo (hacia abajo). Así, los segmentos tienen una longitud que es o bien <span class="math inline">\(1.5*AIQ\)</span> o bien la distancia hasta el máximo o mínimo.</p>
+<p><img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-88-1.png" width="672" /></p>
+</div>
+<div id="medida-de-la-dispersion-cuando-no-hay-distancias" class="section level3">
+<h3><span class="header-section-number">3.4.9</span> Medida de la dispersión cuando no hay distancias</h3>
+<p>Todo lo indicado hasta el momento acerca de la variabilidad ha
+necesitado de la medición de la distancia entre las observaciones: desde el comienzo hablamos de cercanía o lejanía entre los datos. Por lo tanto
+estas medidas, desde el recorrido hasta el coeficiente de variación,
+solo tienen sentido si la variable es de nivel intervalar o
+proporcional. Si la variable tiene nivel nominal u ordinal habrá que
+medir su variabilidad de otra forma. En estos casos cambia un poco el
+significado de la variabilidad, ya que estaremos en presencia de una
+variable más dispersa cuanto más <em>equitativamente</em> se distribuya el
+total de observaciones entre las distintas categorías. Por ejemplo, si 100 individuos son clasificados según cómo sea su rendimiento en: muy bueno, bueno, regular, insatisfactorio; la distribución tendrá más
+dispersión si 25 de ellos se encuentran en cada categoría que si la gran
+mayoría está en una sola. La distribución:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Rendimiento</th>
+<th align="center">f</th>
+<th align="center">f’</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Muy bueno</td>
+<td align="center">25</td>
+<td align="center">0.25</td>
+</tr>
+<tr class="even">
+<td align="left">Bueno</td>
+<td align="center">25</td>
+<td align="center">0.25</td>
+</tr>
+<tr class="odd">
+<td align="left">Regular</td>
+<td align="center">25</td>
+<td align="center">0.25</td>
+</tr>
+<tr class="even">
+<td align="left">Insatisfactorio</td>
+<td align="center">25</td>
+<td align="center">0.25</td>
+</tr>
+<tr class="odd">
+<td align="left">Total</td>
+<td align="center">100</td>
+<td align="center">1.00</td>
+</tr>
+</tbody>
+</table>
+<p>Tiene más dispersión que esta otra:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Rendimiento</th>
+<th align="center">f</th>
+<th align="center">f’</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Muy bueno</td>
+<td align="center">5</td>
+<td align="center">0.05</td>
+</tr>
+<tr class="even">
+<td align="left">Bueno</td>
+<td align="center">80</td>
+<td align="center">0.80</td>
+</tr>
+<tr class="odd">
+<td align="left">Regular</td>
+<td align="center">5</td>
+<td align="center">0.05</td>
+</tr>
+<tr class="even">
+<td align="left">Insatisfactorio</td>
+<td align="center">10</td>
+<td align="center">0.10</td>
+</tr>
+<tr class="odd">
+<td align="left">Total</td>
+<td align="center">100</td>
+<td align="center">1.00</td>
+</tr>
+</tbody>
+</table>
+<p>¿Por qué? Porque en la segunda, los casos están muy concentrados en una categoría (bueno), mientras que en la primera se dispersan entre todas.</p>
+<p>Notemos que ahora habrá más dispersión cuanto más parecidas sean las
+frecuencias entre sí. Esto puede parecer contradictorio con lo indicado
+para variables cuantitativas, pero allí la mayor dispersión viene dada
+por la mayor disparidad entre los valores de las variables, que no puede
+evaluarse con variables nominales u ordinales.</p>
+<p>Esta forma de considerar la dispersión equivale a la idea de
+incertidumbre. Supongamos que conocemos que la distribución del
+rendimiento es como lo muestra la primera tabla y que debemos “adivinar”
+cuál es el rendimiento de una persona elegida al azar. No tenemos
+ninguna razón para creer de manera preferencial que la persona sea de
+rendimiento muy bueno, bueno, regular o insatisfactorio; ya que todos
+son igualmente posibles. En esta situación, la incertidumbre es
+completa. Por el contrario, si supiéramos que la distribución es la que
+muestra la segunda tabla, tenderíamos con justa razón a creer que hay
+más chances que la persona elegida al azar tenga rendimiento bueno, ya
+que es bastante más probable que pertenezca a esa categoría que a otra.
+Diremos que aquí tenemos menos incertidumbre.</p>
+<p>La medida para expresar de manera sintética esta dispersión es:</p>
+<p><span class="math display">\[H\left( x \right) = - \sum_{i = 1}^{k}{{f&#39;}_{i}^{}*log{f&#39;}_{i}^{}}\]</span></p>
+<p>El cálculo consiste en multiplicar cada frecuencia relativa por su
+propio logaritmo y sumar para todas las categorías. El resultado de la
+sumatoria siempre es negativo, por lo que la fórmula incluye un signo
+menos para volverlo positivo. Este coeficiente expresa en un solo número
+la magnitud de la dispersión. Cuanto más pequeña sea esta medida, tanto
+menos dispersa (o más concentrada) será la distribución de la variable
+que se analiza.</p>
+<p>Aplicado a las dos tablas de más arriba resulta, para la primera:</p>
+<p><span class="math display">\[H\left( x \right) = - (0.25*log0.25 + 0.25*log0.25 + 0.25*log0.25 + 0.25*log0.25) = - \left( - 0.60 \right) = 0.60\]</span></p>
+<p>Y, para la segunda:</p>
+<p><span class="math display">\[H\left( x \right) = - (0.05*log0.05 + 0.80*log0.80 + 0.05*log0.05 + 0.10*log0.10) = - \left( - 0.31 \right) = 0.31\]</span></p>
+<p>Así, a la distribución en la que las frecuencias están más concentradas,
+es decir la que tiene menor dispersión, le corresponde un menor valor de <span class="math inline">\(H(x)\)</span>.</p>
+<p>Cuando la variable tiene solo dos categorías, la proporción de casos en una de ellas es el complemento a uno de la otra, si en una categoría la proporción es <span class="math inline">\(p\)</span> en la otra será <span class="math inline">\(1-p\)</span>. La máxima concentración se da cuando todos los casos están en una sola categoría, <span class="math inline">\(p=1\)</span> y <span class="math inline">\(1-p=0\)</span>, allí la dispersión vale cero, porque se trata de una constante: a todos los individuos les corresponde el mismo valor de la variable. La máxima dispersión sucede cuando la distribución entre las dos categorías es equitativa, es decir cuando la mitad de los casos está en cada una: <span class="math inline">\(p=0.5\)</span> y <span class="math inline">\(1-p=0.5\)</span>.
+La medida de esta variabilidad también se llama varianza, pero su cálculo es muy diferente del caso de variables cuantitativas. Para una variable nominal de dos categorías (dicotómica), la varianza es:</p>
+<p><span class="math display">\[s^2 = p*(1-p)\]</span></p>
+<p>La desviación estándar es: <span class="math display">\[s=\sqrt(p*(1-p))\]</span>
+Que alcanza su mínimo en cero cuando todos los casos están en una sola categoría y su máximo en .25 cuando se distribuyen mitad en cada una.</p>
+</div>
+</div>
+<div id="el-individuo-en-relacion-a-su-grupo" class="section level2">
+<h2><span class="header-section-number">3.5</span> El individuo en relación a su grupo</h2>
+<p>Un uso muy frecuente de las medidas que acabamos de ver es que permiten decidir si un <em>valor particular</em> está cerca o lejos del promedio, o bien si se sitúa o no en los extremos de una distribución. Un valor particular en este caso se
+refiere al valor de la variable en un <em>caso</em>, en un <em>individuo</em>, por
+ejemplo, el puntaje que un sujeto obtiene en una prueba, el ingreso de un hogar, la PBI per cápita de un país. Así formulado
+el problema puede parecer muy elemental, porque puede “verse” si un
+número está cerca o lejos de otro. Si sabemos que una persona tiene dos metros de estatura, no necesitamos hacer cuentas para saber que es alto, más alto que la mayoría de las personas. Sin embargo, en el caso de medidas menos familiares, a veces resulta difícil hacer juicios de distancia sobre valores absolutos. Si un país tiene PBI per cápita de U$S20000, hace falta conocer más datos para evaluarlo como alto o bajo,</p>
+<p>Si sabemos que en una prueba de memoria con un puntaje máximo de 100
+puntos, una persona logró 80 puntos, ¿estamos autorizados para decir que obtuvo un puntaje alto? La respuesta es no, porque no sabemos qué
+puntajes obtuvieron las demás personas que hicieron la prueba. Si la
+media del grupo completo hubiese sido 60 puntos, entonces 80 sería un
+valor elevado, pero si la media hubiese sido de 85, entonces el caso que estamos considerando se encontraría por debajo del promedio. Más aún, si el promedio fuese 60 y la mayoría de los evaluados hubiese obtenido puntajes cercanos a 60 (poca variabilidad), entonces el valor 80 podría considerarse como muy elevado. Solo conocer su puntaje individual no nos dice nada acerca de la posición de un sujeto particular. Dos ejemplos:</p>
+<ul>
+<li><p>Nos informan que un niño obtuvo un puntaje bruto de 85 en
+la escala de desarrollo infantil de Bayley (<span class="citation">none (<a href="#ref-Ballot2017">8818</a><a href="#ref-Ballot2017">b</a>)</span>), no tenemos, en principio ningún criterio para decidir si ese puntaje es alto o bajo.</p></li>
+<li><p>El Índice de Democracia (<span class="citation">none (<a href="#ref-demindex2011">8818</a><a href="#ref-demindex2011">c</a>)</span>) de un país es 7.5. ¿Dónde se ubica este país en el conjunto de democracias del mundo? ¿Es alto, medio…?</p></li>
+</ul>
+<p>Para situaciones como éstas, muy frecuentes en evaluaciones
+cuantitativas, será necesario conocer cuál es la posición <em>relativa</em> que un puntaje ocupa respecto del conjunto completo de observaciones.</p>
+<p>Supongamos que se aplica una prueba de ortografía a una muestra de
+alumnos de tercer grado y que el promedio de errores es 10
+(<span class="math inline">\(\overline{x} = 10\)</span> errores) y que la desviación estándar es de 4
+(<span class="math inline">\(s = 4\)</span> errores). Si un alumno comete 6 errores (<span class="math inline">\(x = 6\)</span> errores),
+podemos decir que cometió menos errores que el promedio del grupo. El
+cálculo de la diferencia entre <span class="math inline">\(x\)</span> y <span class="math inline">\(\overline{x}\)</span> da <span class="math inline">\(-4\)</span> errores
+(<span class="math inline">\(x - \overline{x} = 6 - 10 = - 4\)</span>), este resultado nos informa que este alumno se ubica a 4 errores por debajo del promedio (por debajo queda expresado en el signo menos el resultado). Ésta es una medida concreta, ya que expresa el número de errores que separan al alumno del comportamiento resumido del grupo (expresado en la media); dicho de otra manera, estamos considerando los valores absolutos. Si ahora a esta diferencia la dividimos por la desviación estándar obtenemos <span class="math inline">\(-1\)</span> (procedente de <span class="math inline">\(\frac{- 4\ }{\ \ 4\ }\)</span>), que ya no tiene unidades, es un número abstracto. Como la desviación estándar es de 4 puntos y el alumno se encuentra a cuatro puntos de la media, esto equivale a decir que el alumno se encuentra “a una desviación estándar por debajo del promedio”.</p>
+<p>La operación que hemos hecho ha sido la de restar al valor particular
+(de ese alumno) la media y dividir el resultado en la desviación
+estándar, hemos calculado lo siguiente:</p>
+<p><span class="math display">\[\frac{x - \overline{x}}{s}\]</span></p>
+<p>Este número, que como dijimos no tiene unidades, es diferente para cada valor de <span class="math inline">\(x\)</span>, y mide la distancia a la que se encuentra una observación particular (<span class="math inline">\(x\)</span>) de la media (<span class="math inline">\(\overline{x}\)</span>), expresada como fracción de la desviación estándar (<span class="math inline">\(s\)</span>). Decimos que se trata de una medida <em>estandarizada</em> del alejamiento que tiene una observación particular del promedio del conjunto de observaciones.</p>
+<p>Hemos así expresado la posición del alumno respecto del grupo al que
+pertenece de manera relativa, en términos de desviaciones estándar.</p>
+<p>La variable que resulta de esta operación se llama <strong>desvío estándar</strong>, ya que se trata de un desvío (calculado en la diferencia <span class="math inline">\(x - \overline{x}\)</span>) expresado como cantidad de desviaciones estándar. Se utiliza la letra z para indicarla, así:</p>
+<p><span class="math display">\[z = \frac{x - \overline{x}}{s}\]</span></p>
+<p>Debido a que la letra z se utiliza de manera universal para indicar este o <strong>puntaje z</strong> o <strong>puntuación z</strong>. Esta
+nueva variable tiene media igual a cero y desviación estándar igual a
+uno.</p>
+<p>Volvamos sobre el ejemplo del número de síntomas en que se basa el
+diagnóstico de depresión, cuya media fue de 7 y su desviación estándar
+de 1,55.</p>
+<table>
+<colgroup>
+<col width="10%" />
+<col width="30%" />
+<col width="34%" />
+<col width="24%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="center">Paciente</th>
+<th align="center"><span class="math inline">\(x_{i}\)</span> (número de síntomas)</th>
+<th align="center"><span class="math inline">\(x_{i} - \overline{x}\)</span> (desvíos)</th>
+<th align="center"><span class="math inline">\(z\)</span> (desvíos estándar)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">1</td>
+<td align="center">5</td>
+<td align="center">-2</td>
+<td align="center">-1.29</td>
+</tr>
+<tr class="even">
+<td align="center">2</td>
+<td align="center">6</td>
+<td align="center">-1</td>
+<td align="center">-0.65</td>
+</tr>
+<tr class="odd">
+<td align="center">3</td>
+<td align="center">6</td>
+<td align="center">-1</td>
+<td align="center">-0.65</td>
+</tr>
+<tr class="even">
+<td align="center">4</td>
+<td align="center">8</td>
+<td align="center">1</td>
+<td align="center">0.65</td>
+</tr>
+<tr class="odd">
+<td align="center">5</td>
+<td align="center">8</td>
+<td align="center">1</td>
+<td align="center">0.65</td>
+</tr>
+<tr class="even">
+<td align="center">6</td>
+<td align="center">9</td>
+<td align="center">2</td>
+<td align="center">1.29</td>
+</tr>
+</tbody>
+</table>
+<p>La última columna proviene de haber dividido cada desvío en la
+desviación estándar (1.55). Los desvíos indican a cuántas unidades de la variable (en este caso <em>número de síntomas</em>) se ubica cada caso del promedio. Los desvíos estándar indican a cuántas desviaciones estándar se encuentra cada caso del promedio. El primer paciente está 1.29 desviaciones estándar por debajo del promedio, el tercero está a 0.65 desviaciones estándar por debajo del promedio, etc.</p>
+<p>Para variables nominales, se procede de la misma manera, solo cambia el cálculo de la desviación estándar:</p>
+<p>Si en un país “A” se encuentra que el 12.5% de los ciudadanos cree que da lo mismo un gobierno autoritario que uno democrático (pregunta P8STGBS de Latinobarómetro) ¿es mucho o poco? Para saberlo necesitamos concer el porcentaje general de esta respuesta en el conjunto de países que se observaron: este valor es, para los países que participan del estudio, 27.6%. Ahora se sabe que en el país “A” la proporción de los que creen que da lo mismo el tipo de gobierno es más baja que en el conjunto de países de la región. ¿Cuánto más baja? Se requiere indicar su posición relativa, y eso se hace en términos de puntaje z. La varianza esta variable se calcula como <span class="math inline">\(p*(1-p)=.276*(1-.276)=0.1998\)</span> y la desviación estándar como <span class="math inline">\(\sqrt(0.1998)=.447\)</span>. Entonces <span class="math inline">\(z = \frac{0.125-0.276}{0.447}=-0.34\)</span>.</p>
+<p>Que indica que ese país esta <em>levemente</em> por debajo del conjunto. En los próximos capítulos avanzaremos en el análisis de los puntajes z.</p>
+<p>Cuando se trata de variables de nivel ordinal también es posible ubicar de manera relativa cada valor de la variable, aunque no puedan medirse distancias. Es así porque en esas variables podemos calcular percentiles e indicar a qué percentil corresponde cada valor. Antes vimos el modo de señalar gráficamente la ubicación de los percentiles, allí buscamos de identificar el valor de la variable que corresponde, por ejemplo, al percentil 90 ó a cualquier otro. Podemos hacer también el recorrido inverso: dado un valor de la variable ¿a qué percentil corresponde?</p>
+<p>Consideremos los siguientes puntajes brutos obtenidos en una prueba
+psicológica administrada a una muestra de 310 personas:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">x</th>
+<th align="center">f</th>
+<th align="center">F</th>
+<th align="center">F’</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">20-29</td>
+<td align="center">0</td>
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="even">
+<td align="left">30-39</td>
+<td align="center">10</td>
+<td align="center">10</td>
+<td align="center">0.03</td>
+</tr>
+<tr class="odd">
+<td align="left">40-49</td>
+<td align="center">30</td>
+<td align="center">40</td>
+<td align="center">0.13</td>
+</tr>
+<tr class="even">
+<td align="left">50-59</td>
+<td align="center">50</td>
+<td align="center">90</td>
+<td align="center">0.29</td>
+</tr>
+<tr class="odd">
+<td align="left">60-69</td>
+<td align="center">70</td>
+<td align="center">160</td>
+<td align="center">0.52</td>
+</tr>
+<tr class="even">
+<td align="left">70-79</td>
+<td align="center">90</td>
+<td align="center">250</td>
+<td align="center">0.81</td>
+</tr>
+<tr class="odd">
+<td align="left">80-89</td>
+<td align="center">40</td>
+<td align="center">290</td>
+<td align="center">0.94</td>
+</tr>
+<tr class="even">
+<td align="left">90-99</td>
+<td align="center">10</td>
+<td align="center">300</td>
+<td align="center">0.97</td>
+</tr>
+<tr class="odd">
+<td align="left">100-109</td>
+<td align="center">5</td>
+<td align="center">305</td>
+<td align="center">0.98</td>
+</tr>
+<tr class="even">
+<td align="left">110-119</td>
+<td align="center">5</td>
+<td align="center">310</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td align="left">Total</td>
+<td align="center">310</td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<p>Algunos percentiles de esta distribución, por ejemplo, <span class="math inline">\(P_{20}\)</span>, <span class="math inline">\(P_{60}\)</span> y <span class="math inline">\(P_{90}\)</span>, cuando se piden a R, dan:</p>
+<pre><code>##  P20  P60  P90 
+## 54.5 74.5 84.5</code></pre>
+<p>Procediendo del mismo modo, se realiza la siguiente correspondencia de puntajes brutos a percentiles:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Percentil</th>
+<th align="center">X</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">10</td>
+<td align="center">47.0</td>
+</tr>
+<tr class="even">
+<td align="center">20</td>
+<td align="center">54.5</td>
+</tr>
+<tr class="odd">
+<td align="center">30</td>
+<td align="center">60.4</td>
+</tr>
+<tr class="even">
+<td align="center">40</td>
+<td align="center">64.9</td>
+</tr>
+<tr class="odd">
+<td align="center">50</td>
+<td align="center">69.3</td>
+</tr>
+<tr class="even">
+<td align="center">60</td>
+<td align="center">74.5</td>
+</tr>
+<tr class="odd">
+<td align="center">70</td>
+<td align="center">76.3</td>
+</tr>
+<tr class="even">
+<td align="center">80</td>
+<td align="center">79.8</td>
+</tr>
+<tr class="odd">
+<td align="center">90</td>
+<td align="center">84.5</td>
+</tr>
+</tbody>
+</table>
+<p>La tabla nos informa sobre los valores de la variable donde se divide
+cada 10% del total de casos. Usando la definición de los percentiles
+diremos que:</p>
+<ul>
+<li>El 10% de los sujetos obtuvo 47 puntos o menos.</li>
+<li>El 20% obtuvo 54.5 puntos o menos y así para el resto.</li>
+</ul>
+<p>Con esta información sabemos que si una persona obtuvo 50 puntos, tiene
+un puntaje muy bajo, porque supera a menos del 20% del grupo. O dicho de
+otra manera, más del 80% de las personas alcanzaron puntajes más altos
+que él. Por el contrario si alguien obtuvo 88 puntos, tiene un puntaje
+muy alto, ya que supera al percentil 90, con lo que menos del 10% del
+grupo lo supera. O bien, él supera a más del 90%.</p>
+<p>De este modo, la construcción de una tabla en la que se indica el valor
+de la variable (el puntaje en la prueba) correspondiente a cada
+percentil, permite conocer si un puntaje dado se ubica en algún extremo
+de la distribución (si es excepcionalmente elevado o bajo) o si es un
+valor intermedio.</p>
+<p>Estas tablas de correspondencia entre valores absolutos (o puntajes
+brutos) y los correspondientes valores relativos pueden también
+construirse a partir de los desvíos estándar, para lo que se debe
+transformar cada valor observado en su puntuación <span class="math inline">\(z\)</span>. Para el ejemplo
+anterior se debe calcular la media y la desviación estándar, que dan:
+<span class="math inline">\(\overline{x} = 68.4\)</span> y <span class="math inline">\(s = 15.7\)</span>. Con esto se indican los puntajes <span class="math inline">\(z\)</span>
+que corresponden a cada puntaje bruto, con la transformación
+<span class="math inline">\(z = \frac{x - \overline{x}}{s}\)</span>.</p>
+<p>Para la marca de clase del primer puntaje bruto (25), el puntaje z que le corresponde es:</p>
+<p><span class="math inline">\(z = \frac{25 - 68.4}{15.7} = - 2.8\)</span>.</p>
+<p>Al repetir esta operación para cada puntaje bruto se obtiene la tabla de correspondencias:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center">Intervalo de puntajes brutos</th>
+<th align="center">Puntaje <span class="math inline">\(z\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">20-29</td>
+<td align="center">-2.8</td>
+</tr>
+<tr class="even">
+<td align="center">30-39</td>
+<td align="center">-2.1</td>
+</tr>
+<tr class="odd">
+<td align="center">40-49</td>
+<td align="center">-1.5</td>
+</tr>
+<tr class="even">
+<td align="center">50-59</td>
+<td align="center">-0.9</td>
+</tr>
+<tr class="odd">
+<td align="center">60-69</td>
+<td align="center">-0.2</td>
+</tr>
+<tr class="even">
+<td align="center">70-79</td>
+<td align="center">0.4</td>
+</tr>
+<tr class="odd">
+<td align="center">80-89</td>
+<td align="center">1.1</td>
+</tr>
+<tr class="even">
+<td align="center">90-99</td>
+<td align="center">1.7</td>
+</tr>
+<tr class="odd">
+<td align="center">100-109</td>
+<td align="center">2.3</td>
+</tr>
+<tr class="even">
+<td align="center">110-119</td>
+<td align="center">3.0</td>
+</tr>
+</tbody>
+</table>
+<p>Una tabla de ese tipo (ya sea construida a partir de los percentiles o bien de los puntajes <span class="math inline">\(z\)</span>) se conoce como <strong>baremo</strong> y es absolutamente necesario para cualquier tipo de evaluación psicológica o educativa ya que posibilita decidir en qué lugar se encuentra un sujeto dado, respecto de su grupo de referencia, Esto se requiere porque, por ejemplo, para una prueba de inteligencia, un puntaje que es normal para la edad de 13 años, no lo es para los 16; los puntajes de alguien de 13 años se comparan con los puntajes de otras personas de 13 años. El baremo provee la transformación de puntajes absolutos en puntajes relativos.</p>
+<table>
+<colgroup>
+<col width="100%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="center">Un <strong>baremo</strong> es una tabla de valores transformados que permiten ubicar a un sujeto en relación a su grupo de referencia.</td>
+</tr>
+</tbody>
+</table>
+<p>El signo del puntaje z indica si un valor particular está por encima (si es positivo) o por debajo de la media (si negativo). El valor absoluto de z señala cuán lejos o cerca está la observación de la media. Para evaluar esta distancia, contamos con un resultado general, que es válido cualquiera sea la forma de la distribución. Ese resultado establece que a una distancia de hasta un número (<span class="math inline">\(k\)</span>) determinado de desviaciones estándar se concentra no menos de <span class="math inline">\(1-\frac{1}{k^2}\)</span> de los casos. Si <span class="math inline">\(k=2\)</span> este resultado indica que a una distancia de hasta dos desviaciones estándar de la media se concentra por lo menos la fracción <span class="math inline">\(1-\frac{1}{2^2}=1-\frac{1}{4}=\frac{3}{4}=.75\)</span> de las observaciones. Dicho de otra manera, el intervalo que va desde la media menos dos desviaciones estándar y la media más dos desviaciones estándar contiene al menos al 75% de los casos. Si <span class="math inline">\(k=3\)</span>, la proporción de casos que allí se encuentra es por lo menos 89% (que resulta de <span class="math inline">\(1-\frac{1}{3^2}\)</span>.
+Ese resultado se conoce como desigualdad de Chebycheff</p>
+<p><span class="math display">\[P(|x-media|&lt;k*s)&gt;=1-\frac{1}{k^2}\]</span>
+<!-- EB: quedó bastante horrible, arreglala por favor -->
+<!-- JCR: asi esta bien? --></p>
+<p>En esta expresión leemos por ahora que la proporción de casos que se encuentran a una distancia de la media menor a <span class="math inline">\(k\)</span> desviaciones estándar es mayor o igual a uno menos uno sobre <span class="math inline">\(k\)</span> cuadrado. Cuando se asigna a <span class="math inline">\(k\)</span> un valor, se puede calcular esa proporción para una distancia concreta a la media.</p>
+<p>Si se cumple que la distribución es unimodal y aproximadamente simétrica, esta regla se puede simplificar del siguiente modo:
+en el intervalo de <strong>una</strong> desviación estándar de la media se encuentra aproximadamente el 68% de los casos, a <strong>dos</strong> desviaciones el 95 y a <strong>tres</strong>, el 99%.</p>
+<p>Con estos criterios, podemos evaluar los valores de la variable como pertenecientes al conjunto más frecuente o a los extremos, menos frecuentes, de la distribución. Por ejemplo, si en una distribución simétrica, a un caso le corresponde un puntaje <span class="math inline">\(z=3\)</span> se trata de un caso excepcionalmente elevado, porque pertenece a una distancia que solo es superada por el .5% del total de observaciones. Usaremos el criterio de considerar a los casos que estén a menos de dos desviaciones por encima o por debajo ed la media como “esperables”, porque están en la región de mayor frecuencia. Los casos que estén entre dos y tres desviaciones estándar serán valores “elevados” si <span class="math inline">\(z&gt;0\)</span> y “bajos” si <span class="math inline">\(z&lt;0\)</span>. Los casos que se ubican a tres o más desviaciones estándar (<span class="math inline">\(|z|\geq 3\)</span>) serán considerados “excepcionalmente” altos o bajos según el signo de z.</p>
+<p>El gráfico siguiente muestra el intervalo de dos desviaciones estándar para una distribución no cumple los supuestos mencionados, a la que se aplica la desigualdad de Chebycheff.</p>
+<!-- EB: en cada uno de estos histogramas debería marcarse un intervalo de dos desviaciones y en el primero indicar 75% (cheby) y en el segundo 95% (regla empírica) -->
+<p><img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-95-1.png" width="672" /></p>
+<p>Mientras que la siguiente distribución es unimodal y aproximadamente simétrica, por lo que es válida la regla empírica.</p>
+<p><img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-96-1.png" width="672" /></p>
+<p>Volveremos sobre este tema con más detalle cuando tratemos una distribución teórica que se llama distribución normal.</p>
+</div>
+<div id="resumen-de-medidas-descriptivas" class="section level2">
+<h2><span class="header-section-number">3.6</span> Resumen de medidas descriptivas</h2>
+<div id="medidas-de-posicion-1" class="section level3">
+<h3><span class="header-section-number">3.6.1</span> Medidas de posición</h3>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th></th>
+<th align="center">Nivel de medición mínimo requerido</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Centrales</td>
+<td>Modo</td>
+<td align="center">Nominal</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>Mediana</td>
+<td align="center">Ordinal</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>Media</td>
+<td align="center">Intervalar</td>
+</tr>
+<tr class="even">
+<td>No centrales</td>
+<td>Cuartiles</td>
+<td align="center">Ordinal</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>Quintiles</td>
+<td align="center">Ordinal</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>Percentiles</td>
+<td align="center">Ordinal</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="medidas-de-dispersion-1" class="section level3">
+<h3><span class="header-section-number">3.6.2</span> Medidas de dispersión</h3>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th></th>
+<th align="center">Nivel de medición mínimo requerido</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Entre extremos</td>
+<td>Recorrido</td>
+<td align="center">Intervalar</td>
+</tr>
+<tr class="even">
+<td>Basada en el orden</td>
+<td>Amplitud intercuartílica</td>
+<td align="center">Intervalar</td>
+</tr>
+<tr class="odd">
+<td>Basadas enla media</td>
+<td>Varianza</td>
+<td align="center">Intervalar</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>Desviación estándar</td>
+<td align="center">Intervalar</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td>Coeficiente de variación</td>
+<td align="center">Intervalar</td>
+</tr>
+<tr class="even">
+<td>De incertidumbre</td>
+<td>Coeficiente de incertidumbre</td>
+<td align="center">Nominal</td>
+</tr>
+</tbody>
+</table>
+
+<div id="refs" class="references">
+<div>
+<p>Doherty, Carroll, Jocelyn Kiley, and Bridget Jameson. 2016. “Partisanship and Political Animosity in 2016.” <em>PewResearchCenter</em>, 75. <a href="http://www.people-press.org/2016/06/22/2-the-roots-of-partisanship/">http://www.people-press.org/2016/06/22/2-the-roots-of-partisanship/</a>.</p>
+</div>
+<div>
+<p>INDEC. 2016. “La medición de la pobreza y la indigencia en la Argentina.” Sociedad. Buenos Aires: Instituto Nacional de Estadística y Censos. <a href="http://www.indec.gob.ar">http://www.indec.gob.ar</a>.</p>
+</div>
+<div>
+<p>———. 2018. “Censo 2001.” <a href="https://www.indec.gov.ar/nivel4{\_}default.asp?id{\_}tema{\_}1=2{\&amp;}id{\_}tema{\_}2=41{\&amp;}id{\_}tema{\_}3=134">https://www.indec.gov.ar/nivel4{\_}default.asp?id{\_}tema{\_}1=2{\&amp;}id{\_}tema{\_}2=41{\&amp;}id{\_}tema{\_}3=134</a>.</p>
+</div>
+<div>
+<p>Inglehart, Ronald. 2018. <em>Cultural evolution : people’s motivations are changing, and reshaping the world</em>. <a href="https://www.cambridge.org/at/academic/subjects/politics-international-relations/comparative-politics/cultural-evolution-peoples-motivations-are-changing-and-reshaping-world?format=HB{\&amp;}isbn=9781108489317">https://www.cambridge.org/at/academic/subjects/politics-international-relations/comparative-politics/cultural-evolution-peoples-motivations-are-changing-and-reshaping-world?format=HB{\&amp;}isbn=9781108489317</a>.</p>
+</div>
+<div>
+<p>Morales Quiroga, Mauricio, and Rafael Pineiro Rodriguez. 2010. “Gasto en campaña y éxito electoral de los candidatos a diputados en chile 2005.” <em>Revista de Ciencia Política (Santiago)</em> 30 (3). Pontificia Universidad Católica de Chile. Instituto de Ciencia Política: 645–67. <a href="https://doi.org/10.4067/S0718-090X2010000300004">https://doi.org/10.4067/S0718-090X2010000300004</a>.</p>
+</div>
+<div>
+<p>none. 8818a.</p>
+</div>
+<div>
+<p>———. 8818b.</p>
+</div>
+<div>
+<p>———. 8818c.</p>
+</div>
+<div>
+<p>Norris, Pippa., and Ronald. Inglehart. 2011. <em>Sacred and secular : religion and politics worldwide</em>. Cambridge University Press. <a href="https://www.cambridge.org/at/academic/subjects/politics-international-relations/comparative-politics/sacred-and-secular-religion-and-politics-worldwide-2nd-edition?format=HB{\&amp;}isbn=9781107011281{\#}TwX253qBLssbehsc.97">https://www.cambridge.org/at/academic/subjects/politics-international-relations/comparative-politics/sacred-and-secular-religion-and-politics-worldwide-2nd-edition?format=HB{\&amp;}isbn=9781107011281{\#}TwX253qBLssbehsc.97</a>.</p>
+</div>
+<div>
+<p>Robinson, John. 2014. “Likert Scale.” In <em>Encyclopedia of Quality of Life and Well-Being Research</em>, edited by Alex C. Michalos, 3620–1. Dordrecht: Springer Netherlands. <a href="https://doi.org/10.1007/978-94-007-0753-5_1654">https://doi.org/10.1007/978-94-007-0753-5_1654</a>.</p>
+</div>
+<div>
+<p>Stevens, S. S. 1946. “On the Theory of Scales of Measurement.” <em>Science</em> 103 (2684): 677–80. <a href="https://doi.org/10.1126/science.103.2684.677">https://doi.org/10.1126/science.103.2684.677</a>.</p>
+</div>
+<div>
+<p>Upton, Jane. 2013. “Beck Depression Inventory (Bdi).” In <em>Encyclopedia of Behavioral Medicine</em>, edited by Marc D. Gellman and J. Rick Turner, 178–79. New York, NY: Springer New York. <a href="https://doi.org/10.1007/978-1-4419-1005-9_441">https://doi.org/10.1007/978-1-4419-1005-9_441</a>.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-Ballot2017">
+<p>none. 8818b.</p>
+</div>
+<div id="ref-demindex2011">
+<p>none. 8818c.</p>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="distribuciones-de-frecuencia.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["EstadisticaParaCienciasSocialesConR.pdf", "EstadisticaParaCienciasSocialesConR.epub", "EstadisticaParaCienciasSocialesConR.mobi"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
