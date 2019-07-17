@@ -229,7 +229,7 @@ La construcción de intervalos es una elección; podríamos optar por mostrar to
 
 ### Variable continua
 
-Si la variable es continua la recategorización es necesaria, porque no es posible mostrar "todas las categorías" de una variable continua, ya que éstas son, en teoría, infinitas . Para resolver el problema de la exclusión mutua no es posible pasar de un valor al siguiente, por lo que se utiliza un criterio de intervalos abiertos o cerrados. Esto quiere decir que si una categoría es 1,75 - 1,85, se entiende que entran en el intervalo todos quienes tengan estatura superior a 1,75 (excluido este valor) hasta 1,85 (incluido). Se dice que este intervalo es abierto a la izquierda (excluye al valor inicial) y cerrado a la derecha (incluye al valor final). Una persona de 1,75 se contará en el intervalo anterior: 1,65 - 1,75, que sí incluye al 1,75 y excluye al 1,65. A continuación se usará la convención de intervalos abiertos a la izquierda y cerrados a la derecha, eso se indica $(L_i; L_s]$.
+Si la variable es continua la recategorización es necesaria, porque no es posible mostrar "todas las categorías" de una variable continua, ya que éstas son, en teoría, infinitas[^categ_inf]. Para resolver el problema de la exclusión mutua no es posible pasar de un valor al siguiente, por lo que se utiliza un criterio de intervalos abiertos o cerrados. Esto quiere decir que si una categoría es 1,75 - 1,85, se entiende que entran en el intervalo todos quienes tengan estatura superior a 1,75 (excluido este valor) hasta 1,85 (incluido). Se dice que este intervalo es abierto a la izquierda (excluye al valor inicial) y cerrado a la derecha (incluye al valor final). Una persona de 1,75 se contará en el intervalo anterior: 1,65 - 1,75, que sí incluye al 1,75 y excluye al 1,65. A continuación se usará la convención de intervalos abiertos a la izquierda y cerrados a la derecha, eso se indica $(L_i; L_s]$.
 
 Se utilizan tres criterios para recategorizar variables: intervalos iguales, intervalos proporcionales e intervalos teóricos.
 
@@ -440,7 +440,7 @@ ggplot(bayley) +
 
 Debido a que en la práctica las variables nunca son completamente continuas, siempre habra "escalones" cuyo tamaño es el de la minima medición posible de la variable (la apreciación del instrumento de medicion).
 
-Este gráfico se llama ojiva de Galton  y tiene otra virtud además de la claridad visual, ya que permite interpolar valores no observados, o que no aparecen en la tabla. Así, con el gráfico podemos responder a la pregunta ¿Qué proporción de niños tiene `r round(quantile(bayley$peso.nac, .17), 0)` g o menos? La respuesta consiste en buscar el valor `r round(quantile(bayley$peso.nac, .17), 0)` gramos en el eje x, e identificar la frecuencia acumulada que le corresponde. 
+Este gráfico se llama ojiva de Galton y tiene otra virtud además de la claridad visual, ya que permite interpolar valores no observados, o que no aparecen en la tabla. Así, con el gráfico podemos responder a la pregunta ¿Qué proporción de niños tiene `r round(quantile(bayley$peso.nac, .17), 0)` g o menos? La respuesta consiste en buscar el valor `r round(quantile(bayley$peso.nac, .17), 0)` gramos en el eje x, e identificar la frecuencia acumulada que le corresponde. 
 
 ```{r fig.cap="Estimación de la frecuencia acumulada para un valor del peso al nacer."}
 ggplot(bayley) +
@@ -530,3 +530,5 @@ kableExtra::kable_styling(
                caption = "Distribución de los pesos al nacer categorizados en cuatro intervalos proporcionales."),
   latex_options = "striped", full_width = FALSE)
 ```
+
+[^categ_inf]: La cantidad de valores depende de la precisión con que se haga la medición.

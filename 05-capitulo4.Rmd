@@ -28,7 +28,7 @@ sobre pacientes diagnosticados de depresión. Puede haber más variables: la gra
 
 Jamás agotaremos el conjunto de todos los factores explicativos de un
 fenómeno, porque en última instancia cada caso es único. Los fenómenos que observamos son multicausados, por lo que no puede decirse que una
-variable X sea la causa de otra variable Y[^28]. Pero lo que sí
+variable X sea la causa de otra variable Y[^no_causa]. Pero lo que sí
 puede hacerse es analizar la importancia relativa de los diferentes
 factores explicativos; saber en qué grado aporta cada uno a las
 diferencias que se observan.
@@ -187,7 +187,7 @@ las dos condiciones que se indican en la fila y en la columna.
 |:--:|
 | Las **frecuencias conjuntas** indican la cantidad de casos que corresponden simultáneamente a una determinada categoría de la variable de las filas y una categoría de la variable de columnas. |
 
-### Frecuencias relativas
+## Frecuencias relativas
 
 Del mismo modo en que trabajamos con las tablas de distribución de
 frecuencia de una sola variable, podemos transformar todas estas
@@ -304,7 +304,7 @@ kableExtra::kable_styling(
 Solo pretende describir a la población y no tiene sentido preguntar qué variable es prioritaria a la otra o cuál depende de cuál.
 
 Las relaciones en que no es posible o no interesa señalar qué variable
-es anterior, se llaman *simétricas* o de variación conjunta o de
+es anterior, se llaman *simétricas*[^aclara_simet] o de variación conjunta o de
 covariación, con ellas simplemente puede preguntarse si las variables
 están correlacionadas. Es decir si varían simultáneamente, sin
 preguntar cuál es la que podría preceder a la otra.
@@ -347,7 +347,7 @@ a cambios ascendentes (crecientes) de una variable se siguen cambios
 ascendentes de la otra, llamamos a la relación *directa*. Si, por el
 contrario, un crecimiento de una de las variables va acompañado de una
 disminución en los valores de la otra, la denominaremos
-*inversa*[^30]. Cuando se espera que la relación entre dos variables
+*inversa*[^rel_inversa]. Cuando se espera que la relación entre dos variables
 sea directa o inversa para toda la serie de categorías, decimos que la
 relación es monótona.
 
@@ -397,7 +397,7 @@ knitr::include_graphics("imagenes/ayudapadres.png")
 ```
 
 Y la tabla que reúna los datos para verificar esta relación podrá tener
-dimensión 2X3, con forma:
+dimensión $2 \times 3$, con forma:
 
 Disposición de las variables para analizar la relación entre la ayuda
 que los padres dan a sus hijos y el rendimiento que alcanzan en la
@@ -416,7 +416,7 @@ kableExtra::kable_styling(
   latex_options = "striped")
 ```
 
-O bien, considerando a la ayuda como ordinal, en una tabla de 4X3
+O bien, considerando a la ayuda como ordinal, en una tabla de $4 \times 3$
 
 Disposición de las variables para analizar la relación entre la ayuda
 que los padres dan a sus hijos y el rendimiento que alcanzan en la
@@ -570,7 +570,7 @@ otra, y es un resultado descriptivo, no explicativo.
 
 ||
 |:--:|
-| La **intensidad de una relación**[^31] es una medida de la fuerza con que los cambios en una variable afectan los cambios en la otra (si es una relación asimétrica) o bien, de la frecuencia con que los cambios de una variable acompañan a los de la otra (si se trata de una relación simétrica). |
+| La **intensidad de una relación**[^inten_rel] es una medida de la fuerza con que los cambios en una variable afectan los cambios en la otra (si es una relación asimétrica) o bien, de la frecuencia con que los cambios de una variable acompañan a los de la otra (si se trata de una relación simétrica). |
 
 La evaluación de esta intensidad puede lograrse, en una primera
 aproximación, observando la distribución conjunta de las dos variables.
@@ -765,7 +765,7 @@ En esta tabla
 
 $$Q = \frac{0*0 - 5040*5064}{0*0+5040*5064} = \frac{25522560}{25522560} = -1$$
 
-El valor -1 se interpreta entonces indicando que la relación entre la opinión y la intención de emigrar es perfecta.
+El valor $-1$ se interpreta entonces indicando que la relación entre la opinión y la intención de emigrar es perfecta.
 
 El caso contrario es aquél en el que no haya relación alguna entre las
 variables, allí es cuando el coeficiente alcanza (en valor absoluto) su mínimo valor posible, cero. Otra vez se trata de un caso ideal, porque muy improbablemente se encontrarán en la realidad observaciones que lleven a un coeficiente que sea exactamente cero.
@@ -894,7 +894,7 @@ correspondiente a la tabla anterior"),
   latex_options = "striped")
 ```
 
-Observemos algunos detalles de esta tabla. En primer lugar, las frecuencias marginales no han cambiado (salvo por elgún efecto de redondeo), los totales son los mismos y solo se trata de un reordenamiento de las frecuencias conjuntas bajo la hipótesis de independencia de las dos variables.
+Observemos algunos detalles de esta tabla. En primer lugar, las frecuencias marginales no han cambiado (salvo por elgún efecto de redondeo), los totales son los mismos y solo se trata de un reordenamiento de las frecuencias conjuntas bajo la hipótesis de independencia de las dos variables[^aclara_tabla].
 
 Tratemos ahora de formalizar las operaciones que condujeron a esta segunda tabla. Los valores 48.3%, 8.07% y 47.8% provienen de las proporciones de casos en cada una de las categorías de la variable condición de actividad, y se calcularon como $\frac{23398}{48435}$,  $\frac{1870}{48435}$ y $\frac{23167}{48435}$ respectivamente. Luego esas proporciones se multiplicaron por los totales de casos de cada categoría de la variable sexo. De esa operación obtuvimos 11077 como $22929*.483$ (salvo diferencias por redondeo), que daría lo mismo expresado como $22929*23398/48435$. De mismo modo el resto de las celdas.
 
@@ -1028,3 +1028,13 @@ round(prop.table(table(eph.3.18$CH04, eph.3.18$ESTADO), 2), 3) * 100
 ```
 
 Para darles formato, una opción es llevar la tabla a una hoja de cálculo y allí rotular, centrar, etc. De lo contrario, R ofrece un entorno llamado R Markdown con muchas posibilidades de formato y exportación a pdf o html.
+
+[^no_causa]: Salvo en el caso de diseños experimentales que permitan tener control sobre el conjunto de variables que participan en el resultado que se observa.
+
+[^aclara_simet]: Atención, éste es un uso diferente de los términos simetría y asimetría. La simetría de una distribución (univariada) indica su forma, acá se refiere al tipo de relación entre dos variables. El primer uso caracteriza a una variable, el segundo a una relación.
+
+[^rel_inversa]: No es directamente o inversamente proporcional. La proporcionalidad es otra cosa. Aquí solo se trata de que cambien en la misma dirección (ambas aumentan o ambas disminuyen) o en dirección inversa (una aumenta y la otra disminuye).
+
+[^inten_rel]: No es posible ofrecer una definición más precisa porque según el modo en que se mida la intensidad, es decir, según el coeficiente que se use, es diferente el aspecto de la relación que se tiene en cuenta.
+
+[^aclara_tabla]: Como consecuencia de ello, de las cuatro celdas solo es necesario calcular una frecuencia, ya que las demás pueden obtenerse restando de los totales de filas y de columnas. Una vez que sabemos que la frecuencia de la celda 1,1 es 120, podemos obtener 60 como lo que resta para llegar a 180 (de la primera fila), 80 como la diferencia con 200 (de la primera columna) y 40 como lo que le falta a 60 para llegar a 100 (segunda columna) o lo que le falta a 80 para alcanzar 120 (segunda fila).

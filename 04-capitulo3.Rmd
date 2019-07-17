@@ -91,7 +91,7 @@ La diferencia entre una razón y una tasa es que en la primera, el numerador no 
 ### Variables nominales: el modo
 
 El **modo**, o **moda**, o **valor modal** es el valor de la variable
-(la categoría) que tiene la mayor frecuencia. Dicho de otra manera, el valor de la variable más frecuentemente observado. Esta medida no requiere ningún cálculo, no exige ninguna propiedad de la escala de
+(la categoría) que tiene la mayor frecuencia. Dicho de otra manera, el valor de la variable más frecuentemente observado[^moda]. Esta medida no requiere ningún cálculo, no exige ninguna propiedad de la escala de
 medición, por lo tanto se puede indicar en variables desde el nivel
 nominal, es decir en todos los niveles de medición.
 
@@ -308,7 +308,7 @@ kableExtra::kable_styling(
 El valor de la variable que acumula el 50% de los casos, es el que ocupa el lugar 220, que es mitad de los 440 casos del total. La serie ordenada de esta distribución, coloca a los 40 hogares marginales en lso primeros 40 lugares, pero indistintamente, porque no hay orden entre los hogares al interior de la categoría. Según la tabla, hasta la categoría "medio-bajo" se acumulan 260 hogares y hasta la categoría anterior hay 140 acumulados. De manera que el hogar que ocupa el lugar 220 (de la serie ordenada) es uno de los que se encuentran en la categoría "medio-bajo". Diremos así que la mediana de esta distribución es "medio-bajo". Como puede verse, esta categoría no acumula exactamente la mitad de las observaciones, pero es la que contiene a la observación que supera a la mitad y es superada por la otra mitad. Por esa razón la leemos como la mediana, diciendo que la mitad de los hogares tiene un nivel socioeconómico medio-bajo o inferior a ese. Decir que el que acumula 220 casos es "uno de los hogares de la categoría  medio-bajo" es impreciso, porque todos los hogares son equivalentes en su nivel socioeconómico al interior de la categoría.
 
 Esta imprecisión también aparece si se trata de
-una variable cuantitativa discreta. Si la variable es el *número de síntomas* a partir de los cuales fueron diagnosticados de esquizofrenia un conjunto de pacientes:
+una variable cuantitativa discreta. Si la variable es el *número de síntomas* a partir de los cuales fueron diagnosticados de esquizofrenia un conjunto de pacientes[^manual_dsm]:
 
 ```{r}
 aux_table <- tibble::tribble(
@@ -442,7 +442,7 @@ solicita a un software especializado.
 *Variables métricas: la media o promedio*
 
 Si se ha alcanzado un nivel de medición intervalar o proporcional, es
-posible hacer uso de las propiedades que estas escalas tienen.
+posible hacer uso de las propiedades[^prop_escalas] que estas escalas tienen.
 Recordemos que además de designar y ordenar, las escalas intervalares
 conservan las distancias entre observaciones, y las proporcionales
 agregan la proporcionalidad de los valores absolutos y el carácter
@@ -1044,7 +1044,7 @@ o poco. Por ejemplo, una distribución cuya asimetría vale 1,5 es más
 asimétrica que una con coeficiente 1,2, y ambas son asimétricas hacia la
 derecha. Cuando la distribución es simétrica, el coeficiente vale cero,
 no es positivo ni negativo. Uno de los más frecuentemente usados es el
-coeficiente de asimetría de Fisher[^18], que se calcula como:
+coeficiente de asimetría de Fisher[^coefs_asim], que se calcula como:
 
 $$g_{1} = \frac{\sum_{i = 1}^{n}{\left( x_{i} - \overline{x} \right)^{3}*f_{i}}}{n*s^{3}}$$
 
@@ -1267,15 +1267,14 @@ distancia sería cero. Si sumamos todas las diferencias
 $x_{i} - \overline{x}$, el resultado es cero ($-3-1+1+3=0$); además, éstas
 son simétricas, como efecto de la forma de la distribución original.
 Pero el hecho que la suma sea cero no depende de la distribución, sino que es una propiedad de la media. Por ser la media un punto de equilibrio entre las observaciones, las que se distancian por
-encima de ella están compensadas por las que lo hacen por debajo.
+encima de ella están compensadas por las que lo hacen por debajo[^media_comp].
 
 Los valores $x_{i} - \overline{x}$ se llaman desvíos, que indican cuánto
 se aleja cada observación de la media. Como vemos pueden ser positivos o
 negativos según se trate de observaciones que superen a la media o que
 estén por debajo de ella. Acabamos de ver también que su suma vale cero,
 es decir que $\sum_{i = 1}^{n}{\left( x_{i} - \overline{x} \right) = 0}$
-y que esta es una cualidad de la media, que no depende de los
-datos.
+y que esta es una cualidad de la media, que no depende de los datos[^indep_media].
 
 La representación gráfica de esta propiedad puede verse pensando en una analogía física; como si cada caso graficado en el histograma fuese un bloque de ciert0, situado en el valor de la variable. Con esa idea, la ubicación de la media es el punto donde habria que apoyar el histograma para que éste quede en equilibrio:
 
@@ -1308,7 +1307,7 @@ cuadrado cada una de los desvíos y así se perderá su signo y ya no será cero
 
 ### Varianza
 
-Usando ese recurso, definimos la varianza, a la que simbolizaremos como $V(x)$ o más frecuentemente como $s^2$ de la siguiente forma:
+Usando ese recurso, definimos la varianza[^dif_varianza], a la que simbolizaremos como $V(x)$ o más frecuentemente como $s^2$ de la siguiente forma:
 
 $$s^{2} = \frac{\sum_{i = 1}^{n}\left( x_{i} - \overline{x} \right)^{2}}{n - 1}$$
 
@@ -1318,7 +1317,7 @@ $$s^{2} = \frac{\sum_{i = 1}^{n}\left( x_{i} - \overline{x} \right)^{2}}{n - 1}$
 
 Es una medida muy valiosa de la dispersión que tiene un conjunto de
 datos, cuanto mayor es, tanto más dispersos éstos se encuentran, es
-decir, son más heterogéneos. No puede ser negativa, porque es una suma de cuadrados y solo es cero si todos los desvíos son cero, es decir si todas las observaciones coinciden con la media.
+decir, son más heterogéneos. No puede ser negativa, porque es una suma de cuadrados y solo es cero si todos los desvíos son cero, es decir si todas las observaciones coinciden con la media[^media_const].
 
 Hay tres propiedades de la varianza que señalaremos porque serán
 necesarias más adelante:
@@ -1386,7 +1385,7 @@ En la práctica se considera que si el coeficiente de variación es menor al 10%
 
 Calcularemos por única vez las medidas de dispersión de manera manual
 para un pequeño conjunto de datos, a fin de seguir de cerca las
-operaciones que involucra. Se trata de seis pacientes diagnosticados de depresión a partir de cinco o más de los síntomas que indica el manual DSM IV y que para cada uno de ellos observamos (como variable) el número de síntomas que llevaron al diagnóstico:
+operaciones que involucra. Se trata de seis pacientes diagnosticados de depresión a partir de cinco o más de los síntomas que indica el manual DSM IV[^sint_dsm] y que para cada uno de ellos observamos (como variable) el número de síntomas que llevaron al diagnóstico:
 
 | Paciente | $x_{i}$ (número de síntomas) | $x_{i} - \overline{x}$ (desvíos) | ${{(x}_{i} - \overline{x})}^{2}$ (cuadrados de los desvíos) |
 |:--------:|:----------------------------:|:--------------------------------:|:-------------------------------------------------------------------------:|
@@ -1662,9 +1661,7 @@ La variable que resulta de esta operación se llama **desvío estándar**, ya qu
 
 $$z = \frac{x - \overline{x}}{s}$$
 
-Debido a que la letra z se utiliza de manera universal para indicar este o **puntaje z** o **puntuación z**. Esta
-nueva variable tiene media igual a cero y desviación estándar igual a
-uno.
+Debido a que la letra z se utiliza de manera universal para indicar este o **puntaje z** o **puntuación z**. Esta nueva variable tiene media igual a cero y desviación estándar igual a uno[^puntaje_z].
 
 Volvamos sobre el ejemplo del número de síntomas en que se basa el
 diagnóstico de depresión, cuya media fue de 7 y su desviación estándar
@@ -1872,3 +1869,72 @@ kableExtra::kable_styling(
   knitr::kable(aux_table, format = "pandoc", booktabs = TRUE, align = "ccc"),
   latex_options = "striped")
 ```
+
+[^moda]: Esta es la idea que transmite el lenguaje coloquial: cuando algo es "la moda, es lo que más comúnmente (frecuentemente) se ve.
+
+[^manual_dsm]: El manual DSM IV indica como síntomas característicos a dos (o más) de los siguientes, cada uno de ellos presente durante una parte significativa de un período de 1 mes: ideas delirantes, alucinaciones, lenguaje desorganizado (p. ej., descarrilamiento frecuente o incoherencia), comportamiento catatónico o gravemente desorganizado, síntomas negativos, por ejemplo, aplanamiento afectivo, alogia o abulia.
+
+[^prop_escalas]: Propiedades que se agregan a las de las escalas de menor nivel, por lo que modo y mediana pueden calcularse e interpretarse también en las escalas métricas.
+
+[^coefs_asim]: Otros coeficientes de asimetría son: el de Pearson, que compara la ubicación de la media y del modo, y el de Bowley, que compara los cuartiles y la mediana.
+
+[^media_comp]: Para ver esto, comparemos con el caso de la serie: 3, 4, 6, 7, 23, 45 con media 14,7. Las diferencias entre cada observación y la media son las siguientes:
+
+      *x*                        3       4       6      7      23    45
+      -------------------------- ------- ------- ------ ------ ----- ------
+      $$x_{i} - \overline{x}$$   -11,7   -10,7   -8,7   -7,7   8,3   30,3
+
+    En este caso las diferencias no son simétricas, pero es igualmente
+    cierto que su suma es igual a cero, es decir que están compensadas
+    las diferencias por encima y por debajo de la media.
+
+[^indep_media]: Puede verse que es así haciendo: $\sum_{i = 1}^{n}{\left( x_{i} - \overline{x} \right) = \sum_{i = 1}^{n}x_{i} - \sum_{i = 1}^{n}\overline{x}}$, como $\overline{x}$ es una constante, el segundo término es $n*\overline{x}$, igual que el primero, según la definición operativa de la media. Por lo tanto la diferencia es cero, cualquiera sea el conjunto de datos.
+
+[^dif_varianza]: En este punto aparece la primera diferencia entre cálculos hechos sobre datos de una muestra o de una población. Si estuviésemos trabajando sobre toda la población, la varianza (a la que indicaríamos con otra letra) tendría denominador $n$, en lugar de $n-1$. No podemos explicar la razón de esto aún, habrá que esperar al capítulo de estimación. En algunos manuales, a la varianza calculada con denominador $n-1$ se la llama *cuasivarianza* o también *seudovarianza*.
+
+[^media_const]: En este caso no hay variabilidad, y en consecuencia, no hay variable, porque el valor asumido es siempre el mismo. Se trata de una constante.
+
+[^sint_dsm]: Presencia de cinco (o más) de los siguientes síntomas durante un período de 2 semanas, que representan un cambio respecto a la actividad previa; uno de los síntomas debe ser:
+
+    1\. Estado de ánimo depresivo la mayor parte del día, casi cada día según
+    lo indica el propio sujeto (p. ej., se siente triste o vacío) o la
+    observación realizada por otros (p. ej., llanto). En los niños y
+    adolescentes el estado de ánimo puede ser irritable
+
+    2\. Disminución acusada del interés o de la capacidad para el placer en
+    todas o casi todas las actividades, la mayor parte del día, casi cada
+    día (según refiere el propio sujeto u observan los demás)
+
+    3\. Pérdida importante de peso sin hacer régimen o aumento de peso (p.
+    ej., un cambio de más del 5% del peso corporal en 1 mes), o pérdida o
+    aumento del apetito casi cada día. Nota: En niños hay que valorar el
+    fracaso en lograr los aumentos de peso esperables
+
+    4\. Insomnio o hipersomnia (sueño excesivo) casi cada día.
+
+    5\. Agitación o enlentecimiento psicomotores casi cada día (observable
+    por los demás, no meras sensaciones de inquietud o de estar enlentecido)
+
+    6\. Fatiga o pérdida de energía casi cada día
+
+    7\. Sentimientos de inutilidad o de culpa excesivos o inapropiados (que
+    pueden ser delirantes) casi cada día (no los simples autorreproches o
+    culpabilidad por el hecho de estar enfermo)
+
+    8\. Disminución de la capacidad para pensar o concentrarse, o indecisión,
+    casi cada día (ya sea una atribución subjetiva o una observación ajena)
+
+    9\. Pensamientos recurrentes de muerte (no sólo temor a la muerte),
+    ideación suicida recurrente sin un plan específico o una tentativa de
+    suicidio o un plan específico para suicidarse
+
+[^puntaje_z]: Dado que $\overline{x}$ y s son constantes, aplicando las
+    propiedades de la media, resulta:
+
+    $$\overline{z} = \overline{\left( \frac{x - \overline{x}}{s} \right)} = \frac{\overline{x} - \overline{x}}{s} = 0$$
+
+    También haciendo uso de las propiedades de la varianza, la de z es:
+
+    $$V\left( z \right) = V\left( \frac{x - \overline{x}}{s} \right) = \frac{1}{s^{2}}\left( V\left( x \right) - V\left( \overline{x} \right) \right) = \frac{1}{s^{2}}\left( V\left( x \right) - 0 \right) = \frac{1}{s^{2}}V\left( x \right) = 1$$
+
+    ya que la media es constante por lo que tiene varianza nula, y $V\left( x \right) = s^{2}$.
