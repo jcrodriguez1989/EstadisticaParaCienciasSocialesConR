@@ -983,19 +983,21 @@ Los siguientes histogramas, son ejemplos de formas posibles en cuanto a simetrí
 
 ```{r}
 set.seed(8818)
+asim_izq <- rexp(n = 1000, rate = .1)
+asim_izq <- max(asim_izq) - asim_izq
 df3 <- data.frame(
-  normal = rnorm(1000), # simetrica
-  exponencial = rexp(n = 1000, rate = .1), # asimetrica a derecha
-  gama = rgamma(n = 1000, shape = 20, rate = 2) # asimetrica a izquierda
+  sim = rnorm(1000), # simetrica
+  asim_der = rexp(n = 1000, rate = .1), # asimetrica a derecha
+  asim_izq = asim_izq # asimetrica a izquierda
 )
 
-ggplot(df3) + geom_histogram(aes(normal), fill = "green") +
+ggplot(df3) + geom_histogram(aes(sim), fill = "green", bins = 30) +
   xlab("x1") + ylab("f") + theme_tufte() + ggtitle("x1, distribución simétrica")
 
-ggplot(df3) + geom_histogram(aes(exponencial), fill = "green") +
+ggplot(df3) + geom_histogram(aes(asim_der), fill = "green", bins = 30) +
   xlab("x2") + ylab("f") + theme_tufte() + ggtitle("x2, distribución asimétrica a la derecha")
 
-ggplot(df3) + geom_histogram(aes(gama), fill = "green") +
+ggplot(df3) + geom_histogram(aes(asim_izq), fill = "green", bins = 30) +
   xlab("x3") + ylab("f") + theme_tufte() + ggtitle("x3, distribución asimétrica a la izquierda")
 ```
 
@@ -1009,9 +1011,9 @@ la izquierda.
 
 En estas distribuciones las medias y medianas son:
 
-- x1: media = `r mean(df3$normal)`, mediana = `r median(df3$normal)`
-- x2: media = `r mean(df3$exponencial)`, mediana = `r median(df3$exponencial)`
-- x3: media = `r mean(df3$gama)`, mediana = `r median(df3$gama)`
+- x1: media = `r mean(df3$sim)`, mediana = `r median(df3$sim)`
+- x2: media = `r mean(df3$asim_der)`, mediana = `r median(df3$asim_der)`
+- x3: media = `r mean(df3$asim_izq)`, mediana = `r median(df3$asim_izq)`
 
 | Posición relativa de la media y la mediana: | Asimetría de la Distribución: |
 |:-------------------------------------------:|:-----------------------------:|
@@ -1024,13 +1026,13 @@ En estas distribuciones las medias y medianas son:
 | Una distribución es **simétrica** si la media coincide con la mediana. La distribución se llama asimétrica a la derecha si la media es mayor que la mediana, y asimétrica a la izquierda si la media es menor que la mediana. |
 
 ```{r}
-ggplot(df3) + stat_ecdf(aes(normal)) +
+ggplot(df3) + stat_ecdf(aes(sim)) +
   xlab("x1") + ylab("F'") + theme_tufte() + ggtitle("x1, distribución simétrica")
 
-ggplot(df3) + stat_ecdf(aes(exponencial)) +
+ggplot(df3) + stat_ecdf(aes(asim_der)) +
   xlab("x2") + ylab("F'") + theme_tufte() + ggtitle("x2, distribución asimétrica a la derecha")
 
-ggplot(df3) + stat_ecdf(aes(gama)) +
+ggplot(df3) + stat_ecdf(aes(asim_izq)) +
   xlab("x3") + ylab("F'") + theme_tufte() + ggtitle("x3, distribución asimétrica a la izquierda")
 ```
 
@@ -1139,20 +1141,20 @@ valores máximo y mínimo de la distribución. La longitud de estos segmentos (l
 dispersión.
 
 ```{r}
-ggplot(df3) + geom_boxplot(aes(1, normal), fill = "green") +
+ggplot(df3) + geom_boxplot(aes(1, sim), fill = "green") +
   xlab("x1") + theme_tufte() +
   theme(
     axis.title.y = element_blank(), axis.text.y = element_blank(),
     axis.ticks.y = element_blank()
   ) + xlab("x1") + ggtitle("x1, distribución simétrica") + coord_flip()
 
-ggplot(df3) + geom_boxplot(aes(1, exponencial), fill = "green") +
+ggplot(df3) + geom_boxplot(aes(1, asim_der), fill = "green") +
   xlab("x2") + theme_tufte() + theme(
     axis.title.y = element_blank(), axis.text.y = element_blank(),
     axis.ticks.y = element_blank()
   ) + xlab("x2") + ggtitle("x2, distribución asimétrica a la derecha") + coord_flip()
 
-ggplot(df3) + geom_boxplot(aes(1, gama), fill = "green") +
+ggplot(df3) + geom_boxplot(aes(1, asim_izq), fill = "green") +
   xlab("x3") + theme_tufte() + theme(
     axis.title.y = element_blank(), axis.text.y = element_blank(),
     axis.ticks.y = element_blank()
@@ -1805,7 +1807,7 @@ Una tabla de ese tipo (ya sea construida a partir de los percentiles o bien de l
 El signo del puntaje z indica si un valor particular está por encima (si es positivo) o por debajo de la media (si negativo). El valor absoluto de z señala cuán lejos o cerca está la observación de la media. Para evaluar esta distancia, contamos con un resultado general, que es válido cualquiera sea la forma de la distribución. Ese resultado establece que a una distancia de hasta un número ($k$) determinado de desviaciones estándar se concentra no menos de $1-\frac{1}{k^2}$  de los casos. Si $k=2$ este resultado indica que a una distancia de hasta dos desviaciones estándar de la media se concentra por lo menos la fracción $1-\frac{1}{2^2}=1-\frac{1}{4}=\frac{3}{4}=.75$ de las observaciones. Dicho de otra manera, el intervalo que va desde la media menos dos desviaciones estándar y la media más dos desviaciones estándar contiene al menos al 75% de los casos. Si $k=3$, la proporción de casos que allí se encuentra es por lo menos 89% (que resulta de $1-\frac{1}{3^2}$.
 Ese resultado se conoce como desigualdad de Chebycheff
 
-$$P(|x-media|<k*s)>=1-\frac{1}{k^2}$$
+$$P(|x-media|<k*s) \geq 1-\frac{1}{k^2}$$
 <!-- EB: quedó bastante horrible, arreglala por favor -->
 <!-- JCR: asi esta bien? -->
 
