@@ -67,6 +67,7 @@ de relación que mantiene con sus pares. La presentación conjunta de esas
 dos variables es:
 
 <!-- Las dos tablas que vienen de word, via rmd, se cortaron y las que armé manualmente salieron mal -->
+
 Disposición de las variables y sus categorías para analizar la relación entre dos variables
 
 ```{r}
@@ -507,14 +508,14 @@ Ejemplo (datos del Operativo Nacional de Evaluación Argentina 2000): interesado
 
 ```{r}
 aux_table <- tibble::tribble(
-  ~"Durante los últimos dos meses ¿Leíste o estás leyendo algún libro, además de los que te pidieron en la escuela?",              ~"Puntaje de", ~"la prueba",    ~"de Lengua",
+  ~"Durante los últimos dos meses ¿Leíste o estás leyendo algún libro, además de los que te pidieron en la escuela?",              ~"Puntaje prueba", ~"de de",    ~"la Lengua",
   "",      "Bajos", "Altos", "Total",
   "Si",       2382,   10299,   12681,
   "No",       3530,    9821,   13351,
   "Total",    5912,   20120,   26032,
 )
 kableExtra::kable_styling(
-  knitr::kable(aux_table, format = "pandoc", booktabs = TRUE, align = "lccc"),
+  knitr::kable(aux_table, format = "markdown", booktabs = TRUE, align = "lccc"),
   latex_options = "striped") %>%
   footnote(general = "Fuente: ONE 2000")
 ```
@@ -525,14 +526,14 @@ falta frecuencias relativas. En este caso se calculan según las filas de la tab
 
 ```{r}
 aux_table <- tibble::tribble(
-  ~"Durante los últimos dos meses ¿Leíste o estás leyendo algún libro, además de los que te pidieron en la escuela?",              ~"Puntaje de", ~"la prueba",    ~"de Lengua",
+  ~"Durante los últimos dos meses ¿Leíste o estás leyendo algún libro, además de los que te pidieron en la escuela?",              ~"Puntaje prueba", ~"de de",    ~"la Lengua",
   "",      "Bajos",  "Altos", "Total",
   "Si",     "18,8%", "81,2%",  "100%",
   "No",     "26,4%", "73,6%",  "100%",
   "Total",  "22,7%", "77,3%",  "100%",
 )
 kableExtra::kable_styling(
-  knitr::kable(aux_table, format = "pandoc", booktabs = TRUE, align = "lccc"),
+  knitr::kable(aux_table, format = "markdown", booktabs = TRUE, align = "lccc"),
   latex_options = "striped") %>%
   footnote(general = "Fuente: ONE 2000")
 ```
@@ -647,7 +648,7 @@ kableExtra::kable_styling(
   latex_options = "striped")
 ```
 
-Leemos las frecuencias conjuntas y las marginales como en la tabla 2.
+Leemos las frecuencias conjuntas y las marginales como en la tabla ref(tab:cual).
 Por ejemplo:
 
 El 36.7% de los encuestados considera que su país está estancado *y* no considera la posibilidad de emigrar.
@@ -664,6 +665,7 @@ colnames(tabla13) <- sub("Sum", "Total", colnames(tabla13))
 rownames(tabla13) <- sub("Sum", "Total", rownames(tabla13))
 kableExtra::kable_styling(
   knitr::kable(tabla13, format = "pandoc", booktabs = TRUE, align = "ccc",
+               label = "frecConj",
                caption = "Distribución conjunta de la opinión sobre la evolución del propio país y la perspectiva de emigrar. Frecuencias relativas por filas"),
   latex_options = "striped")
 ```
@@ -679,7 +681,7 @@ comparaciones se hacen sobre los mismos totales, es "como si" hubiese
 Que haya cierta relación entre la opinión acerca de la evolución del pais (antecedente) y la idea de emigrar (consecuente) no es equivalente a que la opinión sea "la causa" de las intenciones de emigrar. En la tabla se observa que la intención de emigrar es expresada por una minoría se los encuestados, solo que esa minoría es levemente mayor entre quienes opinan que el país está empeorando. Se puede afirmar que quienes opinan que el país está empeorando tienen "un poco más" de intenciones de emigrar que aquellos que opinan que está mejorado. La opinión sobre la evolución del país es uno de los muchos factores que pueden incidir en la intención de emigrar.
 
 Al comparar la tabla \@ref(tab:abs) con la \@ref(tab:rel) vemos que aunque ambas ofrecen frecuencias relativas, la primera las calcula respecto del total general (los
-19649 casos) mientras que en la segunda los totales son las frecuencias marginales de cada fila. Son dos resultados muy diferentes, en efecto, la frecuencia de la celda 1,1 en la primera tabla es 0,057 e indica que el 5.7% del total de encuestados cree que su país está mejorando **y** han pensado en emigrar, La misma celda en la tabla siguiente tiene frecuencia de 0,223 y se lee: de los encuestados que creen que su país está mejorando, el 22.3% ha pensado en emigrar.
+19649 casos) mientras que en la segunda los totales son las frecuencias marginales de cada fila. Son dos resultados muy diferentes, en efecto, la frecuencia de la celda 1,1 en la tabla \@ref(tab:rel) es 0,057 e indica que el 5.7% del total de encuestados cree que su país está mejorando **y** han pensado en emigrar. La misma celda en la tabla \@ref(tab:frecConj) tiene frecuencia de 0,223 y se lee: de los encuestados que creen que su país está mejorando, el 22.3% ha pensado en emigrar.
 
 Veamos que la primera de las frecuencias (relativa al total) contiene
 información simultanea sobre las dos variables, mientras que la segunda (relativa a los totales de fila), fija una categoría para una de las variables: al hablar de los encuestados que creen que su país está mejorando, estamos restringiendo el conjunto completo, ya no es un juicio sobre los 19649 encuestados del total, sino solo sobre los 5040 que cumplen con ese requisito. La frecuencia está condicionada por ese requisito. Esto equivale a decir que las frecuencias relativas cambian cuando se establece una condición como la mencionada. En general, la proporción de encuestados que piensa emigrar es 25.3% <!--no sale aun en la tabla--> , pero si agregamos el dato que indica que estamos tratando solo con los que creen que el país está mejorando, entonces la proporción decae al 22.3%. La opinión sobre la evolución del país es una condición que imponemos cuando calculamos estas frecuencias relativas a los totales de fila.
@@ -880,8 +882,6 @@ Si la distribución de categorías laborales no tuviera ninguna relación con el
 
 Las frecuencias de las demás celdas se obtienen replicando la frecuencia marginal de desocupades e inactives sobre los totales de varones y mujeres. Puede entonces construirse una nueva tabla con las frecuencias que se esperaría encontrar si las dos variables fueran independientes, es decir si el hecho de ser varones o mujeres no tuviese ningún efecto sobre la actividad laboral. Dicho de otro modo, si la actividad laboral fuera independiente del sexo.
 
-
-<!-- Caption:  -->
 ```{r}
 ji <- chisq.test(tabla16)
 aux_table <- addmargins(round(ji$expected, 0))

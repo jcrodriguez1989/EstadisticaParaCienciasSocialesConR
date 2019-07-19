@@ -796,6 +796,7 @@ Y representan valores de ingreso salarial que contienen un qunito de los asalari
 Los nombres de las medidas descriptivas en R están en inglés, por lo que hay que recordarlas. Para el caso de la variable ingreso salarial (`PP08D1` en los microdatos de la EPH), hemos generado una base nueva que solo contiene personas que trabajan como obreros o empleados (son asalariados), sobre ella, las medidas de posición se piden así:
 
 <!-- JCR: Deberiamos decir como conseguir este dataset -->
+
 ```{r warning=FALSE, echo=TRUE}
 attach(eph.3.18.asal)
 length(PP08D1) # cantidad de casos (n)
@@ -1422,6 +1423,7 @@ bayley$long.nac <- rnorm(454, 70, 30)
 ```
 
 <!-- JCR: Deberiamos decir como conseguir este dataset -->
+
 ```{r warning=FALSE, echo=TRUE}
 attach(bayley)
 R <- max(peso.nac) - min(peso.nac)
@@ -1805,6 +1807,7 @@ El signo del puntaje z indica si un valor particular está por encima (si es pos
 Ese resultado se conoce como desigualdad de Chebycheff
 
 $$P(|x-media|<k*s) \geq 1-\frac{1}{k^2}$$
+
 <!-- EB: quedó bastante horrible, arreglala por favor -->
 <!-- JCR: asi esta bien? -->
 
@@ -1823,7 +1826,11 @@ El gráfico siguiente muestra el intervalo de dos desviaciones estándar para un
 norm <- rnorm(1000, 20, 3)
 unif <- runif(1000, 11, 29)
 dos.hist <- data.frame(norm, unif)
-ggplot(dos.hist) + geom_histogram(aes(unif), fill = "green", bins = 30) + ylab("f") + xlab("") + theme_tufte()
+ggplot(dos.hist) +
+  geom_histogram(aes(unif), fill = "green", bins = 30) +
+  ylab("f") +
+  xlab("") +
+  theme_tufte()
 ```
 
 Mientras que la siguiente distribución es unimodal y aproximadamente simétrica, por lo que es válida la regla empírica.

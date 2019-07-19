@@ -62,6 +62,7 @@ Este instrumento de producción de datos que es el cuestionario, se dirige a una
 El cuestionario tiene 16 ítems, cada persona que lo responde marca una sola de las opciones indicadas en cada ítem. Una vez completados los cuestionarios, la información está "en bruto" y es necesario ordenarla para poder tener una visión de conjunto. Eso se logra organizando los datos recogidos en la *matriz de datos* que tiene, para el cuestionario mostrado, la siguiente forma:
 
 <!-- JCR: Que se desea hacer con esto? -->
+
 ```{r}
 base.2019 <- read.csv("bases/archivostxt/base2019.txt", header = TRUE, sep = ";", dec = ".", na.strings = 999)
 base.2019 <- base.2019[, -c(1:5, 7)]
@@ -115,6 +116,7 @@ La matriz de datos contiene toda la información que será insumo de los anális
 Hemos dicho que cada fila representa un caso, un individuo al que se observa. Este individuo puede ser una persona como en este ejemplo, pero también una entidad colectiva: un hogar, una empresa, una escuela. Cada una de ellas se denomina *unidad de análisis*.
 
 Es importante que las unidades de análisis estén claras para la interpretación de los resultados. Por ejemplo, si se afirma que "las personas de menores recursos acceden menos frecuentemente a la educación superior", hablamos de personas, y éstas son las unidades de análisis. Y es muy diferente a decir que "en los países más pobres, es menor la proporción de personas que acceden a la educación superior", porque aquí las unidades de análisis son los países.
+
 <!-- No logro centrar este texto, -> <- no anda-->
 <!-- JCR: Asi esta bien? -->
 
@@ -174,6 +176,7 @@ Como se señaló,en la edad de las personas suele elegirse terminar las categor�
 Las categorías pueden tener diferente naturaleza: algunas se expresan con números (como la edad) y otras con palabras (como la carrera que cursa), otras en graduaciones (como el grado de acuerdo); sin embargo es muy común representar con números a las categorías, aun cuando lo que se observe no sea numérico. Así, en la variable nivel de educación, pueden codificarse las categorías de la siguiente manera:
 
 <!-- JCR: Esto debia ser una tabla, cierto? -->
+
 ```{r}
 aux_table <- tibble::tribble(
   ~Código, ~"Máximo nivel de educación formal alcanzado",
@@ -229,7 +232,6 @@ En las variables cuyas categorías son numéricas, no es necesario hacer ninguna
 
 En Ciencias Sociales tiene plena vigencia el debate acerca de las posibilidades de medición de los fenómenos que se estudian. Buena parte de la discusión gira en torno a una definición de medición, ya que según qué sea lo que se considere como tal, se tratará de una medición o no. La posición más tradicional corresponde a lo que el sentido común trata como medición: la estatura, las distancias, el peso, etc. Esta definición demanda que los números que codifican a las categorías tengan algunas propiedades para considerarlos como mediciones. Se conoce como teoría clásica de la medición, y desde ese punto de vista sería muy difícil realizar mediciones sobre las variables que manejamos en Ciencias Sociales. Una definición menos restrictiva es la que propuso @Stevens1946, según la cual:
 
-<!-- JCR: Esto va centrado? Me parecio -->
 ||
 |:--:|
 | "medir es asignar números a los objetos según cierta regla, de manera que los números asignados en la medición, no representan propiamente cantidades, sino relaciones". |
@@ -284,8 +286,10 @@ Entonces, en este nivel de medición a cada categoría puede asignarse, de maner
 | Una variable está medida a nivel **nominal** si los números que representan cada categoría son asignados de manera arbitraria y solo cumplen con la función de designar y distinguir categorías diferentes. |
 
 Para unidades de análisis medidas a través de una variable de nivel nominal, es posible saber si corresponden a la misma categoría o a una diferente, es decir si tienen la misma cualidad (o atributo) o una diferente.
+
 <!-- PROBLEMA CON LAS REFERENCIAS, ESAS TABLAS ESTÁN HECHAS A MANO, ¿SE PODRÁN REFERENCIAR? -->
 <!-- JCR: Creo que eso es lo que querias. -->
+
 En la tabla \@ref(tab:nivelNomCod) si a un alumno le corresponde el número 1 y a otro también, solo podemos decir que coinciden en esta variable, ambos estudian la misma carrera (Psicología), si a uno le corresponde el 1 y a otro el 3, sabremos que el primero estudia Psicología y el otro Medicina. El hecho que el número 3 sea más grande que el 1, no tiene ninguna interpretación en este nivel de medición, no puede decirse que Psicología sea menos que Medicina. Como tampoco vale que 3 sea el triple de 1.
 
 Si 1 y 2 son dos categorías de una variable medida a nivel nominal, el único tipo de relación que puede establecerse entre ellas es $1\neq2$, es decir que 1 es diferente de 2.

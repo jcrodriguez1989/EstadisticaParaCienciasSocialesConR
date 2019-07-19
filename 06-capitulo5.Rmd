@@ -353,7 +353,7 @@ aux_table <- tibble::tribble(
   8, 8, 3, 5,
 )
 kableExtra::kable_styling(
-  knitr::kable(aux_table, format = "pandoc", booktabs = TRUE, align = "cccc",
+  knitr::kable(aux_table, format = "markdown", booktabs = TRUE, align = "cccc",
                caption = "Transformación de las categorías de la variable a rangos"),
   latex_options = "striped")
 ```
@@ -489,6 +489,7 @@ Si se intenta construir una tabla de doble entrada para estas dos variables, el 
 aux_table <- table(edad.union.escolariz$edad.union, edad.union.escolariz$escolarizacion)
 kableExtra::kable_styling(
   knitr::kable(aux_table, format = "pandoc", booktabs = TRUE, align = "cccc",
+               label = "distrConj",
                caption = "Distribución conjunta de los años de escolarización y la edad a la que se realizó la primera unión conyugal"),
   latex_options = "striped")
 ```
@@ -520,7 +521,7 @@ ggplot(edad.union.escolariz) +
 Este gráfico usa los ejes cartesianos para indicar los valores de las
 dos variables que estamos analizando y representa con un punto cada
 concordancia de dos categorías que puede corresponder a un caso o a
-varios. Cada punto es un par ordenado: el primer número son los años de escolarización y el segundo la edad a la que se unió por primera vez. Los ceros de la anterior <!--referencia--> ya no aparecen en este diagrama. El primer punto de la izquierda corresponde a alguien que alcanzó 10 años de escolarización y se unió a los 18 años de edad.
+varios. Cada punto es un par ordenado: el primer número son los años de escolarización y el segundo la edad a la que se unió por primera vez. Los ceros de la tabla \@ref(tab:distrConj) ya no aparecen en este diagrama. El primer punto de la izquierda corresponde a alguien que alcanzó 10 años de escolarización y se unió a los 18 años de edad.
 
 Lo que eran filas y columnas en todas las tablas mostradas hasta aquí, son ahora ejes coordenados, porque ya no se trata con categorías
 separadas de cada variable sino con valores cuantitativos de las
@@ -537,7 +538,7 @@ de una tabla bivariada.
 
 Por el contrario, si los datos se dispersan de este otro modo:
 
-```{r fig.cap="Diagrama de dispersión de los años de escolarización y la edad a la que se realizó la primera unión conyugal (relación débil)"}
+```{r dispDebil, fig.cap="Diagrama de dispersión de los años de escolarización y la edad a la que se realizó la primera unión conyugal (relación débil)"}
 edad.union.debil <- rnorm(20, 25, 2)
 escolarizacion.debil <- rnorm(20, 11, 1.5)
 edad.union.escolariz.deb <- data.frame(edad.union.debil, escolarizacion.debil)
@@ -553,7 +554,7 @@ los puntos no muestran una tendencia clara.
 
 Una asociación más acentuada entre las mismas dos variables se observa en el siguiente diagrama de dispersión:
 
-```{r fig.cap="Diagrama de dispersión de los años de escolarización y la edad a la que se realizó la primera unión conyugal (relación intensa)"}
+```{r dispInt, fig.cap="Diagrama de dispersión de los años de escolarización y la edad a la que se realizó la primera unión conyugal (relación intensa)"}
 escolarizac.fuerte <- rnorm(30, 12, 2)
 edad.fuerte <- 1.4 * escolarizac.fuerte + 4 + rnorm(30)
 edad.debil <- 1.4 * escolarizac.fuerte + 4 + rnorm(30, 0, 3)
@@ -571,7 +572,7 @@ ggplot(fuerte) +
 
 En el que la tendencia *lineal* es más clara, por lo que resulta más
 definido el efecto de la escolarización sobre la edad a la que se
-produce la primera unión. Aquí, la nube de puntos está más aplanada que en el ejemplo anterior; en efecto, en el gráfico <!--referencia--> la nube de puntos tiene forma más circular que en el <!--referencia--> , donde es más elíptica.
+produce la primera unión. Aquí, la nube de puntos está más aplanada que en el ejemplo anterior; en efecto, en el gráfico \@ref(fig:dispDebil) la nube de puntos tiene forma más circular que en el \@ref(fig:dispInt), donde es más elíptica.
 
 El ejemplo que hemos mostrado hasta aquí corresponde a una relación directa: más años de escolarización parecen asociarse con edades más tardías para la primera unión. De manera equivalente pueden representarse relaciones inversas. Consideremos el caso de la ansiedad frente a los exámenes y la calificación que se obtiene. En un estudio realizado por el Laboratorio de Evaluación Psicológica y Educativa (LEPE, Facultad de Psicología UNC) se observó que a mayor puntaje en una prueba de ansiedad ante los exámenes, menor rendimiento académico (arrobafurlán2014), por lo que la relación entre las variables es inversa. 
 
@@ -632,7 +633,7 @@ situaciones específicas, para valores pequeños de la primera (en la
 infancia) las consultas son frecuentes, luego se reducen durante la
 adultez para volver a incrementarse en la vejez. Por eso el gráfico que las representa tiene la siguiente forma aproximada:
 
-```{r fig.cap="Diagrama de dispersión del número medio de consultas médicas anuales y la edad."}
+```{r dispMedic, fig.cap="Diagrama de dispersión del número medio de consultas médicas anuales y la edad."}
 edad <- c(1, 1, 1, 2, 2, 3, 3, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 12, 15, 16, 16, 18, 20, 22, 28, 30, 40, 45, 45, 45, 50, 50, 55, 62, 63, 63, 64, 66, 70, 75, 76, 77, 79)
 consultas <- c(10, 10, 12, 9, 8, 5, 4, 5, 4, 6, 5, 3, 5, 2, 2, 2, 1, 2, 0, 1, 2, 0, 2, 1, 3, 0, 4, 2, 2, 1, 3, 5, 7, 5, 7, 5, 6, 7, 8, 9, 10, 9, 9)
 edad.consultas <- data.frame(edad, consultas)
@@ -669,12 +670,12 @@ variables guardan poca relación lineal, es decir si la nube de puntos
 tiene forma redondeada. Será positivo y elevado (próximo a 1) si valores
 pequeños de una variable están acompañados de valores pequeños de la
 otra y valores grandes de una siguen a valores grandes de la otra, como
-sucedió en el ejemplo del gráfico <!--referencia al 3-->. Será negativo y elevado (próximo a
+sucedió en el ejemplo del gráfico \@ref(fig:dispInt). Será negativo y elevado (próximo a
 $-1$) si los valores grandes de una de las variables acompañan a los
-pequeños de la otra y viceversa, como en el gráfico <!--referencia al 5-->. La correlación
+pequeños de la otra y viceversa, como en el gráfico ref(fig:cual). La correlación
 será perfecta positiva ($r = 1$) si todos los puntos se ubican sobre una recta creciente:
 
-```{r fig.cap="Ejemplo de situación ideal con todas las observaciones alineadas en una recta creciente, por lo que $r = 1$"}
+```{r rectaCrec, fig.cap="Ejemplo de situación ideal con todas las observaciones alineadas en una recta creciente, por lo que $r = 1$"}
 x.r.1 <- rnorm(20)
 y.r.1 <- 2 * x.r.1 + 1
 y.r.neg <- -2 * x.r.1 + 3
@@ -688,7 +689,7 @@ ggplot(ejemplos.perfecta) +
 
 Y será perfecta negativa ($r = - 1$) si todos los puntos se ubican sobre una recta decreciente:
 
-```{r fig.cap="Ejemplo de situación ideal con todas las observaciones alineadas en una recta decreciente, por lo que $r = - 1$"}
+```{r rectaDecrec, fig.cap="Ejemplo de situación ideal con todas las observaciones alineadas en una recta decreciente, por lo que $r = - 1$"}
 ggplot(ejemplos.perfecta) +
   geom_point(aes(x.r.1, y.r.neg)) +
   xlab("x") +
@@ -800,7 +801,7 @@ aux_table <- tibble::tribble(
   10, -1.37, -0.74,  1.02,
 )
 kableExtra::kable_styling(
-  knitr::kable(aux_table, format = "pandoc", booktabs = TRUE, align = "cccc"),
+  knitr::kable(aux_table, format = "markdown", booktabs = TRUE, align = "cccc"),
   latex_options = "striped")
 ```
 
@@ -1031,7 +1032,7 @@ aux_table <- tibble::tribble(
   "Una dicotómica proveniente de una continua recategorizada y otra proporcional", "$r_b$ biserial", "$[-1; 1]$", "Más intensa si es próximo a 1 o a $-1$",
 )
 kableExtra::kable_styling(
-  knitr::kable(aux_table, format = "pandoc", booktabs = TRUE, align = "llcl"),
+  knitr::kable(aux_table, format = "markdown", booktabs = TRUE, align = "llcl"),
   latex_options = "striped")
 ```
 
@@ -1066,7 +1067,7 @@ sublatinob <- subset(latinob,
 sublatinob <- sublatinob[, -c(1:38, 46:325)]
 cor.conf <- round(cor(sublatinob, method = "spearman"), 2)
 kableExtra::kable_styling(
-  knitr::kable(cor.conf, format = "pandoc", booktabs = TRUE, align = "ccccccc"),
+  knitr::kable(cor.conf, format = "markdown", booktabs = TRUE, align = "ccccccc"),
   latex_options = "striped")
 ```
 
@@ -1153,8 +1154,8 @@ visto, cuanto más intensa es la relación (coeficiente de correlación de Pears
 
 En este apartado avanzamos un paso más en el análisis de la relación
 entre variables: cuando los puntos del diagrama de dispersión tengan una
-disposición semejante a una recta (creciente, como en el gráfico <!--referencia al 3--> o
-decreciente, como en el <!--referencia al 5-->), podremos buscar la función lineal que mejor
+disposición semejante a una recta (creciente, como en el gráfico \@ref(fig:dispInt) o
+decreciente, como en el ref(fig:cual)), podremos buscar la función lineal que mejor
 aproxima esos puntos. Usaremos a partir de aquí una notación general:
 llamaremos *x* a la variable antecedente (o independiente) e *y* a la
 consecuente (o dependiente). Porque la relación se supone asimétrica,
@@ -1424,7 +1425,7 @@ La suma de todos estos desvíos es cero, por haber pedido a la recta la
 condición de equilibrar los puntos. Estas diferencias son los errores
 que se cometen al estimar a través de la función lineal. Para verlos
 como tales, observemos que si la correlación fuera perfecta (positiva o
-negativa) como en los gráficos <!--referencia a 7 y 8--> todos los puntos estarían sobre la
+negativa) como en los gráficos \@ref(fig:rectaCrec) y \@ref(fig:rectaDecrec) todos los puntos estarían sobre la
 recta y coincidirían los valores de *y* con los de $\widehat{y}$, por lo
 que las diferencias de la última columna serían todas cero, no habría
 error en una relación perfecta. Como hemos dicho, esa es una situación
@@ -1508,7 +1509,7 @@ que vimos.
 Sobre el coeficiente de correlación de Pearson, debe recordarse que solo
 es adecuado para evaluar la intensidad de la relación entre dos
 variables si ésta es lineal. En presencia de una relación de otro tipo,
-como la del gráfico <!--referenia al 6-->, el coeficiente de Pearson dará un valor muy bajo,
+como la del gráfico \@ref(fig:dispMedic), el coeficiente de Pearson dará un valor muy bajo,
 pero eso no quiere decir que la relación sea débil o inexistente, sino
 que el modelo lineal no es adecuado para describirla. Por ello, si se
 encuentra un coeficiente de Pearson muy bajo, debe explorarse la
