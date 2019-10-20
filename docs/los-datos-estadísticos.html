@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 1 Los datos estadísticos | Estadística para Ciencias Sociales con R</title>
+  <meta name="description" content="Capítulo 1 Los datos estadísticos | Estadística para Ciencias Sociales con R" />
+  <meta name="generator" content="bookdown 0.14 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 1 Los datos estadísticos | Estadística para Ciencias Sociales con R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  <meta name="github-repo" content="jcrodriguez1989/EstadisticaParaCienciasSocialesConR" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 1 Los datos estadísticos | Estadística para Ciencias Sociales con R" />
+  
+  
+  
+
+<meta name="author" content="Eduardo Bologna" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="distribuciones-de-frecuencia.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Estadística para Ciencias Sociales con R</a></li>
+
+<li class="divider"></li>
+<li><a href="index.html#section"></a></li>
+<li class="chapter" data-level="1" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html"><i class="fa fa-check"></i><b>1</b> Los datos estadísticos</a><ul>
+<li class="chapter" data-level="1.1" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#la-selección-de-la-información-pertinente"><i class="fa fa-check"></i><b>1.1</b> La selección de la información pertinente</a></li>
+<li class="chapter" data-level="1.2" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#los-individuos"><i class="fa fa-check"></i><b>1.2</b> Los individuos</a></li>
+<li class="chapter" data-level="1.3" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#las-variables"><i class="fa fa-check"></i><b>1.3</b> Las variables</a></li>
+<li class="chapter" data-level="1.4" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#las-categorías"><i class="fa fa-check"></i><b>1.4</b> Las categorías</a></li>
+<li class="chapter" data-level="1.5" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#los-símbolos-numéricos"><i class="fa fa-check"></i><b>1.5</b> Los símbolos numéricos</a></li>
+<li class="chapter" data-level="1.6" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#la-medición"><i class="fa fa-check"></i><b>1.6</b> La medición</a><ul>
+<li class="chapter" data-level="1.6.1" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#niveles-de-medición"><i class="fa fa-check"></i><b>1.6.1</b> Niveles de medición</a></li>
+</ul></li>
+<li class="chapter" data-level="1.7" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#resumen-de-los-niveles-de-medición"><i class="fa fa-check"></i><b>1.7</b> Resumen de los niveles de medición</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html"><i class="fa fa-check"></i><b>2</b> Distribuciones de frecuencia</a><ul>
+<li class="chapter" data-level="2.1" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#tablas-de-distribución-de-frecuencia"><i class="fa fa-check"></i><b>2.1</b> Tablas de distribución de frecuencia</a></li>
+<li class="chapter" data-level="2.2" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#recategorización"><i class="fa fa-check"></i><b>2.2</b> Recategorización</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#variable-discreta-con-muchas-categorías"><i class="fa fa-check"></i><b>2.2.1</b> Variable discreta con muchas categorías</a></li>
+<li class="chapter" data-level="2.2.2" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#variable-continua"><i class="fa fa-check"></i><b>2.2.2</b> Variable continua</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#la-presentación-gráfica-de-los-resultados"><i class="fa fa-check"></i><b>2.3</b> La presentación gráfica de los resultados</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html"><i class="fa fa-check"></i><b>3</b> La expresión resumida de la información</a><ul>
+<li class="chapter" data-level="3.1" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#medidas-de-posición"><i class="fa fa-check"></i><b>3.1</b> Medidas de posición</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#variables-nominales-proporciones"><i class="fa fa-check"></i><b>3.1.1</b> Variables nominales: proporciones</a></li>
+<li class="chapter" data-level="3.1.2" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#variables-nominales-tasas"><i class="fa fa-check"></i><b>3.1.2</b> Variables nominales: tasas</a></li>
+<li class="chapter" data-level="3.1.3" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#variables-nominales-razones"><i class="fa fa-check"></i><b>3.1.3</b> Variables nominales: razones</a></li>
+<li class="chapter" data-level="3.1.4" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#variables-nominales-el-modo"><i class="fa fa-check"></i><b>3.1.4</b> Variables nominales: el modo</a></li>
+<li class="chapter" data-level="3.1.5" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#variables-ordinales-percentiles"><i class="fa fa-check"></i><b>3.1.5</b> Variables ordinales: percentiles</a></li>
+<li class="chapter" data-level="3.1.6" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#variables-ordinales-la-mediana"><i class="fa fa-check"></i><b>3.1.6</b> Variables ordinales: la mediana</a></li>
+<li class="chapter" data-level="3.1.7" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#los-cuartiles"><i class="fa fa-check"></i><b>3.1.7</b> Los cuartiles</a></li>
+<li class="chapter" data-level="3.1.8" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#los-percentiles"><i class="fa fa-check"></i><b>3.1.8</b> Los percentiles</a></li>
+<li class="chapter" data-level="3.1.9" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#hacerlo-en-r"><i class="fa fa-check"></i><b>3.1.9</b> Hacerlo en R</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#la-forma-de-la-distribución"><i class="fa fa-check"></i><b>3.2</b> La forma de la distribución</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#asimetría"><i class="fa fa-check"></i><b>3.2.1</b> Asimetría</a></li>
+<li class="chapter" data-level="3.2.2" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#curtosis"><i class="fa fa-check"></i><b>3.2.2</b> Curtosis</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#box-plots"><i class="fa fa-check"></i><b>3.3</b> Box-plots</a></li>
+<li class="chapter" data-level="3.4" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#medidas-de-dispersión"><i class="fa fa-check"></i><b>3.4</b> Medidas de dispersión</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#recorrido"><i class="fa fa-check"></i><b>3.4.1</b> Recorrido</a></li>
+<li class="chapter" data-level="3.4.2" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#amplitud-intercuartílica"><i class="fa fa-check"></i><b>3.4.2</b> Amplitud intercuartílica</a></li>
+<li class="chapter" data-level="3.4.3" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#medidas-de-dispersión-basadas-en-la-media"><i class="fa fa-check"></i><b>3.4.3</b> Medidas de dispersión basadas en la media</a></li>
+<li class="chapter" data-level="3.4.4" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#varianza"><i class="fa fa-check"></i><b>3.4.4</b> Varianza</a></li>
+<li class="chapter" data-level="3.4.5" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#desviación-estándar"><i class="fa fa-check"></i><b>3.4.5</b> Desviación estándar</a></li>
+<li class="chapter" data-level="3.4.6" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#coeficiente-de-variación"><i class="fa fa-check"></i><b>3.4.6</b> Coeficiente de variación</a></li>
+<li class="chapter" data-level="3.4.7" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#hacerlo-en-r-1"><i class="fa fa-check"></i><b>3.4.7</b> Hacerlo en R</a></li>
+<li class="chapter" data-level="3.4.8" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#box-plots-y-dispersión"><i class="fa fa-check"></i><b>3.4.8</b> Box-plots y dispersión</a></li>
+<li class="chapter" data-level="3.4.9" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#medida-de-la-dispersión-cuando-no-hay-distancias"><i class="fa fa-check"></i><b>3.4.9</b> Medida de la dispersión cuando no hay distancias</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#el-individuo-en-relación-a-su-grupo"><i class="fa fa-check"></i><b>3.5</b> El individuo en relación a su grupo</a></li>
+<li class="chapter" data-level="3.6" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#resumen-de-medidas-descriptivas"><i class="fa fa-check"></i><b>3.6</b> Resumen de medidas descriptivas</a><ul>
+<li class="chapter" data-level="3.6.1" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#medidas-de-posición-1"><i class="fa fa-check"></i><b>3.6.1</b> Medidas de posición</a></li>
+<li class="chapter" data-level="3.6.2" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#medidas-de-dispersión-1"><i class="fa fa-check"></i><b>3.6.2</b> Medidas de dispersión</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html"><i class="fa fa-check"></i><b>4</b> Relación entre variables: los fundamentos</a><ul>
+<li class="chapter" data-level="4.1" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#tablas-de-contingencia"><i class="fa fa-check"></i><b>4.1</b> Tablas de contingencia</a></li>
+<li class="chapter" data-level="4.2" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#frecuencias-relativas"><i class="fa fa-check"></i><b>4.2</b> Frecuencias relativas</a></li>
+<li class="chapter" data-level="4.3" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#una-clasificación-en-referencia-al-tiempo"><i class="fa fa-check"></i><b>4.3</b> Una clasificación en referencia al tiempo</a></li>
+<li class="chapter" data-level="4.4" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#la-dirección-de-la-relación"><i class="fa fa-check"></i><b>4.4</b> La dirección de la relación</a></li>
+<li class="chapter" data-level="4.5" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#concepto-de-riesgo-relativo"><i class="fa fa-check"></i><b>4.5</b> Concepto de riesgo relativo</a></li>
+<li class="chapter" data-level="4.6" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#la-intensidad"><i class="fa fa-check"></i><b>4.6</b> La intensidad</a></li>
+<li class="chapter" data-level="4.7" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#el-concepto-de-independencia-estadística"><i class="fa fa-check"></i><b>4.7</b> El concepto de independencia estadística</a></li>
+<li class="chapter" data-level="4.8" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#hacerlo-en-r-2"><i class="fa fa-check"></i><b>4.8</b> Hacerlo en R</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html"><i class="fa fa-check"></i><b>5</b> Relación entre variables: el análisis</a><ul>
+<li class="chapter" data-level="5.1" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#variables-nominales-con-más-de-dos-categorías-cada-una"><i class="fa fa-check"></i><b>5.1</b> Variables nominales con más de dos categorías cada una</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#la-distancia-entre-frecuencias-esperadas-y-observadas"><i class="fa fa-check"></i><b>5.1.1</b> La distancia entre frecuencias esperadas y observadas</a></li>
+<li class="chapter" data-level="5.1.2" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#coeficientes-de-asociación-para-variables-nominales"><i class="fa fa-check"></i><b>5.1.2</b> Coeficientes de asociación para variables nominales</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#variables-de-nivel-ordinal"><i class="fa fa-check"></i><b>5.2</b> Variables de nivel ordinal</a></li>
+<li class="chapter" data-level="5.3" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#nivel-intervalar-o-proporcional"><i class="fa fa-check"></i><b>5.3</b> Nivel intervalar o proporcional</a></li>
+<li class="chapter" data-level="5.4" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#dicotomías-reales-y-artificiales"><i class="fa fa-check"></i><b>5.4</b> Dicotomías reales y artificiales</a></li>
+<li class="chapter" data-level="5.5" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#niveles-de-medición-combinados"><i class="fa fa-check"></i><b>5.5</b> Niveles de medición combinados</a><ul>
+<li class="chapter" data-level="5.5.1" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#una-variable-dicotómica-real-y-una-proporcional"><i class="fa fa-check"></i><b>5.5.1</b> Una variable dicotómica real y una proporcional</a></li>
+<li class="chapter" data-level="5.5.2" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#una-variable-continua-dicotomizada-y-una-proporcional"><i class="fa fa-check"></i><b>5.5.2</b> Una variable continua dicotomizada y una proporcional</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#resumen-de-coeficientes-de-asociación"><i class="fa fa-check"></i><b>5.6</b> Resumen de coeficientes de asociación</a></li>
+<li class="chapter" data-level="5.7" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#matriz-de-correlaciones"><i class="fa fa-check"></i><b>5.7</b> Matriz de correlaciones</a></li>
+<li class="chapter" data-level="5.8" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#la-forma-de-la-relación"><i class="fa fa-check"></i><b>5.8</b> La forma de la relación</a><ul>
+<li class="chapter" data-level="5.8.1" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#ordenada-al-origen"><i class="fa fa-check"></i><b>5.8.1</b> Ordenada al origen</a></li>
+<li class="chapter" data-level="5.8.2" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#pendiente"><i class="fa fa-check"></i><b>5.8.2</b> Pendiente</a></li>
+<li class="chapter" data-level="5.8.3" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#obtención-de-la-recta-de-regresión"><i class="fa fa-check"></i><b>5.8.3</b> Obtención de la recta de regresión</a></li>
+</ul></li>
+<li class="chapter" data-level="5.9" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#la-importancia-de-la-visualización"><i class="fa fa-check"></i><b>5.9</b> La importancia de la visualización</a></li>
+<li class="chapter" data-level="5.10" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#hacerlo-en-r-3"><i class="fa fa-check"></i><b>5.10</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="5.10.1" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#distancia-chi2"><i class="fa fa-check"></i><b>5.10.1</b> Distancia <span class="math inline">\(\chi^{2}\)</span></a></li>
+<li class="chapter" data-level="5.10.2" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#coeficientes"><i class="fa fa-check"></i><b>5.10.2</b> Coeficientes</a></li>
+<li class="chapter" data-level="5.10.3" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#modelo-lineal"><i class="fa fa-check"></i><b>5.10.3</b> Modelo lineal</a></li>
+<li class="chapter" data-level="5.10.4" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#cuarteto-de-anscombe"><i class="fa fa-check"></i><b>5.10.4</b> Cuarteto de Anscombe</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html"><i class="fa fa-check"></i><b>6</b> Obtención de la muestra</a><ul>
+<li class="chapter" data-level="6.1" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#población"><i class="fa fa-check"></i><b>6.1</b> Población</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestra"><i class="fa fa-check"></i><b>6.1.1</b> Muestra</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreos-probabilísticos"><i class="fa fa-check"></i><b>6.2</b> Muestreos probabilísticos</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-irrestricto-aleatorio-o-aleatorio-simple"><i class="fa fa-check"></i><b>6.2.1</b> Muestreo irrestricto aleatorio o aleatorio simple</a></li>
+<li class="chapter" data-level="6.2.2" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-sistemático"><i class="fa fa-check"></i><b>6.2.2</b> Muestreo sistemático</a></li>
+<li class="chapter" data-level="6.2.3" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-estratificado"><i class="fa fa-check"></i><b>6.2.3</b> Muestreo estratificado</a></li>
+<li class="chapter" data-level="6.2.4" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-por-conglomerados"><i class="fa fa-check"></i><b>6.2.4</b> Muestreo por conglomerados</a></li>
+<li class="chapter" data-level="6.2.5" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#método-de-kish"><i class="fa fa-check"></i><b>6.2.5</b> Método de Kish</a></li>
+<li class="chapter" data-level="6.2.6" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#uso-combinado-de-técnicas-de-muestreo"><i class="fa fa-check"></i><b>6.2.6</b> Uso combinado de técnicas de muestreo</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreos-no-probabilísticos"><i class="fa fa-check"></i><b>6.3</b> Muestreos no probabilísticos</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-por-cuotas"><i class="fa fa-check"></i><b>6.3.1</b> Muestreo por cuotas</a></li>
+<li class="chapter" data-level="6.3.2" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-de-juicio-o-intencional"><i class="fa fa-check"></i><b>6.3.2</b> Muestreo de juicio o intencional</a></li>
+<li class="chapter" data-level="6.3.3" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-autoelegido"><i class="fa fa-check"></i><b>6.3.3</b> Muestreo autoelegido</a></li>
+<li class="chapter" data-level="6.3.4" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-accidental-o-según-disponibilidad"><i class="fa fa-check"></i><b>6.3.4</b> Muestreo accidental o según disponibilidad</a></li>
+<li class="chapter" data-level="6.3.5" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-bola-de-nieve"><i class="fa fa-check"></i><b>6.3.5</b> Muestreo bola de nieve</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#resumen-de-técnicas-de-muestreo"><i class="fa fa-check"></i><b>6.4</b> Resumen de técnicas de muestreo</a></li>
+<li class="chapter" data-level="6.5" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#hacerlo-en-r-4"><i class="fa fa-check"></i><b>6.5</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="6.5.1" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#aleatorio-simple"><i class="fa fa-check"></i><b>6.5.1</b> Aleatorio simple</a></li>
+<li class="chapter" data-level="6.5.2" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#estratificado"><i class="fa fa-check"></i><b>6.5.2</b> Estratificado</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html"><i class="fa fa-check"></i><b>7</b> Probabilidad: los fundamentos</a><ul>
+<li class="chapter" data-level="7.1" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#el-rol-de-la-probabilidad-en-estadística"><i class="fa fa-check"></i><b>7.1</b> El rol de la probabilidad en Estadística</a></li>
+<li class="chapter" data-level="7.2" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#formas-para-asignar-probabilidades"><i class="fa fa-check"></i><b>7.2</b> Formas para asignar probabilidades</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#asignación-a-priori"><i class="fa fa-check"></i><b>7.2.1</b> Asignación a priori</a></li>
+<li class="chapter" data-level="7.2.2" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#asignación-a-posteriori"><i class="fa fa-check"></i><b>7.2.2</b> Asignación a posteriori</a></li>
+<li class="chapter" data-level="7.2.3" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#la-relación-entre-asignación-a-priori-y-a-posteriori"><i class="fa fa-check"></i><b>7.2.3</b> La relación entre asignación a priori y a posteriori</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#operando-con-probabilidades"><i class="fa fa-check"></i><b>7.3</b> Operando con probabilidades</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#con-probabilidades-frecuenciales"><i class="fa fa-check"></i><b>7.3.1</b> Con probabilidades frecuenciales</a></li>
+<li class="chapter" data-level="7.3.2" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#con-probabilidades-a-priori"><i class="fa fa-check"></i><b>7.3.2</b> Con probabilidades a priori</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#el-teorema-de-bayes"><i class="fa fa-check"></i><b>7.4</b> El teorema de Bayes</a></li>
+<li class="chapter" data-level="7.5" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#variables-aleatorias"><i class="fa fa-check"></i><b>7.5</b> Variables aleatorias</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html"><i class="fa fa-check"></i><b>8</b> Probabilidad: los modelos</a><ul>
+<li class="chapter" data-level="8.1" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#concepto-de-modelización"><i class="fa fa-check"></i><b>8.1</b> Concepto de modelización</a></li>
+<li class="chapter" data-level="8.2" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#distribución-binomial"><i class="fa fa-check"></i><b>8.2</b> Distribución binomial</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#esperanza-y-varianza"><i class="fa fa-check"></i><b>8.2.1</b> Esperanza y varianza</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#distribución-normal"><i class="fa fa-check"></i><b>8.3</b> Distribución normal</a><ul>
+<li class="chapter" data-level="8.3.1" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#percentiles"><i class="fa fa-check"></i><b>8.3.1</b> Percentiles</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#la-idea-de-grados-de-libertad"><i class="fa fa-check"></i><b>8.4</b> La idea de grados de libertad</a></li>
+<li class="chapter" data-level="8.5" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#la-distribución-ji-cuadrado-chi2"><i class="fa fa-check"></i><b>8.5</b> La distribución ji cuadrado (<span class="math inline">\(\chi^{2}\)</span>)</a></li>
+<li class="chapter" data-level="8.6" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#la-distribución-t-de-student"><i class="fa fa-check"></i><b>8.6</b> La distribución t de Student</a><ul>
+<li class="chapter" data-level="8.6.1" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#la-distribución-f"><i class="fa fa-check"></i><b>8.6.1</b> La distribución F</a></li>
+</ul></li>
+<li class="chapter" data-level="8.7" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#hacerlo-en-r-5"><i class="fa fa-check"></i><b>8.7</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="8.7.1" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#probabilidades"><i class="fa fa-check"></i><b>8.7.1</b> Probabilidades</a></li>
+<li class="chapter" data-level="8.7.2" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#percentiles-1"><i class="fa fa-check"></i><b>8.7.2</b> Percentiles</a></li>
+<li class="chapter" data-level="8.7.3" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#áreas-centrales"><i class="fa fa-check"></i><b>8.7.3</b> Áreas centrales</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Generado con bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Estadística para Ciencias Sociales con R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="los-datos-estadísticos" class="section level1">
+<h1><span class="header-section-number">Capítulo 1</span> Los datos estadísticos</h1>
+<p>En este capítulo se desarrollan procedimientos para presentar la información de manera accesible para que pueda ser analizada y luego interpretada. Para poder extraer significado de los datos recogidos es necesario primero dedicar un esfuerzo a organizarlos, a presentarlos de manera comprensible, una operación previa a la aplicación de las técnicas de análisis que se verán más adelante.</p>
+<p>La ciencia se interesa por la producción de conocimiento validado, uno de cuyos requisitos es que pueda ser comunicado de manera inequívoca, que se confronten las conclusiones a que llegan y los métodos que usan diferentes investigadores. Esto implica la necesidad de usar un lenguaje que permita el intercambio entre investigadores y que dependa, en el menor grado posible, de las impresiones subjetivas o de las interpretaciones que cada investigador individual dé a los conceptos. Se busca un vocabulario tan unívoco como sea posible. Un modo de acercarse a lograr esta comunicabilidad de las ideas, de los métodos y de los resultados, es definir, de la manera más precisa posible, los elementos acerca de los que se habla.</p>
+<p>Alguna vez hemos dado con expresiones como “esta persona es más inteligente que aquella”. ¿Qué se quiere decir exactamente con eso?, la afirmación podría provenir de algún evento en que se vio a esa persona actuando de manera que llamaríamos inteligente, aunque esto también puede confundirse con astucia: no es infrecuente usar el adjetivo inteligente para un estafador, alguien a quien le resulta fácil engañar a otros; y, a la inversa, sería poco inteligente quien se deja engañar con facilidad. O bien, a menudo decimos que alguien es inteligente porque obtiene buenos resultados en sus estudios. Esto es parte de la imprecisión en la definición de un concepto. Si se dispone de una definición de inteligencia, se puede saber cuándo aplicar esa idea a alguien, cuándo una conducta es inteligente, inclusive, cómo ayudar a desarrollar la inteligencia. Si se puede definir el concepto con el que se trabaja, se pueden indicar ciertas operaciones a realizar para evaluarlo y así conocer cuál es el nivel de inteligencia de un sujeto en particular.</p>
+<p>Luego de definir el concepto con el que se trabaja, se requiere diseñar un instrumento que refleje esa definición y finalmente aplicar este instrumento a las personas que se evaluarán. Al hacer esto último se obtiene un resultado que, si se expresa de manera cuantitativa, permite hacer comparaciones del aspecto que representa ese concepto, entre personas, entre grupos, etc.</p>
+<p>¿Pueden compararse personas? La respuesta es no, porque cada persona tiene una infinidad de aspectos que la caracterizan y la hacen única. Por el contrario lo que sí pueden compararse son características claramente definidas de las personas. Del mismo modo no se pueden comparar escuelas, ni hogares, ni países si no se especifica en qué aspecto se realiza la comparación. O dicho de otro modo, cuál es la característica que se compara, y cómo se mide esa característica.</p>
+<p>Podemos decir que una persona tiene más escolarización formal que otra, indicando con eso que ha aprobado más años de la escuela o de la universidad. Podemos decir que un hogar es diferente a otro si uno se compone de una pareja sola y el otro incluye tres hijos. Un país puede tener más habitantes, un régimen político diferente, o mayor libertad de expresión que otro. En todos los casos especificamos una característica (un rasgo o un estado), sobre la base del cual hacemos la comparación.</p>
+<div id="la-selección-de-la-información-pertinente" class="section level2">
+<h2><span class="header-section-number">1.1</span> La selección de la información pertinente</h2>
+<p>Cuando se ha decidido quienes son los sujetos de la observación; es decir, una vez que se sabe a quiénes se observará, deben elegirse ciertas características de esos sujetos para observar<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>. Cada unidad que resulta de interés para la investigación tiene un conjunto muy grande de características observables y siempre se realiza una selección de esas características. Se trata de un recorte que permite comprender mejor ciertos aspectos, dejando de lado otros. La información que seleccionamos para observar se denomina pertinente para la investigación.</p>
+<p>Cuando se decide cuál es la información pertinente, se la puede recabar de varios individuos y cambiar la óptica desde el caso particular a la regularidad colectiva. Es un cambio desde el individuo hacia el grupo. La siguiente es una lista que indica el área en que les gustaría trabajar cuando se reciban, a nueve estudiantes de primer año de Psicología:</p>
+<table>
+<caption><span id="tab:unnamed-chunk-2">Tabla 1.1: </span>Área de trabajo preferida.</caption>
+<thead>
+<tr class="header">
+<th align="left">Alumno</th>
+<th align="right">Área</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Susana</td>
+<td align="right">Clínica</td>
+</tr>
+<tr class="even">
+<td align="left">Marcos</td>
+<td align="right">Laboral</td>
+</tr>
+<tr class="odd">
+<td align="left">Daniel</td>
+<td align="right">Clínica</td>
+</tr>
+<tr class="even">
+<td align="left">Federico</td>
+<td align="right">Social</td>
+</tr>
+<tr class="odd">
+<td align="left">María</td>
+<td align="right">Clínica</td>
+</tr>
+<tr class="even">
+<td align="left">Pedro</td>
+<td align="right">Educacional</td>
+</tr>
+<tr class="odd">
+<td align="left">Eugenia</td>
+<td align="right">Clínica</td>
+</tr>
+<tr class="even">
+<td align="left">Mabel</td>
+<td align="right">Educacional</td>
+</tr>
+<tr class="odd">
+<td align="left">Francisco</td>
+<td align="right">Laboral</td>
+</tr>
+</tbody>
+</table>
+<p>La lista los individualiza, los reconoce por su nombre, indica qué área le gustaría a cada uno y solo eso, no se sabe la edad de cada uno, ni sus intereses políticos ni el deporte favorito, solo se seleccionó como pertinente para este ejemplo, el área en que le gustaría trabajar. Si ahora se transforma esa lista en una tabla:</p>
+<table>
+<caption><span id="tab:unnamed-chunk-3">Tabla 1.2: </span>Área de trabajo preferida.</caption>
+<thead>
+<tr class="header">
+<th align="left">Área</th>
+<th align="right">Casos</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Clínica</td>
+<td align="right">4</td>
+</tr>
+<tr class="even">
+<td align="left">Educacional</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="left">Laboral</td>
+<td align="right">2</td>
+</tr>
+<tr class="even">
+<td align="left">Social</td>
+<td align="right">1</td>
+</tr>
+</tbody>
+</table>
+<p>Se lee que Clínica es un área preferida por cuatro alumnos, Laboral y Educacional por dos y a Social solo la menciona uno. Las personas desaparecieron, ya no hay nombres, hemos abstraído para referirnos al área preferida, no a los alumnos. En la tabla se ve que lo más frecuente es que se prefiera Clínica, y que Social es poco frecuente. Se pasó de la lista de individuos a la tabla de valores. Nos despegamos de los casos a fin de buscar la regularidad en el conjunto. Más adelante diremos que se ha pasado de la matriz de datos a la distribución de frecuencias, que constituye una reducción o un primer resumen de la información disponible.</p>
+<p>Consideremos el siguiente cuestionario, que se aplicó en 2019 a personas con edades 18 y 35 años.</p>
+<div class="figure" style="text-align: center"><span id="fig:cuestionario"></span>
+<img src="imagenes/cuestionario2019_01.png" alt="Cuestionario 2019"  />
+<p class="caption">
+Figura 1.1: Cuestionario 2019
+</p>
+</div>
+<div class="figure" style="text-align: center"><span id="fig:cuestionario"></span>
+<img src="imagenes/cuestionario2019_02.png" alt="Cuestionario 2019"  />
+<p class="caption">
+Figura 1.1: Cuestionario 2019
+</p>
+</div>
+<p>Este instrumento de producción de datos que es el cuestionario, se dirige a una población definida: personas entre 18 y 35 años. En él se solicita información sobre un conjunto seleccionado de características; los ítems numerados desde P1 hasta P16. Se trata de unos pocos aspectos de cada persona los que interesan para esta investigación; no se tiene en cuenta, por ejemplo la opinión política de quienes responden, ni su estatura o la región en que viven. Estas últimas y muchas más son características de estas personas, pero están fuera del alcance de la investigación. Esto muestra a qué nos referimos con que la información seleccionada constituye un recorte, es una parcialización de los individuos que responden, en la que se eligen solo los aspectos que son de interés para una investigación particular.</p>
+<p>El cuestionario tiene 16 ítems, cada persona que lo responde marca una sola de las opciones indicadas en cada ítem. Una vez completados los cuestionarios, la información está “en bruto” y es necesario ordenarla para poder tener una visión de conjunto. Eso se logra organizando los datos recogidos en la <em>matriz de datos</em> que tiene, para el cuestionario mostrado, la siguiente forma:</p>
+<!-- JCR: Que se desea hacer con esto? -->
+<pre><code>## 
+##    1    2    3    4 
+##  974 2692  456  422</code></pre>
+<pre><code>## 
+##    1    2    3    4 
+## 1610  479  581  254</code></pre>
+<pre><code>##    sexo edad acceso.redes red.usada red.otra tiempo.red         con.q.vive
+## 1 mujer   19           si Instagram     &lt;NA&gt;        120          con.otres
+## 2 varón   29           si  Facebook     &lt;NA&gt;         90          con.otres
+## 3 mujer   31           si  Facebook     &lt;NA&gt;         30         flia.nueva
+## 4 mujer   28           si      Otra    gmail         30         flia.nueva
+## 5 mujer   22           si Instagram     &lt;NA&gt;        120 hermanes.o.amigues
+## 6 varón   22           si  Facebook     &lt;NA&gt;        240               solo
+##   relacion.otros     q.aporta q.aporta.amigos edad.partida razon.partida
+## 1           &lt;NA&gt; entre.amigos               2           19       estudio
+## 2          primo entre.amigos               1           26         ganas
+## 3           &lt;NA&gt;   flia.nueva              NA           21         otras
+## 4           &lt;NA&gt;   flia.nueva              NA           18         ganas
+## 5           &lt;NA&gt; entre.amigos               2           18       estudio
+## 6           &lt;NA&gt;     el.mismo              NA           18       estudio
+##   razon.partida.otra calidad.sueño preocupacion golpeo robo cuanto.da
+## 1               &lt;NA&gt;             4            4      1    1        30
+## 2               &lt;NA&gt;             8            2      1    2        50
+## 3     problemas flia             6            7      1    1        30
+## 4               &lt;NA&gt;             9            5      1    2       100
+## 5               &lt;NA&gt;             6            8      1    4       100
+## 6               &lt;NA&gt;             6            5      3    2        75
+##   comision
+## 1        5
+## 2        5
+## 3        5
+## 4        5
+## 5        5
+## 6        5</code></pre>
+<p>Este ordenamiento de la información tiene filas (horizontales) y columnas (verticales), en esta imagen solo se ven las primeras filas de la matriz, y además, porque no cabe horizontalmente, está subdividida en cuatro bloques de variables (columnas). Cada fila es un individuo y cada columna es un ítem. La primera fila (que continúa en los cuatro bloques) muestra los nombres de los ítems del cuestionario y las seis filas mostradas, las respuestas dadas por los encuestados. Así, la persona que respondió al primer cuestionario es una mujer, que tiene 19 años, tiene acceso a redes sociales y la que más usa es Instagram, como no respodió “otra”, en la columna siguiente tiene NA, que indica que no hay dato allí (Not Available), vive “con otres” y aportan entre amigos y así sigue toda la fila correspondiente a esa persona.</p>
+<p>La matriz de datos contiene toda la información que será insumo de los análisis posteriores, luego será necesario definir qué es cada elemento que la constituye.</p>
+<table>
+<colgroup>
+<col width="100%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="center">La matriz de datos es un arreglo en el que cada fila (horizontal) representa un individuo del cual proviene la información, cada columna (vertical) es un aspecto de los individuos, que se ha seleccionado para observar, y cada celda es el valor que tiene el individuo de la fila en el aspecto de la columna correspondiente.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="los-individuos" class="section level2">
+<h2><span class="header-section-number">1.2</span> Los individuos</h2>
+<p>Hemos dicho que cada fila representa un caso, un individuo al que se observa. Este individuo puede ser una persona como en este ejemplo, pero también una entidad colectiva: un hogar, una empresa, una escuela. Cada una de ellas se denomina <em>unidad de análisis</em>.</p>
+<p>Es importante que las unidades de análisis estén claras para la interpretación de los resultados. Por ejemplo, si se afirma que “las personas de menores recursos acceden menos frecuentemente a la educación superior”, hablamos de personas, y éstas son las unidades de análisis. Y es muy diferente a decir que “en los países más pobres, es menor la proporción de personas que acceden a la educación superior”, porque aquí las unidades de análisis son los países.</p>
+<!-- No logro centrar este texto, -> <- no anda-->
+<!-- JCR: Asi esta bien? -->
+<table>
+<colgroup>
+<col width="100%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="center">Las <strong>unidades de análisis</strong> son los entes individuales acerca de los que se analizan sus cualidades.</td>
+</tr>
+</tbody>
+</table>
+<p>Si las unidades de análisis fuesen escuelas, sus características, dependiendo de la investigación de que se trate, podrían ser: dependencia (estatal o privada), nivel (primaria, secundaria, ambas), cantidad de alumnos, turnos (mañana, tarde, ambos), etc. Si se tratara de hogares, puede observarse: cantidad de miembros, composición, actividad económica, etc.</p>
+</div>
+<div id="las-variables" class="section level2">
+<h2><span class="header-section-number">1.3</span> Las variables</h2>
+<p>Cada columna de la matriz de datos es un ítem del cuestionario, es decir un aspecto seleccionado de las unidades de análisis sobre el que se llama la atención. Esos aspectos se denominan variables. Así, el sexo es una variable, como lo es con quién vive, cuánto daría en el experimento, etc. Cada ítem del cuestionario se constituye en una variable, a veces su expresión interrogativa en el cuestionario se transforma en algo más abreviado, como: “¿Cuánto tiempo (en minutos) estuviste conectado/a a las redes sociales en el día de ayer?” se vuela “tiempo.red”. Las variables son los aspectos de los individuos que se someterán al análisis. Su cualidad central es la que le da nombre: la de variar.</p>
+<table>
+<colgroup>
+<col width="100%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="center">Una <strong>variable</strong> es una característica de las unidades de análisis que puede asumir diferentes valores en cada una de ellas.</td>
+</tr>
+</tbody>
+</table>
+<p>Cada vez que se haga referencia a una variable, debe conocerse cuál es la unidad de análisis a la que se refiere, si no resulta claro, se debe indicar. Es diferente afirmar que un país es rico que decir que sus habitantes lo son.</p>
+</div>
+<div id="las-categorías" class="section level2">
+<h2><span class="header-section-number">1.4</span> Las categorías</h2>
+<p>El cuerpo de la matriz de datos tiene números que corresponden a las respuestas que cada respondente dio a cada ítem. El primer caso tiene un número 2 en la primera columna, que quiere decir que esa persona respondió que es una mujer. En esta pregunta, se podía elegir entre dos respuestas diferentes (varón, mujer), en el lenguaje que estamos introduciendo, diremos que esta variable (sexo) puede asumir dos <em>categorías</em> diferentes. Para el primer caso, la variable sexo asume la categoría 2. Las categorías son las “posibilidades” que tiene una variable, dentro de las cuales a todas las unidades de análisis les corresponde una y solo una.</p>
+<table>
+<tbody>
+<tr class="odd">
+<td align="center">Las <strong>categorías</strong> de una variable son los valores que ésta puede asumir.</td>
+</tr>
+</tbody>
+</table>
+<p>Cada vez que se define una variable -es decir cada vez que se selecciona un aspecto de las unidades de análisis para observar-, debe indicarse también el conjunto de categorías que le corresponden, aunque a veces esto está implícito. Si la variable es nivel de escolaridad alcanzado, pueden considerarse las siguientes categorías: ninguno, primario incompleto, primario completo, secundario incompleto, secundario completo, terciario o universitario incompleto, terciario o universitario completo y postgrado. Si tratamos con la variable edad, sus categorías son valores numéricos, entre cero y un máximo de años que se fija según el caso.</p>
+<p>Hay dos propiedades que debemos asegurar que cumplan las categorías que construyamos. La primera se llama <em>exclusión mutua</em>, es decir que cada categoría excluya a todas las demás. Dicho de otra manera, si a un individuo le corresponde una categoría, entonces sabemos que no le corresponde ninguna otra. Si analizamos hogares y a cada persona le preguntamos por su parentesco, sin indicar con quién, tendremos una categorización defectuosa, porque una persona del hogar puede al mismo tiempo ser hijo y hermano, o hijo y padre, si conviven tres generaciones. En cualquiera de los dos casos, a una misma persona le corresponderían dos categorías y se viola el requisito de exclusión mutua. Esto se resuelve estableciendo respecto de quién se declara el parentesco, y todos los integrantes del hogar lo refieren a la misma persona<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>.</p>
+<p>Al analizar los tipos de lectura preferida, nos equivocaríamos si los categorizáramos como de ficción, de misterio, policiales, románticas, biográficas, de aventuras; ya que la categoría ficción puede incluir misterio, policiales, novelas románticas o de aventuras.</p>
+<p>También se comete ese error si se clasifica a las escuelas como céntricas, parroquiales, urbanas y rurales. Dado que una escuela puede ser al mismo tiempo parroquial y urbana. Es necesario separar, para que quede claro, lo que interesa en el análisis: si lo que queremos distinguir son escuelas céntricas de barriales, entonces la variable será la ubicación geográfica y no importa si la escuela depende de una iglesia o del estado; es decir, identificar la variable y luego sus categorías.</p>
+<table>
+<colgroup>
+<col width="100%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="center">Las categorías de una variable son <strong>mutuamente excluyentes</strong> si a cada individuo le corresponde no más de una categoría.</td>
+</tr>
+</tbody>
+</table>
+<p>El segundo requisito que solicitaremos a las categorías de una variable es que agoten todas las posibilidades de variación, es decir, que todos los valores posibles estén contemplados. Esta cualidad se llama <em>exhaustividad</em>.</p>
+<p>Veamos qué sucede si no respetamos este requisito. Si evaluamos la variable situación conyugal y ofrecemos como categorías: casado, soltero, divorciado, viudo; las personas que estén viviendo juntas sin estar casadas no encuentran un lugar donde ubicarse, como tampoco lo encuentran quienes están separados sin haberse divorciado. Para resolver esto es necesario, o bien incluir estas categorías explícitamente: casado, unido, soltero, separado, divorciado, viudo; ampliando así el número de categorías, o bien fusionarlas con las existentes: casado o unido, soltero, separado o divorciado, viudo.
+Con la edad, las categorías son valores numéricos que pueden ir del cero hasta el un máximo, pero ¿dónde fijarlo? Si se eligiera un límite como 100 años, algunas personas quedarían fuera, quizás sean pocas, pero no pueden quedar sin categoría donde incluirse. Por lo demás, puede haber solo una persona de 103 años, otra de 105, por lo que no se justifica seguir extendiendo categorías. Una solución frecuente es la de tomar una categoría “abierta final”, fijando como última categoría 100 y más, e incluir allí a todas las personas que declaren una edad de 100 años o superior. Puede verse que esta opción conlleva una pérdida de información, ya que no sabemos la edad exacta de quienes se ubican en esa categoría. Aceptamos esa pérdida a cambio de reducir el número de categorías de la variable, luego volveremos sobre eso.</p>
+<p>Algunas preguntas de cuestionarios, luego de un conjunto de opciones para responder, incluyen una categoría que dice “Otro<span class="math inline">\(\ldots\)</span> especificar”. Se trata de casos de categorizaciones en las que no se sabe de antemano cuáles son todas las respuestas posibles; son frecuentes en las encuestas de opinión. Por ejemplo, si alguien declara que en las próximas elecciones va a votar en blanco y preguntamos por qué, podemos conocer de antemano algunas de las respuestas posibles, pero debemos dejar espacio para que los encuestados expresen razones que no habíamos previsto. De este modo aseguramos la exhaustividad de las categorías. En el cuestionario del ejemplo, la P7 tiene, en la opción 5, la posibilidad de otras alternativas de convivencia, aparte de las ofrecidas.</p>
+<table>
+<colgroup>
+<col width="100%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="center">Las categorías de una variable son <strong>exhaustivas</strong> si todo individuo tiene alguna categoría que le corresponda.</td>
+</tr>
+</tbody>
+</table>
+<p>En algunas situaciones, el número de categorías de una variable es parte de la decisión del investigador. Hay casos en que las categorías están establecidas de antemano: por ejemplo, en la variable sexo se tiende a usar como categorías las de varón y mujer; sin embargo, si estamos frente a un estudio que trate precisamente sobre orientación sexual de las personas, deberá considerarse un espectro más amplio de categorías, o bien ofrecer preguntas abiertas, sin establecer categorías de antemano. Como ha sido el caso de P2 en el cuestionario, que no ha sido cargada en la matriz de datos, porque requiere una codificación posterior.</p>
+<p>Como se señaló,en la edad de las personas suele elegirse terminar las categorías con “100 y más”. De hecho, también se podrían mantener las edades exactas hasta 109 años y cerrar con 110 y más. Qué se elija depende de cuánta información y cuánta claridad se decida que tenga la clasificación; lamentablemente, no es posible lograr al mismo tiempo el máximo de información y de claridad en la presentación<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a>.</p>
+</div>
+<div id="los-símbolos-numéricos" class="section level2">
+<h2><span class="header-section-number">1.5</span> Los símbolos numéricos</h2>
+<p>Las categorías pueden tener diferente naturaleza: algunas se expresan con números (como la edad) y otras con palabras (como la carrera que cursa), otras en graduaciones (como el grado de acuerdo); sin embargo es muy común representar con números a las categorías, aun cuando lo que se observe no sea numérico. Así, en la variable nivel de educación, pueden codificarse las categorías de la siguiente manera:</p>
+<!-- JCR: Esto debia ser una tabla, cierto? -->
+<table>
+<caption><span id="tab:unnamed-chunk-5">Tabla 1.3: </span>Nivel de educación alcanzado.</caption>
+<thead>
+<tr class="header">
+<th align="center">Código</th>
+<th align="left">Máximo nivel de educación formal alcanzado</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">1</td>
+<td align="left">ninguno</td>
+</tr>
+<tr class="even">
+<td align="center">2</td>
+<td align="left">primario incompleto</td>
+</tr>
+<tr class="odd">
+<td align="center">3</td>
+<td align="left">primario completo</td>
+</tr>
+<tr class="even">
+<td align="center">4</td>
+<td align="left">secundario incompleto</td>
+</tr>
+<tr class="odd">
+<td align="center">5</td>
+<td align="left">secundario completo</td>
+</tr>
+<tr class="even">
+<td align="center">6</td>
+<td align="left">terciario o universitario incompleto</td>
+</tr>
+<tr class="odd">
+<td align="center">7</td>
+<td align="left">terciario o universitario completo</td>
+</tr>
+<tr class="even">
+<td align="center">8</td>
+<td align="left">postgrado</td>
+</tr>
+</tbody>
+</table>
+<p>Hemos usado números para referirnos a las categorías a fin de simplificar la notación.</p>
+<p>De manera equivalente podemos codificar las categorías de otras variables:</p>
+<table>
+<caption><span id="tab:unnamed-chunk-6">Tabla 1.4: </span>Distribución por sexos.</caption>
+<thead>
+<tr class="header">
+<th align="center">Código</th>
+<th align="center">Sexo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">1</td>
+<td align="center">Varón</td>
+</tr>
+<tr class="even">
+<td align="center">2</td>
+<td align="center">Mujer</td>
+</tr>
+</tbody>
+</table>
+<table>
+<caption><span id="tab:unnamed-chunk-7">Tabla 1.5: </span>Satisfacción con el progreso en la carrera.</caption>
+<thead>
+<tr class="header">
+<th align="center">Código</th>
+<th align="left">Estoy muy satisfecho con el modo en que he progresado en mi carrera</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">1</td>
+<td align="left">Completamente en desacuerdo</td>
+</tr>
+<tr class="even">
+<td align="center">2</td>
+<td align="left">En desacuerdo</td>
+</tr>
+<tr class="odd">
+<td align="center">3</td>
+<td align="left">Indiferente</td>
+</tr>
+<tr class="even">
+<td align="center">4</td>
+<td align="left">De acuerdo</td>
+</tr>
+<tr class="odd">
+<td align="center">5</td>
+<td align="left">Completamente de acuerdo</td>
+</tr>
+</tbody>
+</table>
+<p>En las variables cuyas categorías son numéricas, no es necesario hacer ninguna codificación. Así, la edad quedará expresada de manera numérica directamente por la cantidad de años, como sucede con la cantidad de materias aprobadas. En estos casos, la exclusión mutua y la exhaustividad se cumplen.</p>
+</div>
+<div id="la-medición" class="section level2">
+<h2><span class="header-section-number">1.6</span> La medición</h2>
+<p>En Ciencias Sociales tiene plena vigencia el debate acerca de las posibilidades de medición de los fenómenos que se estudian. Buena parte de la discusión gira en torno a una definición de medición, ya que según qué sea lo que se considere como tal, se tratará de una medición o no. La posición más tradicional corresponde a lo que el sentido común trata como medición: la estatura, las distancias, el peso, etc. Esta definición demanda que los números que codifican a las categorías tengan algunas propiedades para considerarlos como mediciones. Se conoce como teoría clásica de la medición, y desde ese punto de vista sería muy difícil realizar mediciones sobre las variables que manejamos en Ciencias Sociales. Una definición menos restrictiva es la que propuso <span class="citation">Stevens (<a href="#ref-Stevens1946">1946</a>)</span>, según la cual:</p>
+<table>
+<colgroup>
+<col width="100%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="center">“medir es asignar números a los objetos según cierta regla, de manera que los números asignados en la medición, no representan propiamente cantidades, sino relaciones”.</td>
+</tr>
+</tbody>
+</table>
+<p>Esta última definición, basada en la teoría representacional de la medición, es la que adoptaremos en este curso aunque la discusión sigue vigente. Desde esta definición, evaluar una variable para una unidad de análisis dada, equivale a medir esa unidad de análisis en el aspecto que la variable expresa.</p>
+<p>Aun cuando se adopte una definición amplia de lo que es medir, podemos intuir que no se mide una opinión del mismo modo que se mide el salario o la estatura. Esto sugiere que, dentro de las variables de las que hemos hablado hasta aquí habrá que reconocer diferencias, y estas diferencias vendrán dadas por el significado que tengan los números que asignamos a las categorías, es decir, por las reglas que ligan los números con lo que se observa.</p>
+<table>
+<colgroup>
+<col width="100%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="center">El <strong>nivel de medición</strong> de una variable está determinado por el significado que tengan los símbolos numéricos que se asignan a las categorías.</td>
+</tr>
+</tbody>
+</table>
+<p>Existe una graduación en el significado que tienen los números, y por eso se habla de niveles, que pueden ser más altos o más bajos. En la variable sexo, haber elegido 1 para varones y 2 para mujeres es de una arbitrariedad total (de la que alguien podría quejarse). Si la codificación hubiese sido al revés, habría estado igual de bien, y también habría estado bien usar el número 25 para representar a los varones y el 38 para las mujeres, aunque esto resulta un poco incómodo. Por el contrario, en la variable edad, asignar el número 20 a quien tiene 20 años, parece totalmente “natural” ¿qué otro número podríamos haber asignado? ¿Qué sucede con el nivel de educación? En el ejemplo elegimos numerar las categorías del 1 al 8; habría habido otras opciones, por ejemplo usar solo números pares o números impares u otra secuencia arbitraria, pero algo importante es que cualquier secuencia que se elija debe respetar el orden de las categorías de la variable, por lo que los números deben reflejarlo; no habría sido correcto usar números que no vayan aumentando, como lo hacen los niveles de educación.</p>
+<p>Así entonces, hay grados diferentes en la libertad que existe para asignar los números a las categorías. Esas diferencias distinguen los niveles de medición de las variables.</p>
+<div id="niveles-de-medición" class="section level3">
+<h3><span class="header-section-number">1.6.1</span> Niveles de medición</h3>
+<p>Según la mayor o menor arbitrariedad que exista en la relación que liga los números a las categorías, hablaremos de diferentes niveles de medición: cuánta más restricción haya en la asignación de los números a las categorías, más alto será el nivel de medición de las variables. Si los números se asignan de manera totalmente arbitraria, el nivel de medición es el más bajo de todos y se llama <em>nivel nominal</em> (como en la variable sexo); si los números deben respetar el orden de las categorías (como en la educación), la variable se llama de <em>nivel ordinal</em>. Por ahora, nos detenemos en estos dos niveles.</p>
+<div id="el-nivel-nominal" class="section level4">
+<h4><span class="header-section-number">1.6.1.1</span> El nivel nominal</h4>
+<p>Es el nivel más elemental de medición: las variables de este nivel tienen categorías que son solo nombres (de allí que se llamen nominales). La asignación de códigos numéricos cumple la función de designar las categorías, es decir, de distinguirlas una de otras. Sexo, área de especialización preferida (UA = estudiantes de Psicología), carrera que cursa (UA = estudiantes universitarios); cuyas codificaciones podrían ser:</p>
+<table>
+<caption><span id="tab:nivelNomCod">Tabla 1.6: </span>Ejemplos de codificación de variables nominales.</caption>
+<thead>
+<tr class="header">
+<th align="center">Código</th>
+<th align="left">Carrera</th>
+<th align="center">Código</th>
+<th align="left">Área</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">1</td>
+<td align="left">Psicología</td>
+<td align="center">1</td>
+<td align="left">Clínica</td>
+</tr>
+<tr class="even">
+<td align="center">2</td>
+<td align="left">Filosofía</td>
+<td align="center">2</td>
+<td align="left">Educacional</td>
+</tr>
+<tr class="odd">
+<td align="center">3</td>
+<td align="left">Medicina</td>
+<td align="center">3</td>
+<td align="left">Jurídica</td>
+</tr>
+<tr class="even">
+<td align="center">4</td>
+<td align="left">Otras</td>
+<td align="center">4</td>
+<td align="left">Laboral</td>
+</tr>
+<tr class="odd">
+<td align="center"></td>
+<td align="left"></td>
+<td align="center">5</td>
+<td align="left">Sanitaria</td>
+</tr>
+<tr class="even">
+<td align="center"></td>
+<td align="left"></td>
+<td align="center">6</td>
+<td align="left">Social</td>
+</tr>
+<tr class="odd">
+<td align="center"></td>
+<td align="left"></td>
+<td align="center">7</td>
+<td align="left">Experimental</td>
+</tr>
+<tr class="even">
+<td align="center"></td>
+<td align="left"></td>
+<td align="center">8</td>
+<td align="left">Otra</td>
+</tr>
+</tbody>
+</table>
+<!-- JCR: Poner 3 renglones mas arriba -->
+<p>Por comodidad, se empieza en el 1 y desde allí correlativamente, pero no hay ninguna prohibición para codificar con cualquier conjunto de números. Aun con esta amplia libertad para elegir los códigos numéricos, hay algo que no se puede hacer: no es válido usar el mismo número más de una vez. Si hiciéramos esto, confundiríamos las categorías que corresponden a cada individuo. Así, a un estudiante de Psicología, le asignamos el valor 1 en la variable “carrera”, y no podría usarse ese mismo número en la misma variable también para alguien que estudia Medicina. Diremos que la condición que deben cumplir los números en este nivel de medición es que: a categorías diferentes correspondan números distintos.</p>
+<p>Entonces, en este nivel de medición a cada categoría puede asignarse, de manera arbitraria, uno y solo un número. Esta forma de asignar los valores numéricos solo implica que éstos designan las categorías (que las distinguen a una de otra), por eso, no es posible tratarlos como números en cuanto a sus propiedades aritméticas. En particular no puede sumárselos: nada puede significar que se sumen los números 1 y 2 que codifican a las carreras de Psicología y Filosofía.</p>
+<table>
+<colgroup>
+<col width="100%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="center">Una variable está medida a nivel <strong>nominal</strong> si los números que representan cada categoría son asignados de manera arbitraria y solo cumplen con la función de designar y distinguir categorías diferentes.</td>
+</tr>
+</tbody>
+</table>
+<p>Para unidades de análisis medidas a través de una variable de nivel nominal, es posible saber si corresponden a la misma categoría o a una diferente, es decir si tienen la misma cualidad (o atributo) o una diferente.</p>
+<!-- PROBLEMA CON LAS REFERENCIAS, ESAS TABLAS ESTÁN HECHAS A MANO, ¿SE PODRÁN REFERENCIAR? -->
+<!-- JCR: Creo que eso es lo que querias. -->
+<p>En la tabla <a href="los-datos-estadísticos.html#tab:nivelNomCod">1.6</a> si a un alumno le corresponde el número 1 y a otro también, solo podemos decir que coinciden en esta variable, ambos estudian la misma carrera (Psicología), si a uno le corresponde el 1 y a otro el 3, sabremos que el primero estudia Psicología y el otro Medicina. El hecho que el número 3 sea más grande que el 1, no tiene ninguna interpretación en este nivel de medición, no puede decirse que Psicología sea menos que Medicina. Como tampoco vale que 3 sea el triple de 1.</p>
+<p>Si 1 y 2 son dos categorías de una variable medida a nivel nominal, el único tipo de relación que puede establecerse entre ellas es <span class="math inline">\(1\neq2\)</span>, es decir que 1 es diferente de 2.</p>
+<p>La regla de transformación de una escala nominal en otra es que cualquier número puede cambiarse por cualquiera a condición de no repetir ninguno. La escala nominal 1, 2, 3, 4 puede cambiarse por la 5, 8, 4, 2. Aunque no es obligatorio, en la práctica, lo más frecuente es usar los primeros números naturales para codificar las categorías.</p>
+</div>
+<div id="el-nivel-ordinal" class="section level4">
+<h4><span class="header-section-number">1.6.1.2</span> El nivel ordinal</h4>
+<p>Aquí subimos un nivel, ya que a los números que solo tienen la propiedad de designar en las variables nominales, se agrega otra: la de reflejar el orden que existe entre las categorías.
+Simplemente ahora se trata de variables cuyas categorías indican alguna cualidad de las unidades de análisis que crece en una dirección. Eso equivale a decir que se pueden hacer entre ellas, juicios de orden, tales como una categoría es mayor que otra, una categoría es menor que otra. El grado de escolarización cumple con ese requisito: efectivamente, el “primario incompleto” es un nivel de estudios superior a “ninguno”, pero inferior a “primario completo”.
+Los valores numéricos que representan las categorías rescatan ahora una propiedad adicional: el orden. Además de poder distinguir si dos sujetos tienen la misma característica analizada o una distinta como en el nivel nominal, ahora también podemos saber si un individuo tiene esa característica en mayor o menor grado. Así como “ninguno” es menor que “primario incompleto”, los números correspondientes cumplen con que 1 es menor que 2 y resulta más sencillo escribirlo como <span class="math inline">\(1 &lt; 2\)</span>.</p>
+<table>
+<colgroup>
+<col width="100%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="center">Una variable está medida a nivel <strong>ordinal</strong> si los números que representan cada categoría son asignados de manera que respeten el orden según aumenta o disminuye la característica que la variable mide.</td>
+</tr>
+</tbody>
+</table>
+<p>Estos números designan las categorías y son expresión de la jerarquía que hay entre ellas. Otro ejemplos de variable medida a nivel ordinal y su correspondiente codificación numérica es la pregunta ¿Alguna vez en tu vida golpeaste a alguien tan fuerte que necesitó atención médica u hospitalaria? (P14) del cuestionario, que fue codificada de manera creciente con la intensidad:</p>
+<table>
+<caption><span id="tab:unnamed-chunk-9">Tabla 1.7: </span>Ejemplo de codificación de una variable ordinal.</caption>
+<thead>
+<tr class="header">
+<th align="center">Código</th>
+<th align="left">P14</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">1.</td>
+<td align="left">Nunca</td>
+</tr>
+<tr class="even">
+<td align="center">2.</td>
+<td align="left">Una vez</td>
+</tr>
+<tr class="odd">
+<td align="center">3.</td>
+<td align="left">Dos o tres veces</td>
+</tr>
+<tr class="even">
+<td align="center">4.</td>
+<td align="left">De cuatro a seis veces</td>
+</tr>
+<tr class="odd">
+<td align="center">5.</td>
+<td align="left">Más de seis veces</td>
+</tr>
+</tbody>
+</table>
+<p>De aquí en adelante ya no usaremos una columna especial de la tabla para indicar el código, simplemente lo señalamos junto al nombre de la categoría, encabezado con el nombre abreviado de la variable:</p>
+<table>
+<caption><span id="tab:unnamed-chunk-10">Tabla 1.8: </span>Ejemplo de una variable ordinal codificada.</caption>
+<thead>
+<tr class="header">
+<th align="left">Golpeo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">1. Nunca</td>
+</tr>
+<tr class="even">
+<td align="left">2. Una vez</td>
+</tr>
+<tr class="odd">
+<td align="left">3. Dos o tres veces</td>
+</tr>
+<tr class="even">
+<td align="left">4. De cuatro a seis veces</td>
+</tr>
+<tr class="odd">
+<td align="left">5. Más de seis veces</td>
+</tr>
+</tbody>
+</table>
+<p>Acerca del significado de los valores numéricos en las variables de nivel ordinal, si bien hemos agregado el orden, aun no es posible hacer operaciones con ellos. Es decir, no es posible sumar dos valores y que la suma tenga algún significado. Por ejemplo, en la última variable, no es cierto que <span class="math inline">\(3 = 2+1\)</span>, porque no es cierto que “dos o tres veces” sea lo mismo que “nunca” más “una vez”. Tampoco es válido restarlos, veamos que la diferencia entre 1 y 2 es 1 y la diferencia entre 4 y 5 también es 1, pero eso no tiene un correlato entre las categorías: no es cierto que haya la misma distancia entre “nunca” y “una vez” que entre “de cuatro a seis” y “más de seis”, simplemente porque no tenemos definida la idea de <em>distancia</em> para esta variable.</p>
+<p>Si 1 y 2 son dos categorías de una variable medida a nivel ordinal, se pueden establecer las relaciones: <span class="math inline">\(1 \neq 2\)</span> y <span class="math inline">\(1&lt;2\)</span>, es decir que, uno es diferente que dos y que uno es menor que dos. A la relación de distinción que existe entre categorías de la escala nominal se agrega la relación de orden.</p>
+<p>La regla de transformación de una escala ordinal en otra consiste en cambiar los números por cualquiera, a condición que no se repita ninguno (como en la nominal) y además, que sigan el mismo orden. La escala ordinal 1, 2, 3, 4 puede cambiarse por la 5, 8, 15, 23. Nuevamente, esto es poco común y suelen usarse números correlativos.</p>
+<p>Los dos niveles (o escalas) de medición siguientes se llaman intervalares y proporcionales y usan las codificaciones numéricas con un significado un poco diferente al visto hasta aquí. La principal diferencia es que el grado de arbitrariedad para asignar los números se reduce sustancialmente. En primer lugar, las escalas intervalares conservan las distancias entre los valores. En las variables medidas a nivel proporcional, además de conservarse la distancia, se verifica la proporcionalidad de los valores: es decir que, recién en estas escalas, cuatro será el doble de dos.</p>
+</div>
+<div id="el-nivel-intervalar" class="section level4">
+<h4><span class="header-section-number">1.6.1.3</span> El nivel intervalar</h4>
+<p>Veamos un ejemplo antes de definir este nivel. Cuando decimos que estamos en el año 2020, hacemos implícitamente una afirmación que supone una medición del tiempo transcurrido desde un determinado evento, cuya elección no es única. En cierto modo decimos “han transcurrido 2020 años desde el momento que se acordó usar como inicio de este calendario”. En culturas no cristianas, el origen en la medición de los tiempos puede ubicarse en otro momento y, en consecuencia, el año actual es otro. En el calendario judío, por ejemplo, el presente es el año 5780. Hay entonces cierto grado de arbitrariedad en la ubicación del punto desde donde empezar a contar los años. Lo que podría llamarse el “año cero”, no es necesariamente el mismo. Sin embargo, el tiempo transcurrido entre 1975 y 2005 es de treinta años, como lo es el tiempo transcurrido entre 5735 y 5765. Es decir que la transformación que lleva los años de un calendario al otro, conserva las distancias. Independientemente de la escala con que hayamos medido el año, la diferencia entre dos años, se mantiene constante. Eso sucede porque las dos escalas (en este ejemplo, la medición del tiempo según las tradiciones cristiana y judía) se distinguen solo en la elección del origen (la posición del cero) pero no en la definición de lo que es un año. Para ambas escalas un año corresponde a una vuelta de la tierra al sol, por lo que la unidad de medición es la misma<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a>. Si alguien tiene 30 años en el calendario cristiano, también tiene 30 años con el calendario judío; porque, aunque tanto el año de nacimiento como el actual sean diferentes en los dos calendarios, la diferencia (el tiempo transcurrido) entre las dos fechas es la misma. Ubicar el cero en un momento (en un determinado hecho histórico) o en otro es una elección; ese cero no indica la “ausencia de tiempo”. En este caso, cero no quiere decir “nada”, sino “origen elegido”.</p>
+<p>Una forma de medir la inteligencia es la de observar cuántos problemas de una serie de dificultad creciente es cada uno capaz de resolver correctamente. Pero, ¿podría decirse que quien no resuelve ninguno de ellos tiene inteligencia cero?, esto es claramente incorrecto, porque la ubicación del cero no implica la ausencia de lo que estamos midiendo (ausencia de inteligencia en este caso).</p>
+<p>Las escalas intervalares, mantienen las propiedades de las escalas ordinales y nominales, es decir, los números designan categorías y permiten ordenarlas; pero además permiten decir a qué distancia está una de otra, porque cada categoría se expresa también en sentido cuantitativo. La medición intervalar implica construir una escala en la que las categorías están proporcionalmente distanciadas entre sí. Esto permite especificar la distancia que separa a cada categoría de las demás. Este nivel de medición requiere que se establezca algún tipo de unidad de medida que pueda ser considerado por todos como una norma común y que sea repetible, esto es, que se pueda aplicar reiteradamente a los mismos individuos produciendo los mismos resultados.</p>
+<p>La medición de los rendimientos individuales por medio de pruebas suele expresarse en puntajes que provienen del tiempo requerido para realizar una determinada tarea o de la cantidad de trabajo realizado. En este tipo de prueba, es común que los puntajes partan de un mínimo establecido (por ejemplo el mínimo tiempo posible de ejecución o la mínima cantidad de tareas que una persona puede realizar en una prueba) y esto constituye el puntaje mínimo o la categoría más baja. Los puntajes de las pruebas mentales varían de acuerdo con el rendimiento y un mayor rendimiento siempre significará un mayor puntaje. Por ejemplo, el manual original del Inventario de Depresión de Beck-II (<span class="citation">Upton (<a href="#ref-Upton2013">2013</a>)</span>) establece niveles (ordinales) para los puntajes (intervalares) que resultan de la aplicación del instrumento:</p>
+<table>
+<caption><span id="tab:unnamed-chunk-11">Tabla 1.9: </span>Ejemplo de codificación de rangos de puntajes para una variable intervalar.</caption>
+<thead>
+<tr class="header">
+<th align="left">Puntaje en la escala</th>
+<th align="left">Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">0 - 13</td>
+<td align="left">depresión mínima</td>
+</tr>
+<tr class="even">
+<td align="left">14 - 19</td>
+<td align="left">depresión leve</td>
+</tr>
+<tr class="odd">
+<td align="left">20 - 28</td>
+<td align="left">depresión moderada</td>
+</tr>
+<tr class="even">
+<td align="left">29 - 63</td>
+<td align="left">depresión grave</td>
+</tr>
+</tbody>
+</table>
+<p>De este modo se ha bajado el nivel de medición, de intervalar a ordinal.</p>
+<p>A nivel intervalar, ya es posible expresar la regla de transformación de manera formal; así, si x e y representan la medición del mismo atributo en diferentes escalas, puede obtenerse y a partir de x a través de la siguiente operación:</p>
+<p><span class="math display">\[y = b_0 + b_1*x\]</span></p>
+<p>Se usan los símbolos <span class="math inline">\(b_0\)</span> y <span class="math inline">\(b_1\)</span> para indicar dos números fijos elegidos arbitrariamente. El primero de ellos indica el desplazamiento en el origen de la escala: allí donde <span class="math inline">\(x\)</span> valga 0, y tomará el valor de <span class="math inline">\(b_0\)</span>. Por su parte, <span class="math inline">\(b_1\)</span> es un factor de escala, que modifica el tamaño de la unidad de medida.</p>
+<p>En el ejemplo de la medición del año según dos calendarios diferentes, si x es la medición en el calendario cristiano e y con el calendario judío, la relación es:</p>
+<p><span class="math display">\[y = 3760 + x\]</span></p>
+<p>En la que <span class="math inline">\(b_0\)</span> se reemplazó por 3760 y <span class="math inline">\(b_0\)</span> ha desaparecido, es decir que vale 1 (que no tiene efecto cuando multiplica a x). El valor 3760 representa el cambio en el origen: cuando el calendario cristiano marcó cero (hipotéticamente, porque su implementación es posterior a esa época), el judío indicaba el año 3760. El 1 correspondiente a b1, indica que no hay cambio en el tamaño de la unidad, como dijimos antes, ambas culturas acuerdan en que el año es una vuelta de la tierra al sol<a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a>.</p>
+<table>
+<colgroup>
+<col width="100%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="center">Una variable está medida a nivel <strong>intervalar</strong> cuando las distancias entre las categorías son proporcionales.</td>
+</tr>
+</tbody>
+</table>
+<p>Si 1, 2, 3 y 4 son categorías de una variable medida a nivel intervalar, se pueden establecer las relaciones:</p>
+<p><span class="math display">\[1 \neq 2\]</span>
+<span class="math display">\[1 &lt; 2\]</span>
+<span class="math display">\[2 - 1 = 4 - 3\]</span></p>
+<p>Se agrega la conservación de las distancias a las propiedades que ya tenía la escala anterior.</p>
+</div>
+<div id="el-nivel-proporcionalescalas_de_razon" class="section level4">
+<h4><span class="header-section-number">1.6.1.4</span> El nivel proporcional<a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a></h4>
+<p>Este es el último nivel de medición que trataremos y es el más intuitivo, es el único nivel considerado efectivamente como medición por la teoría clásica, ya que en él se integran todas las propiedades de los niveles anteriores y además se agrega la proporcionalidad de los valores numéricos y el carácter absoluto del cero. Recién a este nivel, los números se comportan realmente como números, ya que se puede operar con ellos del modo al que estamos acostumbrados (sumarlos, multiplicarlos, etc.). ¿Qué variables pueden medirse a este nivel? Todas aquellas para las cuales tengan sentido las dos propiedades adicionales que esta escala incorpora: proporcionalidad de valores y cero absoluto. La cantidad de errores ortográficos cometidos en una prueba de dictado, admite el valor cero como correspondiente a “no errores”, es la ausencia de lo que se mide, se trata de un cero absoluto. Además, cometer 10 errores es el doble que cometer 5. Por eso, la variable Número de errores ortográficos cometidos es de nivel proporcional. El tiempo que una persona tarda en resolver una tarea, si se mide en minutos, admite considerar que 4 minutos es el doble de 2, por lo que estamos también en presencia de una escala proporcional, aunque el cero no sea un valor observable. También es proporcional la variable ingresos mensuales del hogar o el número de materias aprobadas.</p>
+<p>En general, los valores que provengan de procesos de conteo (como el número de errores) serán siempre proporcionales, como también aquellos que hagan referencia a una unidad de medida estándar como el tiempo<a href="#fn7" class="footnote-ref" id="fnref7"><sup>7</sup></a> o la distancia.</p>
+<p>La expresión formal de la regla de transformación entre escalas proporcionales es, si <span class="math inline">\(x\)</span> e <span class="math inline">\(y\)</span> representan la medición del mismo atributo en diferentes escalas:</p>
+<p><span class="math display">\[y = b_1 * x\]</span></p>
+<p>En la que ahora solo tenemos un número fijo: <span class="math inline">\(b_1\)</span>, que es el factor de escala, que modifica el tamaño de la unidad de medida. Esto simplemente significa que pueden cambiarse las unidades con que se miden las variables proporcionales. Por ejemplo para pasar de metros a centímetros:</p>
+<p><span class="math display">\[y = 100 * x\]</span></p>
+<p>Donde x es la medida en metros e y la misma medida expresada en centímetros. Si <span class="math inline">\(x=3\)</span> metros entonces <span class="math inline">\(y=300\)</span> centímetros</p>
+<p>De horas a minutos</p>
+<p><span class="math display">\[y = 60 * x\]</span></p>
+<p>El factor 60 transforma a las horas (x) en minutos (y). Si <span class="math inline">\(x=2\)</span> horas entonces <span class="math inline">\(y=120\)</span> minutos</p>
+<p>Otro ejemplo, si el tiempo que tardan sujetos experimentales para reconocer una expresión facial se mide en milisegundos (x), esa medición se puede pasar a segundos (y), dividiendo por mil.</p>
+<p><span class="math display">\[y=\dfrac{1}{1000}*x\]</span></p>
+<p>Ninguna de esas transformaciones pueden modificar la posición del cero, porque en esta escala es absoluto: allí donde x valga cero, y deberá también valer cero, por eso no aparece el término b0 que estaba en las intervalares. Cero metros son también cero centímetros y cero horas son cero minutos.</p>
+<table>
+<colgroup>
+<col width="100%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="center">Una variable está medida a nivel <strong>proporcional</strong> cuando sus valores respetan relaciones de proporcionalidad y, en consecuencia, el cero tiene un valor absoluto.</td>
+</tr>
+</tbody>
+</table>
+<p>Si 1, 2, 3 y 4 son categorías de una variable medida a nivel proporcional, se pueden establecer las relaciones:</p>
+<p><span class="math display">\[1 \neq 2\]</span>
+<span class="math display">\[1 &lt; 2\]</span>
+<span class="math display">\[2 - 1 = 4 - 3\]</span>
+<span class="math display">\[4 = 2 * 2\]</span></p>
+<div id="una-subdivisión-en-las-escalas-proporcionales" class="section level5">
+<h5><span class="header-section-number">1.6.1.4.1</span> Una subdivisión en las escalas proporcionales</h5>
+<p>Entre las variables medidas a nivel proporcional, debe hacerse una diferenciación, según los valores solo puedan ser números enteros o admitan números decimales, porque cambia la forma de presentación. El primer tipo es el que se llama variable <strong>discreta</strong>, los siguientes son ejemplos de ella:</p>
+<table>
+<caption><span id="tab:unnamed-chunk-12">Tabla 1.10: </span>Ejemplos de variable proporcional discreta.</caption>
+<thead>
+<tr class="header">
+<th align="center">Cantidad de aplazos</th>
+<th align="center">Número de materias aprobadas</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">0</td>
+<td align="center">0</td>
+</tr>
+<tr class="even">
+<td align="center">1</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td align="center">2</td>
+<td align="center">2</td>
+</tr>
+<tr class="even">
+<td align="center">3</td>
+<td align="center">3</td>
+</tr>
+<tr class="odd">
+<td align="center">4</td>
+<td align="center">4</td>
+</tr>
+<tr class="even">
+<td align="center">5</td>
+<td align="center">5</td>
+</tr>
+<tr class="odd">
+<td align="center">6</td>
+<td align="center">6</td>
+</tr>
+<tr class="even">
+<td align="center"></td>
+<td align="center">7 o más</td>
+</tr>
+</tbody>
+</table>
+<p>Aquí podría suceder que la variable tenga un gran número de valores. En el ejemplo de la cantidad de materias aprobadas, puede restringirse a las aprobadas por alumnos de primer año y en condición de regular, de modo que el máximo sea de 6. Pero si fueran alumnos de toda la carrera, la cantidad podría ir desde cero hasta el número total de materias. En esos casos, resultaría poco claro hacer la lista con todos los valores posibles.</p>
+<p>Cuando una variable discreta tiene una cantidad grande de valores, el problema de la presentación de las categorías se resuelve agrupándolas. Esto se llama recategorización porque consiste en construir nuevas categorías (volver a categorizar) a partir de las originales de la variable, a fin de resumir la información. Por ejemplo, la primera categoría puede incluir a quienes aprobaron una materia o ninguna, la segunda a los que aprobaron dos o tres y así sucesivamente:</p>
+<table>
+<caption><span id="tab:unnamed-chunk-13">Tabla 1.11: </span>Ejemplo de recategorización de una variable discreta.</caption>
+<thead>
+<tr class="header">
+<th align="center">Número de materias aprobadas</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">0-1</td>
+</tr>
+<tr class="even">
+<td align="center">2-3</td>
+</tr>
+<tr class="odd">
+<td align="center">4-6</td>
+</tr>
+</tbody>
+</table>
+<p>Cuando la variable admite números decimales se la llama <strong>continua</strong>, y allí el problema es mayor, porque el número de valores puede ser muy elevado<a href="#fn8" class="footnote-ref" id="fnref8"><sup>8</sup></a> y la única opción es la de construir categorías.</p>
+<table>
+<caption><span id="tab:unnamed-chunk-14">Tabla 1.12: </span>Ejemplo de recategorización de una variable continua</caption>
+<thead>
+<tr class="header">
+<th align="center">Estatura (en metros)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">hasta 1,55</td>
+</tr>
+<tr class="even">
+<td align="center">1,55 - 1,65</td>
+</tr>
+<tr class="odd">
+<td align="center">1.65 - 1.75</td>
+</tr>
+<tr class="even">
+<td align="center">1,75 - 1,85</td>
+</tr>
+<tr class="odd">
+<td align="center">1,85 - 1,95</td>
+</tr>
+<tr class="even">
+<td align="center">1,95 - 2,05</td>
+</tr>
+<tr class="odd">
+<td align="center">más de 2,05</td>
+</tr>
+</tbody>
+</table>
+<p>En el próximo capítulo nos detendremos en las formas de construir estos agrupamientos y despejaremos las dudas que provengan de la diferente cantidad de valores que se agruparon en la variable discreta de este ejemplo (las dos primera categorías contienen dos valores cada una, y la tercera tres) y la aparente superposición entre el inicio de una categoría y el fin de la anterior en el caso de la continua, que sería una violación de la exclusión mutua, porque alguien con una talla de 1,85 podría ir a la cuarta o a la quinta categoría.</p>
+</div>
+</div>
+</div>
+</div>
+<div id="resumen-de-los-niveles-de-medición" class="section level2">
+<h2><span class="header-section-number">1.7</span> Resumen de los niveles de medición</h2>
+<table>
+<colgroup>
+<col width="15%" />
+<col width="32%" />
+<col width="36%" />
+<col width="16%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Nivel de medición</th>
+<th align="left">Significado de los símbolos numéricos</th>
+<th align="left">Condición para cambio de escala</th>
+<th align="left">Ubicación del cero</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Nominal</td>
+<td align="left">Designan, distinguen</td>
+<td align="left">No repetir los números</td>
+<td align="left">Sin significado</td>
+</tr>
+<tr class="even">
+<td align="left">Ordinal</td>
+<td align="left">Expresan orden</td>
+<td align="left">Respetar el orden ascendente o descendente</td>
+<td align="left">Sin signifcado</td>
+</tr>
+<tr class="odd">
+<td align="left">Intervalar</td>
+<td align="left">Proporcionalidad de distancias</td>
+<td align="left"><span class="math inline">\(y = b_0 + b_1*x\)</span></td>
+<td align="left">Arbitrario</td>
+</tr>
+<tr class="even">
+<td align="left">Proporcional</td>
+<td align="left">Proporcionalidad de valores</td>
+<td align="left"><span class="math inline">\(y = b_1*x\)</span></td>
+<td align="left">Absoluto</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p>Ejemplos de diferentes niveles de medición</p>
+<ul>
+<li>Nominales:</li>
+</ul>
+<p>Valores (supervivencia vs autoexpresión, tradicionales vs racionales) <span class="citation">Inglehart (<a href="#ref-Inglehart2018">2018</a>)</span>, <span class="citation">Norris and Inglehart (<a href="#ref-Norris2011">2011</a>)</span></p>
+<ul>
+<li>Ordinales:</li>
+</ul>
+<p>Las escalas de compromiso politico, acuerdo partidario y consistencia ideológica (<span class="citation">Doherty, Kiley, and Jameson (<a href="#ref-Doherty2016">2016</a>)</span>), la pobreza medida según Línea de pobreza (<span class="citation">INDEC (<a href="#ref-INDEC2016">2016</a>)</span>), el grado de acuerdo en escalas de actitud <span class="citation">Robinson (<a href="#ref-Robinson2014">2014</a>)</span></p>
+<ul>
+<li>Cuantitativas discretas:</li>
+</ul>
+<p>Cantidad de partidos políticos, tipo de vivienda <span class="citation">INDEC (<a href="#ref-INDEC2018">2018</a>)</span>, cantidad de palabras recordadas en una prueba de memoria</p>
+<ul>
+<li>Cuantitativas continuas:</li>
+</ul>
+<p>Tiempo requerido para completar una tarea, ingreso per cápita familiar <span class="citation">INDEC (<a href="#ref-INDEC2018">2018</a>)</span>, gasto total en campaña electoral <span class="citation">Morales Quiroga and Pineiro Rodriguez (<a href="#ref-MoralesQuiroga2010">2010</a>)</span></p>
+
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-Doherty2016">
+<p>Doherty, Carroll, Jocelyn Kiley, and Bridget Jameson. 2016. “Partisanship and Political Animosity in 2016.” <em>PewResearchCenter</em>, 75. <a href="http://www.people-press.org/2016/06/22/2-the-roots-of-partisanship/">http://www.people-press.org/2016/06/22/2-the-roots-of-partisanship/</a>.</p>
+</div>
+<div id="ref-INDEC2016">
+<p>INDEC. 2016. “La medición de la pobreza y la indigencia en la Argentina.” Sociedad. Buenos Aires: Instituto Nacional de Estadística y Censos. <a href="http://www.indec.gob.ar">http://www.indec.gob.ar</a>.</p>
+</div>
+<div id="ref-INDEC2018">
+<p>INDEC. 2018. “Censo 2001.” <a href="https://www.indec.gov.ar/nivel4{\_}default.asp?id{\_}tema{\_}1=2{\&amp;}id{\_}tema{\_}2=41{\&amp;}id{\_}tema{\_}3=134">https://www.indec.gov.ar/nivel4{\_}default.asp?id{\_}tema{\_}1=2{\&amp;}id{\_}tema{\_}2=41{\&amp;}id{\_}tema{\_}3=134</a>.</p>
+</div>
+<div id="ref-Inglehart2018">
+<p>Inglehart, Ronald. 2018. <em>Cultural evolution : people’s motivations are changing, and reshaping the world</em>. <a href="https://www.cambridge.org/at/academic/subjects/politics-international-relations/comparative-politics/cultural-evolution-peoples-motivations-are-changing-and-reshaping-world?format=HB{\&amp;}isbn=9781108489317">https://www.cambridge.org/at/academic/subjects/politics-international-relations/comparative-politics/cultural-evolution-peoples-motivations-are-changing-and-reshaping-world?format=HB{\&amp;}isbn=9781108489317</a>.</p>
+</div>
+<div id="ref-MoralesQuiroga2010">
+<p>Morales Quiroga, Mauricio, and Rafael Pineiro Rodriguez. 2010. “Gasto en campaña y éxito electoral de los candidatos a diputados en chile 2005.” <em>Revista de Ciencia Política (Santiago)</em> 30 (3). Pontificia Universidad Católica de Chile. Instituto de Ciencia Política: 645–67. <a href="https://doi.org/10.4067/S0718-090X2010000300004">https://doi.org/10.4067/S0718-090X2010000300004</a>.</p>
+</div>
+<div id="ref-Norris2011">
+<p>Norris, Pippa., and Ronald. Inglehart. 2011. <em>Sacred and secular : religion and politics worldwide</em>. Cambridge University Press. <a href="https://www.cambridge.org/at/academic/subjects/politics-international-relations/comparative-politics/sacred-and-secular-religion-and-politics-worldwide-2nd-edition?format=HB{\&amp;}isbn=9781107011281{\#}TwX253qBLssbehsc.97">https://www.cambridge.org/at/academic/subjects/politics-international-relations/comparative-politics/sacred-and-secular-religion-and-politics-worldwide-2nd-edition?format=HB{\&amp;}isbn=9781107011281{\#}TwX253qBLssbehsc.97</a>.</p>
+</div>
+<div id="ref-Robinson2014">
+<p>Robinson, John. 2014. “Likert Scale.” In <em>Encyclopedia of Quality of Life and Well-Being Research</em>, edited by Alex C. Michalos, 3620–1. Dordrecht: Springer Netherlands. <a href="https://doi.org/10.1007/978-94-007-0753-5_1654">https://doi.org/10.1007/978-94-007-0753-5_1654</a>.</p>
+</div>
+<div id="ref-Stevens1946">
+<p>Stevens, S. S. 1946. “On the Theory of Scales of Measurement.” <em>Science</em> 103 (2684): 677–80. <a href="https://doi.org/10.1126/science.103.2684.677">https://doi.org/10.1126/science.103.2684.677</a>.</p>
+</div>
+<div id="ref-Upton2013">
+<p>Upton, Jane. 2013. “Beck Depression Inventory (Bdi).” In <em>Encyclopedia of Behavioral Medicine</em>, edited by Marc D. Gellman and J. Rick Turner, 178–79. New York, NY: Springer New York. <a href="https://doi.org/10.1007/978-1-4419-1005-9_441">https://doi.org/10.1007/978-1-4419-1005-9_441</a>.</p>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="1">
+<li id="fn1"><p>La palabra observar aquí se utiliza en un sentido general, puede tratarse de una observación directa como la que se realiza al mirar (o filmar) un comportamiento, o bien de la presentación de preguntas que alguien debe responder.<a href="los-datos-estadísticos.html#fnref1" class="footnote-back">↩</a></p></li>
+<li id="fn2"><p>Habitualmente denominado “Jefe de Hogar”.<a href="los-datos-estadísticos.html#fnref2" class="footnote-back">↩</a></p></li>
+<li id="fn3"><p>A menudo que, en Estadística, es necesario llegar a puntos de equilibrio entre el grado de detalle de la información que se ofrece y la claridad con que esa información puede presentarse.<a href="los-datos-estadísticos.html#fnref3" class="footnote-back">↩</a></p></li>
+<li id="fn4"><p>Si bien la corrección que se introduce cada año no es idéntica, por lo que el momento de cambio de año no es el mismo en las dos escalas.<a href="los-datos-estadísticos.html#fnref4" class="footnote-back">↩</a></p></li>
+<li id="fn5"><p>Con la salvedad indicada antes sobre la no coincidencia del momento de cambio de año.<a href="los-datos-estadísticos.html#fnref5" class="footnote-back">↩</a></p></li>
+<li id="fn6"><p>Este nivel de medición aparece mencionado en alguna bibliografía como “escalas de razón” se pueden tratar como sinónimos, ya que la razón se refiere al cociente de números, que permanece constante en el caso de valores proporcionales.<a href="los-datos-estadísticos.html#fnref6" class="footnote-back">↩</a></p></li>
+<li id="fn7"><p>El ejemplo de los calendarios judío y cristiano, aunque es una medición de tiempo, no es absoluta. Es diferente de la medición con un cronómetro, que establece un inicio de cuenta al momento en que se lo dispara y da lugar a una variable de nivel proporcional.<a href="los-datos-estadísticos.html#fnref7" class="footnote-back">↩</a></p></li>
+<li id="fn8"><p>La cantidad de valores depende de la precisión con que se mida. Si se mide con precisión de un centímetro, en un metro caben 100 valores, pero si se mide al milímetro en el mismo intervalo de un metro se ubican 1000 categorías.<a href="los-datos-estadísticos.html#fnref8" class="footnote-back">↩</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="distribuciones-de-frecuencia.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/jcrodriguez1989/EstadisticaParaCienciasSocialesConR/edit/master/02-capitulo1.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["EstadisticaParaCienciasSocialesConR.pdf", "EstadisticaParaCienciasSocialesConR.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
