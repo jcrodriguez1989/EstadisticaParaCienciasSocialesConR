@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Capítulo 5 Relación entre variables: el análisis | Estadística para Ciencias Sociales con R</title>
   <meta name="description" content="Capítulo 5 Relación entre variables: el análisis | Estadística para Ciencias Sociales con R" />
-  <meta name="generator" content="bookdown 0.14 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.14.1 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Capítulo 5 Relación entre variables: el análisis | Estadística para Ciencias Sociales con R" />
   <meta property="og:type" content="book" />
@@ -2410,7 +2410,7 @@ ubicación de uno de estos puntos, por ejemplo el que corresponde al par
 observado <span class="math inline">\((43; 1)\)</span>, al que la recta estima con el valor <span class="math inline">\(\widehat{y} = 4,22\)</span>:</p>
 <!--EB: los dos gráficos siguientes (13 y 14 del libro original) están en la carpeta, pero no los encuentra-->
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-162"></span>
-<img src="imagenes/grafico13.png" alt="Ubicación gráfica de la diferencia entre el valor observado de $y$ observado y su estimación $\widehat{y}$"  />
+<img src="imagenes/grafico13.png" alt="Ubicación gráfica de la diferencia entre el valor observado de $y$ observado y su estimación $\widehat{y}$" width="175" />
 <p class="caption">
 Figura 5.11: Ubicación gráfica de la diferencia entre el valor observado de <span class="math inline">\(y\)</span> observado y su estimación <span class="math inline">\(\widehat{y}\)</span>
 </p>
@@ -2445,7 +2445,7 @@ valores de <em>y</em> son los que están en los puntos realmente observados,
 mientras que los de <span class="math inline">\(\widehat{y}\)</span> están sobre la recta de regresión,
 estos desvíos pueden verse gráficamente así:</p>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-163"></span>
-<img src="imagenes/grafico14.png" alt="Ubicación gráfica de los alejamientos (desvíos) de $y$ observada y de $\widehat{y}$ estimada, hasta la media de $y$ ($\overline{y}$)"  />
+<img src="imagenes/grafico14.png" alt="Ubicación gráfica de los alejamientos (desvíos) de $y$ observada y de $\widehat{y}$ estimada, hasta la media de $y$ ($\overline{y}$)" width="172" />
 <p class="caption">
 Figura 5.12: Ubicación gráfica de los alejamientos (desvíos) de <span class="math inline">\(y\)</span> observada y de <span class="math inline">\(\widehat{y}\)</span> estimada, hasta la media de <span class="math inline">\(y\)</span> (<span class="math inline">\(\overline{y}\)</span>)
 </p>
@@ -2541,9 +2541,9 @@ A modo de ilustración de la utilidad de las representaciones gráficas, existe 
 <h3><span class="header-section-number">5.10.1</span> Distancia <span class="math inline">\(\chi^{2}\)</span></h3>
 <p>En el paquete base de R existe una función que realiza operaciones relacionadas con el puntaje <span class="math inline">\(\chi^{2}\)</span>; el comando es chi.test y se aplica sobre una tabla de contingencia. Estas operaciones contituyen lo que se denomina “prueba <span class="math inline">\(\chi^{2}\)</span>”, sobre la que trabajaremos más adelante. Por ahora, solo se usará una parte de los resultados de esta prueba.</p>
 <p>La aplicación de la prueba a una tabla de contingencia da como resultado un objeto de clase “htest”, de ello, nos van a interesar sus componentes. A continuación llamamos “tabla.viol” a la que cruza los tipos de violencia con el tamaño de las ciudades y aplicamos la prueba a esa tabla. Al resultado de la prueba lo guardamos con el nombre “jicu.viol”. Luego preguntamos cuáles son los atributos de este objeto:</p>
-<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb92-1" data-line-number="1">tabla.viol &lt;-<span class="st"> </span><span class="kw">table</span>(violencia<span class="op">$</span>tipo, violencia<span class="op">$</span>ciudades)</a>
-<a class="sourceLine" id="cb92-2" data-line-number="2">jicu.viol &lt;-<span class="st"> </span><span class="kw">chisq.test</span>(tabla.viol)</a>
-<a class="sourceLine" id="cb92-3" data-line-number="3"><span class="kw">attributes</span>(jicu.viol)</a></code></pre></div>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb90-1" data-line-number="1">tabla.viol &lt;-<span class="st"> </span><span class="kw">table</span>(violencia<span class="op">$</span>tipo, violencia<span class="op">$</span>ciudades)</a>
+<a class="sourceLine" id="cb90-2" data-line-number="2">jicu.viol &lt;-<span class="st"> </span><span class="kw">chisq.test</span>(tabla.viol)</a>
+<a class="sourceLine" id="cb90-3" data-line-number="3"><span class="kw">attributes</span>(jicu.viol)</a></code></pre></div>
 <pre><code>## $names
 ## [1] &quot;statistic&quot; &quot;parameter&quot; &quot;p.value&quot;   &quot;method&quot;    &quot;data.name&quot; &quot;observed&quot; 
 ## [7] &quot;expected&quot;  &quot;residuals&quot; &quot;stdres&quot;   
@@ -2557,37 +2557,37 @@ A modo de ilustración de la utilidad de las representaciones gráficas, existe 
 <li><p><code>expected</code> es la tabla de frecuencias esperadas bajo la hipótesis de independencia</p></li>
 </ul>
 <p>Para llegar a ellos, se usa el mismo procedimiento que para referirse a las variables de una matriz de datos. Así, la distancia <span class="math inline">\(\chi^{2}\)</span> es:</p>
-<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb94-1" data-line-number="1">jicu.viol<span class="op">$</span>statistic</a></code></pre></div>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb92-1" data-line-number="1">jicu.viol<span class="op">$</span>statistic</a></code></pre></div>
 <pre><code>## X-squared 
 ##  50.18553</code></pre>
 <p>La tabla de frecuencias observadas:</p>
-<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb96-1" data-line-number="1">jicu.viol<span class="op">$</span>observed</a></code></pre></div>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb94-1" data-line-number="1">jicu.viol<span class="op">$</span>observed</a></code></pre></div>
 <pre><code>##                
 ##                 áreas rurales ciudades grandes ciudades pequeñas
 ##   autoinfligida            15              100                35
 ##   colectiva                 5               35                10
 ##   interpersonal            90              110               100</code></pre>
 <p>Y la de esperadas:</p>
-<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb98-1" data-line-number="1">jicu.viol<span class="op">$</span>expected</a></code></pre></div>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb96-1" data-line-number="1">jicu.viol<span class="op">$</span>expected</a></code></pre></div>
 <pre><code>##                
 ##                 áreas rurales ciudades grandes ciudades pequeñas
 ##   autoinfligida            33             73.5              43.5
 ##   colectiva                11             24.5              14.5
 ##   interpersonal            66            147.0              87.0</code></pre>
 <p>Los decimales de la última pueden quitarse redondeando:</p>
-<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb100-1" data-line-number="1"><span class="kw">round</span>(jicu.viol<span class="op">$</span>expected, <span class="dv">0</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb98-1" data-line-number="1"><span class="kw">round</span>(jicu.viol<span class="op">$</span>expected, <span class="dv">0</span>)</a></code></pre></div>
 <pre><code>##                
 ##                 áreas rurales ciudades grandes ciudades pequeñas
 ##   autoinfligida            33               74                44
 ##   colectiva                11               24                14
 ##   interpersonal            66              147                87</code></pre>
 <p>El número total de observaciones no es uno de los elementos que la prueba da directamente. Hay que pedirlo a partir de la suma de las frecuencias de la tabla de observadas (o de esperadas, que totaliza lo mismo). Definimos como “n” al ese valor, porque lo vamos a necesitar para calcular los coeficientes:</p>
-<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb102-1" data-line-number="1">n &lt;-<span class="st"> </span><span class="kw">sum</span>(jicu.viol<span class="op">$</span>observed)</a></code></pre></div>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb100-1" data-line-number="1">n &lt;-<span class="st"> </span><span class="kw">sum</span>(jicu.viol<span class="op">$</span>observed)</a></code></pre></div>
 <p>Del mismo modo, rotulamos el número de filas y de columnas:</p>
-<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb103-1" data-line-number="1">f &lt;-<span class="st"> </span><span class="kw">nrow</span>(jicu.viol<span class="op">$</span>observed)</a>
-<a class="sourceLine" id="cb103-2" data-line-number="2">c &lt;-<span class="st"> </span><span class="kw">ncol</span>(jicu.viol<span class="op">$</span>observed)</a></code></pre></div>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb101-1" data-line-number="1">f &lt;-<span class="st"> </span><span class="kw">nrow</span>(jicu.viol<span class="op">$</span>observed)</a>
+<a class="sourceLine" id="cb101-2" data-line-number="2">c &lt;-<span class="st"> </span><span class="kw">ncol</span>(jicu.viol<span class="op">$</span>observed)</a></code></pre></div>
 <p>Una vez que se cuenta con el puntaje <span class="math inline">\(\chi^{2}\)</span>, se pueden calcular los coeficientes. Para tenerlo disponible más fácilmente, le vamos a asignar un nombre:</p>
-<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb104-1" data-line-number="1">d.ji.cuad &lt;-<span class="st"> </span>jicu.viol<span class="op">$</span>statistic</a></code></pre></div>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb102-1" data-line-number="1">d.ji.cuad &lt;-<span class="st"> </span>jicu.viol<span class="op">$</span>statistic</a></code></pre></div>
 <p>Ahora d.ji.cuad es la distancia <span class="math inline">\(\chi^{2}\)</span></p>
 </div>
 <div id="coeficientes" class="section level3">
@@ -2595,53 +2595,53 @@ A modo de ilustración de la utilidad de las representaciones gráficas, existe 
 <div id="varphi" class="section level4">
 <h4><span class="header-section-number">5.10.2.1</span> <span class="math inline">\(\varphi\)</span></h4>
 <p>Se calcula la raiz cuadrada de la distancia <span class="math inline">\(\chi^{2}\)</span> dividida en el número de casos:</p>
-<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb105-1" data-line-number="1"><span class="kw">sqrt</span>(d.ji.cuad <span class="op">/</span><span class="st"> </span>n)</a></code></pre></div>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb103-1" data-line-number="1"><span class="kw">sqrt</span>(d.ji.cuad <span class="op">/</span><span class="st"> </span>n)</a></code></pre></div>
 <pre><code>## X-squared 
 ## 0.3168139</code></pre>
 </div>
 <div id="c-de-pearson" class="section level4">
 <h4><span class="header-section-number">5.10.2.2</span> C de Pearson</h4>
 <p>Como el anterior, sumando <span class="math inline">\(\chi^{2}\)</span> a <span class="math inline">\(n\)</span> en el denominador</p>
-<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb107-1" data-line-number="1"><span class="kw">sqrt</span>(d.ji.cuad <span class="op">/</span><span class="st"> </span>(d.ji.cuad <span class="op">+</span><span class="st"> </span>n))</a></code></pre></div>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb105-1" data-line-number="1"><span class="kw">sqrt</span>(d.ji.cuad <span class="op">/</span><span class="st"> </span>(d.ji.cuad <span class="op">+</span><span class="st"> </span>n))</a></code></pre></div>
 <pre><code>## X-squared 
 ## 0.3020193</code></pre>
 </div>
 <div id="v-de-cramer" class="section level4">
 <h4><span class="header-section-number">5.10.2.3</span> V de Cramer</h4>
 <p>Incluye al mínimo entre el número de filas menos uno y el número de columnas menos uno. <code>min</code> es una función de biblioteca de R base.</p>
-<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb109-1" data-line-number="1"><span class="kw">sqrt</span>(d.ji.cuad <span class="op">/</span><span class="st"> </span>(n <span class="op">*</span><span class="st"> </span><span class="kw">min</span>(c <span class="op">-</span><span class="st"> </span><span class="dv">1</span>, f <span class="op">-</span><span class="st"> </span><span class="dv">1</span>)))</a></code></pre></div>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb107-1" data-line-number="1"><span class="kw">sqrt</span>(d.ji.cuad <span class="op">/</span><span class="st"> </span>(n <span class="op">*</span><span class="st"> </span><span class="kw">min</span>(c <span class="op">-</span><span class="st"> </span><span class="dv">1</span>, f <span class="op">-</span><span class="st"> </span><span class="dv">1</span>)))</a></code></pre></div>
 <pre><code>## X-squared 
 ## 0.2240213</code></pre>
 </div>
 <div id="spearman" class="section level4">
 <h4><span class="header-section-number">5.10.2.4</span> Spearman</h4>
 <p>El comando para calcular coeficientes de correlación en R es <code>cor</code>, al cual en este caso deberá indicársele que estamos trabajando con variables ordinales, por lo que queremos el coeficiente de Spearman; de lo contrario, por defecto calcula el coeficiente de Pearson. La matriz de datos del ejemplo se llama merito.educa.mad y las variables son OM (orden de mérito) y educamadre. Así definidas, el pedido del coeficiente se hace indicando cuáles son las dos variables que se correlacionan y qué método debe usarse, en base a su nivel de medición:</p>
-<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb111-1" data-line-number="1"><span class="kw">cor</span>(merito.educa.mad<span class="op">$</span>OM, merito.educa.mad<span class="op">$</span>educamadre, <span class="dt">method =</span> <span class="st">&quot;spearman&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb109-1" data-line-number="1"><span class="kw">cor</span>(merito.educa.mad<span class="op">$</span>OM, merito.educa.mad<span class="op">$</span>educamadre, <span class="dt">method =</span> <span class="st">&quot;spearman&quot;</span>)</a></code></pre></div>
 <pre><code>## [1] 0.7509393</code></pre>
 </div>
 <div id="pearson" class="section level4">
 <h4><span class="header-section-number">5.10.2.5</span> Pearson</h4>
 <p>El comando <code>cor</code> devuelve, por defecto, el coeficiente de Pearson, por lo que no es necesario especificar el parámetro <code>method</code>.</p>
 <p>Para el ejemplo que correlaciona el puntaje en la escala de inteligencia lógico matemática y el puntaje en una prueba, el cálculo se pide así:</p>
-<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb113-1" data-line-number="1"><span class="kw">cor</span>(puntaje.escala, ejercic.corr)</a></code></pre></div>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb111-1" data-line-number="1"><span class="kw">cor</span>(puntaje.escala, ejercic.corr)</a></code></pre></div>
 <pre><code>## [1] 0.8474425</code></pre>
 </div>
 <div id="dicotomías-artificiales" class="section level4">
 <h4><span class="header-section-number">5.10.2.6</span> Dicotomías artificiales</h4>
 <p>Las dicotomías sobre variables continuas pueden hacerse con la función <code>cut</code> que se usó antes para construir categorías de variables cuantitativas, solo que ahora el corte se da solo en dos grupos. Para el caso de los puntajes de la subescala motora de la prueba de Bayley, si se quienen dos categorías que tengan la misma amplitud en los valores de la variable, se indican dos cortes. En este ejemplo, primero leemos la base “bayley”, luego introducimos la variable dicotomizada como una columna más de la matriz de datos y visualizamos el resultado pidiendo una tabla:</p>
-<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb115-1" data-line-number="1">bayley &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;bases/archivostxt/bayley.txt&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;;&quot;</span>)</a>
-<a class="sourceLine" id="cb115-2" data-line-number="2">bayley<span class="op">$</span>motor.dic &lt;-<span class="st"> </span><span class="kw">cut</span>(bayley<span class="op">$</span>baymotor, <span class="dt">breaks =</span> <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb115-3" data-line-number="3"><span class="kw">table</span>(bayley<span class="op">$</span>motor.dic)</a></code></pre></div>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb113-1" data-line-number="1">bayley &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;bases/archivostxt/bayley.txt&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;;&quot;</span>)</a>
+<a class="sourceLine" id="cb113-2" data-line-number="2">bayley<span class="op">$</span>motor.dic &lt;-<span class="st"> </span><span class="kw">cut</span>(bayley<span class="op">$</span>baymotor, <span class="dt">breaks =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb113-3" data-line-number="3"><span class="kw">table</span>(bayley<span class="op">$</span>motor.dic)</a></code></pre></div>
 <pre><code>## 
 ## (63.9,107]  (107,150] 
 ##        257        197</code></pre>
 <p>El corte se realizó en 107 que es el centro de los valores de la variable (promedio entre el mínimo y el máximo).</p>
 <p>Otra opción es cortar en la mediana, de modo que la cantidad de casos en las dos categorías sea similar. Para ello, hay que especificar todos los cortes que determinan los intervalos; el mínimo, la mediana y el máximo:</p>
-<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb117-1" data-line-number="1">bayley<span class="op">$</span>motor.dic<span class="fl">.2</span> &lt;-<span class="st"> </span><span class="kw">cut</span>(bayley<span class="op">$</span>baymotor, <span class="dt">breaks =</span> <span class="kw">c</span>(</a>
-<a class="sourceLine" id="cb117-2" data-line-number="2">  <span class="kw">min</span>(bayley<span class="op">$</span>baymotor),</a>
-<a class="sourceLine" id="cb117-3" data-line-number="3">  <span class="kw">median</span>(bayley<span class="op">$</span>baymotor),</a>
-<a class="sourceLine" id="cb117-4" data-line-number="4">  <span class="kw">max</span>(bayley<span class="op">$</span>baymotor)))</a>
-<a class="sourceLine" id="cb117-5" data-line-number="5"><span class="kw">table</span>(bayley<span class="op">$</span>motor.dic<span class="fl">.2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb115-1" data-line-number="1">bayley<span class="op">$</span>motor.dic<span class="fl">.2</span> &lt;-<span class="st"> </span><span class="kw">cut</span>(bayley<span class="op">$</span>baymotor, <span class="dt">breaks =</span> <span class="kw">c</span>(</a>
+<a class="sourceLine" id="cb115-2" data-line-number="2">  <span class="kw">min</span>(bayley<span class="op">$</span>baymotor),</a>
+<a class="sourceLine" id="cb115-3" data-line-number="3">  <span class="kw">median</span>(bayley<span class="op">$</span>baymotor),</a>
+<a class="sourceLine" id="cb115-4" data-line-number="4">  <span class="kw">max</span>(bayley<span class="op">$</span>baymotor)))</a>
+<a class="sourceLine" id="cb115-5" data-line-number="5"><span class="kw">table</span>(bayley<span class="op">$</span>motor.dic<span class="fl">.2</span>)</a></code></pre></div>
 <pre><code>## 
 ##  (64,105] (105,150] 
 ##       231       222</code></pre>
@@ -2652,9 +2652,9 @@ A modo de ilustración de la utilidad de las representaciones gráficas, existe 
 <h4><span class="header-section-number">5.10.2.7</span> Tetracórico</h4>
 <p>El paquete <code>psych</code> (arroba Revelle2018) cuenta con la función <code>tetrachoric</code>, cuyo argumento es la matriz de datos original y no la tabla de contingencia. Aquí se aplica al análisis de la relación entre los puntajes de las subescalas motora y mental de la prueba de Bayley, dicotomizadas.</p>
 <p>Primero se carga el paquete</p>
-<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb119-1" data-line-number="1"><span class="kw">library</span>(<span class="st">&quot;psych&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb117-1" data-line-number="1"><span class="kw">library</span>(<span class="st">&quot;psych&quot;</span>)</a></code></pre></div>
 <p>Y luego se aplica la función a la matriz de datos que solo contiene las dos variables dicotomizadas:</p>
-<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb120-1" data-line-number="1"><span class="kw">tetrachoric</span>(compara.escalas.dic)</a></code></pre></div>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb118-1" data-line-number="1"><span class="kw">tetrachoric</span>(compara.escalas.dic)</a></code></pre></div>
 <pre><code>## Call: tetrachoric(x = compara.escalas.dic)
 ## tetrachoric correlation 
 ##                  sbscl.mt sbscl.mn
@@ -2669,12 +2669,12 @@ A modo de ilustración de la utilidad de las representaciones gráficas, existe 
 <div id="punto-biserial" class="section level4">
 <h4><span class="header-section-number">5.10.2.8</span> Punto biserial</h4>
 <p>Los grupos deben codificarse como cero y uno, para luego solicitar un coeficiente de Pearson. En este ejemplo, se crea la base de datos con siete casos en el grupo control y diez en el experimental. Se codifica a los grupos control y experimental como cero y uno respectivamente, y luego se solicita el coeficiente de correlación de Pearson entre la variable dicotómica que codifica los grupos, y los puntajes.</p>
-<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb122-1" data-line-number="1">grupo &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">rep</span>(<span class="st">&quot;control&quot;</span>, <span class="dv">7</span>), <span class="kw">rep</span>(<span class="st">&quot;experimental&quot;</span>, <span class="dv">10</span>))</a>
-<a class="sourceLine" id="cb122-2" data-line-number="2">puntaje &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">8</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">8</span>, <span class="dv">6</span>, <span class="dv">4</span>, <span class="fl">5.6</span>, <span class="fl">5.6</span>, <span class="dv">8</span>, <span class="fl">7.2</span>, <span class="fl">6.4</span>, <span class="fl">7.2</span>, <span class="dv">8</span>, <span class="dv">8</span>, <span class="fl">7.2</span>)</a>
-<a class="sourceLine" id="cb122-3" data-line-number="3">grupo.cod &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">rep</span>(<span class="dv">0</span>, <span class="dv">7</span>), <span class="kw">rep</span>(<span class="dv">1</span>, <span class="dv">10</span>))</a>
-<a class="sourceLine" id="cb122-4" data-line-number="4">compara.grupos &lt;-<span class="st"> </span><span class="kw">data.frame</span>(grupo, puntaje, grupo.cod)</a>
-<a class="sourceLine" id="cb122-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb122-6" data-line-number="6"><span class="kw">cor</span>(<span class="dt">x =</span> compara.grupos<span class="op">$</span>puntaje, compara.grupos<span class="op">$</span>grupo.cod)</a></code></pre></div>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb120-1" data-line-number="1">grupo &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">rep</span>(<span class="st">&quot;control&quot;</span>, <span class="dv">7</span>), <span class="kw">rep</span>(<span class="st">&quot;experimental&quot;</span>, <span class="dv">10</span>))</a>
+<a class="sourceLine" id="cb120-2" data-line-number="2">puntaje &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">8</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">8</span>, <span class="dv">6</span>, <span class="dv">4</span>, <span class="fl">5.6</span>, <span class="fl">5.6</span>, <span class="dv">8</span>, <span class="fl">7.2</span>, <span class="fl">6.4</span>, <span class="fl">7.2</span>, <span class="dv">8</span>, <span class="dv">8</span>, <span class="fl">7.2</span>)</a>
+<a class="sourceLine" id="cb120-3" data-line-number="3">grupo.cod &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">rep</span>(<span class="dv">0</span>, <span class="dv">7</span>), <span class="kw">rep</span>(<span class="dv">1</span>, <span class="dv">10</span>))</a>
+<a class="sourceLine" id="cb120-4" data-line-number="4">compara.grupos &lt;-<span class="st"> </span><span class="kw">data.frame</span>(grupo, puntaje, grupo.cod)</a>
+<a class="sourceLine" id="cb120-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb120-6" data-line-number="6"><span class="kw">cor</span>(<span class="dt">x =</span> compara.grupos<span class="op">$</span>puntaje, compara.grupos<span class="op">$</span>grupo.cod)</a></code></pre></div>
 <pre><code>## [1] 0.1734252</code></pre>
 </div>
 </div>
@@ -2685,9 +2685,9 @@ A modo de ilustración de la utilidad de las representaciones gráficas, existe 
 <p>entonces el argumento de lm es</p>
 <p><span class="math display">\[Y \tilde{} X\]</span></p>
 <p>El modelo se construye así:</p>
-<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb124-1" data-line-number="1">modelo<span class="fl">.1</span> &lt;-<span class="st"> </span><span class="kw">lm</span>(ejercic.corr <span class="op">~</span><span class="st"> </span>puntaje.escala)</a></code></pre></div>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb122-1" data-line-number="1">modelo<span class="fl">.1</span> &lt;-<span class="st"> </span><span class="kw">lm</span>(ejercic.corr <span class="op">~</span><span class="st"> </span>puntaje.escala)</a></code></pre></div>
 <p>El objeto que resulta tiene como atributos:</p>
-<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb125-1" data-line-number="1"><span class="kw">attributes</span>(modelo<span class="fl">.1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb123-1" data-line-number="1"><span class="kw">attributes</span>(modelo<span class="fl">.1</span>)</a></code></pre></div>
 <pre><code>## $names
 ##  [1] &quot;coefficients&quot;  &quot;residuals&quot;     &quot;effects&quot;       &quot;rank&quot;         
 ##  [5] &quot;fitted.values&quot; &quot;assign&quot;        &quot;qr&quot;            &quot;df.residual&quot;  
@@ -2696,7 +2696,7 @@ A modo de ilustración de la utilidad de las representaciones gráficas, existe 
 ## $class
 ## [1] &quot;lm&quot;</code></pre>
 <p>La clase es <code>lm</code>, modelo lineal, un tipo particular de objeto R. De los nombres, por ahora solo nos interesan los coeficientes, a los que evocamos del mismo modo que a las variables de una matriz de datos:</p>
-<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb127-1" data-line-number="1">modelo<span class="fl">.1</span><span class="op">$</span>coefficients</a></code></pre></div>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb125-1" data-line-number="1">modelo<span class="fl">.1</span><span class="op">$</span>coefficients</a></code></pre></div>
 <pre><code>##    (Intercept) puntaje.escala 
 ##     -5.6279603      0.2290977</code></pre>
 <p>Estos son:</p>
@@ -2705,33 +2705,33 @@ A modo de ilustración de la utilidad de las representaciones gráficas, existe 
 <li><p><code>puntaje.escala</code>: el nombre de la variable antecedente, es la pendiente de la recta.</p></li>
 </ul>
 <p>Cada uno de estos valores puede accederse separamente, así:</p>
-<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb129-1" data-line-number="1">modelo<span class="fl">.1</span><span class="op">$</span>coefficients[<span class="dv">1</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb127-1" data-line-number="1">modelo<span class="fl">.1</span><span class="op">$</span>coefficients[<span class="dv">1</span>]</a></code></pre></div>
 <pre><code>## (Intercept) 
 ##    -5.62796</code></pre>
-<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb131-1" data-line-number="1">modelo<span class="fl">.1</span><span class="op">$</span>coefficients[<span class="dv">2</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb129-1" data-line-number="1">modelo<span class="fl">.1</span><span class="op">$</span>coefficients[<span class="dv">2</span>]</a></code></pre></div>
 <pre><code>## puntaje.escala 
 ##      0.2290977</code></pre>
 <p>Y luego usarse para calcular un valor de <span class="math inline">\(y\)</span> (aciertos estimados) para un valor elegido de <span class="math inline">\(x\)</span> (puntaje en la escala). El ejemplo hecho manualmente antes resulta ahora:</p>
-<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb133-1" data-line-number="1">modelo<span class="fl">.1</span><span class="op">$</span>coefficients[<span class="dv">1</span>] <span class="op">+</span><span class="st"> </span>modelo<span class="fl">.1</span><span class="op">$</span>coefficients[<span class="dv">2</span>] <span class="op">*</span><span class="st"> </span><span class="dv">55</span></a></code></pre></div>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb131-1" data-line-number="1">modelo<span class="fl">.1</span><span class="op">$</span>coefficients[<span class="dv">1</span>] <span class="op">+</span><span class="st"> </span>modelo<span class="fl">.1</span><span class="op">$</span>coefficients[<span class="dv">2</span>] <span class="op">*</span><span class="st"> </span><span class="dv">55</span></a></code></pre></div>
 <pre><code>## (Intercept) 
 ##    6.972413</code></pre>
 <p>Que se diferencia del obtenido antes por el redondeo y sigue siendo un promedio de siete errores esperados para quienes tienen puntaje 55 en la escala.</p>
 <p>También es posible crear una función para que calcule automáticamente valores de <span class="math inline">\(y\)</span> para cualquier <span class="math inline">\(x\)</span> que se elija:</p>
-<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb135-1" data-line-number="1">yest &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</a>
-<a class="sourceLine" id="cb135-2" data-line-number="2">  modelo<span class="fl">.1</span><span class="op">$</span>coefficients[<span class="dv">1</span>] <span class="op">+</span><span class="st"> </span>modelo<span class="fl">.1</span><span class="op">$</span>coefficients[<span class="dv">2</span>] <span class="op">*</span><span class="st"> </span>x</a>
-<a class="sourceLine" id="cb135-3" data-line-number="3">}</a></code></pre></div>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb133-1" data-line-number="1">yest &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</a>
+<a class="sourceLine" id="cb133-2" data-line-number="2">  modelo<span class="fl">.1</span><span class="op">$</span>coefficients[<span class="dv">1</span>] <span class="op">+</span><span class="st"> </span>modelo<span class="fl">.1</span><span class="op">$</span>coefficients[<span class="dv">2</span>] <span class="op">*</span><span class="st"> </span>x</a>
+<a class="sourceLine" id="cb133-3" data-line-number="3">}</a></code></pre></div>
 <p>Para usarla, damos a esta nueva función un valor de x:</p>
-<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb136-1" data-line-number="1"><span class="kw">yest</span>(<span class="dv">55</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb134-1" data-line-number="1"><span class="kw">yest</span>(<span class="dv">55</span>)</a></code></pre></div>
 <pre><code>## (Intercept) 
 ##    6.972413</code></pre>
-<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb138-1" data-line-number="1"><span class="kw">yest</span>(<span class="dv">75</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb136-1" data-line-number="1"><span class="kw">yest</span>(<span class="dv">75</span>)</a></code></pre></div>
 <pre><code>## (Intercept) 
 ##    11.55437</code></pre>
 </div>
 <div id="cuarteto-de-anscombe" class="section level3">
 <h3><span class="header-section-number">5.10.4</span> Cuarteto de Anscombe</h3>
 <p>El cuarteto de Anscombe, es una matriz de datos de once casos en cuatro pares variables y viene cargado en R. Se lo puede ver, llamándolo por su nombre:</p>
-<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb140-1" data-line-number="1">anscombe</a></code></pre></div>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb138-1" data-line-number="1">anscombe</a></code></pre></div>
 <pre><code>##    x1 x2 x3 x4    y1   y2    y3    y4
 ## 1  10 10 10  8  8.04 9.14  7.46  6.58
 ## 2   8  8  8  8  6.95 8.14  6.77  5.76
@@ -2746,8 +2746,8 @@ A modo de ilustración de la utilidad de las representaciones gráficas, existe 
 ## 11  5  5  5  8  5.68 4.74  5.73  6.89</code></pre>
 <p>Para ver las medidas descriptivas, se solicita el resumen completo de la matriz de datos, ya que son pocas variables:</p>
 <!-- ver si estos resutados se pueden compactar en tablas-->
-<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb142-1" data-line-number="1"><span class="co"># summary(anscombe)</span></a>
-<a class="sourceLine" id="cb142-2" data-line-number="2"><span class="kw">apply</span>(anscombe, <span class="dv">2</span>, summary)</a></code></pre></div>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb140-1" data-line-number="1"><span class="co"># summary(anscombe)</span></a>
+<a class="sourceLine" id="cb140-2" data-line-number="2"><span class="kw">apply</span>(anscombe, <span class="dv">2</span>, summary)</a></code></pre></div>
 <pre><code>##           x1   x2   x3 x4        y1       y2    y3        y4
 ## Min.     4.0  4.0  4.0  8  4.260000 3.100000  5.39  5.250000
 ## 1st Qu.  6.5  6.5  6.5  8  6.315000 6.695000  6.25  6.170000
@@ -2757,46 +2757,46 @@ A modo de ilustración de la utilidad de las representaciones gráficas, existe 
 ## Max.    14.0 14.0 14.0 19 10.840000 9.260000 12.74 12.500000</code></pre>
 <p>Se observa la similitud de las medidas resumen de x1, x2, x3, x4 por un lado y de y1, y2, y3, y4 por otro.</p>
 <p>Además, las correlaciones entre los pares son casi idénticas:</p>
-<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb144-1" data-line-number="1"><span class="kw">cor</span>(anscombe<span class="op">$</span>x1, anscombe<span class="op">$</span>y1)</a></code></pre></div>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb142-1" data-line-number="1"><span class="kw">cor</span>(anscombe<span class="op">$</span>x1, anscombe<span class="op">$</span>y1)</a></code></pre></div>
 <pre><code>## [1] 0.8164205</code></pre>
-<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb146-1" data-line-number="1"><span class="kw">cor</span>(anscombe<span class="op">$</span>x2, anscombe<span class="op">$</span>y2)</a></code></pre></div>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb144-1" data-line-number="1"><span class="kw">cor</span>(anscombe<span class="op">$</span>x2, anscombe<span class="op">$</span>y2)</a></code></pre></div>
 <pre><code>## [1] 0.8162365</code></pre>
-<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb148-1" data-line-number="1"><span class="kw">cor</span>(anscombe<span class="op">$</span>x3, anscombe<span class="op">$</span>y3)</a></code></pre></div>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb146-1" data-line-number="1"><span class="kw">cor</span>(anscombe<span class="op">$</span>x3, anscombe<span class="op">$</span>y3)</a></code></pre></div>
 <pre><code>## [1] 0.8162867</code></pre>
-<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb150-1" data-line-number="1"><span class="kw">cor</span>(anscombe<span class="op">$</span>x4, anscombe<span class="op">$</span>y4)</a></code></pre></div>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb148-1" data-line-number="1"><span class="kw">cor</span>(anscombe<span class="op">$</span>x4, anscombe<span class="op">$</span>y4)</a></code></pre></div>
 <pre><code>## [1] 0.8165214</code></pre>
 <p>Y también son muy similares los modelos lineales que ajustan cada relación. Las ordenadas al origen:</p>
-<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb152-1" data-line-number="1"><span class="kw">lm</span>(anscombe<span class="op">$</span>y1 <span class="op">~</span><span class="st"> </span>anscombe<span class="op">$</span>x1)<span class="op">$</span>coefficients[<span class="dv">1</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb150-1" data-line-number="1"><span class="kw">lm</span>(anscombe<span class="op">$</span>y1 <span class="op">~</span><span class="st"> </span>anscombe<span class="op">$</span>x1)<span class="op">$</span>coefficients[<span class="dv">1</span>]</a></code></pre></div>
 <pre><code>## (Intercept) 
 ##    3.000091</code></pre>
-<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb154-1" data-line-number="1"><span class="kw">lm</span>(anscombe<span class="op">$</span>y2 <span class="op">~</span><span class="st"> </span>anscombe<span class="op">$</span>x2)<span class="op">$</span>coefficients[<span class="dv">1</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb152-1" data-line-number="1"><span class="kw">lm</span>(anscombe<span class="op">$</span>y2 <span class="op">~</span><span class="st"> </span>anscombe<span class="op">$</span>x2)<span class="op">$</span>coefficients[<span class="dv">1</span>]</a></code></pre></div>
 <pre><code>## (Intercept) 
 ##    3.000909</code></pre>
-<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb156-1" data-line-number="1"><span class="kw">lm</span>(anscombe<span class="op">$</span>y3 <span class="op">~</span><span class="st"> </span>anscombe<span class="op">$</span>x3)<span class="op">$</span>coefficients[<span class="dv">1</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb154-1" data-line-number="1"><span class="kw">lm</span>(anscombe<span class="op">$</span>y3 <span class="op">~</span><span class="st"> </span>anscombe<span class="op">$</span>x3)<span class="op">$</span>coefficients[<span class="dv">1</span>]</a></code></pre></div>
 <pre><code>## (Intercept) 
 ##    3.002455</code></pre>
-<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb158-1" data-line-number="1"><span class="kw">lm</span>(anscombe<span class="op">$</span>y4 <span class="op">~</span><span class="st"> </span>anscombe<span class="op">$</span>x4)<span class="op">$</span>coefficients[<span class="dv">1</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb156-1" data-line-number="1"><span class="kw">lm</span>(anscombe<span class="op">$</span>y4 <span class="op">~</span><span class="st"> </span>anscombe<span class="op">$</span>x4)<span class="op">$</span>coefficients[<span class="dv">1</span>]</a></code></pre></div>
 <pre><code>## (Intercept) 
 ##    3.001727</code></pre>
 <p>Y las pendientes:</p>
-<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb160-1" data-line-number="1"><span class="kw">lm</span>(anscombe<span class="op">$</span>y1 <span class="op">~</span><span class="st"> </span>anscombe<span class="op">$</span>x1)<span class="op">$</span>coefficients[<span class="dv">2</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb158-1" data-line-number="1"><span class="kw">lm</span>(anscombe<span class="op">$</span>y1 <span class="op">~</span><span class="st"> </span>anscombe<span class="op">$</span>x1)<span class="op">$</span>coefficients[<span class="dv">2</span>]</a></code></pre></div>
 <pre><code>## anscombe$x1 
 ##   0.5000909</code></pre>
-<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb162-1" data-line-number="1"><span class="kw">lm</span>(anscombe<span class="op">$</span>y2 <span class="op">~</span><span class="st"> </span>anscombe<span class="op">$</span>x2)<span class="op">$</span>coefficients[<span class="dv">2</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb160-1" data-line-number="1"><span class="kw">lm</span>(anscombe<span class="op">$</span>y2 <span class="op">~</span><span class="st"> </span>anscombe<span class="op">$</span>x2)<span class="op">$</span>coefficients[<span class="dv">2</span>]</a></code></pre></div>
 <pre><code>## anscombe$x2 
 ##         0.5</code></pre>
-<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb164-1" data-line-number="1"><span class="kw">lm</span>(anscombe<span class="op">$</span>y3 <span class="op">~</span><span class="st"> </span>anscombe<span class="op">$</span>x3)<span class="op">$</span>coefficients[<span class="dv">2</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb162-1" data-line-number="1"><span class="kw">lm</span>(anscombe<span class="op">$</span>y3 <span class="op">~</span><span class="st"> </span>anscombe<span class="op">$</span>x3)<span class="op">$</span>coefficients[<span class="dv">2</span>]</a></code></pre></div>
 <pre><code>## anscombe$x3 
 ##   0.4997273</code></pre>
-<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb166-1" data-line-number="1"><span class="kw">lm</span>(anscombe<span class="op">$</span>y4 <span class="op">~</span><span class="st"> </span>anscombe<span class="op">$</span>x4)<span class="op">$</span>coefficients[<span class="dv">2</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb164-1" data-line-number="1"><span class="kw">lm</span>(anscombe<span class="op">$</span>y4 <span class="op">~</span><span class="st"> </span>anscombe<span class="op">$</span>x4)<span class="op">$</span>coefficients[<span class="dv">2</span>]</a></code></pre></div>
 <pre><code>## anscombe$x4 
 ##   0.4999091</code></pre>
 <p>Sin embargo, los diagramas de dispersión muestran que se trata de conjuntos muy diferentes entre sí:</p>
-<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb168-1" data-line-number="1">p1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(anscombe) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(x1, y1)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_abline</span>() <span class="op">+</span><span class="st"> </span><span class="kw">theme_tufte</span>()</a>
-<a class="sourceLine" id="cb168-2" data-line-number="2">p2 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(anscombe) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(x2, y2)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_abline</span>() <span class="op">+</span><span class="st"> </span><span class="kw">theme_tufte</span>()</a>
-<a class="sourceLine" id="cb168-3" data-line-number="3">p3 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(anscombe) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(x3, y3)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_abline</span>() <span class="op">+</span><span class="st"> </span><span class="kw">theme_tufte</span>()</a>
-<a class="sourceLine" id="cb168-4" data-line-number="4">p4 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(anscombe) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(x4, y4)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_abline</span>() <span class="op">+</span><span class="st"> </span><span class="kw">theme_tufte</span>()</a>
-<a class="sourceLine" id="cb168-5" data-line-number="5"><span class="kw">grid.arrange</span>(p1, p2, p3, p4, <span class="dt">nrow =</span> <span class="dv">2</span>, <span class="dt">ncol =</span> <span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb166-1" data-line-number="1">p1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(anscombe) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(x1, y1)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_abline</span>() <span class="op">+</span><span class="st"> </span><span class="kw">theme_tufte</span>()</a>
+<a class="sourceLine" id="cb166-2" data-line-number="2">p2 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(anscombe) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(x2, y2)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_abline</span>() <span class="op">+</span><span class="st"> </span><span class="kw">theme_tufte</span>()</a>
+<a class="sourceLine" id="cb166-3" data-line-number="3">p3 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(anscombe) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(x3, y3)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_abline</span>() <span class="op">+</span><span class="st"> </span><span class="kw">theme_tufte</span>()</a>
+<a class="sourceLine" id="cb166-4" data-line-number="4">p4 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(anscombe) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(x4, y4)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_abline</span>() <span class="op">+</span><span class="st"> </span><span class="kw">theme_tufte</span>()</a>
+<a class="sourceLine" id="cb166-5" data-line-number="5"><span class="kw">grid.arrange</span>(p1, p2, p3, p4, <span class="dt">nrow =</span> <span class="dv">2</span>, <span class="dt">ncol =</span> <span class="dv">2</span>)</a></code></pre></div>
 <p><img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-196-1.svg" width="672" /></p>
 <p>Para usar el Datasaurus, se debe primero instalar el paquete y cargarlo en la sesión, la matriz de datos se llama <code>datasaurus_dozen</code>:</p>
 <pre><code>## # A tibble: 1,846 x 3
@@ -2815,17 +2815,17 @@ A modo de ilustración de la utilidad de las representaciones gráficas, existe 
 ## # … with 1,836 more rows</code></pre>
 <p>Los datos están organizados en tres columnas; la primera, que se llama <code>dataset</code> es el nombre del subconjunto, son 13 subconjuntos en total.</p>
 <p>Luego cargamos el paquete <code>dplyr</code>, que facilita hacer las operaciones por grupos con la función <code>group_by</code></p>
-<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb170-1" data-line-number="1"><span class="kw">library</span>(<span class="st">&quot;dplyr&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb168-1" data-line-number="1"><span class="kw">library</span>(<span class="st">&quot;dplyr&quot;</span>)</a></code></pre></div>
 <p>Y luego las aplicamos sucesivamente usando el operador <code>%&gt;%</code> “pipe” (sobre la matriz <code>datasaurus_dozen</code>, agrupe por <code>dataset</code> y resuma, calculando las medidas indicadas).</p>
-<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb171-1" data-line-number="1">datasaurus_dozen <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb171-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(dataset) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb171-3" data-line-number="3"><span class="st">  </span><span class="kw">summarize</span>(</a>
-<a class="sourceLine" id="cb171-4" data-line-number="4">    <span class="dt">media_x =</span> <span class="kw">mean</span>(x),</a>
-<a class="sourceLine" id="cb171-5" data-line-number="5">    <span class="dt">media_y =</span> <span class="kw">mean</span>(y),</a>
-<a class="sourceLine" id="cb171-6" data-line-number="6">    <span class="dt">s_x =</span> <span class="kw">sd</span>(x),</a>
-<a class="sourceLine" id="cb171-7" data-line-number="7">    <span class="dt">s_y =</span> <span class="kw">sd</span>(y),</a>
-<a class="sourceLine" id="cb171-8" data-line-number="8">    <span class="dt">r_x_y =</span> <span class="kw">cor</span>(x, y)</a>
-<a class="sourceLine" id="cb171-9" data-line-number="9">  )</a></code></pre></div>
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb169-1" data-line-number="1">datasaurus_dozen <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb169-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(dataset) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb169-3" data-line-number="3"><span class="st">  </span><span class="kw">summarize</span>(</a>
+<a class="sourceLine" id="cb169-4" data-line-number="4">    <span class="dt">media_x =</span> <span class="kw">mean</span>(x),</a>
+<a class="sourceLine" id="cb169-5" data-line-number="5">    <span class="dt">media_y =</span> <span class="kw">mean</span>(y),</a>
+<a class="sourceLine" id="cb169-6" data-line-number="6">    <span class="dt">s_x =</span> <span class="kw">sd</span>(x),</a>
+<a class="sourceLine" id="cb169-7" data-line-number="7">    <span class="dt">s_y =</span> <span class="kw">sd</span>(y),</a>
+<a class="sourceLine" id="cb169-8" data-line-number="8">    <span class="dt">r_x_y =</span> <span class="kw">cor</span>(x, y)</a>
+<a class="sourceLine" id="cb169-9" data-line-number="9">  )</a></code></pre></div>
 <pre><code>## # A tibble: 13 x 6
 ##    dataset    media_x media_y   s_x   s_y   r_x_y
 ##    &lt;chr&gt;        &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;
@@ -2843,12 +2843,12 @@ A modo de ilustración de la utilidad de las representaciones gráficas, existe 
 ## 12 wide_lines    54.3    47.8  16.8  26.9 -0.0666
 ## 13 x_shape       54.3    47.8  16.8  26.9 -0.0656</code></pre>
 <p>Cada fila corresponde a un subconjunto de datos. En la tabla se observa la similitud de las <span class="math inline">\(x\)</span> y de las <span class="math inline">\(y\)</span> y también de las correlaciones entre ellas. Para completar la idea que se tiene de los subconjuntos de datos, construimos un diagrama de dispersión para cada uno de ellos:</p>
-<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb173-1" data-line-number="1"><span class="kw">ggplot</span>(datasaurus_dozen) <span class="op">+</span><span class="st"> </span><span class="co"># haremos un plot con los datos datasaurus_dozen</span></a>
-<a class="sourceLine" id="cb173-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(x, y, <span class="dt">col =</span> dataset)) <span class="op">+</span><span class="st"> </span><span class="co"># puntos x, y, con coloreados p/data</span></a>
-<a class="sourceLine" id="cb173-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_abline</span>() <span class="op">+</span><span class="st"> </span><span class="co"># agregamos una linea recta</span></a>
-<a class="sourceLine" id="cb173-4" data-line-number="4"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>dataset, <span class="dt">ncol =</span> <span class="dv">3</span>) <span class="op">+</span><span class="st"> </span><span class="co"># separamos en subplots por data</span></a>
-<a class="sourceLine" id="cb173-5" data-line-number="5"><span class="st">  </span><span class="kw">theme_tufte</span>() <span class="op">+</span><span class="st"> </span><span class="co"># fondo blanco</span></a>
-<a class="sourceLine" id="cb173-6" data-line-number="6"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>) <span class="co"># eliminamos el legend</span></a></code></pre></div>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb171-1" data-line-number="1"><span class="kw">ggplot</span>(datasaurus_dozen) <span class="op">+</span><span class="st"> </span><span class="co"># haremos un plot con los datos datasaurus_dozen</span></a>
+<a class="sourceLine" id="cb171-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(x, y, <span class="dt">col =</span> dataset)) <span class="op">+</span><span class="st"> </span><span class="co"># puntos x, y, con coloreados p/data</span></a>
+<a class="sourceLine" id="cb171-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_abline</span>() <span class="op">+</span><span class="st"> </span><span class="co"># agregamos una linea recta</span></a>
+<a class="sourceLine" id="cb171-4" data-line-number="4"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>dataset, <span class="dt">ncol =</span> <span class="dv">3</span>) <span class="op">+</span><span class="st"> </span><span class="co"># separamos en subplots por data</span></a>
+<a class="sourceLine" id="cb171-5" data-line-number="5"><span class="st">  </span><span class="kw">theme_tufte</span>() <span class="op">+</span><span class="st"> </span><span class="co"># fondo blanco</span></a>
+<a class="sourceLine" id="cb171-6" data-line-number="6"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>) <span class="co"># eliminamos el legend</span></a></code></pre></div>
 <p><img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-200-1.svg" width="672" /></p>
 <p>Aquí se mapeó el nombre de cada subconjunto al color de los puntos de los diagramas de dispersión y se agregó la función lineal que mejor los ajusta.
 Como con el cuarteto de Anscombe, los gráfcos aportan una visión muy diferente de los conjuntos de datos, comparada con la que se tenía a partir de la observación solo de sus medidas descriptivas.</p>

@@ -2,7 +2,7 @@
 # provided inst_fun, and finally it loads the package
 load_install <- function(pkg, inst_fun = install.packages) {
   if (!require(pkg, character.only = TRUE)) {
-    inst_fun(pkg)
+    inst_fun(pkg, repos = "http://cran.us.r-project.org")
     library(pkg, character.only = TRUE)
   }
 }
