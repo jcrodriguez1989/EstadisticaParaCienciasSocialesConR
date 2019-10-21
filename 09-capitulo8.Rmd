@@ -56,23 +56,30 @@ ejemplos, la siguiente:
 lado <- c("cara", "número")
 probs <- c(.5, .5)
 moneda <- data.frame(lado, probs)
-ggplot(moneda, aes(lado, probs)) + geom_bar(stat = "identity", fill = "green") +
-  theme_tufte() + xlab("lado de la moneda") + ylab("probabilidades")
+ggplot(moneda, aes(lado, probs)) +
+  geom_bar(stat = "identity", fill = "green") +
+  theme_tufte() +
+  xlab("lado de la moneda") +
+  ylab("probabilidades")
 
 cara_dado <- c(1:6)
 probs <- rep(1 / 6, 6)
 dado <- data.frame(cara_dado, probs)
-ggplot(dado, aes(cara_dado, probs)) + geom_bar(stat = "identity", fill = "green") +
-  theme_tufte() + xlab("número del dado") + ylab("probabilidades")
+ggplot(dado, aes(cara_dado, probs)) +
+  geom_bar(stat = "identity", fill = "green") +
+  theme_tufte() +
+  xlab("número del dado") +
+  ylab("probabilidades")
 
 cara_icos <- c(1:20)
 probs <- rep(1 / 20, 20)
 icos <- data.frame(cara_icos, probs)
-ggplot(icos, aes(cara_icos, probs)) + geom_bar(stat = "identity", fill = "green") +
-  theme_tufte() + xlab("cara del icosaedro") + ylab("probabilidades")
+ggplot(icos, aes(cara_icos, probs)) +
+  geom_bar(stat = "identity", fill = "green") +
+  theme_tufte() +
+  xlab("cara del icosaedro") +
+  ylab("probabilidades")
 ```
-
-
 
 En estos gráficos, la idea de uniformidad (para todos los eventos la
 misma probabilidad) se transmite en la igual altura de todas las
@@ -306,7 +313,8 @@ Gauss"[^56] en referencia a Johann Carl Friedrich Gauss[^57].
 ```{r}
 ggplot(data = data.frame(x = c(-4, 4)), aes(x)) +
   stat_function(fun = dnorm, n = 101, args = list(mean = 0, sd = 1)) +
-  ylab("") + xlab("") +
+  ylab("") +
+  xlab("") +
   scale_y_continuous(breaks = NULL) + theme_tufte() +
   theme(axis.text.x = element_blank(), axis.ticks = element_blank())
 ```
@@ -365,8 +373,10 @@ Su gráfico está centrado en cero:
 ```{r}
 ggplot(data = data.frame(z = c(-4, 4)), aes(z)) +
   stat_function(fun = dnorm, n = 101, args = list(mean = 0, sd = 1)) +
-  ylab("") + xlab("z") +
-  scale_y_continuous(breaks = NULL) + theme_tufte()
+  ylab("") +
+  xlab("z") +
+  scale_y_continuous(breaks = NULL) +
+  theme_tufte()
 ```
 
 Cualquier hoja de cálculo (como OpenOfficeCalc o Excel)
@@ -381,9 +391,24 @@ Cuyo gráfico es:
 
 ```{r}
 ggplot(NULL, aes(c(-4, 4))) +
-  geom_area(stat = "function", fun = dnorm, col = "black", fill = "green", xlim = c(-4, 0)) +
-  geom_area(stat = "function", fun = dnorm, col = "black", fill = "white", xlim = c(0, 4)) + ylab("") + xlab("z") +
-  scale_y_continuous(breaks = NULL) + theme_tufte()
+  geom_area(
+    stat = "function",
+    fun = dnorm,
+    col = "black",
+    fill = "green",
+    xlim = c(-4, 0)
+  ) +
+  geom_area(
+    stat = "function",
+    fun = dnorm,
+    col = "black",
+    fill = "white",
+    xlim = c(0, 4)
+  ) +
+  ylab("") +
+  xlab("z") +
+  scale_y_continuous(breaks = NULL) +
+  theme_tufte()
 ```
 
 El área sombreada vale 0.50.
@@ -395,11 +420,27 @@ round(pnorm(2), 4)
 ```
 
 Y su representación: 
+
 ```{r}
 ggplot(NULL, aes(c(-4, 4))) +
-  geom_area(stat = "function", fun = dnorm, col = "black", fill = "green", xlim = c(-4, 2)) +
-  geom_area(stat = "function", fun = dnorm, col = "black", fill = "white", xlim = c(2, 4)) + ylab("") + xlab("z") +
-  scale_y_continuous(breaks = NULL) + theme_tufte()
+  geom_area(
+    stat = "function",
+    fun = dnorm,
+    col = "black",
+    fill = "green",
+    xlim = c(-4, 2)
+  ) +
+  geom_area(
+    stat = "function",
+    fun = dnorm,
+    col = "black",
+    fill = "white",
+    xlim = c(2, 4)
+  ) +
+  ylab("") +
+  xlab("z") +
+  scale_y_continuous(breaks = NULL) +
+  theme_tufte()
 ```
 
 Queda delimitada por debajo de $z=2$ un área de 0.9772. $P(z\leq2)=0.9772$.
@@ -432,14 +473,48 @@ siguientes:
 
 ```{r}
 ggplot(NULL, aes(c(-4, 4))) +
-  geom_area(stat = "function", fun = dnorm, col = "black", fill = "green", xlim = c(-4, -2)) +
-  geom_area(stat = "function", fun = dnorm, col = "black", fill = "white", xlim = c(-2, 4)) + ylab("") + xlab("z") + geom_segment(aes(x = -3, xend = -2.2, y = .09, yend = .02), arrow = arrow()) + annotate(geom = "text", label = "P(z<-2) = 0.0227", x = -3, y = .1) +
-  scale_y_continuous(breaks = NULL) + theme_tufte()
+  geom_area(
+    stat = "function",
+    fun = dnorm,
+    col = "black",
+    fill = "green",
+    xlim = c(-4, -2)
+  ) +
+  geom_area(
+    stat = "function",
+    fun = dnorm,
+    col = "black",
+    fill = "white",
+    xlim = c(-2, 4)
+  ) +
+  ylab("") +
+  xlab("z") +
+  geom_segment(aes(x = -3, xend = -2.2, y = .09, yend = .02), arrow = arrow()) +
+  annotate(geom = "text", label = "P(z<-2) = 0.0227", x = -3, y = .1) +
+  scale_y_continuous(breaks = NULL) +
+  theme_tufte()
 
 ggplot(NULL, aes(c(-4, 4))) +
-  geom_area(stat = "function", fun = dnorm, col = "black", fill = "green", xlim = c(-4, 1)) +
-  geom_area(stat = "function", fun = dnorm, col = "black", fill = "white", xlim = c(1, 4)) + ylab("") + xlab("z") + geom_segment(aes(x = -3, xend = -2, y = .23, yend = .15), arrow = arrow()) + annotate(geom = "text", label = "P(z<1) = 0.8413", x = -3, y = .25) +
-  scale_y_continuous(breaks = NULL) + theme_tufte()
+  geom_area(
+    stat = "function",
+    fun = dnorm,
+    col = "black",
+    fill = "green",
+    xlim = c(-4, 1)
+  ) +
+  geom_area(
+    stat = "function",
+    fun = dnorm,
+    col = "black",
+    fill = "white",
+    xlim = c(1, 4)
+  ) +
+  ylab("") +
+  xlab("z") +
+  geom_segment(aes(x = -3, xend = -2, y = .23, yend = .15), arrow = arrow()) +
+  annotate(geom = "text", label = "P(z<1) = 0.8413", x = -3, y = .25) +
+  scale_y_continuous(breaks = NULL) +
+  theme_tufte()
 ```
 
 A continuación vemos la representación gráfica de la relación entre las
@@ -572,7 +647,6 @@ round(qnorm(.975), 2)
 
 Así:
 $$P(- 1.96 < z < 1.96) = 0,95$$
-
 
 Y para $.99$, el $.01$ restante se divide en dos, por lo que los $z$ que se buscan son los valores que acumulan $.005$ y $.995$, es decir: $P_{.5}$ y $P_{99.5}$, que resultan:
 
