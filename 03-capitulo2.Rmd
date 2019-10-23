@@ -18,9 +18,9 @@ Una vez identificadas las variables y reconocido su nivel de medición, es neces
 El siguiente fragmento de matriz de datos:
 
 ```{r}
-eph.3.18 <- read.csv("bases/archivostxt/usu_individual_T318.txt", sep=";")
+eph.3.18 <- read.csv("bases/archivostxt/usu_individual_T318.txt", sep = ";")
 eph.3.18$CH06[eph.3.18$CH06 == -1] <- 0
-head(eph.3.18[,-c(1, 4:8, 10,13:177)])
+head(eph.3.18[, -c(1, 4:8, 10, 13:177)])
 ```
 
 Muestra las primeras variables y primeros casos correspondiente a la aplicación del cuestionario individual de la Encuesta Permanente de Hogares @INDEC2018 del tercer trimestre de 2018, que tiene `r length(eph.3.18$CH04)` casos. Las variables están codificadas, tanto en su nombre como en sus categorías. Por ejemplo, CH06 es la edad y los números representan años cumplidos, CH04 es sexo y sus categorías son 1 = varones, 2 = mujeres. Esas codificaciones están en el documento *Diseño de Registro de la Base Usuario de la EPH* @INDEC2009
@@ -43,10 +43,13 @@ Las tablas resumen los recuentos, en este ejemplo:
 aux_table <- addmargins(table(eph.3.18$CH04))
 names(aux_table) <- sub("Sum", "Total", names(aux_table))
 kableExtra::kable_styling(
-  knitr::kable(aux_table, format = "pandoc", booktabs = TRUE, align = "cc",
-               escape = FALSE,
-               caption = "Distribución por sexos."),
-  latex_options = "striped", full_width = FALSE)
+  knitr::kable(aux_table,
+    format = "pandoc", booktabs = TRUE, align = "cc",
+    escape = FALSE,
+    caption = "Distribución por sexos."
+  ),
+  latex_options = "striped", full_width = FALSE
+)
 ```
 
 Cuando se rotulan la variable y sus categorías:
@@ -57,20 +60,26 @@ levels(eph.3.18$sexo) <- c("varones", "mujeres")
 aux_table <- addmargins(table(eph.3.18$sexo))
 names(aux_table) <- sub("Sum", "Total", names(aux_table))
 kableExtra::kable_styling(
-  knitr::kable(aux_table, format = "pandoc", booktabs = TRUE, align = "lc",
-               escape = FALSE, col.names = c("sexo", "casos"),
-               caption = "Distribución por sexos (categorías rotuladas."),
-  latex_options = "striped", full_width = FALSE)
+  knitr::kable(aux_table,
+    format = "pandoc", booktabs = TRUE, align = "lc",
+    escape = FALSE, col.names = c("sexo", "casos"),
+    caption = "Distribución por sexos (categorías rotuladas."
+  ),
+  latex_options = "striped", full_width = FALSE
+)
 ```
 
 A la cantidad de casos, que proviene del recuento del número de unos y doses en la columna de sexo, se lo llama técnicamente frecuencia absoluta simple y se la indica como f. La tabla resulta entonces:
 
 ```{r}
 kableExtra::kable_styling(
-  knitr::kable(aux_table, format = "pandoc", booktabs = TRUE, align = "lc",
-               escape = FALSE, col.names = c("sexo", "f"),
-               caption = "Distribución por sexos: frecuencia absoluta."),
-  latex_options = "striped", full_width = FALSE)
+  knitr::kable(aux_table,
+    format = "pandoc", booktabs = TRUE, align = "lc",
+    escape = FALSE, col.names = c("sexo", "f"),
+    caption = "Distribución por sexos: frecuencia absoluta."
+  ),
+  latex_options = "striped", full_width = FALSE
+)
 ```
 
 El total de `r length(eph.3.18$sexo)` casos resulta de la suma de todas las frecuencias absolutas simples, de manera breve, esto se indica así: $$\sum_{i=1}^{k}f_i =n$$
@@ -105,19 +114,25 @@ estatal <- subset(eph.3.18, eph.3.18$PP04A == 1)
 por_sexos_estatal <- addmargins(table(estatal$CH04))
 names(por_sexos_estatal) <- sub("Sum", "Total", names(por_sexos_estatal))
 kableExtra::kable_styling(
-  knitr::kable(por_sexos_estatal, format = "pandoc", booktabs = TRUE, align = "cc",
-               escape = FALSE, col.names = c("sexo (sector estatal)", "f"),
-               caption = "Distribución por sexos según sector de trabajo."),
-  latex_options = "striped", full_width = FALSE)
+  knitr::kable(por_sexos_estatal,
+    format = "pandoc", booktabs = TRUE, align = "cc",
+    escape = FALSE, col.names = c("sexo (sector estatal)", "f"),
+    caption = "Distribución por sexos según sector de trabajo."
+  ),
+  latex_options = "striped", full_width = FALSE
+)
 
 
 privado <- subset(eph.3.18, eph.3.18$PP04A == 2)
 por_sexos_privado <- addmargins(table(privado$CH04))
 names(por_sexos_privado) <- sub("Sum", "Total", names(por_sexos_privado))
 kableExtra::kable_styling(
-  knitr::kable(por_sexos_privado, format = "pandoc", booktabs = TRUE, align = "cc",
-               escape = FALSE, col.names = c("sexo (sector privado)", "f")),
-  latex_options = "striped", full_width = FALSE)
+  knitr::kable(por_sexos_privado,
+    format = "pandoc", booktabs = TRUE, align = "cc",
+    escape = FALSE, col.names = c("sexo (sector privado)", "f")
+  ),
+  latex_options = "striped", full_width = FALSE
+)
 ```
 
 No es clara la comparación entre el número de mujeres en los dos sectores, porque la cantidad total de casos es muy diferente, por eso es necesario comparar el peso relativo de las mujeres respecto del total, y no su número absoluto, se trata de su contribución al total de casos.
@@ -132,11 +147,14 @@ names(privp) <- sub("Sum", "Total", names(privp))
 aux_table <- cbind(names(privp), por_sexos_privado, privp)
 rownames(aux_table) <- NULL
 kableExtra::kable_styling(
-  knitr::kable(aux_table, format = "pandoc", booktabs = TRUE, align = "ccc",
-               escape = FALSE,
-               col.names = c("sexo (sector privado)", "f", "f'"),
-               caption = "Distribución por sexos sector privado: frecuencias relativas."),
-  latex_options = "striped", full_width = FALSE)
+  knitr::kable(aux_table,
+    format = "pandoc", booktabs = TRUE, align = "ccc",
+    escape = FALSE,
+    col.names = c("sexo (sector privado)", "f", "f'"),
+    caption = "Distribución por sexos sector privado: frecuencias relativas."
+  ),
+  latex_options = "striped", full_width = FALSE
+)
 ```
 
 El valor 1 que resulta de sumar las dos frecuencias relativas corresponde al 100% de los casos, es decir a las `r nrow(privado)` observaciones. Usando la misma simbología que antes: $$\sum_{i=1}^{k} f'_i =1$$
@@ -148,11 +166,14 @@ La salida para la variable ESTADO tiene la siguiente forma:
 aux_table <- addmargins(prop.table(table(eph.3.18$ESTADO)))
 names(aux_table) <- sub("Sum", "Total", names(aux_table))
 kableExtra::kable_styling(
-  knitr::kable(aux_table, format = "pandoc", booktabs = TRUE, align = "cc",
-               escape = FALSE, digits = c(0, 2),
-               col.names = c("ESTADO", "f'"),
-               caption = "Condición laboral."),
-  latex_options = "striped", full_width = FALSE)
+  knitr::kable(aux_table,
+    format = "pandoc", booktabs = TRUE, align = "cc",
+    escape = FALSE, digits = c(0, 2),
+    col.names = c("ESTADO", "f'"),
+    caption = "Condición laboral."
+  ),
+  latex_options = "striped", full_width = FALSE
+)
 ```
 
 Cuando se codifica, queda:
@@ -163,11 +184,14 @@ levels(eph.3.18$ESTADO) <- c("entrevista no realizada", "ocupado", "desocupado",
 aux_table <- addmargins(prop.table(table(eph.3.18$ESTADO)))
 names(aux_table) <- sub("Sum", "Total", names(aux_table))
 kableExtra::kable_styling(
-  knitr::kable(aux_table, format = "pandoc", booktabs = TRUE, align = "lc",
-               escape = FALSE, digits = c(0, 2),
-               col.names = c("ESTADO", "f'"),
-               caption = "Condición laboral (categorías rotuladas)."),
-  latex_options = "striped", full_width = FALSE)
+  knitr::kable(aux_table,
+    format = "pandoc", booktabs = TRUE, align = "lc",
+    escape = FALSE, digits = c(0, 2),
+    col.names = c("ESTADO", "f'"),
+    caption = "Condición laboral (categorías rotuladas)."
+  ),
+  latex_options = "striped", full_width = FALSE
+)
 ```
 
 Al construir estas tablas de distribución de frecuencias se renuncia a una parte de la información que estaba en la matriz de datos. En ella se podía seguir por la fila a cada individuo y describirlo en cada uno de sus aspectos relevados (variables). Por el contrario, la tabla de distribución de frecuencias de sexo solo dice que hay `r sum(eph.3.18$sexo == "varones")` varones y `r sum(eph.3.18$sexo == "mujeres")` mujeres o, en la tabla de ESTADO, que hay `r sum(eph.3.18$ESTADO == "ocupado")` ocupados, `r sum(eph.3.18$ESTADO == "desocupado")` desocupados, etc., pero no se informa quiénes son. Esta pérdida de información es parte inevitable del proceso en el que se resumen datos, cuanto más sintética sea la presentación, tanta más información habremos perdido. Esto puede visualizarse como el proceso en el que se "toma distancia" de los datos originales: cada vez se tiene una mejor visión de conjunto, pero al mismo tiempo se pierden detalles.
@@ -182,13 +206,17 @@ Los dos ejemplos mostrados hasta aquí corresponden a variables medidas a nivel 
 edad <- subset(
   eph.3.18, eph.3.18$NIVEL_ED == 5 &
     eph.3.18$CH10 == 1 &
-    eph.3.18$CH06 < 55)$CH06
+    eph.3.18$CH06 < 55
+)$CH06
 aux_table <- tabla_frec(edad, digits = 2, "edad")
 kableExtra::kable_styling(
-  knitr::kable(aux_table, format = "pandoc", booktabs = TRUE, align = "ccc",
-               escape = FALSE, row.names = FALSE,
-               caption = "Distribución por edades."),
-  latex_options = "striped", full_width = FALSE)
+  knitr::kable(aux_table,
+    format = "pandoc", booktabs = TRUE, align = "ccc",
+    escape = FALSE, row.names = FALSE,
+    caption = "Distribución por edades."
+  ),
+  latex_options = "striped", full_width = FALSE
+)
 ```
 
 Sobre esta tabla se pueden calcular otras frecuencias, que respondan a preguntas como ¿cuántos alumnos de menos de 20 años fueron encuestados? Para saber eso, hay que contar cuántos casos hay con edades menores a 20: con 17, 18 o 19 años hay `r sum(edad < 20)` casos, que provienen de sumar las frecuencias de esas categorías (`r sum(edad == 17)`+`r sum(edad == 18)`+`r sum(edad == 19)`). 
@@ -201,10 +229,13 @@ edad_frec[, "F'"] <- cumsum(edad_frec[, "f'"])
 edad_frec[nrow(edad_frec), c("F", "F'")] <- ""
 edad_frec[nrow(edad_frec) - 1, "F'"] <- 1
 kableExtra::kable_styling(
-  knitr::kable(edad_frec, format = "pandoc", booktabs = TRUE, align = "ccccc",
-               escape = FALSE, row.names = FALSE,
-               caption = "Distribución por edades: frecuencias acumuladas."),
-  latex_options = "striped", full_width = FALSE)
+  knitr::kable(edad_frec,
+    format = "pandoc", booktabs = TRUE, align = "ccccc",
+    escape = FALSE, row.names = FALSE,
+    caption = "Distribución por edades: frecuencias acumuladas."
+  ),
+  latex_options = "striped", full_width = FALSE
+)
 ```
 
 Se agregaron dos columnas más, las frecuencias acumuladas absolutas (F) y relativas (F'). Las primeras se obtuvieron sumando a la frecuencia absoluta de cada categoría, las frecuencias absolutas de las categorías anteriores a ella. Así, la primera categoría tiene frecuencia acumulada igual a la absoluta simple, porque no hay ningún caso por debajo de 17 años; la segunda es `r edad_frec[2, "F"]`, que proviene de contar los `r edad_frec[2, "f"]` de la segunda categoría y sumarle los `r edad_frec[1, "f"]` de la anterior y del mismo modo se construyen las siguientes. La última categoría tiene por frecuencia absoluta acumulada al total de casos (en el ejemplo `r edad_frec[nrow(edad_frec)-1, "F"]`), porque todos (los `r edad_frec[nrow(edad_frec)-1, "F"]`) están en esa categoría o por debajo de ella, es decir, todos tienen de `r edad_frec[nrow(edad_frec)-1, "edad"]` años para abajo. La lectura que hacemos de estas frecuencias es que, por ejemplo, "hay `r sum(edad <= 20)` alumnos que tienen 20 años o menos."
@@ -241,14 +272,18 @@ Se organizan los valores de la variable para lograr que el campo de variación q
 edad4 <- factor(cut(subset(
   eph.3.18, eph.3.18$NIVEL_ED == 5 &
     eph.3.18$CH10 == 1 &
-    eph.3.18$CH06 < 55)$CH06, breaks = 4))
+    eph.3.18$CH06 < 55
+)$CH06, breaks = 4))
 tabla2 <- table(edad4)
 kableExtra::kable_styling(
-  knitr::kable(tabla2, format = "pandoc", booktabs = TRUE, align = "lc",
-               escape = FALSE, row.names = FALSE, 
-               col.names = c("EdadCat", "f"),
-               caption = "Categorización de la edad en intervalos de igual amplitud."),
-  latex_options = "striped", full_width = FALSE)
+  knitr::kable(tabla2,
+    format = "pandoc", booktabs = TRUE, align = "lc",
+    escape = FALSE, row.names = FALSE,
+    col.names = c("EdadCat", "f"),
+    caption = "Categorización de la edad en intervalos de igual amplitud."
+  ),
+  latex_options = "striped", full_width = FALSE
+)
 ```
 
 Los intervalos son de la misma amplitud, pero el primero de ellos tiene más del 70% de las observaciones, con lo que se pierde detalle de la distribuciión.
@@ -278,11 +313,14 @@ universitarios$edad4.p <- factor(cut(
 tabla3 <- table(universitarios$edad4.p)
 
 kableExtra::kable_styling(
-  knitr::kable(tabla3, format = "pandoc", booktabs = TRUE, align = "lc",
-               escape = FALSE, row.names = FALSE, 
-               col.names = c("EdadCat", "f"),
-               caption = "Categorización de la edad en intervalos proporcionales."),
-  latex_options = "striped", full_width = FALSE)
+  knitr::kable(tabla3,
+    format = "pandoc", booktabs = TRUE, align = "lc",
+    escape = FALSE, row.names = FALSE,
+    col.names = c("EdadCat", "f"),
+    caption = "Categorización de la edad en intervalos proporcionales."
+  ),
+  latex_options = "striped", full_width = FALSE
+)
 ```
 
 Ahora la distribución está más equilibrada (hay alrededor de 1000 casos en cada una), y los intervalos tienen amplitud diferente. El último intervalo, de 26 años de  amplitud, tiene casi la misma cantidad de casos que el primero, que cubre tres años.
@@ -306,11 +344,14 @@ universitarios$edad4.t <- factor(cut(
 tabla4 <- table(universitarios$edad4.t)
 
 kableExtra::kable_styling(
-  knitr::kable(tabla4, format = "pandoc", booktabs = TRUE, align = "lc",
-               escape = FALSE, row.names = FALSE, 
-               col.names = c("EdadCat", "f"),
-               caption = "Categorización de la edad con un criterio teórico."),
-  latex_options = "striped", full_width = FALSE)
+  knitr::kable(tabla4,
+    format = "pandoc", booktabs = TRUE, align = "lc",
+    escape = FALSE, row.names = FALSE,
+    col.names = c("EdadCat", "f"),
+    caption = "Categorización de la edad con un criterio teórico."
+  ),
+  latex_options = "striped", full_width = FALSE
+)
 ```
 
 El intervalo (18,20] incluye las edades de 19 y 20 años, porque es abierto a la izquierda.
@@ -323,10 +364,10 @@ Cuando se trata de variables nominales, normalmente con pocas categorías, son a
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Condición laboral: frecuencias absolutas (barras adyacentes)."}
 eph.3.18$ESTADO <- as.factor(eph.3.18$ESTADO)
 levels(eph.3.18$ESTADO) <- c(NA, "ocupado", "desocupado", "inactivo", NA)
-ggplot(eph.3.18) + 
-  geom_bar(aes(ESTADO), fill = "green") + 
-  xlab("actividad") + 
-  ylab("casos") + 
+ggplot(eph.3.18) +
+  geom_bar(aes(ESTADO), fill = "green") +
+  xlab("actividad") +
+  ylab("casos") +
   theme_tufte()
 ```
 
@@ -475,35 +516,44 @@ ggplot(bayley) +
     x = 0,
     xend = quantile(bayley$peso.nac, .25),
     y = .25,
-    yend = .25)) +
+    yend = .25
+  )) +
   geom_segment(aes(
     xend = quantile(bayley$peso.nac, .25),
     yend = 0,
     x = quantile(bayley$peso.nac, .25),
-    y = .25),
-    arrow = arrow(type = "closed", length = unit(0.1, "inches"))) +
+    y = .25
+  ),
+  arrow = arrow(type = "closed", length = unit(0.1, "inches"))
+  ) +
   geom_segment(aes(
     x = 0,
     xend = quantile(bayley$peso.nac, .5),
     y = .5,
-    yend = .5)) +
+    yend = .5
+  )) +
   geom_segment(aes(
     xend = quantile(bayley$peso.nac, .5),
     yend = 0,
     x = quantile(bayley$peso.nac, .5),
-    y = .5),
-    arrow = arrow(type = "closed", length = unit(0.1, "inches"))) +
+    y = .5
+  ),
+  arrow = arrow(type = "closed", length = unit(0.1, "inches"))
+  ) +
   geom_segment(aes(
     x = 0,
     xend = quantile(bayley$peso.nac, .75),
     y = .75,
-    yend = .75)) +
+    yend = .75
+  )) +
   geom_segment(aes(
     xend = quantile(bayley$peso.nac, .75),
     yend = 0,
     x = quantile(bayley$peso.nac, .75),
-    y = .75),
-    arrow = arrow(type = "closed", length = unit(0.1, "inches"))) +
+    y = .75
+  ),
+  arrow = arrow(type = "closed", length = unit(0.1, "inches"))
+  ) +
   xlab("peso al nacer (en gramos)") +
   ylab("F'") +
   theme_tufte()
@@ -519,16 +569,21 @@ peso.nac4 <- factor(cut(
     quantile(bayley$peso.nac, .25),
     quantile(bayley$peso.nac, .5),
     quantile(bayley$peso.nac, .75),
-    max(bayley$peso.nac)),
-  dig.lab = 5))
+    max(bayley$peso.nac)
+  ),
+  dig.lab = 5
+))
 
 tabla5 <- round(table(peso.nac4), 0)
 kableExtra::kable_styling(
-  knitr::kable(tabla5, format = "pandoc", booktabs = TRUE, align = "lc",
-               escape = FALSE, row.names = FALSE, 
-               col.names = c("Peso.nacCat", "f"),
-               caption = "Distribución de los pesos al nacer categorizados en cuatro intervalos proporcionales."),
-  latex_options = "striped", full_width = FALSE)
+  knitr::kable(tabla5,
+    format = "pandoc", booktabs = TRUE, align = "lc",
+    escape = FALSE, row.names = FALSE,
+    col.names = c("Peso.nacCat", "f"),
+    caption = "Distribución de los pesos al nacer categorizados en cuatro intervalos proporcionales."
+  ),
+  latex_options = "striped", full_width = FALSE
+)
 ```
 
 [^categ_inf]: La cantidad de valores depende de la precisión con que se haga la medición.

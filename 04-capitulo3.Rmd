@@ -32,10 +32,13 @@ aux_table <- cbind(names(tabla7), tabla7, tabla6)
 rownames(aux_table) <- NULL
 
 kableExtra::kable_styling(
-  knitr::kable(aux_table, format = "pandoc", booktabs = TRUE, align = "lcc",
-               escape = FALSE,
-               col.names = c("¿Con qué frase está más de acuerdo?", "f", "f'")),
-  latex_options = "striped", full_width = FALSE)
+  knitr::kable(aux_table,
+    format = "pandoc", booktabs = TRUE, align = "lcc",
+    escape = FALSE,
+    col.names = c("¿Con qué frase está más de acuerdo?", "f", "f'")
+  ),
+  latex_options = "striped", full_width = FALSE
+)
 ```
 
 Podemos indicar la proporción de personas que respondió que se puede confiar caso como `r tabla7[1]`, que puede también expresarse como `r tabla6[1]`%. La elección de cuál categoría se elige para indicar la proporción depende de los objetivos de la descripción. Al elegir una categoría se llama la atención sobre ella, se la destaca, ya que la proporción restante incluye a todas las demás categorías, los "otros". Esa proporción restante se obtiene restando de 1 (uno) la proporción indicada, o restando de 100 (cien) si ha expresado como porcentaje. En este ejemplo, diremos que `r tabla7[2]` (que proviene de hacer `r 1-tabla7[1]`) es la proporción de quienes no creen que se pueda confiar, o bien que éstos representan el `r tabla6[2]`% (`r 100-tabla6[1]`).
@@ -79,9 +82,12 @@ sexo <- c("varones", "mujeres", "Total")
 censo2010 <- data.frame(sexo, personas)
 censo2010$prop.sexos <- round(censo2010$personas / 40117096, 3)
 kableExtra::kable_styling(
-  knitr::kable(censo2010, format = "pandoc", booktabs = TRUE, align = "lcc",
-               escape = FALSE),
-  latex_options = "striped", full_width = FALSE)
+  knitr::kable(censo2010,
+    format = "pandoc", booktabs = TRUE, align = "lcc",
+    escape = FALSE
+  ),
+  latex_options = "striped", full_width = FALSE
+)
 ```
 
 La proporción de varones es 48.7% y la de mujeres de 51.3%; se calculan respecto de la población total. La razón de feminidad se obtiene dividiendo el total de mujeres en el de varones y a la inversa para la de masculinidad. El cociente $\frac{`r format(mujeres, scientific = FALSE)`}{`r format(varones, scientific = FALSE)`}*100$, que es `r round(mujeres/varones*100,1)` indica que hay en la población `r round(mujeres/varones*100,0)` mujeres por cada 100 varones.
@@ -99,15 +105,16 @@ Por ejemplo, la variable *carrera que cursa*, tiene la siguiente distribución:
 
 ```{r}
 aux_table <- tibble::tribble(
-  ~carrera,         ~f,  ~"f'",
-  "Educación",      44,  0.29,
-  "Psicología",     48,  0.32,
-  "Psicopedagogía", 58,  0.39,
-  "Total",          150, 1
+  ~carrera, ~f, ~"f'",
+  "Educación", 44, 0.29,
+  "Psicología", 48, 0.32,
+  "Psicopedagogía", 58, 0.39,
+  "Total", 150, 1
 )
 kableExtra::kable_styling(
   knitr::kable(aux_table, format = "pandoc", booktabs = TRUE, align = "lcc"),
-  latex_options = "striped")
+  latex_options = "striped"
+)
 ```
 
 El modo es Psicopedagogía, que es la categoría de mayor frecuencia. Debe cuidarse de no cometer el error de señalar la frecuencia 58 como el modo; el modo no es la frecuencia más alta, sino la categoría de la variable que tiene mayor frecuencia. Para hallarlo, se identifica la más alta de las frecuencias y se señala la categoría que le corresponde. Puede usarse la frecuencia absoluta o la relativa para determinar cuál es el modo de la distribución.
@@ -120,9 +127,12 @@ latinob$P8STGBS <- as.factor(latinob$P8STGBS)
 levels(latinob$P8STGBS) <- c(NA, NA, "La democracia es preferible a cualquier otra forma de gobierno", "En algunas circunstancias, un gobierno autoritario puede ser preferible a uno democrático", "A la gente como uno, nos da lo mismo un régimen democrático que uno no democrático")
 tabla8 <- table(latinob$P8STGBS)
 kableExtra::kable_styling(
-  knitr::kable(tabla8, format = "pandoc", booktabs = TRUE, align = "lc", 
-               col.names = c("P8STGBS", "f")),
-  latex_options = "striped")
+  knitr::kable(tabla8,
+    format = "pandoc", booktabs = TRUE, align = "lc",
+    col.names = c("P8STGBS", "f")
+  ),
+  latex_options = "striped"
+)
 ```
 
 Allí, la categoría modal es la que privilegia a la democracia como sistema de gobierno. 
@@ -131,17 +141,18 @@ Si se trata de una variable de mayor nivel de medición, no hay ninguna diferenc
 
 ```{r}
 aux_table <- tibble::tribble(
-  ~concepto,          ~f,
-  "Excelente",        150,
-  "Muy bueno",        350,
-  "Bueno",            200,
-  "Satisfactorio",    120,
-  "No satisfactorio",  50,
-  "Total",            870
+  ~concepto, ~f,
+  "Excelente", 150,
+  "Muy bueno", 350,
+  "Bueno", 200,
+  "Satisfactorio", 120,
+  "No satisfactorio", 50,
+  "Total", 870
 )
 kableExtra::kable_styling(
   knitr::kable(aux_table, format = "pandoc", booktabs = TRUE, align = "lc"),
-  latex_options = "striped")
+  latex_options = "striped"
+)
 ```
 
 En este ejemplo, 350 es la frecuencia más alta, por lo tanto, la
@@ -157,19 +168,20 @@ distribución. El *número de materias que tienen aprobadas alumnos que han term
 
 ```{r}
 aux_table <- tibble::tribble(
-  ~"Cantidad de materias aprobadas",   ~f,
-  0,                                   30,
-  1,                                  150,
-  2,                                  200,
-  3,                                  300,
-  4,                                  250,
-  5,                                  200,
-  6,                                   20,
-  "Total",                           1150
+  ~"Cantidad de materias aprobadas", ~f,
+  0, 30,
+  1, 150,
+  2, 200,
+  3, 300,
+  4, 250,
+  5, 200,
+  6, 20,
+  "Total", 1150
 )
 kableExtra::kable_styling(
   knitr::kable(aux_table, format = "pandoc", booktabs = TRUE, align = "lc"),
-  latex_options = "striped")
+  latex_options = "striped"
+)
 ```
 
 En esta distribución, el modo es 3 materias aprobadas ($M_o = 3$), que es la categoría que tiene mayor frecuencia. Expresamos esto como "la mayor cantidad de alumnos que terminaron de cursar primer año han aprobado tres materias".
@@ -179,16 +191,17 @@ mayor frecuencia, sino que dos o más compartan la mayor frecuencia. Para 160 al
 
 ```{r}
 aux_table <- tibble::tribble(
-  ~"Facultad a la que pertenece",  ~f,
-  "Arquitectura",                  50,
-  "Ingeniería",                    40,
-  "Psicología",                    50,
-  "Sociales",                      20,
-  "Total",                        160
+  ~"Facultad a la que pertenece", ~f,
+  "Arquitectura", 50,
+  "Ingeniería", 40,
+  "Psicología", 50,
+  "Sociales", 20,
+  "Total", 160
 )
 kableExtra::kable_styling(
   knitr::kable(aux_table, format = "pandoc", booktabs = TRUE, align = "lc"),
-  latex_options = "striped")
+  latex_options = "striped"
+)
 ```
 
 Vemos aquí que hay dos categorías que presentan la mayor frecuencia:
@@ -217,15 +230,16 @@ tienen la misma moda ($M_o = Pública$), aunque son muy dispares:
 
 ```{r}
 aux_table <- tibble::tribble(
-  ~"Gestión de la escuela", ~f, ~"Gestión de la escuela",  ~f,
-  "Pública",                50, "Pública",                100,
-  "Privada laica",          45, "Privada laica",           20,
-  "Privada confesional",    35, "Privada confesional",     10,
-  "Total",                 130, "Total",                  130
+  ~"Gestión de la escuela", ~f, ~"Gestión de la escuela", ~f,
+  "Pública", 50, "Pública", 100,
+  "Privada laica", 45, "Privada laica", 20,
+  "Privada confesional", 35, "Privada confesional", 10,
+  "Total", 130, "Total", 130
 )
 kableExtra::kable_styling(
   knitr::kable(aux_table, format = "pandoc", booktabs = TRUE, align = "lclc"),
-  latex_options = "striped")
+  latex_options = "striped"
+)
 ```
 
 ### Variables ordinales: percentiles
@@ -247,8 +261,8 @@ tabla9 <- tabla1[, -c(2:4)]
 names(tabla9) <- c("edad", "F'")
 kableExtra::kable_styling(
   knitr::kable(tabla9, format = "pandoc", booktabs = TRUE, align = "cc"),
-  latex_options = "striped")
-
+  latex_options = "striped"
+)
 ```
 
 La frecuencia acumulada 0.26 indica que el 26% de los estudiantes tiene 20 años o menos. Se dice que el valor 20 años es el percentil 26 y se indica $P_{26}$. El "percentil" en sí mismo no es una medida descriptiva, para que lo sea se debe especificar *qué* percentil es el que se calcula.  En este ejemplo, cada frecuencia acumulada conduce a un percentil particular. El percentil 68 de la variable es 25 años, y se escribe $P_{68} = 25$ años. Estas medidas se definen como el valor de la variable que deja por debajo un determinado porcentaje de observaciones.
@@ -293,16 +307,17 @@ clasificación de hogares por nivel socioeconómico:
 ```{r}
 aux_table <- tibble::tribble(
   ~"Nivel socioeconómico", ~"f (número de hogares)", ~"F",
-  "Marginal",                                    40,   40,
-  "Bajo",                                       100,  140,
-  "Medio-bajo",                                 120,  260,
-  "Medio",                                      150,  410,
-  "Alto",                                        30,  440,
-  "Total",                                      440,   ""
+  "Marginal", 40, 40,
+  "Bajo", 100, 140,
+  "Medio-bajo", 120, 260,
+  "Medio", 150, 410,
+  "Alto", 30, 440,
+  "Total", 440, ""
 )
 kableExtra::kable_styling(
   knitr::kable(aux_table, format = "pandoc", booktabs = TRUE, align = "lcc"),
-  latex_options = "striped")
+  latex_options = "striped"
+)
 ```
 
 El valor de la variable que acumula el 50% de los casos, es el que ocupa el lugar 220, que es mitad de los 440 casos del total. La serie ordenada de esta distribución, coloca a los 40 hogares marginales en lso primeros 40 lugares, pero indistintamente, porque no hay orden entre los hogares al interior de la categoría. Según la tabla, hasta la categoría "medio-bajo" se acumulan 260 hogares y hasta la categoría anterior hay 140 acumulados. De manera que el hogar que ocupa el lugar 220 (de la serie ordenada) es uno de los que se encuentran en la categoría "medio-bajo". Diremos así que la mediana de esta distribución es "medio-bajo". Como puede verse, esta categoría no acumula exactamente la mitad de las observaciones, pero es la que contiene a la observación que supera a la mitad y es superada por la otra mitad. Por esa razón la leemos como la mediana, diciendo que la mitad de los hogares tiene un nivel socioeconómico medio-bajo o inferior a ese. Decir que el que acumula 220 casos es "uno de los hogares de la categoría  medio-bajo" es impreciso, porque todos los hogares son equivalentes en su nivel socioeconómico al interior de la categoría.
@@ -313,15 +328,16 @@ una variable cuantitativa discreta. Si la variable es el *número de síntomas* 
 ```{r}
 aux_table <- tibble::tribble(
   ~"Cantidad de síntomas", ~"f (número de pacientes)", ~"F",
-  2,                                               30,   30,
-  3,                                               60,   90,
-  4,                                               70,  160,
-  5,                                               90,  250,
-  "Total",                                        250,   ""
+  2, 30, 30,
+  3, 60, 90,
+  4, 70, 160,
+  5, 90, 250,
+  "Total", 250, ""
 )
 kableExtra::kable_styling(
   knitr::kable(aux_table, format = "pandoc", booktabs = TRUE, align = "lcc"),
-  latex_options = "striped")
+  latex_options = "striped"
+)
 ```
 
 La mitad del número total de casos es de 125 ($250/2$ ó $(1/2)*250$), ¿cuál
@@ -343,18 +359,19 @@ Sea la variable *número de materias aprobadas*:
 ```{r}
 aux_table <- tibble::tribble(
   ~"Número de materias aprobadas", ~"f", ~"F",
-  0,                                 30,   30,
-  1,                                150,  180,
-  2,                                200,  380,
-  3,                                300,  680,
-  4,                                250,  930,
-  5,                                200, 1130,
-  6,                                 20, 1150,
-  "Total",                         1150,   ""
+  0, 30, 30,
+  1, 150, 180,
+  2, 200, 380,
+  3, 300, 680,
+  4, 250, 930,
+  5, 200, 1130,
+  6, 20, 1150,
+  "Total", 1150, ""
 )
 kableExtra::kable_styling(
   knitr::kable(aux_table, format = "pandoc", booktabs = TRUE, align = "lcc"),
-  latex_options = "striped")
+  latex_options = "striped"
+)
 ```
 
 La mitad de 1150 es 575, la primera frecuencia acumulada que supera a
@@ -366,17 +383,18 @@ categorías agrupadas, el cálculo anterior puede refinarse. Así, primero se id
 ```{r}
 aux_table <- tibble::tribble(
   ~"Tiempo de reacción (en segundos)", ~"f", ~"F",
-  "1.0 - 1.5",                            5,    5,
-  "1.5 - 2.0",                            7,   12,
-  "2.0 - 2.5",                            6,   18,
-  "2.5 - 3.0",                            3,   21,
-  "3.0 - 3.5",                            8,   29,
-  "3.5 - 4.0",                            5,   34,
-  "Total",                               34,    ""
+  "1.0 - 1.5", 5, 5,
+  "1.5 - 2.0", 7, 12,
+  "2.0 - 2.5", 6, 18,
+  "2.5 - 3.0", 3, 21,
+  "3.0 - 3.5", 8, 29,
+  "3.5 - 4.0", 5, 34,
+  "Total", 34, ""
 )
 kableExtra::kable_styling(
   knitr::kable(aux_table, format = "pandoc", booktabs = TRUE, align = "lcc"),
-  latex_options = "striped")
+  latex_options = "striped"
+)
 ```
 
 La mitad de las 34 observaciones es 17, por lo que debe encontrarse una
@@ -464,18 +482,19 @@ cuenta el número de materias aprobadas:
 ```{r}
 aux_table <- tibble::tribble(
   ~"Número de materias aprobadas", ~"f",
-  0,                                 30,
-  1,                                150,
-  2,                                200,
-  3,                                300,
-  4,                                250,
-  5,                                200,
-  6,                                 20,
-  "Total",                         1150
+  0, 30,
+  1, 150,
+  2, 200,
+  3, 300,
+  4, 250,
+  5, 200,
+  6, 20,
+  "Total", 1150
 )
 kableExtra::kable_styling(
   knitr::kable(aux_table, format = "pandoc", booktabs = TRUE, align = "lc"),
-  latex_options = "striped")
+  latex_options = "striped"
+)
 ```
 
 El valor 0 (cero) está repetido 30 veces, lo que indica que hay 30
@@ -536,17 +555,18 @@ ejemplo y nuevamente en el caso de los tiempos de reacción:
 ```{r}
 aux_table <- tibble::tribble(
   ~"Tiempo de reacción (en segundos)", ~"f",
-  "1.0 - 1.5",                            5,
-  "1.5 - 2.0",                            7,
-  "2.0 - 2.5",                            6,
-  "2.5 - 3.0",                            3,
-  "3.0 - 3.5",                            8,
-  "3.5 - 4.0",                            5,
-  "Total",                               34
+  "1.0 - 1.5", 5,
+  "1.5 - 2.0", 7,
+  "2.0 - 2.5", 6,
+  "2.5 - 3.0", 3,
+  "3.0 - 3.5", 8,
+  "3.5 - 4.0", 5,
+  "Total", 34
 )
 kableExtra::kable_styling(
   knitr::kable(aux_table, format = "pandoc", booktabs = TRUE, align = "lc"),
-  latex_options = "striped")
+  latex_options = "striped"
+)
 ```
 
 Aquí no hay un valor único en cada categoría, sino un intervalo que
@@ -558,17 +578,18 @@ clase de cada intervalo, indicadas como $x'$:
 ```{r}
 aux_table <- tibble::tribble(
   ~"Tiempo de reacción (en segundos)", ~"x'", ~"f",
-  "1.0 - 1.5",                          1.25,    5,
-  "1.5 - 2.0",                          1.75,    7,
-  "2.0 - 2.5",                          2.25,    6,
-  "2.5 - 3.0",                          2.75,    3,
-  "3.0 - 3.5",                          3.25,    8,
-  "3.5 - 4.0",                          3.75,    5,
-  "Total",                                "",   34
+  "1.0 - 1.5", 1.25, 5,
+  "1.5 - 2.0", 1.75, 7,
+  "2.0 - 2.5", 2.25, 6,
+  "2.5 - 3.0", 2.75, 3,
+  "3.0 - 3.5", 3.25, 8,
+  "3.5 - 4.0", 3.75, 5,
+  "Total", "", 34
 )
 kableExtra::kable_styling(
   knitr::kable(aux_table, format = "pandoc", booktabs = TRUE, align = "lcc"),
-  latex_options = "striped")
+  latex_options = "striped"
+)
 ```
 
 Ahora puede usarse el método anterior para calcular la media, tomando
@@ -615,18 +636,19 @@ aplicación a los ejemplos anteriores:
 ```{r}
 aux_table <- tibble::tribble(
   ~"Número de materias aprobadas", ~"f", ~"F",
-  0,                                 30,   30,
-  1,                                150,  180,
-  2,                                200,  380,
-  3,                                300,  680,
-  4,                                250,  930,
-  5,                                200, 1130,
-  6,                                 20, 1150,
-  "Total",                         1150,   ""
+  0, 30, 30,
+  1, 150, 180,
+  2, 200, 380,
+  3, 300, 680,
+  4, 250, 930,
+  5, 200, 1130,
+  6, 20, 1150,
+  "Total", 1150, ""
 )
 kableExtra::kable_styling(
   knitr::kable(aux_table, format = "pandoc", booktabs = TRUE, align = "lcc"),
-  latex_options = "striped")
+  latex_options = "striped"
+)
 ```
 
 Para encontrar el primer cuartil será ahora necesario buscar un cuarto
@@ -663,17 +685,18 @@ como antes con una leve modificación en la fórmula:
 ```{r}
 aux_table <- tibble::tribble(
   ~"Tiempo de reacción (en segundos)", ~"f", ~"F",
-  "1.0 - 1.5",                            5,    5,
-  "1.5 - 2.0",                            7,   12,
-  "2.0 - 2.5",                            6,   18,
-  "2.5 - 3.0",                            3,   21,
-  "3.0 - 3.5",                            8,   29,
-  "3.5 - 4.0",                            5,   34,
-  "Total",                               34,   ""
+  "1.0 - 1.5", 5, 5,
+  "1.5 - 2.0", 7, 12,
+  "2.0 - 2.5", 6, 18,
+  "2.5 - 3.0", 3, 21,
+  "3.0 - 3.5", 8, 29,
+  "3.5 - 4.0", 5, 34,
+  "Total", 34, ""
 )
 kableExtra::kable_styling(
   knitr::kable(aux_table, format = "pandoc", booktabs = TRUE, align = "lcc"),
-  latex_options = "striped")
+  latex_options = "striped"
+)
 ```
 
 Para el primer cuartil debe hallarse la primera frecuencia que supera a
@@ -740,14 +763,15 @@ siguiente:
 ```{r}
 aux_table <- tibble::tribble(
   ~"Quintil:", ~"Equivale a:",
-  "Primero",           "$P_{20}$",
-  "Segundo",           "$P_{40}$",
-  "Tercero",           "$P_{60}$",
-  "Cuarto",            "$P_{80}$"
+  "Primero", "$P_{20}$",
+  "Segundo", "$P_{40}$",
+  "Tercero", "$P_{60}$",
+  "Cuarto", "$P_{80}$"
 )
 kableExtra::kable_styling(
   knitr::kable(aux_table, format = "pandoc", booktabs = TRUE, align = "lcc"),
-  latex_options = "striped")
+  latex_options = "striped"
+)
 ```
 
 Así, el primer quintil de ingresos representa el valor de ingreso que deja por debajo al 20% de menores ingresos,
@@ -868,17 +892,18 @@ ejemplo simple:
 
 ```{r}
 aux_table <- tibble::tribble(
-  ~x,      ~f,
-   3,      16,
-   4,       7,
-   5,       5,
-   6,       6,
-  10,       3,
+  ~x, ~f,
+  3, 16,
+  4, 7,
+  5, 5,
+  6, 6,
+  10, 3,
   "Total", 37
 )
 kableExtra::kable_styling(
   knitr::kable(aux_table, format = "pandoc", booktabs = TRUE, align = "lc"),
-  latex_options = "striped")
+  latex_options = "striped"
+)
 ```
 
 ```{r}
@@ -943,18 +968,19 @@ particularmente pequeñas y en ese caso se tratará de una distribución
 
 ```{r}
 aux_table <- tibble::tribble(
-  ~X,      ~"F",
-  100,        5,
-  200,       10,
-  300,       20,
-  400,       20,
-  500,       50,
-  600,       70,
-  "Total",  175
+  ~X, ~"F",
+  100, 5,
+  200, 10,
+  300, 20,
+  400, 20,
+  500, 50,
+  600, 70,
+  "Total", 175
 )
 kableExtra::kable_styling(
   knitr::kable(aux_table, format = "pandoc", booktabs = TRUE, align = "lc"),
-  latex_options = "striped")
+  latex_options = "striped"
+)
 ```
 
 Cuyo histograma es:
@@ -1116,7 +1142,7 @@ Aplicado a las edades de estudiantes universitarios de la EPH genera:
 
 ```{r}
 univ <- subset(eph.3.18, eph.3.18$NIVEL_ED == 5 &
-                 eph.3.18$CH10 == 1 & eph.3.18$CH06 < 55 & eph.3.18$ESTADO != 0)
+  eph.3.18$CH10 == 1 & eph.3.18$CH06 < 55 & eph.3.18$ESTADO != 0)
 ggplot(univ) + geom_boxplot(aes(1, CH06)) + theme_tufte() +
   theme(
     axis.title.x = element_blank(), axis.text.x = element_blank(),
@@ -1538,32 +1564,34 @@ mayoría está en una sola. La distribución:
 
 ```{r}
 aux_table <- tibble::tribble(
-  ~"Rendimiento",   ~"f", ~"f'",
-  "Muy bueno",        25, 0.25,
-  "Bueno",            25, 0.25,
-  "Regular",          25, 0.25,
-  "Insatisfactorio",  25, 0.25,
-  "Total",           100, 1.00
+  ~"Rendimiento", ~"f", ~"f'",
+  "Muy bueno", 25, 0.25,
+  "Bueno", 25, 0.25,
+  "Regular", 25, 0.25,
+  "Insatisfactorio", 25, 0.25,
+  "Total", 100, 1.00
 )
 kableExtra::kable_styling(
   knitr::kable(aux_table, format = "pandoc", booktabs = TRUE, align = "lcc"),
-  latex_options = "striped")
+  latex_options = "striped"
+)
 ```
 
 Tiene más dispersión que esta otra:
 
 ```{r}
 aux_table <- tibble::tribble(
-  ~"Rendimiento",   ~"f", ~"f'",
-  "Muy bueno",         5, 0.05,
-  "Bueno",            80, 0.80,
-  "Regular",           5, 0.05,
-  "Insatisfactorio",  10, 0.10,
-  "Total",           100, 1.00
+  ~"Rendimiento", ~"f", ~"f'",
+  "Muy bueno", 5, 0.05,
+  "Bueno", 80, 0.80,
+  "Regular", 5, 0.05,
+  "Insatisfactorio", 10, 0.10,
+  "Total", 100, 1.00
 )
 kableExtra::kable_styling(
   knitr::kable(aux_table, format = "pandoc", booktabs = TRUE, align = "lcc"),
-  latex_options = "striped")
+  latex_options = "striped"
+)
 ```
 
 ¿Por qué? Porque en la segunda, los casos están muy concentrados en una categoría (bueno), mientras que en la primera se dispersan entre todas.
@@ -1694,22 +1722,23 @@ psicológica administrada a una muestra de 310 personas:
 
 ```{r}
 aux_table <- tibble::tribble(
-  ~"x",     ~"f", ~"F", ~"F'",
-  "20-29",     0,    0,  0.00,
-  "30-39",    10,   10,  0.03,
-  "40-49",    30,   40,  0.13,
-  "50-59",    50,   90,  0.29,
-  "60-69",    70,  160,  0.52,
-  "70-79",    90,  250,  0.81,
-  "80-89",    40,  290,  0.94,
-  "90-99",    10,  300,  0.97,
-  "100-109",   5,  305,  0.98,
-  "110-119",   5,  310,  1.00,
-  "Total",   310,   "",    ""
+  ~"x", ~"f", ~"F", ~"F'",
+  "20-29", 0, 0, 0.00,
+  "30-39", 10, 10, 0.03,
+  "40-49", 30, 40, 0.13,
+  "50-59", 50, 90, 0.29,
+  "60-69", 70, 160, 0.52,
+  "70-79", 90, 250, 0.81,
+  "80-89", 40, 290, 0.94,
+  "90-99", 10, 300, 0.97,
+  "100-109", 5, 305, 0.98,
+  "110-119", 5, 310, 1.00,
+  "Total", 310, "", ""
 )
 kableExtra::kable_styling(
   knitr::kable(aux_table, format = "pandoc", booktabs = TRUE, align = "lccc"),
-  latex_options = "striped")
+  latex_options = "striped"
+)
 ```
 
 Algunos percentiles de esta distribución, por ejemplo, $P_{20}$, $P_{60}$ y $P_{90}$, cuando se piden a R, dan:
@@ -1728,19 +1757,20 @@ Procediendo del mismo modo, se realiza la siguiente correspondencia de puntajes 
 ```{r}
 aux_table <- tibble::tribble(
   ~"Percentil", ~"X",
-  10,           47.0,
-  20,           54.5,
-  30,           60.4,
-  40,           64.9,
-  50,           69.3,
-  60,           74.5,
-  70,           76.3,
-  80,           79.8,
-  90,           84.5
+  10, 47.0,
+  20, 54.5,
+  30, 60.4,
+  40, 64.9,
+  50, 69.3,
+  60, 74.5,
+  70, 76.3,
+  80, 79.8,
+  90, 84.5
 )
 kableExtra::kable_styling(
   knitr::kable(aux_table, format = "pandoc", booktabs = TRUE, align = "cc"),
-  latex_options = "striped")
+  latex_options = "striped"
+)
 ```
 
 La tabla nos informa sobre los valores de la variable donde se divide
@@ -1781,20 +1811,21 @@ Al repetir esta operación para cada puntaje bruto se obtiene la tabla de corres
 ```{r}
 aux_table <- tibble::tribble(
   ~"Intervalo de puntajes brutos", ~"Puntaje $z$",
-  "20-29",                          -2.8,
-  "30-39",                          -2.1,
-  "40-49",                          -1.5,
-  "50-59",                          -0.9,
-  "60-69",                          -0.2,
-  "70-79",                           0.4,
-  "80-89",                           1.1,
-  "90-99",                           1.7,
-  "100-109",                         2.3,
-  "110-119",                         3.0
+  "20-29", -2.8,
+  "30-39", -2.1,
+  "40-49", -1.5,
+  "50-59", -0.9,
+  "60-69", -0.2,
+  "70-79", 0.4,
+  "80-89", 1.1,
+  "90-99", 1.7,
+  "100-109", 2.3,
+  "110-119", 3.0
 )
 kableExtra::kable_styling(
   knitr::kable(aux_table, format = "pandoc", booktabs = TRUE, align = "cc"),
-  latex_options = "striped")
+  latex_options = "striped"
+)
 ```
 
 Una tabla de ese tipo (ya sea construida a partir de los percentiles o bien de los puntajes $z$) se conoce como **baremo** y es absolutamente necesario para cualquier tipo de evaluación psicológica o educativa ya que posibilita decidir en qué lugar se encuentra un sujeto dado, respecto de su grupo de referencia, Esto se requiere porque, por ejemplo, para una prueba de inteligencia, un puntaje que es normal para la edad de 13 años, no lo es para los 16; los puntajes de alguien de 13 años se comparan con los puntajes de otras personas de 13 años. El baremo provee la transformación de puntajes absolutos en puntajes relativos.
@@ -1848,16 +1879,17 @@ Volveremos sobre este tema con más detalle cuando tratemos una distribución te
 ```{r}
 aux_table <- tibble::tribble(
   ~"", ~"", ~"Nivel de medición mínimo requerido",
-  "Centrales",    "Modo",        "Nominal",
-  "",             "Mediana",     "Ordinal",
-  "",             "Media",       "Intervalar",
-  "No centrales", "Cuartiles",   "Ordinal",
-  "",             "Quintiles",   "Ordinal",
-  "",             "Percentiles", "Ordinal",
+  "Centrales", "Modo", "Nominal",
+  "", "Mediana", "Ordinal",
+  "", "Media", "Intervalar",
+  "No centrales", "Cuartiles", "Ordinal",
+  "", "Quintiles", "Ordinal",
+  "", "Percentiles", "Ordinal",
 )
 kableExtra::kable_styling(
   knitr::kable(aux_table, format = "pandoc", booktabs = TRUE, align = "ccc"),
-  latex_options = "striped")
+  latex_options = "striped"
+)
 ```
 
 ### Medidas de dispersión
@@ -1865,16 +1897,17 @@ kableExtra::kable_styling(
 ```{r}
 aux_table <- tibble::tribble(
   ~"", ~"", ~"Nivel de medición mínimo requerido",
-  "Entre extremos",     "Recorrido",                    "Intervalar",
-  "Basada en el orden", "Amplitud intercuartílica",     "Intervalar",
-  "Basadas enla media", "Varianza",                     "Intervalar",
-  "",                   "Desviación estándar",          "Intervalar",
-  "",                   "Coeficiente de variación",     "Intervalar",
-  "De incertidumbre",   "Coeficiente de incertidumbre", "Nominal"
+  "Entre extremos", "Recorrido", "Intervalar",
+  "Basada en el orden", "Amplitud intercuartílica", "Intervalar",
+  "Basadas enla media", "Varianza", "Intervalar",
+  "", "Desviación estándar", "Intervalar",
+  "", "Coeficiente de variación", "Intervalar",
+  "De incertidumbre", "Coeficiente de incertidumbre", "Nominal"
 )
 kableExtra::kable_styling(
   knitr::kable(aux_table, format = "pandoc", booktabs = TRUE, align = "ccc"),
-  latex_options = "striped")
+  latex_options = "striped"
+)
 ```
 
 [^moda]: Esta es la idea que transmite el lenguaje coloquial: cuando algo es "la moda, es lo que más comúnmente (frecuentemente) se ve.

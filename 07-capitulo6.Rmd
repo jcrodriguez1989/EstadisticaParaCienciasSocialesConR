@@ -392,8 +392,10 @@ aux_table <- tibble::tribble(
   "total", 7483,
 )
 knitr::kable(aux_table, kable_outp, align = "c", booktabs = TRUE) %>%
-  kableExtra::footnote(general_title = "Fuente: ", footnote_as_chunk = TRUE,
-                       general = "Anuario estadístico 2008, UNC.") %>%
+  kableExtra::footnote(
+    general_title = "Fuente: ", footnote_as_chunk = TRUE,
+    general = "Anuario estadístico 2008, UNC."
+  ) %>%
   kableExtra::kable_styling(latex_options = "striped")
 ```
 
@@ -503,14 +505,14 @@ La planilla tiene cada fila para identificar el número de hogar al que se está
 ```{r}
 aux_table <- tibble::tribble(
   ~"", ~"1", ~"2", ~"3", ~"4", ~"5", ~"6", ~"7", ~"8", ~"9", ~"10", ~"12",
-        1, 1, 1, 3, 4, 4, 4, 4, 4,  8,  3, 7,
-        2, 1, 2, 2, 4, 5, 3, 3, 7,  4,  7, 8,
-        3, 1, 2, 1, 4, 5, 1, 1, 5,  6,  5, 1,
-        4, 1, 1, 1, 2, 4, 2, 5, 3,  9,  6, 6,
-        5, 1, 1, 3, 4, 4, "**3**", 7, 3,  5,  7, 9,
-        6, 1, 1, 3, 4, 2, 2, 2, 3,  5,  4, 7,
-        7, 1, 2, 2, 1, 3, 5, 3, 7,  3,  6, 10,
-        8, 1, 2, 1, 1, 2, 3, 5, 2,  5,  9, 4,
+  1, 1, 1, 3, 4, 4, 4, 4, 4, 8, 3, 7,
+  2, 1, 2, 2, 4, 5, 3, 3, 7, 4, 7, 8,
+  3, 1, 2, 1, 4, 5, 1, 1, 5, 6, 5, 1,
+  4, 1, 1, 1, 2, 4, 2, 5, 3, 9, 6, 6,
+  5, 1, 1, 3, 4, 4, "**3**", 7, 3, 5, 7, 9,
+  6, 1, 1, 3, 4, 2, 2, 2, 3, 5, 4, 7,
+  7, 1, 2, 2, 1, 3, 5, 3, 7, 3, 6, 10,
+  8, 1, 2, 1, 1, 2, 3, 5, 2, 5, 9, 4,
 )
 knitr::kable(aux_table, kable_outp, align = "c", booktabs = TRUE) %>%
   kableExtra::add_header_above(c("hogar" = 1, "Cantidad de integrantes" = 11)) %>%
@@ -886,7 +888,9 @@ En primer lugar leeremos la base Encuesta Nacional de Factores de Riesgo con el 
 
 ```{r}
 enfr <- read.table(
-  "bases/archivostxt/ENFR2013_baseusuario.txt", sep = "|", header = TRUE)
+  "bases/archivostxt/ENFR2013_baseusuario.txt",
+  sep = "|", header = TRUE
+)
 
 enfr100 <- enfr[sample(nrow(enfr), 100), ]
 ```
@@ -937,7 +941,8 @@ En lugar de especificar la cantidad de casos, se puede indicar la proporción de
 muestra.estrat.prop.eph <- stratified(eph.3.18, "NIVEL_ED", .1)
 
 addmargins(
-  table(muestra.estrat.prop.eph$CH04, muestra.estrat.prop.eph$NIVEL_ED))
+  table(muestra.estrat.prop.eph$CH04, muestra.estrat.prop.eph$NIVEL_ED)
+)
 ```
 
 La cantidad de casos en cada categoría depende de cuántos casos había en la matriz original.

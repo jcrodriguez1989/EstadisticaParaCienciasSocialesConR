@@ -139,8 +139,10 @@ aux_table <- tibble::tribble(
   "Segundo dado", "**6**", "7", "8", "9", "10", "11", "12",
 )
 knitr::kable(
-  aux_table, kable_outp, booktabs = TRUE, align = "lccccccc", caption =
-    "Resultados posibles de la suma de los puntajes de dos dados.") %>%
+  aux_table, kable_outp,
+  booktabs = TRUE, align = "lccccccc", caption =
+    "Resultados posibles de la suma de los puntajes de dos dados."
+) %>%
   kableExtra::kable_styling(latex_options = "striped") %>%
   kableExtra::add_header_above(c(" " = 2, "Primer dado" = 6)) %>%
   kableExtra::collapse_rows(columns = 1:2, valign = "top")
@@ -175,7 +177,9 @@ aux_table <- tibble::tribble(
   "Segundo dado", "**6**", "7", "8", "9", "10", "11", "**_12_**",
 )
 knitr::kable(
-  aux_table, kable_outp, booktabs = TRUE, align = "lccccccc") %>%
+  aux_table, kable_outp,
+  booktabs = TRUE, align = "lccccccc"
+) %>%
   kableExtra::kable_styling(latex_options = "striped") %>%
   kableExtra::add_header_above(c(" " = 2, "Primer dado" = 6)) %>%
   kableExtra::collapse_rows(columns = 1:2, valign = "top")
@@ -201,7 +205,9 @@ aux_table <- tibble::tribble(
   "Segundo dado", "**6**", "7", "8", "9", "10", "11", "12",
 )
 knitr::kable(
-  aux_table, kable_outp, booktabs = TRUE, align = "lccccccc") %>%
+  aux_table, kable_outp,
+  booktabs = TRUE, align = "lccccccc"
+) %>%
   kableExtra::kable_styling(latex_options = "striped") %>%
   kableExtra::add_header_above(c(" " = 2, "Primer dado" = 6)) %>%
   kableExtra::collapse_rows(columns = 1:2, valign = "top")
@@ -224,7 +230,9 @@ aux_table <- tibble::tribble(
   "Segundo dado", "**6**", "**_7_**", "8", "9", "10", "11", "12",
 )
 knitr::kable(
-  aux_table, kable_outp, booktabs = TRUE, align = "lccccccc") %>%
+  aux_table, kable_outp,
+  booktabs = TRUE, align = "lccccccc"
+) %>%
   kableExtra::kable_styling(latex_options = "striped") %>%
   kableExtra::add_header_above(c(" " = 2, "Primer dado" = 6)) %>%
   kableExtra::collapse_rows(columns = 1:2, valign = "top")
@@ -273,11 +281,15 @@ aux_table <- tibble::tribble(
   "Total", "300", "1,00",
 )
 knitr::kable(
-  aux_table, kable_outp, booktabs = TRUE, align = "lcc", caption =
-    "Distribución de frecuencias del tipo de colegio del que provienen alumnos que ingresan a la universidad") %>%
+  aux_table, kable_outp,
+  booktabs = TRUE, align = "lcc", caption =
+    "Distribución de frecuencias del tipo de colegio del que provienen alumnos que ingresan a la universidad"
+) %>%
   kableExtra::kable_styling(latex_options = "striped") %>%
-  kableExtra::footnote(general_title = "Fuente: ", footnote_as_chunk = TRUE,
-                       general = "datos ficticios para ejemplificación.")
+  kableExtra::footnote(
+    general_title = "Fuente: ", footnote_as_chunk = TRUE,
+    general = "datos ficticios para ejemplificación."
+  )
 ```
 
 Estamos autorizados a decir que la probabilidad que el alumno elegido al azar provenga de un colegio público es 0,67, que es su frecuencia
@@ -336,9 +348,12 @@ aux_table <- tibble::tribble(
 )
 kableExtra::kable_styling(
   knitr::kable(
-    aux_table, kable_outp, booktabs = TRUE, align = "lcccc", caption =
-      "Frecuencias relativas correspondientes a una secuencia de diez lanzamientos de una moneda."),
-  latex_options = "striped")
+    aux_table, kable_outp,
+    booktabs = TRUE, align = "lcccc", caption =
+      "Frecuencias relativas correspondientes a una secuencia de diez lanzamientos de una moneda."
+  ),
+  latex_options = "striped"
+)
 ```
 
 En la distribución vemos que la frecuencia relativa de C toma valores
@@ -348,7 +363,8 @@ este proceso es la siguiente:
 
 ```{r}
 para.moneda <- data.frame(
-  c(1, 0.5, 0.33, 0.25, 0.4, 0.5, 0.57, 0.5, 0.44, 0.5), c(1:10))
+  c(1, 0.5, 0.33, 0.25, 0.4, 0.5, 0.57, 0.5, 0.44, 0.5), c(1:10)
+)
 names(para.moneda) <- c("probs", "tirada")
 ggplot(para.moneda) +
   geom_point(aes(tirada, probs)) +
@@ -428,8 +444,10 @@ aux_table <- tibble::tribble(
   "Total", "350", "600", "260", "320", "1530",
 )
 knitr::kable(
-  aux_table, kable_outp, booktabs = TRUE, align = "lccccc", caption =
-      "Distribución del partido al que declara que va a votar y la ciudad de residencia.") %>%
+  aux_table, kable_outp,
+  booktabs = TRUE, align = "lccccc", caption =
+    "Distribución del partido al que declara que va a votar y la ciudad de residencia."
+) %>%
   kableExtra::kable_styling(latex_options = "striped") %>%
   kableExtra::add_header_above(c("Ciudad" = 1, "Partido al que dice que votará" = 4, "Total" = 1))
 ```
@@ -457,8 +475,10 @@ aux_table <- tibble::tribble(
   "Total", "350", "600", "260", "320", "**1530**",
 )
 knitr::kable(
-  aux_table, kable_outp, booktabs = TRUE, align = "lccccc", caption =
-      "Distribución del partido al que declara que va a votar y la ciudad de residencia. Esquema para el cálculo de la probabilidad marginal $P(Córdoba)$.") %>%
+  aux_table, kable_outp,
+  booktabs = TRUE, align = "lccccc", caption =
+    "Distribución del partido al que declara que va a votar y la ciudad de residencia. Esquema para el cálculo de la probabilidad marginal $P(Córdoba)$."
+) %>%
   kableExtra::kable_styling(latex_options = "striped") %>%
   kableExtra::add_header_above(c("Ciudad" = 1, "Partido al que dice que votará" = 4, "Total" = 1))
 ```
@@ -472,8 +492,10 @@ aux_table <- tibble::tribble(
   "Total", "350", "600", "**260**", "320", "**1530**",
 )
 knitr::kable(
-  aux_table, kable_outp, booktabs = TRUE, align = "lccccc", caption =
-      "Distribución del partido al que declara que va a votar y la ciudad de residencia. Esquema para el cálculo de la probabilidad marginal $P(S)$.") %>%
+  aux_table, kable_outp,
+  booktabs = TRUE, align = "lccccc", caption =
+    "Distribución del partido al que declara que va a votar y la ciudad de residencia. Esquema para el cálculo de la probabilidad marginal $P(S)$."
+) %>%
   kableExtra::kable_styling(latex_options = "striped") %>%
   kableExtra::add_header_above(c("Ciudad" = 1, "Partido al que dice que votará" = 4, "Total" = 1))
 ```
@@ -502,8 +524,10 @@ aux_table <- tibble::tribble(
   "Total", "350", "600", "260", "320", "**1530**",
 )
 knitr::kable(
-  aux_table, kable_outp, booktabs = TRUE, align = "lccccc", caption =
-      "Distribución del partido al que declara que va a votar y la ciudad de residencia. Esquema para el cálculo de la probabilidad conjunta $P(Rosario y R)$.") %>%
+  aux_table, kable_outp,
+  booktabs = TRUE, align = "lccccc", caption =
+    "Distribución del partido al que declara que va a votar y la ciudad de residencia. Esquema para el cálculo de la probabilidad conjunta $P(Rosario y R)$."
+) %>%
   kableExtra::kable_styling(latex_options = "striped") %>%
   kableExtra::add_header_above(c("Ciudad" = 1, "Partido al que dice que votará" = 4, "Total" = 1))
 ```
@@ -544,8 +568,10 @@ aux_table <- tibble::tribble(
   "Total", "**350**", "**600**", "260", "320", "**1530**",
 )
 knitr::kable(
-  aux_table, kable_outp, booktabs = TRUE, align = "lccccc", caption =
-      "Distribución del partido al que declara que va a votar y la ciudad de residencia. Esquema para el cálculo de la probabilidad $P(Q o R)$ (eventos disjuntos).") %>%
+  aux_table, kable_outp,
+  booktabs = TRUE, align = "lccccc", caption =
+    "Distribución del partido al que declara que va a votar y la ciudad de residencia. Esquema para el cálculo de la probabilidad $P(Q o R)$ (eventos disjuntos)."
+) %>%
   kableExtra::kable_styling(latex_options = "striped") %>%
   kableExtra::add_header_above(c("Ciudad" = 1, "Partido al que dice que votará" = 4, "Total" = 1))
 ```
@@ -563,8 +589,10 @@ aux_table <- tibble::tribble(
   "Total", "350", "600", "260", "320", "**1530**",
 )
 knitr::kable(
-  aux_table, kable_outp, booktabs = TRUE, align = "lccccc", caption =
-      "Distribución del partido al que declara que va a votar y la ciudad de residencia. Esquema para el cálculo de la probabilidad $P(Córdoba o Rosario)$ (eventos disjuntos).") %>%
+  aux_table, kable_outp,
+  booktabs = TRUE, align = "lccccc", caption =
+    "Distribución del partido al que declara que va a votar y la ciudad de residencia. Esquema para el cálculo de la probabilidad $P(Córdoba o Rosario)$ (eventos disjuntos)."
+) %>%
   kableExtra::kable_styling(latex_options = "striped") %>%
   kableExtra::add_header_above(c("Ciudad" = 1, "Partido al que dice que votará" = 4, "Total" = 1))
 ```
@@ -624,8 +652,10 @@ aux_table <- tibble::tribble(
   "Total", "350", "600", "260", "**320**", "**1530**",
 )
 knitr::kable(
-  aux_table, kable_outp, booktabs = TRUE, align = "lccccc", caption =
-      "Distribución del partido al que declara que va a votar y la ciudad de residencia. Esquema para el cálculo de la probabilidad $P(Córdoba o T)$ (eventos no disjuntos).") %>%
+  aux_table, kable_outp,
+  booktabs = TRUE, align = "lccccc", caption =
+    "Distribución del partido al que declara que va a votar y la ciudad de residencia. Esquema para el cálculo de la probabilidad $P(Córdoba o T)$ (eventos no disjuntos)."
+) %>%
   kableExtra::kable_styling(latex_options = "striped") %>%
   kableExtra::add_header_above(c("Ciudad" = 1, "Partido al que dice que votará" = 4, "Total" = 1))
 ```
@@ -660,8 +690,10 @@ aux_table <- tibble::tribble(
   "Total", "350", "600", "260", "320", "1530",
 )
 knitr::kable(
-  aux_table, kable_outp, booktabs = TRUE, align = "lccccc", caption =
-      "Distribución del partido al que declara que va a votar y la ciudad de residencia. Esquema para el cálculo de la probabilidad condicional $P(S/Córdoba)$.") %>%
+  aux_table, kable_outp,
+  booktabs = TRUE, align = "lccccc", caption =
+    "Distribución del partido al que declara que va a votar y la ciudad de residencia. Esquema para el cálculo de la probabilidad condicional $P(S/Córdoba)$."
+) %>%
   kableExtra::kable_styling(latex_options = "striped") %>%
   kableExtra::add_header_above(c("Ciudad" = 1, "Partido al que dice que votará" = 4, "Total" = 1))
 ```
@@ -683,8 +715,10 @@ aux_table <- tibble::tribble(
   "Total", "350", "**600**", "260", "320", "1530",
 )
 knitr::kable(
-  aux_table, kable_outp, booktabs = TRUE, align = "lccccc", caption =
-      "Distribución del partido al que declara que va a votar y la ciudad de residencia. Esquema para el cálculo de la probabilidad condicional $P(Mendoza/R)$.") %>%
+  aux_table, kable_outp,
+  booktabs = TRUE, align = "lccccc", caption =
+    "Distribución del partido al que declara que va a votar y la ciudad de residencia. Esquema para el cálculo de la probabilidad condicional $P(Mendoza/R)$."
+) %>%
   kableExtra::kable_styling(latex_options = "striped") %>%
   kableExtra::add_header_above(c("Ciudad" = 1, "Partido al que dice que votará" = 4, "Total" = 1))
 ```
@@ -909,7 +943,9 @@ aux_table <- tibble::tribble(
   "Total", "48400", "951600", "1000000",
 )
 knitr::kable(
-  aux_table, kable_outp, booktabs = TRUE, align = "lccc") %>%
+  aux_table, kable_outp,
+  booktabs = TRUE, align = "lccc"
+) %>%
   kableExtra::kable_styling(latex_options = "striped") %>%
   kableExtra::add_header_above(c("Condición" = 1, "Resultado de las pruebas" = 2, "Total" = 1))
 ```
@@ -971,7 +1007,9 @@ aux_table <- tibble::tribble(
   "Total", "1",
 )
 knitr::kable(
-  aux_table, kable_outp, booktabs = TRUE, align = "cc") %>%
+  aux_table, kable_outp,
+  booktabs = TRUE, align = "cc"
+) %>%
   kableExtra::kable_styling(latex_options = "striped")
 ```
 
@@ -992,7 +1030,9 @@ aux_table <- tibble::tribble(
   "Total", "1.000",
 )
 knitr::kable(
-  aux_table, kable_outp, booktabs = TRUE, align = "cc") %>%
+  aux_table, kable_outp,
+  booktabs = TRUE, align = "cc"
+) %>%
   kableExtra::kable_styling(latex_options = "striped")
 ```
 
