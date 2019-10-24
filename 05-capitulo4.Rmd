@@ -72,8 +72,8 @@ Disposición de las variables y sus categorías para analizar la relación entre
 
 ```{r}
 aux_table <- tibble::tribble(
-  ~"",       ~"Relación", ~"con los", ~"pares",
-  "**Tipo de hogar**", "Sumisión",  "Rebeldía", "Liderazgo",
+  ~"", ~"Relación", ~"con los", ~"pares",
+  "**Tipo de hogar**", "Sumisión", "Rebeldía", "Liderazgo",
   "Monoparental materno", "", "", "",
   "Monoparental paterno", "", "", "",
   "Nuclear", "", "", "",
@@ -81,7 +81,8 @@ aux_table <- tibble::tribble(
 )
 kableExtra::kable_styling(
   knitr::kable(aux_table, format = "pandoc", booktabs = TRUE, align = "lccc"),
-  latex_options = "striped")
+  latex_options = "striped"
+)
 ```
 
 ## Tablas de contingencia
@@ -117,18 +118,21 @@ hogares nucleares y $f_{.2}$ el total de quienes se vinculan con rebeldía con s
 
 ```{r}
 aux_table <- tibble::tribble(
-  ~"",       ~"Relación", ~"con los", ~"pares", ~"",
-  "**Tipo de hogar**",    "Sumisión",  "Rebeldía", "Liderazgo", "Total",
+  ~"", ~"Relación", ~"con los", ~"pares", ~"",
+  "**Tipo de hogar**", "Sumisión", "Rebeldía", "Liderazgo", "Total",
   "Monoparental materno", "$f_{11}$", "$f_{12}$", "$f_{13}$", "$f_{1.}$",
   "Monoparental paterno", "$f_{21}$", "$f_{22}$", "$f_{23}$", "$f_{2.}$",
-  "Nuclear",              "$f_{31}$", "$f_{32}$", "$f_{33}$", "$f_{3.}$",
-  "Extendido",            "$f_{41}$", "$f_{42}$", "$f_{43}$", "$f_{4.}$",
-  "Total",                "$f_{.1}$", "$f_{.2}$", "$f_{.3}$", "$f_{..}$",
+  "Nuclear", "$f_{31}$", "$f_{32}$", "$f_{33}$", "$f_{3.}$",
+  "Extendido", "$f_{41}$", "$f_{42}$", "$f_{43}$", "$f_{4.}$",
+  "Total", "$f_{.1}$", "$f_{.2}$", "$f_{.3}$", "$f_{..}$",
 )
 kableExtra::kable_styling(
-  knitr::kable(aux_table, format = "pandoc", booktabs = TRUE, align = "lcccc",
-               caption = "Disposición de las frecuencias para el análisis de la relación entre dos variables."),
-  latex_options = "striped")
+  knitr::kable(aux_table,
+    format = "pandoc", booktabs = TRUE, align = "lcccc",
+    caption = "Disposición de las frecuencias para el análisis de la relación entre dos variables."
+  ),
+  latex_options = "striped"
+)
 ```
 
 Si hemos recogido datos sobre estas características de los niños, la
@@ -136,18 +140,21 @@ tabla podría quedar así:
 
 ```{r}
 aux_table <- tibble::tribble(
-  ~"",       ~"Relación", ~"con los", ~"pares", ~"",
-  "**Tipo de hogar**",    "Sumisión", "Rebeldía", "Liderazgo", "Total",
-  "Monoparental materno",         20,         30,          50,     100,
-  "Monoparental paterno",         10,         40,          15,      65,
-  "Nuclear",                       5,         10,          25,      40,
-  "Extendido",                    30,         20,          10,      60,
-  "Total",                        65,        100,         100,     265,
+  ~"", ~"Relación", ~"con los", ~"pares", ~"",
+  "**Tipo de hogar**", "Sumisión", "Rebeldía", "Liderazgo", "Total",
+  "Monoparental materno", 20, 30, 50, 100,
+  "Monoparental paterno", 10, 40, 15, 65,
+  "Nuclear", 5, 10, 25, 40,
+  "Extendido", 30, 20, 10, 60,
+  "Total", 65, 100, 100, 265,
 )
 kableExtra::kable_styling(
-  knitr::kable(aux_table, format = "pandoc", booktabs = TRUE, align = "lcccc",
-               caption = "Alumnos de escuelas primarias por relación con sus pares según tipo de hogar (organización de las frecuencias)."),
-  latex_options = "striped")
+  knitr::kable(aux_table,
+    format = "pandoc", booktabs = TRUE, align = "lcccc",
+    caption = "Alumnos de escuelas primarias por relación con sus pares según tipo de hogar (organización de las frecuencias)."
+  ),
+  latex_options = "striped"
+)
 ```
 
 Esta tabla dice que se han observado un total de 265 niños y se ha
@@ -197,18 +204,21 @@ dividirlas en el total general. Resulta así:
 
 ```{r}
 aux_table <- tibble::tribble(
-  ~"",       ~"Relación", ~"con los", ~"pares", ~"",
-  "**Tipo de hogar**",    "Sumisión", "Rebeldía", "Liderazgo",    "Total",
-  "Monoparental materno",       0.08,       0.11,        0.19, "**0.38**",
-  "Monoparental paterno",       0.04, "**0.15**",        0.06,       0.25,
-  "Nuclear",                    0.02,       0.04,        0.09,       0.15,
-  "Extendido",                  0.11,       0.08,        0.04,       0.23,
-  "Total",                "**0.25**",       0.38,        0.38,       1.00,
+  ~"", ~"Relación", ~"con los", ~"pares", ~"",
+  "**Tipo de hogar**", "Sumisión", "Rebeldía", "Liderazgo", "Total",
+  "Monoparental materno", 0.08, 0.11, 0.19, "**0.38**",
+  "Monoparental paterno", 0.04, "**0.15**", 0.06, 0.25,
+  "Nuclear", 0.02, 0.04, 0.09, 0.15,
+  "Extendido", 0.11, 0.08, 0.04, 0.23,
+  "Total", "**0.25**", 0.38, 0.38, 1.00,
 )
 kableExtra::kable_styling(
-  knitr::kable(aux_table, format = "pandoc", booktabs = TRUE, align = "lcccc",
-               caption = "Alumnos de escuelas primarias por relación con sus pares según tipo de hogar, frecuencias relativas."),
-  latex_options = "striped")
+  knitr::kable(aux_table,
+    format = "pandoc", booktabs = TRUE, align = "lcccc",
+    caption = "Alumnos de escuelas primarias por relación con sus pares según tipo de hogar, frecuencias relativas."
+  ),
+  latex_options = "striped"
+)
 ```
 
 Leemos así las frecuencias que están destacadas en la tabla:
@@ -271,34 +281,37 @@ relación puede haber entre ellas. Así, una distribución de la población por 
 ```{r}
 aux_table <- tibble::tribble(
   ~"Grupos de edad", ~"Varones", ~"Mujeres",
-  "0-4",                  56913,      55053, 
-  "5-9",                  57471,      56073,
-  "10-14",                55564,      54394,
-  "15-19",                55581,      55834,
-  "20-24",                67519,      69727,
-  "25-29",                53736,      54667,
-  "30-34",                42209,      43852,
-  "35-39",                36910,      39894,
-  "40-44",                34681,      38243,
-  "45-49",                31879,      36634,
-  "50-54",                30780,      36187,
-  "55-59",                24485,      29448,
-  "60-64",                19914,      25038,
-  "65-69",                16485,      22387,
-  "70-74",                13858,      20831,
-  "75-79",                 8816,      15318,
-  "80-84",                 4423,       9471,
-  "85-89",                 1827,       5355,
-  "90-94",                  600,       1906,
-  "95-99",                  120,        448,
-  "100 y más",                8,         43,
-  "Total",               613779,     670803,
+  "0-4", 56913, 55053,
+  "5-9", 57471, 56073,
+  "10-14", 55564, 54394,
+  "15-19", 55581, 55834,
+  "20-24", 67519, 69727,
+  "25-29", 53736, 54667,
+  "30-34", 42209, 43852,
+  "35-39", 36910, 39894,
+  "40-44", 34681, 38243,
+  "45-49", 31879, 36634,
+  "50-54", 30780, 36187,
+  "55-59", 24485, 29448,
+  "60-64", 19914, 25038,
+  "65-69", 16485, 22387,
+  "70-74", 13858, 20831,
+  "75-79", 8816, 15318,
+  "80-84", 4423, 9471,
+  "85-89", 1827, 5355,
+  "90-94", 600, 1906,
+  "95-99", 120, 448,
+  "100 y más", 8, 43,
+  "Total", 613779, 670803,
 )
 aux_table$Total <- rowSums(aux_table[, c("Varones", "Mujeres")])
 kableExtra::kable_styling(
-  knitr::kable(aux_table, format = "pandoc", booktabs = TRUE, align = "lcccc",
-               caption = "Departamento Capital, Provincia de Córdoba. Población por sexo según grupos de edad. Año 2001."),
-  latex_options = "striped") %>%
+  knitr::kable(aux_table,
+    format = "pandoc", booktabs = TRUE, align = "lcccc",
+    caption = "Departamento Capital, Provincia de Córdoba. Población por sexo según grupos de edad. Año 2001."
+  ),
+  latex_options = "striped"
+) %>%
   footnote(general = "Fuente: INDEC (2009)")
 ```
 
@@ -406,15 +419,16 @@ escuela
 
 ```{r}
 aux_table <- tibble::tribble(
-  ~"",            ~"", ~"Rendimiento",    ~"",     ~"",
-  "**Ayuda**", "Alto",        "Medio", "Bajo", "Total",
-  "Si",            "",             "",     "",      "",
-  "No",            "",             "",     "",      "",
-  "Total",         "",             "",     "",      "",
+  ~"", ~"", ~"Rendimiento", ~"", ~"",
+  "**Ayuda**", "Alto", "Medio", "Bajo", "Total",
+  "Si", "", "", "", "",
+  "No", "", "", "", "",
+  "Total", "", "", "", "",
 )
 kableExtra::kable_styling(
   knitr::kable(aux_table, format = "pandoc", booktabs = TRUE, align = "lcccc"),
-  latex_options = "striped")
+  latex_options = "striped"
+)
 ```
 
 O bien, considerando a la ayuda como ordinal, en una tabla de $4 \times 3$
@@ -425,17 +439,18 @@ escuela
 
 ```{r}
 aux_table <- tibble::tribble(
-  ~"",              ~"", ~"Rendimiento",    ~"",     ~"",
-  "**Ayuda**",   "Alto",        "Medio", "Bajo", "Total",
-  "Siempre",         "",             "",     "",      "",
-  "Casi siempre",    "",             "",     "",      "",
-  "Pocas veces",     "",             "",     "",      "",
-  "Nunca",           "",             "",     "",      "",
-  "Total",           "",             "",     "",      "",
+  ~"", ~"", ~"Rendimiento", ~"", ~"",
+  "**Ayuda**", "Alto", "Medio", "Bajo", "Total",
+  "Siempre", "", "", "", "",
+  "Casi siempre", "", "", "", "",
+  "Pocas veces", "", "", "", "",
+  "Nunca", "", "", "", "",
+  "Total", "", "", "", "",
 )
 kableExtra::kable_styling(
   knitr::kable(aux_table, format = "pandoc", booktabs = TRUE, align = "lcccc"),
-  latex_options = "striped")
+  latex_options = "striped"
+)
 ```
 
 Planteada de este modo, se trata de una relación asimétrica, ya que
@@ -476,12 +491,14 @@ hip <- as.data.frame(c(
 para.tabla.RR <- data.frame(card, hip)
 names(para.tabla.RR) <- c("cardiopatia", "hipertension")
 tabla21 <- addmargins(
-  table(para.tabla.RR$hipertension, para.tabla.RR$cardiopatia))
+  table(para.tabla.RR$hipertension, para.tabla.RR$cardiopatia)
+)
 colnames(tabla21) <- sub("Sum", "Total", colnames(tabla21))
 rownames(tabla21) <- sub("Sum", "Total", rownames(tabla21))
 kableExtra::kable_styling(
   knitr::kable(tabla21, format = "pandoc", booktabs = TRUE, align = "ccc"),
-  latex_options = "striped")
+  latex_options = "striped"
+)
 ```
 
 Las frecuencias relativas son:
@@ -495,7 +512,8 @@ tabla22 <- round(cbind(tabla22, Total = rowSums(tabla22)), 3)
 # tabla22 <- matrix(paste0(tabla22, "%"), ncol = ncol(tabla22))
 kableExtra::kable_styling(
   knitr::kable(tabla22, format = "pandoc", booktabs = TRUE, align = "ccc"),
-  latex_options = "striped")
+  latex_options = "striped"
+)
 ```
 
 La frecuencia relativa .380 es el riesgo de tener cardiopatía isquémica si se es hipertenso, mientras que .096 es el mismo riesgo para personas que no padecen hipertensión. La comparación de ellos es el riesgo relativo:
@@ -508,15 +526,16 @@ Ejemplo (datos del Operativo Nacional de Evaluación Argentina 2000): interesado
 
 ```{r}
 aux_table <- tibble::tribble(
-  ~"Durante los últimos dos meses ¿Leíste o estás leyendo algún libro, además de los que te pidieron en la escuela?",              ~"Puntaje prueba", ~"de de",    ~"la Lengua",
-  "",      "Bajos", "Altos", "Total",
-  "Si",       2382,   10299,   12681,
-  "No",       3530,    9821,   13351,
-  "Total",    5912,   20120,   26032,
+  ~"Durante los últimos dos meses ¿Leíste o estás leyendo algún libro, además de los que te pidieron en la escuela?", ~"Puntaje prueba", ~"de de", ~"la Lengua",
+  "", "Bajos", "Altos", "Total",
+  "Si", 2382, 10299, 12681,
+  "No", 3530, 9821, 13351,
+  "Total", 5912, 20120, 26032,
 )
 kableExtra::kable_styling(
   knitr::kable(aux_table, format = "markdown", booktabs = TRUE, align = "lccc"),
-  latex_options = "striped") %>%
+  latex_options = "striped"
+) %>%
   footnote(general = "Fuente: ONE 2000")
 ```
 
@@ -526,15 +545,16 @@ falta frecuencias relativas. En este caso se calculan según las filas de la tab
 
 ```{r}
 aux_table <- tibble::tribble(
-  ~"Durante los últimos dos meses ¿Leíste o estás leyendo algún libro, además de los que te pidieron en la escuela?",              ~"Puntaje prueba", ~"de de",    ~"la Lengua",
-  "",      "Bajos",  "Altos", "Total",
-  "Si",     "18,8%", "81,2%",  "100%",
-  "No",     "26,4%", "73,6%",  "100%",
-  "Total",  "22,7%", "77,3%",  "100%",
+  ~"Durante los últimos dos meses ¿Leíste o estás leyendo algún libro, además de los que te pidieron en la escuela?", ~"Puntaje prueba", ~"de de", ~"la Lengua",
+  "", "Bajos", "Altos", "Total",
+  "Si", "18,8%", "81,2%", "100%",
+  "No", "26,4%", "73,6%", "100%",
+  "Total", "22,7%", "77,3%", "100%",
 )
 kableExtra::kable_styling(
   knitr::kable(aux_table, format = "markdown", booktabs = TRUE, align = "lccc"),
-  latex_options = "striped") %>%
+  latex_options = "striped"
+) %>%
   footnote(general = "Fuente: ONE 2000")
 ```
 
@@ -583,16 +603,19 @@ rendimiento de sus alumnos:
 
 ```{r}
 aux_table <- tibble::tribble(
-  ~"",                   ~"", ~"rendimiento", ~"", ~"",
+  ~"", ~"", ~"rendimiento", ~"", ~"",
   "**tipo de docente**", "alto", "medio", "bajo", "Total",
-  "Autoritario",              5,      35,     50,      90,
-  "Democrático",            260,      40,     10,     310,
-  "Total",                  265,      75,     60,     400,
+  "Autoritario", 5, 35, 50, 90,
+  "Democrático", 260, 40, 10, 310,
+  "Total", 265, 75, 60, 400,
 )
 kableExtra::kable_styling(
-  knitr::kable(aux_table, format = "pandoc", booktabs = TRUE, align = "lcccc",
-               caption = "Alumnos primarios por rendimiento según tipo de docente, frecuencias absolutas"),
-  latex_options = "striped")
+  knitr::kable(aux_table,
+    format = "pandoc", booktabs = TRUE, align = "lcccc",
+    caption = "Alumnos primarios por rendimiento según tipo de docente, frecuencias absolutas"
+  ),
+  latex_options = "striped"
+)
 ```
 
 Ejemplo: se compara la idea de emigrar entre quienes tienen diferente opinión sobre la evolución de su país. Para ellos se cruzan las siguientes variables de la edición 2017 de Latinobarómetro:
@@ -626,10 +649,13 @@ tabla11 <- addmargins(tabla10)
 colnames(tabla11) <- sub("Sum", "Total", colnames(tabla11))
 rownames(tabla11) <- sub("Sum", "Total", rownames(tabla11))
 kableExtra::kable_styling(
-  knitr::kable(tabla11, format = "pandoc", booktabs = TRUE, align = "ccc",
-               label = "abs",
-               caption = "Distrbibución conjunta de la opinión sobre la evolución de su país y la intención de emigrar. Frecuencias absolutas"),
-  latex_options = "striped")
+  knitr::kable(tabla11,
+    format = "pandoc", booktabs = TRUE, align = "ccc",
+    label = "abs",
+    caption = "Distrbibución conjunta de la opinión sobre la evolución de su país y la intención de emigrar. Frecuencias absolutas"
+  ),
+  latex_options = "striped"
+)
 ```
 
 En la que, la opinión sobre la evolución del país (en las filas) y los proyectos migratorios (en las columnas) están codificados como las opciones de respuesta del cuestionario.
@@ -642,10 +668,13 @@ colnames(tabla12) <- sub("Sum", "Total", colnames(tabla12))
 rownames(tabla12) <- sub("Sum", "Total", rownames(tabla12))
 tabla12 <- tabla12 * 100
 kableExtra::kable_styling(
-  knitr::kable(tabla12, format = "pandoc", booktabs = TRUE, align = "ccc",
-               label = "rel",
-               caption = "Distribución conjunta de la opinión sobre la evolución del propio país y la perspectiva de emigrar. Frecuencias relativas al total"),
-  latex_options = "striped")
+  knitr::kable(tabla12,
+    format = "pandoc", booktabs = TRUE, align = "ccc",
+    label = "rel",
+    caption = "Distribución conjunta de la opinión sobre la evolución del propio país y la perspectiva de emigrar. Frecuencias relativas al total"
+  ),
+  latex_options = "striped"
+)
 ```
 
 Leemos las frecuencias conjuntas y las marginales como en la tabla ref(tab:cual).
@@ -664,10 +693,13 @@ tabla13 <- 100 * round(addmargins(prop.table(tabla10, 1), 2), 3)
 colnames(tabla13) <- sub("Sum", "Total", colnames(tabla13))
 rownames(tabla13) <- sub("Sum", "Total", rownames(tabla13))
 kableExtra::kable_styling(
-  knitr::kable(tabla13, format = "pandoc", booktabs = TRUE, align = "ccc",
-               label = "frecConj",
-               caption = "Distribución conjunta de la opinión sobre la evolución del propio país y la perspectiva de emigrar. Frecuencias relativas por filas"),
-  latex_options = "striped")
+  knitr::kable(tabla13,
+    format = "pandoc", booktabs = TRUE, align = "ccc",
+    label = "frecConj",
+    caption = "Distribución conjunta de la opinión sobre la evolución del propio país y la perspectiva de emigrar. Frecuencias relativas por filas"
+  ),
+  latex_options = "striped"
+)
 ```
 
 Ahora la lectura es por las filas, es decir, por las categorías de la opinión. Entre quienes opinan que su pais está mejorando, hay un 22.3% que ha pensado en emigrar, mientras que entre quienes creen que está empeorando, el porcentaje sube al 30%. 
@@ -706,10 +738,12 @@ dics <- subset(latinob, latinob$P2ST != "estancado")
 tabla14 <- table(dics$P2ST, dics$S11)
 tabla14 <- tabla14[-2, ]
 kableExtra::kable_styling(
-  knitr::kable(tabla14, format = "pandoc", booktabs = TRUE, align = "ccc",
-               caption = "Distribución conjunta de la opinión sobre la evolución del propio país y la perspectiva de emigrar. Frecuencias absolutas, variables dicotomizadas"),
-  latex_options = "striped")
-
+  knitr::kable(tabla14,
+    format = "pandoc", booktabs = TRUE, align = "ccc",
+    caption = "Distribución conjunta de la opinión sobre la evolución del propio país y la perspectiva de emigrar. Frecuencias absolutas, variables dicotomizadas"
+  ),
+  latex_options = "striped"
+)
 ```
 
 La concentración de la mayoría de los casos en las celdas de una de las diagonales de la tabla se considera como señal de la asociación existente entre las dos variables. El coeficiente Q se calcula operando con esas frecuencias del siguiente modo:
@@ -751,14 +785,17 @@ diremos que la relación es perfecta. Se trata de un caso ideal, no factible de 
 
 ```{r}
 aux_table <- tibble::tribble(
-  ~"",            ~"pensó emigrar", ~"nunca pensó emigrar",
-  "progresando",                 0,                   5040,
-  "en retroceso",             5064,                      0,
+  ~"", ~"pensó emigrar", ~"nunca pensó emigrar",
+  "progresando", 0, 5040,
+  "en retroceso", 5064, 0,
 )
 kableExtra::kable_styling(
-  knitr::kable(aux_table, format = "pandoc", booktabs = TRUE, align = "lcc",
-               caption = 'Distribución ficticia de la opinión sobre la evolución del propio país y la perspectiva de emigrar. Caso de relación "perfecta"'),
-  latex_options = "striped")
+  knitr::kable(aux_table,
+    format = "pandoc", booktabs = TRUE, align = "lcc",
+    caption = 'Distribución ficticia de la opinión sobre la evolución del propio país y la perspectiva de emigrar. Caso de relación "perfecta"'
+  ),
+  latex_options = "striped"
+)
 ```
 
 Aquí resulta que ninguno de los que opinan que el país está progresando pensó en emigrar, mientras que todos los que creen que está empeorando sí pensaron emigrar.
@@ -777,14 +814,17 @@ ejemplificar esa situación ficticia:
 
 ```{r}
 aux_table <- tibble::tribble(
-  ~"",            ~"pensó emigrar", ~"nunca pensó emigrar",
-  "progresando",              1512,                   3528,
-  "en retroceso",             1519,                   3545,
+  ~"", ~"pensó emigrar", ~"nunca pensó emigrar",
+  "progresando", 1512, 3528,
+  "en retroceso", 1519, 3545,
 )
 kableExtra::kable_styling(
-  knitr::kable(aux_table, format = "pandoc", booktabs = TRUE, align = "lcc",
-               caption = 'Distribución ficticia de la opinión sobre la evolución del propio país y la perspectiva de emigrar. Caso de relación "nula"'),
-  latex_options = "striped")
+  knitr::kable(aux_table,
+    format = "pandoc", booktabs = TRUE, align = "lcc",
+    caption = 'Distribución ficticia de la opinión sobre la evolución del propio país y la perspectiva de emigrar. Caso de relación "nula"'
+  ),
+  latex_options = "striped"
+)
 ```
 
 En este caso los encuestados están distribuidos en las celdas del mismo modo si opinan que el país está ejorando o empeorando (verifique, calculando las frecuencias relativas por filas)
@@ -806,14 +846,17 @@ distribución de las frecuencias es "rinconal". Esto quiere decir que una de las
 
 ```{r}
 aux_table <- tibble::tribble(
-  ~"",            ~"pensó emigrar", ~"nunca pensó emigrar",
-  "progresando",                 0,                   5040,
-  "en retroceso",             1519,                   3545,
+  ~"", ~"pensó emigrar", ~"nunca pensó emigrar",
+  "progresando", 0, 5040,
+  "en retroceso", 1519, 3545,
 )
 kableExtra::kable_styling(
-  knitr::kable(aux_table, format = "pandoc", booktabs = TRUE, align = "lcc",
-               caption = 'Distribución ficticia de la opinión sobre la evolución del propio país y la perspectiva de emigrar. Caso de distribución "rinconal"'),
-  latex_options = "striped")
+  knitr::kable(aux_table,
+    format = "pandoc", booktabs = TRUE, align = "lcc",
+    caption = 'Distribución ficticia de la opinión sobre la evolución del propio país y la perspectiva de emigrar. Caso de distribución "rinconal"'
+  ),
+  latex_options = "striped"
+)
 ```
 
 En este ejemplo -y siempre que una celda tenga frecuencia cero-, el
@@ -850,15 +893,19 @@ levels(eph.3.18$ESTADO.2) <- c(NA, "ocupades", "desocupades", "inactives", NA)
 
 tabla16 <- table(
   subset(eph.3.18, eph.3.18$ESTADO > 0 & eph.3.18$ESTADO < 4)$ESTADO.2,
-  subset(eph.3.18, eph.3.18$ESTADO > 0 & eph.3.18$ESTADO < 4)$sexo)
+  subset(eph.3.18, eph.3.18$ESTADO > 0 & eph.3.18$ESTADO < 4)$sexo
+)
 
 aux_table <- addmargins(tabla16)
 colnames(aux_table) <- sub("Sum", "Total", colnames(aux_table))
 rownames(aux_table) <- sub("Sum", "Total", rownames(aux_table))
 kableExtra::kable_styling(
-  knitr::kable(aux_table, format = "pandoc", booktabs = TRUE, align = "ccc",
-               caption = "Distribución de la condición laboral por sexos. Frecuencias absolutas"),
-  latex_options = "striped")
+  knitr::kable(aux_table,
+    format = "pandoc", booktabs = TRUE, align = "ccc",
+    caption = "Distribución de la condición laboral por sexos. Frecuencias absolutas"
+  ),
+  latex_options = "striped"
+)
 ```
 
 En este caso es más claro formular la pregunta sobre la relación entre variables, en términos de la diferencia entre grupos.¿Se distribuyen del mismo modo mujeres y varones entre las condiciones de ocupade, desocupade e inactive? La relación es, como en el ejemplo anterior, asimétrica, donde la variable sexo es antecedente y condición laboral, la consecuente. Por esa razón las frecuencias relativas es calculan por columnas, dode se encuuentra la variable antecedente.
@@ -867,10 +914,13 @@ En este caso es más claro formular la pregunta sobre la relación entre variabl
 tabla17 <- 100 * round(addmargins(prop.table(tabla16, 2), 1), 3)
 rownames(tabla17) <- sub("Sum", "Total", rownames(tabla17))
 kableExtra::kable_styling(
-  knitr::kable(tabla17, format = "pandoc", booktabs = TRUE, align = "ccc",
-               label = "tablaanterior",
-               caption = "Distribución de la condición laboral por sexos. Frecuencias relativas por columnas"),
-  latex_options = "striped")
+  knitr::kable(tabla17,
+    format = "pandoc", booktabs = TRUE, align = "ccc",
+    label = "tablaanterior",
+    caption = "Distribución de la condición laboral por sexos. Frecuencias relativas por columnas"
+  ),
+  latex_options = "striped"
+)
 ```
 
 <!-- ME SIGUE FALTANDO LA ÚLTIMA COLUMNA-->
@@ -888,10 +938,13 @@ aux_table <- addmargins(round(ji$expected, 0))
 rownames(aux_table) <- sub("Sum", "Total", rownames(aux_table))
 colnames(aux_table) <- sub("Sum", "Total", colnames(aux_table))
 kableExtra::kable_styling(
-  knitr::kable(aux_table, format = "pandoc", booktabs = TRUE, align = "ccc",
-               caption = "Frecuencias esperadas bajo la hipótesis de independencia
-correspondiente a la tabla anterior"),
-  latex_options = "striped")
+  knitr::kable(aux_table,
+    format = "pandoc", booktabs = TRUE, align = "ccc",
+    caption = "Frecuencias esperadas bajo la hipótesis de independencia
+correspondiente a la tabla anterior"
+  ),
+  latex_options = "striped"
+)
 ```
 
 Observemos algunos detalles de esta tabla. En primer lugar, las frecuencias marginales no han cambiado (salvo por elgún efecto de redondeo), los totales son los mismos y solo se trata de un reordenamiento de las frecuencias conjuntas bajo la hipótesis de independencia de las dos variables[^aclara_tabla].
@@ -912,9 +965,12 @@ procedimiento. ¿Y qué sería en ese caso de las frecuencias relativas?
 tabla18 <- prop.table(addmargins(round(ji$expected, 0), 2), 2)
 colnames(tabla18) <- sub("Sum", "Total", colnames(tabla18))
 kableExtra::kable_styling(
-  knitr::kable(tabla18, format = "pandoc", booktabs = TRUE, align = "ccc",
-               caption = "Frecuencias relativas por columnas esperadas bajo la hipótesis de independencia correspondiente a la tabla anterior"),
-  latex_options = "striped")
+  knitr::kable(tabla18,
+    format = "pandoc", booktabs = TRUE, align = "ccc",
+    caption = "Frecuencias relativas por columnas esperadas bajo la hipótesis de independencia correspondiente a la tabla anterior"
+  ),
+  latex_options = "striped"
+)
 ```
 
 Que habría idéntica proporción de ocupades, desocupades e inactives entre varones y mujeres, que es la condición de independencia que estamos proponiendo.
@@ -926,9 +982,12 @@ tabla19 <- round(addmargins(prop.table(ji$expected)), 3)
 rownames(tabla19) <- sub("Sum", "Total", rownames(tabla19))
 colnames(tabla19) <- sub("Sum", "Total", colnames(tabla19))
 kableExtra::kable_styling(
-  knitr::kable(tabla19, format = "pandoc", booktabs = TRUE, align = "ccc",
-               caption = "Frecuencias relativas por columnas esperadas bajo la hipótesis de independencia correspondiente a la tabla anterior"),
-  latex_options = "striped")
+  knitr::kable(tabla19,
+    format = "pandoc", booktabs = TRUE, align = "ccc",
+    caption = "Frecuencias relativas por columnas esperadas bajo la hipótesis de independencia correspondiente a la tabla anterior"
+  ),
+  latex_options = "striped"
+)
 ```
 
 Puede llegarse directamente a las frecuencias relativas, porque la
@@ -967,18 +1026,23 @@ eph.3.18$edad4 <- cut(eph.3.18$edad, breaks = c(
   quantile(eph.3.18$edad, .25),
   quantile(eph.3.18$edad, .5),
   quantile(eph.3.18$edad, .75),
-  max(eph.3.18$edad)))
+  max(eph.3.18$edad)
+))
 
 tabla20 <- table(
   subset(eph.3.18, eph.3.18$ESTADO > 0 & eph.3.18$ESTADO < 4)$ESTADO.2,
-  subset(eph.3.18, eph.3.18$ESTADO > 0 & eph.3.18$ESTADO < 4)$edad4)
+  subset(eph.3.18, eph.3.18$ESTADO > 0 & eph.3.18$ESTADO < 4)$edad4
+)
 tabla20 <- addmargins(tabla20)
 rownames(tabla20) <- sub("Sum", "Total", rownames(tabla20))
 colnames(tabla20) <- sub("Sum", "Total", colnames(tabla20))
 kableExtra::kable_styling(
-  knitr::kable(tabla20, format = "pandoc", booktabs = TRUE, align = "ccccc",
-               caption = "Distribución conjunta de la condición de actividad y la edad en cuatro grupos"),
-  latex_options = "striped")
+  knitr::kable(tabla20,
+    format = "pandoc", booktabs = TRUE, align = "ccccc",
+    caption = "Distribución conjunta de la condición de actividad y la edad en cuatro grupos"
+  ),
+  latex_options = "striped"
+)
 ```
 
 Pero en el próximo capítulo veremos que para variables de estos niveles de medición se cuenta con procedimientos más simples y más eficaces que permiten analizar con más detalle sus relaciones.

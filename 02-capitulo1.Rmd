@@ -20,32 +20,38 @@ Cuando se decide cuál es la información pertinente, se la puede recabar de var
 
 ```{r}
 preferencia <- tibble::tribble(
-  ~Alumno,     ~Área,
-  "Susana",    "Clínica",
-  "Marcos",    "Laboral",
-  "Daniel",    "Clínica",
-  "Federico",  "Social",
-  "María",     "Clínica",
-  "Pedro",     "Educacional",
-  "Eugenia",   "Clínica",
-  "Mabel",     "Educacional",
+  ~Alumno, ~Área,
+  "Susana", "Clínica",
+  "Marcos", "Laboral",
+  "Daniel", "Clínica",
+  "Federico", "Social",
+  "María", "Clínica",
+  "Pedro", "Educacional",
+  "Eugenia", "Clínica",
+  "Mabel", "Educacional",
   "Francisco", "Laboral"
 )
 kableExtra::kable_styling(
-  knitr::kable(preferencia, format = "pandoc", booktabs = TRUE, align = "lr",
-               caption = "Área de trabajo preferida."),
-  latex_options = "striped")
+  knitr::kable(preferencia,
+    format = "pandoc", booktabs = TRUE, align = "lr",
+    caption = "Área de trabajo preferida."
+  ),
+  latex_options = "striped"
+)
 ```
 
 La lista los individualiza, los reconoce por su nombre, indica qué área le gustaría a cada uno y solo eso, no se sabe la edad de cada uno, ni sus intereses políticos ni el deporte favorito, solo se seleccionó como pertinente para este ejemplo, el área en que le gustaría trabajar. Si ahora se transforma esa lista en una tabla:
 
 ```{r}
-aux <- as.data.frame(table(preferencia[,2]))
+aux <- as.data.frame(table(preferencia[, 2]))
 colnames(aux) <- c("Área", "Casos")
 kableExtra::kable_styling(
-  knitr::kable(aux, format = "pandoc", booktabs = TRUE, align = "lr",
-               caption = "Área de trabajo preferida."),
-  latex_options = "striped")
+  knitr::kable(aux,
+    format = "pandoc", booktabs = TRUE, align = "lr",
+    caption = "Área de trabajo preferida."
+  ),
+  latex_options = "striped"
+)
 ```
 
 Se lee que Clínica es un área preferida por cuatro alumnos, Laboral y Educacional por dos y a Social solo la menciona uno. Las personas desaparecieron, ya no hay nombres, hemos abstraído para referirnos al área preferida, no a los alumnos. En la tabla se ve que lo más frecuente es que se prefiera Clínica, y que Social es poco frecuente. Se pasó de la lista de individuos a la tabla de valores. Nos despegamos de los casos a fin de buscar la regularidad en el conjunto. Más adelante diremos que se ha pasado de la matriz de datos a la distribución de frecuencias, que constituye una reducción o un primer resumen de la información disponible.
@@ -180,19 +186,22 @@ Las categorías pueden tener diferente naturaleza: algunas se expresan con núme
 ```{r}
 aux_table <- tibble::tribble(
   ~Código, ~"Máximo nivel de educación formal alcanzado",
-  1,       "ninguno",
-  2,       "primario incompleto",
-  3,       "primario completo",
-  4,       "secundario incompleto",
-  5,       "secundario completo",
-  6,       "terciario o universitario incompleto",
-  7,       "terciario o universitario completo",
-  8,       "postgrado"
+  1, "ninguno",
+  2, "primario incompleto",
+  3, "primario completo",
+  4, "secundario incompleto",
+  5, "secundario completo",
+  6, "terciario o universitario incompleto",
+  7, "terciario o universitario completo",
+  8, "postgrado"
 )
 kableExtra::kable_styling(
-  knitr::kable(aux_table, format = "pandoc", booktabs = TRUE, align = "cl",
-               caption = "Nivel de educación alcanzado."),
-  latex_options = "striped")
+  knitr::kable(aux_table,
+    format = "pandoc", booktabs = TRUE, align = "cl",
+    caption = "Nivel de educación alcanzado."
+  ),
+  latex_options = "striped"
+)
 ```
 
 Hemos usado números para referirnos a las categorías a fin de simplificar la notación.
@@ -202,28 +211,34 @@ De manera equivalente podemos codificar las categorías de otras variables:
 ```{r}
 aux_table <- tibble::tribble(
   ~Código, ~Sexo,
-  1,       "Varón",
-  2,       "Mujer"
+  1, "Varón",
+  2, "Mujer"
 )
 kableExtra::kable_styling(
-  knitr::kable(aux_table, format = "pandoc", booktabs = TRUE, align = "cc",
-               caption = "Distribución por sexos."),
-  latex_options = "striped")
+  knitr::kable(aux_table,
+    format = "pandoc", booktabs = TRUE, align = "cc",
+    caption = "Distribución por sexos."
+  ),
+  latex_options = "striped"
+)
 ```
 
 ```{r}
 aux_table <- tibble::tribble(
   ~Código, ~"Estoy muy satisfecho con el modo en que he progresado en mi carrera",
-  1,       "Completamente en desacuerdo",
-  2,       "En desacuerdo",
-  3,       "Indiferente",
-  4,       "De acuerdo",
-  5,       "Completamente de acuerdo"
+  1, "Completamente en desacuerdo",
+  2, "En desacuerdo",
+  3, "Indiferente",
+  4, "De acuerdo",
+  5, "Completamente de acuerdo"
 )
 kableExtra::kable_styling(
-  knitr::kable(aux_table, format = "pandoc", booktabs = TRUE, align = "cl",
-               caption = "Satisfacción con el progreso en la carrera."),
-  latex_options = "striped")
+  knitr::kable(aux_table,
+    format = "pandoc", booktabs = TRUE, align = "cl",
+    caption = "Satisfacción con el progreso en la carrera."
+  ),
+  latex_options = "striped"
+)
 ```
 
 En las variables cuyas categorías son numéricas, no es necesario hacer ninguna codificación. Así, la edad quedará expresada de manera numérica directamente por la cantidad de años, como sucede con la cantidad de materias aprobadas. En estos casos, la exclusión mutua y la exhaustividad se cumplen.
@@ -258,21 +273,24 @@ Es el nivel más elemental de medición: las variables de este nivel tienen cate
 
 ```{r}
 aux_table <- tibble::tribble(
-  ~Código, ~Carrera,     ~Código, ~Área,
-  1,       "Psicología", 1,       "Clínica",
-  2,       "Filosofía",  2,       "Educacional",
-  3,       "Medicina",   3,       "Jurídica",
-  4,       "Otras",      4,       "Laboral",
-  "",      "",           5,       "Sanitaria",
-  "",      "",           6,       "Social",
-  "",      "",           7,       "Experimental",
-  "",      "",           8,       "Otra"
+  ~Código, ~Carrera, ~Código, ~Área,
+  1, "Psicología", 1, "Clínica",
+  2, "Filosofía", 2, "Educacional",
+  3, "Medicina", 3, "Jurídica",
+  4, "Otras", 4, "Laboral",
+  "", "", 5, "Sanitaria",
+  "", "", 6, "Social",
+  "", "", 7, "Experimental",
+  "", "", 8, "Otra"
 )
 kableExtra::kable_styling(
-  knitr::kable(aux_table, format = "pandoc", booktabs = TRUE, align = "clcl",
-               label = "nivelNomCod",
-               caption = "Ejemplos de codificación de variables nominales."),
-  latex_options = "striped")
+  knitr::kable(aux_table,
+    format = "pandoc", booktabs = TRUE, align = "clcl",
+    label = "nivelNomCod",
+    caption = "Ejemplos de codificación de variables nominales."
+  ),
+  latex_options = "striped"
+)
 ```
 
 <!-- JCR: Poner 3 renglones mas arriba -->
@@ -311,16 +329,19 @@ Estos números designan las categorías y son expresión de la jerarquía que ha
 ```{r}
 aux_table <- tibble::tribble(
   ~Código, ~P14,
-  "1.",    "Nunca",
-  "2.",    "Una vez",
-  "3.",    "Dos o tres veces",
-  "4.",    "De cuatro a seis veces",
-  "5.",    "Más de seis veces"
+  "1.", "Nunca",
+  "2.", "Una vez",
+  "3.", "Dos o tres veces",
+  "4.", "De cuatro a seis veces",
+  "5.", "Más de seis veces"
 )
 kableExtra::kable_styling(
-  knitr::kable(aux_table, format = "pandoc", booktabs = TRUE, align = "cl",
-               caption = "Ejemplo de codificación de una variable ordinal."),
-  latex_options = "striped")
+  knitr::kable(aux_table,
+    format = "pandoc", booktabs = TRUE, align = "cl",
+    caption = "Ejemplo de codificación de una variable ordinal."
+  ),
+  latex_options = "striped"
+)
 ```
 
 De aquí en adelante ya no usaremos una columna especial de la tabla para indicar el código, simplemente lo señalamos junto al nombre de la categoría, encabezado con el nombre abreviado de la variable:
@@ -335,9 +356,12 @@ aux_table <- tibble::tribble(
   "5. Más de seis veces"
 )
 kableExtra::kable_styling(
-  knitr::kable(aux_table, format = "pandoc", booktabs = TRUE, align = "l",
-               caption = "Ejemplo de una variable ordinal codificada."),
-  latex_options = "striped")
+  knitr::kable(aux_table,
+    format = "pandoc", booktabs = TRUE, align = "l",
+    caption = "Ejemplo de una variable ordinal codificada."
+  ),
+  latex_options = "striped"
+)
 ```
 
 Acerca del significado de los valores numéricos en las variables de nivel ordinal, si bien hemos agregado el orden, aun no es posible hacer operaciones con ellos. Es decir, no es posible sumar dos valores y que la suma tenga algún significado. Por ejemplo, en la última variable, no es cierto que $3 = 2+1$, porque no es cierto que "dos o tres veces" sea lo mismo que "nunca" más "una vez". Tampoco es válido restarlos, veamos que la diferencia entre 1 y 2 es 1 y la diferencia entre 4 y 5 también es 1, pero eso no tiene un correlato entre las categorías: no es cierto que haya la misma distancia entre "nunca" y "una vez" que entre "de cuatro a seis" y "más de seis", simplemente porque no tenemos definida la idea de *distancia* para esta variable.
@@ -361,15 +385,18 @@ La medición de los rendimientos individuales por medio de pruebas suele expresa
 ```{r}
 aux_table <- tibble::tribble(
   ~"Puntaje en la escala", ~"Significado",
-  "0 - 13",                "depresión mínima",
-  "14 - 19",               "depresión leve",
-  "20 - 28",               "depresión moderada",
-  "29 - 63",               "depresión grave"
+  "0 - 13", "depresión mínima",
+  "14 - 19", "depresión leve",
+  "20 - 28", "depresión moderada",
+  "29 - 63", "depresión grave"
 )
 kableExtra::kable_styling(
-  knitr::kable(aux_table, format = "pandoc", booktabs = TRUE, align = "ll",
-               caption = "Ejemplo de codificación de rangos de puntajes para una variable intervalar."),
-  latex_options = "striped")
+  knitr::kable(aux_table,
+    format = "pandoc", booktabs = TRUE, align = "ll",
+    caption = "Ejemplo de codificación de rangos de puntajes para una variable intervalar."
+  ),
+  latex_options = "striped"
+)
 ```
 
 De este modo se ha bajado el nivel de medición, de intervalar a ordinal.
@@ -443,20 +470,23 @@ Entre las variables medidas a nivel proporcional, debe hacerse una diferenciaci�
 
 ```{r}
 aux_table <- tibble::tribble(
-  ~"Cantidad de aplazos", ~"Número de materias aprobadas", 
-  "0",                     "0",
-  "1",                     "1",
-  "2",                     "2",
-  "3",                     "3",
-  "4",                     "4",
-  "5",                     "5",
-  "6",                     "6",
-  "",                      "7 o más",
+  ~"Cantidad de aplazos", ~"Número de materias aprobadas",
+  "0", "0",
+  "1", "1",
+  "2", "2",
+  "3", "3",
+  "4", "4",
+  "5", "5",
+  "6", "6",
+  "", "7 o más",
 )
 kableExtra::kable_styling(
-  knitr::kable(aux_table, format = "pandoc", booktabs = TRUE, align = "cc",
-               caption = "Ejemplos de variable proporcional discreta."),
-  latex_options = "striped")
+  knitr::kable(aux_table,
+    format = "pandoc", booktabs = TRUE, align = "cc",
+    caption = "Ejemplos de variable proporcional discreta."
+  ),
+  latex_options = "striped"
+)
 ```
 
 Aquí podría suceder que la variable tenga un gran número de valores. En el ejemplo de la cantidad de materias aprobadas, puede restringirse a las aprobadas por alumnos de primer año y en condición de regular, de modo que el máximo sea de 6. Pero si fueran alumnos de toda la carrera, la cantidad podría ir desde cero hasta el número total de materias. En esos casos, resultaría poco claro hacer la lista con todos los valores posibles. 
@@ -471,9 +501,12 @@ aux_table <- tibble::tribble(
   "4-6"
 )
 kableExtra::kable_styling(
-  knitr::kable(aux_table, format = "pandoc", booktabs = TRUE, align = "c",
-               caption = "Ejemplo de recategorización de una variable discreta."),
-  latex_options = "striped")
+  knitr::kable(aux_table,
+    format = "pandoc", booktabs = TRUE, align = "c",
+    caption = "Ejemplo de recategorización de una variable discreta."
+  ),
+  latex_options = "striped"
+)
 ```
 
 Cuando la variable admite números decimales se la llama **continua**, y allí el problema es mayor, porque el número de valores puede ser muy elevado[^precision] y la única opción es la de construir categorías.
@@ -490,9 +523,12 @@ aux_table <- tibble::tribble(
   "más de 2,05",
 )
 kableExtra::kable_styling(
-  knitr::kable(aux_table, format = "pandoc", booktabs = TRUE, align = "c",
-               caption = "Ejemplo de recategorización de una variable continua"),
-  latex_options = "striped")
+  knitr::kable(aux_table,
+    format = "pandoc", booktabs = TRUE, align = "c",
+    caption = "Ejemplo de recategorización de una variable continua"
+  ),
+  latex_options = "striped"
+)
 ```
 
 En el próximo capítulo nos detendremos en las formas de construir estos agrupamientos y despejaremos las dudas que provengan de la diferente cantidad de valores que se agruparon en la variable discreta de este ejemplo (las dos primera categorías contienen dos valores cada una, y la tercera tres) y la aparente superposición entre el inicio de una categoría y el fin de la anterior en el caso de la continua, que sería una violación de la exclusión mutua, porque alguien con una talla de 1,85 podría ir a la cuarta o a la quinta categoría.
@@ -508,12 +544,14 @@ aux_table <- tibble::tribble(
   "Proporcional", "Proporcionalidad de valores", "$y = b_1*x$", "Absoluto"
 )
 kableExtra::kable_styling(
-  knitr::kable(aux_table, format = "markdown", booktabs = TRUE, align = "llll",
-               escape = FALSE),
-  latex_options = "striped", full_width = FALSE)
+  knitr::kable(aux_table,
+    format = "markdown", booktabs = TRUE, align = "llll",
+    escape = FALSE
+  ),
+  latex_options = "striped", full_width = FALSE
+)
 ```
 
-------------------------------------------------
 
 Ejemplos de diferentes niveles de medición
 

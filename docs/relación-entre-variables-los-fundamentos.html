@@ -1,0 +1,2146 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 5 Relación entre variables: los fundamentos | Estadística para Ciencias Sociales con R</title>
+  <meta name="description" content="Capítulo 5 Relación entre variables: los fundamentos | Estadística para Ciencias Sociales con R" />
+  <meta name="generator" content="bookdown 0.14.1 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 5 Relación entre variables: los fundamentos | Estadística para Ciencias Sociales con R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  <meta name="github-repo" content="jcrodriguez1989/EstadisticaParaCienciasSocialesConR" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 5 Relación entre variables: los fundamentos | Estadística para Ciencias Sociales con R" />
+  
+  
+  
+
+<meta name="author" content="Eduardo Bologna" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="la-expresión-resumida-de-la-información.html"/>
+<link rel="next" href="relación-entre-variables-el-análisis.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Estadística para Ciencias Sociales con R</a></li>
+
+<li class="divider"></li>
+<li><a href="index.html#section"></a></li>
+<li class="chapter" data-level="1" data-path="materiales-y-herramientas.html"><a href="materiales-y-herramientas.html"><i class="fa fa-check"></i><b>1</b> Materiales y herramientas</a><ul>
+<li class="chapter" data-level="1.1" data-path="materiales-y-herramientas.html"><a href="materiales-y-herramientas.html#materiales"><i class="fa fa-check"></i><b>1.1</b> Materiales</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="materiales-y-herramientas.html"><a href="materiales-y-herramientas.html#encuesta-permanente-de-hogares-eph.3.18"><i class="fa fa-check"></i><b>1.1.1</b> Encuesta Permanente de Hogares (eph.3.18)</a></li>
+<li class="chapter" data-level="1.1.2" data-path="materiales-y-herramientas.html"><a href="materiales-y-herramientas.html#encuesta-nacional-de-factores-de-riesgo-enfr2013"><i class="fa fa-check"></i><b>1.1.2</b> Encuesta Nacional de Factores de Riesgo (ENFR2013)</a></li>
+<li class="chapter" data-level="1.1.3" data-path="materiales-y-herramientas.html"><a href="materiales-y-herramientas.html#latinobarómetro-latinob2017"><i class="fa fa-check"></i><b>1.1.3</b> Latinobarómetro (latinob2017)</a></li>
+<li class="chapter" data-level="1.1.4" data-path="materiales-y-herramientas.html"><a href="materiales-y-herramientas.html#encuesta-nacional-sobre-prevalencias-de-consumo-de-sustancias-psicoactivas-enprecosp2011"><i class="fa fa-check"></i><b>1.1.4</b> Encuesta Nacional sobre Prevalencias de Consumo de Sustancias Psicoactivas (ENPreCoSP2011)</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="materiales-y-herramientas.html"><a href="materiales-y-herramientas.html#herramientas"><i class="fa fa-check"></i><b>1.2</b> Herramientas</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="materiales-y-herramientas.html"><a href="materiales-y-herramientas.html#la-elección-de-r"><i class="fa fa-check"></i><b>1.2.1</b> La elección de R</a></li>
+<li class="chapter" data-level="1.2.2" data-path="materiales-y-herramientas.html"><a href="materiales-y-herramientas.html#instalación-de-r-y-rstudio"><i class="fa fa-check"></i><b>1.2.2</b> Instalación de R y RStudio</a></li>
+<li class="chapter" data-level="1.2.3" data-path="materiales-y-herramientas.html"><a href="materiales-y-herramientas.html#los-componentes-de-rstudio"><i class="fa fa-check"></i><b>1.2.3</b> Los componentes de RStudio</a></li>
+<li class="chapter" data-level="1.2.4" data-path="materiales-y-herramientas.html"><a href="materiales-y-herramientas.html#operaciones-en-el-script"><i class="fa fa-check"></i><b>1.2.4</b> Operaciones en el script</a></li>
+<li class="chapter" data-level="1.2.5" data-path="materiales-y-herramientas.html"><a href="materiales-y-herramientas.html#instalación-de-paquetes"><i class="fa fa-check"></i><b>1.2.5</b> Instalación de paquetes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html"><i class="fa fa-check"></i><b>2</b> Los datos estadísticos</a><ul>
+<li class="chapter" data-level="2.1" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#la-selección-de-la-información-pertinente"><i class="fa fa-check"></i><b>2.1</b> La selección de la información pertinente</a></li>
+<li class="chapter" data-level="2.2" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#los-individuos"><i class="fa fa-check"></i><b>2.2</b> Los individuos</a></li>
+<li class="chapter" data-level="2.3" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#las-variables"><i class="fa fa-check"></i><b>2.3</b> Las variables</a></li>
+<li class="chapter" data-level="2.4" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#las-categorías"><i class="fa fa-check"></i><b>2.4</b> Las categorías</a></li>
+<li class="chapter" data-level="2.5" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#los-símbolos-numéricos"><i class="fa fa-check"></i><b>2.5</b> Los símbolos numéricos</a></li>
+<li class="chapter" data-level="2.6" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#la-medición"><i class="fa fa-check"></i><b>2.6</b> La medición</a><ul>
+<li class="chapter" data-level="2.6.1" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#niveles-de-medición"><i class="fa fa-check"></i><b>2.6.1</b> Niveles de medición</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#resumen-de-los-niveles-de-medición"><i class="fa fa-check"></i><b>2.7</b> Resumen de los niveles de medición</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html"><i class="fa fa-check"></i><b>3</b> Distribuciones de frecuencia</a><ul>
+<li class="chapter" data-level="3.1" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#tablas-de-distribución-de-frecuencia"><i class="fa fa-check"></i><b>3.1</b> Tablas de distribución de frecuencia</a></li>
+<li class="chapter" data-level="3.2" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#recategorización"><i class="fa fa-check"></i><b>3.2</b> Recategorización</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#variable-discreta-con-muchas-categorías"><i class="fa fa-check"></i><b>3.2.1</b> Variable discreta con muchas categorías</a></li>
+<li class="chapter" data-level="3.2.2" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#variable-continua"><i class="fa fa-check"></i><b>3.2.2</b> Variable continua</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#la-presentación-gráfica-de-los-resultados"><i class="fa fa-check"></i><b>3.3</b> La presentación gráfica de los resultados</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html"><i class="fa fa-check"></i><b>4</b> La expresión resumida de la información</a><ul>
+<li class="chapter" data-level="4.1" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#medidas-de-posición"><i class="fa fa-check"></i><b>4.1</b> Medidas de posición</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#variables-nominales-proporciones"><i class="fa fa-check"></i><b>4.1.1</b> Variables nominales: proporciones</a></li>
+<li class="chapter" data-level="4.1.2" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#variables-nominales-tasas"><i class="fa fa-check"></i><b>4.1.2</b> Variables nominales: tasas</a></li>
+<li class="chapter" data-level="4.1.3" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#variables-nominales-razones"><i class="fa fa-check"></i><b>4.1.3</b> Variables nominales: razones</a></li>
+<li class="chapter" data-level="4.1.4" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#variables-nominales-el-modo"><i class="fa fa-check"></i><b>4.1.4</b> Variables nominales: el modo</a></li>
+<li class="chapter" data-level="4.1.5" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#variables-ordinales-percentiles"><i class="fa fa-check"></i><b>4.1.5</b> Variables ordinales: percentiles</a></li>
+<li class="chapter" data-level="4.1.6" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#variables-ordinales-la-mediana"><i class="fa fa-check"></i><b>4.1.6</b> Variables ordinales: la mediana</a></li>
+<li class="chapter" data-level="4.1.7" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#los-cuartiles"><i class="fa fa-check"></i><b>4.1.7</b> Los cuartiles</a></li>
+<li class="chapter" data-level="4.1.8" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#los-percentiles"><i class="fa fa-check"></i><b>4.1.8</b> Los percentiles</a></li>
+<li class="chapter" data-level="4.1.9" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#hacerlo-en-r"><i class="fa fa-check"></i><b>4.1.9</b> Hacerlo en R</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#la-forma-de-la-distribución"><i class="fa fa-check"></i><b>4.2</b> La forma de la distribución</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#asimetría"><i class="fa fa-check"></i><b>4.2.1</b> Asimetría</a></li>
+<li class="chapter" data-level="4.2.2" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#curtosis"><i class="fa fa-check"></i><b>4.2.2</b> Curtosis</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#box-plots"><i class="fa fa-check"></i><b>4.3</b> Box-plots</a></li>
+<li class="chapter" data-level="4.4" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#medidas-de-dispersión"><i class="fa fa-check"></i><b>4.4</b> Medidas de dispersión</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#recorrido"><i class="fa fa-check"></i><b>4.4.1</b> Recorrido</a></li>
+<li class="chapter" data-level="4.4.2" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#amplitud-intercuartílica"><i class="fa fa-check"></i><b>4.4.2</b> Amplitud intercuartílica</a></li>
+<li class="chapter" data-level="4.4.3" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#medidas-de-dispersión-basadas-en-la-media"><i class="fa fa-check"></i><b>4.4.3</b> Medidas de dispersión basadas en la media</a></li>
+<li class="chapter" data-level="4.4.4" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#varianza"><i class="fa fa-check"></i><b>4.4.4</b> Varianza</a></li>
+<li class="chapter" data-level="4.4.5" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#desviación-estándar"><i class="fa fa-check"></i><b>4.4.5</b> Desviación estándar</a></li>
+<li class="chapter" data-level="4.4.6" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#coeficiente-de-variación"><i class="fa fa-check"></i><b>4.4.6</b> Coeficiente de variación</a></li>
+<li class="chapter" data-level="4.4.7" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#hacerlo-en-r-1"><i class="fa fa-check"></i><b>4.4.7</b> Hacerlo en R</a></li>
+<li class="chapter" data-level="4.4.8" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#box-plots-y-dispersión"><i class="fa fa-check"></i><b>4.4.8</b> Box-plots y dispersión</a></li>
+<li class="chapter" data-level="4.4.9" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#medida-de-la-dispersión-cuando-no-hay-distancias"><i class="fa fa-check"></i><b>4.4.9</b> Medida de la dispersión cuando no hay distancias</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#el-individuo-en-relación-a-su-grupo"><i class="fa fa-check"></i><b>4.5</b> El individuo en relación a su grupo</a></li>
+<li class="chapter" data-level="4.6" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#resumen-de-medidas-descriptivas"><i class="fa fa-check"></i><b>4.6</b> Resumen de medidas descriptivas</a><ul>
+<li class="chapter" data-level="4.6.1" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#medidas-de-posición-1"><i class="fa fa-check"></i><b>4.6.1</b> Medidas de posición</a></li>
+<li class="chapter" data-level="4.6.2" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#medidas-de-dispersión-1"><i class="fa fa-check"></i><b>4.6.2</b> Medidas de dispersión</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html"><i class="fa fa-check"></i><b>5</b> Relación entre variables: los fundamentos</a><ul>
+<li class="chapter" data-level="5.1" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#tablas-de-contingencia"><i class="fa fa-check"></i><b>5.1</b> Tablas de contingencia</a></li>
+<li class="chapter" data-level="5.2" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#frecuencias-relativas"><i class="fa fa-check"></i><b>5.2</b> Frecuencias relativas</a></li>
+<li class="chapter" data-level="5.3" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#una-clasificación-en-referencia-al-tiempo"><i class="fa fa-check"></i><b>5.3</b> Una clasificación en referencia al tiempo</a></li>
+<li class="chapter" data-level="5.4" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#la-dirección-de-la-relación"><i class="fa fa-check"></i><b>5.4</b> La dirección de la relación</a></li>
+<li class="chapter" data-level="5.5" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#concepto-de-riesgo-relativo"><i class="fa fa-check"></i><b>5.5</b> Concepto de riesgo relativo</a></li>
+<li class="chapter" data-level="5.6" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#la-intensidad"><i class="fa fa-check"></i><b>5.6</b> La intensidad</a></li>
+<li class="chapter" data-level="5.7" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#el-concepto-de-independencia-estadística"><i class="fa fa-check"></i><b>5.7</b> El concepto de independencia estadística</a></li>
+<li class="chapter" data-level="5.8" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#hacerlo-en-r-2"><i class="fa fa-check"></i><b>5.8</b> Hacerlo en R</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html"><i class="fa fa-check"></i><b>6</b> Relación entre variables: el análisis</a><ul>
+<li class="chapter" data-level="6.1" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#variables-nominales-con-más-de-dos-categorías-cada-una"><i class="fa fa-check"></i><b>6.1</b> Variables nominales con más de dos categorías cada una</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#la-distancia-entre-frecuencias-esperadas-y-observadas"><i class="fa fa-check"></i><b>6.1.1</b> La distancia entre frecuencias esperadas y observadas</a></li>
+<li class="chapter" data-level="6.1.2" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#coeficientes-de-asociación-para-variables-nominales"><i class="fa fa-check"></i><b>6.1.2</b> Coeficientes de asociación para variables nominales</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#variables-de-nivel-ordinal"><i class="fa fa-check"></i><b>6.2</b> Variables de nivel ordinal</a></li>
+<li class="chapter" data-level="6.3" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#nivel-intervalar-o-proporcional"><i class="fa fa-check"></i><b>6.3</b> Nivel intervalar o proporcional</a></li>
+<li class="chapter" data-level="6.4" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#dicotomías-reales-y-artificiales"><i class="fa fa-check"></i><b>6.4</b> Dicotomías reales y artificiales</a></li>
+<li class="chapter" data-level="6.5" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#niveles-de-medición-combinados"><i class="fa fa-check"></i><b>6.5</b> Niveles de medición combinados</a><ul>
+<li class="chapter" data-level="6.5.1" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#una-variable-dicotómica-real-y-una-proporcional"><i class="fa fa-check"></i><b>6.5.1</b> Una variable dicotómica real y una proporcional</a></li>
+<li class="chapter" data-level="6.5.2" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#una-variable-continua-dicotomizada-y-una-proporcional"><i class="fa fa-check"></i><b>6.5.2</b> Una variable continua dicotomizada y una proporcional</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#resumen-de-coeficientes-de-asociación"><i class="fa fa-check"></i><b>6.6</b> Resumen de coeficientes de asociación</a></li>
+<li class="chapter" data-level="6.7" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#matriz-de-correlaciones"><i class="fa fa-check"></i><b>6.7</b> Matriz de correlaciones</a></li>
+<li class="chapter" data-level="6.8" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#la-forma-de-la-relación"><i class="fa fa-check"></i><b>6.8</b> La forma de la relación</a><ul>
+<li class="chapter" data-level="6.8.1" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#ordenada-al-origen"><i class="fa fa-check"></i><b>6.8.1</b> Ordenada al origen</a></li>
+<li class="chapter" data-level="6.8.2" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#pendiente"><i class="fa fa-check"></i><b>6.8.2</b> Pendiente</a></li>
+<li class="chapter" data-level="6.8.3" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#obtención-de-la-recta-de-regresión"><i class="fa fa-check"></i><b>6.8.3</b> Obtención de la recta de regresión</a></li>
+</ul></li>
+<li class="chapter" data-level="6.9" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#la-importancia-de-la-visualización"><i class="fa fa-check"></i><b>6.9</b> La importancia de la visualización</a></li>
+<li class="chapter" data-level="6.10" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#hacerlo-en-r-3"><i class="fa fa-check"></i><b>6.10</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="6.10.1" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#distancia-chi2"><i class="fa fa-check"></i><b>6.10.1</b> Distancia <span class="math inline">\(\chi^{2}\)</span></a></li>
+<li class="chapter" data-level="6.10.2" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#coeficientes"><i class="fa fa-check"></i><b>6.10.2</b> Coeficientes</a></li>
+<li class="chapter" data-level="6.10.3" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#modelo-lineal"><i class="fa fa-check"></i><b>6.10.3</b> Modelo lineal</a></li>
+<li class="chapter" data-level="6.10.4" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#cuarteto-de-anscombe"><i class="fa fa-check"></i><b>6.10.4</b> Cuarteto de Anscombe</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html"><i class="fa fa-check"></i><b>7</b> Obtención de la muestra</a><ul>
+<li class="chapter" data-level="7.1" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#población"><i class="fa fa-check"></i><b>7.1</b> Población</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestra"><i class="fa fa-check"></i><b>7.1.1</b> Muestra</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreos-probabilísticos"><i class="fa fa-check"></i><b>7.2</b> Muestreos probabilísticos</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-irrestricto-aleatorio-o-aleatorio-simple"><i class="fa fa-check"></i><b>7.2.1</b> Muestreo irrestricto aleatorio o aleatorio simple</a></li>
+<li class="chapter" data-level="7.2.2" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-sistemático"><i class="fa fa-check"></i><b>7.2.2</b> Muestreo sistemático</a></li>
+<li class="chapter" data-level="7.2.3" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-estratificado"><i class="fa fa-check"></i><b>7.2.3</b> Muestreo estratificado</a></li>
+<li class="chapter" data-level="7.2.4" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-por-conglomerados"><i class="fa fa-check"></i><b>7.2.4</b> Muestreo por conglomerados</a></li>
+<li class="chapter" data-level="7.2.5" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#método-de-kish"><i class="fa fa-check"></i><b>7.2.5</b> Método de Kish</a></li>
+<li class="chapter" data-level="7.2.6" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#uso-combinado-de-técnicas-de-muestreo"><i class="fa fa-check"></i><b>7.2.6</b> Uso combinado de técnicas de muestreo</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreos-no-probabilísticos"><i class="fa fa-check"></i><b>7.3</b> Muestreos no probabilísticos</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-por-cuotas"><i class="fa fa-check"></i><b>7.3.1</b> Muestreo por cuotas</a></li>
+<li class="chapter" data-level="7.3.2" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-de-juicio-o-intencional"><i class="fa fa-check"></i><b>7.3.2</b> Muestreo de juicio o intencional</a></li>
+<li class="chapter" data-level="7.3.3" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-autoelegido"><i class="fa fa-check"></i><b>7.3.3</b> Muestreo autoelegido</a></li>
+<li class="chapter" data-level="7.3.4" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-accidental-o-según-disponibilidad"><i class="fa fa-check"></i><b>7.3.4</b> Muestreo accidental o según disponibilidad</a></li>
+<li class="chapter" data-level="7.3.5" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-bola-de-nieve"><i class="fa fa-check"></i><b>7.3.5</b> Muestreo bola de nieve</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#resumen-de-técnicas-de-muestreo"><i class="fa fa-check"></i><b>7.4</b> Resumen de técnicas de muestreo</a></li>
+<li class="chapter" data-level="7.5" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#hacerlo-en-r-4"><i class="fa fa-check"></i><b>7.5</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="7.5.1" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#aleatorio-simple"><i class="fa fa-check"></i><b>7.5.1</b> Aleatorio simple</a></li>
+<li class="chapter" data-level="7.5.2" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#estratificado"><i class="fa fa-check"></i><b>7.5.2</b> Estratificado</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html"><i class="fa fa-check"></i><b>8</b> Probabilidad: los fundamentos</a><ul>
+<li class="chapter" data-level="8.1" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#el-rol-de-la-probabilidad-en-estadística"><i class="fa fa-check"></i><b>8.1</b> El rol de la probabilidad en Estadística</a></li>
+<li class="chapter" data-level="8.2" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#formas-para-asignar-probabilidades"><i class="fa fa-check"></i><b>8.2</b> Formas para asignar probabilidades</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#asignación-a-priori"><i class="fa fa-check"></i><b>8.2.1</b> Asignación a priori</a></li>
+<li class="chapter" data-level="8.2.2" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#asignación-a-posteriori"><i class="fa fa-check"></i><b>8.2.2</b> Asignación a posteriori</a></li>
+<li class="chapter" data-level="8.2.3" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#la-relación-entre-asignación-a-priori-y-a-posteriori"><i class="fa fa-check"></i><b>8.2.3</b> La relación entre asignación a priori y a posteriori</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#operando-con-probabilidades"><i class="fa fa-check"></i><b>8.3</b> Operando con probabilidades</a><ul>
+<li class="chapter" data-level="8.3.1" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#con-probabilidades-frecuenciales"><i class="fa fa-check"></i><b>8.3.1</b> Con probabilidades frecuenciales</a></li>
+<li class="chapter" data-level="8.3.2" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#con-probabilidades-a-priori"><i class="fa fa-check"></i><b>8.3.2</b> Con probabilidades a priori</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#el-teorema-de-bayes"><i class="fa fa-check"></i><b>8.4</b> El teorema de Bayes</a></li>
+<li class="chapter" data-level="8.5" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#variables-aleatorias"><i class="fa fa-check"></i><b>8.5</b> Variables aleatorias</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html"><i class="fa fa-check"></i><b>9</b> Probabilidad: los modelos</a><ul>
+<li class="chapter" data-level="9.1" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#concepto-de-modelización"><i class="fa fa-check"></i><b>9.1</b> Concepto de modelización</a></li>
+<li class="chapter" data-level="9.2" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#distribución-binomial"><i class="fa fa-check"></i><b>9.2</b> Distribución binomial</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#esperanza-y-varianza"><i class="fa fa-check"></i><b>9.2.1</b> Esperanza y varianza</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#distribución-normal"><i class="fa fa-check"></i><b>9.3</b> Distribución normal</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#percentiles"><i class="fa fa-check"></i><b>9.3.1</b> Percentiles</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#la-idea-de-grados-de-libertad"><i class="fa fa-check"></i><b>9.4</b> La idea de grados de libertad</a></li>
+<li class="chapter" data-level="9.5" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#la-distribución-ji-cuadrado-chi2"><i class="fa fa-check"></i><b>9.5</b> La distribución ji cuadrado (<span class="math inline">\(\chi^{2}\)</span>)</a></li>
+<li class="chapter" data-level="9.6" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#la-distribución-t-de-student"><i class="fa fa-check"></i><b>9.6</b> La distribución t de Student</a><ul>
+<li class="chapter" data-level="9.6.1" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#la-distribución-f"><i class="fa fa-check"></i><b>9.6.1</b> La distribución F</a></li>
+</ul></li>
+<li class="chapter" data-level="9.7" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#hacerlo-en-r-5"><i class="fa fa-check"></i><b>9.7</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="9.7.1" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#probabilidades"><i class="fa fa-check"></i><b>9.7.1</b> Probabilidades</a></li>
+<li class="chapter" data-level="9.7.2" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#percentiles-1"><i class="fa fa-check"></i><b>9.7.2</b> Percentiles</a></li>
+<li class="chapter" data-level="9.7.3" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#áreas-centrales"><i class="fa fa-check"></i><b>9.7.3</b> Áreas centrales</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html"><i class="fa fa-check"></i><b>10</b> Distribuciones en el muestreo</a><ul>
+<li class="chapter" data-level="10.1" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#parámetros-y-estimadores"><i class="fa fa-check"></i><b>10.1</b> Parámetros y estimadores</a></li>
+<li class="chapter" data-level="10.2" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#características-de-los-estimadores"><i class="fa fa-check"></i><b>10.2</b> Características de los estimadores</a><ul>
+<li class="chapter" data-level="10.2.1" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#insesgabilidad"><i class="fa fa-check"></i><b>10.2.1</b> Insesgabilidad</a></li>
+<li class="chapter" data-level="10.2.2" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#consistencia"><i class="fa fa-check"></i><b>10.2.2</b> Consistencia</a></li>
+<li class="chapter" data-level="10.2.3" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#eficiencia"><i class="fa fa-check"></i><b>10.2.3</b> Eficiencia</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#distribución-de-la-media-muestral"><i class="fa fa-check"></i><b>10.3</b> Distribución de la media muestral</a></li>
+<li class="chapter" data-level="10.4" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#distribución-de-la-proporción-muestral"><i class="fa fa-check"></i><b>10.4</b> Distribución de la proporción muestral</a></li>
+<li class="chapter" data-level="10.5" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#muestras-pequeñas"><i class="fa fa-check"></i><b>10.5</b> Muestras pequeñas</a></li>
+<li class="chapter" data-level="10.6" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#distribución-de-la-varianza"><i class="fa fa-check"></i><b>10.6</b> Distribución de la varianza</a></li>
+<li class="chapter" data-level="10.7" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#distribución-del-cociente-de-varianzas"><i class="fa fa-check"></i><b>10.7</b> Distribución del cociente de varianzas</a></li>
+<li class="chapter" data-level="10.8" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#resumen-de-la-relación-entre-estimadores-y-parámetros"><i class="fa fa-check"></i><b>10.8</b> Resumen de la relación entre estimadores y parámetros</a></li>
+<li class="chapter" data-level="10.9" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#hacerlo-en-r-6"><i class="fa fa-check"></i><b>10.9</b> Hacerlo en R</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html"><i class="fa fa-check"></i><b>11</b> Estimación por intervalo</a><ul>
+<li class="chapter" data-level="11.1" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#estimación-puntual"><i class="fa fa-check"></i><b>11.1</b> Estimación puntual</a></li>
+<li class="chapter" data-level="11.2" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#intervalos-de-confianza"><i class="fa fa-check"></i><b>11.2</b> Intervalos de confianza</a><ul>
+<li class="chapter" data-level="11.2.1" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#estimación-de-la-media"><i class="fa fa-check"></i><b>11.2.1</b> Estimación de la media</a></li>
+<li class="chapter" data-level="11.2.2" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#estimación-de-la-proporción"><i class="fa fa-check"></i><b>11.2.2</b> Estimación de la proporción</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#la-calidad-de-las-estimaciones-por-intervalo"><i class="fa fa-check"></i><b>11.3</b> La calidad de las estimaciones por intervalo</a><ul>
+<li class="chapter" data-level="11.3.1" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#el-error-de-estimación-en-la-proporción"><i class="fa fa-check"></i><b>11.3.1</b> El error de estimación en la proporción</a></li>
+<li class="chapter" data-level="11.3.2" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#probabilidad-de-cobertura"><i class="fa fa-check"></i><b>11.3.2</b> Probabilidad de cobertura</a></li>
+</ul></li>
+<li class="chapter" data-level="11.4" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#hacerlo-en-r-7"><i class="fa fa-check"></i><b>11.4</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="11.4.1" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#intervalo-para-la-media"><i class="fa fa-check"></i><b>11.4.1</b> Intervalo para la media</a></li>
+<li class="chapter" data-level="11.4.2" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#intervalo-para-la-proporción"><i class="fa fa-check"></i><b>11.4.2</b> Intervalo para la proporción</a></li>
+<li class="chapter" data-level="11.4.3" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#cobertura"><i class="fa fa-check"></i><b>11.4.3</b> Cobertura</a></li>
+<li class="chapter" data-level="11.4.4" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#operaciones-sobre-la-base-enprecosp"><i class="fa fa-check"></i><b>11.4.4</b> Operaciones sobre la base ENPreCoSP</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html"><i class="fa fa-check"></i><b>12</b> Prueba de hipótesis: la lógica</a><ul>
+<li class="chapter" data-level="12.1" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#el-razonamiento-de-la-prueba-de-hipótesis"><i class="fa fa-check"></i><b>12.1</b> El razonamiento de la prueba de hipótesis</a><ul>
+<li class="chapter" data-level="12.1.1" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#prueba-sobre-la-media"><i class="fa fa-check"></i><b>12.1.1</b> Prueba sobre la media</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#los-puntos-críticos-en-términos-del-estimador"><i class="fa fa-check"></i><b>12.2</b> Los puntos críticos en términos del estimador</a><ul>
+<li class="chapter" data-level="12.2.1" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#pruebas-unilaterales"><i class="fa fa-check"></i><b>12.2.1</b> Pruebas unilaterales</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#prueba-sobre-la-proporción"><i class="fa fa-check"></i><b>12.3</b> Prueba sobre la proporción</a></li>
+<li class="chapter" data-level="12.4" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#tipos-de-error-en-las-pruebas-de-hipótesis"><i class="fa fa-check"></i><b>12.4</b> Tipos de error en las pruebas de hipótesis</a></li>
+<li class="chapter" data-level="12.5" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#etii-mu-alpha-y-n"><i class="fa fa-check"></i><b>12.5</b> <em>ETII:</em> <span class="math inline">\(\mu\)</span>, <span class="math inline">\(\alpha\)</span> y <span class="math inline">\(n\)</span></a><ul>
+<li class="chapter" data-level="12.5.1" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#curva-de-potencia"><i class="fa fa-check"></i><b>12.5.1</b> Curva de potencia</a></li>
+<li class="chapter" data-level="12.5.2" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#significación-estadística-y-valor-p"><i class="fa fa-check"></i><b>12.5.2</b> Significación estadística y valor <span class="math inline">\(p\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="12.6" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#muestras-pequeñas-y-pruebas-t"><i class="fa fa-check"></i><b>12.6</b> Muestras pequeñas y pruebas <span class="math inline">\(t\)</span></a></li>
+<li class="chapter" data-level="12.7" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#hacerlo-en-r-8"><i class="fa fa-check"></i><b>12.7</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="12.7.1" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#media"><i class="fa fa-check"></i><b>12.7.1</b> Media</a></li>
+<li class="chapter" data-level="12.7.2" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#proporción"><i class="fa fa-check"></i><b>12.7.2</b> Proporción</a></li>
+</ul></li>
+<li class="chapter" data-level="12.8" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#resumen-de-pruebas-sobre-una-muestra"><i class="fa fa-check"></i><b>12.8</b> Resumen de pruebas sobre una muestra</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html"><i class="fa fa-check"></i><b>13</b> Prueba de hipótesis: las aplicaciones</a><ul>
+<li class="chapter" data-level="13.1" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#muestras-independientes"><i class="fa fa-check"></i><b>13.1</b> Muestras independientes</a><ul>
+<li class="chapter" data-level="13.1.1" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#prueba-de-diferencia-de-medias"><i class="fa fa-check"></i><b>13.1.1</b> Prueba de diferencia de medias</a></li>
+<li class="chapter" data-level="13.1.2" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#muestras-apareadas"><i class="fa fa-check"></i><b>13.1.2</b> Muestras apareadas</a></li>
+<li class="chapter" data-level="13.1.3" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#coeficiente-r-de-pearson"><i class="fa fa-check"></i><b>13.1.3</b> Coeficiente r de Pearson</a></li>
+</ul></li>
+<li class="chapter" data-level="13.2" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#hacerlo-en-r-9"><i class="fa fa-check"></i><b>13.2</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="13.2.1" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#ejemplo-1."><i class="fa fa-check"></i><b>13.2.1</b> Ejemplo 1.</a></li>
+<li class="chapter" data-level="13.2.2" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#ejemplo-2."><i class="fa fa-check"></i><b>13.2.2</b> Ejemplo 2.</a></li>
+<li class="chapter" data-level="13.2.3" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#aplicación-a-los-datos-de-adultos-mayores"><i class="fa fa-check"></i><b>13.2.3</b> Aplicación a los datos de Adultos Mayores</a></li>
+<li class="chapter" data-level="13.2.4" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#prueba-apareada"><i class="fa fa-check"></i><b>13.2.4</b> Prueba apareada</a></li>
+<li class="chapter" data-level="13.2.5" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#coeficiente-de-correlación"><i class="fa fa-check"></i><b>13.2.5</b> Coeficiente de correlación</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html"><i class="fa fa-check"></i><b>14</b> Cuando los supuestos no se cumplen</a><ul>
+<li class="chapter" data-level="14.0.1" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#las-pruebas-ji-cuadrado-o-chi-cuadrado"><i class="fa fa-check"></i><b>14.0.1</b> Las pruebas ji cuadrado (o chi cuadrado)</a></li>
+<li class="chapter" data-level="14.0.2" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#coeficiente-r_s-de-spearman"><i class="fa fa-check"></i><b>14.0.2</b> Coeficiente <span class="math inline">\(r_s\)</span> de Spearman</a></li>
+<li class="chapter" data-level="14.0.3" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#alternativas-no-paramétricas-a-las-pruebas-t"><i class="fa fa-check"></i><b>14.0.3</b> Alternativas no paramétricas a las pruebas t</a></li>
+<li class="chapter" data-level="14.1" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#hacerlo-en-r-10"><i class="fa fa-check"></i><b>14.1</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="14.1.1" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#ejemplo-1"><i class="fa fa-check"></i><b>14.1.1</b> Ejemplo 1</a></li>
+<li class="chapter" data-level="14.1.2" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#ejemplo-2"><i class="fa fa-check"></i><b>14.1.2</b> Ejemplo 2</a></li>
+<li class="chapter" data-level="14.1.3" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#prueba-de-la-mediana-1"><i class="fa fa-check"></i><b>14.1.3</b> Prueba de la mediana</a></li>
+<li class="chapter" data-level="14.1.4" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#prueba-de-wilcoxon"><i class="fa fa-check"></i><b>14.1.4</b> Prueba de Wilcoxon</a></li>
+<li class="chapter" data-level="14.1.5" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#muestras-apareadas-1"><i class="fa fa-check"></i><b>14.1.5</b> Muestras apareadas</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html"><i class="fa fa-check"></i><b>15</b> Tamaño del efecto</a><ul>
+<li class="chapter" data-level="15.1" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#significación-estadística-y-significación-práctica"><i class="fa fa-check"></i><b>15.1</b> Significación estadística y significación práctica</a></li>
+<li class="chapter" data-level="15.2" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#medidas-de-tamaño-del-efecto"><i class="fa fa-check"></i><b>15.2</b> Medidas de tamaño del efecto</a><ul>
+<li class="chapter" data-level="15.2.1" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#prueba-t-para-diferencia-de-medias"><i class="fa fa-check"></i><b>15.2.1</b> Prueba t para diferencia de medias</a></li>
+<li class="chapter" data-level="15.2.2" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#análisis-de-la-varianza"><i class="fa fa-check"></i><b>15.2.2</b> Análisis de la varianza</a></li>
+<li class="chapter" data-level="15.2.3" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#correlaciones"><i class="fa fa-check"></i><b>15.2.3</b> Correlaciones</a></li>
+<li class="chapter" data-level="15.2.4" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#regresión-lineal"><i class="fa fa-check"></i><b>15.2.4</b> Regresión lineal</a></li>
+<li class="chapter" data-level="15.2.5" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#pruebas-ji-cuadrado"><i class="fa fa-check"></i><b>15.2.5</b> Pruebas ji cuadrado</a></li>
+</ul></li>
+<li class="chapter" data-level="15.3" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#análisis-de-la-potencia"><i class="fa fa-check"></i><b>15.3</b> Análisis de la potencia</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Generado con bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Estadística para Ciencias Sociales con R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="relación-entre-variables-los-fundamentos" class="section level1">
+<h1><span class="header-section-number">Capítulo 5</span> Relación entre variables: los fundamentos</h1>
+<p>Hasta este punto se han descripto variables observadas o medidas a
+través de instrumentos de a una por vez. Ahora, el objetivo se acerca
+más al modo de hacer investigación en Ciencias Sociales. Es así porque en este capítulo y el siguiente se trata con relaciones entre variables: no ya describir cada variable por separado sino reunirlas en
+relaciones de dos como mínimo, pero que puede incluir a una gran
+cantidad. Buscar relaciones entre variables es comenzar a transitar el camino de la explicación de los fenómenos que observamos.</p>
+<p>Si nos preguntamos, por ejemplo: ¿por qué un tratamiento es exitoso con algunos pacientes diagnosticados de depresión y con otros no?
+A partir de antecedentes que existan sobre el tema, formularemos hipótesis sobre la respuesta: quizás la edad influya, puede suceder que con pacientes más jóvenes se obtenga mejor resultado que con los de más edad. Razonando así, introducimos otra variable, la edad,
+que aportaría a explicar la razón de los diferentes resultados del
+tratamiento. La hipótesis está formulada como una relación entre dos
+variables: se trata de indagar por el efecto que la edad (primera
+variable) tendría sobre el resultado del tratamiento (segunda
+variable). La edad podría ser un factor explicativo del resultado
+del tratamiento.</p>
+<p>Dentro del mismo ejemplo, también podemos sospechar que quienes han sido diagnosticados más precozmente pueden aprovechar el tratamiento mejor que quienes traen una dolencia de larga data. Aquí la variable que viene a explicar el resultado es el tiempo de evolución de la enfermedad. Ahora el tiempo de evolución de la enfermedad podría ser otro factor explicativo del resultado del tratamiento. Notemos el acento en “podría ser”: estas relaciones son hipotéticas, nuestro objetivo será analizar la evidencia que haya a su favor o en su contra.
+Esquemáticamente la relación se plantea de la siguiente manera:</p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-119"></span>
+<img src="imagenes/resultadotratamiento.png" alt="Relación hipotética entre dos factores explicativos y el resultado de un tratamiento para la depresión" width="260" />
+<p class="caption">
+Figura 5.1: Relación hipotética entre dos factores explicativos y el resultado de un tratamiento para la depresión
+</p>
+</div>
+<p>Estas dos variables son parte de la hipótesis para explicar las
+diferencias en los resultados que ofrece un determinado tratamiento
+sobre pacientes diagnosticados de depresión. Puede haber más variables: la gravedad de la depresión, el sexo del paciente (quizás el resultado no sea igual en mujeres que en hombres), el apoyo familiar que el paciente reciba, etc.</p>
+<p>Jamás agotaremos el conjunto de todos los factores explicativos de un
+fenómeno, porque en última instancia cada caso es único. Los fenómenos que observamos son multicausados, por lo que no puede decirse que una
+variable X sea la causa de otra variable Y<a href="#fn20" class="footnote-ref" id="fnref20"><sup>20</sup></a>. Pero lo que sí
+puede hacerse es analizar la importancia relativa de los diferentes
+factores explicativos; saber en qué grado aporta cada uno a las
+diferencias que se observan.</p>
+<p>Ilustremos esto con otro ejemplo: el resultado escolar que alcanzan los alumnos. No hay dudas que cada niño tiene una trayectoria única, que depende de su historia, de su contexto familiar, etc. Supongamos que analizamos el resultado escolar obtenido en primer grado y observamos que algunos cursos tienen docentes tradicionales, que usan los mismos métodos estandarizados de enseñanza desde hace muchos años. Otros cursos tienen docentes que invitan a los alumnos participar, que innovan en los métodos de enseñanza. Luego comparamos el rendimiento de los alumnos en los dos cursos y vemos que los alumnos del primer grupo aprenden más lentamente que los del segundo y que además, los primeros dicen que se aburren yendo a la escuela y los otros no. Esto no sucede con todos los niños: habrá en el primer grupo algunos que aprenden más rápido y que se divierten, así como algunos del segundo grupo tardarán más en aprender. Pero, en general, en promedio, podríamos hallar mejores resultados entre los alumnos que tienen docentes innovadores. Esto nos lleva a indicar que hay evidencia para creer que los docentes innovadores obtienen con sus alumnos mejores resultados que los docentes tradicionales. Pero esto
+no es para todos los alumnos, sino para la mayoría de ellos. De eso se trata la búsqueda de factores explicativos: en este ejemplo diremos que, de los múltiples factores que explican por qué a algunos chicos les va bien en la escuela y a otros les va mal, el tipo de docente es parte de la explicación.</p>
+<p>Las hipótesis son respuestas tentativas a la pregunta formulada como
+problema de la investigación. Como tales, consisten en el planteamiento de una relación entre, al menos, dos variables. Recordemos que las hipótesis constituyen afirmaciones que se derivan del modelo de análisis que el investigador ha propuesto para explicar una situación dada. Las hipótesis son consecuencias deductivas de la teoría, cuya verificación no es suficiente para validar la teoría, aunque sí para “aportar evidencia en su favor”. Además, las hipótesis como tales, rara vez pueden ponerse a prueba de manera directa, son sus consecuencias observables las que permiten la verificación empírica. En cualquier modelo explicativo hipotético participa un número de variables mayor a dos, sin embargo de las hipótesis pueden deducirse relaciones más simples, inicialmente solo de dos variables.</p>
+<p>El siguiente esquema muestra la relación entre varias variables que aportarían (hipotéticamente) a explicar las diferencias en el rendimiento escolar, desde la perspectiva de las condiciones familiares (arrobaQuivy1992).</p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-120"></span>
+<img src="imagenes/resultadoescolar.png" alt="Relación hipotética entre dos factores explicativos y el resultado de un tratamiento para la depresión" width="359" />
+<p class="caption">
+Figura 5.2: Relación hipotética entre dos factores explicativos y el resultado de un tratamiento para la depresión
+</p>
+</div>
+<p>El esquema muestra una hipótesis según la cual, los padres con más
+educación tienden a tener ocupaciones de mayor jerarquía, lo que implica de mejores ingresos y esto puede ayudar a crear condiciones adecuadas para el estudio, como disponer de un lugar para estudiar o tener acceso a otras fuentes de aprendizaje (visitas a museos, viajes, etc.). También los padres con mayor educación probablemente valoren más el estudio y así ofrezca mayor apoyo a sus hijos en la escuela. Por último, sería de esperar que los padres con más educación generen un ambiente con hábitos de lectura y discusiones que transmitan a sus hijos el valor de la educación.</p>
+<p>Esto es más cercano a la realidad, en la que las variables se relacionan de manera más compleja que la simple <span class="math inline">\(x \rightarrow y\)</span>. Sin embargo la base para analizar estas relaciones complejas, son las relaciones bivariadas, es decir, entre solo dos variables.</p>
+<p>Establecer de manera hipotética una relación entre dos variables
+equivale a afirmar que, por alguna razón, los cambios de una de ellas
+van acompañados de cambios en la otra. Pero esto puede suceder de
+maneras muy diferentes, por ejemplo, el trueno sucede al relámpago, los síntomas de tuberculosis coinciden con la detección del bacilo de Koch, los movimientos sociales se incrementan en tiempos de deterioro
+económico, las personas abusadas en la infancia son más propensas a la depresión. En algunos de estos ejemplos puede identificarse una
+secuencia cronológica, señalando cuál de los dos eventos sucede primero, en otros esta distinción no es segura, a veces una variable es la que incide sobre la otra, otras veces es solo una contribución, por último, hay casos en que su ocurrencia conjunta o sucesiva se debe a otras razones. Evitaremos, por ahora hablar de relaciones de causalidad, llegaremos a este concepto hacia el final del capítulo y veremos que debe tratarse con suma cautela.</p>
+<p>Con el objetivo de ordenar la gran variedad de formas que pueden asumir las relaciones entre variables, estableceremos algunos criterios de clasificación que, sin ser exhaustivos, nos ayudarán a verlas desde diferentes ópticas.</p>
+<p>El modo más usado para observar relaciones entre dos variables consiste en presentar el comportamiento conjunto de ellas a través de tablas o gráficos. Las primeras son más adecuadas para variables con pocas categorías (usualmente nominales), mientras que los gráficos son más pertinentes para mostrar relaciones entre variables métricas. Veamos un ejemplo para ilustrar el primer modo de representación: creemos que los niños que han crecido en diferentes tipos de hogar (solo con su madre, solo con su padre, con ambos o con otros parientes) tienen diferentes formas de relacionarse con sus compañeros (con relaciones de liderazgo,
+sumisión o rebeldía). En el lenguaje de las relaciones entre variables,
+estaríamos proponiendo que existe asociación entre el tipo de hogar
+en que el niño crece (con las cuatro categorías mencionadas) y el tipo
+de relación que mantiene con sus pares. La presentación conjunta de esas
+dos variables es:</p>
+<!-- Las dos tablas que vienen de word, via rmd, se cortaron y las que armé manualmente salieron mal -->
+<p>Disposición de las variables y sus categorías para analizar la relación entre dos variables</p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="center">Relación</th>
+<th align="center">con los</th>
+<th align="center">pares</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Tipo de hogar</strong></td>
+<td align="center">Sumisión</td>
+<td align="center">Rebeldía</td>
+<td align="center">Liderazgo</td>
+</tr>
+<tr class="even">
+<td>Monoparental materno</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td>Monoparental paterno</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td>Nuclear</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="odd">
+<td>Extendido</td>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+</tbody>
+</table>
+<div id="tablas-de-contingencia" class="section level2">
+<h2><span class="header-section-number">5.1</span> Tablas de contingencia</h2>
+<p>Cuando se distribuyen los datos en las celdas, se obtiene una tabla bivariada (porque contiene dos variables), que también se llama tabla de contingencia o tabla de distribución conjunta o también tabla de doble entrada. Las celdas del interior de la tabla llevarán, cuando los datos sean recolectados, la cantidad de niños que se encuentren en cada coincidencia de categorías. Si nuestra hipótesis afirmara que los niños provenientes de hogares nucleares son más propensos a ser líderes, esperaríamos una concentración relativa de casos en la celda correspondiente a “hogar nuclear” - “liderazgo”, hipótesis que luego deberemos confrontar con la información recogida.</p>
+<table>
+<colgroup>
+<col width="100%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="center">Una <strong>tabla bivariada</strong> o <strong>tabla de contingencia</strong> o <strong>tabla de distribución conjunta</strong> es un arreglo con tantas filas (horizontales) como categorías tenga una de las variables y tantas columnas (verticales) como categorías tenga la otra variable.</td>
+</tr>
+</tbody>
+</table>
+<p>Por oposición, las tablas que se mostraron en los capítulos anteriores, así como las medidas descriptivas que se calcularon, se denominan univariadas.</p>
+<p>A este arreglo se agrega una fila y una columna adicionales que
+corresponden a los totales de cada categoría. A los fines de usar un
+lenguaje común, en la tabla llamaremos filas a la líneas horizontales y columnas a las verticales e identificaremos la dimensión de la
+tabla indicando cuántas filas tiene y cuántas columnas, en este orden. En el ejemplo anterior, la dimensión de la tabla es cuatro por tres, porque tiene cuatro filas y tres columnas correspondientes a la cantidad
+de categorías de cada una de las dos variables.</p>
+<table>
+<colgroup>
+<col width="100%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="center">La <strong>dimensión</strong> de la tabla se indica como <span class="math inline">\(f X c\)</span>, donde <span class="math inline">\(f\)</span> es el número de categorías de la variable que está en las filas y <span class="math inline">\(c\)</span> es el número de categorías de la variable que está en las columnas.</td>
+</tr>
+</tbody>
+</table>
+<p>La celda en la que, bajo la hipótesis indicada, esperaríamos una mayor concentración relativa de casos corresponde entonces a la tercera fila y tercera columna. Con f indicaremos la frecuencia y con el subíndice la celda a que corresponde, así, <span class="math inline">\(f_{ij}\)</span> será la cantidad de casos en la celda que corresponde a la fila i y a la columna j simultáneamente. La frecuencia de la celda de “nuclear-liderazgo” será indicada entonces como <span class="math inline">\(f_{33}\)</span>. Para aclarar la presentación de la tabla, se agregan una fila y una columna en la que se indica el total de casos de cada una de ellas, que se llaman marginales de fila y de columna. La notación será:</p>
+<p><span class="math inline">\(f_{i.}\)</span> (“efe i-punto”) para los marginales de fila</p>
+<p><span class="math inline">\(f_{.j}\)</span> (“efe punto-jota”) para los de columnas</p>
+<p><span class="math inline">\(f_{..}\)</span> (“efe punto-punto”) para el total general.</p>
+<p>Con esa notación, <span class="math inline">\(f_{3.}\)</span>indica el total de niños que crecieron en
+hogares nucleares y <span class="math inline">\(f_{.2}\)</span> el total de quienes se vinculan con rebeldía con sus compañeros, la tabla anterior resulta:</p>
+<table>
+<caption><span id="tab:unnamed-chunk-122">Tabla 5.1: </span>Disposición de las frecuencias para el análisis de la relación entre dos variables.</caption>
+<thead>
+<tr class="header">
+<th></th>
+<th align="center">Relación</th>
+<th align="center">con los</th>
+<th align="center">pares</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Tipo de hogar</strong></td>
+<td align="center">Sumisión</td>
+<td align="center">Rebeldía</td>
+<td align="center">Liderazgo</td>
+<td>Total</td>
+</tr>
+<tr class="even">
+<td>Monoparental materno</td>
+<td align="center"><span class="math inline">\(f_{11}\)</span></td>
+<td align="center"><span class="math inline">\(f_{12}\)</span></td>
+<td align="center"><span class="math inline">\(f_{13}\)</span></td>
+<td><span class="math inline">\(f_{1.}\)</span></td>
+</tr>
+<tr class="odd">
+<td>Monoparental paterno</td>
+<td align="center"><span class="math inline">\(f_{21}\)</span></td>
+<td align="center"><span class="math inline">\(f_{22}\)</span></td>
+<td align="center"><span class="math inline">\(f_{23}\)</span></td>
+<td><span class="math inline">\(f_{2.}\)</span></td>
+</tr>
+<tr class="even">
+<td>Nuclear</td>
+<td align="center"><span class="math inline">\(f_{31}\)</span></td>
+<td align="center"><span class="math inline">\(f_{32}\)</span></td>
+<td align="center"><span class="math inline">\(f_{33}\)</span></td>
+<td><span class="math inline">\(f_{3.}\)</span></td>
+</tr>
+<tr class="odd">
+<td>Extendido</td>
+<td align="center"><span class="math inline">\(f_{41}\)</span></td>
+<td align="center"><span class="math inline">\(f_{42}\)</span></td>
+<td align="center"><span class="math inline">\(f_{43}\)</span></td>
+<td><span class="math inline">\(f_{4.}\)</span></td>
+</tr>
+<tr class="even">
+<td>Total</td>
+<td align="center"><span class="math inline">\(f_{.1}\)</span></td>
+<td align="center"><span class="math inline">\(f_{.2}\)</span></td>
+<td align="center"><span class="math inline">\(f_{.3}\)</span></td>
+<td><span class="math inline">\(f_{..}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Si hemos recogido datos sobre estas características de los niños, la
+tabla podría quedar así:</p>
+<table>
+<caption><span id="tab:unnamed-chunk-123">Tabla 5.2: </span>Alumnos de escuelas primarias por relación con sus pares según tipo de hogar (organización de las frecuencias).</caption>
+<thead>
+<tr class="header">
+<th></th>
+<th align="center">Relación</th>
+<th align="center">con los</th>
+<th align="center">pares</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Tipo de hogar</strong></td>
+<td align="center">Sumisión</td>
+<td align="center">Rebeldía</td>
+<td align="center">Liderazgo</td>
+<td>Total</td>
+</tr>
+<tr class="even">
+<td>Monoparental materno</td>
+<td align="center">20</td>
+<td align="center">30</td>
+<td align="center">50</td>
+<td>100</td>
+</tr>
+<tr class="odd">
+<td>Monoparental paterno</td>
+<td align="center">10</td>
+<td align="center">40</td>
+<td align="center">15</td>
+<td>65</td>
+</tr>
+<tr class="even">
+<td>Nuclear</td>
+<td align="center">5</td>
+<td align="center">10</td>
+<td align="center">25</td>
+<td>40</td>
+</tr>
+<tr class="odd">
+<td>Extendido</td>
+<td align="center">30</td>
+<td align="center">20</td>
+<td align="center">10</td>
+<td>60</td>
+</tr>
+<tr class="even">
+<td>Total</td>
+<td align="center">65</td>
+<td align="center">100</td>
+<td align="center">100</td>
+<td>265</td>
+</tr>
+</tbody>
+</table>
+<p>Esta tabla dice que se han observado un total de 265 niños y se ha
+registrado el tipo de hogar en que crecieron y la forma en que se
+relacionan con sus compañeros. De los 265:</p>
+<ul>
+<li>100 provienen de hogares monoparentales maternos: <span class="math inline">\(f_{1.}\)</span>,</li>
+<li>65 de monoparentales paternos: <span class="math inline">\(f_{2.}\)</span>,</li>
+<li>40 de nucleares: <span class="math inline">\(f_{3.}\)</span> y</li>
+<li>60 de hogares extendidos: <span class="math inline">\(f_{4.}\)</span>.</li>
+</ul>
+<p>Los mismos niños se relacionan con sus compañeros:</p>
+<ul>
+<li>65 de ellos con sumisión: <span class="math inline">\(f_{.1}\)</span>,</li>
+<li>100 con rebeldía: <span class="math inline">\(f_{.2}\)</span> y</li>
+<li>100 con liderazgo: <span class="math inline">\(f_{.3}\)</span>.</li>
+</ul>
+<p>Todas estas son lecturas de las frecuencias marginales. Marginales de fila las del tipo de hogar y marginales de columna las de la forma de la relación.</p>
+<table>
+<colgroup>
+<col width="100%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="center">Se llama <strong>frecuencias marginales de fila</strong> a las frecuencias absolutas de las categorías de la variable que se ubica en las filas.</td>
+</tr>
+</tbody>
+</table>
+<table>
+<colgroup>
+<col width="100%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="center">Las <strong>frecuencias marginales de columna</strong> son las frecuencias absolutas de las categorías de la variable ubicada en las columnas.*</td>
+</tr>
+</tbody>
+</table>
+<p>Las frecuencias de las celdas, que se llaman <strong>frecuencias conjuntas</strong>
+se leen: 20 de los niños observados crecieron en hogares monoparentales
+maternos y se relacionan con sus compañeros con sumisión (<span class="math inline">\(f_{11}\)</span>), 30
+niños se relacionan con liderazgo y provienen de hogares monoparentales
+maternos (<span class="math inline">\(f_{12}\)</span>), 10 se relacionan con rebeldía y provienen de hogares
+nucleares (<span class="math inline">\(f_{32}\)</span>) y del mismo modo el resto de las frecuencias
+conjuntas. Ellas indican la cantidad de casos que reúnen al mismo tiempo
+las dos condiciones que se indican en la fila y en la columna.</p>
+<table>
+<colgroup>
+<col width="100%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="center">Las <strong>frecuencias conjuntas</strong> indican la cantidad de casos que corresponden simultáneamente a una determinada categoría de la variable de las filas y una categoría de la variable de columnas.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="frecuencias-relativas" class="section level2">
+<h2><span class="header-section-number">5.2</span> Frecuencias relativas</h2>
+<p>Del mismo modo en que trabajamos con las tablas de distribución de
+frecuencia de una sola variable, podemos transformar todas estas
+frecuencias absolutas en relativas, por el simple procedimiento de
+dividirlas en el total general. Resulta así:</p>
+<table>
+<caption><span id="tab:unnamed-chunk-124">Tabla 5.3: </span>Alumnos de escuelas primarias por relación con sus pares según tipo de hogar, frecuencias relativas.</caption>
+<thead>
+<tr class="header">
+<th></th>
+<th align="center">Relación</th>
+<th align="center">con los</th>
+<th align="center">pares</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Tipo de hogar</strong></td>
+<td align="center">Sumisión</td>
+<td align="center">Rebeldía</td>
+<td align="center">Liderazgo</td>
+<td>Total</td>
+</tr>
+<tr class="even">
+<td>Monoparental materno</td>
+<td align="center">0.08</td>
+<td align="center">0.11</td>
+<td align="center">0.19</td>
+<td><strong>0.38</strong></td>
+</tr>
+<tr class="odd">
+<td>Monoparental paterno</td>
+<td align="center">0.04</td>
+<td align="center"><strong>0.15</strong></td>
+<td align="center">0.06</td>
+<td>0.25</td>
+</tr>
+<tr class="even">
+<td>Nuclear</td>
+<td align="center">0.02</td>
+<td align="center">0.04</td>
+<td align="center">0.09</td>
+<td>0.15</td>
+</tr>
+<tr class="odd">
+<td>Extendido</td>
+<td align="center">0.11</td>
+<td align="center">0.08</td>
+<td align="center">0.04</td>
+<td>0.23</td>
+</tr>
+<tr class="even">
+<td>Total</td>
+<td align="center"><strong>0.25</strong></td>
+<td align="center">0.38</td>
+<td align="center">0.38</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>Leemos así las frecuencias que están destacadas en la tabla:</p>
+<ul>
+<li><p>El 15% del total de alumnos observados proviene de hogares
+monoparentales paternos y se relacionan con sus pares con rebeldía: Por ser una frecuencia relativa usamos la “prima” en la notación, entonces es <span class="math inline">\(f&#39;_{22}\)</span></p></li>
+<li><p>Un 25% del total se relaciona con sumisión, sin considerar el tipo de hogar del que provengan. Es <span class="math inline">\(f&#39;_{1.}\)</span></p></li>
+<li><p>Un 38% proviene de hogares monoparentales maternos, sin tener en cuenta de qué manera se relacionan con sus pares. Es <span class="math inline">\(f&#39;_{.1}\)</span></p></li>
+</ul>
+<p>La primera de estas frecuencias relativas es conjunta, las otras dos
+marginales. Verifique que queda bien clara la notación usada en cada
+caso y que pueden leerse las demás frecuencias relativas de la tabla.</p>
+</div>
+<div id="una-clasificación-en-referencia-al-tiempo" class="section level2">
+<h2><span class="header-section-number">5.3</span> Una clasificación en referencia al tiempo</h2>
+<p>Como señalamos al principio hay relaciones en las que resulta posible
+identificar a una de las variables como previa a la presencia de la
+otra, o a un evento como anterior a la ocurrencia del otro. Así, el
+trueno siempre sucede luego del relámpago, si tenemos la oportunidad de
+oírlo. Aun cuando no podamos establecer la causa de la relación entre
+los dos eventos, no tenemos dudas en señalar a uno como anterior al
+otro. Los malos tratos sufridos durante la niñez son anteriores (en la
+historia del sujeto) a la eventual manifestación adulta de conductas
+antisociales. De modo que si nos interrogáramos sobre la existencia de
+una relación entre estos dos eventos, ubicaríamos a los malos tratos
+como variable anterior, aunque solo fuera porque su manifestación es
+temporalmente previa. Así sucede también al buscar una relación entre
+los resultados de un examen de ingreso a la universidad y el rendimiento
+posterior de los alumnos.</p>
+<p>Es importante indicar a esta altura que no estamos suponiendo que la
+relación exista, nos encontramos en el momento del planteo de las
+hipótesis; bien puede suceder que, luego del análisis de los datos,
+encontremos que la relación no es válida, que no se sostiene, en fin,
+que las observaciones no avalan una asociación entre malos tratos
+infantiles y conducta antisocial, o que el resultado de examen de
+ingreso no se relaciona con el desempeño posterior, pero esto no
+invalida que, en la relación que proponíamos, una variable sea tratada
+como anterior a la otra.</p>
+<p>Así como en ciertos casos es posible anticipar el orden (sea lógico o
+cronológico) en que se presentan las variables que constituyen una
+relación, hay algunas situaciones en que esto es muy difícil, o
+imposible y otras en las que no tiene ningún interés. Una relación que
+ilustra el primer caso es la relación entre el comportamiento infantil y
+el trato que recibe de sus padres. Puede interpretarse a los niños
+revoltosos como respondiendo a la escasa atención que le brindan sus
+padres, o leer la forma en que los padres tratan a sus hijos como
+consecuencia de la mala conducta de estos últimos. En este ejemplo se ve
+que el orden en que se establezcan las variables que se busca relacionar
+está influido por la posición teórica que el investigador asuma.</p>
+<p>Otros casos en los que no tiene interés mencionar qué variable es
+anterior y cual posterior son típicos de los estudios descriptivos, en
+los que interesa mostrar cómo se distribuyen ciertas variables, y no qué
+relación puede haber entre ellas. Así, una distribución de la población por sexo y edad como la de la tabla siguiente:</p>
+<table>
+<caption><span id="tab:unnamed-chunk-125">Tabla 5.4: </span>Departamento Capital, Provincia de Córdoba. Población por sexo según grupos de edad. Año 2001.</caption>
+<thead>
+<tr class="header">
+<th align="left">Grupos de edad</th>
+<th align="center">Varones</th>
+<th align="center">Mujeres</th>
+<th align="center">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">0-4</td>
+<td align="center">56913</td>
+<td align="center">55053</td>
+<td align="center">111966</td>
+</tr>
+<tr class="even">
+<td align="left">5-9</td>
+<td align="center">57471</td>
+<td align="center">56073</td>
+<td align="center">113544</td>
+</tr>
+<tr class="odd">
+<td align="left">10-14</td>
+<td align="center">55564</td>
+<td align="center">54394</td>
+<td align="center">109958</td>
+</tr>
+<tr class="even">
+<td align="left">15-19</td>
+<td align="center">55581</td>
+<td align="center">55834</td>
+<td align="center">111415</td>
+</tr>
+<tr class="odd">
+<td align="left">20-24</td>
+<td align="center">67519</td>
+<td align="center">69727</td>
+<td align="center">137246</td>
+</tr>
+<tr class="even">
+<td align="left">25-29</td>
+<td align="center">53736</td>
+<td align="center">54667</td>
+<td align="center">108403</td>
+</tr>
+<tr class="odd">
+<td align="left">30-34</td>
+<td align="center">42209</td>
+<td align="center">43852</td>
+<td align="center">86061</td>
+</tr>
+<tr class="even">
+<td align="left">35-39</td>
+<td align="center">36910</td>
+<td align="center">39894</td>
+<td align="center">76804</td>
+</tr>
+<tr class="odd">
+<td align="left">40-44</td>
+<td align="center">34681</td>
+<td align="center">38243</td>
+<td align="center">72924</td>
+</tr>
+<tr class="even">
+<td align="left">45-49</td>
+<td align="center">31879</td>
+<td align="center">36634</td>
+<td align="center">68513</td>
+</tr>
+<tr class="odd">
+<td align="left">50-54</td>
+<td align="center">30780</td>
+<td align="center">36187</td>
+<td align="center">66967</td>
+</tr>
+<tr class="even">
+<td align="left">55-59</td>
+<td align="center">24485</td>
+<td align="center">29448</td>
+<td align="center">53933</td>
+</tr>
+<tr class="odd">
+<td align="left">60-64</td>
+<td align="center">19914</td>
+<td align="center">25038</td>
+<td align="center">44952</td>
+</tr>
+<tr class="even">
+<td align="left">65-69</td>
+<td align="center">16485</td>
+<td align="center">22387</td>
+<td align="center">38872</td>
+</tr>
+<tr class="odd">
+<td align="left">70-74</td>
+<td align="center">13858</td>
+<td align="center">20831</td>
+<td align="center">34689</td>
+</tr>
+<tr class="even">
+<td align="left">75-79</td>
+<td align="center">8816</td>
+<td align="center">15318</td>
+<td align="center">24134</td>
+</tr>
+<tr class="odd">
+<td align="left">80-84</td>
+<td align="center">4423</td>
+<td align="center">9471</td>
+<td align="center">13894</td>
+</tr>
+<tr class="even">
+<td align="left">85-89</td>
+<td align="center">1827</td>
+<td align="center">5355</td>
+<td align="center">7182</td>
+</tr>
+<tr class="odd">
+<td align="left">90-94</td>
+<td align="center">600</td>
+<td align="center">1906</td>
+<td align="center">2506</td>
+</tr>
+<tr class="even">
+<td align="left">95-99</td>
+<td align="center">120</td>
+<td align="center">448</td>
+<td align="center">568</td>
+</tr>
+<tr class="odd">
+<td align="left">100 y más</td>
+<td align="center">8</td>
+<td align="center">43</td>
+<td align="center">51</td>
+</tr>
+<tr class="even">
+<td align="left">Total</td>
+<td align="center">613779</td>
+<td align="center">670803</td>
+<td align="center">1284582</td>
+</tr>
+</tbody>
+</table>
+<p>Solo pretende describir a la población y no tiene sentido preguntar qué variable es prioritaria a la otra o cuál depende de cuál.</p>
+<p>Las relaciones en que no es posible o no interesa señalar qué variable
+es anterior, se llaman <em>simétricas</em><a href="#fn21" class="footnote-ref" id="fnref21"><sup>21</sup></a> o de variación conjunta o de
+covariación, con ellas simplemente puede preguntarse si las variables
+están correlacionadas. Es decir si varían simultáneamente, sin
+preguntar cuál es la que podría preceder a la otra.</p>
+<p>Otro ejemplo de este tipo de relaciones es la que puede plantearse entre las calificaciones que los alumnos obtienen en dos materias que cursan simultáneamente; si encontramos que a aquellos alumnos que les va bien en Epistemología también obtienen buenas notas en Biología, no creeremos que un resultado incida en el otro, solamente describiremos que varían conjuntamente. Si luego nos interesamos por avanzar en un estudio explicativo iremos a buscar otras variables que den cuenta de esta covariación.</p>
+<table>
+<colgroup>
+<col width="100%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="center">Una relación entre dos variables es <strong>simétrica</strong> cuando es de variación conjunta y no puede identificarse a una variable como previa a la otra*</td>
+</tr>
+</tbody>
+</table>
+<p>Por el contrario, aquellas relaciones en las que puede identificarse a una variable como anterior a otra se denominan <em>asimétricas</em>, es
+decir, no es lo mismo planearlas en un sentido que en otro. Una de las
+variables (la anterior) se llama antecedente y la otra (posterior)
+consecuente. En el contexto del diseño experimental, estas variables se denominan, respectivamente independiente y dependiente.</p>
+<p>Puede observarse que una variable cambia a continuación de la otra (en
+sentido temporal) pero esto no nos autoriza a decir que cambia a causa
+de la otra, como resulta claro en el ejemplo del relámpago y el trueno.
+Que la relación sea asimétrica no implica que una variable sea ni la
+causa, ni un factor explicativo, de la otra.</p>
+<p>A la inversa, en los estudios explicativos la relación debe ser
+asimétrica, porque se busca identificar factores que anticipen
+determinados eventos. Por eso decimos que la asimetría es una condición
+necesaria de la causalidad, pero no suficiente.</p>
+<table>
+<colgroup>
+<col width="100%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="center">Una relación entre dos variables es <strong>asimétrica</strong> cuando una de las variables precede (lógica o cronológicamente) a la otra y puede identificarse a una como antecedente y a la otra como consecuente.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="la-dirección-de-la-relación" class="section level2">
+<h2><span class="header-section-number">5.4</span> La dirección de la relación</h2>
+<p>Cuando las variables que se ponen en juego en una relación tienen un
+nivel de medición superior al nominal, resulta posible hacer juicios de orden entre sus categorías, con lo que es posible indicar si los valores
+van creciendo o decreciendo. Ya sea que se trate de una relación
+simétrica o asimétrica, si las variables tienen nivel ordinal o
+superior, resulta de interés plantear la <em>dirección</em> de la relación.
+Se trata de otro criterio para clasificar relaciones entre variables: si
+a cambios ascendentes (crecientes) de una variable se siguen cambios
+ascendentes de la otra, llamamos a la relación <em>directa</em>. Si, por el
+contrario, un crecimiento de una de las variables va acompañado de una
+disminución en los valores de la otra, la denominaremos
+<em>inversa</em><a href="#fn22" class="footnote-ref" id="fnref22"><sup>22</sup></a>. Cuando se espera que la relación entre dos variables
+sea directa o inversa para toda la serie de categorías, decimos que la
+relación es monótona.</p>
+<p>Por ejemplo, puede plantearse, de manera hipotética, la relación entre
+los años de educación y el salario. Las personas que han asistido más
+años a instituciones educativas tienden, en promedio, a tener ingresos
+más altos que quienes asistieron menos tiempo. La hipótesis anticipa una
+relación directa entre la escolarización y los ingresos.</p>
+<table>
+<colgroup>
+<col width="100%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="center">Una relación entre dos variables medidas a nivel ordinal o superior es <strong>directa</strong> si cuando los valores de una de ella aumentan, también aumentan los de la otra.</td>
+</tr>
+</tbody>
+</table>
+<p>Análogamente:</p>
+<table>
+<colgroup>
+<col width="100%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="center">Se llama <strong>inversa</strong> a la relación entre dos variables de nivel ordinal o superior en la que los incrementos en los valores de una de ellas van acompañados de disminuciones en los valores de la otra.</td>
+</tr>
+</tbody>
+</table>
+<p>La clasificación solo tiene sentido si puede hablarse de aumento o
+disminución, es decir, si es factible realizar juicios de orden entre
+las categorías de las variables. Por eso es que este criterio requiere,
+para su aplicación, que ambas variables tengan por lo menos nivel
+ordinal.</p>
+<p>Por ejemplo, la calificación que se obtiene en un examen (variable
+consecuente, de nivel ordinal) puede tener relación directa con las
+horas dedicadas a estudiarla (variable antecedente, de nivel
+proporcional). Lo que equivale a decir que quienes estudian más horas
+tenderían a obtener calificaciones más altas.</p>
+<p>Si en otro ejemplo, se formula como hipótesis que el tipo de escuela
+secundaria (variable antecedente, de nivel nominal) a la que los alumnos
+asistieron tiene relación con el rendimiento que alcanzan en su
+carrera universitaria (variable consecuente, de nivel ordinal), no es
+posible establecer la dirección de esta relación, porque no se cumple
+que ambas variables sean al menos ordinales.</p>
+<p>Ejemplo (datos ficticios): la expresión “si los padres los ayudan con
+las tareas, a los chicos les va mucho mejor en la escuela” equivale a
+decir que la ayuda que los padres les dan a sus hijos está relacionada con mucha intensidad con el rendimiento en la escuela. La primera variable, la ayuda es la antecedente, que puede ser de nivel nominal, con categorías: ayuda, no ayuda; o bien ordinal, con categorías: ayuda siempre, casi siempre, pocas veces, nunca. La segunda variable, el rendimiento, es la consecuente, y sus categorías podrían ser: rendimiento alto, medio, bajo. El esquema de la relación
+será:</p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-126"></span>
+<img src="imagenes/ayudapadres.png" alt="Relación hipotética entre la ayuda de los padres y el rendimiento escolar" width="316" />
+<p class="caption">
+Figura 5.3: Relación hipotética entre la ayuda de los padres y el rendimiento escolar
+</p>
+</div>
+<p>Y la tabla que reúna los datos para verificar esta relación podrá tener
+dimensión <span class="math inline">\(2 \times 3\)</span>, con forma:</p>
+<p>Disposición de las variables para analizar la relación entre la ayuda
+que los padres dan a sus hijos y el rendimiento que alcanzan en la
+escuela</p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th></th>
+<th align="center">Rendimiento</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Ayuda</strong></td>
+<td>Alto</td>
+<td align="center">Medio</td>
+<td>Bajo</td>
+<td>Total</td>
+</tr>
+<tr class="even">
+<td>Si</td>
+<td></td>
+<td align="center"></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>No</td>
+<td></td>
+<td align="center"></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Total</td>
+<td></td>
+<td align="center"></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>O bien, considerando a la ayuda como ordinal, en una tabla de <span class="math inline">\(4 \times 3\)</span></p>
+<p>Disposición de las variables para analizar la relación entre la ayuda
+que los padres dan a sus hijos y el rendimiento que alcanzan en la
+escuela</p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th></th>
+<th align="center">Rendimiento</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Ayuda</strong></td>
+<td>Alto</td>
+<td align="center">Medio</td>
+<td>Bajo</td>
+<td>Total</td>
+</tr>
+<tr class="even">
+<td>Siempre</td>
+<td></td>
+<td align="center"></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Casi siempre</td>
+<td></td>
+<td align="center"></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Pocas veces</td>
+<td></td>
+<td align="center"></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Nunca</td>
+<td></td>
+<td align="center"></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Total</td>
+<td></td>
+<td align="center"></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Planteada de este modo, se trata de una relación asimétrica, ya que
+suponemos que es la ayuda (antecedente) la que incide sobre el resultado
+(consecuente). Si vemos el último esquema, puede considerarse la
+dirección (en el anterior no ¿por qué?) y la formularíamos como directa,
+es decir que, cuanto mayor sea ayuda que los padres aportan, tanto
+mejores serán los resultados. Esto está dentro de la hipótesis, aún no
+hemos recogido datos para avalarla o refutarla. Llegar a conocer si la
+ayuda de los padres contribuye en gran medida o escasamente a los
+resultados en la escuela, es un problema de la intensidad de la
+relación, que solo podrá responderse a posteriori, una vez que los datos están recolectados.</p>
+</div>
+<div id="concepto-de-riesgo-relativo" class="section level2">
+<h2><span class="header-section-number">5.5</span> Concepto de riesgo relativo</h2>
+<p>En las tablas de contingencia de dimensión <span class="math inline">\(2\times2\)</span>, que plantean relaciones
+asimétricas se suele calcular una medida que resulta de muy accesible
+interpretación, denominada riesgo relativo. Se trata de un cociente
+entre la proporción de casos que se encuentran en una categoría de la
+variable consecuente bajo determinado escenario (una categoría de la
+variable antecedente) y la proporción de casos que se hallan en la
+misma, bajo el escenario complementario (la otra categoría de la
+variable antecedente). Es un término que tiene uso regular en
+epidemiología y tiene la ventaja de la claridad en la comunicación. Por
+ejemplo, un informe afirma que “El riesgo relativo de cardiopatía
+isquémica (CI) es 2,5 veces mayor en pacientes hipertensos.” Se
+interpreta que las personas que son hipertensas tienen dos veces y media
+mayores posibilidades de sufrir CI que quienes no lo son. El riesgo relativo
+se usa principalmente (pero no solo) en la relación entre dos variables
+dicotómicas; en este ejemplo las variables dicotómicas son: ser hipertenso y haber sufrido cardiopatía isquémica, ambas con categorías si - no, a las que denominamos: hip, nohip y card, nocard, respectivamente. La primera es el antecedente y la segunda el consecuente, porque interesa plantear el posible efecto de la hipertensión sobre la CI. A partir de los datos obtenidos en el estudio de arrobaRamonGonzalezJuanatey2001, la relación se plantea así:</p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="center">card</th>
+<th align="center">nocard</th>
+<th align="center">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>hip</td>
+<td align="center">4022</td>
+<td align="center">6555</td>
+<td align="center">10577</td>
+</tr>
+<tr class="even">
+<td>nohip</td>
+<td align="center">2068</td>
+<td align="center">19406</td>
+<td align="center">21474</td>
+</tr>
+<tr class="odd">
+<td>Total</td>
+<td align="center">6090</td>
+<td align="center">25961</td>
+<td align="center">32051</td>
+</tr>
+</tbody>
+</table>
+<p>Las frecuencias relativas son:</p>
+<!-- EB: esta es la tabla que no sale, o suma 2 o suma .25 en lugar de 100%, debería totalizar sobre cada fila-->
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="center">card</th>
+<th align="center">nocard</th>
+<th align="center">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>hip</td>
+<td align="center">0.380</td>
+<td align="center">0.620</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td>nohip</td>
+<td align="center">0.096</td>
+<td align="center">0.904</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td>Total</td>
+<td align="center">0.190</td>
+<td align="center">0.810</td>
+<td align="center">1</td>
+</tr>
+</tbody>
+</table>
+<p>La frecuencia relativa .380 es el riesgo de tener cardiopatía isquémica si se es hipertenso, mientras que .096 es el mismo riesgo para personas que no padecen hipertensión. La comparación de ellos es el riesgo relativo:
+<span class="math display">\[\frac{.380}{.096}=3.96\]</span>
+Este cociente mide cuántas veces más grande es el numerador que el denominador, por lo que indica cuántas veces más riesgo hay de tener cardiopatía isquémica si se padece hipertensión, que si no es así.</p>
+<p>Ejemplo (datos del Operativo Nacional de Evaluación Argentina 2000): interesados en el efecto que podría tener el hábito de lectura de los alumnos sobre su rendimiento en Lengua, usamos una pregunta de un cuestionario aplicado a estudiantes del último año del secundario, que dice: “Durante los últimos dos meses ¿Leíste o estás leyendo algún libro, además de los que te pidieron en la escuela?” Con categorías de respuesta si - no. Nos interesa analizar la relación de esta variable con el resultado que los alumnos obtienen en la prueba de lengua, para lo cual cortamos los puntajes de esta prueba en dos categorías: altos (50 puntos o más) y bajos (menos de 50 puntos). Para la provincia de Córdoba, en el año 2000 resulta la siguiente tabla:</p>
+<!-- EB: salen raras estas tablas-->
+<table style="width:100%;">
+<colgroup>
+<col width="76%" />
+<col width="10%" />
+<col width="4%" />
+<col width="7%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Durante los últimos dos meses ¿Leíste o estás leyendo algún libro, además de los que te pidieron en la escuela?</th>
+<th align="center">Puntaje prueba</th>
+<th align="center">de de</th>
+<th align="center">la Lengua</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"></td>
+<td align="center">Bajos</td>
+<td align="center">Altos</td>
+<td align="center">Total</td>
+</tr>
+<tr class="even">
+<td align="left">Si</td>
+<td align="center">2382</td>
+<td align="center">10299</td>
+<td align="center">12681</td>
+</tr>
+<tr class="odd">
+<td align="left">No</td>
+<td align="center">3530</td>
+<td align="center">9821</td>
+<td align="center">13351</td>
+</tr>
+<tr class="even">
+<td align="left">Total</td>
+<td align="center">5912</td>
+<td align="center">20120</td>
+<td align="center">26032</td>
+</tr>
+</tbody>
+</table>
+<p>A fin de comparar los puntajes que obtienen quienes leen con los que
+obtienen los que no leen (para ver si hay alguna diferencia), hacen
+falta frecuencias relativas. En este caso se calculan según las filas de la tabla:</p>
+<table style="width:100%;">
+<colgroup>
+<col width="76%" />
+<col width="10%" />
+<col width="4%" />
+<col width="7%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Durante los últimos dos meses ¿Leíste o estás leyendo algún libro, además de los que te pidieron en la escuela?</th>
+<th align="center">Puntaje prueba</th>
+<th align="center">de de</th>
+<th align="center">la Lengua</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"></td>
+<td align="center">Bajos</td>
+<td align="center">Altos</td>
+<td align="center">Total</td>
+</tr>
+<tr class="even">
+<td align="left">Si</td>
+<td align="center">18,8%</td>
+<td align="center">81,2%</td>
+<td align="center">100%</td>
+</tr>
+<tr class="odd">
+<td align="left">No</td>
+<td align="center">26,4%</td>
+<td align="center">73,6%</td>
+<td align="center">100%</td>
+</tr>
+<tr class="even">
+<td align="left">Total</td>
+<td align="center">22,7%</td>
+<td align="center">77,3%</td>
+<td align="center">100%</td>
+</tr>
+</tbody>
+</table>
+<p>En esta tabla se observa que menos de un cuarto (el 22,7%) obtuvo
+resultados bajos, pero que este porcentaje es diferente entre quienes
+lee y quienes no lo hacen: entre quienes dicen que leen, menos del 19%
+(el 18,8%) tiene bajo puntaje, mientras que entre quienes dicen que no
+leen, ese porcentaje sube a más del 26 (26,4%). Dado que el resultado
+bajo se considera como el evento desfavorable, puede hablarse del riesgo
+de obtenerlo. Así, el riesgo de obtener puntaje bajo en Lengua es 18,8%
+para quienes dicen que leen y de 26,4% para quienes dicen que no leen.
+Estos valores son los que se usan para calcular el riesgo relativo, el
+cociente entre 26,4 y 18,8 es 1,4, por lo que diremos que hay 1,4 veces
+más chances de obtener bajos resultados en Lengua entre alumnos que no
+leen que entre los que sí lo hacen.</p>
+</div>
+<div id="la-intensidad" class="section level2">
+<h2><span class="header-section-number">5.6</span> La intensidad</h2>
+<p>Sea que se trate de relaciones simétricas o asimétricas y que pueda o no
+decidirse sobre la dirección, siempre es posible (y tiene mucho interés
+hacerlo) evaluar la intensidad en que se manifiesta la relación
+entre las variables a partir de los datos de nuestras observaciones.
+Esta medida de la relación se corresponde con la idea intuitiva de “X
+tiene mucha influencia en Y”, la idea de mucha o poca influencia, es la
+de intensidad de la relación. Cuando hay muchos factores explicativos
+para un fenómeno, interesa saber qué factores inciden en mayor o menor
+medida en el fenómeno y a eso se responde indicando la intensidad de
+cada relación.</p>
+<p>La intensidad o grado de la relación puede también aplicarse a
+relaciones simétricas. En ese caso, la intensidad mide cuán a menudo los
+cambios de una de las variables se ven acompañados de cambios en la
+otra, y es un resultado descriptivo, no explicativo.</p>
+<table>
+<colgroup>
+<col width="100%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="center">La <strong>intensidad de una relación</strong><a href="#fn23" class="footnote-ref" id="fnref23"><sup>23</sup></a> es una medida de la fuerza con que los cambios en una variable afectan los cambios en la otra (si es una relación asimétrica) o bien, de la frecuencia con que los cambios de una variable acompañan a los de la otra (si se trata de una relación simétrica).</td>
+</tr>
+</tbody>
+</table>
+<p>La evaluación de esta intensidad puede lograrse, en una primera
+aproximación, observando la distribución conjunta de las dos variables.
+En la medida que cierta combinación de categorías de una y otra variable
+concentren la mayor parte de los casos, estaremos en presencia de
+relaciones más fuertes o de mayor intensidad. Los siguientes son
+resultados de un estudio que relaciona el tipo de docente con el
+rendimiento de sus alumnos:</p>
+<table>
+<caption><span id="tab:unnamed-chunk-133">Tabla 5.5: </span>Alumnos primarios por rendimiento según tipo de docente, frecuencias absolutas</caption>
+<thead>
+<tr class="header">
+<th></th>
+<th></th>
+<th align="center">rendimiento</th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>tipo de docente</strong></td>
+<td>alto</td>
+<td align="center">medio</td>
+<td>bajo</td>
+<td>Total</td>
+</tr>
+<tr class="even">
+<td>Autoritario</td>
+<td>5</td>
+<td align="center">35</td>
+<td>50</td>
+<td>90</td>
+</tr>
+<tr class="odd">
+<td>Democrático</td>
+<td>260</td>
+<td align="center">40</td>
+<td>10</td>
+<td>310</td>
+</tr>
+<tr class="even">
+<td>Total</td>
+<td>265</td>
+<td align="center">75</td>
+<td>60</td>
+<td>400</td>
+</tr>
+</tbody>
+</table>
+<p>Ejemplo: se compara la idea de emigrar entre quienes tienen diferente opinión sobre la evolución de su país. Para ellos se cruzan las siguientes variables de la edición 2017 de Latinobarómetro:</p>
+<p>S11. ¿Ud. y su familia han pensado en la posibilidad
+concreta de ir a vivir a otro país?</p>
+<ol style="list-style-type: decimal">
+<li>Sí</li>
+<li>No</li>
+</ol>
+<p>P2ST. ¿Diría Ud. que este país…?</p>
+<ol style="list-style-type: decimal">
+<li>Está progresando</li>
+<li>Está estancado</li>
+<li>Está en retroceso</li>
+</ol>
+<table>
+<caption><span id="tab:abs">Tabla 5.6: </span>Distrbibución conjunta de la opinión sobre la evolución de su país y la intención de emigrar. Frecuencias absolutas</caption>
+<thead>
+<tr class="header">
+<th></th>
+<th align="center">pensó emigrar</th>
+<th align="center">nunca pensó emigrar</th>
+<th align="center">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>progresando</td>
+<td align="center">1126</td>
+<td align="center">3914</td>
+<td align="center">5040</td>
+</tr>
+<tr class="even">
+<td>estancado</td>
+<td align="center">2324</td>
+<td align="center">7221</td>
+<td align="center">9545</td>
+</tr>
+<tr class="odd">
+<td>en retroceso</td>
+<td align="center">1521</td>
+<td align="center">3543</td>
+<td align="center">5064</td>
+</tr>
+<tr class="even">
+<td>Total</td>
+<td align="center">4971</td>
+<td align="center">14678</td>
+<td align="center">19649</td>
+</tr>
+</tbody>
+</table>
+<p>En la que, la opinión sobre la evolución del país (en las filas) y los proyectos migratorios (en las columnas) están codificados como las opciones de respuesta del cuestionario.</p>
+<p>Al pedir las frecuencias relativas al total obtenemos:</p>
+<table>
+<caption><span id="tab:rel">Tabla 5.7: </span>Distribución conjunta de la opinión sobre la evolución del propio país y la perspectiva de emigrar. Frecuencias relativas al total</caption>
+<thead>
+<tr class="header">
+<th></th>
+<th align="center">pensó emigrar</th>
+<th align="center">nunca pensó emigrar</th>
+<th align="center">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>progresando</td>
+<td align="center">5.7</td>
+<td align="center">19.9</td>
+<td align="center">25.7</td>
+</tr>
+<tr class="even">
+<td>estancado</td>
+<td align="center">11.8</td>
+<td align="center">36.7</td>
+<td align="center">48.6</td>
+</tr>
+<tr class="odd">
+<td>en retroceso</td>
+<td align="center">7.7</td>
+<td align="center">18.0</td>
+<td align="center">25.8</td>
+</tr>
+<tr class="even">
+<td>Total</td>
+<td align="center">25.3</td>
+<td align="center">74.7</td>
+<td align="center">100.0</td>
+</tr>
+</tbody>
+</table>
+<p>Leemos las frecuencias conjuntas y las marginales como en la tabla ref(tab:cual).
+Por ejemplo:</p>
+<p>El 36.7% de los encuestados considera que su país está estancado <em>y</em> no considera la posibilidad de emigrar.</p>
+<p>El 25.3% de los encuestados ha pensado en emigrar (sin importar su opinión sobre la evolución de su país).</p>
+<p>El 25.7% cree que su país está mejorando (sin tener en cuenta su proyecto migratorio).</p>
+<p>El análisis que se haga de la tabla depende del modo en que se formule la hipótesis sobre la relación. Si se plantea a la “opinón sobre la evolución del país” como uno de los posibles elementos que influiría a la decisión de emigrar, entonces, la opinión es antecedente de la decisión de migrar. Con esta formulación, el interés estaría en comparar la decisión de emigrar entre quienes tienen diferente opinión sobre la evolución del país. Para ello, generamos frecuencias relativas en dirección de la opinión (variable antecedente) y, por comodidad, expresamos esas frecuencias relativas como porcentajes:</p>
+<table>
+<caption><span id="tab:frecConj">Tabla 5.8: </span>Distribución conjunta de la opinión sobre la evolución del propio país y la perspectiva de emigrar. Frecuencias relativas por filas</caption>
+<thead>
+<tr class="header">
+<th></th>
+<th align="center">pensó emigrar</th>
+<th align="center">nunca pensó emigrar</th>
+<th align="center">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>progresando</td>
+<td align="center">22.3</td>
+<td align="center">77.7</td>
+<td align="center">100</td>
+</tr>
+<tr class="even">
+<td>estancado</td>
+<td align="center">24.3</td>
+<td align="center">75.7</td>
+<td align="center">100</td>
+</tr>
+<tr class="odd">
+<td>en retroceso</td>
+<td align="center">30.0</td>
+<td align="center">70.0</td>
+<td align="center">100</td>
+</tr>
+</tbody>
+</table>
+<p>Ahora la lectura es por las filas, es decir, por las categorías de la opinión. Entre quienes opinan que su pais está mejorando, hay un 22.3% que ha pensado en emigrar, mientras que entre quienes creen que está empeorando, el porcentaje sube al 30%.</p>
+<!-- para mí: Se me complica generar el marginal y qe siga dando 100 la última fila, para poder hacer la comparación LO COMPLETO CUANDO ME SALGA -->
+<p>La ventaja de usar porcentajes (o frecuencias relativas) es que las
+comparaciones se hacen sobre los mismos totales, es “como si” hubiese
+100 personas que opinan que el país está mejorando, 100 que está estancado y 100 que está empeorando.</p>
+<p>Que haya cierta relación entre la opinión acerca de la evolución del pais (antecedente) y la idea de emigrar (consecuente) no es equivalente a que la opinión sea “la causa” de las intenciones de emigrar. En la tabla se observa que la intención de emigrar es expresada por una minoría se los encuestados, solo que esa minoría es levemente mayor entre quienes opinan que el país está empeorando. Se puede afirmar que quienes opinan que el país está empeorando tienen “un poco más” de intenciones de emigrar que aquellos que opinan que está mejorado. La opinión sobre la evolución del país es uno de los muchos factores que pueden incidir en la intención de emigrar.</p>
+<p>Al comparar la tabla <a href="relación-entre-variables-los-fundamentos.html#tab:abs">5.6</a> con la <a href="relación-entre-variables-los-fundamentos.html#tab:rel">5.7</a> vemos que aunque ambas ofrecen frecuencias relativas, la primera las calcula respecto del total general (los
+19649 casos) mientras que en la segunda los totales son las frecuencias marginales de cada fila. Son dos resultados muy diferentes, en efecto, la frecuencia de la celda 1,1 en la tabla <a href="relación-entre-variables-los-fundamentos.html#tab:rel">5.7</a> es 0,057 e indica que el 5.7% del total de encuestados cree que su país está mejorando <strong>y</strong> han pensado en emigrar. La misma celda en la tabla <a href="relación-entre-variables-los-fundamentos.html#tab:frecConj">5.8</a> tiene frecuencia de 0,223 y se lee: de los encuestados que creen que su país está mejorando, el 22.3% ha pensado en emigrar.</p>
+<p>Veamos que la primera de las frecuencias (relativa al total) contiene
+información simultanea sobre las dos variables, mientras que la segunda (relativa a los totales de fila), fija una categoría para una de las variables: al hablar de los encuestados que creen que su país está mejorando, estamos restringiendo el conjunto completo, ya no es un juicio sobre los 19649 encuestados del total, sino solo sobre los 5040 que cumplen con ese requisito. La frecuencia está condicionada por ese requisito. Esto equivale a decir que las frecuencias relativas cambian cuando se establece una condición como la mencionada. En general, la proporción de encuestados que piensa emigrar es 25.3% <!--no sale aun en la tabla--> , pero si agregamos el dato que indica que estamos tratando solo con los que creen que el país está mejorando, entonces la proporción decae al 22.3%. La opinión sobre la evolución del país es una condición que imponemos cuando calculamos estas frecuencias relativas a los totales de fila.</p>
+<p>El modo en que se calcularon las frecuencias relativas (o los
+porcentajes) en la segunda tabla fue tomando como total al número de encuestados que dieron cada opinión sobre el país. No es ésta la única opción posible, ¿por qué no lo hicimos dividiendo por los totales de cada nivel de la otra variable, la intención de emigrar?
+Es decir ¿qué hizo que eligiéramos en esta tabla las filas y no las
+columnas como totales para el cálculo de los porcentajes? Es porque es trata de una relación asimétrica, y en esos casos siempre elegiremos como denominador a los totales de la variable
+antecedente, porque queremos ver qué diferencia hay entre los grupos que definen sus categorías. En el caso del ejemplo, el interés se centra en saber si la opinión sobre la evolución del país implica diferencia en la intención de emigrar. No es importante si la variable antecedente se ubica en las filas o en las columnas, aunque hay una práctica de ubicarla en las filas; en cualquier caso, son sus totales los que usaremos para el cálculo de los porcentajes.</p>
+<p>Con el paso de las frecuencias simples a las relativas, hemos avanzado en la detección de la relación entre las dos variables, pero aun no podemos cuantificar su intensidad. Para ello existe una gran cantidad de coeficientes que se usan para reconocer si se trata de relaciones fuertes, débiles o simplemente inexistentes. Estos coeficientes varían según el nivel de medición de las variables, según el número de categorías, la simetría de la relación y, en especial, en el aspecto que analizan de la relación y el modo en que se interpretan. En este capítulo solo nos detendremos en uno de ellos que es de utilidad para tratar relaciones entre variables que tienen dos categorías cada una, es decir entre dos variables dicotómicas. En los próximos capítulos trataremos con otros coeficientes.</p>
+<p>El coeficiente que usaremos para evaluar la intensidad de una relación entre dos variables dicotómicas se denomina Q de Kendall - Yule y en su cálculo tiene en cuenta el modo en que las frecuencias se distribuyen entre las cuatro celdas de la tabla.</p>
+<p>Para ejemplificar el uso de este coeficiente, transformaremos la
+relación del caso anterior, dejando de lado a quienes opinan que el pais está estancado. Es decir, conservamos las categorías extremas de la variable. Así, la tabla queda:</p>
+<!--No logro eliminar la fila del medio con los ceros-->
+<table>
+<caption><span id="tab:unnamed-chunk-137">Tabla 5.9: </span>Distribución conjunta de la opinión sobre la evolución del propio país y la perspectiva de emigrar. Frecuencias absolutas, variables dicotomizadas</caption>
+<thead>
+<tr class="header">
+<th></th>
+<th align="center">pensó emigrar</th>
+<th align="center">nunca pensó emigrar</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>progresando</td>
+<td align="center">1126</td>
+<td align="center">3914</td>
+</tr>
+<tr class="even">
+<td>en retroceso</td>
+<td align="center">1521</td>
+<td align="center">3543</td>
+</tr>
+</tbody>
+</table>
+<p>La concentración de la mayoría de los casos en las celdas de una de las diagonales de la tabla se considera como señal de la asociación existente entre las dos variables. El coeficiente Q se calcula operando con esas frecuencias del siguiente modo:</p>
+<p><span class="math display">\[Q = \frac{1126*3543 - 1521*3914}{1126*3543 + 1521*3914} = \frac{-1963776}{9942612} = -0,198\]</span></p>
+<p>En el numerador, hemos multiplicado las frecuencias de una de las
+diagonales y le hemos restado el producto de las frecuencias
+de la otra diagonal. En el denominador, hemos sumado los mismos
+dos productos. De manera simbólica, si representamos a las frecuencias
+de las celdas como A, B, C y D, tenemos</p>
+<table>
+<tbody>
+<tr class="odd">
+<td align="left">A</td>
+<td align="left">B</td>
+</tr>
+<tr class="even">
+<td align="left">C</td>
+<td align="left">D</td>
+</tr>
+</tbody>
+</table>
+<p><span class="math display">\[Q = \frac{AD - CB}{AD + CB}\]</span></p>
+<p>El cálculo de este coeficiente da un número que puede ser positivo o
+negativo pero que siempre se encuentra entre -1 y 1.</p>
+<p><span class="math display">\[- 1 \leq Q \leq 1\]</span></p>
+<p>En este coeficiente, el signo no tiene interpretación, se consideran
+iguales, por ejemplo, los valores 0,80 y -0,80. Esto se debe a que el
+signo que resulta depende del orden (arbitrariamente elegido) con que se hayan dispuesto las filas y las columnas.</p>
+<p>Cuanto más próximo a uno (1) o a menos uno (-1) sea el coeficiente,
+tanto más intensa es la relación entre las dos variables. Los valores
+del coeficiente cercanos a cero indican una relación entre las variables que es débil o inexistente.</p>
+<p>Por lo tanto, el valor obtenido en el ejemplo anterior señala una
+relación débil entre las dos variables, pudiendo llevarnos a afirmar
+que la opinión que se tenga sobre la evolución del país tiene, según estos datos, un efecto muy leve sobre la decisión de emigrar. Sin duda esta última es resultado de procesos complejos en los que intervienen muchos factores, entre ellos, la opinión que se tenga del país.</p>
+<p>En el caso extremo que el coeficiente sea igual a uno (o a menos uno)
+diremos que la relación es perfecta. Se trata de un caso ideal, no factible de ser observado en la realidad, pero que sirve para establecer el valor límite del coeficiente. Un ejemplo en que esto sucedería es si las frecuencias de la tabla anterior fueran como las siguientes:</p>
+<table>
+<caption><span id="tab:unnamed-chunk-138">Tabla 5.10: </span>Distribución ficticia de la opinión sobre la evolución del propio país y la perspectiva de emigrar. Caso de relación “perfecta”</caption>
+<thead>
+<tr class="header">
+<th></th>
+<th align="center">pensó emigrar</th>
+<th align="center">nunca pensó emigrar</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>progresando</td>
+<td align="center">0</td>
+<td align="center">5040</td>
+</tr>
+<tr class="even">
+<td>en retroceso</td>
+<td align="center">5064</td>
+<td align="center">0</td>
+</tr>
+</tbody>
+</table>
+<p>Aquí resulta que ninguno de los que opinan que el país está progresando pensó en emigrar, mientras que todos los que creen que está empeorando sí pensaron emigrar.</p>
+<p>En esta tabla</p>
+<p><span class="math display">\[Q = \frac{0*0 - 5040*5064}{0*0+5040*5064} = \frac{25522560}{25522560} = -1\]</span></p>
+<p>El valor <span class="math inline">\(-1\)</span> se interpreta entonces indicando que la relación entre la opinión y la intención de emigrar es perfecta.</p>
+<p>El caso contrario es aquél en el que no haya relación alguna entre las
+variables, allí es cuando el coeficiente alcanza (en valor absoluto) su mínimo valor posible, cero. Otra vez se trata de un caso ideal, porque muy improbablemente se encontrarán en la realidad observaciones que lleven a un coeficiente que sea exactamente cero.</p>
+<p>Modifiquemos nuevamente las frecuencias de nuestra tabla para
+ejemplificar esa situación ficticia:</p>
+<table>
+<caption><span id="tab:unnamed-chunk-139">Tabla 5.11: </span>Distribución ficticia de la opinión sobre la evolución del propio país y la perspectiva de emigrar. Caso de relación “nula”</caption>
+<thead>
+<tr class="header">
+<th></th>
+<th align="center">pensó emigrar</th>
+<th align="center">nunca pensó emigrar</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>progresando</td>
+<td align="center">1512</td>
+<td align="center">3528</td>
+</tr>
+<tr class="even">
+<td>en retroceso</td>
+<td align="center">1519</td>
+<td align="center">3545</td>
+</tr>
+</tbody>
+</table>
+<p>En este caso los encuestados están distribuidos en las celdas del mismo modo si opinan que el país está ejorando o empeorando (verifique, calculando las frecuencias relativas por filas)</p>
+<p>Se encuentra que un 30% de los encuestados ha pensado en emigrar, tanto entre los que opinan que el país está mejorando como entre los que creen que empeora.</p>
+<p>El cálculo del coeficiente da ahora:</p>
+<p><span class="math display">\[Q = \frac{1512*3545-1519*3528}{1512*545+1519*3528} = 0.00016\]</span></p>
+<p>Este valor indica que no hay relación entre las variables, es decir que, según estos datos, la opinión no haría diferencia alguna sobre la intención de emigrar.</p>
+<p>El coeficiente Q de Kendall - Yule mide la intensidad de la relación
+entre dos variables dicotómicas comparando la concentración de
+frecuencias en las diagonales. Alcanza su valor máximo cuando todos los casos se ubican sobre una diagonal y la relación es perfecta. Alcanza su mínimo valor cuando las frecuencias están distribuidas de manera proporcional entre las celdas y las variables son independientes.</p>
+<p>Una limitación importante de este coeficiente aparece cuando la
+distribución de las frecuencias es “rinconal”. Esto quiere decir que una de las frecuencias es cero, como sucedería si en las tablas anteriores, no se hubiesen encontrado casos de gente que opinara que el pais está mejorando y hubiesen pensado emigrar:</p>
+<table>
+<caption><span id="tab:unnamed-chunk-140">Tabla 5.12: </span>Distribución ficticia de la opinión sobre la evolución del propio país y la perspectiva de emigrar. Caso de distribución “rinconal”</caption>
+<thead>
+<tr class="header">
+<th></th>
+<th align="center">pensó emigrar</th>
+<th align="center">nunca pensó emigrar</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>progresando</td>
+<td align="center">0</td>
+<td align="center">5040</td>
+</tr>
+<tr class="even">
+<td>en retroceso</td>
+<td align="center">1519</td>
+<td align="center">3545</td>
+</tr>
+</tbody>
+</table>
+<p>En este ejemplo -y siempre que una celda tenga frecuencia cero-, el
+coeficiente Q dará valor 1 (ó -1) y esto no debe interpretarse como una asociación perfecta, es una limitación del coeficiente, que no puede usarse en estos casos.</p>
+<p>Terminaremos esta introducción a la relación entre variables con una referencia al problema de la causalidad. El hecho de haber encontrado
+que, en una relación asimétrica, existe una asociación intensa entre las variables, no nos lleva inmediatamente a suponer que la antecedente sea causa del consecuente. En toda explicación de un fenómeno, en especial de los fenómenos sociales, la causalidad es múltiple, es casi siempre imposible atribuir una causa única a la explicación de un hecho. Desde el sentido común es frecuente enunciar que “todo tiene una causa”, pero en el dominio de la investigación que involucra a sujetos humanos, los hechos que nos interesa analizar tienen múltiples causas, las cuales compiten entre sí en la explicación. Por lo tanto, descubriendo relaciones entre variables podemos aportar a la inclusión o exclusión de variables como factores explicativos de un fenómeno dado, pero no a “determinar su causa”. Podremos afirmar qué factores hacen más probable la aparición de un fenómeno dado, bajo qué condiciones su ocurrencia es más frecuente, o inclusive indicar cuáles son las variables más importantes para que el fenómeno suceda, pero muy difícilmente lleguemos a afirmaciones del tipo X es la causa de Y.</p>
+<p>Pensemos por ejemplo en fenómenos psicosociales complejos, como la delincuencia juvenil. El tipo de hogar del que las personas provienen
+puede tener efecto, la relación con los padres, el abandono temprano de la escuela, la estructura familiar actual, y pueden seguir enumerándose factores que contribuirían a explicar que algunas personas desarrollen conductas delictivas y otras no. Pero no será posible alcanzar una explicación completa del fenómeno, en una expresión ingenua como “la causa de la delincuencia es…”</p>
+</div>
+<div id="el-concepto-de-independencia-estadística" class="section level2">
+<h2><span class="header-section-number">5.7</span> El concepto de independencia estadística</h2>
+<p>Formulemos ahora el problema de manera inversa, interrogándonos por las
+condiciones en que puede decirse que dos variables son independientes.
+Intuitivamente la independencia entre dos eventos equivale a que la
+ocurrencia de uno de ellos no tiene efecto en el del otro. Así, las
+oportunidades que un evento ocurra serán iguales tanto si el otro evento
+sucedió como si no lo hizo. Cuando decimos que X no tiene efectos sobre
+Y, indicamos que Y sucede tanto si X está presente como si no lo está.
+La independencia de dos variables es equivalente a que no haya
+asociación entre ellas.</p>
+<p>Consideremos ahora la distribuión de la actividad económica por sexos según datos de la EPH.</p>
+<table>
+<caption><span id="tab:unnamed-chunk-141">Tabla 5.13: </span>Distribución de la condición laboral por sexos. Frecuencias absolutas</caption>
+<thead>
+<tr class="header">
+<th></th>
+<th align="center">varones</th>
+<th align="center">mujeres</th>
+<th align="center">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>ocupades</td>
+<td align="center">13202</td>
+<td align="center">10196</td>
+<td align="center">23398</td>
+</tr>
+<tr class="even">
+<td>desocupades</td>
+<td align="center">940</td>
+<td align="center">930</td>
+<td align="center">1870</td>
+</tr>
+<tr class="odd">
+<td>inactives</td>
+<td align="center">8787</td>
+<td align="center">14380</td>
+<td align="center">23167</td>
+</tr>
+<tr class="even">
+<td>Total</td>
+<td align="center">22929</td>
+<td align="center">25506</td>
+<td align="center">48435</td>
+</tr>
+</tbody>
+</table>
+<p>En este caso es más claro formular la pregunta sobre la relación entre variables, en términos de la diferencia entre grupos.¿Se distribuyen del mismo modo mujeres y varones entre las condiciones de ocupade, desocupade e inactive? La relación es, como en el ejemplo anterior, asimétrica, donde la variable sexo es antecedente y condición laboral, la consecuente. Por esa razón las frecuencias relativas es calculan por columnas, dode se encuuentra la variable antecedente.</p>
+<table>
+<caption><span id="tab:tablaanterior">Tabla 5.14: </span>Distribución de la condición laboral por sexos. Frecuencias relativas por columnas</caption>
+<thead>
+<tr class="header">
+<th></th>
+<th align="center">varones</th>
+<th align="center">mujeres</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>ocupades</td>
+<td align="center">57.6</td>
+<td align="center">40.0</td>
+</tr>
+<tr class="even">
+<td>desocupades</td>
+<td align="center">4.1</td>
+<td align="center">3.6</td>
+</tr>
+<tr class="odd">
+<td>inactives</td>
+<td align="center">38.3</td>
+<td align="center">56.4</td>
+</tr>
+<tr class="even">
+<td>Total</td>
+<td align="center">100.0</td>
+<td align="center">100.0</td>
+</tr>
+</tbody>
+</table>
+<!-- ME SIGUE FALTANDO LA ÚLTIMA COLUMNA-->
+<p>Se lee aquí que <em>del total de varones</em>, el 57.6% está ocupado, mientras que, de las mujeres, el 40.0% lo está.</p>
+<p>Si la distribución de categorías laborales no tuviera ninguna relación con el hecho de ser hombre o mujer, se esperaría que haya igual proporción de personas ocupades, desocupades e inactives entre varones y mujeres. Si del total de personas, el 48.3% está ocupade, habría un 48.3% de varones ocupados y un 48.3% de mujeres ocupadas. De modo que, de los 22929 varones, 11077 (que constituyen aproximadamente el 48.3% de 22929) deberían estar ocupados. Análogamente, el 48.3% de 25506,
+(aproximadamente 12321 mujeres) son las que deberían estar ocupadas.</p>
+<p>Las frecuencias de las demás celdas se obtienen replicando la frecuencia marginal de desocupades e inactives sobre los totales de varones y mujeres. Puede entonces construirse una nueva tabla con las frecuencias que se esperaría encontrar si las dos variables fueran independientes, es decir si el hecho de ser varones o mujeres no tuviese ningún efecto sobre la actividad laboral. Dicho de otro modo, si la actividad laboral fuera independiente del sexo.</p>
+<table>
+<caption><span id="tab:unnamed-chunk-143">Tabla 5.15: </span>Frecuencias esperadas bajo la hipótesis de independencia
+correspondiente a la tabla anterior</caption>
+<thead>
+<tr class="header">
+<th></th>
+<th align="center">varones</th>
+<th align="center">mujeres</th>
+<th align="center">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>ocupades</td>
+<td align="center">11077</td>
+<td align="center">12321</td>
+<td align="center">23398</td>
+</tr>
+<tr class="even">
+<td>desocupades</td>
+<td align="center">885</td>
+<td align="center">985</td>
+<td align="center">1870</td>
+</tr>
+<tr class="odd">
+<td>inactives</td>
+<td align="center">10967</td>
+<td align="center">12200</td>
+<td align="center">23167</td>
+</tr>
+<tr class="even">
+<td>Total</td>
+<td align="center">22929</td>
+<td align="center">25506</td>
+<td align="center">48435</td>
+</tr>
+</tbody>
+</table>
+<p>Observemos algunos detalles de esta tabla. En primer lugar, las frecuencias marginales no han cambiado (salvo por elgún efecto de redondeo), los totales son los mismos y solo se trata de un reordenamiento de las frecuencias conjuntas bajo la hipótesis de independencia de las dos variables<a href="#fn24" class="footnote-ref" id="fnref24"><sup>24</sup></a>.</p>
+<p>Tratemos ahora de formalizar las operaciones que condujeron a esta segunda tabla. Los valores 48.3%, 8.07% y 47.8% provienen de las proporciones de casos en cada una de las categorías de la variable condición de actividad, y se calcularon como <span class="math inline">\(\frac{23398}{48435}\)</span>, <span class="math inline">\(\frac{1870}{48435}\)</span> y <span class="math inline">\(\frac{23167}{48435}\)</span> respectivamente. Luego esas proporciones se multiplicaron por los totales de casos de cada categoría de la variable sexo. De esa operación obtuvimos 11077 como <span class="math inline">\(22929*.483\)</span> (salvo diferencias por redondeo), que daría lo mismo expresado como <span class="math inline">\(22929*23398/48435\)</span>. De mismo modo el resto de las celdas.</p>
+<p>De manera general entonces, obtenemos cada una de las frecuencias de la segunda tabla multiplicando la frecuencia marginal de su fila por la de su columna y dividiendo por el total general. En símbolos, las
+frecuencias esperadas son:</p>
+<p><span class="math display">\[f_{\text{ij}}^{e} = \frac{f_{i}f_{j}}{n}\]</span></p>
+<p>Si las dos variables fueran independientes (con más precisión se dice
+estadísticamente independientes), las frecuencias conjuntas que se
+esperaría encontrar serían como las que calculamos con este
+procedimiento. ¿Y qué sería en ese caso de las frecuencias relativas?</p>
+<table>
+<caption><span id="tab:unnamed-chunk-144">Tabla 5.16: </span>Frecuencias relativas por columnas esperadas bajo la hipótesis de independencia correspondiente a la tabla anterior</caption>
+<thead>
+<tr class="header">
+<th></th>
+<th align="center">varones</th>
+<th align="center">mujeres</th>
+<th align="center">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>ocupades</td>
+<td align="center">0.4831000</td>
+<td align="center">0.4830628</td>
+<td align="center">0.4830804</td>
+</tr>
+<tr class="even">
+<td>desocupades</td>
+<td align="center">0.0385974</td>
+<td align="center">0.0386184</td>
+<td align="center">0.0386084</td>
+</tr>
+<tr class="odd">
+<td>inactives</td>
+<td align="center">0.4783026</td>
+<td align="center">0.4783188</td>
+<td align="center">0.4783111</td>
+</tr>
+</tbody>
+</table>
+<p>Que habría idéntica proporción de ocupades, desocupades e inactives entre varones y mujeres, que es la condición de independencia que estamos proponiendo.</p>
+<p>La tabla de relativos respecto del total resulta así:</p>
+<table>
+<caption><span id="tab:unnamed-chunk-145">Tabla 5.17: </span>Frecuencias relativas por columnas esperadas bajo la hipótesis de independencia correspondiente a la tabla anterior</caption>
+<thead>
+<tr class="header">
+<th></th>
+<th align="center">varones</th>
+<th align="center">mujeres</th>
+<th align="center">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>ocupades</td>
+<td align="center">0.229</td>
+<td align="center">0.254</td>
+<td align="center">0.483</td>
+</tr>
+<tr class="even">
+<td>desocupades</td>
+<td align="center">0.018</td>
+<td align="center">0.020</td>
+<td align="center">0.039</td>
+</tr>
+<tr class="odd">
+<td>inactives</td>
+<td align="center">0.226</td>
+<td align="center">0.252</td>
+<td align="center">0.478</td>
+</tr>
+<tr class="even">
+<td>Total</td>
+<td align="center">0.473</td>
+<td align="center">0.527</td>
+<td align="center">1.000</td>
+</tr>
+</tbody>
+</table>
+<p>Puede llegarse directamente a las frecuencias relativas, porque la
+frecuencia absoluta de cada celda es:</p>
+<p><span class="math display">\[f_{\text{ij}} = \frac{f_{i}f_{j}}{n}\]</span></p>
+<p>Y relativa de esa celda:</p>
+<p><span class="math display">\[f_{\text{ij}}^{&#39;} = \frac{f_{\text{ij}}}{n}\]</span></p>
+<p>Si reemplazamos, nos queda:</p>
+<p><span class="math display">\[f_{\text{ij}}^{&#39;} = \frac{f_{\text{ij}}}{n} = \frac{\left( \frac{f_{i}f_{j}}{n} \right)}{n} = \frac{f_{i}}{n}\frac{f_{j}}{n} = f_{i}^{&#39;}f_{j}^{&#39;}\]</span></p>
+<p>Más brevemente:</p>
+<p><span class="math display">\[f_{\text{ij}}^{&#39;} = f_{i}^{&#39;}f_{j}^{&#39;}\]</span></p>
+<p>Es decir que, si las variables fueran independientes, cada frecuencia
+relativa será producto de las correspondientes frecuencias relativas
+marginales. Ahora podemos dar una definición de independencia
+estadística.</p>
+<p>Dos variables son estadísticamente independientes si la frecuencia
+relativa de cada celda es igual al producto de las frecuencias relativas marginales de la fila y la columna a las que la celda pertenece.</p>
+<p>En efecto, cada frecuencia conjunta de la tabla 14 es el producto de las marginales correspondientes.</p>
+<p>En este capítulo solo se trató con variables nominales, y en un caso también ordinales, pero aún no se ha dicho nada sobre las variables intervalares y proporcionales. En las distribuciones univariadas se vio que una tabla de distribución de frecuencias no puede listar todas las categorías de una variable de estos niveles, sino que deben construirse intervalos de valores. Eso mismo puede hacerse para construir una tabla bivariada, cuando se analiza la relación entre variables intervalares y/o proporcionales. De ese modo resultaría la tabla que pone en relación la condición de actividad con la edad, categorizada en cuatro intervalos proporcionales:</p>
+<table>
+<caption><span id="tab:unnamed-chunk-146">Tabla 5.18: </span>Distribución conjunta de la condición de actividad y la edad en cuatro grupos</caption>
+<thead>
+<tr class="header">
+<th></th>
+<th align="center">(0,16]</th>
+<th align="center">(16,32]</th>
+<th align="center">(32,52]</th>
+<th align="center">(52,101]</th>
+<th align="center">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>ocupades</td>
+<td align="center">41</td>
+<td align="center">7163</td>
+<td align="center">11269</td>
+<td align="center">4925</td>
+<td align="center">23398</td>
+</tr>
+<tr class="even">
+<td>desocupades</td>
+<td align="center">8</td>
+<td align="center">1122</td>
+<td align="center">526</td>
+<td align="center">214</td>
+<td align="center">1870</td>
+</tr>
+<tr class="odd">
+<td>inactives</td>
+<td align="center">6189</td>
+<td align="center">5975</td>
+<td align="center">2477</td>
+<td align="center">8526</td>
+<td align="center">23167</td>
+</tr>
+<tr class="even">
+<td>Total</td>
+<td align="center">6238</td>
+<td align="center">14260</td>
+<td align="center">14272</td>
+<td align="center">13665</td>
+<td align="center">48435</td>
+</tr>
+</tbody>
+</table>
+<p>Pero en el próximo capítulo veremos que para variables de estos niveles de medición se cuenta con procedimientos más simples y más eficaces que permiten analizar con más detalle sus relaciones.</p>
+</div>
+<div id="hacerlo-en-r-2" class="section level2">
+<h2><span class="header-section-number">5.8</span> Hacerlo en R</h2>
+<p>La elaboración de las tablas en R requiere del comando <code>table</code> aplicado sobre las variables de la matriz de datos que se quiera cruzar:</p>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb110-1" data-line-number="1"><span class="kw">table</span>(eph.<span class="fl">3.18</span><span class="op">$</span>CH04, eph.<span class="fl">3.18</span><span class="op">$</span>ESTADO)</a></code></pre></div>
+<pre><code>##    
+##         0     1     2     3     4
+##   1    34 13202   940  8787  4256
+##   2    26 10196   930 14380  4128</code></pre>
+<p>Los marginales deben pedirse explícitamente, con <code>addmargins</code>:</p>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb112-1" data-line-number="1"><span class="kw">addmargins</span>(<span class="kw">table</span>(eph.<span class="fl">3.18</span><span class="op">$</span>CH04, eph.<span class="fl">3.18</span><span class="op">$</span>ESTADO))</a></code></pre></div>
+<pre><code>##      
+##           0     1     2     3     4   Sum
+##   1      34 13202   940  8787  4256 27219
+##   2      26 10196   930 14380  4128 29660
+##   Sum    60 23398  1870 23167  8384 56879</code></pre>
+<p>Así como las relativas, usando <code>prop.table</code>:</p>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb114-1" data-line-number="1"><span class="kw">prop.table</span>(<span class="kw">table</span>(eph.<span class="fl">3.18</span><span class="op">$</span>CH04, eph.<span class="fl">3.18</span><span class="op">$</span>ESTADO))</a></code></pre></div>
+<pre><code>##    
+##                0            1            2            3            4
+##   1 0.0005977602 0.2321067529 0.0165263102 0.1544858384 0.0748255068
+##   2 0.0004571107 0.1792577225 0.0163504984 0.2528173843 0.0725751156</code></pre>
+<p>Para reducir los decimales, se solicita redondeo a solo tres:</p>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb116-1" data-line-number="1"><span class="kw">round</span>(<span class="kw">prop.table</span>(<span class="kw">table</span>(eph.<span class="fl">3.18</span><span class="op">$</span>CH04, eph.<span class="fl">3.18</span><span class="op">$</span>ESTADO)), <span class="dv">3</span>)</a></code></pre></div>
+<pre><code>##    
+##         0     1     2     3     4
+##   1 0.001 0.232 0.017 0.154 0.075
+##   2 0.000 0.179 0.016 0.253 0.073</code></pre>
+<p>Y para expresarlos como porcentajes, lo multiplicamos por 100:</p>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb118-1" data-line-number="1"><span class="kw">round</span>(<span class="kw">prop.table</span>(<span class="kw">table</span>(eph.<span class="fl">3.18</span><span class="op">$</span>CH04, eph.<span class="fl">3.18</span><span class="op">$</span>ESTADO)), <span class="dv">3</span>) <span class="op">*</span><span class="st"> </span><span class="dv">100</span></a></code></pre></div>
+<pre><code>##    
+##        0    1    2    3    4
+##   1  0.1 23.2  1.7 15.4  7.5
+##   2  0.0 17.9  1.6 25.3  7.3</code></pre>
+<p>Estas frecuencias relativas, lo son respecto del total, si se las quiere por filas, se indica en el argumento <em>1</em></p>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb120-1" data-line-number="1"><span class="kw">round</span>(<span class="kw">prop.table</span>(<span class="kw">table</span>(eph.<span class="fl">3.18</span><span class="op">$</span>CH04, eph.<span class="fl">3.18</span><span class="op">$</span>ESTADO), <span class="dv">1</span>), <span class="dv">3</span>) <span class="op">*</span><span class="st"> </span><span class="dv">100</span></a></code></pre></div>
+<pre><code>##    
+##        0    1    2    3    4
+##   1  0.1 48.5  3.5 32.3 15.6
+##   2  0.1 34.4  3.1 48.5 13.9</code></pre>
+<p>Para obtenerlas por columnas, se indica <em>2</em> en el argumento de <code>prop.table</code>:</p>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb122-1" data-line-number="1"><span class="kw">round</span>(<span class="kw">prop.table</span>(<span class="kw">table</span>(eph.<span class="fl">3.18</span><span class="op">$</span>CH04, eph.<span class="fl">3.18</span><span class="op">$</span>ESTADO), <span class="dv">2</span>), <span class="dv">3</span>) <span class="op">*</span><span class="st"> </span><span class="dv">100</span></a></code></pre></div>
+<pre><code>##    
+##        0    1    2    3    4
+##   1 56.7 56.4 50.3 37.9 50.8
+##   2 43.3 43.6 49.7 62.1 49.2</code></pre>
+<p>Para darles formato, una opción es llevar la tabla a una hoja de cálculo y allí rotular, centrar, etc. De lo contrario, R ofrece un entorno llamado R Markdown con muchas posibilidades de formato y exportación a pdf o html.</p>
+
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="20">
+<li id="fn20"><p>Salvo en el caso de diseños experimentales que permitan tener control sobre el conjunto de variables que participan en el resultado que se observa.<a href="relación-entre-variables-los-fundamentos.html#fnref20" class="footnote-back">↩</a></p></li>
+<li id="fn21"><p>Atención, éste es un uso diferente de los términos simetría y asimetría. La simetría de una distribución (univariada) indica su forma, acá se refiere al tipo de relación entre dos variables. El primer uso caracteriza a una variable, el segundo a una relación.<a href="relación-entre-variables-los-fundamentos.html#fnref21" class="footnote-back">↩</a></p></li>
+<li id="fn22"><p>No es directamente o inversamente proporcional. La proporcionalidad es otra cosa. Aquí solo se trata de que cambien en la misma dirección (ambas aumentan o ambas disminuyen) o en dirección inversa (una aumenta y la otra disminuye).<a href="relación-entre-variables-los-fundamentos.html#fnref22" class="footnote-back">↩</a></p></li>
+<li id="fn23"><p>No es posible ofrecer una definición más precisa porque según el modo en que se mida la intensidad, es decir, según el coeficiente que se use, es diferente el aspecto de la relación que se tiene en cuenta.<a href="relación-entre-variables-los-fundamentos.html#fnref23" class="footnote-back">↩</a></p></li>
+<li id="fn24"><p>Como consecuencia de ello, de las cuatro celdas solo es necesario calcular una frecuencia, ya que las demás pueden obtenerse restando de los totales de filas y de columnas. Una vez que sabemos que la frecuencia de la celda 1,1 es 120, podemos obtener 60 como lo que resta para llegar a 180 (de la primera fila), 80 como la diferencia con 200 (de la primera columna) y 40 como lo que le falta a 60 para llegar a 100 (segunda columna) o lo que le falta a 80 para alcanzar 120 (segunda fila).<a href="relación-entre-variables-los-fundamentos.html#fnref24" class="footnote-back">↩</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="la-expresión-resumida-de-la-información.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="relación-entre-variables-el-análisis.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/jcrodriguez1989/EstadisticaParaCienciasSocialesConR/edit/master/05-capitulo4.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["EstadisticaParaCienciasSocialesConR.pdf", "EstadisticaParaCienciasSocialesConR.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

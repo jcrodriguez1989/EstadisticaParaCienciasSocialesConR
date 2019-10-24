@@ -1,0 +1,3425 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 8 Probabilidad: los fundamentos | Estadística para Ciencias Sociales con R</title>
+  <meta name="description" content="Capítulo 8 Probabilidad: los fundamentos | Estadística para Ciencias Sociales con R" />
+  <meta name="generator" content="bookdown 0.14.1 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 8 Probabilidad: los fundamentos | Estadística para Ciencias Sociales con R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  <meta name="github-repo" content="jcrodriguez1989/EstadisticaParaCienciasSocialesConR" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 8 Probabilidad: los fundamentos | Estadística para Ciencias Sociales con R" />
+  
+  
+  
+
+<meta name="author" content="Eduardo Bologna" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="obtención-de-la-muestra.html"/>
+<link rel="next" href="probabilidad-los-modelos.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Estadística para Ciencias Sociales con R</a></li>
+
+<li class="divider"></li>
+<li><a href="index.html#section"></a></li>
+<li class="chapter" data-level="1" data-path="materiales-y-herramientas.html"><a href="materiales-y-herramientas.html"><i class="fa fa-check"></i><b>1</b> Materiales y herramientas</a><ul>
+<li class="chapter" data-level="1.1" data-path="materiales-y-herramientas.html"><a href="materiales-y-herramientas.html#materiales"><i class="fa fa-check"></i><b>1.1</b> Materiales</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="materiales-y-herramientas.html"><a href="materiales-y-herramientas.html#encuesta-permanente-de-hogares-eph.3.18"><i class="fa fa-check"></i><b>1.1.1</b> Encuesta Permanente de Hogares (eph.3.18)</a></li>
+<li class="chapter" data-level="1.1.2" data-path="materiales-y-herramientas.html"><a href="materiales-y-herramientas.html#encuesta-nacional-de-factores-de-riesgo-enfr2013"><i class="fa fa-check"></i><b>1.1.2</b> Encuesta Nacional de Factores de Riesgo (ENFR2013)</a></li>
+<li class="chapter" data-level="1.1.3" data-path="materiales-y-herramientas.html"><a href="materiales-y-herramientas.html#latinobarómetro-latinob2017"><i class="fa fa-check"></i><b>1.1.3</b> Latinobarómetro (latinob2017)</a></li>
+<li class="chapter" data-level="1.1.4" data-path="materiales-y-herramientas.html"><a href="materiales-y-herramientas.html#encuesta-nacional-sobre-prevalencias-de-consumo-de-sustancias-psicoactivas-enprecosp2011"><i class="fa fa-check"></i><b>1.1.4</b> Encuesta Nacional sobre Prevalencias de Consumo de Sustancias Psicoactivas (ENPreCoSP2011)</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="materiales-y-herramientas.html"><a href="materiales-y-herramientas.html#herramientas"><i class="fa fa-check"></i><b>1.2</b> Herramientas</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="materiales-y-herramientas.html"><a href="materiales-y-herramientas.html#la-elección-de-r"><i class="fa fa-check"></i><b>1.2.1</b> La elección de R</a></li>
+<li class="chapter" data-level="1.2.2" data-path="materiales-y-herramientas.html"><a href="materiales-y-herramientas.html#instalación-de-r-y-rstudio"><i class="fa fa-check"></i><b>1.2.2</b> Instalación de R y RStudio</a></li>
+<li class="chapter" data-level="1.2.3" data-path="materiales-y-herramientas.html"><a href="materiales-y-herramientas.html#los-componentes-de-rstudio"><i class="fa fa-check"></i><b>1.2.3</b> Los componentes de RStudio</a></li>
+<li class="chapter" data-level="1.2.4" data-path="materiales-y-herramientas.html"><a href="materiales-y-herramientas.html#operaciones-en-el-script"><i class="fa fa-check"></i><b>1.2.4</b> Operaciones en el script</a></li>
+<li class="chapter" data-level="1.2.5" data-path="materiales-y-herramientas.html"><a href="materiales-y-herramientas.html#instalación-de-paquetes"><i class="fa fa-check"></i><b>1.2.5</b> Instalación de paquetes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html"><i class="fa fa-check"></i><b>2</b> Los datos estadísticos</a><ul>
+<li class="chapter" data-level="2.1" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#la-selección-de-la-información-pertinente"><i class="fa fa-check"></i><b>2.1</b> La selección de la información pertinente</a></li>
+<li class="chapter" data-level="2.2" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#los-individuos"><i class="fa fa-check"></i><b>2.2</b> Los individuos</a></li>
+<li class="chapter" data-level="2.3" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#las-variables"><i class="fa fa-check"></i><b>2.3</b> Las variables</a></li>
+<li class="chapter" data-level="2.4" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#las-categorías"><i class="fa fa-check"></i><b>2.4</b> Las categorías</a></li>
+<li class="chapter" data-level="2.5" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#los-símbolos-numéricos"><i class="fa fa-check"></i><b>2.5</b> Los símbolos numéricos</a></li>
+<li class="chapter" data-level="2.6" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#la-medición"><i class="fa fa-check"></i><b>2.6</b> La medición</a><ul>
+<li class="chapter" data-level="2.6.1" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#niveles-de-medición"><i class="fa fa-check"></i><b>2.6.1</b> Niveles de medición</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#resumen-de-los-niveles-de-medición"><i class="fa fa-check"></i><b>2.7</b> Resumen de los niveles de medición</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html"><i class="fa fa-check"></i><b>3</b> Distribuciones de frecuencia</a><ul>
+<li class="chapter" data-level="3.1" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#tablas-de-distribución-de-frecuencia"><i class="fa fa-check"></i><b>3.1</b> Tablas de distribución de frecuencia</a></li>
+<li class="chapter" data-level="3.2" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#recategorización"><i class="fa fa-check"></i><b>3.2</b> Recategorización</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#variable-discreta-con-muchas-categorías"><i class="fa fa-check"></i><b>3.2.1</b> Variable discreta con muchas categorías</a></li>
+<li class="chapter" data-level="3.2.2" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#variable-continua"><i class="fa fa-check"></i><b>3.2.2</b> Variable continua</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#la-presentación-gráfica-de-los-resultados"><i class="fa fa-check"></i><b>3.3</b> La presentación gráfica de los resultados</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html"><i class="fa fa-check"></i><b>4</b> La expresión resumida de la información</a><ul>
+<li class="chapter" data-level="4.1" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#medidas-de-posición"><i class="fa fa-check"></i><b>4.1</b> Medidas de posición</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#variables-nominales-proporciones"><i class="fa fa-check"></i><b>4.1.1</b> Variables nominales: proporciones</a></li>
+<li class="chapter" data-level="4.1.2" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#variables-nominales-tasas"><i class="fa fa-check"></i><b>4.1.2</b> Variables nominales: tasas</a></li>
+<li class="chapter" data-level="4.1.3" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#variables-nominales-razones"><i class="fa fa-check"></i><b>4.1.3</b> Variables nominales: razones</a></li>
+<li class="chapter" data-level="4.1.4" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#variables-nominales-el-modo"><i class="fa fa-check"></i><b>4.1.4</b> Variables nominales: el modo</a></li>
+<li class="chapter" data-level="4.1.5" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#variables-ordinales-percentiles"><i class="fa fa-check"></i><b>4.1.5</b> Variables ordinales: percentiles</a></li>
+<li class="chapter" data-level="4.1.6" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#variables-ordinales-la-mediana"><i class="fa fa-check"></i><b>4.1.6</b> Variables ordinales: la mediana</a></li>
+<li class="chapter" data-level="4.1.7" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#los-cuartiles"><i class="fa fa-check"></i><b>4.1.7</b> Los cuartiles</a></li>
+<li class="chapter" data-level="4.1.8" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#los-percentiles"><i class="fa fa-check"></i><b>4.1.8</b> Los percentiles</a></li>
+<li class="chapter" data-level="4.1.9" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#hacerlo-en-r"><i class="fa fa-check"></i><b>4.1.9</b> Hacerlo en R</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#la-forma-de-la-distribución"><i class="fa fa-check"></i><b>4.2</b> La forma de la distribución</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#asimetría"><i class="fa fa-check"></i><b>4.2.1</b> Asimetría</a></li>
+<li class="chapter" data-level="4.2.2" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#curtosis"><i class="fa fa-check"></i><b>4.2.2</b> Curtosis</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#box-plots"><i class="fa fa-check"></i><b>4.3</b> Box-plots</a></li>
+<li class="chapter" data-level="4.4" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#medidas-de-dispersión"><i class="fa fa-check"></i><b>4.4</b> Medidas de dispersión</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#recorrido"><i class="fa fa-check"></i><b>4.4.1</b> Recorrido</a></li>
+<li class="chapter" data-level="4.4.2" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#amplitud-intercuartílica"><i class="fa fa-check"></i><b>4.4.2</b> Amplitud intercuartílica</a></li>
+<li class="chapter" data-level="4.4.3" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#medidas-de-dispersión-basadas-en-la-media"><i class="fa fa-check"></i><b>4.4.3</b> Medidas de dispersión basadas en la media</a></li>
+<li class="chapter" data-level="4.4.4" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#varianza"><i class="fa fa-check"></i><b>4.4.4</b> Varianza</a></li>
+<li class="chapter" data-level="4.4.5" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#desviación-estándar"><i class="fa fa-check"></i><b>4.4.5</b> Desviación estándar</a></li>
+<li class="chapter" data-level="4.4.6" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#coeficiente-de-variación"><i class="fa fa-check"></i><b>4.4.6</b> Coeficiente de variación</a></li>
+<li class="chapter" data-level="4.4.7" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#hacerlo-en-r-1"><i class="fa fa-check"></i><b>4.4.7</b> Hacerlo en R</a></li>
+<li class="chapter" data-level="4.4.8" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#box-plots-y-dispersión"><i class="fa fa-check"></i><b>4.4.8</b> Box-plots y dispersión</a></li>
+<li class="chapter" data-level="4.4.9" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#medida-de-la-dispersión-cuando-no-hay-distancias"><i class="fa fa-check"></i><b>4.4.9</b> Medida de la dispersión cuando no hay distancias</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#el-individuo-en-relación-a-su-grupo"><i class="fa fa-check"></i><b>4.5</b> El individuo en relación a su grupo</a></li>
+<li class="chapter" data-level="4.6" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#resumen-de-medidas-descriptivas"><i class="fa fa-check"></i><b>4.6</b> Resumen de medidas descriptivas</a><ul>
+<li class="chapter" data-level="4.6.1" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#medidas-de-posición-1"><i class="fa fa-check"></i><b>4.6.1</b> Medidas de posición</a></li>
+<li class="chapter" data-level="4.6.2" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#medidas-de-dispersión-1"><i class="fa fa-check"></i><b>4.6.2</b> Medidas de dispersión</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html"><i class="fa fa-check"></i><b>5</b> Relación entre variables: los fundamentos</a><ul>
+<li class="chapter" data-level="5.1" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#tablas-de-contingencia"><i class="fa fa-check"></i><b>5.1</b> Tablas de contingencia</a></li>
+<li class="chapter" data-level="5.2" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#frecuencias-relativas"><i class="fa fa-check"></i><b>5.2</b> Frecuencias relativas</a></li>
+<li class="chapter" data-level="5.3" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#una-clasificación-en-referencia-al-tiempo"><i class="fa fa-check"></i><b>5.3</b> Una clasificación en referencia al tiempo</a></li>
+<li class="chapter" data-level="5.4" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#la-dirección-de-la-relación"><i class="fa fa-check"></i><b>5.4</b> La dirección de la relación</a></li>
+<li class="chapter" data-level="5.5" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#concepto-de-riesgo-relativo"><i class="fa fa-check"></i><b>5.5</b> Concepto de riesgo relativo</a></li>
+<li class="chapter" data-level="5.6" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#la-intensidad"><i class="fa fa-check"></i><b>5.6</b> La intensidad</a></li>
+<li class="chapter" data-level="5.7" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#el-concepto-de-independencia-estadística"><i class="fa fa-check"></i><b>5.7</b> El concepto de independencia estadística</a></li>
+<li class="chapter" data-level="5.8" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#hacerlo-en-r-2"><i class="fa fa-check"></i><b>5.8</b> Hacerlo en R</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html"><i class="fa fa-check"></i><b>6</b> Relación entre variables: el análisis</a><ul>
+<li class="chapter" data-level="6.1" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#variables-nominales-con-más-de-dos-categorías-cada-una"><i class="fa fa-check"></i><b>6.1</b> Variables nominales con más de dos categorías cada una</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#la-distancia-entre-frecuencias-esperadas-y-observadas"><i class="fa fa-check"></i><b>6.1.1</b> La distancia entre frecuencias esperadas y observadas</a></li>
+<li class="chapter" data-level="6.1.2" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#coeficientes-de-asociación-para-variables-nominales"><i class="fa fa-check"></i><b>6.1.2</b> Coeficientes de asociación para variables nominales</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#variables-de-nivel-ordinal"><i class="fa fa-check"></i><b>6.2</b> Variables de nivel ordinal</a></li>
+<li class="chapter" data-level="6.3" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#nivel-intervalar-o-proporcional"><i class="fa fa-check"></i><b>6.3</b> Nivel intervalar o proporcional</a></li>
+<li class="chapter" data-level="6.4" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#dicotomías-reales-y-artificiales"><i class="fa fa-check"></i><b>6.4</b> Dicotomías reales y artificiales</a></li>
+<li class="chapter" data-level="6.5" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#niveles-de-medición-combinados"><i class="fa fa-check"></i><b>6.5</b> Niveles de medición combinados</a><ul>
+<li class="chapter" data-level="6.5.1" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#una-variable-dicotómica-real-y-una-proporcional"><i class="fa fa-check"></i><b>6.5.1</b> Una variable dicotómica real y una proporcional</a></li>
+<li class="chapter" data-level="6.5.2" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#una-variable-continua-dicotomizada-y-una-proporcional"><i class="fa fa-check"></i><b>6.5.2</b> Una variable continua dicotomizada y una proporcional</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#resumen-de-coeficientes-de-asociación"><i class="fa fa-check"></i><b>6.6</b> Resumen de coeficientes de asociación</a></li>
+<li class="chapter" data-level="6.7" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#matriz-de-correlaciones"><i class="fa fa-check"></i><b>6.7</b> Matriz de correlaciones</a></li>
+<li class="chapter" data-level="6.8" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#la-forma-de-la-relación"><i class="fa fa-check"></i><b>6.8</b> La forma de la relación</a><ul>
+<li class="chapter" data-level="6.8.1" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#ordenada-al-origen"><i class="fa fa-check"></i><b>6.8.1</b> Ordenada al origen</a></li>
+<li class="chapter" data-level="6.8.2" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#pendiente"><i class="fa fa-check"></i><b>6.8.2</b> Pendiente</a></li>
+<li class="chapter" data-level="6.8.3" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#obtención-de-la-recta-de-regresión"><i class="fa fa-check"></i><b>6.8.3</b> Obtención de la recta de regresión</a></li>
+</ul></li>
+<li class="chapter" data-level="6.9" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#la-importancia-de-la-visualización"><i class="fa fa-check"></i><b>6.9</b> La importancia de la visualización</a></li>
+<li class="chapter" data-level="6.10" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#hacerlo-en-r-3"><i class="fa fa-check"></i><b>6.10</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="6.10.1" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#distancia-chi2"><i class="fa fa-check"></i><b>6.10.1</b> Distancia <span class="math inline">\(\chi^{2}\)</span></a></li>
+<li class="chapter" data-level="6.10.2" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#coeficientes"><i class="fa fa-check"></i><b>6.10.2</b> Coeficientes</a></li>
+<li class="chapter" data-level="6.10.3" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#modelo-lineal"><i class="fa fa-check"></i><b>6.10.3</b> Modelo lineal</a></li>
+<li class="chapter" data-level="6.10.4" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#cuarteto-de-anscombe"><i class="fa fa-check"></i><b>6.10.4</b> Cuarteto de Anscombe</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html"><i class="fa fa-check"></i><b>7</b> Obtención de la muestra</a><ul>
+<li class="chapter" data-level="7.1" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#población"><i class="fa fa-check"></i><b>7.1</b> Población</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestra"><i class="fa fa-check"></i><b>7.1.1</b> Muestra</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreos-probabilísticos"><i class="fa fa-check"></i><b>7.2</b> Muestreos probabilísticos</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-irrestricto-aleatorio-o-aleatorio-simple"><i class="fa fa-check"></i><b>7.2.1</b> Muestreo irrestricto aleatorio o aleatorio simple</a></li>
+<li class="chapter" data-level="7.2.2" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-sistemático"><i class="fa fa-check"></i><b>7.2.2</b> Muestreo sistemático</a></li>
+<li class="chapter" data-level="7.2.3" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-estratificado"><i class="fa fa-check"></i><b>7.2.3</b> Muestreo estratificado</a></li>
+<li class="chapter" data-level="7.2.4" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-por-conglomerados"><i class="fa fa-check"></i><b>7.2.4</b> Muestreo por conglomerados</a></li>
+<li class="chapter" data-level="7.2.5" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#método-de-kish"><i class="fa fa-check"></i><b>7.2.5</b> Método de Kish</a></li>
+<li class="chapter" data-level="7.2.6" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#uso-combinado-de-técnicas-de-muestreo"><i class="fa fa-check"></i><b>7.2.6</b> Uso combinado de técnicas de muestreo</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreos-no-probabilísticos"><i class="fa fa-check"></i><b>7.3</b> Muestreos no probabilísticos</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-por-cuotas"><i class="fa fa-check"></i><b>7.3.1</b> Muestreo por cuotas</a></li>
+<li class="chapter" data-level="7.3.2" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-de-juicio-o-intencional"><i class="fa fa-check"></i><b>7.3.2</b> Muestreo de juicio o intencional</a></li>
+<li class="chapter" data-level="7.3.3" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-autoelegido"><i class="fa fa-check"></i><b>7.3.3</b> Muestreo autoelegido</a></li>
+<li class="chapter" data-level="7.3.4" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-accidental-o-según-disponibilidad"><i class="fa fa-check"></i><b>7.3.4</b> Muestreo accidental o según disponibilidad</a></li>
+<li class="chapter" data-level="7.3.5" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-bola-de-nieve"><i class="fa fa-check"></i><b>7.3.5</b> Muestreo bola de nieve</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#resumen-de-técnicas-de-muestreo"><i class="fa fa-check"></i><b>7.4</b> Resumen de técnicas de muestreo</a></li>
+<li class="chapter" data-level="7.5" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#hacerlo-en-r-4"><i class="fa fa-check"></i><b>7.5</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="7.5.1" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#aleatorio-simple"><i class="fa fa-check"></i><b>7.5.1</b> Aleatorio simple</a></li>
+<li class="chapter" data-level="7.5.2" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#estratificado"><i class="fa fa-check"></i><b>7.5.2</b> Estratificado</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html"><i class="fa fa-check"></i><b>8</b> Probabilidad: los fundamentos</a><ul>
+<li class="chapter" data-level="8.1" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#el-rol-de-la-probabilidad-en-estadística"><i class="fa fa-check"></i><b>8.1</b> El rol de la probabilidad en Estadística</a></li>
+<li class="chapter" data-level="8.2" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#formas-para-asignar-probabilidades"><i class="fa fa-check"></i><b>8.2</b> Formas para asignar probabilidades</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#asignación-a-priori"><i class="fa fa-check"></i><b>8.2.1</b> Asignación a priori</a></li>
+<li class="chapter" data-level="8.2.2" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#asignación-a-posteriori"><i class="fa fa-check"></i><b>8.2.2</b> Asignación a posteriori</a></li>
+<li class="chapter" data-level="8.2.3" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#la-relación-entre-asignación-a-priori-y-a-posteriori"><i class="fa fa-check"></i><b>8.2.3</b> La relación entre asignación a priori y a posteriori</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#operando-con-probabilidades"><i class="fa fa-check"></i><b>8.3</b> Operando con probabilidades</a><ul>
+<li class="chapter" data-level="8.3.1" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#con-probabilidades-frecuenciales"><i class="fa fa-check"></i><b>8.3.1</b> Con probabilidades frecuenciales</a></li>
+<li class="chapter" data-level="8.3.2" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#con-probabilidades-a-priori"><i class="fa fa-check"></i><b>8.3.2</b> Con probabilidades a priori</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#el-teorema-de-bayes"><i class="fa fa-check"></i><b>8.4</b> El teorema de Bayes</a></li>
+<li class="chapter" data-level="8.5" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#variables-aleatorias"><i class="fa fa-check"></i><b>8.5</b> Variables aleatorias</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html"><i class="fa fa-check"></i><b>9</b> Probabilidad: los modelos</a><ul>
+<li class="chapter" data-level="9.1" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#concepto-de-modelización"><i class="fa fa-check"></i><b>9.1</b> Concepto de modelización</a></li>
+<li class="chapter" data-level="9.2" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#distribución-binomial"><i class="fa fa-check"></i><b>9.2</b> Distribución binomial</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#esperanza-y-varianza"><i class="fa fa-check"></i><b>9.2.1</b> Esperanza y varianza</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#distribución-normal"><i class="fa fa-check"></i><b>9.3</b> Distribución normal</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#percentiles"><i class="fa fa-check"></i><b>9.3.1</b> Percentiles</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#la-idea-de-grados-de-libertad"><i class="fa fa-check"></i><b>9.4</b> La idea de grados de libertad</a></li>
+<li class="chapter" data-level="9.5" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#la-distribución-ji-cuadrado-chi2"><i class="fa fa-check"></i><b>9.5</b> La distribución ji cuadrado (<span class="math inline">\(\chi^{2}\)</span>)</a></li>
+<li class="chapter" data-level="9.6" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#la-distribución-t-de-student"><i class="fa fa-check"></i><b>9.6</b> La distribución t de Student</a><ul>
+<li class="chapter" data-level="9.6.1" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#la-distribución-f"><i class="fa fa-check"></i><b>9.6.1</b> La distribución F</a></li>
+</ul></li>
+<li class="chapter" data-level="9.7" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#hacerlo-en-r-5"><i class="fa fa-check"></i><b>9.7</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="9.7.1" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#probabilidades"><i class="fa fa-check"></i><b>9.7.1</b> Probabilidades</a></li>
+<li class="chapter" data-level="9.7.2" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#percentiles-1"><i class="fa fa-check"></i><b>9.7.2</b> Percentiles</a></li>
+<li class="chapter" data-level="9.7.3" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#áreas-centrales"><i class="fa fa-check"></i><b>9.7.3</b> Áreas centrales</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html"><i class="fa fa-check"></i><b>10</b> Distribuciones en el muestreo</a><ul>
+<li class="chapter" data-level="10.1" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#parámetros-y-estimadores"><i class="fa fa-check"></i><b>10.1</b> Parámetros y estimadores</a></li>
+<li class="chapter" data-level="10.2" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#características-de-los-estimadores"><i class="fa fa-check"></i><b>10.2</b> Características de los estimadores</a><ul>
+<li class="chapter" data-level="10.2.1" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#insesgabilidad"><i class="fa fa-check"></i><b>10.2.1</b> Insesgabilidad</a></li>
+<li class="chapter" data-level="10.2.2" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#consistencia"><i class="fa fa-check"></i><b>10.2.2</b> Consistencia</a></li>
+<li class="chapter" data-level="10.2.3" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#eficiencia"><i class="fa fa-check"></i><b>10.2.3</b> Eficiencia</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#distribución-de-la-media-muestral"><i class="fa fa-check"></i><b>10.3</b> Distribución de la media muestral</a></li>
+<li class="chapter" data-level="10.4" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#distribución-de-la-proporción-muestral"><i class="fa fa-check"></i><b>10.4</b> Distribución de la proporción muestral</a></li>
+<li class="chapter" data-level="10.5" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#muestras-pequeñas"><i class="fa fa-check"></i><b>10.5</b> Muestras pequeñas</a></li>
+<li class="chapter" data-level="10.6" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#distribución-de-la-varianza"><i class="fa fa-check"></i><b>10.6</b> Distribución de la varianza</a></li>
+<li class="chapter" data-level="10.7" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#distribución-del-cociente-de-varianzas"><i class="fa fa-check"></i><b>10.7</b> Distribución del cociente de varianzas</a></li>
+<li class="chapter" data-level="10.8" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#resumen-de-la-relación-entre-estimadores-y-parámetros"><i class="fa fa-check"></i><b>10.8</b> Resumen de la relación entre estimadores y parámetros</a></li>
+<li class="chapter" data-level="10.9" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#hacerlo-en-r-6"><i class="fa fa-check"></i><b>10.9</b> Hacerlo en R</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html"><i class="fa fa-check"></i><b>11</b> Estimación por intervalo</a><ul>
+<li class="chapter" data-level="11.1" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#estimación-puntual"><i class="fa fa-check"></i><b>11.1</b> Estimación puntual</a></li>
+<li class="chapter" data-level="11.2" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#intervalos-de-confianza"><i class="fa fa-check"></i><b>11.2</b> Intervalos de confianza</a><ul>
+<li class="chapter" data-level="11.2.1" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#estimación-de-la-media"><i class="fa fa-check"></i><b>11.2.1</b> Estimación de la media</a></li>
+<li class="chapter" data-level="11.2.2" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#estimación-de-la-proporción"><i class="fa fa-check"></i><b>11.2.2</b> Estimación de la proporción</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#la-calidad-de-las-estimaciones-por-intervalo"><i class="fa fa-check"></i><b>11.3</b> La calidad de las estimaciones por intervalo</a><ul>
+<li class="chapter" data-level="11.3.1" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#el-error-de-estimación-en-la-proporción"><i class="fa fa-check"></i><b>11.3.1</b> El error de estimación en la proporción</a></li>
+<li class="chapter" data-level="11.3.2" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#probabilidad-de-cobertura"><i class="fa fa-check"></i><b>11.3.2</b> Probabilidad de cobertura</a></li>
+</ul></li>
+<li class="chapter" data-level="11.4" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#hacerlo-en-r-7"><i class="fa fa-check"></i><b>11.4</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="11.4.1" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#intervalo-para-la-media"><i class="fa fa-check"></i><b>11.4.1</b> Intervalo para la media</a></li>
+<li class="chapter" data-level="11.4.2" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#intervalo-para-la-proporción"><i class="fa fa-check"></i><b>11.4.2</b> Intervalo para la proporción</a></li>
+<li class="chapter" data-level="11.4.3" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#cobertura"><i class="fa fa-check"></i><b>11.4.3</b> Cobertura</a></li>
+<li class="chapter" data-level="11.4.4" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#operaciones-sobre-la-base-enprecosp"><i class="fa fa-check"></i><b>11.4.4</b> Operaciones sobre la base ENPreCoSP</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html"><i class="fa fa-check"></i><b>12</b> Prueba de hipótesis: la lógica</a><ul>
+<li class="chapter" data-level="12.1" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#el-razonamiento-de-la-prueba-de-hipótesis"><i class="fa fa-check"></i><b>12.1</b> El razonamiento de la prueba de hipótesis</a><ul>
+<li class="chapter" data-level="12.1.1" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#prueba-sobre-la-media"><i class="fa fa-check"></i><b>12.1.1</b> Prueba sobre la media</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#los-puntos-críticos-en-términos-del-estimador"><i class="fa fa-check"></i><b>12.2</b> Los puntos críticos en términos del estimador</a><ul>
+<li class="chapter" data-level="12.2.1" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#pruebas-unilaterales"><i class="fa fa-check"></i><b>12.2.1</b> Pruebas unilaterales</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#prueba-sobre-la-proporción"><i class="fa fa-check"></i><b>12.3</b> Prueba sobre la proporción</a></li>
+<li class="chapter" data-level="12.4" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#tipos-de-error-en-las-pruebas-de-hipótesis"><i class="fa fa-check"></i><b>12.4</b> Tipos de error en las pruebas de hipótesis</a></li>
+<li class="chapter" data-level="12.5" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#etii-mu-alpha-y-n"><i class="fa fa-check"></i><b>12.5</b> <em>ETII:</em> <span class="math inline">\(\mu\)</span>, <span class="math inline">\(\alpha\)</span> y <span class="math inline">\(n\)</span></a><ul>
+<li class="chapter" data-level="12.5.1" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#curva-de-potencia"><i class="fa fa-check"></i><b>12.5.1</b> Curva de potencia</a></li>
+<li class="chapter" data-level="12.5.2" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#significación-estadística-y-valor-p"><i class="fa fa-check"></i><b>12.5.2</b> Significación estadística y valor <span class="math inline">\(p\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="12.6" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#muestras-pequeñas-y-pruebas-t"><i class="fa fa-check"></i><b>12.6</b> Muestras pequeñas y pruebas <span class="math inline">\(t\)</span></a></li>
+<li class="chapter" data-level="12.7" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#hacerlo-en-r-8"><i class="fa fa-check"></i><b>12.7</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="12.7.1" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#media"><i class="fa fa-check"></i><b>12.7.1</b> Media</a></li>
+<li class="chapter" data-level="12.7.2" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#proporción"><i class="fa fa-check"></i><b>12.7.2</b> Proporción</a></li>
+</ul></li>
+<li class="chapter" data-level="12.8" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#resumen-de-pruebas-sobre-una-muestra"><i class="fa fa-check"></i><b>12.8</b> Resumen de pruebas sobre una muestra</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html"><i class="fa fa-check"></i><b>13</b> Prueba de hipótesis: las aplicaciones</a><ul>
+<li class="chapter" data-level="13.1" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#muestras-independientes"><i class="fa fa-check"></i><b>13.1</b> Muestras independientes</a><ul>
+<li class="chapter" data-level="13.1.1" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#prueba-de-diferencia-de-medias"><i class="fa fa-check"></i><b>13.1.1</b> Prueba de diferencia de medias</a></li>
+<li class="chapter" data-level="13.1.2" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#muestras-apareadas"><i class="fa fa-check"></i><b>13.1.2</b> Muestras apareadas</a></li>
+<li class="chapter" data-level="13.1.3" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#coeficiente-r-de-pearson"><i class="fa fa-check"></i><b>13.1.3</b> Coeficiente r de Pearson</a></li>
+</ul></li>
+<li class="chapter" data-level="13.2" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#hacerlo-en-r-9"><i class="fa fa-check"></i><b>13.2</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="13.2.1" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#ejemplo-1."><i class="fa fa-check"></i><b>13.2.1</b> Ejemplo 1.</a></li>
+<li class="chapter" data-level="13.2.2" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#ejemplo-2."><i class="fa fa-check"></i><b>13.2.2</b> Ejemplo 2.</a></li>
+<li class="chapter" data-level="13.2.3" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#aplicación-a-los-datos-de-adultos-mayores"><i class="fa fa-check"></i><b>13.2.3</b> Aplicación a los datos de Adultos Mayores</a></li>
+<li class="chapter" data-level="13.2.4" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#prueba-apareada"><i class="fa fa-check"></i><b>13.2.4</b> Prueba apareada</a></li>
+<li class="chapter" data-level="13.2.5" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#coeficiente-de-correlación"><i class="fa fa-check"></i><b>13.2.5</b> Coeficiente de correlación</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html"><i class="fa fa-check"></i><b>14</b> Cuando los supuestos no se cumplen</a><ul>
+<li class="chapter" data-level="14.0.1" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#las-pruebas-ji-cuadrado-o-chi-cuadrado"><i class="fa fa-check"></i><b>14.0.1</b> Las pruebas ji cuadrado (o chi cuadrado)</a></li>
+<li class="chapter" data-level="14.0.2" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#coeficiente-r_s-de-spearman"><i class="fa fa-check"></i><b>14.0.2</b> Coeficiente <span class="math inline">\(r_s\)</span> de Spearman</a></li>
+<li class="chapter" data-level="14.0.3" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#alternativas-no-paramétricas-a-las-pruebas-t"><i class="fa fa-check"></i><b>14.0.3</b> Alternativas no paramétricas a las pruebas t</a></li>
+<li class="chapter" data-level="14.1" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#hacerlo-en-r-10"><i class="fa fa-check"></i><b>14.1</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="14.1.1" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#ejemplo-1"><i class="fa fa-check"></i><b>14.1.1</b> Ejemplo 1</a></li>
+<li class="chapter" data-level="14.1.2" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#ejemplo-2"><i class="fa fa-check"></i><b>14.1.2</b> Ejemplo 2</a></li>
+<li class="chapter" data-level="14.1.3" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#prueba-de-la-mediana-1"><i class="fa fa-check"></i><b>14.1.3</b> Prueba de la mediana</a></li>
+<li class="chapter" data-level="14.1.4" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#prueba-de-wilcoxon"><i class="fa fa-check"></i><b>14.1.4</b> Prueba de Wilcoxon</a></li>
+<li class="chapter" data-level="14.1.5" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#muestras-apareadas-1"><i class="fa fa-check"></i><b>14.1.5</b> Muestras apareadas</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html"><i class="fa fa-check"></i><b>15</b> Tamaño del efecto</a><ul>
+<li class="chapter" data-level="15.1" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#significación-estadística-y-significación-práctica"><i class="fa fa-check"></i><b>15.1</b> Significación estadística y significación práctica</a></li>
+<li class="chapter" data-level="15.2" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#medidas-de-tamaño-del-efecto"><i class="fa fa-check"></i><b>15.2</b> Medidas de tamaño del efecto</a><ul>
+<li class="chapter" data-level="15.2.1" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#prueba-t-para-diferencia-de-medias"><i class="fa fa-check"></i><b>15.2.1</b> Prueba t para diferencia de medias</a></li>
+<li class="chapter" data-level="15.2.2" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#análisis-de-la-varianza"><i class="fa fa-check"></i><b>15.2.2</b> Análisis de la varianza</a></li>
+<li class="chapter" data-level="15.2.3" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#correlaciones"><i class="fa fa-check"></i><b>15.2.3</b> Correlaciones</a></li>
+<li class="chapter" data-level="15.2.4" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#regresión-lineal"><i class="fa fa-check"></i><b>15.2.4</b> Regresión lineal</a></li>
+<li class="chapter" data-level="15.2.5" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#pruebas-ji-cuadrado"><i class="fa fa-check"></i><b>15.2.5</b> Pruebas ji cuadrado</a></li>
+</ul></li>
+<li class="chapter" data-level="15.3" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#análisis-de-la-potencia"><i class="fa fa-check"></i><b>15.3</b> Análisis de la potencia</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Generado con bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Estadística para Ciencias Sociales con R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="probabilidad-los-fundamentos" class="section level1">
+<h1><span class="header-section-number">Capítulo 8</span> Probabilidad: los fundamentos</h1>
+<div id="el-rol-de-la-probabilidad-en-estadística" class="section level2">
+<h2><span class="header-section-number">8.1</span> El rol de la probabilidad en Estadística</h2>
+<p>Para hacer inferencias se requiere de la probabilidad porque se trabaja con situaciones inciertas, que no se conocen y que son difíciles de
+prever. Por eso se comienza aquí haciendo la distinción entre las
+preguntas que pueden responderse con certeza y las que no. De las
+primeras, son ejemplos: ¿cuándo será el próximo eclipse de sol? ¿Cómo varía el diámetro de la pupila luego del consumo de alcohol?
+Sobre estas preguntas tenemos, o bien un conocimiento profundo sobre el movimiento de los astros, o bien una gran cantidad de observaciones, que nos permiten dar una respuesta certera.</p>
+<p>Por el contrario, si preguntamos ¿cuál es el efecto sobre la
+personalidad, de haber tenido figuras parentales autoritarias en la
+niñez? ¿Qué determina que algunos alumnos tengan éxito en la escuela y otros no? ¿Cómo afecta la estabilidad económica a la intención de voto?,
+solo podemos ofrecer respuestas parciales, tentativas, aproximadas. Se
+trata de hechos que dependen de muchos factores a los que no conocemos
+en su totalidad, por lo que el resultado es variable: algunas personas
+criadas en ambientes autoritarios desarrollan una personalidad
+autoritaria, otras no. En algunos alumnos, el hecho que sus padres
+tengan estudios elevados los ayuda a tener éxito en la escuela, pero
+también hay hijos de personas muy educadas que fracasan en la escuela.
+La estabilidad económica que favorecería una reelección, puede estar
+acompañada de mucha pobreza, o de corrupción; también eventos
+inesperados antes de las elecciones pueden cambiar decisiones a último
+momento. Hay razones más allá de nuestro alcance que inciden en la
+personalidad o en el resultado de la escuela, o la intención de voto. En
+estas situaciones, cuando no tenemos toda la información que hace falta
+para predecir el resultado, recurriremos a la probabilidad.</p>
+<p>Ingresaremos al tema desde situaciones muy sencillas, desde el muy usado ejemplo de arrojar una moneda. Pero detengámonos un momento en él: si
+tuviéramos toda la información necesaria para predecir la trayectoria de
+la moneda en el aire (distancia desde donde se arroja, fuerza que se le
+aplica, el lugar de la moneda donde se aplica esa fuerza, eventuales
+corrientes de aire que puedan incidir en el desplazamiento de la moneda,
+etc.), podríamos predecir con certeza el resultado. Esa información no
+está disponible, el lado del que caiga la moneda está determinado por
+una multiplicidad de factores, por esa razón no podemos anticipar el
+resultado de la tirada. A esa ignorancia la resumimos diciendo que el
+resultado de la tirada de la moneda “depende del azar” y llamamos al
+experimento de tirar una moneda “experimento aleatorio”.</p>
+<p>Es un paso muy largo ir desde este ejemplo a decir que el modo en que se desarrolle la personalidad de alguien que ha sido criado en una familia autoritaria depende del azar o que la distribución de votos en las próximas elecciones depende del azar. Sabemos que esos resultados no dependen del azar, dependen de muchos factores que ignoramos, por eso usaremos probabilidades en las disciplinas que tratan con sujetos humanos, por la imposibilidad de predecir con certeza los resultados. Podremos decir que un alumno cuyos padres valoran la educación tiene una probabilidad mayor de tener éxito en la escuela, pero no podremos asegurar que lo tendrá. Es razonable creer que si un gobierno logró estabilidad económica, tendrá más posibilidades de ser reelegido, pero no hay certeza sobre que lo será. Los tratamientos más exitosos encuentran casos en los que no logran resultados, por lo que su efectividad no puede garantizarse completamente, hay una componente impredecible en la evolución de la patología.</p>
+<p>La probabilidad trata con la incertidumbre, con lo que hay entre la
+certeza en que algo ocurrirá y la certeza en que no ocurrirá.</p>
+<p>Los eventos que no son azarosos no tienen que ver con probabilidades: no
+asignamos probabilidad a un eclipse porque hay conocimiento suficiente
+como para saber cuándo ocurrirá; pero sí se asigna probabilidad a una
+tormenta, porque no se conocen simultáneamente todos los factores que la
+determinan. Se asignan probabilidades a hechos de cuya ocurrencia no se
+tiene certeza. Con la probabilidad se cuantifica (se le asigna un
+número) a la expectativa sobre el fenómeno. Intuitivamente, cuando
+decimos que algo tiene “mucha probabilidad de suceder” es porque estamos
+bastante seguros que sucederá. Esta es la posición conocida como “azar
+epistemológico”, que considera azarosos o aleatorios a los eventos cuya
+ocurrencia no puede anticiparse con certeza. Desde esta posición, que
+sea azaroso o no, depende el conocimiento que se tenga sobre los
+determinantes del evento.</p>
+<p>La cuantificación de la probabilidad implica que ésta se expresa con un
+número que está comprendido entre cero y uno. Que un evento tenga
+probabilidad cero significa que es imposible que suceda. Si un evento
+tiene probabilidad igual a uno, se llama “evento seguro”, y quiere decir
+que hay certeza en que sucederá.</p>
+</div>
+<div id="formas-para-asignar-probabilidades" class="section level2">
+<h2><span class="header-section-number">8.2</span> Formas para asignar probabilidades</h2>
+<div id="asignación-a-priori" class="section level3">
+<h3><span class="header-section-number">8.2.1</span> Asignación a priori</h3>
+<p>Podemos partir de esa idea intuitiva de probabilidad, ligada a procesos
+cuya ocurrencia no nos es conocida con certeza. Para evocar esta idea,
+el ejemplo que más a menudo se cita es el del lanzamiento de una moneda,
+¿cuál es la probabilidad de obtener “cara” al arrojar una moneda? Si la
+respuesta es <span class="math inline">\(1/2\)</span> (o 0,50 ó 50 y 50), debe tenerse en cuenta que eso solo
+será cierto si la moneda está equilibrada, es decir si tiene iguales
+chances de salir de un lado que del otro. Si esto es cierto,
+efectivamente la probabilidad de obtener cara es <span class="math inline">\(1/2\)</span> (ó 0,50). Con
+idéntica condición, la probabilidad de obtener un 5 al arrojar un dado
+es <span class="math inline">\(1/6\)</span> (ó 0,17). Esta asignación de probabilidad a los resultados de un
+experimento es previa a su realización, no es necesario tirar realmente
+la moneda: es suficiente con que tengamos razones para <em>suponer</em> que
+está equilibrada, para poder afirmar que la probabilidad de cara es <span class="math inline">\(1/2\)</span>.
+Diremos en este caso que asignamos la probabilidad <em>a priori</em>, es decir,
+antes de hacer el experimento.</p>
+<p>De mismo modo sucede si el evento que nos interesa en un poco más
+complejo. Por ejemplo: ¿Cuál es la probabilidad de obtener un número
+mayor a cuatro si se tira un dado? Debido a que hay dos números mayores
+a cuatro (5 y 6), el evento tiene dos casos a su favor y hay seis
+resultados posibles, por lo que la probabilidad será: <span class="math inline">\(2/6\)</span> (ó <span class="math inline">\(1/3\)</span>, si se
+simplifica la fracción).</p>
+<p>La expresión formal de esta asignación de probabilidades es.</p>
+<p><span class="math display">\[P(A)=\frac{\#A}{\#\Omega}\]</span></p>
+<p>En la que <span class="math inline">\(\#A\)</span> (que se lee “numeral de A”) indica el número de maneras enque puede suceder el evento A, y <span class="math inline">\(\#\Omega\)</span> (numeral de omega) es el número
+total de resultados que se pueden obtener al realizar el experimento. <span class="math inline">\(\Omega\)</span>
+es el conjunto de resultados posibles, es llamado <em>espacio muestral</em>. En
+el caso del ejemplo, el experimento es el de tirar el dado y buscar un
+número mayor que cuatro, <span class="math inline">\(\#A\)</span> es 2 porque son las formas en que puede
+obtenerse un número mayor que cuatro, y <span class="math inline">\(\#\Omega\)</span> es 6, que es el número total
+de resultados posibles al tirar un dado.</p>
+<p>Con este mismo razonamiento, la probabilidad de obtener un número par es
+<span class="math inline">\(3/6\)</span> (<span class="math inline">\(1/2\)</span> después de simplificar), porque hay tres números pares (2, 4 y
+6) en un dado.</p>
+<p>Vamos a un caso más complejo: tiremos ahora dos dados y tomemos en
+cuenta la suma de los dos puntajes, a esa suma la llamaremos <span class="math inline">\(S\)</span>. El
+mínimo número que puede resultar es dos (que ambos dados salgan uno) y
+el máximo es doce (ambos seis), entonces hay once resultados posibles de
+esta variable (que son: <span class="math inline">\(S = 2\)</span>, <span class="math inline">\(S = 3\)</span>, <span class="math inline">\(S = 4\)</span>, <span class="math inline">\(S = 5\)</span>, <span class="math inline">\(S = 6\)</span>, <span class="math inline">\(S = 7\)</span>, <span class="math inline">\(S = 8\)</span>,
+<span class="math inline">\(S = 9\)</span>, <span class="math inline">\(S = 10\)</span>, <span class="math inline">\(S = 11\)</span> y <span class="math inline">\(S = 12\)</span>), algunos de los cuales pueden suceder de
+varias formas. Estos resultados posibles y sus formas de obtención se
+ven de manera esquemática a continuación:</p>
+<!--EB: no salen muy bine en html estas tablas,se corren los título, verías si se las puede mejorar-->
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:unnamed-chunk-236">Tabla 8.1: </span>Resultados posibles de la suma de los puntajes de dos dados.
+</caption>
+<thead>
+<tr>
+<th style="border-bottom:hidden" colspan="2">
+</th>
+<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="6">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Primer dado
+</div>
+</th>
+</tr>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:center;">
+</th>
+<th style="text-align:center;">
+<strong>1</strong>
+</th>
+<th style="text-align:center;">
+<strong>2</strong>
+</th>
+<th style="text-align:center;">
+<strong>3</strong>
+</th>
+<th style="text-align:center;">
+<strong>4</strong>
+</th>
+<th style="text-align:center;">
+<strong>5</strong>
+</th>
+<th style="text-align:center;">
+<strong>6</strong>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;vertical-align: top !important;" rowspan="6">
+Segundo dado
+</td>
+<td style="text-align:center;">
+<strong>1</strong>
+</td>
+<td style="text-align:center;">
+2
+</td>
+<td style="text-align:center;">
+3
+</td>
+<td style="text-align:center;">
+4
+</td>
+<td style="text-align:center;">
+5
+</td>
+<td style="text-align:center;">
+6
+</td>
+<td style="text-align:center;">
+7
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<strong>2</strong>
+</td>
+<td style="text-align:center;">
+3
+</td>
+<td style="text-align:center;">
+4
+</td>
+<td style="text-align:center;">
+5
+</td>
+<td style="text-align:center;">
+6
+</td>
+<td style="text-align:center;">
+7
+</td>
+<td style="text-align:center;">
+8
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<strong>3</strong>
+</td>
+<td style="text-align:center;">
+4
+</td>
+<td style="text-align:center;">
+5
+</td>
+<td style="text-align:center;">
+6
+</td>
+<td style="text-align:center;">
+7
+</td>
+<td style="text-align:center;">
+8
+</td>
+<td style="text-align:center;">
+9
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<strong>4</strong>
+</td>
+<td style="text-align:center;">
+5
+</td>
+<td style="text-align:center;">
+6
+</td>
+<td style="text-align:center;">
+7
+</td>
+<td style="text-align:center;">
+8
+</td>
+<td style="text-align:center;">
+9
+</td>
+<td style="text-align:center;">
+10
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<strong>5</strong>
+</td>
+<td style="text-align:center;">
+6
+</td>
+<td style="text-align:center;">
+7
+</td>
+<td style="text-align:center;">
+8
+</td>
+<td style="text-align:center;">
+9
+</td>
+<td style="text-align:center;">
+10
+</td>
+<td style="text-align:center;">
+11
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<strong>6</strong>
+</td>
+<td style="text-align:center;">
+7
+</td>
+<td style="text-align:center;">
+8
+</td>
+<td style="text-align:center;">
+9
+</td>
+<td style="text-align:center;">
+10
+</td>
+<td style="text-align:center;">
+11
+</td>
+<td style="text-align:center;">
+12
+</td>
+</tr>
+</tbody>
+</table>
+<p>Si bien los resultados posibles son 11, las formas en que estos pueden
+darse son 36; cada una de esas formas es un evento. El evento primer
+dado 5 y segundo dado 2 es diferente del evento primer dado 2 y segundo
+dado 5, aunque ambos conducen al mismo resultado de la suma: <span class="math inline">\(S=7\)</span>. Más precisamente,
+si indicamos los eventos con pares ordenados, los eventos <span class="math inline">\((1,6)\)</span>; <span class="math inline">\((6,1)\)</span>;
+<span class="math inline">\((2,5)\)</span>; <span class="math inline">\((5,2)\)</span>; <span class="math inline">\((3,4)\)</span>; <span class="math inline">\((4,3)\)</span> son diferentes pero todos corresponden a <span class="math inline">\(S=7\)</span>.</p>
+<p>Son entonces 36 los resultados posibles del experimento, por lo que <span class="math inline">\(\#\Omega\)</span>
+= 36. Ahora podemos calcular probabilidades para diferentes resultados.</p>
+<p>¿Cuál es la probabilidad que la suma sea 12?, lo que puede expresarse
+como: ¿cuál es <span class="math inline">\(P(S=12)\)</span>? Como esta suma solo puede lograrse si ambos
+dados salen 6, hay una sola manera en que se produzca el evento que nos
+interesa (suma doce), por lo que el <span class="math inline">\(\#A\)</span> es 1 y la probabilidad es
+entonces <span class="math inline">\(1/36\)</span>.</p>
+<blockquote>
+<p><span class="math inline">\(\#A = 1, P(S = 12)=1/36\)</span></p>
+</blockquote>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="border-bottom:hidden" colspan="2">
+</th>
+<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="6">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Primer dado
+</div>
+</th>
+</tr>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:center;">
+</th>
+<th style="text-align:center;">
+<strong>1</strong>
+</th>
+<th style="text-align:center;">
+<strong>2</strong>
+</th>
+<th style="text-align:center;">
+<strong>3</strong>
+</th>
+<th style="text-align:center;">
+<strong>4</strong>
+</th>
+<th style="text-align:center;">
+<strong>5</strong>
+</th>
+<th style="text-align:center;">
+<strong>6</strong>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;vertical-align: top !important;" rowspan="6">
+Segundo dado
+</td>
+<td style="text-align:center;">
+<strong>1</strong>
+</td>
+<td style="text-align:center;">
+2
+</td>
+<td style="text-align:center;">
+3
+</td>
+<td style="text-align:center;">
+4
+</td>
+<td style="text-align:center;">
+5
+</td>
+<td style="text-align:center;">
+6
+</td>
+<td style="text-align:center;">
+7
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<strong>2</strong>
+</td>
+<td style="text-align:center;">
+3
+</td>
+<td style="text-align:center;">
+4
+</td>
+<td style="text-align:center;">
+5
+</td>
+<td style="text-align:center;">
+6
+</td>
+<td style="text-align:center;">
+7
+</td>
+<td style="text-align:center;">
+8
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<strong>3</strong>
+</td>
+<td style="text-align:center;">
+4
+</td>
+<td style="text-align:center;">
+5
+</td>
+<td style="text-align:center;">
+6
+</td>
+<td style="text-align:center;">
+7
+</td>
+<td style="text-align:center;">
+8
+</td>
+<td style="text-align:center;">
+9
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<strong>4</strong>
+</td>
+<td style="text-align:center;">
+5
+</td>
+<td style="text-align:center;">
+6
+</td>
+<td style="text-align:center;">
+7
+</td>
+<td style="text-align:center;">
+8
+</td>
+<td style="text-align:center;">
+9
+</td>
+<td style="text-align:center;">
+10
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<strong>5</strong>
+</td>
+<td style="text-align:center;">
+6
+</td>
+<td style="text-align:center;">
+7
+</td>
+<td style="text-align:center;">
+8
+</td>
+<td style="text-align:center;">
+9
+</td>
+<td style="text-align:center;">
+10
+</td>
+<td style="text-align:center;">
+11
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<strong>6</strong>
+</td>
+<td style="text-align:center;">
+7
+</td>
+<td style="text-align:center;">
+8
+</td>
+<td style="text-align:center;">
+9
+</td>
+<td style="text-align:center;">
+10
+</td>
+<td style="text-align:center;">
+11
+</td>
+<td style="text-align:center;">
+<strong><em>12</em></strong>
+</td>
+</tr>
+</tbody>
+</table>
+<p>En cambio, si la pregunta es por la probabilidad de obtener un tres, hay
+más de una manera de llegar a ese resultado (que <span class="math inline">\(S = 3\)</span>). La suma 3 puede
+resultar de <span class="math inline">\(2+1\)</span> ó de <span class="math inline">\(1+2\)</span>, es decir que, o bien el primer dado sale 2 y
+el segundo 1 ó bien el primero sale 1 y el segundo 2. Hay así dos formas
+posibles para el evento <span class="math inline">\(S = 3\)</span>, y <span class="math inline">\(\#A\)</span> es 2, por lo que la probabilidad es
+<span class="math inline">\(P(S = 3) = 2/36\)</span>.</p>
+<blockquote>
+<p><span class="math inline">\(\#A = 2, P(S = 3)=2/36\)</span></p>
+</blockquote>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="border-bottom:hidden" colspan="2">
+</th>
+<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="6">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Primer dado
+</div>
+</th>
+</tr>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:center;">
+</th>
+<th style="text-align:center;">
+<strong>1</strong>
+</th>
+<th style="text-align:center;">
+<strong>2</strong>
+</th>
+<th style="text-align:center;">
+<strong>3</strong>
+</th>
+<th style="text-align:center;">
+<strong>4</strong>
+</th>
+<th style="text-align:center;">
+<strong>5</strong>
+</th>
+<th style="text-align:center;">
+<strong>6</strong>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;vertical-align: top !important;" rowspan="6">
+Segundo dado
+</td>
+<td style="text-align:center;">
+<strong>1</strong>
+</td>
+<td style="text-align:center;">
+2
+</td>
+<td style="text-align:center;">
+<strong><em>3</em></strong>
+</td>
+<td style="text-align:center;">
+4
+</td>
+<td style="text-align:center;">
+5
+</td>
+<td style="text-align:center;">
+6
+</td>
+<td style="text-align:center;">
+7
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<strong>2</strong>
+</td>
+<td style="text-align:center;">
+<strong><em>3</em></strong>
+</td>
+<td style="text-align:center;">
+4
+</td>
+<td style="text-align:center;">
+5
+</td>
+<td style="text-align:center;">
+6
+</td>
+<td style="text-align:center;">
+7
+</td>
+<td style="text-align:center;">
+8
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<strong>3</strong>
+</td>
+<td style="text-align:center;">
+4
+</td>
+<td style="text-align:center;">
+5
+</td>
+<td style="text-align:center;">
+6
+</td>
+<td style="text-align:center;">
+7
+</td>
+<td style="text-align:center;">
+8
+</td>
+<td style="text-align:center;">
+9
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<strong>4</strong>
+</td>
+<td style="text-align:center;">
+5
+</td>
+<td style="text-align:center;">
+6
+</td>
+<td style="text-align:center;">
+7
+</td>
+<td style="text-align:center;">
+8
+</td>
+<td style="text-align:center;">
+9
+</td>
+<td style="text-align:center;">
+10
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<strong>5</strong>
+</td>
+<td style="text-align:center;">
+6
+</td>
+<td style="text-align:center;">
+7
+</td>
+<td style="text-align:center;">
+8
+</td>
+<td style="text-align:center;">
+9
+</td>
+<td style="text-align:center;">
+10
+</td>
+<td style="text-align:center;">
+11
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<strong>6</strong>
+</td>
+<td style="text-align:center;">
+7
+</td>
+<td style="text-align:center;">
+8
+</td>
+<td style="text-align:center;">
+9
+</td>
+<td style="text-align:center;">
+10
+</td>
+<td style="text-align:center;">
+11
+</td>
+<td style="text-align:center;">
+12
+</td>
+</tr>
+</tbody>
+</table>
+<p>Otro ejemplo, sea <span class="math inline">\(P(S=7)\)</span>. La suma de siete puede obtenerse de muchas
+formas: <span class="math inline">\(1+6\)</span>, <span class="math inline">\(2+5\)</span>, <span class="math inline">\(3+4\)</span>, <span class="math inline">\(4+3\)</span>, <span class="math inline">\(5+2\)</span> ó <span class="math inline">\(6+1\)</span>. Hay seis combinaciones que
+conducen a <span class="math inline">\(S=7\)</span>, en consecuencia, la probabilidad es <span class="math inline">\(6/36\)</span>.</p>
+<blockquote>
+<p><span class="math inline">\(\#A = 6, P(S = 7)=6/36\)</span></p>
+</blockquote>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="border-bottom:hidden" colspan="2">
+</th>
+<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="6">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Primer dado
+</div>
+</th>
+</tr>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:center;">
+</th>
+<th style="text-align:center;">
+<strong>1</strong>
+</th>
+<th style="text-align:center;">
+<strong>2</strong>
+</th>
+<th style="text-align:center;">
+<strong>3</strong>
+</th>
+<th style="text-align:center;">
+<strong>4</strong>
+</th>
+<th style="text-align:center;">
+<strong>5</strong>
+</th>
+<th style="text-align:center;">
+<strong>6</strong>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;vertical-align: top !important;" rowspan="6">
+Segundo dado
+</td>
+<td style="text-align:center;">
+<strong>1</strong>
+</td>
+<td style="text-align:center;">
+2
+</td>
+<td style="text-align:center;">
+3
+</td>
+<td style="text-align:center;">
+4
+</td>
+<td style="text-align:center;">
+5
+</td>
+<td style="text-align:center;">
+6
+</td>
+<td style="text-align:center;">
+<strong><em>7</em></strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<strong>2</strong>
+</td>
+<td style="text-align:center;">
+3
+</td>
+<td style="text-align:center;">
+4
+</td>
+<td style="text-align:center;">
+5
+</td>
+<td style="text-align:center;">
+6
+</td>
+<td style="text-align:center;">
+<strong><em>7</em></strong>
+</td>
+<td style="text-align:center;">
+8
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<strong>3</strong>
+</td>
+<td style="text-align:center;">
+4
+</td>
+<td style="text-align:center;">
+5
+</td>
+<td style="text-align:center;">
+6
+</td>
+<td style="text-align:center;">
+<strong><em>7</em></strong>
+</td>
+<td style="text-align:center;">
+8
+</td>
+<td style="text-align:center;">
+9
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<strong>4</strong>
+</td>
+<td style="text-align:center;">
+5
+</td>
+<td style="text-align:center;">
+6
+</td>
+<td style="text-align:center;">
+<strong><em>7</em></strong>
+</td>
+<td style="text-align:center;">
+8
+</td>
+<td style="text-align:center;">
+9
+</td>
+<td style="text-align:center;">
+10
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<strong>5</strong>
+</td>
+<td style="text-align:center;">
+6
+</td>
+<td style="text-align:center;">
+<strong><em>7</em></strong>
+</td>
+<td style="text-align:center;">
+8
+</td>
+<td style="text-align:center;">
+9
+</td>
+<td style="text-align:center;">
+10
+</td>
+<td style="text-align:center;">
+11
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<strong>6</strong>
+</td>
+<td style="text-align:center;">
+<strong><em>7</em></strong>
+</td>
+<td style="text-align:center;">
+8
+</td>
+<td style="text-align:center;">
+9
+</td>
+<td style="text-align:center;">
+10
+</td>
+<td style="text-align:center;">
+11
+</td>
+<td style="text-align:center;">
+12
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="asignación-a-posteriori" class="section level3">
+<h3><span class="header-section-number">8.2.2</span> Asignación a posteriori</h3>
+<p>Consideremos ahora una situación más cercana a la experiencia:
+supongamos que de un curso se selecciona un alumno al azar ¿Cuál es la
+probabilidad que sea mujer? Aquí el supuesto de equilibrio no es válido
+a priori, en gran medida depende de la carrera de que se trata, las hay
+con muchas mujeres y con pocas. Por lo tanto no podemos suponer que es
+igualmente probable que resulte un varón o una mujer y no podemos
+asignar probabilidad <span class="math inline">\(1/2\)</span> a cada resultado. Aunque el experimento tenga dos
+resultados posibles, éstos no son igualmente probables.</p>
+<p>En otro ejemplo, si al alumno aleatoriamente seleccionado (por ejemplo, el que ocupa el lugar 98 en la lista de inscriptos) se le pregunta
+por el tipo de colegio del que egresó, con los resultados posibles:
+“público”, “privado laico”, “privado religioso”, el resultado que se
+obtenga también depende del azar, porque así fue elegido el alumno, la
+respuesta será una u otra según cuál sea el alumno elegido y esto
+depende del azar. Sin embargo, no podemos asignar una probabilidad igual
+a cada resultado, no es lícito decir que sea <span class="math inline">\(1/3\)</span>, ya que puede haber más
+estudiantes que provengan de colegios públicos que de privados y, en
+consecuencia, que sea más probable encontrar alumnos provenientes de
+esos colegios que de los otros. En este caso no podemos asignar de
+antemano probabilidades a los diferentes resultados, porque no tenemos
+suficientes razones para suponer <em>la forma en que se distribuyen</em> las
+probabilidades. Si supiéramos que hay el doble de alumnos que vienen de
+colegios públicos, podríamos decir que el alumno elegido al azar tiene
+el doble de probabilidad de provenir de un colegio público que de otro
+tipo.</p>
+<p>Encontramos así una relación entre la frecuencia y la probabilidad: si
+conocemos la distribución de frecuencias, tenemos razones para usarlas
+para asignar probabilidades a los resultados del experimento. Así, si
+una muestra de alumnos ofrece la siguiente distribución de frecuencias
+para el tipo de colegio del que provienen.</p>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:unnamed-chunk-240">Tabla 8.2: </span>Distribución de frecuencias del tipo de colegio del que provienen alumnos que ingresan a la universidad
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:center;">
+f
+</th>
+<th style="text-align:center;">
+f’
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Público
+</td>
+<td style="text-align:center;">
+200
+</td>
+<td style="text-align:center;">
+0,66
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Privado laico
+</td>
+<td style="text-align:center;">
+20
+</td>
+<td style="text-align:center;">
+0,07
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Privado religioso
+</td>
+<td style="text-align:center;">
+80
+</td>
+<td style="text-align:center;">
+0,27
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Total
+</td>
+<td style="text-align:center;">
+300
+</td>
+<td style="text-align:center;">
+1,00
+</td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td style="padding: 0; border: 0;" colspan="100%">
+<span style="font-style: italic;">Fuente: </span> <sup></sup> datos ficticios para ejemplificación.
+</td>
+</tr>
+</tfoot>
+</table>
+<p>Estamos autorizados a decir que la probabilidad que el alumno elegido al azar provenga de un colegio público es 0,67, que es su frecuencia
+relativa. Esto será válido en la medida que el número de casos sea
+elevado; no es posible transformar una frecuencia relativa en
+probabilidad si tenemos muy pocas observaciones. Más adelante volveremos sobre esta importante limitación.</p>
+<p>Cuando atribuimos probabilidades de este modo se trata de probabilidades <em>a posteriori</em>, es decir con posterioridad a haber hecho la experiencia, luego de la observación de los resultados reales obtenidos. También se llama a estas probabilidades <em>empíricas</em>, para destacar que provienen de la experiencia.</p>
+<p>¿Cuál es el significado del 1.00 que corresponde al total? Sin dudas,
+como frecuencia significa el 100% de los casos, pero como probabilidad indica que el conjunto completo de alternativas (público, privado laico, privado religioso) tiene probabilidad 1.00; o bien que es un <em>evento seguro</em>. La expresión coloquial para este valor es que cuando se selecciona un alumno al azar, éste debe provenir de alguno de los tres tipos de colegio indicados, entonces el valor uno responde a la pregunta “¿cuál es la probabilidad de encontrar un alumno que provenga de un colegio que sea público, privado laico o privado religioso?”, la respuesta es que es seguro que de alguno de esos tipos de colegio provendrá el alumno, porque no hay otras alternativas, es decir que las categorías son exhaustivas, como debe ser. En este caso,</p>
+<p><span class="math display">\[\mathrm{\Omega} = \{ publico,\ privado\ laico,\ privado\ religioso\}\]</span></p>
+<p>Como vimos más arriba, el evento seguro es el que tiene probabilidad 1,
+por lo que la expresión formal de este enunciado es:</p>
+<p><span class="math inline">\(P(\Omega) = 1\)</span></p>
+<p>Donde <span class="math inline">\(\Omega\)</span> indica el conjunto de todos los resultados posibles de un
+experimento aleatorio, o el conjunto de todas las categorías de un
+variable, al que hemos llamado <em>espacio muestral</em>.</p>
+</div>
+<div id="la-relación-entre-asignación-a-priori-y-a-posteriori" class="section level3">
+<h3><span class="header-section-number">8.2.3</span> La relación entre asignación a priori y a posteriori</h3>
+<p>Volvamos al experimento simple de arrojar la moneda: si ésta se
+encuentra equilibrada será entonces correcto asignar probabilidad <span class="math inline">\(1/2\)</span> (ó
+0,50) a cada lado, lo que indica que esperamos que <em>a la larga</em> la
+moneda caiga la mitad de las veces cara y la mitad cruz. Destaquemos la
+expresión “a la larga”, que quiere decir “si se arroja muchas veces”.
+Hagamos el experimento realmente, busque usted una moneda y arrójela,
+digamos 10 veces. Yo lo hice y obtuve la siguiente secuencia de
+resultados: CXXXCCCXXC.</p>
+<p>Elijamos nuestro lado favorito, que sea “cara” (C) y calculemos la
+frecuencia relativa de ese lado en cada tirada, presentamos los
+resultados resumidamente en la tabla <!-- referencia a la 2-->. Cuando solo la he tirado una vez
+y como el primer resultado fue C, la frecuencia es 1 (una cara de un
+total de un resultado). A la segunda tirada, que es X, se obtiene <span class="math inline">\(1/2\)</span> (una
+cara de dos tiradas). A la tercera, que otra vez sale X, la frecuencia
+de cara es <span class="math inline">\(1/3\)</span> (una cara de tres tiradas) y así sigue:</p>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:unnamed-chunk-241">Tabla 8.3: </span>Frecuencias relativas correspondientes a una secuencia de diez lanzamientos de una moneda.
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Tirada
+</th>
+<th style="text-align:center;">
+Cantidad de tiradas
+</th>
+<th style="text-align:center;">
+Resultado
+</th>
+<th style="text-align:center;">
+Cantidad de caras acumuladas
+</th>
+<th style="text-align:center;">
+Frecuencia relativa del evento “cara”
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Primera
+</td>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+C
+</td>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+1/1 = 1,00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Segunda
+</td>
+<td style="text-align:center;">
+2
+</td>
+<td style="text-align:center;">
+X
+</td>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+1/2 = 0,50
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Tercera
+</td>
+<td style="text-align:center;">
+3
+</td>
+<td style="text-align:center;">
+X
+</td>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+1/3 = 0,33
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Cuarta
+</td>
+<td style="text-align:center;">
+4
+</td>
+<td style="text-align:center;">
+X
+</td>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+1/4 = 0,25
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Quinta
+</td>
+<td style="text-align:center;">
+5
+</td>
+<td style="text-align:center;">
+C
+</td>
+<td style="text-align:center;">
+2
+</td>
+<td style="text-align:center;">
+2/5 = 0,40
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Sexta
+</td>
+<td style="text-align:center;">
+6
+</td>
+<td style="text-align:center;">
+C
+</td>
+<td style="text-align:center;">
+3
+</td>
+<td style="text-align:center;">
+3/6 = 0,50
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Séptima
+</td>
+<td style="text-align:center;">
+7
+</td>
+<td style="text-align:center;">
+C
+</td>
+<td style="text-align:center;">
+4
+</td>
+<td style="text-align:center;">
+4/7 = 0,57
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Octava
+</td>
+<td style="text-align:center;">
+8
+</td>
+<td style="text-align:center;">
+X
+</td>
+<td style="text-align:center;">
+4
+</td>
+<td style="text-align:center;">
+4/8 = 0,50
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Novena
+</td>
+<td style="text-align:center;">
+9
+</td>
+<td style="text-align:center;">
+X
+</td>
+<td style="text-align:center;">
+4
+</td>
+<td style="text-align:center;">
+4/9 = 0,44
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Décima
+</td>
+<td style="text-align:center;">
+10
+</td>
+<td style="text-align:center;">
+C
+</td>
+<td style="text-align:center;">
+5
+</td>
+<td style="text-align:center;">
+5/10 = 0,50
+</td>
+</tr>
+</tbody>
+</table>
+<p>En la distribución vemos que la frecuencia relativa de C toma valores
+alrededor de 0,50; al principio más lejos y luego “se va acercando” a
+ese número cuando hemos hecho más tiradas. La representación gráfica de
+este proceso es la siguiente:</p>
+<p><img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-242-1.svg" width="672" /></p>
+<p>Donde hemos agregado una línea que muestra el valor 0,50 que es el que habíamos calculado antes de hacer el experimento. Se aprecia que la sucesión de frecuencias relativas es tal que éstas se van acercando a la
+probabilidad predicha. Si la moneda se hubiese tirado una cantidad mayor de veces (cien veces, por ejemplo), el gráfico tendría una forma como la siguiente:</p>
+<p><img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-243-1.svg" width="672" /></p>
+<p>Resulta entonces que, si se cumple que la moneda está equilibrada,
+entonces las frecuencias relativas de un resultado se irán acercando a la probabilidad asignada. Dicho de otra manera, la probabilidad a
+posteriori converge a la probabilidad a priori. Mucha atención a esto: solo en el caso que el supuesto inicial se cumpla, es decir que la moneda se comporte como esperamos (cayendo parejo de un lado y del
+otro).</p>
+<p>Si por el contrario, la moneda estuviese desequilibrada -y que fuera más frecuente el lado X que el lado C-, podríamos obtener, en 500 tiradas, por ejemplo, 350 veces X y la probabilidad a posteriori será entonces <span class="math inline">\(P(C) = 350/500 = 0,70\)</span> y no 0,50 como sería si estuviera equilibrada. En
+ese caso el supuesto inicial de moneda equilibrada se muestra falso,
+decimos que “el modelo no se sostiene”, en un momento veremos con más
+detalle el significado de esta expresión.</p>
+</div>
+</div>
+<div id="operando-con-probabilidades" class="section level2">
+<h2><span class="header-section-number">8.3</span> Operando con probabilidades</h2>
+<p>Cualquiera sea el modo a través del que se hayan asignado probabilidades
+a eventos, las probabilidades cumplen con ciertas propiedades generales,
+que trataremos a continuación y que permiten hacer operaciones con
+ellas.</p>
+<p>En primer lugar, y con carácter de axiomas, las siguientes
+características son condición para que un número <span class="math inline">\(P(A)\)</span> pueda ser
+considerado una probabilidad:</p>
+<ul>
+<li><p>La probabilidad es un número comprendido entre cero y uno: <span class="math inline">\(0 \leq P(A) \leq 1\)</span></p></li>
+<li><p>La probabilidad del conjunto completo de resultados posibles (del espacio muestral) es uno: <span class="math inline">\(P(\Omega) = 1\)</span></p></li>
+<li><p>La probabilidad de la unión de dos eventos que se excluyen mutuamente es la suma de las probabilidades de cada uno de ellos: <span class="math inline">\(P(A \cup B) = P(A) + P(B)\)</span></p></li>
+</ul>
+<p>La definición frecuencial (a posteriori), así como todos los modelos de
+asignación de probabilidad a priori que mencionamos cumplen con estas
+condiciones.</p>
+<div id="con-probabilidades-frecuenciales" class="section level3">
+<h3><span class="header-section-number">8.3.1</span> Con probabilidades frecuenciales</h3>
+<p>Sea una distribución conjunta de dos variables con asignación de
+probabilidades frecuenciales, es decir empíricas. Se trata de la
+relación entre la ciudad donde se vive y la intención de voto. Las
+categorías de la ciudad son: Córdoba, Rosario y Mendoza. Los partidos
+políticos son cuatro y los llamaremos Q, R, S y T. Supongamos que las
+siguientes son las frecuencias observadas luego de recoger los datos:</p>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:unnamed-chunk-244">Tabla 8.4: </span>Distribución del partido al que declara que va a votar y la ciudad de residencia.
+</caption>
+<thead>
+<tr>
+<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Ciudad
+</div>
+</th>
+<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="4">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Partido al que dice que votará
+</div>
+</th>
+<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Total
+</div>
+</th>
+</tr>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:center;">
+Q
+</th>
+<th style="text-align:center;">
+R
+</th>
+<th style="text-align:center;">
+S
+</th>
+<th style="text-align:center;">
+T
+</th>
+<th style="text-align:center;">
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Córdoba
+</td>
+<td style="text-align:center;">
+200
+</td>
+<td style="text-align:center;">
+300
+</td>
+<td style="text-align:center;">
+100
+</td>
+<td style="text-align:center;">
+50
+</td>
+<td style="text-align:center;">
+650
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Rosario
+</td>
+<td style="text-align:center;">
+100
+</td>
+<td style="text-align:center;">
+150
+</td>
+<td style="text-align:center;">
+60
+</td>
+<td style="text-align:center;">
+70
+</td>
+<td style="text-align:center;">
+380
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Mendoza
+</td>
+<td style="text-align:center;">
+50
+</td>
+<td style="text-align:center;">
+150
+</td>
+<td style="text-align:center;">
+100
+</td>
+<td style="text-align:center;">
+200
+</td>
+<td style="text-align:center;">
+500
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Total
+</td>
+<td style="text-align:center;">
+350
+</td>
+<td style="text-align:center;">
+600
+</td>
+<td style="text-align:center;">
+260
+</td>
+<td style="text-align:center;">
+320
+</td>
+<td style="text-align:center;">
+1530
+</td>
+</tr>
+</tbody>
+</table>
+<p>Calculemos algunas probabilidades a partir de las frecuencias relativas.</p>
+<div id="probabilidades-marginales" class="section level4">
+<h4><span class="header-section-number">8.3.1.1</span> Probabilidades marginales</h4>
+<p>Cuando se consideran las categorías de una variable sin tener en cuenta
+a la otra, usamos las frecuencias de los márgenes de la tabla, esas son
+las llamadas <strong>frecuencias marginales</strong>. La probabilidad que una persona
+elegida al azar viva en Córdoba (sin importar a qué partido piense
+votar) es <span class="math inline">\(650/1530\)</span>. De manera equivalente, la probabilidad de encontrar
+por azar a alguien que piense votar al partido <span class="math inline">\(S\)</span> (cualquiera sea su
+ciudad) es <span class="math inline">\(260/1530\)</span>. Las escribimos simplemente <span class="math inline">\(P(Córdoba)\)</span> y <span class="math inline">\(P(S)\)</span>
+respectivamente. En las tablas singuientes están destacadas las
+frecuencias que participan en el cálculo de estas probabilidades.</p>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:unnamed-chunk-245">Tabla 8.5: </span>Distribución del partido al que declara que va a votar y la ciudad de residencia. Esquema para el cálculo de la probabilidad marginal <span class="math inline">\(P(Córdoba)\)</span>.
+</caption>
+<thead>
+<tr>
+<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Ciudad
+</div>
+</th>
+<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="4">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Partido al que dice que votará
+</div>
+</th>
+<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Total
+</div>
+</th>
+</tr>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:center;">
+Q
+</th>
+<th style="text-align:center;">
+R
+</th>
+<th style="text-align:center;">
+S
+</th>
+<th style="text-align:center;">
+T
+</th>
+<th style="text-align:center;">
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Córdoba
+</td>
+<td style="text-align:center;">
+200
+</td>
+<td style="text-align:center;">
+300
+</td>
+<td style="text-align:center;">
+100
+</td>
+<td style="text-align:center;">
+50
+</td>
+<td style="text-align:center;">
+<strong>650</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Rosario
+</td>
+<td style="text-align:center;">
+100
+</td>
+<td style="text-align:center;">
+150
+</td>
+<td style="text-align:center;">
+60
+</td>
+<td style="text-align:center;">
+70
+</td>
+<td style="text-align:center;">
+380
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Mendoza
+</td>
+<td style="text-align:center;">
+50
+</td>
+<td style="text-align:center;">
+150
+</td>
+<td style="text-align:center;">
+100
+</td>
+<td style="text-align:center;">
+200
+</td>
+<td style="text-align:center;">
+500
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Total
+</td>
+<td style="text-align:center;">
+350
+</td>
+<td style="text-align:center;">
+600
+</td>
+<td style="text-align:center;">
+260
+</td>
+<td style="text-align:center;">
+320
+</td>
+<td style="text-align:center;">
+<strong>1530</strong>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:unnamed-chunk-246">Tabla 8.6: </span>Distribución del partido al que declara que va a votar y la ciudad de residencia. Esquema para el cálculo de la probabilidad marginal <span class="math inline">\(P(S)\)</span>.
+</caption>
+<thead>
+<tr>
+<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Ciudad
+</div>
+</th>
+<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="4">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Partido al que dice que votará
+</div>
+</th>
+<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Total
+</div>
+</th>
+</tr>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:center;">
+Q
+</th>
+<th style="text-align:center;">
+R
+</th>
+<th style="text-align:center;">
+S
+</th>
+<th style="text-align:center;">
+T
+</th>
+<th style="text-align:center;">
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Córdoba
+</td>
+<td style="text-align:center;">
+200
+</td>
+<td style="text-align:center;">
+300
+</td>
+<td style="text-align:center;">
+100
+</td>
+<td style="text-align:center;">
+50
+</td>
+<td style="text-align:center;">
+650
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Rosario
+</td>
+<td style="text-align:center;">
+100
+</td>
+<td style="text-align:center;">
+150
+</td>
+<td style="text-align:center;">
+60
+</td>
+<td style="text-align:center;">
+70
+</td>
+<td style="text-align:center;">
+380
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Mendoza
+</td>
+<td style="text-align:center;">
+50
+</td>
+<td style="text-align:center;">
+150
+</td>
+<td style="text-align:center;">
+100
+</td>
+<td style="text-align:center;">
+200
+</td>
+<td style="text-align:center;">
+500
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Total
+</td>
+<td style="text-align:center;">
+350
+</td>
+<td style="text-align:center;">
+600
+</td>
+<td style="text-align:center;">
+<strong>260</strong>
+</td>
+<td style="text-align:center;">
+320
+</td>
+<td style="text-align:center;">
+<strong>1530</strong>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="probabilidades-conjuntas-o-de-la-intersección-de-eventos" class="section level4">
+<h4><span class="header-section-number">8.3.1.2</span> Probabilidades conjuntas o de la intersección de eventos</h4>
+<p>Las usamos para hallar la probabilidad de ocurrencia simultánea de una
+categoría de cada variable. Por ejemplo ¿Cuál es la probabilidad de
+encontrar por azar a alguien que viva en Rosario años <strong>y</strong> que piense
+votar al partido R? La cantidad de individuos que cumplen
+<strong>simultáneamente</strong> las dos condiciones es de 150, por lo que la
+probabilidad se calcula como <span class="math inline">\(150/1530\)</span>. Hemos destacado la conjunción
+“y”, junto al “simultáneamente” porque en este caso se piden dos
+condiciones juntas. Por eso estas son llamadas <strong>probabilidades conjuntas</strong>.</p>
+<p>En teoría de conjuntos, corresponden a la intersección de dos conjuntos, que se indica con el signo <span class="math inline">\(\cap\)</span>, por lo que el evento “vivir en Rosario” y al mismo tiempo “decir que se va a votar a R”, se escribe “<span class="math inline">\(Rosario \cap R\)</span>”.</p>
+<p>Esa intersección puede verse gráficamente en el cruce de la fila con la columna correspondiente.</p>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:unnamed-chunk-247">Tabla 8.7: </span>Distribución del partido al que declara que va a votar y la ciudad de residencia. Esquema para el cálculo de la probabilidad conjunta <span class="math inline">\(P(Rosario y R)\)</span>.
+</caption>
+<thead>
+<tr>
+<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Ciudad
+</div>
+</th>
+<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="4">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Partido al que dice que votará
+</div>
+</th>
+<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Total
+</div>
+</th>
+</tr>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:center;">
+Q
+</th>
+<th style="text-align:center;">
+R
+</th>
+<th style="text-align:center;">
+S
+</th>
+<th style="text-align:center;">
+T
+</th>
+<th style="text-align:center;">
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Córdoba
+</td>
+<td style="text-align:center;">
+200
+</td>
+<td style="text-align:center;">
+300
+</td>
+<td style="text-align:center;">
+100
+</td>
+<td style="text-align:center;">
+50
+</td>
+<td style="text-align:center;">
+650
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Rosario
+</td>
+<td style="text-align:center;">
+100
+</td>
+<td style="text-align:center;">
+<strong>150</strong>
+</td>
+<td style="text-align:center;">
+60
+</td>
+<td style="text-align:center;">
+70
+</td>
+<td style="text-align:center;">
+380
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Mendoza
+</td>
+<td style="text-align:center;">
+50
+</td>
+<td style="text-align:center;">
+150
+</td>
+<td style="text-align:center;">
+100
+</td>
+<td style="text-align:center;">
+200
+</td>
+<td style="text-align:center;">
+500
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Total
+</td>
+<td style="text-align:center;">
+350
+</td>
+<td style="text-align:center;">
+600
+</td>
+<td style="text-align:center;">
+260
+</td>
+<td style="text-align:center;">
+320
+</td>
+<td style="text-align:center;">
+<strong>1530</strong>
+</td>
+</tr>
+</tbody>
+</table>
+<p>¿Qué sucede si aplicamos esta operación a dos eventos que corresponden a
+dos categorías de la misma variable?, por ejemplo, ¿cuál es la
+probabilidad de encontrar a alguien que diga que votará a Q y a R? Esos
+eventos no pueden suceder juntos porque son incompatibles: solo uno de
+los dos puede suceder. La intersección entre ellos es imposible, por lo
+que la probabilidad es cero. Es el mismo caso de buscar a alguien que
+viva en Córdoba y también en Mendoza, es claro que no hay intersección
+entre estos conjuntos; dicho de otra forma, la intersección es el
+conjunto vacío. A estos eventos que no pueden suceder simultáneamente,
+los llamaremos mutuamente excluyentes. Como recordamos, esa es la
+condición que deben cumplir las categorías de cualquier variable.</p>
+<p>Si dos eventos son mutuamente excluyentes entonces, su probabilidad
+conjunta es cero. En lenguaje de conjuntos:</p>
+<p><span class="math display">\[si\ A \cap B = \varnothing\ entonces\ P(A \cap B) = 0\]</span></p>
+</div>
+<div id="probabilidad-de-la-unión-de-eventos-mutuamente-excluyentes" class="section level4">
+<h4><span class="header-section-number">8.3.1.3</span> Probabilidad de la unión de eventos mutuamente excluyentes</h4>
+<p>Estas probabilidades sirven para analizar la ocurrencia de uno u otro de
+dos eventos, cuando éstos no pueden suceder simultáneamente. Por
+ejemplo: ¿qué probabilidad hay de encontrar a alguien que piense votar a Q <strong>o</strong> a R? Esto quiere decir “una cosa o la otra”, se trata de una disyunción, es decir, la unión de los dos eventos. En el lenguaje de la teoría de conjuntos la unión de dos conjuntos se indica con el símbolo <span class="math inline">\(\cup\)</span>, por lo que decir “A o B” equivale a decir “<span class="math inline">\(A\cup B\)</span>”.</p>
+<p>El total de quienes cumplen con la condición de votar a Q o a R (sin
+tener en cuenta la ciudad) es de <span class="math inline">\(950 (350 + 600)\)</span>, por lo que la
+probabilidad es de <span class="math inline">\(950/1530\)</span>.</p>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:unnamed-chunk-248">Tabla 8.8: </span>Distribución del partido al que declara que va a votar y la ciudad de residencia. Esquema para el cálculo de la probabilidad <span class="math inline">\(P(Q o R)\)</span> (eventos disjuntos).
+</caption>
+<thead>
+<tr>
+<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Ciudad
+</div>
+</th>
+<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="4">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Partido al que dice que votará
+</div>
+</th>
+<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Total
+</div>
+</th>
+</tr>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:center;">
+Q
+</th>
+<th style="text-align:center;">
+R
+</th>
+<th style="text-align:center;">
+S
+</th>
+<th style="text-align:center;">
+T
+</th>
+<th style="text-align:center;">
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Córdoba
+</td>
+<td style="text-align:center;">
+200
+</td>
+<td style="text-align:center;">
+300
+</td>
+<td style="text-align:center;">
+100
+</td>
+<td style="text-align:center;">
+50
+</td>
+<td style="text-align:center;">
+650
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Rosario
+</td>
+<td style="text-align:center;">
+100
+</td>
+<td style="text-align:center;">
+150
+</td>
+<td style="text-align:center;">
+60
+</td>
+<td style="text-align:center;">
+70
+</td>
+<td style="text-align:center;">
+380
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Mendoza
+</td>
+<td style="text-align:center;">
+50
+</td>
+<td style="text-align:center;">
+150
+</td>
+<td style="text-align:center;">
+100
+</td>
+<td style="text-align:center;">
+200
+</td>
+<td style="text-align:center;">
+500
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Total
+</td>
+<td style="text-align:center;">
+<strong>350</strong>
+</td>
+<td style="text-align:center;">
+<strong>600</strong>
+</td>
+<td style="text-align:center;">
+260
+</td>
+<td style="text-align:center;">
+320
+</td>
+<td style="text-align:center;">
+<strong>1530</strong>
+</td>
+</tr>
+</tbody>
+</table>
+<p>De modo equivalente, la probabilidad de seleccionar al azar a alguien
+que viva en Córdoba o en Rosario es de <span class="math inline">\(1030/1530\)</span>, donde hemos sumado las
+dos primeras categorías (Córdoba y Rosario).</p>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:unnamed-chunk-249">Tabla 8.9: </span>Distribución del partido al que declara que va a votar y la ciudad de residencia. Esquema para el cálculo de la probabilidad <span class="math inline">\(P(Córdoba o Rosario)\)</span> (eventos disjuntos).
+</caption>
+<thead>
+<tr>
+<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Ciudad
+</div>
+</th>
+<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="4">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Partido al que dice que votará
+</div>
+</th>
+<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Total
+</div>
+</th>
+</tr>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:center;">
+Q
+</th>
+<th style="text-align:center;">
+R
+</th>
+<th style="text-align:center;">
+S
+</th>
+<th style="text-align:center;">
+T
+</th>
+<th style="text-align:center;">
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Córdoba
+</td>
+<td style="text-align:center;">
+200
+</td>
+<td style="text-align:center;">
+300
+</td>
+<td style="text-align:center;">
+100
+</td>
+<td style="text-align:center;">
+50
+</td>
+<td style="text-align:center;">
+<strong>650</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Rosario
+</td>
+<td style="text-align:center;">
+100
+</td>
+<td style="text-align:center;">
+150
+</td>
+<td style="text-align:center;">
+60
+</td>
+<td style="text-align:center;">
+70
+</td>
+<td style="text-align:center;">
+<strong>380</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Mendoza
+</td>
+<td style="text-align:center;">
+50
+</td>
+<td style="text-align:center;">
+150
+</td>
+<td style="text-align:center;">
+100
+</td>
+<td style="text-align:center;">
+200
+</td>
+<td style="text-align:center;">
+500
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Total
+</td>
+<td style="text-align:center;">
+350
+</td>
+<td style="text-align:center;">
+600
+</td>
+<td style="text-align:center;">
+260
+</td>
+<td style="text-align:center;">
+320
+</td>
+<td style="text-align:center;">
+<strong>1530</strong>
+</td>
+</tr>
+</tbody>
+</table>
+<p>En estas probabilidades, admitimos que se cumpla cualquiera de las dos
+condiciones (Q <strong>o</strong> R en el primer caso, Córdoba <strong>o</strong> Rosario en el
+segundo). En los dos ejemplos se trata de eventos que no pueden suceder
+simultáneamente, por ser categorías de una de las variables, son
+mutuamente excluyentes, por lo que la probabilidad de su ocurrencia
+conjunta es cero. En estos casos, la probabilidad de la unión es
+simplemente la suma de las probabilidades de los dos eventos: <span class="math inline">\(P(A \cup B) = P(A) + P(B)\)</span></p>
+<p>Aplicada a los ejemplos:</p>
+<p><span class="math display">\[P(Q \cup R) = P(Q) + P(R)\]</span></p>
+<p><span class="math display">\[P(Córdoba \cup Rosario) = P(Córdoba) + P(Rosario)\]</span></p>
+</div>
+<div id="probabilidad-de-la-unión-de-eventos-no-mutuamente-excluyentes" class="section level4">
+<h4><span class="header-section-number">8.3.1.4</span> Probabilidad de la unión de eventos no mutuamente excluyentes</h4>
+<p>Vamos ahora a incluir en la operación de unión de eventos, aquellos que
+no se excluyan mutuamente. Para el ejemplo con el que venimos
+trabajando, cambiamos las condiciones de esta unión de eventos: Ahora
+preguntamos: ¿Cuál es la probabilidad de hallar por azar a alguien que
+viva en Córdoba <strong>o</strong> que piense votar al partido T? Otra vez es una
+disyunción, por lo que admitimos cualquiera de los dos eventos: que viva
+en Córdoba (sin importar a quién piense votar) <strong>o</strong> que piense votar a
+T (cualquiera sea su ciudad). Si intentamos el mismo procedimiento que
+en el caso anterior, deberíamos sumar las probabilidades: <span class="math inline">\(650/1530 + 320/1530\)</span>, con solo observar la Tabla 8, vemos que los 50 individuos que
+cumplen las dos condiciones (viven en Córdoba y votarán a T), han sido
+contados dos veces: en los 650 y en los 320, por lo que deben
+descontarse del resultado haciendo <span class="math inline">\(650/1530 + 320/1530 - 50/1530\)</span>.</p>
+<p>¿Por qué sucedió esto?, porque los eventos cuya unión estamos
+considerando pueden ocurrir simultáneamente, tienen intersección y es
+esa intersección justamente la que aparece en el cálculo de las dos
+probabilidades que se suman. Esta última expresión tiene forma:</p>
+<p><span class="math display">\[P(A \cup B) = P(A) + P(B) - P(A \cap B)\]</span></p>
+<p>Y es la expresión más general para el cálculo de la probabilidad de la
+unión de conjuntos. Esta fórmula toma la forma simplificada que usamos
+antes <span class="math inline">\(P(A \cup B) = P(A) + P(B)\)</span> solo cuando A y B son disjuntos, es decir cuando se excluyen mutuamente
+como lo indica el tercer axioma.</p>
+<p>Aplicada al ejemplo, el cálculo es:</p>
+<p><span class="math display">\[P(Córdoba \cup T) = P(Córdoba) + P(T) - P(Córdoba \cap T) =\]</span>
+<span class="math display">\[\frac{650}{1530} + \frac{320}{1530} - \frac{50}{1350} = \frac{920}{1530} = 0,60\]</span></p>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:unnamed-chunk-250">Tabla 8.10: </span>Distribución del partido al que declara que va a votar y la ciudad de residencia. Esquema para el cálculo de la probabilidad <span class="math inline">\(P(Córdoba o T)\)</span> (eventos no disjuntos).
+</caption>
+<thead>
+<tr>
+<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Ciudad
+</div>
+</th>
+<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="4">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Partido al que dice que votará
+</div>
+</th>
+<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Total
+</div>
+</th>
+</tr>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:center;">
+Q
+</th>
+<th style="text-align:center;">
+R
+</th>
+<th style="text-align:center;">
+S
+</th>
+<th style="text-align:center;">
+T
+</th>
+<th style="text-align:center;">
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Córdoba
+</td>
+<td style="text-align:center;">
+200
+</td>
+<td style="text-align:center;">
+300
+</td>
+<td style="text-align:center;">
+100
+</td>
+<td style="text-align:center;">
+<strong>50</strong>
+</td>
+<td style="text-align:center;">
+<strong>650</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Rosario
+</td>
+<td style="text-align:center;">
+100
+</td>
+<td style="text-align:center;">
+150
+</td>
+<td style="text-align:center;">
+60
+</td>
+<td style="text-align:center;">
+70
+</td>
+<td style="text-align:center;">
+380
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Mendoza
+</td>
+<td style="text-align:center;">
+50
+</td>
+<td style="text-align:center;">
+150
+</td>
+<td style="text-align:center;">
+100
+</td>
+<td style="text-align:center;">
+200
+</td>
+<td style="text-align:center;">
+500
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Total
+</td>
+<td style="text-align:center;">
+350
+</td>
+<td style="text-align:center;">
+600
+</td>
+<td style="text-align:center;">
+260
+</td>
+<td style="text-align:center;">
+<strong>320</strong>
+</td>
+<td style="text-align:center;">
+<strong>1530</strong>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="probabilidad-condicional" class="section level4">
+<h4><span class="header-section-number">8.3.1.5</span> Probabilidad condicional</h4>
+<p>Este es el caso en que necesitamos calcular una probabilidad bajo una
+condición, que restringe el conjunto de resultado posibles. Se aplica
+cuando se cuenta con información adicional antes de calcular una
+probabilidad, por ejemplo que se sepa que la persona seleccionada al
+azar vive en Córdoba. ¿Cuál es la probabilidad que piense votar al
+partido S? El planteo es tal que preguntamos cuál es la probabilidad de
+votar a S si se sabe que vive en Córdoba. Vivir en Córdoba es la
+condición y se escribe: <span class="math inline">\(S/Córdoba\)</span>, y lo leemos “S, dado que vive en
+Córdoba”.</p>
+<p>En este caso, el dato “vive en Córdoba” es una restricción sobre el
+conjunto total, ya no debemos tener en cuenta a las 1530 personas del
+total, sino solo a los que cumplen con la condición de vivir en Córdoba.
+Entonces ahora, el nuevo total es de solo 650 personas, los que viven en
+Córdoba. De ellos, 100 piensan votar a S, por lo que la probabilidad que
+nos interesa es <span class="math inline">\(100/650\)</span>.</p>
+<p>Entonces: <span class="math inline">\(P(S/Córdoba) = \frac{100}{650} = 0,15\)</span>.</p>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:unnamed-chunk-251">Tabla 8.11: </span>Distribución del partido al que declara que va a votar y la ciudad de residencia. Esquema para el cálculo de la probabilidad condicional <span class="math inline">\(P(S/Córdoba)\)</span>.
+</caption>
+<thead>
+<tr>
+<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Ciudad
+</div>
+</th>
+<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="4">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Partido al que dice que votará
+</div>
+</th>
+<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Total
+</div>
+</th>
+</tr>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:center;">
+Q
+</th>
+<th style="text-align:center;">
+R
+</th>
+<th style="text-align:center;">
+S
+</th>
+<th style="text-align:center;">
+T
+</th>
+<th style="text-align:center;">
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Córdoba
+</td>
+<td style="text-align:center;">
+200
+</td>
+<td style="text-align:center;">
+300
+</td>
+<td style="text-align:center;">
+<strong>100</strong>
+</td>
+<td style="text-align:center;">
+50
+</td>
+<td style="text-align:center;">
+<strong>650</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Rosario
+</td>
+<td style="text-align:center;">
+100
+</td>
+<td style="text-align:center;">
+150
+</td>
+<td style="text-align:center;">
+60
+</td>
+<td style="text-align:center;">
+70
+</td>
+<td style="text-align:center;">
+380
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Mendoza
+</td>
+<td style="text-align:center;">
+50
+</td>
+<td style="text-align:center;">
+150
+</td>
+<td style="text-align:center;">
+100
+</td>
+<td style="text-align:center;">
+200
+</td>
+<td style="text-align:center;">
+500
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Total
+</td>
+<td style="text-align:center;">
+350
+</td>
+<td style="text-align:center;">
+600
+</td>
+<td style="text-align:center;">
+260
+</td>
+<td style="text-align:center;">
+320
+</td>
+<td style="text-align:center;">
+1530
+</td>
+</tr>
+</tbody>
+</table>
+<p>Razonando del mismo modo, si se sabe que la persona elegida piensa votar
+a R, el total queda restringido a 600 casos (los que cumplen con esa
+condición). Si nos interesa la probabilidad que viva en Mendoza, bajo
+esa restricción resulta: <span class="math inline">\(150/600\)</span>.</p>
+<p>Entonces:
+<span class="math inline">\(P(Mendoza/R) = \frac{150}{600} = 0,25\)</span></p>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:unnamed-chunk-252">Tabla 8.12: </span>Distribución del partido al que declara que va a votar y la ciudad de residencia. Esquema para el cálculo de la probabilidad condicional <span class="math inline">\(P(Mendoza/R)\)</span>.
+</caption>
+<thead>
+<tr>
+<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Ciudad
+</div>
+</th>
+<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="4">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Partido al que dice que votará
+</div>
+</th>
+<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Total
+</div>
+</th>
+</tr>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:center;">
+Q
+</th>
+<th style="text-align:center;">
+R
+</th>
+<th style="text-align:center;">
+S
+</th>
+<th style="text-align:center;">
+T
+</th>
+<th style="text-align:center;">
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Córdoba
+</td>
+<td style="text-align:center;">
+200
+</td>
+<td style="text-align:center;">
+300
+</td>
+<td style="text-align:center;">
+100
+</td>
+<td style="text-align:center;">
+50
+</td>
+<td style="text-align:center;">
+650
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Rosario
+</td>
+<td style="text-align:center;">
+100
+</td>
+<td style="text-align:center;">
+150
+</td>
+<td style="text-align:center;">
+60
+</td>
+<td style="text-align:center;">
+70
+</td>
+<td style="text-align:center;">
+380
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Mendoza
+</td>
+<td style="text-align:center;">
+50
+</td>
+<td style="text-align:center;">
+<strong>150</strong>
+</td>
+<td style="text-align:center;">
+100
+</td>
+<td style="text-align:center;">
+200
+</td>
+<td style="text-align:center;">
+500
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Total
+</td>
+<td style="text-align:center;">
+350
+</td>
+<td style="text-align:center;">
+<strong>600</strong>
+</td>
+<td style="text-align:center;">
+260
+</td>
+<td style="text-align:center;">
+320
+</td>
+<td style="text-align:center;">
+1530
+</td>
+</tr>
+</tbody>
+</table>
+<p>En estos dos últimos ejemplos, el cambio respecto de todos los
+anteriores es que el denominador de las probabilidades ya no es 1530
+sino un número menor, que resulta de haber impuesto previamente una
+condición: que viva en Córdoba en el primer caso y que haya votado a R
+en el segundo. Como se ve, estas probabilidades condicionales no son
+conmutativas:</p>
+<ul>
+<li><p>Se selecciona una persona al azar entre quienes votarán a R, ¿Cuál es la probabilidad que viva en Mendoza? Se escribe <span class="math inline">\(P(Mendoza/R)\)</span> y vale <span class="math inline">\(150/600\)</span>.</p></li>
+<li><p>Se selecciona una persona al azar entre los que viven en Mendoza, ¿Cuál es la probabilidad que vaya a votar a R? Se escribe <span class="math inline">\(P(R/Mendoza)\)</span> y vale <span class="math inline">\(150/500\)</span>.</p></li>
+</ul>
+</div>
+<div id="relación-entre-probabilidades-condicionales-y-conjuntas" class="section level4">
+<h4><span class="header-section-number">8.3.1.6</span> Relación entre probabilidades condicionales y conjuntas</h4>
+<p>Compararemos ahora la probabilidad de hallar alguien que vaya a votar a Q y que viva en Córdoba (<span class="math inline">\(P(Q \cap Córdoba)\)</span>) con la probabilidad que vaya a votarlo si se sabe que vive en Córdoba (<span class="math inline">\(P(Q/Córdoba)\)</span>).</p>
+<p><span class="math display">\[P(Q \cap Córdoba) = \frac{200}{1503}\]</span></p>
+<p><span class="math display">\[P(Q/Córdoba) = \frac{200}{650}\]</span></p>
+<p>Si dividimos entre sí estas dos expresiones obtenemos:</p>
+<p><span class="math display">\[\frac{P(Q \cap Córdoba)}{P(Q/Córdoba)} = \frac{\frac{200}{1503}}{\frac{200}{650}} = \frac{650}{1503}\]</span></p>
+<p>El último cociente es la probabilidad marginal correspondiente a
+Córdoba, por lo que:</p>
+<p><span class="math display">\[\frac{P(Q \cap Córdoba)}{P(Q/Córdoba)} = P(Córdoba)\]</span></p>
+<p>Esta expresión, que es general, nos ofrece una relación muy útil entre las probabilidades condicional y conjunta. Una forma más frecuente de escribir esta relación, para dos eventos cualesquiera A y B es:</p>
+<p><span class="math display">\[P(A \cap B) = P(B)*P(A/B)\]</span></p>
+<p>Si escribimos la intersección en orden inverso<a href="#fn34" class="footnote-ref" id="fnref34"><sup>34</sup></a>, tenemos:</p>
+<p><span class="math display">\[P(B \cap A) = P(A)*P(B/A)\]</span></p>
+<p>Como son iguales los primeros miembros de las dos expresiones anteriores, igualamos los segundos miembros, para obtener:</p>
+<p><span class="math display">\[P(B)*P(A/B) = P(A)*P(B/A)\]</span></p>
+<p>Esta igualdad relaciona las probabilidades condicionales en un orden o
+en el otro. Conociendo las probabilidades de A y B, esa igualdad nos
+permite pasar de <span class="math inline">\(P(A/B)\)</span> a <span class="math inline">\(P(B/A)\)</span>, veremos más adelante que se trata de un resultado muy valioso.</p>
+</div>
+</div>
+<div id="con-probabilidades-a-priori" class="section level3">
+<h3><span class="header-section-number">8.3.2</span> Con probabilidades a priori</h3>
+<p>Veamos el uso de estas operaciones con probabilidades usando ahora un
+experimento en el que asignamos probabilidades a priori. Sea una caja
+que contiene 4 fichas rojas y 3 azules. ¿Cuál es la probabilidad de
+sacar una roja en la primera extracción? Como <span class="math inline">\(\#Roja\)</span> es 4 y <span class="math inline">\(\#\Omega\)</span> es 7, la probabilidad vale <span class="math inline">\(4/7\)</span>. De mismo modo, la probabilidad de una azul es <span class="math inline">\(3/7\)</span>.</p>
+<p>Hagamos ahora dos extracciones sucesivas de modo tal que no reponemos la primera ficha antes de sacar la segunda, este tipo de extracción se llama <em>sin reposición</em>. Saco la primera, veo su color y saco la segunda sin devolver la primera. ¿Cuál es la probabilidad que salga la segunda azul si la primera fue roja? En este caso, a la segunda extracción hay 3
+azules sobre un total de 6 fichas (porque ya sacamos una), entonces <span class="math inline">\(\#Azul = 3\)</span> y <span class="math inline">\(\#\Omega = 6\)</span> y la probabilidad es <span class="math inline">\(P(A_{2}/R_{1}) = 3/6\)</span> (ó <span class="math inline">\(1/2\)</span>).</p>
+<p>Otro caso: ¿Cuál es la probabilidad que la segunda sea azul si la
+primera fue azul? Ahora quedan 2 azules, porque ya sacamos una, sobre un total de 6 fichas, por lo que la probabilidad es <span class="math inline">\(P(A_{2}/A_{1}) = 2/6\)</span> (ó <span class="math inline">\(1/3\)</span>). Sucede entonces que la probabilidad de obtener una ficha azul a la segunda extracción <em>depende</em> de lo que haya resultado en la primera.</p>
+<p>Otro problema: ¿cuál es la probabilidad de sacar dos rojas en dos
+extracciones sin reposición? Lo escribimos: <span class="math inline">\(P(R_{1}R_{2}) = P(R_{1}\cap R_{2})\)</span></p>
+<p>Y aplicamos la relación que encontramos al final del apartado anterior:
+<span class="math display">\[P(R_{1}\cap R_{2}) = P(R_{1})*P(R_{2}/R_{1})=4/7*3/6=2/7\]</span></p>
+<p>Que es la probabilidad que salga roja la primera multiplicada por la
+probabilidad que salga roja la segunda condicionada a que ya haya salido roja la primera (es decir, con el espacio muestral restringido) .</p>
+<p>Del mismo modo, la probabilidad de sacar dos azules es:</p>
+<p><span class="math display">\[P(A_{1}\cap A_{2}) = P(A_{1})*P(A_{2}/A_{1})=3/7*2/6=1/7\]</span></p>
+<p>Nuevamente, es la probabilidad de azul la primera por la probabilidad de azul la segunda condicionada a que ya haya salido azul la primera.</p>
+<p>Ahora preguntamos por la probabilidad de obtener una azul y una roja, en cualquier orden. Esto equivale a pedir azul la primera y roja la segunda o bien roja la primera y azul la segunda, por lo que:</p>
+<p><span class="math display">\[P((A_{1}\cap R_{2})\cup(R_{1}\cap A_{2}))=P(A_{1} \cap R_{2})+P(R_{1} \cap A_{2}) =\]</span>
+<span class="math display">\[P(A_{1})*P(R_{2}/A_{1})+P(R_{1})*P(A_{2}/R_{1})\]</span></p>
+<p>Si cambiamos el experimento reponiendo ahora la primera ficha antes de extraer la segunda, llamamos al experimento <em>extracción con reposición</em>. De este modo se restaura el espacio muestral al estado inicial. Por esta razón, la probabilidad de la segunda extracción será la misma que la de la primera para cualquier evento. Por ejemplo, <span class="math inline">\(P(A_{2}/A_{1})\)</span> es <span class="math inline">\(3/7\)</span>, como lo es también <span class="math inline">\(P(A_{2}/R_{1})\)</span>. Que la primera haya sido azul o roja no afecta la probabilidad de la segunda extracción, ya que se la repone: la segunda extracción no depende de la primera. En el caso de extracciones con reposición -en que la segunda extracción no se ve afectada por el resultado que haya dado la primera-, decimos que los eventos son <strong>independientes</strong> y resulta que, para dos eventos cualesquiera A y B:</p>
+<p><span class="math display">\[P(A/B) = P(A)\]</span></p>
+<p>Lo cual, dicho en lenguaje cotidiano nos indica que, para la ocurrencia del evento <span class="math inline">\(A\)</span>, no importa que haya sucedido o no el evento <span class="math inline">\(B\)</span>. Debido a esto, en nuestro ejemplo, la probabilidad de obtener dos rojas es:</p>
+<p><span class="math display">\[P(R_{1} \cap R_{2})=P(R_{1})*P(R_{2})\]</span></p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-253"></span>
+<img src="imagenes/image92.png" alt="Efectos de extraer una ficha sin reponerla o reponiéndola, en las condiciones que quedan para la segunda extracción." width="438" />
+<p class="caption">
+Figura 8.1: Efectos de extraer una ficha sin reponerla o reponiéndola, en las condiciones que quedan para la segunda extracción.
+</p>
+</div>
+<p>Este concepto de independencia entre eventos en muy valioso para
+analizar uno de nuestros más importantes problemas: las relaciones entre variables. Veamos su aplicación a la Tabla 2. Si la intención de voto fuera independiente de la ciudad donde se vive (quiere decir si votaran del mismo modo personas de las diferentes ciudades) la probabilidad de encontrar una persona que vote a R si vive en Córdoba sería simplemente la probabilidad de votar a R, es decir <span class="math inline">\(P(R/Córdoba)=P(R)\)</span> y del mismo modo para los demás eventos. En nuestro ejemplo no se obtiene esa
+igualdad, ya que:</p>
+<p><span class="math inline">\(P(R/Córdoba)=300/650=0,46\)</span>, mientras que: <span class="math inline">\(P(R)=600/1530=0,39\)</span></p>
+<p>Por lo que estos eventos no son independientes en sentido estadístico.</p>
+<p>Cuando se trataron las relaciones entre variables, se discutió este
+problema, al calcular las frecuencias que se esperarían si las variables fueran independientes. Se concluyó que dos variables son independientes si la frecuencia relativa de cada celda resulta del producto de las frecuencias relativas marginales que le corresponden. En el lenguaje de las probabilidades, encontramos ahora el mismo resultado y lo expresamos diciendo que si los eventos A y B son independientes, entonces <span class="math display">\[P(A\cap B)=P(A)*P(B)\]</span></p>
+</div>
+</div>
+<div id="el-teorema-de-bayes" class="section level2">
+<h2><span class="header-section-number">8.4</span> El teorema de Bayes</h2>
+<p>La aplicación que presentamos en este último apartado usa probabilidades
+condicionales para deducir la probabilidad que tiene un evento observado
+de provenir de diferentes eventos previos. Por esta razón se denomina
+también “teorema de las causas”<a href="#fn35" class="footnote-ref" id="fnref35"><sup>35</sup></a>. Nos interesa porque es un
+resultado que permite “aprender de la experiencia”, lo que quiere decir
+que da los medios para usar la información disponible para modificar las
+probabilidades de determinados eventos. Tiene mucho valor en Ciencias de
+la Salud, porque es frecuente conocer cuál es la probabilidad a priori
+que un paciente tenga determinada patología (la prevalencia de la
+enfermedad) pero, una vez que se dispone de indicadores clínicos, esa
+probabilidad cambia. De manera equivalente, si se conoce cuál es la
+probabilidad que un alumno termine una carrera universitaria, esa
+probabilidad puede modificarse, una vez que se cuenta con información
+adicional, como el número de materias que ya ha aprobado.</p>
+<p>De manera general, si <span class="math inline">\(B_{1}, B_{2}, \ldots, B_{k}\)</span> son eventos mutuamente excluyentes que completan el espacio muestral (es decir que la unión de todos esos eventos es <span class="math inline">\(\Omega\)</span>), y un evento A puede suceder en intersección con cualquiera de ellos (es decir que A puede suceder en intersección con <span class="math inline">\(B_{1}\)</span>, o con <span class="math inline">\(B_{2}\)</span>, etc.), lo esquematizaremos así:</p>
+<p><img src="imagenes/image93.png" width="473" style="display: block; margin: auto;" /></p>
+<p>Por ejemplo, los eventos <span class="math inline">\(B\)</span> pueden ser los diferentes tipos de escuela
+secundaria de la que provienen los alumnos y el evento <span class="math inline">\(A\)</span> es “terminar la carrera”. Hay quienes terminan la carrera (quienes están dentro de la elipse) y quienes no lo hacen (dentro del rectángulo pero fuera de la elipse), y tanto unos como otros pueden provenir de escuelas de
+cualquiera de los tipos <span class="math inline">\(B_{1}, B_{2}\)</span> etc. La primera de las
+intersecciones (la grisada más oscura) representa a alumnos que cumplen simultáneamente <span class="math inline">\(A\)</span> (haber terminado la carrera) y <span class="math inline">\(B_{1}\)</span> (provenir de una escuela del tipo que ese grupo define).</p>
+<p>Otro ejemplo es que los eventos <span class="math inline">\(B\)</span> sean solo dos:</p>
+<ul>
+<li><p><span class="math inline">\(B_{1}\)</span>: tener una determinada enfermedad</p></li>
+<li><p><span class="math inline">\(B_{2}\)</span>: no tener esa enfermedad</p></li>
+</ul>
+<p><img src="imagenes/image94.png" width="292" style="display: block; margin: auto;" /></p>
+<p>Si el evento <span class="math inline">\(A\)</span> es “una prueba diagnóstica dio positiva”, aparecen intersecciones entre el resultado de la prueba y la condición de las personas a quienes se aplica. La primera es la zona dentro del círculo a la izquierda: (<span class="math inline">\(A \cap B_{1}\)</span>), son los casos correctamente diagnosticados. Los que quedan fuera del círculo a la izquierda representa casos en los que la prueba no indicó la enfermedad aun cuando se trataba de personas enfermas, se llaman “falsos negativos”. A la derecha, la pequeña parte de círculo es (<span class="math inline">\(A \cap B_{2}\)</span>) e indica los casos en que la prueba dio positiva cuando fue aplicada a personas que no tenían la enfermedad, se llaman “falsos positivos”. Por último, la parte blanca del rectángulo a la derecha son los casos en que dio correctamente negativa en personas que no tenían la enfermedad.</p>
+<p><img src="imagenes/image95.png" width="292" style="display: block; margin: auto;" /></p>
+<p>Con esta notación y esa relación entre los eventos <span class="math inline">\(B_{1}, B_{2}, \ldots, B_{k}\)</span> y <span class="math inline">\(A\)</span>, el teorema de Bayes se expresa de la siguiente manera:</p>
+<p><span class="math display">\[P(B_{j}/A) = \frac{P(B_{j})*P(A/B_{j})}{\sum_{i = 1}^{k}{P(B_{i})*P(A/B_{i})}}\]</span></p>
+<p>El valor de este teorema es que permite pasar de la probabilidad simple de uno de los eventos <span class="math inline">\(B\)</span> (en general, del que llamamos <span class="math inline">\(B_{j}\)</span>, a la probabilidad “corregida”, a partir de la información que aporta el
+evento <span class="math inline">\(A\)</span>. Si se conoce inicialmente la probabilidad del evento <span class="math inline">\(B_{j}\)</span>, el teorema permite calcular la probabilidad de <span class="math inline">\(B_{j}\)</span>, luego de haber agregado la condición <span class="math inline">\(A\)</span>.</p>
+<p>Veamos un ejemplo sencillo: se dispone de dos frascos, el primero de
+ellos tiene 20 fichas azules y 10 rojas, el segundo contiene 20 azules y 20 rojas. Se elige un frasco al azar y luego se extrae de él una ficha, que resulta ser azul, nos preguntamos por la probabilidad que la ficha provenga del primer frasco. En ausencia de toda información, los dos frascos son igualmente probables, por lo que la probabilidad de cada uno es 0,50: <span class="math inline">\(P(F1)=0,50\)</span> y <span class="math inline">\(P(F2)=0,50\)</span>. Si la ficha fue extraída del primer frasco, la probabilidad de que sea azul es: <span class="math inline">\(P(A/F1)=20/30=0,67\)</span>, mientras que si proviene del segundo frasco es <span class="math inline">\(P(A/F2)=20/40=0,50\)</span>. La pregunta es por <span class="math inline">\(P(F1/A)\)</span>, debemos invertir una probabilidad condicional, por lo que usaremos el teorema de Bayes:</p>
+<p><span class="math display">\[P(F_{1}/A) = \frac{P(A/F_{1})*P(F_{1})}{P(A/F_{1})*P(F_{1}) + P(A/F_{2})*P(F_{2})}\]</span></p>
+<p>Reemplazando, tenemos:</p>
+<p><span class="math display">\[P(F_{1}/A) = \frac{0,67*0,50}{0,67*0,50 + 0,50*0,50} = \frac{0,33}{0,58} = 0,57\]</span></p>
+<p>Este resultado dice que, con el dato que la ficha extraída es azul, corregimos la probabilidad de provenir del primer frasco, que a priori era de 0,50; a 0,57. En este sentido la fórmula de Bayes nos permite usar la información para corregir probabilidades a priori.</p>
+<p>En el ejemplo sobre la enfermedad y su diagnóstico, se dispone
+inicialmente de la probabilidad que tiene una persona cualquiera de
+padecer la enfermedad, esa es <span class="math inline">\(P(B_{1})\)</span>, luego esa probabilidad cambia cuando se agrega el dato que dice que a la persona la prueba le dio positiva.</p>
+<p>Veamos un ejemplo que presentó Cohen (1994) en un artículo crítico hacia los procedimientos tradicionales de análisis estadístico. La aplicación ilustra el aporte del teorema a las interpretaciones de los resultados que arrojan las pruebas diagnósticas.</p>
+<p>La prevalencia de esquizofrenia en adultos es de aproximadamente el 2%, que indica que aproximadamente 2 de cada 100 personas en la población general de adultos padece la enfermedad. Se dispone de un conjunto de pruebas diagnósticas del que se estima que tiene al menos un 95% de precisión al hacer diagnósticos positivos (sensibilidad) y
+aproximadamente 97% de precisión al declarar normalidad (especificidad).</p>
+<p>Para expresar formalmente estos datos, tratamos por un lado, la
+situación real, la de ser esquizofrénico o no serlo. Llamamos <span class="math inline">\(E\)</span> al
+evento “el paciente es esquizofrénico” y <span class="math inline">\(noE\)</span> al evento “el paciente no es esquizofrénico”. Por lo que, elegida una persona al azar, y en ausencia de cualquier otra información, su probabilidad de ser esquizofrénico es <span class="math inline">\(P(E)=0,02\)</span>, la probabilidad que no lo sea es <span class="math inline">\(P(noE)=0,98\)</span>.</p>
+<p>Por otro lado tenemos el resultado del conjunto de pruebas, que pueden dar positivas o negativas. La sensibilidad se escribe así:
+<span class="math inline">\(P(+/E)=0,95\)</span>, que quiere decir que, aplicada a sujetos esquizofrénicos, el 95% de las veces la prueba dará un resltado positivo, que conducirá al diagnóstico correcto de la enfermedad. El complemento de esa probabilidad, 5%, es la probabilidad de dar un resultado negativo ante un caso de alguien que sí es esquizofrénico, se denomina resultado “falso negativo” y solo puede identificarse ante pruebas posteriores más sensibles o por el desarrollo de otros síntomas, que dan más elementos para realizar el diagnóstico. Escribimos entonces que <span class="math inline">\(P(-/E)=0,05\)</span>.</p>
+<p>Ante personas que no son esquizofrénicas, la prueba da, en el 97% de los casos resultado negativo (correctamente), es decir: <span class="math inline">\(P(-/noE)=0,97\)</span>. Su complemento, del 3%, es la probabilidad de hallar un resultado positivo en alguien que no es esquizofrénico<a href="#fn36" class="footnote-ref" id="fnref36"><sup>36</sup></a>, se denomina “falso positivo” y su probabilidad se escribe: <span class="math inline">\(P(+/noE)=0,03\)</span>.</p>
+<p>Dado un sujeto cuyas pruebas dan un resultado positivo, nos preguntamos por la probabilidad que efectivamente sea esquizofrénico. Antes de conocer la respuesta al problema piénselo un momento por su cuenta y ofrezca un valor aproximado para esa probabilidad.</p>
+<p>Este es un problema que requiere que se invierta una probabilidad
+condicional, ya que conocemos la probabilidad de obtener un resultado
+positivo si el individuo es esquizofrénico <span class="math inline">\(P(+/E)\)</span>, y queremos saber la probabilidad que sea esquizofrénico dado que la prueba dio positiva, que es <span class="math inline">\(P(E/+)\)</span>.</p>
+<p>En la aplicación del teorema de Bayes, el universo está compuesto por un 98% de no esquizofrénicos y un 2% de esquizofrénicos y la prueba puede dar positiva tratándose de alguien enfermo (muy frecuentemente) o estando sano (con poca probabilidad). Reemplazamos en la expresión del teorema de Bayes y tenemos:</p>
+<p><span class="math display">\[P(E/+) = \frac{P(+/E)*P(E)}{P(+/E)*P(E) + P(+/noE)*P(noE)} =\]</span> <span class="math display">\[\frac{0,95*0,02}{0,95*0,02 + 0,03*0,98} = \frac{0,019}{0,019 + 0,029} = 0,396\]</span></p>
+<p>Entonces, si a una persona estas pruebas le han dado resultado positivo, la probabilidad que efectivamente sea esquizofrénico es menos del 40%, que es mucho mayor que la prevalencia en la población general, del 2%, pero que no resulta concluyente para el diagnóstico, el cual debe completarse con otros procedimientos. Es posible que este resultado no esté cerca de la estimación intuitiva que uno haría y nos pone muy en alerta sobre la interpretación de pruebas de este tipo. El razonamiento intuitivo quizás nos habría llevado a creer que alguien a quien la prueba da positiva tiene muchas posibilidades de tener la enfermedad, pero no debemos confundir la probabilidad que la prueba de positiva si se tiene la enfermedad (<span class="math inline">\(P(+/E)\)</span>) con la probabilidad de tener la enfermedad si la prueba da positiva (<span class="math inline">\(P(E/+)\)</span>). Si una persona es esquizofrénica, la prueba le da positiva en el 95% de las veces; pero si da positiva, la probabilidad que sea esquizofrénica es menor al 40%.</p>
+<p>Este resultado no debe conducir a creer que la prueba no sirva para el
+diagnóstico. Por el contrario, ante una persona de la que no se tiene
+ninguna información, la probabilidad que sea esquizofrénico es 0,02;
+cuando se agrega el dato que dice que el test dio positivo, la
+probabilidad que sea esquizofrénico asciende a 0,39. Nuevamente, se ve
+con claridad cómo este teorema permite usar los resultados de la
+experiencia para corregir probabilidades asignadas a priori.</p>
+<p>En este ejemplo, la probabilidad de ser esquizofrénico para alguien que
+obtuvo resultado positivo en las pruebas es tan baja debido a la baja
+frecuencia de la esquizofrenia en la población general (prevalencia),
+pero demuestra lo equivocado que puede estarse si no se tienen en cuenta
+resultados falso positivo y falso negativo asociados a las pruebas
+diagnósticas.</p>
+<p>Un abordaje alternativo a este problema es usando una tabla de
+contingencia. Suponiendo que aplicamos el conjunto de pruebas a un
+universo de un millón de personas y usando las probabilidades enunciadas
+antes:</p>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Condición
+</div>
+</th>
+<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Resultado de las pruebas
+</div>
+</th>
+<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Total
+</div>
+</th>
+</tr>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:center;">
+Positivo
+</th>
+<th style="text-align:center;">
+Negativo
+</th>
+<th style="text-align:center;">
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Esquizofrénicos
+</td>
+<td style="text-align:center;">
+19000
+</td>
+<td style="text-align:center;">
+1000
+</td>
+<td style="text-align:center;">
+20000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+No esquizofrénicos
+</td>
+<td style="text-align:center;">
+29400
+</td>
+<td style="text-align:center;">
+950600
+</td>
+<td style="text-align:center;">
+980000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Total
+</td>
+<td style="text-align:center;">
+48400
+</td>
+<td style="text-align:center;">
+951600
+</td>
+<td style="text-align:center;">
+1000000
+</td>
+</tr>
+</tbody>
+</table>
+<p>Queremos responder ¿cuál es la probabilidad que el sujeto sea
+esquizofrénico, si sabemos que la prueba le dio positiva? Para ello:</p>
+<p><span class="math display">\[P(E/+) = \frac{19.000}{48.400} = 0,39\]</span></p>
+<p>Que es el mismo resultado que obtuvimos aplicando el teorema de Bayes.</p>
+<p>La ventaja de la presentación a través de una tabla de doble entrada es
+que permite distinguir dos conjuntos de eventos sobre los que tenemos
+diferente conocimiento:</p>
+<ul>
+<li><p>Un <em>estado de realidad</em>, que es la condición de esquizofrénico o no esquizofrénico del sujeto. Este estado nos es desconocido.</p></li>
+<li><p>La <em>evidencia observable</em>, que está dada por el resultado de la prueba que aplicamos, que conocemos.</p></li>
+</ul>
+<p>Como las pruebas no son perfectas, los resultados deben leerse en
+términos probabilísticos y no determinísticos.</p>
+<p>Cuando ingresemos a inferencia estadística veremos que ésta es la
+situación más frecuente: que dispongamos de cierta evidencia y debemos
+usarla para tomar una decisión acerca de un estado de realidad al que no conocemos.</p>
+<p>El de Bayes es un teorema de gran importancia, por las consecuencias que
+tiene para muchas pruebas diagnósticas que se usan a menudo. Lo que
+hemos encontrado también implica el cuidado con que deben leerse los
+resultados de pruebas de cualquier tipo: diagnósticos, dosaje de
+productos prohibidos en deportistas, pruebas genéticas, etc. Para una
+correcta interpretación de los resultados de esas pruebas se deben
+conocer cuáles son los errores de tipo “falso positivo” y “falso
+negativo” que las acompañan.</p>
+</div>
+<div id="variables-aleatorias" class="section level2">
+<h2><span class="header-section-number">8.5</span> Variables aleatorias</h2>
+<p>Es necesario hacer más explícita una parte del vocabulario que hemos
+usado. Al tratar con eventos aleatorios (resultados de experimentos
+aleatorios), en algunos hemos usado una notación más textual, como “que
+la moneda salga cara” y en otros una más numérica, por ejemplo “<span class="math inline">\(S=4\)</span>”. De
+aquí en adelante trabajaremos con la segunda notación que tiene muchas
+ventajas. La razón es que pasamos a tratar a los experimentos como
+observación de variables, cuyas categorías (o valores) son los
+resultados del experimento. En la tirada de la moneda, no es difícil
+cuantificar los eventos, podemos elegir cara como lado preferido y
+definir la variable X = “número de caras que se obtienen al lanzar una
+moneda equilibrada”, los valores posibles son 0 (si sale cruz) y 1 (si
+sale cara). En la suma de los puntos de los dos dados, S asume valores
+discretos del 2 al 12. La descripción como distribución de frecuencias
+que hacíamos antes, se transforma ahora en distribución de
+probabilidades y, para los dos ejemplos citados, toma la forma:</p>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:center;">
+X = número de caras
+</th>
+<th style="text-align:center;">
+<span class="math inline">\(P(X)\)</span>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+1/2
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+1/2
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+Total
+</td>
+<td style="text-align:center;">
+1
+</td>
+</tr>
+</tbody>
+</table>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:center;">
+S = suma de puntos de dos dados
+</th>
+<th style="text-align:center;">
+<span class="math inline">\(P(S)\)</span>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+2
+</td>
+<td style="text-align:center;">
+0.028
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+3
+</td>
+<td style="text-align:center;">
+0.056
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+4
+</td>
+<td style="text-align:center;">
+0.083
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+5
+</td>
+<td style="text-align:center;">
+0.111
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+6
+</td>
+<td style="text-align:center;">
+0.139
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+7
+</td>
+<td style="text-align:center;">
+0.167
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+8
+</td>
+<td style="text-align:center;">
+0.139
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+9
+</td>
+<td style="text-align:center;">
+0.111
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+10
+</td>
+<td style="text-align:center;">
+0.083
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+11
+</td>
+<td style="text-align:center;">
+0.056
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+12
+</td>
+<td style="text-align:center;">
+0.028
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+Total
+</td>
+<td style="text-align:center;">
+1.000
+</td>
+</tr>
+</tbody>
+</table>
+<p>Estas variables se denominan <strong>variables aleatorias</strong>, porque sus
+valores dependen del azar y serán muy necesarias en todo lo que sigue de
+la materia. El aspecto de estas tablas de distribución de probabilidades
+es en un todo equivalente al de las de distribución de frecuencias: el
+total igual a uno indica la probabilidad del espacio muestral (<span class="math inline">\(P(\Omega) = 1\)</span>). Sobre ellas pueden hacerse operaciones similares a las descripciones de variables ya vistas.</p>
+<p>Cuando la variable aleatoria puede asumir valores continuos, ya no es
+posible asignar probabilidades individualmente y debe hacerse a través
+de intervalos. Es el mismo problema que hallamos en las distribuciones
+de frecuencia, y lo resolvemos del mismo modo. Se usan probabilidades
+acumuladas, ya sea entre valores de la variable o desde ciertos valores
+hacia los mayores o desde ciertos valores hacia los menores<a href="#fn37" class="footnote-ref" id="fnref37"><sup>37</sup></a>.</p>
+<p>También es posible, sobre distribuciones de probabilidad, calcular
+algunas medidas descriptivas, veamos en qué se transforma la media. El
+procedimiento para calcularla que hemos visto consiste en multiplicar
+cada valor de la variable por su frecuencia y dividir por el total de
+casos; para las variables aleatorias eso se hace de una sola vez,
+multiplicando cada valor por la probabilidad y se obtiene:</p>
+<p><span class="math display">\[E(x) = \sum_{i = 1}^{n}x_{i}*{P(x}_{i})\]</span></p>
+<p>Que se llama <strong>esperanza matemática</strong>, la indicaremos <span class="math inline">\(E(x)\)</span>. Aunque esta
+expresión proviene del cálculo de la media<a href="#fn38" class="footnote-ref" id="fnref38"><sup>38</sup></a>, tiene una diferencia
+conceptual importante: la media es una medida resumen, por lo que
+describe hechos que han sido observados, puede decirse que hace
+referencia a algo que ya sucedió. Por el contrario la esperanza se
+refiere a eventos que pueden llegar a suceder, por eso tiene ese nombre,
+es la expectativa que tenemos sobre el devenir futuro de un experimento.
+Uno de los usos más difundidos de este concepto es la esperanza de vida,
+que mide el número promedio de años que viviría un conjunto de personas
+si a lo largo de toda su vida se mantuvieran las mismas tasas de
+mortalidad que en la actualidad (las tasas de mortalidad se usan para
+estimar las probabilidades de morir a cada edad). Un “promedio a futuro”
+es una descripción sobre algo que aún no sucedió, por eso se llama
+esperanza.</p>
+<p>De manera análoga puede calcularse la varianza de una variable
+aleatoria, su fórmula es:</p>
+<p><span class="math display">\[V(x)=\sum_{i=1}^{n}(x_i-E(x))^{2}*P(x_i)\]</span></p>
+<p>Al referirse a una variable aleatoria, la interpretación de la varianza
+difiere levemente de aquella que se usó como medida descriptiva de la
+dispersión. Aquí indica el modo en que se alcanzará el valor de la
+esperanza. Una varianza grande indica un proceso aleatorio muy variable,
+con valores dispares que convergen lentamente al valor de la esperanza.
+Por el contrario, un valor pequeño de la varianza indica un proceso más
+estable en el que los valores difieren poco de un paso al siguiente y
+rápidamente se aproximan a la esperanza.</p>
+<p>Un ejemplo común que ilustra el uso de estas medidas es el juego de la
+ruleta. En este juego, por cada ficha que se apuesta a un color se
+obtiene una de premio si sale ese color y, por cada ficha que se apuesta
+a un solo número, se obtienen 35 como premio. En ambos tipos de apuesta,
+la ganancia esperada<a href="#fn39" class="footnote-ref" id="fnref39"><sup>39</sup></a> vale -0,027. Esto significa que, jugando
+indefinidamente, se espera perder (porque es negativa) 0,027 pesos por
+cada peso que se apueste; esa es la ganancia esperada del organizador
+del juego.</p>
+<p>Sin embargo, las varianzas son diferentes; para las apuestas a color,
+vale poco menos de 1 y para la apuesta a número único es más de 34. Esto
+describe la dinámica del juego; mientras con la primera modalidad se
+gana y se pierde a menudo, con la segunda forma de apostar, se pierde
+muchas veces y cuando se gana es grande la recompensa. De todos modos en
+ambos tipos de apuesta, el balance entre ganancias y pérdidas es
+negativo, como lo indica la esperanza.</p>
+
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="34">
+<li id="fn34"><p>La intersección de dos eventos es conmutativa: <span class="math inline">\(P(A \cap B)=P(B \cap A)\)</span><a href="probabilidad-los-fundamentos.html#fnref34" class="footnote-back">↩</a></p></li>
+<li id="fn35"><p>Fue enunciado por Thomas Bayes (1702-1761), matemático inglés.<a href="probabilidad-los-fundamentos.html#fnref35" class="footnote-back">↩</a></p></li>
+<li id="fn36"><p>Nuevamente en este caso, esto puede conocerse a posteriori, luego de otras pruebas o del seguimiento del sujeto.<a href="probabilidad-los-fundamentos.html#fnref36" class="footnote-back">↩</a></p></li>
+<li id="fn37"><p>Sin embargo hay algo importante que cambia; porque en lugar de sumar un número finito de valores discretos, cuando se trata de variables continuas se debe sumar una cantidad infinita de valores infinitesimales, ese cambio se refleja en que la operación de suma se transforma en otra operación que se llama integral. No disponemos de los elementos matemáticos suficientes para ir más allá de esta mención imprecisa del concepto, pero tampoco es necesario a los fines de este curso.<a href="probabilidad-los-fundamentos.html#fnref37" class="footnote-back">↩</a></p></li>
+<li id="fn38"><p>Puede deducirse esto a partir del cálculo de la media, si se reemplazan las frecuencias relativas por las probabilidades de cada valor de la variable, tenemos: <span class="math display">\[\overline{x} = \frac{\sum_{i = 1}^{n}{x_{i}*f_{i}}}{n} = \sum_{i = 1}^{n}x_{i}*\frac{f_{i}}{n} = \sum_{i = 1}^{n}x_{i}*f_{i}^{&#39;} = \sum_{i = 1}^{n}x_{i}*{P(x}_{i}) = E(x)\]</span><a href="probabilidad-los-fundamentos.html#fnref38" class="footnote-back">↩</a></p></li>
+<li id="fn39"><p>Para el caso de ruletas con un solo cero, existen algunas que tienen además del cero el doble cero, en esos casos la esperanza de pérdida es mayor.<a href="probabilidad-los-fundamentos.html#fnref39" class="footnote-back">↩</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="obtención-de-la-muestra.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="probabilidad-los-modelos.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/jcrodriguez1989/EstadisticaParaCienciasSocialesConR/edit/master/08-capitulo7.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["EstadisticaParaCienciasSocialesConR.pdf", "EstadisticaParaCienciasSocialesConR.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

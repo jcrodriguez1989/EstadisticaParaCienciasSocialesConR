@@ -1,0 +1,1511 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 9 Probabilidad: los modelos | Estadística para Ciencias Sociales con R</title>
+  <meta name="description" content="Capítulo 9 Probabilidad: los modelos | Estadística para Ciencias Sociales con R" />
+  <meta name="generator" content="bookdown 0.14.1 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 9 Probabilidad: los modelos | Estadística para Ciencias Sociales con R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  <meta name="github-repo" content="jcrodriguez1989/EstadisticaParaCienciasSocialesConR" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 9 Probabilidad: los modelos | Estadística para Ciencias Sociales con R" />
+  
+  
+  
+
+<meta name="author" content="Eduardo Bologna" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="probabilidad-los-fundamentos.html"/>
+<link rel="next" href="distribuciones-en-el-muestreo.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Estadística para Ciencias Sociales con R</a></li>
+
+<li class="divider"></li>
+<li><a href="index.html#section"></a></li>
+<li class="chapter" data-level="1" data-path="materiales-y-herramientas.html"><a href="materiales-y-herramientas.html"><i class="fa fa-check"></i><b>1</b> Materiales y herramientas</a><ul>
+<li class="chapter" data-level="1.1" data-path="materiales-y-herramientas.html"><a href="materiales-y-herramientas.html#materiales"><i class="fa fa-check"></i><b>1.1</b> Materiales</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="materiales-y-herramientas.html"><a href="materiales-y-herramientas.html#encuesta-permanente-de-hogares-eph.3.18"><i class="fa fa-check"></i><b>1.1.1</b> Encuesta Permanente de Hogares (eph.3.18)</a></li>
+<li class="chapter" data-level="1.1.2" data-path="materiales-y-herramientas.html"><a href="materiales-y-herramientas.html#encuesta-nacional-de-factores-de-riesgo-enfr2013"><i class="fa fa-check"></i><b>1.1.2</b> Encuesta Nacional de Factores de Riesgo (ENFR2013)</a></li>
+<li class="chapter" data-level="1.1.3" data-path="materiales-y-herramientas.html"><a href="materiales-y-herramientas.html#latinobarómetro-latinob2017"><i class="fa fa-check"></i><b>1.1.3</b> Latinobarómetro (latinob2017)</a></li>
+<li class="chapter" data-level="1.1.4" data-path="materiales-y-herramientas.html"><a href="materiales-y-herramientas.html#encuesta-nacional-sobre-prevalencias-de-consumo-de-sustancias-psicoactivas-enprecosp2011"><i class="fa fa-check"></i><b>1.1.4</b> Encuesta Nacional sobre Prevalencias de Consumo de Sustancias Psicoactivas (ENPreCoSP2011)</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="materiales-y-herramientas.html"><a href="materiales-y-herramientas.html#herramientas"><i class="fa fa-check"></i><b>1.2</b> Herramientas</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="materiales-y-herramientas.html"><a href="materiales-y-herramientas.html#la-elección-de-r"><i class="fa fa-check"></i><b>1.2.1</b> La elección de R</a></li>
+<li class="chapter" data-level="1.2.2" data-path="materiales-y-herramientas.html"><a href="materiales-y-herramientas.html#instalación-de-r-y-rstudio"><i class="fa fa-check"></i><b>1.2.2</b> Instalación de R y RStudio</a></li>
+<li class="chapter" data-level="1.2.3" data-path="materiales-y-herramientas.html"><a href="materiales-y-herramientas.html#los-componentes-de-rstudio"><i class="fa fa-check"></i><b>1.2.3</b> Los componentes de RStudio</a></li>
+<li class="chapter" data-level="1.2.4" data-path="materiales-y-herramientas.html"><a href="materiales-y-herramientas.html#operaciones-en-el-script"><i class="fa fa-check"></i><b>1.2.4</b> Operaciones en el script</a></li>
+<li class="chapter" data-level="1.2.5" data-path="materiales-y-herramientas.html"><a href="materiales-y-herramientas.html#instalación-de-paquetes"><i class="fa fa-check"></i><b>1.2.5</b> Instalación de paquetes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html"><i class="fa fa-check"></i><b>2</b> Los datos estadísticos</a><ul>
+<li class="chapter" data-level="2.1" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#la-selección-de-la-información-pertinente"><i class="fa fa-check"></i><b>2.1</b> La selección de la información pertinente</a></li>
+<li class="chapter" data-level="2.2" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#los-individuos"><i class="fa fa-check"></i><b>2.2</b> Los individuos</a></li>
+<li class="chapter" data-level="2.3" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#las-variables"><i class="fa fa-check"></i><b>2.3</b> Las variables</a></li>
+<li class="chapter" data-level="2.4" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#las-categorías"><i class="fa fa-check"></i><b>2.4</b> Las categorías</a></li>
+<li class="chapter" data-level="2.5" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#los-símbolos-numéricos"><i class="fa fa-check"></i><b>2.5</b> Los símbolos numéricos</a></li>
+<li class="chapter" data-level="2.6" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#la-medición"><i class="fa fa-check"></i><b>2.6</b> La medición</a><ul>
+<li class="chapter" data-level="2.6.1" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#niveles-de-medición"><i class="fa fa-check"></i><b>2.6.1</b> Niveles de medición</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#resumen-de-los-niveles-de-medición"><i class="fa fa-check"></i><b>2.7</b> Resumen de los niveles de medición</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html"><i class="fa fa-check"></i><b>3</b> Distribuciones de frecuencia</a><ul>
+<li class="chapter" data-level="3.1" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#tablas-de-distribución-de-frecuencia"><i class="fa fa-check"></i><b>3.1</b> Tablas de distribución de frecuencia</a></li>
+<li class="chapter" data-level="3.2" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#recategorización"><i class="fa fa-check"></i><b>3.2</b> Recategorización</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#variable-discreta-con-muchas-categorías"><i class="fa fa-check"></i><b>3.2.1</b> Variable discreta con muchas categorías</a></li>
+<li class="chapter" data-level="3.2.2" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#variable-continua"><i class="fa fa-check"></i><b>3.2.2</b> Variable continua</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#la-presentación-gráfica-de-los-resultados"><i class="fa fa-check"></i><b>3.3</b> La presentación gráfica de los resultados</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html"><i class="fa fa-check"></i><b>4</b> La expresión resumida de la información</a><ul>
+<li class="chapter" data-level="4.1" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#medidas-de-posición"><i class="fa fa-check"></i><b>4.1</b> Medidas de posición</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#variables-nominales-proporciones"><i class="fa fa-check"></i><b>4.1.1</b> Variables nominales: proporciones</a></li>
+<li class="chapter" data-level="4.1.2" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#variables-nominales-tasas"><i class="fa fa-check"></i><b>4.1.2</b> Variables nominales: tasas</a></li>
+<li class="chapter" data-level="4.1.3" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#variables-nominales-razones"><i class="fa fa-check"></i><b>4.1.3</b> Variables nominales: razones</a></li>
+<li class="chapter" data-level="4.1.4" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#variables-nominales-el-modo"><i class="fa fa-check"></i><b>4.1.4</b> Variables nominales: el modo</a></li>
+<li class="chapter" data-level="4.1.5" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#variables-ordinales-percentiles"><i class="fa fa-check"></i><b>4.1.5</b> Variables ordinales: percentiles</a></li>
+<li class="chapter" data-level="4.1.6" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#variables-ordinales-la-mediana"><i class="fa fa-check"></i><b>4.1.6</b> Variables ordinales: la mediana</a></li>
+<li class="chapter" data-level="4.1.7" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#los-cuartiles"><i class="fa fa-check"></i><b>4.1.7</b> Los cuartiles</a></li>
+<li class="chapter" data-level="4.1.8" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#los-percentiles"><i class="fa fa-check"></i><b>4.1.8</b> Los percentiles</a></li>
+<li class="chapter" data-level="4.1.9" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#hacerlo-en-r"><i class="fa fa-check"></i><b>4.1.9</b> Hacerlo en R</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#la-forma-de-la-distribución"><i class="fa fa-check"></i><b>4.2</b> La forma de la distribución</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#asimetría"><i class="fa fa-check"></i><b>4.2.1</b> Asimetría</a></li>
+<li class="chapter" data-level="4.2.2" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#curtosis"><i class="fa fa-check"></i><b>4.2.2</b> Curtosis</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#box-plots"><i class="fa fa-check"></i><b>4.3</b> Box-plots</a></li>
+<li class="chapter" data-level="4.4" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#medidas-de-dispersión"><i class="fa fa-check"></i><b>4.4</b> Medidas de dispersión</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#recorrido"><i class="fa fa-check"></i><b>4.4.1</b> Recorrido</a></li>
+<li class="chapter" data-level="4.4.2" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#amplitud-intercuartílica"><i class="fa fa-check"></i><b>4.4.2</b> Amplitud intercuartílica</a></li>
+<li class="chapter" data-level="4.4.3" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#medidas-de-dispersión-basadas-en-la-media"><i class="fa fa-check"></i><b>4.4.3</b> Medidas de dispersión basadas en la media</a></li>
+<li class="chapter" data-level="4.4.4" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#varianza"><i class="fa fa-check"></i><b>4.4.4</b> Varianza</a></li>
+<li class="chapter" data-level="4.4.5" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#desviación-estándar"><i class="fa fa-check"></i><b>4.4.5</b> Desviación estándar</a></li>
+<li class="chapter" data-level="4.4.6" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#coeficiente-de-variación"><i class="fa fa-check"></i><b>4.4.6</b> Coeficiente de variación</a></li>
+<li class="chapter" data-level="4.4.7" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#hacerlo-en-r-1"><i class="fa fa-check"></i><b>4.4.7</b> Hacerlo en R</a></li>
+<li class="chapter" data-level="4.4.8" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#box-plots-y-dispersión"><i class="fa fa-check"></i><b>4.4.8</b> Box-plots y dispersión</a></li>
+<li class="chapter" data-level="4.4.9" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#medida-de-la-dispersión-cuando-no-hay-distancias"><i class="fa fa-check"></i><b>4.4.9</b> Medida de la dispersión cuando no hay distancias</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#el-individuo-en-relación-a-su-grupo"><i class="fa fa-check"></i><b>4.5</b> El individuo en relación a su grupo</a></li>
+<li class="chapter" data-level="4.6" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#resumen-de-medidas-descriptivas"><i class="fa fa-check"></i><b>4.6</b> Resumen de medidas descriptivas</a><ul>
+<li class="chapter" data-level="4.6.1" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#medidas-de-posición-1"><i class="fa fa-check"></i><b>4.6.1</b> Medidas de posición</a></li>
+<li class="chapter" data-level="4.6.2" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#medidas-de-dispersión-1"><i class="fa fa-check"></i><b>4.6.2</b> Medidas de dispersión</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html"><i class="fa fa-check"></i><b>5</b> Relación entre variables: los fundamentos</a><ul>
+<li class="chapter" data-level="5.1" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#tablas-de-contingencia"><i class="fa fa-check"></i><b>5.1</b> Tablas de contingencia</a></li>
+<li class="chapter" data-level="5.2" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#frecuencias-relativas"><i class="fa fa-check"></i><b>5.2</b> Frecuencias relativas</a></li>
+<li class="chapter" data-level="5.3" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#una-clasificación-en-referencia-al-tiempo"><i class="fa fa-check"></i><b>5.3</b> Una clasificación en referencia al tiempo</a></li>
+<li class="chapter" data-level="5.4" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#la-dirección-de-la-relación"><i class="fa fa-check"></i><b>5.4</b> La dirección de la relación</a></li>
+<li class="chapter" data-level="5.5" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#concepto-de-riesgo-relativo"><i class="fa fa-check"></i><b>5.5</b> Concepto de riesgo relativo</a></li>
+<li class="chapter" data-level="5.6" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#la-intensidad"><i class="fa fa-check"></i><b>5.6</b> La intensidad</a></li>
+<li class="chapter" data-level="5.7" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#el-concepto-de-independencia-estadística"><i class="fa fa-check"></i><b>5.7</b> El concepto de independencia estadística</a></li>
+<li class="chapter" data-level="5.8" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#hacerlo-en-r-2"><i class="fa fa-check"></i><b>5.8</b> Hacerlo en R</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html"><i class="fa fa-check"></i><b>6</b> Relación entre variables: el análisis</a><ul>
+<li class="chapter" data-level="6.1" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#variables-nominales-con-más-de-dos-categorías-cada-una"><i class="fa fa-check"></i><b>6.1</b> Variables nominales con más de dos categorías cada una</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#la-distancia-entre-frecuencias-esperadas-y-observadas"><i class="fa fa-check"></i><b>6.1.1</b> La distancia entre frecuencias esperadas y observadas</a></li>
+<li class="chapter" data-level="6.1.2" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#coeficientes-de-asociación-para-variables-nominales"><i class="fa fa-check"></i><b>6.1.2</b> Coeficientes de asociación para variables nominales</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#variables-de-nivel-ordinal"><i class="fa fa-check"></i><b>6.2</b> Variables de nivel ordinal</a></li>
+<li class="chapter" data-level="6.3" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#nivel-intervalar-o-proporcional"><i class="fa fa-check"></i><b>6.3</b> Nivel intervalar o proporcional</a></li>
+<li class="chapter" data-level="6.4" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#dicotomías-reales-y-artificiales"><i class="fa fa-check"></i><b>6.4</b> Dicotomías reales y artificiales</a></li>
+<li class="chapter" data-level="6.5" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#niveles-de-medición-combinados"><i class="fa fa-check"></i><b>6.5</b> Niveles de medición combinados</a><ul>
+<li class="chapter" data-level="6.5.1" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#una-variable-dicotómica-real-y-una-proporcional"><i class="fa fa-check"></i><b>6.5.1</b> Una variable dicotómica real y una proporcional</a></li>
+<li class="chapter" data-level="6.5.2" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#una-variable-continua-dicotomizada-y-una-proporcional"><i class="fa fa-check"></i><b>6.5.2</b> Una variable continua dicotomizada y una proporcional</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#resumen-de-coeficientes-de-asociación"><i class="fa fa-check"></i><b>6.6</b> Resumen de coeficientes de asociación</a></li>
+<li class="chapter" data-level="6.7" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#matriz-de-correlaciones"><i class="fa fa-check"></i><b>6.7</b> Matriz de correlaciones</a></li>
+<li class="chapter" data-level="6.8" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#la-forma-de-la-relación"><i class="fa fa-check"></i><b>6.8</b> La forma de la relación</a><ul>
+<li class="chapter" data-level="6.8.1" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#ordenada-al-origen"><i class="fa fa-check"></i><b>6.8.1</b> Ordenada al origen</a></li>
+<li class="chapter" data-level="6.8.2" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#pendiente"><i class="fa fa-check"></i><b>6.8.2</b> Pendiente</a></li>
+<li class="chapter" data-level="6.8.3" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#obtención-de-la-recta-de-regresión"><i class="fa fa-check"></i><b>6.8.3</b> Obtención de la recta de regresión</a></li>
+</ul></li>
+<li class="chapter" data-level="6.9" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#la-importancia-de-la-visualización"><i class="fa fa-check"></i><b>6.9</b> La importancia de la visualización</a></li>
+<li class="chapter" data-level="6.10" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#hacerlo-en-r-3"><i class="fa fa-check"></i><b>6.10</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="6.10.1" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#distancia-chi2"><i class="fa fa-check"></i><b>6.10.1</b> Distancia <span class="math inline">\(\chi^{2}\)</span></a></li>
+<li class="chapter" data-level="6.10.2" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#coeficientes"><i class="fa fa-check"></i><b>6.10.2</b> Coeficientes</a></li>
+<li class="chapter" data-level="6.10.3" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#modelo-lineal"><i class="fa fa-check"></i><b>6.10.3</b> Modelo lineal</a></li>
+<li class="chapter" data-level="6.10.4" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#cuarteto-de-anscombe"><i class="fa fa-check"></i><b>6.10.4</b> Cuarteto de Anscombe</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html"><i class="fa fa-check"></i><b>7</b> Obtención de la muestra</a><ul>
+<li class="chapter" data-level="7.1" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#población"><i class="fa fa-check"></i><b>7.1</b> Población</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestra"><i class="fa fa-check"></i><b>7.1.1</b> Muestra</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreos-probabilísticos"><i class="fa fa-check"></i><b>7.2</b> Muestreos probabilísticos</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-irrestricto-aleatorio-o-aleatorio-simple"><i class="fa fa-check"></i><b>7.2.1</b> Muestreo irrestricto aleatorio o aleatorio simple</a></li>
+<li class="chapter" data-level="7.2.2" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-sistemático"><i class="fa fa-check"></i><b>7.2.2</b> Muestreo sistemático</a></li>
+<li class="chapter" data-level="7.2.3" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-estratificado"><i class="fa fa-check"></i><b>7.2.3</b> Muestreo estratificado</a></li>
+<li class="chapter" data-level="7.2.4" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-por-conglomerados"><i class="fa fa-check"></i><b>7.2.4</b> Muestreo por conglomerados</a></li>
+<li class="chapter" data-level="7.2.5" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#método-de-kish"><i class="fa fa-check"></i><b>7.2.5</b> Método de Kish</a></li>
+<li class="chapter" data-level="7.2.6" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#uso-combinado-de-técnicas-de-muestreo"><i class="fa fa-check"></i><b>7.2.6</b> Uso combinado de técnicas de muestreo</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreos-no-probabilísticos"><i class="fa fa-check"></i><b>7.3</b> Muestreos no probabilísticos</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-por-cuotas"><i class="fa fa-check"></i><b>7.3.1</b> Muestreo por cuotas</a></li>
+<li class="chapter" data-level="7.3.2" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-de-juicio-o-intencional"><i class="fa fa-check"></i><b>7.3.2</b> Muestreo de juicio o intencional</a></li>
+<li class="chapter" data-level="7.3.3" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-autoelegido"><i class="fa fa-check"></i><b>7.3.3</b> Muestreo autoelegido</a></li>
+<li class="chapter" data-level="7.3.4" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-accidental-o-según-disponibilidad"><i class="fa fa-check"></i><b>7.3.4</b> Muestreo accidental o según disponibilidad</a></li>
+<li class="chapter" data-level="7.3.5" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-bola-de-nieve"><i class="fa fa-check"></i><b>7.3.5</b> Muestreo bola de nieve</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#resumen-de-técnicas-de-muestreo"><i class="fa fa-check"></i><b>7.4</b> Resumen de técnicas de muestreo</a></li>
+<li class="chapter" data-level="7.5" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#hacerlo-en-r-4"><i class="fa fa-check"></i><b>7.5</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="7.5.1" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#aleatorio-simple"><i class="fa fa-check"></i><b>7.5.1</b> Aleatorio simple</a></li>
+<li class="chapter" data-level="7.5.2" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#estratificado"><i class="fa fa-check"></i><b>7.5.2</b> Estratificado</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html"><i class="fa fa-check"></i><b>8</b> Probabilidad: los fundamentos</a><ul>
+<li class="chapter" data-level="8.1" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#el-rol-de-la-probabilidad-en-estadística"><i class="fa fa-check"></i><b>8.1</b> El rol de la probabilidad en Estadística</a></li>
+<li class="chapter" data-level="8.2" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#formas-para-asignar-probabilidades"><i class="fa fa-check"></i><b>8.2</b> Formas para asignar probabilidades</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#asignación-a-priori"><i class="fa fa-check"></i><b>8.2.1</b> Asignación a priori</a></li>
+<li class="chapter" data-level="8.2.2" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#asignación-a-posteriori"><i class="fa fa-check"></i><b>8.2.2</b> Asignación a posteriori</a></li>
+<li class="chapter" data-level="8.2.3" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#la-relación-entre-asignación-a-priori-y-a-posteriori"><i class="fa fa-check"></i><b>8.2.3</b> La relación entre asignación a priori y a posteriori</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#operando-con-probabilidades"><i class="fa fa-check"></i><b>8.3</b> Operando con probabilidades</a><ul>
+<li class="chapter" data-level="8.3.1" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#con-probabilidades-frecuenciales"><i class="fa fa-check"></i><b>8.3.1</b> Con probabilidades frecuenciales</a></li>
+<li class="chapter" data-level="8.3.2" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#con-probabilidades-a-priori"><i class="fa fa-check"></i><b>8.3.2</b> Con probabilidades a priori</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#el-teorema-de-bayes"><i class="fa fa-check"></i><b>8.4</b> El teorema de Bayes</a></li>
+<li class="chapter" data-level="8.5" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#variables-aleatorias"><i class="fa fa-check"></i><b>8.5</b> Variables aleatorias</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html"><i class="fa fa-check"></i><b>9</b> Probabilidad: los modelos</a><ul>
+<li class="chapter" data-level="9.1" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#concepto-de-modelización"><i class="fa fa-check"></i><b>9.1</b> Concepto de modelización</a></li>
+<li class="chapter" data-level="9.2" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#distribución-binomial"><i class="fa fa-check"></i><b>9.2</b> Distribución binomial</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#esperanza-y-varianza"><i class="fa fa-check"></i><b>9.2.1</b> Esperanza y varianza</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#distribución-normal"><i class="fa fa-check"></i><b>9.3</b> Distribución normal</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#percentiles"><i class="fa fa-check"></i><b>9.3.1</b> Percentiles</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#la-idea-de-grados-de-libertad"><i class="fa fa-check"></i><b>9.4</b> La idea de grados de libertad</a></li>
+<li class="chapter" data-level="9.5" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#la-distribución-ji-cuadrado-chi2"><i class="fa fa-check"></i><b>9.5</b> La distribución ji cuadrado (<span class="math inline">\(\chi^{2}\)</span>)</a></li>
+<li class="chapter" data-level="9.6" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#la-distribución-t-de-student"><i class="fa fa-check"></i><b>9.6</b> La distribución t de Student</a><ul>
+<li class="chapter" data-level="9.6.1" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#la-distribución-f"><i class="fa fa-check"></i><b>9.6.1</b> La distribución F</a></li>
+</ul></li>
+<li class="chapter" data-level="9.7" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#hacerlo-en-r-5"><i class="fa fa-check"></i><b>9.7</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="9.7.1" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#probabilidades"><i class="fa fa-check"></i><b>9.7.1</b> Probabilidades</a></li>
+<li class="chapter" data-level="9.7.2" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#percentiles-1"><i class="fa fa-check"></i><b>9.7.2</b> Percentiles</a></li>
+<li class="chapter" data-level="9.7.3" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#áreas-centrales"><i class="fa fa-check"></i><b>9.7.3</b> Áreas centrales</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html"><i class="fa fa-check"></i><b>10</b> Distribuciones en el muestreo</a><ul>
+<li class="chapter" data-level="10.1" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#parámetros-y-estimadores"><i class="fa fa-check"></i><b>10.1</b> Parámetros y estimadores</a></li>
+<li class="chapter" data-level="10.2" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#características-de-los-estimadores"><i class="fa fa-check"></i><b>10.2</b> Características de los estimadores</a><ul>
+<li class="chapter" data-level="10.2.1" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#insesgabilidad"><i class="fa fa-check"></i><b>10.2.1</b> Insesgabilidad</a></li>
+<li class="chapter" data-level="10.2.2" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#consistencia"><i class="fa fa-check"></i><b>10.2.2</b> Consistencia</a></li>
+<li class="chapter" data-level="10.2.3" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#eficiencia"><i class="fa fa-check"></i><b>10.2.3</b> Eficiencia</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#distribución-de-la-media-muestral"><i class="fa fa-check"></i><b>10.3</b> Distribución de la media muestral</a></li>
+<li class="chapter" data-level="10.4" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#distribución-de-la-proporción-muestral"><i class="fa fa-check"></i><b>10.4</b> Distribución de la proporción muestral</a></li>
+<li class="chapter" data-level="10.5" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#muestras-pequeñas"><i class="fa fa-check"></i><b>10.5</b> Muestras pequeñas</a></li>
+<li class="chapter" data-level="10.6" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#distribución-de-la-varianza"><i class="fa fa-check"></i><b>10.6</b> Distribución de la varianza</a></li>
+<li class="chapter" data-level="10.7" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#distribución-del-cociente-de-varianzas"><i class="fa fa-check"></i><b>10.7</b> Distribución del cociente de varianzas</a></li>
+<li class="chapter" data-level="10.8" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#resumen-de-la-relación-entre-estimadores-y-parámetros"><i class="fa fa-check"></i><b>10.8</b> Resumen de la relación entre estimadores y parámetros</a></li>
+<li class="chapter" data-level="10.9" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#hacerlo-en-r-6"><i class="fa fa-check"></i><b>10.9</b> Hacerlo en R</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html"><i class="fa fa-check"></i><b>11</b> Estimación por intervalo</a><ul>
+<li class="chapter" data-level="11.1" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#estimación-puntual"><i class="fa fa-check"></i><b>11.1</b> Estimación puntual</a></li>
+<li class="chapter" data-level="11.2" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#intervalos-de-confianza"><i class="fa fa-check"></i><b>11.2</b> Intervalos de confianza</a><ul>
+<li class="chapter" data-level="11.2.1" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#estimación-de-la-media"><i class="fa fa-check"></i><b>11.2.1</b> Estimación de la media</a></li>
+<li class="chapter" data-level="11.2.2" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#estimación-de-la-proporción"><i class="fa fa-check"></i><b>11.2.2</b> Estimación de la proporción</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#la-calidad-de-las-estimaciones-por-intervalo"><i class="fa fa-check"></i><b>11.3</b> La calidad de las estimaciones por intervalo</a><ul>
+<li class="chapter" data-level="11.3.1" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#el-error-de-estimación-en-la-proporción"><i class="fa fa-check"></i><b>11.3.1</b> El error de estimación en la proporción</a></li>
+<li class="chapter" data-level="11.3.2" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#probabilidad-de-cobertura"><i class="fa fa-check"></i><b>11.3.2</b> Probabilidad de cobertura</a></li>
+</ul></li>
+<li class="chapter" data-level="11.4" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#hacerlo-en-r-7"><i class="fa fa-check"></i><b>11.4</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="11.4.1" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#intervalo-para-la-media"><i class="fa fa-check"></i><b>11.4.1</b> Intervalo para la media</a></li>
+<li class="chapter" data-level="11.4.2" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#intervalo-para-la-proporción"><i class="fa fa-check"></i><b>11.4.2</b> Intervalo para la proporción</a></li>
+<li class="chapter" data-level="11.4.3" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#cobertura"><i class="fa fa-check"></i><b>11.4.3</b> Cobertura</a></li>
+<li class="chapter" data-level="11.4.4" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#operaciones-sobre-la-base-enprecosp"><i class="fa fa-check"></i><b>11.4.4</b> Operaciones sobre la base ENPreCoSP</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html"><i class="fa fa-check"></i><b>12</b> Prueba de hipótesis: la lógica</a><ul>
+<li class="chapter" data-level="12.1" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#el-razonamiento-de-la-prueba-de-hipótesis"><i class="fa fa-check"></i><b>12.1</b> El razonamiento de la prueba de hipótesis</a><ul>
+<li class="chapter" data-level="12.1.1" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#prueba-sobre-la-media"><i class="fa fa-check"></i><b>12.1.1</b> Prueba sobre la media</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#los-puntos-críticos-en-términos-del-estimador"><i class="fa fa-check"></i><b>12.2</b> Los puntos críticos en términos del estimador</a><ul>
+<li class="chapter" data-level="12.2.1" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#pruebas-unilaterales"><i class="fa fa-check"></i><b>12.2.1</b> Pruebas unilaterales</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#prueba-sobre-la-proporción"><i class="fa fa-check"></i><b>12.3</b> Prueba sobre la proporción</a></li>
+<li class="chapter" data-level="12.4" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#tipos-de-error-en-las-pruebas-de-hipótesis"><i class="fa fa-check"></i><b>12.4</b> Tipos de error en las pruebas de hipótesis</a></li>
+<li class="chapter" data-level="12.5" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#etii-mu-alpha-y-n"><i class="fa fa-check"></i><b>12.5</b> <em>ETII:</em> <span class="math inline">\(\mu\)</span>, <span class="math inline">\(\alpha\)</span> y <span class="math inline">\(n\)</span></a><ul>
+<li class="chapter" data-level="12.5.1" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#curva-de-potencia"><i class="fa fa-check"></i><b>12.5.1</b> Curva de potencia</a></li>
+<li class="chapter" data-level="12.5.2" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#significación-estadística-y-valor-p"><i class="fa fa-check"></i><b>12.5.2</b> Significación estadística y valor <span class="math inline">\(p\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="12.6" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#muestras-pequeñas-y-pruebas-t"><i class="fa fa-check"></i><b>12.6</b> Muestras pequeñas y pruebas <span class="math inline">\(t\)</span></a></li>
+<li class="chapter" data-level="12.7" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#hacerlo-en-r-8"><i class="fa fa-check"></i><b>12.7</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="12.7.1" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#media"><i class="fa fa-check"></i><b>12.7.1</b> Media</a></li>
+<li class="chapter" data-level="12.7.2" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#proporción"><i class="fa fa-check"></i><b>12.7.2</b> Proporción</a></li>
+</ul></li>
+<li class="chapter" data-level="12.8" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#resumen-de-pruebas-sobre-una-muestra"><i class="fa fa-check"></i><b>12.8</b> Resumen de pruebas sobre una muestra</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html"><i class="fa fa-check"></i><b>13</b> Prueba de hipótesis: las aplicaciones</a><ul>
+<li class="chapter" data-level="13.1" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#muestras-independientes"><i class="fa fa-check"></i><b>13.1</b> Muestras independientes</a><ul>
+<li class="chapter" data-level="13.1.1" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#prueba-de-diferencia-de-medias"><i class="fa fa-check"></i><b>13.1.1</b> Prueba de diferencia de medias</a></li>
+<li class="chapter" data-level="13.1.2" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#muestras-apareadas"><i class="fa fa-check"></i><b>13.1.2</b> Muestras apareadas</a></li>
+<li class="chapter" data-level="13.1.3" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#coeficiente-r-de-pearson"><i class="fa fa-check"></i><b>13.1.3</b> Coeficiente r de Pearson</a></li>
+</ul></li>
+<li class="chapter" data-level="13.2" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#hacerlo-en-r-9"><i class="fa fa-check"></i><b>13.2</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="13.2.1" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#ejemplo-1."><i class="fa fa-check"></i><b>13.2.1</b> Ejemplo 1.</a></li>
+<li class="chapter" data-level="13.2.2" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#ejemplo-2."><i class="fa fa-check"></i><b>13.2.2</b> Ejemplo 2.</a></li>
+<li class="chapter" data-level="13.2.3" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#aplicación-a-los-datos-de-adultos-mayores"><i class="fa fa-check"></i><b>13.2.3</b> Aplicación a los datos de Adultos Mayores</a></li>
+<li class="chapter" data-level="13.2.4" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#prueba-apareada"><i class="fa fa-check"></i><b>13.2.4</b> Prueba apareada</a></li>
+<li class="chapter" data-level="13.2.5" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#coeficiente-de-correlación"><i class="fa fa-check"></i><b>13.2.5</b> Coeficiente de correlación</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html"><i class="fa fa-check"></i><b>14</b> Cuando los supuestos no se cumplen</a><ul>
+<li class="chapter" data-level="14.0.1" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#las-pruebas-ji-cuadrado-o-chi-cuadrado"><i class="fa fa-check"></i><b>14.0.1</b> Las pruebas ji cuadrado (o chi cuadrado)</a></li>
+<li class="chapter" data-level="14.0.2" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#coeficiente-r_s-de-spearman"><i class="fa fa-check"></i><b>14.0.2</b> Coeficiente <span class="math inline">\(r_s\)</span> de Spearman</a></li>
+<li class="chapter" data-level="14.0.3" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#alternativas-no-paramétricas-a-las-pruebas-t"><i class="fa fa-check"></i><b>14.0.3</b> Alternativas no paramétricas a las pruebas t</a></li>
+<li class="chapter" data-level="14.1" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#hacerlo-en-r-10"><i class="fa fa-check"></i><b>14.1</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="14.1.1" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#ejemplo-1"><i class="fa fa-check"></i><b>14.1.1</b> Ejemplo 1</a></li>
+<li class="chapter" data-level="14.1.2" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#ejemplo-2"><i class="fa fa-check"></i><b>14.1.2</b> Ejemplo 2</a></li>
+<li class="chapter" data-level="14.1.3" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#prueba-de-la-mediana-1"><i class="fa fa-check"></i><b>14.1.3</b> Prueba de la mediana</a></li>
+<li class="chapter" data-level="14.1.4" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#prueba-de-wilcoxon"><i class="fa fa-check"></i><b>14.1.4</b> Prueba de Wilcoxon</a></li>
+<li class="chapter" data-level="14.1.5" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#muestras-apareadas-1"><i class="fa fa-check"></i><b>14.1.5</b> Muestras apareadas</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html"><i class="fa fa-check"></i><b>15</b> Tamaño del efecto</a><ul>
+<li class="chapter" data-level="15.1" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#significación-estadística-y-significación-práctica"><i class="fa fa-check"></i><b>15.1</b> Significación estadística y significación práctica</a></li>
+<li class="chapter" data-level="15.2" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#medidas-de-tamaño-del-efecto"><i class="fa fa-check"></i><b>15.2</b> Medidas de tamaño del efecto</a><ul>
+<li class="chapter" data-level="15.2.1" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#prueba-t-para-diferencia-de-medias"><i class="fa fa-check"></i><b>15.2.1</b> Prueba t para diferencia de medias</a></li>
+<li class="chapter" data-level="15.2.2" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#análisis-de-la-varianza"><i class="fa fa-check"></i><b>15.2.2</b> Análisis de la varianza</a></li>
+<li class="chapter" data-level="15.2.3" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#correlaciones"><i class="fa fa-check"></i><b>15.2.3</b> Correlaciones</a></li>
+<li class="chapter" data-level="15.2.4" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#regresión-lineal"><i class="fa fa-check"></i><b>15.2.4</b> Regresión lineal</a></li>
+<li class="chapter" data-level="15.2.5" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#pruebas-ji-cuadrado"><i class="fa fa-check"></i><b>15.2.5</b> Pruebas ji cuadrado</a></li>
+</ul></li>
+<li class="chapter" data-level="15.3" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#análisis-de-la-potencia"><i class="fa fa-check"></i><b>15.3</b> Análisis de la potencia</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Generado con bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Estadística para Ciencias Sociales con R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="probabilidad-los-modelos" class="section level1">
+<h1><span class="header-section-number">Capítulo 9</span> Probabilidad: los modelos</h1>
+<div id="concepto-de-modelización" class="section level2">
+<h2><span class="header-section-number">9.1</span> Concepto de modelización</h2>
+<p>La asignación a priori de probabilidades, presentada con los ejemplos
+elementales de la moneda o el dado es parte de una forma muy general de
+tratar con los fenómenos que dependen del azar. El supuesto inicial de
+probabilidad <span class="math inline">\(1/2\)</span> a cada lado, constituye un <em>modelo de probabilidad</em>, es
+una anticipación acerca de lo que se espera que suceda. No es
+arbitrario, ya que deben tenerse razones para suponer que el modelo se
+sostiene, pero en todos los casos es una aproximación a lo que sucede en
+la realidad. Tratamos de modelar (o modelizar) lo que observamos a fin
+de simplificarlo, pero un modelo puede ser más o menos adecuado a la
+realidad, por eso dijimos que cabe la posibilidad que “el modelo no se
+sostenga”. La idea de simplificar está aquí utilizada en el sentido de
+elegir algunos aspectos de la realidad para construir un modelo que
+luego se usa para asignar probabilidades a los diferentes resultados
+posibles. La riqueza y complejidad de los fenómenos sociales no se
+menoscaba porque se usen modelos, salvo si se comete el error de
+confundir el modelo con la realidad. Disponer de un modelo de
+probabilidad permite calcular probabilidades de manera sencilla bajo
+ciertos supuestos, que deben explicitarse.</p>
+<p>Para seguir con nuestra moneda, digamos que el modelo que resume el
+supuesto de iguales chances para todos los resultados, se llama
+<em>distribución uniforme</em>, es válido también para un dado, si está
+equilibrado, o para cualquier fenómeno aleatorio en el que se pueda
+suponer que los resultados son igualmente probables. La expresión formal
+de ese modelo es la siguiente:</p>
+<p>“Si un experimento aleatorio tiene distribución uniforme y <em>k</em>
+resultados posibles, entonces <span class="math inline">\(P(A_{i}) = \frac{1}{k}\)</span>,
+donde <span class="math inline">\(A_{i}\)</span> es uno cualquiera de los <span class="math inline">\(k\)</span> resultados”</p>
+<p>Por lo tanto si se trata de una moneda (2 caras) la probabilidad de
+cualesquiera de sus caras será <span class="math inline">\(1/2\)</span>, si es un dado, cada lado tiene
+probabilidad <span class="math inline">\(1/6\)</span>, y si es un icosaedro regular (veinte caras iguales,
+parecido a un globo de espejos) cada cara tendrá probabilidad 1/20 de
+salir.</p>
+<p>La representación gráfica de este modelo, es para cada uno de los
+ejemplos, la siguiente:</p>
+<p><img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-261-1.svg" width="672" /><img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-261-2.svg" width="672" /><img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-261-3.svg" width="672" /></p>
+<p>En estos gráficos, la idea de uniformidad (para todos los eventos la
+misma probabilidad) se transmite en la igual altura de todas las
+columnas.</p>
+<p>Además de este modelo uniforme, en este capítulo presentaremos cinco
+modelos de probabilidad que serán necesarios para lo que sigue de
+nuestros contenidos; el primero para variables discretas y los demás
+para continuas. Hay una gran cantidad de modelos que permiten asignar
+probabilidades a priori a diferentes fenómenos observables. El
+tratamiento que haremos a continuación será de carácter utilitario, es
+decir estará centrado en el uso que podemos hacer de cada distribución
+teórica. Haremos las referencias matemáticas mínimas que sean necesarias
+para comprender las propiedades y condiciones de aplicación de los
+modelos.</p>
+</div>
+<div id="distribución-binomial" class="section level2">
+<h2><span class="header-section-number">9.2</span> Distribución binomial</h2>
+<p>Esta distribución se usa para modelar fenómenos aleatorios que pueden
+dar solo dos resultados, a los que se llama “éxito” y “fracaso”. La
+elección de cuál es éxito es arbitraria y corresponde a la categoría que
+el investigador toma como de interés. La variable aleatoria que se
+considera es el número de veces que se obtienen éxitos, o simplemente el
+número de éxitos que resultan luego de una cierta cantidad de
+repeticiones de la experiencia. La condición para que este modelo sea
+válido es que cada repetición sea independiente de las anteriores, es
+decir, que cada realización del experimento no incida sobre la
+siguiente.</p>
+<p>Nuevamente con la moneda equilibrada que hemos tratado, este modelo va a
+facilitar el cálculo de, por ejemplo, qué probabilidad hay de obtener 3
+caras en 4 tiradas de la moneda. Resolvamos primero el problema de
+manera manual. En la tabla siguiente mostramos los resultados posibles
+de ese experimento (lanzar cuatro veces una moneda equilibrada) y el
+valor que corresponde a la variable aleatoria “número de caras”, a la
+que llamaremos <em>x</em><a href="#fn40" class="footnote-ref" id="fnref40"><sup>40</sup></a>.</p>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Resultado del experimento
+</th>
+<th style="text-align:center;">
+Valor de la variable “número de caras” x
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+XXXX
+</td>
+<td style="text-align:center;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+XXXC
+</td>
+<td style="text-align:center;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+XXCX
+</td>
+<td style="text-align:center;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+XXCC
+</td>
+<td style="text-align:center;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+XCXX
+</td>
+<td style="text-align:center;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+XCXC
+</td>
+<td style="text-align:center;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+XCCX
+</td>
+<td style="text-align:center;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+XCCC
+</td>
+<td style="text-align:center;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CXXX
+</td>
+<td style="text-align:center;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CXXC
+</td>
+<td style="text-align:center;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CXCX
+</td>
+<td style="text-align:center;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CXCC
+</td>
+<td style="text-align:center;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CCXX
+</td>
+<td style="text-align:center;">
+2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CCXC
+</td>
+<td style="text-align:center;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CCCX
+</td>
+<td style="text-align:center;">
+3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+CCCC
+</td>
+<td style="text-align:center;">
+4
+</td>
+</tr>
+</tbody>
+</table>
+<p>Como estos 16 resultados son igualmente probables, le corresponde una
+probabilidad de 1/16 (0,0625) a cada uno, por lo que podemos calcular
+las probabilidades de cada valor sumando los que corresponden a las
+formas en que pueden lograrse. Por ejemplo, tres caras (x=3) puede ser
+consecuencia de cualquiera de los eventos XCCC, CXCC, CCXC, CCCX, por lo
+que hay cuatro eventos a su favor y su probabilidad es 4/16. Resumiendo
+entonces la tabla anterior, tenemos:</p>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:center;">
+<span class="math inline">\(x\)</span>
+</th>
+<th style="text-align:center;">
+<span class="math inline">\(P(x)\)</span>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+0
+</td>
+<td style="text-align:center;">
+1/16 (0,0625)
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+4/16 (0,25)
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+2
+</td>
+<td style="text-align:center;">
+6/16 (0,375)
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+3
+</td>
+<td style="text-align:center;">
+4/16 (0,25)
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+4
+</td>
+<td style="text-align:center;">
+1/16 (0,0625)
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+Total
+</td>
+<td style="text-align:center;">
+1
+</td>
+</tr>
+</tbody>
+</table>
+<p>Como esperábamos, “lo más probable” es obtener dos caras, porque se
+espera que la moneda caiga cara la mitad de las veces, ahora sabemos
+también cuán probable es que caiga una cantidad diferente de veces cara.
+La respuesta a la pregunta que formulamos arriba es 0,25 y lo expresamos
+simplemente:</p>
+<p><span class="math display">\[P(x = 3) = 0,25\]</span></p>
+<p>Para construir la tabla y responder a la pregunta hemos usado como
+información:</p>
+<ul>
+<li><p>la cantidad de repeticiones del experimento (<span class="math inline">\(n=4\)</span>)</p></li>
+<li><p>la probabilidad del evento cada vez que se lo repite (<span class="math inline">\(p=0,5\)</span>)</p></li>
+<li><p>el número de veces cuya probabilidad calculamos (el número de éxitos) (<span class="math inline">\(x=3\)</span>)</p></li>
+</ul>
+<p>Esta información es suficiente para aplicar el modelo binomial, que se va a escribir formalmente como <span class="math display">\[B(n, p, x)\]</span>. En la que la $B $es por binomial, <span class="math inline">\(n\)</span> es el número de repeticiones, <span class="math inline">\(p\)</span> es la probabilidad de éxito a cada repetición y <span class="math inline">\(x\)</span> el número de éxitos cuya probabilidad se calcula.</p>
+<p>Cuando se trata de variables discretas como en este ejemplo, los modelos admiten el cálculo de la probabilidad:</p>
+<ul>
+<li>de un valor particular de la variable, es decir un determinado número de éxitos: <span class="math inline">\(P(X=x)\)</span></li>
+</ul>
+<p>O bien</p>
+<ul>
+<li>de un conjunto de valores por debajo de un valor dado, es decir, la probabilidad acumulada: <span class="math inline">\(P(X\leq x)\)</span></li>
+</ul>
+<p>Si se requiere la probabilidad de los valores mayores a uno dado <span class="math inline">\(P(X&gt;x)\)</span>, se complementa (se resta de 1) la probabilidad acumulada.</p>
+<p>Cuando se trata de variables continuas, las probabilidades exactas son cero, por lo que solo pueden calcularse la acumuladas: <span class="math inline">\(P(X\leq x)\)</span> y su complemento a uno: <span class="math inline">\(P(X&gt;x)\)</span></p>
+<p>Resulta claro que la realización manual de estas operaciones es larga y engorrosa, sobre todo en situaciones reales donde hay más observaciones que en la moneda. Por ejemplo, un examen consiste de 20 preguntas de opción múltiple con cinco opciones de respuesta cada una, una sola de las cuales es correcta. Para aprobar el examen es necesario contestar bien al menos 12 de ellas (el 60%). Se pregunta: ¿Qué probabilidad tiene un alumno de aprobar solo por azar? Es decir si responde a cada pregunta por sorteo. Es una problema de distribución binomial: hay 20 repeticiones (una por cada pregunta) de un experimento que tiene 0.20 (1/5) de probabilidad de éxito. Para aprobar se necesitan al menos 12 éxitos. La resolución manual de este problema requiere considerar que para aprobar los éxitos pueden ser 12, 13, 14, etc. Y que cada cantidad de éxitos puede lograrse de varias formas. Doce aciertos pueden provenir de las doce primeras preguntas, o de las diez primeras y las dos últimas, o muchas otras combinaciones posibles.</p>
+<p>Si bien existen fórmulas para simplificar estas operaciones, usaremos directamente el software para calcular la probabilidad bajo modelos dados, a condición que el modelo se adapte al problema y que se cumplan los supuestos del modelo. En este caso, la expresión, para 12 éxitos exactamente es <span class="math display">\[B(20, .20, 12)\]</span>
+Pero para aprobar, 12 es el número mínimo de aciertos que se requieren, por lo que hará falta la probabilidad de 12 y de todos los valores siguientes, hasta 20.</p>
+<p>En R disponemos de las rutinas para calcular probabilidades simples y acumuladas bajo diferentes modelos. Para la binomial, el comando <code>dbinom</code>, tiene como argumentos: el número de éxitos cuya probabilidad se solicita, el número de repeticiones y la probabilidad de éxito a cada repetición. La probabilidad de obtener una cara al lanzar una moneda equilibrada (<span class="math inline">\(p=0.5\)</span>), dos veces es:</p>
+<pre><code>## [1] 0.5</code></pre>
+<p>Y la probabilidad de tres caras en cuatro lanzamientos de una moneda equilibrada (<span class="math inline">\(P(X=3)\)</span>) es:</p>
+<pre><code>## [1] 0.25</code></pre>
+<p>El la que hemos pedido un redondeo a cuatro decimales.</p>
+<p>Para pedir la probabilidad acumulada, como por ejemplo la de obtener tres caras o menos (<span class="math inline">\(P(X\leq 3)\)</span>) en cuatro lanzamientos, el comando es <code>pbinom</code>, con los mismos argumentos:</p>
+<pre><code>## [1] 0.9375</code></pre>
+<p>La respuesta al problema del examen se resuelve en dos pasos, porque para aprobar hacen falta 12 aciertos <em>o más</em>. Entonces, primero calculamos la probabilidad acumulada de 11 (<span class="math inline">\(P(X\leq 11)\)</span>), que es la probabilidad de no aprobar (obtener 11 aciertos o menos):</p>
+<pre><code>## [1] 0.9999</code></pre>
+<p>Y luego complementamos el resultado para obtener la probabilidad de superar los 11 aciertos 1010^{-5}. $P(X&gt;11)=$1010^{-5}.</p>
+<p>Otro ejemplo es aquel en el que se elige una muestra aleatoria de 15 estudiantes de primer año de la carrera de Biología para un experimento. Si se sabe que la proporción de mujeres de primer año de esa carrera es del 70%, ¿Cuál es la probabilidad que en la muestra resulten todas mujeres?. Cada persona que se selecciona aleatoriamente es una repetición, en la que la probabilidad que esa persona sea mujer es 0.70, y se pregunta por la probabilidad de hallar 15 éxitos. Entonces, la pregunta se formula así:</p>
+<pre><code>## [1] 0.004747562</code></pre>
+<p>Y el resutado se expresa así: <span class="math display">\[P(X=15)=B(15,15,.7)=0.0047\]</span></p>
+<div id="esperanza-y-varianza" class="section level3">
+<h3><span class="header-section-number">9.2.1</span> Esperanza y varianza</h3>
+<p>En este modelo de probabilidad, la esperanza es <span class="math inline">\(n*p\)</span>, que representa
+el número esperado de casos favorables a obtener en n repeticiones. En
+el primer ejemplo, la esperanza es <span class="math inline">\(4*0,50=2\)</span>, que quiere decir que en 4
+tiradas de la moneda equilibrada, esperaríamos obtener 2 caras, como
+sabemos, esto es lo que sucede luego de un gran número de repeticiones
+del experimento. En el ejemplo de la selección de estudiantes, la esperanza es <span class="math inline">\(0,70*15=10,5\)</span>, aunque este número decimal no es una cantidad posible de casos favorables (mujeres) a obtener en la muestra, es el promedio a futuro, luego de la realización reiterada de este experimento muchas veces. Es decir qu esi el experimento de muestrear 15 estudiantes se repitiena muchas veces, en promedio se encontrarían entre 10 y 11 mujeres en cada muestra.</p>
+<p>En el ejemplo del examen, la esperanza <span class="math inline">\(20*.20=4\)</span> indica que el número medio de aciertos que se espera lograr por puro azar es de 4.</p>
+<p>La varianza de la distribución binomial es <span class="math inline">\(n*p*(1-p)\)</span>, que es una
+medida de la variabilidad del proceso. Más adelante volveremos sobre
+este tema.</p>
+<p>El gráfico de esta distribución se construye calculando las
+probabilidades de los diferentes valores de <span class="math inline">\(x\)</span>, que puede ir desde 0
+hasta el número total de repeticiones del experimento. El siguiente es
+el correspondiente a 20 repeticiones con diferentes valores de p:</p>
+<!--a los gráficos siguientes habría que completarlos con p=.5, .6 y .8, de manera menos manual, se pueden mejorar bastante-->
+<p><img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-269-1.svg" width="672" /></p>
+<p>Observemos la forma en que aparece representada la diferencia entre las
+varianzas de las distribuciones<a href="#fn41" class="footnote-ref" id="fnref41"><sup>41</sup></a>.</p>
+</div>
+</div>
+<div id="distribución-normal" class="section level2">
+<h2><span class="header-section-number">9.3</span> Distribución normal</h2>
+<p>La mayoría de los fenómenos naturales, sociales, psicológicos no tienen
+distribución uniforme, es decir, no es igualmente probable que resulte
+cualquiera de los resultados. Por ejemplo, para una determinada
+población, el peso de los niños al nacer tiene un valor promedio y
+cuando un niño nace se espera que tenga un peso cercano a ese valor
+medio. No es igualmente probable que un niño nazca con que con 5800. Son
+menos frecuentes los niños que nacen con pesos muy por encima o muy por
+debajo del promedio. De modo similar sucede con medidas psicológicas
+como el Cociente intelectual (CI); se hallan con mayor frecuencia
+valores cercanos al promedio y la probabilidad de encontrar personas muy
+por encima o muy por debajo de ese promedio es menor. Para este tipo de
+fenómeno, hay un modelo que suele ajustar bien las probabilidades, se
+llama distribución normal<a href="#fn42" class="footnote-ref" id="fnref42"><sup>42</sup></a> y su representación gráfica, una curva
+unimodal, simétrica, de forma acampanada es llamada “campana de
+Gauss”<a href="#fn43" class="footnote-ref" id="fnref43"><sup>43</sup></a> en referencia a Johann Carl Friedrich Gauss<a href="#fn44" class="footnote-ref" id="fnref44"><sup>44</sup></a>.</p>
+<p><img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-270-1.svg" width="672" /></p>
+<p>Un primer elemento a tener en cuenta es que, a diferencia de los
+gráficos anteriores, ahora se trata de una curva con trazado continuo.
+Esto se debe a que esta distribución es adecuada para modelar variables
+continuas. Recordemos que cuando se construyeron las distribuciones de
+frecuencia, resultaba imposible enumerar todas las categorías de una
+variable de este tipo, ya que son infinitas. Dijimos en ese momento que
+no es posible indicar la frecuencia de un valor único de una variable
+continua. Lo mismo vale ahora para las probabilidades: no calculamos
+probabilidades para valores simples de variables continuas, sí
+calculamos probabilidades acumuladas y, como sucedía con las frecuencias
+acumuladas, éstas están representadas gráficamente en el área bajo la
+curva, pero en lugar de sumar las frecuencias de valores discretos, se
+realiza una operación que se llama integración<a href="#fn45" class="footnote-ref" id="fnref45"><sup>45</sup></a>.</p>
+<p>Dado que la curva que describe la distribución normal es unimodal y
+simétrica; el modo, la media y la mediana coinciden, el coeficiente de
+asimetría es cero (<span class="math inline">\(g_{1}=0\)</span>) y la distribución es mesocúrtica (<span class="math inline">\(g_{2}=0\)</span>).</p>
+<p>El cálculo de las probabilidades bajo el modelo normal -o, lo que es lo
+mismo, de las áreas bajo la curva-, es muy complejo, por lo que se
+encuentra tabulado, es decir, precalculado para algunos valores de la
+variable. ¿De qué variable?, hemos mencionado el peso al nacer, el IQ,
+¿con qué método calcularemos probabilidades para fenómenos tan
+disímiles? Antes que se difundiera el uso de la computadora personal, se
+usaban tablas, ahora usamos cualquier hoja de cálculo, donde se indica
+la probabilidad acumulada para diferentes valores de una variable
+abstracta, sin unidades, adaptable a una diversidad de fenómenos. Se
+trata de la variable <span class="math inline">\(z\)</span>, que ya fue definida y que mide el número de
+desviaciones estándar -contadas desde la media-, a las que se encuentra
+un caso individual. Una de las aplicaciones prácticas de esta variable
+es que permite comparar variables que miden cualidades muy diferentes.
+Sabemos ya que la cantidad de desviaciones estándar (<span class="math inline">\(z\)</span>) es una medida
+de lo cerca o lejos que un caso se encuentra del promedio. Si la
+variable en estudio es adecuadamente modelada con la distribución
+normal, entonces podremos conocer la probabilidad de hallar casos, por
+ejemplo a <em>más de dos desviaciones estándar de la media</em> y eso tendrá
+una inmediata traducción a valores de la variable.</p>
+<p>Recordemos que la variable <span class="math inline">\(z\)</span> está definida, para un valor particular
+de <span class="math inline">\(x\)</span> como:</p>
+<p><span class="math display">\[z = \frac{x - \overline{x}}{s}\]</span></p>
+<p>Y que tiene media igual a cero y desviación estándar igual a uno. Si <span class="math inline">\(x\)</span>
+tiene una distribución normal con una media <span class="math inline">\(\overline{x}\)</span> y una
+desviación estándar <span class="math inline">\(s\)</span>, entonces <span class="math inline">\(z\)</span> tiene distribución que se llama
+<strong>normal estándar</strong>.</p>
+<p>Su gráfico está centrado en cero:</p>
+<p><img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-271-1.svg" width="672" /></p>
+<p>Cualquier hoja de cálculo (como OpenOfficeCalc o Excel)
+calcula las probabilidades (o áreas) bajo la curva normal. En R es muy directo, porque del mismo modo en que dispusimos de una función para la binomial acumulada (pbinom), tenemos ahora el comando <code>pnorm</code> para obtener probabilidades acumuladas (<span class="math inline">\(P(Z\leq z)\)</span>) bajo un modelo de distribución normal estándar. Y, al igual que con cualquier otra distribución, el valor de <span class="math inline">\(P(Z&gt;z)\)</span> se logra restando de 1, que es el área completa bajo la curva. Por ejemplo, el área acumulada por debajo de <span class="math inline">\(z=0\)</span> es la mitad de la campana, <span class="math inline">\(P(Z\leq 0)=0.5\)</span>, por lo que <span class="math inline">\(P(Z&gt;z)=0.5\)</span>.</p>
+<p>Si lo pedimos a R:</p>
+<pre><code>## [1] 0.5</code></pre>
+<p>Cuyo gráfico es:</p>
+<p><img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-273-1.svg" width="672" /></p>
+<p>El área sombreada vale 0.50.</p>
+<p>Para el área por debajo de <span class="math inline">\(Z=2\)</span>, redondeado a cuatro decimales:</p>
+<pre><code>## [1] 0.9772</code></pre>
+<p>Y su representación:</p>
+<p><img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-275-1.svg" width="672" /></p>
+<p>Queda delimitada por debajo de <span class="math inline">\(z=2\)</span> un área de 0.9772. <span class="math inline">\(P(z\leq2)=0.9772\)</span>.</p>
+<p>Si solicitamos las probabilidades acumuladas por debajo de diferentes valores de <span class="math inline">\(z\)</span>, empezando con los negativos, pasando por el cero y siguiendo por los positivos, obtenemos lo siguiente:</p>
+<!-- todo: poner las imagenes -->
+<!-- acá voy a copiar la imagen, muy complicado pedirlos con este formato a R-->
+<table>
+<tbody>
+<tr class="odd">
+<td align="center"><em>z</em></td>
+<td align="right"><em>P(&lt;z)</em></td>
+<td align="center">Ubicación</td>
+<td></td>
+<td align="right"><em>z</em></td>
+<td align="right">*P(&lt;z)</td>
+<td align="left">* Ubicación</td>
+</tr>
+<tr class="even">
+<td align="center">-3,0</td>
+<td align="right">0,00135</td>
+<td align="center"><img src="imagenes/image111.png" alt="zmenor-3.png" />{width=“0.8188976377952756in” height=&quot;0.3937007874015748in</td>
+<td>&quot;}</td>
+<td align="right">0</td>
+<td align="right">,0 0,50000</td>
+<td align="left"><img src="imagenes/image112.png" alt="zmenor0.png" style="width:0.8189in;height:0.3937in" /></td>
+</tr>
+<tr class="odd">
+<td align="center">-2,0</td>
+<td align="right">0,02275</td>
+<td align="center"><img src="imagenes/image113.png" alt="zmenor-2.png" />{width=“0.8188976377952756in” height=&quot;0.3937007874015748in</td>
+<td>&quot;}</td>
+<td align="right">1</td>
+<td align="right">,0 0,84134</td>
+<td align="left"><img src="imagenes/image114.png" alt="zmenor1.png" style="width:0.8189in;height:0.3937in" /></td>
+</tr>
+<tr class="even">
+<td align="center">-1,0</td>
+<td align="right">0,15866</td>
+<td align="center"><img src="imagenes/image115.png" alt="zmenor-1.png" />{width=“0.8188976377952756in” height=&quot;0.3937007874015748in</td>
+<td>&quot;}</td>
+<td align="right">2</td>
+<td align="right">,0 0,97725</td>
+<td align="left"><img src="imagenes/image116.png" alt="zmenor2.png" style="width:0.8189in;height:0.3937in" /></td>
+</tr>
+<tr class="odd">
+<td align="center"></td>
+<td align="right"></td>
+<td align="center"></td>
+<td></td>
+<td align="right">3,0</td>
+<td align="right">0,99865</td>
+<td align="left"><img src="imagenes/image117.png" alt="zmenor3.png" style="width:0.8189in;height:0.3937in" /></td>
+</tr>
+</tbody>
+</table>
+<p>Las probabilidades acumuladas (es decir, las áreas a la izquierda) van
+creciendo desde casi cero en el valor más pequeño que pusimos (<span class="math inline">\(z = -4\)</span>) y
+llegan hasta casi uno en el máximo valor (<span class="math inline">\(z = 4\)</span>). En el modelo
+matemático, <span class="math inline">\(z\)</span> tiene como campo de variación todos los valores, es decir,
+desde menos infinito hasta más infinito (<span class="math inline">\(-\infty\)</span>; <span class="math inline">\(\infty\)</span>), pero como vemos,
+en la realidad, los valores -4 y 4 son muy extremos, en el sentido que
+las probabilidades acumuladas son <strong>casi</strong> cero y <strong>casi</strong> uno
+respectivamente. Aunque el modelo teórico tiene un comportamiento
+asintótico respecto del eje horizontal, en el gráfico, la curva se
+confunde con el eje para valores cercanos a 4. La notación para estos
+resultados es la siguiente (usando hasta cuatro decimales que es lo más
+frecuente), por ejemplo: <span class="math inline">\(P(z\leq-2)= 0.0227\)</span> ó también <span class="math inline">\(P(z\leq1) = 0,8413\)</span>. Las representaciones gráficas de estas probabilidades son las
+siguientes:</p>
+<p><img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-276-1.svg" width="672" /><img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-276-2.svg" width="672" /></p>
+<p>A continuación vemos la representación gráfica de la relación entre las
+probabilidades “por encima” y “por debajo” de <span class="math inline">\(z=1\)</span>, sabiendo que <span class="math inline">\(P(z\leq1)+P(z&gt;1)=1\)</span>.</p>
+<p><img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-277-1.svg" width="672" /></p>
+<p>También se pueden identificar probabilidades <strong>entre</strong> valores de z, por
+ejemplo cuál es el área entre -1 y 1 (es decir cuál es la probabilidad
+de encontrar a z entre esos valores). Esto se escribe así:
+<span class="math inline">\(P(-1&lt;z&lt;1)\)</span>. Para calcularla solo usaremos la información sobre la
+probabilidad acumulada: el área por debajo de <span class="math inline">\(-1\)</span> vale <span class="math inline">\(0,1587\)</span> y el área por debajo de <span class="math inline">\(1\)</span> es <span class="math inline">\(0,8413\)</span>, si restamos esas dos áreas tendremos lo que queda entremedio: <span class="math inline">\(0,8413 - 0,1587 = 0,6835\)</span>, gráficamente:</p>
+<!-- mejorar las flechas, mas chicas-->
+<p><img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-278-1.svg" width="672" /></p>
+<p>El área comprendida entre -2 y 2 se calcula del mismo modo, ya que</p>
+<pre><code>## [1] 0.0228</code></pre>
+<pre><code>## [1] 0.9772</code></pre>
+<pre><code>## [1] 0.9544</code></pre>
+<p><span class="math display">\[P(- 2 &lt; z &lt; 2) = P(z &lt; 2) - P(z &lt; - 2) = 0,9772 - 0,0228 = 0,9544\]</span></p>
+<p>Y los valores <span class="math inline">\(\pm3\)</span> delimitan:</p>
+<pre><code>## [1] 0.9973002</code></pre>
+<pre><code>## [1] 0.9973</code></pre>
+<p>Es decir que:</p>
+<p><span class="math display">\[P(- 3 &lt; z &lt; 3) = P(z &lt; 3) - P(z &lt; - 3) = 0,9986 - 0,0013 = 0,9973\]</span></p>
+<p>La regla empírica que se mencionó en el capítulo <!-- ya veremos cual es, o quizás en la página...-->, tiene aquí su origen. Ya que si la distribución es similar a la normal (unimodal y simétrica), entonces <em>aproximadamente</em> el 68% estará a menos de una desviación estándar de la media, el 95% a menos de dos, y el 99,7 a una distancia no mayor a tres desviaciones estándar. Son los valores de <span class="math inline">\(z\)</span>, que mide distancia a la media en términos de desviaciones estándar.</p>
+<div id="percentiles" class="section level3">
+<h3><span class="header-section-number">9.3.1</span> Percentiles</h3>
+<p>De mismo modo que con las distribuciones de frecuencia, los valores de la variable que acumulan una determinada probabilidad son los percentiles. El valor <span class="math inline">\(z=-1\)</span> es el percentil <span class="math inline">\(.1587\)</span> de la variable y <span class="math inline">\(z=2\)</span> es el percentil <span class="math inline">\(.9772\)</span>.</p>
+<p>Para determinar ahora los valores de <span class="math inline">\(z\)</span> que acumulan cierta probabilidad, se necesita la operación inversa a la que se realizó hasta aquí, porque hay que hallar cuál es el valor de la variable (<span class="math inline">\(z\)</span>) que deja por debajo una determinada probabilidad. Según la definición de percentiles, el percentil <span class="math inline">\(P_{r}\)</span> de la variable es el valor por debajo del cual la probabilidad de hallarla es <span class="math inline">\(r\%\)</span>. Gráficamente, se trataría de fijar el área (<span class="math inline">\(r\%\)</span>) y determinar cuál es el <span class="math inline">\(z\)</span> que la acumula.</p>
+<p>Nuevamente, recurrimos a R para solicitar este valor, el comando es <code>qnorm</code>, que a partir de la probabilidad acumulada, devuelve el valor de <span class="math inline">\(z\)</span>. Por ejemplo, el percentil <span class="math inline">\(95\)</span> (<span class="math inline">\(P_{95}\)</span>) de la distribución normal es:</p>
+<pre><code>## [1] 1.644854</code></pre>
+<pre><code>## [1] 1.6449</code></pre>
+<p>El valor 1.6449 acumula el 95% o bien <span class="math inline">\(P(z\leq1.6449=.95)\)</span>. Y del mismo modo el percentil 99 es:</p>
+<pre><code>## [1] 2.3263</code></pre>
+<p><span class="math display">\[P_{99}=1.6449\]</span></p>
+<p>Por la simetría de la distribución, los percentiles complementarios son valores opuestos de la variable:</p>
+<pre><code>## [1] -1.6449</code></pre>
+<pre><code>## [1] -2.3263</code></pre>
+<p>Con los que, bajo el modelo normal estándar: <span class="math inline">\(P_{5}=-1.6449\)</span> y <span class="math inline">\(P_{1}=-2.3263\)</span></p>
+<p>Por el uso que haremos de la distribución normal hay algunos prcentiles de mucha importancia y conviene recordar: son los que delimitan áreas centrales de probabilidad .90, .95 y .99.</p>
+<p>Para determinarlos, hay que identificar a qué percentiles corresponden. Para el área central de .90, el área de .10 que queda fuera se reparte de manera simétrica en las dos colas de la distribución, a razón de .05 en cada una:</p>
+<p><img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-284-1.svg" width="672" /></p>
+<p>Entonces, hay que determinar los valores de <span class="math inline">\(z\)</span> que acumulan <span class="math inline">\(.05\)</span> y <span class="math inline">\(.95\)</span>, dicho de otro modo, hay que calcular <span class="math inline">\(P_{5}\)</span> y <span class="math inline">\(P_{95}\)</span>, que son:</p>
+<pre><code>## [1] -1.644854</code></pre>
+<pre><code>## [1] 1.644854</code></pre>
+<p>Redondeados a dos decimales:</p>
+<pre><code>## [1] -1.64</code></pre>
+<pre><code>## [1] 1.64</code></pre>
+<p>Con lo que los valores <span class="math inline">\(\pm1.64\)</span> delimitan un área central en la que hay una probabilidad .90 de encontrar a la variable normal estándar.</p>
+<p><span class="math display">\[P(- 1.64 &lt; z &lt; 1.64) = 0,90\]</span></p>
+<p>Del mismo modo, para el área central de <span class="math inline">\(.95\)</span>, el área complementaria de <span class="math inline">\(.05\)</span> se reparte en dos, y los percentiles que se requieren son: <span class="math inline">\(P_{2.5}\)</span> y <span class="math inline">\(P_{97.5}\)</span>, que son:</p>
+<pre><code>## [1] -1.96</code></pre>
+<pre><code>## [1] 1.96</code></pre>
+<p>Así:
+<span class="math display">\[P(- 1.96 &lt; z &lt; 1.96) = 0,95\]</span></p>
+<p>Y para <span class="math inline">\(.99\)</span>, el <span class="math inline">\(.01\)</span> restante se divide en dos, por lo que los <span class="math inline">\(z\)</span> que se buscan son los valores que acumulan <span class="math inline">\(.005\)</span> y <span class="math inline">\(.995\)</span>, es decir: <span class="math inline">\(P_{.5}\)</span> y <span class="math inline">\(P_{99.5}\)</span>, que resultan:</p>
+<pre><code>## [1] -2.58</code></pre>
+<pre><code>## [1] 2.58</code></pre>
+<p>Entonces:
+<span class="math display">\[P(- 2.58 &lt; z &lt; 2.58) = 0,99\]</span></p>
+<!-- faltan los valores de z anotados sobre el eje y eliminar todo lo demás, también en y-->
+<p><img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-289-1.svg" width="672" /><img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-289-2.svg" width="672" /><img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-289-3.svg" width="672" /></p>
+<div id="usos-de-la-distribución-normal" class="section level4">
+<h4><span class="header-section-number">9.3.1.1</span> Usos de la distribución normal</h4>
+<p>La distribución normal es muy valiosa, por muchas razones, de las cuales nos interesan dos.</p>
+<p>La primera es que es adecuada para modelar muchos fenómenos observables,
+en especial variables biológicas como el <em>peso</em> de los niños al nacer,
+la <em>talla</em> para diferentes edades. Hay variables psicológicas como el
+<em>coeficiente intelectual</em>, para las que se elaboran instrumentos de
+medición cuyos puntajes se distribuyen de manera normal. Otras
+variables, como el <em>rendimiento en la escuela</em>, o las <em>actitudes</em> medidas con escalas numéricas, a menudo, pueden aproximarse de manera adecuada con un modelo normal.</p>
+<p>La segunda razón es que cuando se extraen muestras aleatorias de una
+población, algunas medidas que se calculan sobre esas muestras tienen
+una distribución que se aproxima a la normal a medida que las muestras
+tienen mayor tamaño. Eso será lo que nos permita realizar nuestras
+primeras estimaciones de valores poblacionales a partir de muestras.</p>
+<p>Hasta este punto trabajamos con la distribución normal de una variable
+abstracta, sin unidades, a la que llamamos <span class="math inline">\(z\)</span>, a cuyos valores pudimos
+asignar probabilidades. La función que describe la curva acampanada está expresada en términos de <span class="math inline">\(z\)</span>. Pero cuando vamos a trabajar
+con una variable real, como las que mencionamos, por ejemplo, el peso de los niños cuando nacen o el CI, es necesario disponer de una variable concreta, a la que llamamos <span class="math inline">\(x\)</span>. ¿Qué relación tiene esa variable, cuya distribución podría modelarse bien con una curva normal, con la <span class="math inline">\(z\)</span>, que nos permite hallar las probabilidades bajo el modelo normal? Es decir, ¿qué relación tiene <span class="math inline">\(x\)</span> con <span class="math inline">\(z\)</span>? Ya la conocemos, porque <span class="math inline">\(z\)</span> es el desvío estándar que definimos en el capítulo <!-- referencia al capítulo o seccion donde está la definición de z-->, es:</p>
+<p><span class="math display">\[z = \frac{x - \overline{x}}{s}\]</span></p>
+<p>Que cuenta la cantidad de desviaciones estándar (<span class="math inline">\(s\)</span>) a que se encuentra un valor (<span class="math inline">\(x\)</span>) de la media (<span class="math inline">\(\overline{x})\)</span>. Para encontrar
+probabilidades correspondientes a valores reales de una variable y no
+solo los <span class="math inline">\(z\)</span> abstractos, debemos transformar esos valores en puntajes
+<span class="math inline">\(z\)</span>, con la expresión de arriba.</p>
+<p>Veamos esto en un ejemplo: a partir de las historias clínicas de varios
+años de un hospital materno infantil, conocemos que el peso medio en el
+momento de nacer (de niños varones, a término, con madre entre 20 y 29
+años) es de 3300 gramos y que la desviación estándar es de 800 gramos. Además sabemos que la distribución normal es adecuada para describir la variable <em>peso al nacer</em>. Entonces podemos calcular la probabilidad que un niño al nacer tenga un peso por debajo de los 1500 gramos. El problema es averiguar el área sombreada en el siguiente gráfico:</p>
+<!-- en eje x solo 3300 y 1500, en eje y, nada-->
+<p><img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-290-1.svg" width="672" /></p>
+<p>Para calcular el área marcada -que corresponde a la probabilidad
+solicitada-, vamos a transformar el valor de <span class="math inline">\(x\)</span> (1500) a puntaje <span class="math inline">\(z\)</span>,
+haciendo:</p>
+<p><span class="math display">\[z = \frac{x - \overline{x}}{s} = \frac{1500 - 3300}{800} = - 2.25\]</span></p>
+<p>Ahora es equivalente solicitar la probabilidad de <span class="math inline">\(x\)</span> menor que 1500 que la de <span class="math inline">\(z\)</span> menor que -2,25, en símbolos:</p>
+<p><span class="math display">\[P(x &lt; 1500) = P(z &lt; - 2.25)\]</span></p>
+<p>Y el gráfico anterior expresado en términos de <span class="math inline">\(z\)</span> resulta:</p>
+<p><img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-291-1.svg" width="672" /></p>
+<p>A esta probabilidad sabemos cómo solicitarla:</p>
+<pre><code>## [1] 0.01222447</code></pre>
+<p>Ésta es la probabilidad de hallar niños que al nacer tengan pesos
+inferiores a los 1500 gramos.</p>
+<p>Del mismo modo podemos operar si nos interesa conocer la probabilidad de hallar niños que nazcan con peso comprendido entre 3500 y .
+Transformando cada uno de los valores se obtiene:</p>
+<p><span class="math display">\[x = 3500arrow z = \frac{3500 - 3300}{800} = 0,25\]</span></p>
+<p><span class="math display">\[x = 4500arrow z = \frac{4500 - 3300}{800} = 1,50\]</span></p>
+<p>Entonces, que <span class="math inline">\(x\)</span> (el peso de los niños al nacer) esté entre 3500 y ,
+equivale a que <span class="math inline">\(z\)</span> (cantidad de desviaciones estándar) se encuentre
+entre 0,25 y 1,50. Esto se expresa simbólicamente así:</p>
+<p><span class="math display">\[P(3500 &lt; x &lt; 4500) = P(0,25 &lt; z &lt; 1,50)\]</span></p>
+<p>Y se representa gráficamente así:</p>
+<p>En términos de:</p>
+<p><img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-293-1.svg" width="672" /></p>
+<p>Para calcular el área comprendida entre los dos puntos, es decir la
+probabilidad de hallar a <span class="math inline">\(x\)</span> entre 3500 y 4500, restamos, a la
+probabilidad acumulada hasta <span class="math inline">\(z=1.50\)</span>, la acumulada hasta <span class="math inline">\(z=0.25\)</span>:</p>
+<p><span class="math display">\[P(3500 &lt; x &lt; 4500) = P(0,25 &lt; z &lt; 1,50) = P(z &lt; 1,50) - P(z &lt; 0,25)\]</span></p>
+<p>La última operación la solicitamos a R:</p>
+<pre><code>## [1] 0.3344865</code></pre>
+<p>Leemos el resultado diciendo que la probabilidad de hallar a un niño que haya nacido con un peso comprendido entre los 3500 y los 4500 gramos es de <span class="math inline">\(0.3345\)</span>.</p>
+<p>Toda variable que puede modelarse con una distribución normal puede
+transformarse a puntaje <span class="math inline">\(z\)</span> y así hallar la probabilidad asociada a
+diferentes intervalos.</p>
+<p>Hemos realizado las operaciones de este modo hasta aquí, porque es importante tener clara la relación entre las variable concreta que se mide u observa, con la variable abstracta, <span class="math inline">\(z\)</span>. Sin embargo, es posible ingresar al comando de R directamente con los valores de la variable original e informar la media y la desviación estándar, para obtener las probabilidades correspondientes. Veamos el modo de obtener el resultado de manera directa, sin pasar por <span class="math inline">\(z\)</span>. La
+probabilidad que nos interesa es, como antes:</p>
+<p><span class="math display">\[P(3500 &lt; x &lt; 4500)\]</span></p>
+<p>Que se calcula como la diferencia entre la probabilidad acumulada hasta
+4500 menos la acumulada hasta 3500.</p>
+<p><span class="math display">\[P(3500 &lt; x &lt; 4500) = P(x &lt; 4500) - P(x &lt; 3500)\]</span></p>
+<p>Al comando <code>pnorm</code> en R ahora le agregamos los valores de la media y la desviación estándar, para que calcule la probabilidad directamente sobre <span class="math inline">\(x\)</span>:</p>
+<pre><code>## [1] 0.3344865</code></pre>
+<p>Es el mismo resultado al que habíamos llegado a través de la
+transformación a puntaje <span class="math inline">\(z\)</span>, pero ahora pidiéndola directamente desde
+<span class="math inline">\(x\)</span>. Aunque éste sea el procedimiento más cómodo para calcular
+probabilidades, es necesario estar familiarizado con la distribución
+normal estándar (en <span class="math inline">\(z\)</span>), por los usos que haremos en los próximos
+capítulos.</p>
+<p>La distribución normal tiene un uso muy amplio y varios campos de
+aplicación. Más adelante veremos que para aplicar algunos procedimientos
+de análisis, es necesario que los datos provengan de una distribución
+normal, y existen pruebas para verificar que esto se cumpla. Una primera
+aproximación para ver si un conjunto de datos tiene distribución cercana
+a la normal es observar el histograma y evaluar si su forma se aproxima
+a la normalidad: si es unimodal y aproximadamente simétrica, es decir si
+la mediana es semejante a la media. Luego se calculan los coeficientes
+de curtosis y asimetría y, si éstos están entre <span class="math inline">\(-0,50\)</span> y <span class="math inline">\(+0,50\)</span>, puede aceptarse, en primera instancia, la normalidad de los datos.</p>
+</div>
+</div>
+</div>
+<div id="la-idea-de-grados-de-libertad" class="section level2">
+<h2><span class="header-section-number">9.4</span> La idea de grados de libertad</h2>
+<p>Antes de avanzar hacia los otros modelos de probabilidad que
+presentaremos en este capítulo, es necesario tener una idea aproximada
+de un concepto que juega un papel de importancia en esas distribuciones,
+el de “grados de libertad”, un número que, como veremos enseguida,
+determina la forma de algunas distribuciones. Se trata de un concepto
+matemático complejo, al que vamos a definir como el número de
+observaciones linealmente independientes que existen en una suma de
+cuadrados<a href="#fn46" class="footnote-ref" id="fnref46"><sup>46</sup></a>, pero del que haremos un uso exclusivamente instrumental.
+Su denominación es gl o bien df en inglés (degrees of freedom).</p>
+<p>Consideremos el caso del cálculo de la varianza, cuyo numerador es:
+<span class="math inline">\(\sum_{i = 1}^{n}(x_{i} - \overline{x})^{2}\)</span>. Que es la
+suma de <span class="math inline">\(n\)</span> términos, cada uno de ellos elevado al cuadrado. Identificar
+los grados de libertad de esa expresión equivale a responder a ¿cuántos
+términos de esa suma no dependen del valor que asumen los demás?
+Supongamos que se conoce la media muestral; esto establece un número
+fijo para la suma de las <span class="math inline">\(n\)</span> observaciones: <span class="math inline">\(x_{1}, x_{2}, \ldots, x_{n}\)</span>, por lo que solo <span class="math inline">\(n-1\)</span> de ellas pueden elegirse “libremente”, la última
+observación queda determinada.</p>
+<p>Por ejemplo, si se trata de cuatro observaciones de las que sabemos que
+su media es cinco, entonces la suma de los cuatro números debe ser 20
+¿Cuáles son los valores posibles para las cuatro observaciones <span class="math inline">\(x_{1}, x_{2}, x_{3}, x_{4}\)</span>? Hay infinitas combinaciones posibles que darían suma igual a 20, fijemos arbitrariamente algunos de los valores: <span class="math inline">\(x_{1}=3, x_{2}=4, x_{3}=4\)</span>, estos tres números suman 11, por lo que el cuarto solo puede ser 9 (para lograr la suma de 20 y que entonces la media sea 5). Otra combinación posible de valores es <span class="math inline">\(x_{1}=4, x_{2}=5, x_{3}=10\)</span>, con lo que <span class="math inline">\(x_{4}=1\)</span> necesariamente. Cualquiera sea la elección que se haga, siempre serán tres de los cuatro valores los que puedan elegirse libremente; decimos entonces que los grados de libertad son tres.</p>
+<p>En general, para este problema, los grados de libertad se calcularán
+como <span class="math inline">\(n-1\)</span>, donde <span class="math inline">\(n\)</span> es el número de observaciones, diremos así que, de <span class="math inline">\(n\)</span> observaciones, <span class="math inline">\(n-1\)</span> son independientes, si se fija el resultado de la suma.</p>
+<p>Una situación diferente es cuando se trata con una tabla de doble
+entrada con frecuencias marginales fijas; allí los grados de libertad se
+interpretan de modo distinto. No están relacionados con el número de
+observaciones sino con la dimensión de la tabla. Veamos la siguiente
+tabla de dos por tres, con frecuencias marginales fijadas:</p>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:center;">
+A
+</th>
+<th style="text-align:center;">
+B
+</th>
+<th style="text-align:center;">
+C
+</th>
+<th style="text-align:center;">
+Total
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+R
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+10
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+S
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+30
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Total
+</td>
+<td style="text-align:center;">
+5
+</td>
+<td style="text-align:center;">
+10
+</td>
+<td style="text-align:center;">
+25
+</td>
+<td style="text-align:center;">
+40
+</td>
+</tr>
+</tbody>
+</table>
+<p>En ella se relacionan dos variables cuyas categorías son <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span> y <span class="math inline">\(C\)</span> para
+la de las columnas y <span class="math inline">\(R\)</span> y <span class="math inline">\(S\)</span> para la de las filas. En la tabla, hemos
+fijado las frecuencias marginales. No hay dudas que hay infinitos
+valores posibles para las frecuencias conjuntas que podrían sumar lo que
+piden las marginales. Nos preguntamos ¿Cuántas de las frecuencias de las
+celdas (frecuencias conjuntas) pueden elegirse libremente? Si elegimos
+el valor 2 para la celda <span class="math inline">\(RA\)</span>, queda determinado un 3 en la celda <span class="math inline">\(SA\)</span> (para
+que cumpla con sumar 5 verticalmente). Si luego elegimos un 4 en la
+celda <span class="math inline">\(RB\)</span>, la <span class="math inline">\(SB\)</span> queda determinada a ser 6 (para sumar 10 en la segunda
+columna). Al mismo tiempo, la celda <span class="math inline">\(RC\)</span> debe ser también 4 para sumar 10
+en la primera fila y también se determina la celda <span class="math inline">\(SC\)</span>, que no puede ser
+sino 21, para sumar 30 en la segunda fila y 25 en la tercera columna. La
+tabla queda así completada, solo las celdas <span class="math inline">\(RA\)</span> y <span class="math inline">\(RB\)</span> fueron elegidas, las
+demás quedaron determinadas por la exigencia de respetar las frecuencias
+marginales.</p>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:center;">
+A
+</th>
+<th style="text-align:center;">
+B
+</th>
+<th style="text-align:center;">
+C
+</th>
+<th style="text-align:center;">
+Total
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+R
+</td>
+<td style="text-align:center;">
+2
+</td>
+<td style="text-align:center;">
+4
+</td>
+<td style="text-align:center;">
+4
+</td>
+<td style="text-align:center;">
+10
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+S
+</td>
+<td style="text-align:center;">
+3
+</td>
+<td style="text-align:center;">
+6
+</td>
+<td style="text-align:center;">
+21
+</td>
+<td style="text-align:center;">
+30
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Total
+</td>
+<td style="text-align:center;">
+5
+</td>
+<td style="text-align:center;">
+10
+</td>
+<td style="text-align:center;">
+25
+</td>
+<td style="text-align:center;">
+40
+</td>
+</tr>
+</tbody>
+</table>
+<p>¿Cuántos serán los grados de libertad en este ejemplo?, de las seis
+celdas que debían completarse con frecuencias, solo 2 pudieron elegirse
+libremente. Éstos últimos son los grados de libertad: 2.</p>
+<p>De manera general, para una tabla de dimensión <span class="math inline">\(f X c\)</span> (donde <span class="math inline">\(f\)</span> es
+la cantidad de filas y <span class="math inline">\(c\)</span> la de columnas, como antes), los grados de
+libertad se calculan multiplicando <span class="math inline">\((f-1)\)</span> por <span class="math inline">\((c-1)\)</span>. En la tabla que
+acabamos de usar como ejemplo, la dimensión es 2 por 3, por lo que los
+grados de libertad son <span class="math inline">\((2-1)*(3-1)= 1*2=2\)</span>, que son las dos celdas
+cuyas frecuencias pudimos fijar “libremente”.</p>
+<p>A los fines de nuestro curso, esta introducción a la idea de grados de
+libertad es suficiente, el concepto es amplio y su tratamiento más
+profundo exigiría algunos conocimientos de álgebra lineal, que no
+necesitamos desarrollar aquí.</p>
+</div>
+<div id="la-distribución-ji-cuadrado-chi2" class="section level2">
+<h2><span class="header-section-number">9.5</span> La distribución ji cuadrado (<span class="math inline">\(\chi^{2}\)</span>)</h2>
+<p>Esta distribución es el primer modelo que veremos con forma
+asimétrica<a href="#fn47" class="footnote-ref" id="fnref47"><sup>47</sup></a>. Una de sus aplicaciones es la estimación de la
+varianza, nosotros la utilizaremos más adelante, cuando tratemos sobre
+estadística no paramétrica, en especial para probar si una variable
+puede modelarse con cierta distribución (pruebas de bondad de ajuste) y
+también para analizar la independencia entre variables nominales.</p>
+<p>Del mismo modo en que tratamos a la distribución normal, no haremos uso
+de la fórmula para calcular probabilidades, sino que las buscaremos en
+una tabla disponible en cualquier hoja de cálculo. Además de la forma
+asimétrica, hay otra diferencia con la distribución normal, la
+<span class="math inline">\(\chi^{2}\)</span> no es una distribución única: no es suficiente especificar un valor de la variable para conocer su probabilidad acumulada sino que la forma que tenga dependerá de los recientemente mencionados “grados de libertad”, los cuales en una primera aproximación tomaremos como <span class="math inline">\(n-1\)</span>, donde <span class="math inline">\(n\)</span>es el tamaño de la muestra.</p>
+<p>Las siguientes son las formas diferentes que tiene la distribución
+<span class="math inline">\(\chi^{2}\)</span> para diferentes valores de los <span class="math inline">\(gl\)</span>, el eje horizontal indica los valores de la variable <span class="math inline">\(\chi^{2}\)</span>. Como en la normal, las
+probabilidades se representan como áreas bajo la curva:</p>
+<div class="figure"><span id="fig:unnamed-chunk-2981"></span>
+<img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-298-1.svg" alt="distribución $chi^{2}$ con diferentes grados de libertad (df)." width="672" />
+<p class="caption">
+Figura 9.1: distribución <span class="math inline">\(chi^{2}\)</span> con diferentes grados de libertad (df).
+</p>
+</div>
+<div class="figure"><span id="fig:unnamed-chunk-2982"></span>
+<img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-298-2.svg" alt="distribución $chi^{2}$ con diferentes grados de libertad (df)." width="672" />
+<p class="caption">
+Figura 9.2: distribución <span class="math inline">\(chi^{2}\)</span> con diferentes grados de libertad (df).
+</p>
+</div>
+<div class="figure"><span id="fig:unnamed-chunk-2983"></span>
+<img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-298-3.svg" alt="distribución $chi^{2}$ con diferentes grados de libertad (df)." width="672" />
+<p class="caption">
+Figura 9.3: distribución <span class="math inline">\(chi^{2}\)</span> con diferentes grados de libertad (df).
+</p>
+</div>
+<p>Los gráficos muestran que a medida que se incrementan los grados de
+libertad, la forma de la distribución gana en simetría y se asemeja a la distribución normal.</p>
+<p>Para hallar las probabilidades correspondientes a valores de la
+variable, usaremos nuevamente el comando de R que provee probabilidades bajo modelos especificados; el que provee los acumulados de la distribución chi cuadrado es <code>pchisq</code>. Para hallar la probabilidad acumulada hasta el valor 8 bajo un modelo <span class="math inline">\(\chi^{2}\)</span> con <span class="math inline">\(10\)</span> grados de libertad, lo pedimos así:</p>
+<pre><code>## [1] 0.3711631</code></pre>
+<p>Cuyos argumentos son el valor de la variable (<span class="math inline">\(8\)</span>) y los grados de libertad del modelo (<span class="math inline">\(10\)</span>). Gráficamente se ubica en:</p>
+<p><img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-300-1.svg" width="672" /></p>
+<p>Y se escribe:</p>
+<p><span class="math display">\[P(\chi_{10}^{2} \leq 8) = 0.3712\]</span></p>
+<p>Para el área superior a 8, se complementa la probabilidad acumulada.</p>
+<p><span class="math display">\[P(\chi_{10}^{2} &gt; 8) = 1-P(\chi_{10}^2 \leq 8)= 1-0.3712=0,6288\]</span></p>
+<p>Que es la superficie sombreada en el gráfico siguiente.</p>
+<p><img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-301-1.svg" width="672" /></p>
+<p>Para encontrar percentiles bajo este modelo, el comando es <code>qchisq</code>, que tiene como argumentos: la probabilidad acumulada y los grados de libertad, y devuelve el valor de la variable <span class="math inline">\(\chi^{2}\)</span>. Por ejemplo, el percentil 95 de una distribución <span class="math inline">\(\chi^{2}\)</span> con 15 grados de libertad es:</p>
+<pre><code>## [1] 24.99579</code></pre>
+<p><span class="math display">\[P_{95}=24.99\]</span></p>
+<p>Dicho de otra manera, el 5% de los valores de la variable <span class="math inline">\(\chi^{2}\)</span> con 15 grados de libertad, supera al valor 24.99. O también, los valores superiores a 24.99 tienen probabilidad menor a 5% de obtenerse bajo este modelo.</p>
+<p>La distribución <span class="math inline">\(\chi^{2}\)</span> tiene muchas aplicaciones, una de las más
+frecuentes es para poner a prueba la independencia entre dos variables
+nominales. El vínculo entre esta distribución y el puntaje <span class="math inline">\(\chi^{2}\)</span>
+que ya se mencionó, se verá más adelante.</p>
+</div>
+<div id="la-distribución-t-de-student" class="section level2">
+<h2><span class="header-section-number">9.6</span> La distribución t de Student</h2>
+<p>El tercer modelo especial de probabilidades para variables continuas que nos interesa describir es la distribución t, conocida como “de Student”, por el seudónimo que utilizaba quien la aplicó por primera vez, William Gosset<a href="#fn48" class="footnote-ref" id="fnref48"><sup>48</sup></a>.</p>
+<p>Se trata de una distribución que, como la normal es simétrica y como la
+<span class="math inline">\(\chi^{2}\)</span> depende de los grados de libertad<a href="#fn49" class="footnote-ref" id="fnref49"><sup>49</sup></a>. Su forma es la
+siguiente, dependiendo de los grados de libertad:</p>
+<p>Distribución t de Student con diferentes grados de libertad:</p>
+<p><img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-303-1.svg" width="672" /><img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-303-2.svg" width="672" /><img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-303-3.svg" width="672" /></p>
+<p>A partir de 30 grados de libertad, la distribución toma una forma que va haciéndose más similar a la normal. Las probabilidades acumuladas se
+buscan con R, con el comando <code>dt</code>, que tiene como argumentos el
+valor de la variable y los grados de libertad. La probabilidad que una variable con distribución <span class="math inline">\(t\)</span> con <span class="math inline">\(un\)</span> grado de libertad, esté por debajo del valor <span class="math inline">\(2\)</span> se escribe:</p>
+<p><span class="math display">\[P(t_{1} \leq 2)\]</span></p>
+<p>Y se solicita:</p>
+<pre><code>## [1] 0.8524164</code></pre>
+<p>Que dice que <span class="math display">\[P(t_{1} \leq 2)=0.8524\]</span>
+Su ubicación gráfica es:
+<img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-305-1.svg" width="672" /></p>
+<p>Como en las otras distribuciones, el área superior se calcula como el complemento: <span class="math display">\[P(t_{1} &gt; 2)=1-P(t_{1}\leq2)=1-0.8524=0.1476\]</span></p>
+<p>Para ver los efectos del cambio en los grados de libertad, vamos a
+comparar la probabilidad que una variable t con 30 grados de libertad
+supere a 2, es decir:</p>
+<p><span class="math display">\[P(t_{30} &gt; 2)\]</span></p>
+<p>Lo solicitamos directamente como:</p>
+<pre><code>## [1] 0.02731252</code></pre>
+<p>Los dos resultados tienen estas representaciones gráficas;</p>
+<p><img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-307-1.svg" width="672" /><img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-307-2.svg" width="672" /></p>
+<p>En los gráficos y en los valores de las probabilidades se ve que el
+aumento de los grados de libertad en la distribución t tiene el efecto
+de reducir la probabilidad de los valores extremos.</p>
+<p>Los percentiles de la distribución t se solicitan con qt, por ejemplo, el percentil 95 bajo un modelo t con 1 grado de libertad es:</p>
+<pre><code>## [1] 6.313752</code></pre>
+<p>Y el mismo percentil, si la distribución tiene 30 grados de libertad es:</p>
+<pre><code>## [1] 1.697261</code></pre>
+<p>Esto quiere decir que un valor t como por ejemplo 3, se considerará extremo bajo una distribución con 30 grados de libertad, pero será un valor esperable si la distribución tiene 1 grado de libertad.</p>
+<p>Cuando trabajemos con inferencia, veremos que la distribución t se
+aplica en reemplazo de la normal, cuando se trabaja con muestras
+pequeñas y que se va volviendo más equivalente a ella a medida que las
+muestras son de mayor tamaño.</p>
+<div id="la-distribución-f" class="section level3">
+<h3><span class="header-section-number">9.6.1</span> La distribución F</h3>
+<p>El último de los modelos de probabilidad que necesitamos para usar en
+los próximos capítulos en la realización de inferencias, es la
+distribución F de Fisher. Es una distribución asimétrica, no negativa y
+su forma depende de los valores de los grados de libertad del numerador
+y del denominador<a href="#fn50" class="footnote-ref" id="fnref50"><sup>50</sup></a>. Es una curva muy asimétrica a la derecha cuando
+los grados de libertad son pocos y tiende a la normalidad a medida que
+aumentan los <span class="math inline">\(gl\)</span>. Veamos dos casos de combinaciones de grados de
+libertad en el numerador y en el denominador:</p>
+<p><img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-310-1.svg" width="672" /><img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-310-2.svg" width="672" /></p>
+<p>En el cálculo de las probabilidades, ahora debemos informar los grados
+de libertad del numerador y del denominador separadamente. Para
+solicitar, por ejemplo, la <span class="math inline">\(P(F_{3,2} \leq 4)\)</span>, se usa el comando <code>pf</code>, indicando el valor de la variable y los grados de libertad del numerador y el denominador en ese orden:</p>
+<pre><code>## [1] 0.7935601</code></pre>
+<p>Es decir: <span class="math inline">\(P(F_{3,2} \leq 4)=0.7936\)</span></p>
+<p>Cuyo gráfico es:
+<img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-312-1.svg" width="672" /></p>
+<p>El área superior es la diferencia a uno:</p>
+<pre><code>## [1] 0.2064399</code></pre>
+<p>De modo que <span class="math inline">\(P(F_{3,2} &gt; 4) = 0,2064\)</span>.</p>
+<p>El percentil 95 de una distrindución F con 3 grados de libertad en el numerador y dos en el denominador es:</p>
+<pre><code>## [1] 19.16429</code></pre>
+<p>Que se lee indicando que el 5% de los valores de la variable <span class="math inline">\(F_{3,2}\)</span> superan a <span class="math inline">\(19.16\)</span>. <span class="math inline">\(P(F_{3,2}&gt;19.16)=.05\)</span></p>
+<p>Cuando pedimos el mismo percentil de otra variable que tenga distribución <span class="math inline">\(F_{5,10}\)</span>, se obtiene:</p>
+<pre><code>## [1] 3.325835</code></pre>
+<p>Los gráficos del <span class="math inline">\(P_{95}\)</span> en las dos distribuciones son los siguientes:</p>
+<p><img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-316-1.svg" width="672" /><img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-316-2.svg" width="672" /></p>
+<p>También en esta distribución vemos que el aumento de los <span class="math inline">\(gl\)</span> tiene el
+efecto de reducir la probabilidad de los valores extremos.</p>
+<p>La distribución F es usada para comparar la dispersión de dos
+distribuciones, a través del cociente de las varianzas.</p>
+</div>
+</div>
+<div id="hacerlo-en-r-5" class="section level2">
+<h2><span class="header-section-number">9.7</span> Hacerlo en R</h2>
+<div id="probabilidades" class="section level3">
+<h3><span class="header-section-number">9.7.1</span> Probabilidades</h3>
+<p>Para solicitar las probabilidades acumuladas hasta determinado valor (<span class="math inline">\(x\)</span>) de la variable, bajo diferentes modelos, los comandos llevan una <span class="math inline">\(p\)</span> delante del nombre de la distribución: pbinom, pnorm, pchisq, pt, pf. Y según la distribución, deben indicarse los <em>parámetros</em> que la especifican:</p>
+<ul>
+<li>Binomial: pbinom(x, “cantidad de ensayos”, “probabilidad de éxito a cada ensayo”)</li>
+<li>Normal estándar: pnorm (z), la media vale cero y la desviación estándar, uno. No hace falta indicarlo.</li>
+<li>Normal: pnorm(x, “media”, “desviación estándar” )</li>
+<li>Ji cuadrado: pchisq(x, “grados de libertad”)</li>
+<li>t de Student: pt(x, “grados de libertad”)</li>
+<li>F de Fisher: pf(x, “grados de libertad del numerador”, “grados de libertad del denominador”)</li>
+</ul>
+</div>
+<div id="percentiles-1" class="section level3">
+<h3><span class="header-section-number">9.7.2</span> Percentiles</h3>
+<p>Para hallar percentiles, los comandos tienen una <span class="math inline">\(q\)</span> delante del nombre del modelo: qbinom, qnorm, qchisq, qt, qf. Y debe indicarse el percentil que se busca, junto a los parámetros que corresponden a cada distribución. Llamando r al percentil que interesa encontrar, la solicitud a R para cada modelo es:</p>
+<ul>
+<li>Binomial: qbinom(<span class="math inline">\(r/100\)</span>, “cantidad de ensayos”, “probabilidad de éxito a cada ensayo”)</li>
+<li>Normal estándar: qnorm (<span class="math inline">\(r/100\)</span>), la media vale cero y la desviación estándar, uno. No hace falta indicarlo.</li>
+<li>Normal: qnorm(<span class="math inline">\(r/100\)</span>, “media”, “desviación estándar” )</li>
+<li>Ji cuadrado: qchisq(<span class="math inline">\(r/100\)</span>, “grados de libertad”)</li>
+<li>t de Student: qt(<span class="math inline">\(r/100\)</span>, “grados de libertad”)</li>
+<li>F de Fisher: qf(<span class="math inline">\(r/100\)</span>, “grados de libertad del numerador”, “grados de libertad del denominador”)</li>
+</ul>
+</div>
+<div id="áreas-centrales" class="section level3">
+<h3><span class="header-section-number">9.7.3</span> Áreas centrales</h3>
+<p>En lo que sigue será frecuente que se necesiten percetiles de la variable que dellimitan determinadas áreas centrales de la distribución. Cuanquiera se el modelo de probabilidad que se use, suele denominarse <span class="math inline">\(1-\alpha\)</span> al área central, con lo que <span class="math inline">\(\alpha\)</span> es el área que queda por fuera de la zona central, dividida en dos. Los percentiles que delimitan esa área central de <span class="math inline">\(1-\alpha\)</span> son <span class="math inline">\(\frac{\alpha}{2}\)</span> y <span class="math inline">\(1-\frac{\alpha}{2}\)</span>.</p>
+<p>Por ejemplo, para determinar cuáles son los valores de una distribución <span class="math inline">\(\chi^2\)</span> con 13 grados delibertad que delimitan un 90% de área central, calculamos <span class="math inline">\(\alpha\)</span>, que es el 10% restante y los percentiles son: 5 (<span class="math inline">\(\frac{\alpha}{2}\)</span>) y 95 (<span class="math inline">\(1-\frac{\alpha}{2}\)</span>).</p>
+<pre><code>## [1] 5.891864</code></pre>
+<pre><code>## [1] 22.36203</code></pre>
+<p>Que gráficamente se ve así:</p>
+<p><img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-318-1.svg" width="672" /></p>
+
+</div>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="40">
+<li id="fn40"><p>Con lo que hemos elegido tomar como éxito el resultado <em>cara</em><a href="probabilidad-los-modelos.html#fnref40" class="footnote-back">↩</a></p></li>
+<li id="fn41"><p>Para explicar la diferencia, considere los coeficientes de
+variación de las dos distribuciones.<a href="probabilidad-los-modelos.html#fnref41" class="footnote-back">↩</a></p></li>
+<li id="fn42"><p>El nombre “normal” de este modelo no hace referencia al sentido
+coloquial del término, como juico acerca de la salud o el
+comportamiento humano, sino a un modelo de distribución en el que es
+más frecuente hallar valores cercanos al promedio y resultan
+igualmente infrecuentes valores extremos mayores o menores.<a href="probabilidad-los-modelos.html#fnref42" class="footnote-back">↩</a></p></li>
+<li id="fn43"><p>Este modelo tiene una expresión matemática más compleja que la primera que vimos, solo a título ilustrativo la mencionamos: <span class="math display">\[P(z &lt; x) = \frac{1}{\sqrt{2\pi}}\int_{- \infty}^{x}e^{- \frac{z^{2}}{2}} dz\]</span> jamás la usaremos para calcular probabilidades.<a href="probabilidad-los-modelos.html#fnref43" class="footnote-back">↩</a></p></li>
+<li id="fn44"><p>1777-1855, matemático, astrónomo y físico alemán. El primero en
+expresar la función y calcular áreas fue Abraham De Moivre
+matemático francés que trabajó en Inglaterra junto a Newton y Halley
+(Tankard, 1984).<a href="probabilidad-los-modelos.html#fnref44" class="footnote-back">↩</a></p></li>
+<li id="fn45"><p>El símbolo de esta operación es <span class="math inline">\(\int\)</span>, una <span class="math inline">\(S\)</span> estilizada, que indica
+su origen en una suma.<a href="probabilidad-los-modelos.html#fnref45" class="footnote-back">↩</a></p></li>
+<li id="fn46"><p>Solo nos interesará contar con una idea intuitiva y ejemplos de
+aplicación.<a href="probabilidad-los-modelos.html#fnref46" class="footnote-back">↩</a></p></li>
+<li id="fn47"><p>La definición de la variable <span class="math inline">\(\chi^{2}\)</span> con <span class="math inline">\(n\)</span> grados de
+libertad es la suma de <span class="math inline">\(n\)</span> variables aleatorias normales estándar
+elevadas al cuadrado: <span class="math inline">\(\chi^{2} = \sum_{i = 1}^{n}z_{i}^{2}\)</span>, en la
+que cada <span class="math inline">\(z\)</span> es una variable distribuida normalmente con media cero
+y desviación estándar igual a uno.<a href="probabilidad-los-modelos.html#fnref47" class="footnote-back">↩</a></p></li>
+<li id="fn48"><p>Químico y Estadístico inglés (1876-1937), era empleado de la
+cervecería Guiness y allí desarrolló procedimientos adecuados para
+trabajar con pequeñas muestras. Una de las versiones acerca de por
+qué publicó con el seudónimo Student es que la empresa temía que se
+revelaran secretos industriales.<a href="probabilidad-los-modelos.html#fnref48" class="footnote-back">↩</a></p></li>
+<li id="fn49"><p>La definición de la variable con distribución <span class="math inline">\(t\)</span> con <span class="math inline">\(n\)</span> grados de
+libertad es el cociente entre una variable con distribución normal
+estándar y la raíz cuadrada de una <span class="math inline">\(\chi^{2}\)</span> dividida por sus
+grados de libertad: <span class="math inline">\(t = \frac{z}{\sqrt{\frac{\chi_{n}^{2}}{n}}}\)</span>.<a href="probabilidad-los-modelos.html#fnref49" class="footnote-back">↩</a></p></li>
+<li id="fn50"><p>Estos nombres para los grados de libertad se originan en que la <span class="math inline">\(F\)</span>
+se define como el cociente de dos distribuciones <span class="math inline">\(\chi^{2}\)</span>, cada
+una dividida por sus grados de libertad:
+<span class="math inline">\(F_{n_{1},n_{2}} = \frac{\frac{\chi_{1}^{2}}{n_{1}}}{\frac{\chi_{2}^{2}}{n_{2}}}\)</span>.<a href="probabilidad-los-modelos.html#fnref50" class="footnote-back">↩</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="probabilidad-los-fundamentos.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="distribuciones-en-el-muestreo.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/jcrodriguez1989/EstadisticaParaCienciasSocialesConR/edit/master/09-capitulo8.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["EstadisticaParaCienciasSocialesConR.pdf", "EstadisticaParaCienciasSocialesConR.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

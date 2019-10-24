@@ -1,0 +1,1710 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 11 Estimación por intervalo | Estadística para Ciencias Sociales con R</title>
+  <meta name="description" content="Capítulo 11 Estimación por intervalo | Estadística para Ciencias Sociales con R" />
+  <meta name="generator" content="bookdown 0.14.1 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 11 Estimación por intervalo | Estadística para Ciencias Sociales con R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  <meta name="github-repo" content="jcrodriguez1989/EstadisticaParaCienciasSocialesConR" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 11 Estimación por intervalo | Estadística para Ciencias Sociales con R" />
+  
+  
+  
+
+<meta name="author" content="Eduardo Bologna" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="distribuciones-en-el-muestreo.html"/>
+<link rel="next" href="prueba-de-hipótesis-la-lógica.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Estadística para Ciencias Sociales con R</a></li>
+
+<li class="divider"></li>
+<li><a href="index.html#section"></a></li>
+<li class="chapter" data-level="1" data-path="materiales-y-herramientas.html"><a href="materiales-y-herramientas.html"><i class="fa fa-check"></i><b>1</b> Materiales y herramientas</a><ul>
+<li class="chapter" data-level="1.1" data-path="materiales-y-herramientas.html"><a href="materiales-y-herramientas.html#materiales"><i class="fa fa-check"></i><b>1.1</b> Materiales</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="materiales-y-herramientas.html"><a href="materiales-y-herramientas.html#encuesta-permanente-de-hogares-eph.3.18"><i class="fa fa-check"></i><b>1.1.1</b> Encuesta Permanente de Hogares (eph.3.18)</a></li>
+<li class="chapter" data-level="1.1.2" data-path="materiales-y-herramientas.html"><a href="materiales-y-herramientas.html#encuesta-nacional-de-factores-de-riesgo-enfr2013"><i class="fa fa-check"></i><b>1.1.2</b> Encuesta Nacional de Factores de Riesgo (ENFR2013)</a></li>
+<li class="chapter" data-level="1.1.3" data-path="materiales-y-herramientas.html"><a href="materiales-y-herramientas.html#latinobarómetro-latinob2017"><i class="fa fa-check"></i><b>1.1.3</b> Latinobarómetro (latinob2017)</a></li>
+<li class="chapter" data-level="1.1.4" data-path="materiales-y-herramientas.html"><a href="materiales-y-herramientas.html#encuesta-nacional-sobre-prevalencias-de-consumo-de-sustancias-psicoactivas-enprecosp2011"><i class="fa fa-check"></i><b>1.1.4</b> Encuesta Nacional sobre Prevalencias de Consumo de Sustancias Psicoactivas (ENPreCoSP2011)</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="materiales-y-herramientas.html"><a href="materiales-y-herramientas.html#herramientas"><i class="fa fa-check"></i><b>1.2</b> Herramientas</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="materiales-y-herramientas.html"><a href="materiales-y-herramientas.html#la-elección-de-r"><i class="fa fa-check"></i><b>1.2.1</b> La elección de R</a></li>
+<li class="chapter" data-level="1.2.2" data-path="materiales-y-herramientas.html"><a href="materiales-y-herramientas.html#instalación-de-r-y-rstudio"><i class="fa fa-check"></i><b>1.2.2</b> Instalación de R y RStudio</a></li>
+<li class="chapter" data-level="1.2.3" data-path="materiales-y-herramientas.html"><a href="materiales-y-herramientas.html#los-componentes-de-rstudio"><i class="fa fa-check"></i><b>1.2.3</b> Los componentes de RStudio</a></li>
+<li class="chapter" data-level="1.2.4" data-path="materiales-y-herramientas.html"><a href="materiales-y-herramientas.html#operaciones-en-el-script"><i class="fa fa-check"></i><b>1.2.4</b> Operaciones en el script</a></li>
+<li class="chapter" data-level="1.2.5" data-path="materiales-y-herramientas.html"><a href="materiales-y-herramientas.html#instalación-de-paquetes"><i class="fa fa-check"></i><b>1.2.5</b> Instalación de paquetes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html"><i class="fa fa-check"></i><b>2</b> Los datos estadísticos</a><ul>
+<li class="chapter" data-level="2.1" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#la-selección-de-la-información-pertinente"><i class="fa fa-check"></i><b>2.1</b> La selección de la información pertinente</a></li>
+<li class="chapter" data-level="2.2" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#los-individuos"><i class="fa fa-check"></i><b>2.2</b> Los individuos</a></li>
+<li class="chapter" data-level="2.3" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#las-variables"><i class="fa fa-check"></i><b>2.3</b> Las variables</a></li>
+<li class="chapter" data-level="2.4" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#las-categorías"><i class="fa fa-check"></i><b>2.4</b> Las categorías</a></li>
+<li class="chapter" data-level="2.5" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#los-símbolos-numéricos"><i class="fa fa-check"></i><b>2.5</b> Los símbolos numéricos</a></li>
+<li class="chapter" data-level="2.6" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#la-medición"><i class="fa fa-check"></i><b>2.6</b> La medición</a><ul>
+<li class="chapter" data-level="2.6.1" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#niveles-de-medición"><i class="fa fa-check"></i><b>2.6.1</b> Niveles de medición</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#resumen-de-los-niveles-de-medición"><i class="fa fa-check"></i><b>2.7</b> Resumen de los niveles de medición</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html"><i class="fa fa-check"></i><b>3</b> Distribuciones de frecuencia</a><ul>
+<li class="chapter" data-level="3.1" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#tablas-de-distribución-de-frecuencia"><i class="fa fa-check"></i><b>3.1</b> Tablas de distribución de frecuencia</a></li>
+<li class="chapter" data-level="3.2" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#recategorización"><i class="fa fa-check"></i><b>3.2</b> Recategorización</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#variable-discreta-con-muchas-categorías"><i class="fa fa-check"></i><b>3.2.1</b> Variable discreta con muchas categorías</a></li>
+<li class="chapter" data-level="3.2.2" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#variable-continua"><i class="fa fa-check"></i><b>3.2.2</b> Variable continua</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#la-presentación-gráfica-de-los-resultados"><i class="fa fa-check"></i><b>3.3</b> La presentación gráfica de los resultados</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html"><i class="fa fa-check"></i><b>4</b> La expresión resumida de la información</a><ul>
+<li class="chapter" data-level="4.1" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#medidas-de-posición"><i class="fa fa-check"></i><b>4.1</b> Medidas de posición</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#variables-nominales-proporciones"><i class="fa fa-check"></i><b>4.1.1</b> Variables nominales: proporciones</a></li>
+<li class="chapter" data-level="4.1.2" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#variables-nominales-tasas"><i class="fa fa-check"></i><b>4.1.2</b> Variables nominales: tasas</a></li>
+<li class="chapter" data-level="4.1.3" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#variables-nominales-razones"><i class="fa fa-check"></i><b>4.1.3</b> Variables nominales: razones</a></li>
+<li class="chapter" data-level="4.1.4" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#variables-nominales-el-modo"><i class="fa fa-check"></i><b>4.1.4</b> Variables nominales: el modo</a></li>
+<li class="chapter" data-level="4.1.5" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#variables-ordinales-percentiles"><i class="fa fa-check"></i><b>4.1.5</b> Variables ordinales: percentiles</a></li>
+<li class="chapter" data-level="4.1.6" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#variables-ordinales-la-mediana"><i class="fa fa-check"></i><b>4.1.6</b> Variables ordinales: la mediana</a></li>
+<li class="chapter" data-level="4.1.7" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#los-cuartiles"><i class="fa fa-check"></i><b>4.1.7</b> Los cuartiles</a></li>
+<li class="chapter" data-level="4.1.8" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#los-percentiles"><i class="fa fa-check"></i><b>4.1.8</b> Los percentiles</a></li>
+<li class="chapter" data-level="4.1.9" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#hacerlo-en-r"><i class="fa fa-check"></i><b>4.1.9</b> Hacerlo en R</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#la-forma-de-la-distribución"><i class="fa fa-check"></i><b>4.2</b> La forma de la distribución</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#asimetría"><i class="fa fa-check"></i><b>4.2.1</b> Asimetría</a></li>
+<li class="chapter" data-level="4.2.2" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#curtosis"><i class="fa fa-check"></i><b>4.2.2</b> Curtosis</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#box-plots"><i class="fa fa-check"></i><b>4.3</b> Box-plots</a></li>
+<li class="chapter" data-level="4.4" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#medidas-de-dispersión"><i class="fa fa-check"></i><b>4.4</b> Medidas de dispersión</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#recorrido"><i class="fa fa-check"></i><b>4.4.1</b> Recorrido</a></li>
+<li class="chapter" data-level="4.4.2" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#amplitud-intercuartílica"><i class="fa fa-check"></i><b>4.4.2</b> Amplitud intercuartílica</a></li>
+<li class="chapter" data-level="4.4.3" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#medidas-de-dispersión-basadas-en-la-media"><i class="fa fa-check"></i><b>4.4.3</b> Medidas de dispersión basadas en la media</a></li>
+<li class="chapter" data-level="4.4.4" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#varianza"><i class="fa fa-check"></i><b>4.4.4</b> Varianza</a></li>
+<li class="chapter" data-level="4.4.5" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#desviación-estándar"><i class="fa fa-check"></i><b>4.4.5</b> Desviación estándar</a></li>
+<li class="chapter" data-level="4.4.6" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#coeficiente-de-variación"><i class="fa fa-check"></i><b>4.4.6</b> Coeficiente de variación</a></li>
+<li class="chapter" data-level="4.4.7" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#hacerlo-en-r-1"><i class="fa fa-check"></i><b>4.4.7</b> Hacerlo en R</a></li>
+<li class="chapter" data-level="4.4.8" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#box-plots-y-dispersión"><i class="fa fa-check"></i><b>4.4.8</b> Box-plots y dispersión</a></li>
+<li class="chapter" data-level="4.4.9" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#medida-de-la-dispersión-cuando-no-hay-distancias"><i class="fa fa-check"></i><b>4.4.9</b> Medida de la dispersión cuando no hay distancias</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#el-individuo-en-relación-a-su-grupo"><i class="fa fa-check"></i><b>4.5</b> El individuo en relación a su grupo</a></li>
+<li class="chapter" data-level="4.6" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#resumen-de-medidas-descriptivas"><i class="fa fa-check"></i><b>4.6</b> Resumen de medidas descriptivas</a><ul>
+<li class="chapter" data-level="4.6.1" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#medidas-de-posición-1"><i class="fa fa-check"></i><b>4.6.1</b> Medidas de posición</a></li>
+<li class="chapter" data-level="4.6.2" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#medidas-de-dispersión-1"><i class="fa fa-check"></i><b>4.6.2</b> Medidas de dispersión</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html"><i class="fa fa-check"></i><b>5</b> Relación entre variables: los fundamentos</a><ul>
+<li class="chapter" data-level="5.1" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#tablas-de-contingencia"><i class="fa fa-check"></i><b>5.1</b> Tablas de contingencia</a></li>
+<li class="chapter" data-level="5.2" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#frecuencias-relativas"><i class="fa fa-check"></i><b>5.2</b> Frecuencias relativas</a></li>
+<li class="chapter" data-level="5.3" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#una-clasificación-en-referencia-al-tiempo"><i class="fa fa-check"></i><b>5.3</b> Una clasificación en referencia al tiempo</a></li>
+<li class="chapter" data-level="5.4" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#la-dirección-de-la-relación"><i class="fa fa-check"></i><b>5.4</b> La dirección de la relación</a></li>
+<li class="chapter" data-level="5.5" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#concepto-de-riesgo-relativo"><i class="fa fa-check"></i><b>5.5</b> Concepto de riesgo relativo</a></li>
+<li class="chapter" data-level="5.6" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#la-intensidad"><i class="fa fa-check"></i><b>5.6</b> La intensidad</a></li>
+<li class="chapter" data-level="5.7" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#el-concepto-de-independencia-estadística"><i class="fa fa-check"></i><b>5.7</b> El concepto de independencia estadística</a></li>
+<li class="chapter" data-level="5.8" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#hacerlo-en-r-2"><i class="fa fa-check"></i><b>5.8</b> Hacerlo en R</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html"><i class="fa fa-check"></i><b>6</b> Relación entre variables: el análisis</a><ul>
+<li class="chapter" data-level="6.1" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#variables-nominales-con-más-de-dos-categorías-cada-una"><i class="fa fa-check"></i><b>6.1</b> Variables nominales con más de dos categorías cada una</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#la-distancia-entre-frecuencias-esperadas-y-observadas"><i class="fa fa-check"></i><b>6.1.1</b> La distancia entre frecuencias esperadas y observadas</a></li>
+<li class="chapter" data-level="6.1.2" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#coeficientes-de-asociación-para-variables-nominales"><i class="fa fa-check"></i><b>6.1.2</b> Coeficientes de asociación para variables nominales</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#variables-de-nivel-ordinal"><i class="fa fa-check"></i><b>6.2</b> Variables de nivel ordinal</a></li>
+<li class="chapter" data-level="6.3" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#nivel-intervalar-o-proporcional"><i class="fa fa-check"></i><b>6.3</b> Nivel intervalar o proporcional</a></li>
+<li class="chapter" data-level="6.4" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#dicotomías-reales-y-artificiales"><i class="fa fa-check"></i><b>6.4</b> Dicotomías reales y artificiales</a></li>
+<li class="chapter" data-level="6.5" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#niveles-de-medición-combinados"><i class="fa fa-check"></i><b>6.5</b> Niveles de medición combinados</a><ul>
+<li class="chapter" data-level="6.5.1" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#una-variable-dicotómica-real-y-una-proporcional"><i class="fa fa-check"></i><b>6.5.1</b> Una variable dicotómica real y una proporcional</a></li>
+<li class="chapter" data-level="6.5.2" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#una-variable-continua-dicotomizada-y-una-proporcional"><i class="fa fa-check"></i><b>6.5.2</b> Una variable continua dicotomizada y una proporcional</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#resumen-de-coeficientes-de-asociación"><i class="fa fa-check"></i><b>6.6</b> Resumen de coeficientes de asociación</a></li>
+<li class="chapter" data-level="6.7" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#matriz-de-correlaciones"><i class="fa fa-check"></i><b>6.7</b> Matriz de correlaciones</a></li>
+<li class="chapter" data-level="6.8" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#la-forma-de-la-relación"><i class="fa fa-check"></i><b>6.8</b> La forma de la relación</a><ul>
+<li class="chapter" data-level="6.8.1" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#ordenada-al-origen"><i class="fa fa-check"></i><b>6.8.1</b> Ordenada al origen</a></li>
+<li class="chapter" data-level="6.8.2" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#pendiente"><i class="fa fa-check"></i><b>6.8.2</b> Pendiente</a></li>
+<li class="chapter" data-level="6.8.3" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#obtención-de-la-recta-de-regresión"><i class="fa fa-check"></i><b>6.8.3</b> Obtención de la recta de regresión</a></li>
+</ul></li>
+<li class="chapter" data-level="6.9" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#la-importancia-de-la-visualización"><i class="fa fa-check"></i><b>6.9</b> La importancia de la visualización</a></li>
+<li class="chapter" data-level="6.10" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#hacerlo-en-r-3"><i class="fa fa-check"></i><b>6.10</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="6.10.1" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#distancia-chi2"><i class="fa fa-check"></i><b>6.10.1</b> Distancia <span class="math inline">\(\chi^{2}\)</span></a></li>
+<li class="chapter" data-level="6.10.2" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#coeficientes"><i class="fa fa-check"></i><b>6.10.2</b> Coeficientes</a></li>
+<li class="chapter" data-level="6.10.3" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#modelo-lineal"><i class="fa fa-check"></i><b>6.10.3</b> Modelo lineal</a></li>
+<li class="chapter" data-level="6.10.4" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#cuarteto-de-anscombe"><i class="fa fa-check"></i><b>6.10.4</b> Cuarteto de Anscombe</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html"><i class="fa fa-check"></i><b>7</b> Obtención de la muestra</a><ul>
+<li class="chapter" data-level="7.1" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#población"><i class="fa fa-check"></i><b>7.1</b> Población</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestra"><i class="fa fa-check"></i><b>7.1.1</b> Muestra</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreos-probabilísticos"><i class="fa fa-check"></i><b>7.2</b> Muestreos probabilísticos</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-irrestricto-aleatorio-o-aleatorio-simple"><i class="fa fa-check"></i><b>7.2.1</b> Muestreo irrestricto aleatorio o aleatorio simple</a></li>
+<li class="chapter" data-level="7.2.2" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-sistemático"><i class="fa fa-check"></i><b>7.2.2</b> Muestreo sistemático</a></li>
+<li class="chapter" data-level="7.2.3" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-estratificado"><i class="fa fa-check"></i><b>7.2.3</b> Muestreo estratificado</a></li>
+<li class="chapter" data-level="7.2.4" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-por-conglomerados"><i class="fa fa-check"></i><b>7.2.4</b> Muestreo por conglomerados</a></li>
+<li class="chapter" data-level="7.2.5" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#método-de-kish"><i class="fa fa-check"></i><b>7.2.5</b> Método de Kish</a></li>
+<li class="chapter" data-level="7.2.6" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#uso-combinado-de-técnicas-de-muestreo"><i class="fa fa-check"></i><b>7.2.6</b> Uso combinado de técnicas de muestreo</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreos-no-probabilísticos"><i class="fa fa-check"></i><b>7.3</b> Muestreos no probabilísticos</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-por-cuotas"><i class="fa fa-check"></i><b>7.3.1</b> Muestreo por cuotas</a></li>
+<li class="chapter" data-level="7.3.2" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-de-juicio-o-intencional"><i class="fa fa-check"></i><b>7.3.2</b> Muestreo de juicio o intencional</a></li>
+<li class="chapter" data-level="7.3.3" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-autoelegido"><i class="fa fa-check"></i><b>7.3.3</b> Muestreo autoelegido</a></li>
+<li class="chapter" data-level="7.3.4" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-accidental-o-según-disponibilidad"><i class="fa fa-check"></i><b>7.3.4</b> Muestreo accidental o según disponibilidad</a></li>
+<li class="chapter" data-level="7.3.5" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-bola-de-nieve"><i class="fa fa-check"></i><b>7.3.5</b> Muestreo bola de nieve</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#resumen-de-técnicas-de-muestreo"><i class="fa fa-check"></i><b>7.4</b> Resumen de técnicas de muestreo</a></li>
+<li class="chapter" data-level="7.5" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#hacerlo-en-r-4"><i class="fa fa-check"></i><b>7.5</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="7.5.1" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#aleatorio-simple"><i class="fa fa-check"></i><b>7.5.1</b> Aleatorio simple</a></li>
+<li class="chapter" data-level="7.5.2" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#estratificado"><i class="fa fa-check"></i><b>7.5.2</b> Estratificado</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html"><i class="fa fa-check"></i><b>8</b> Probabilidad: los fundamentos</a><ul>
+<li class="chapter" data-level="8.1" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#el-rol-de-la-probabilidad-en-estadística"><i class="fa fa-check"></i><b>8.1</b> El rol de la probabilidad en Estadística</a></li>
+<li class="chapter" data-level="8.2" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#formas-para-asignar-probabilidades"><i class="fa fa-check"></i><b>8.2</b> Formas para asignar probabilidades</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#asignación-a-priori"><i class="fa fa-check"></i><b>8.2.1</b> Asignación a priori</a></li>
+<li class="chapter" data-level="8.2.2" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#asignación-a-posteriori"><i class="fa fa-check"></i><b>8.2.2</b> Asignación a posteriori</a></li>
+<li class="chapter" data-level="8.2.3" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#la-relación-entre-asignación-a-priori-y-a-posteriori"><i class="fa fa-check"></i><b>8.2.3</b> La relación entre asignación a priori y a posteriori</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#operando-con-probabilidades"><i class="fa fa-check"></i><b>8.3</b> Operando con probabilidades</a><ul>
+<li class="chapter" data-level="8.3.1" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#con-probabilidades-frecuenciales"><i class="fa fa-check"></i><b>8.3.1</b> Con probabilidades frecuenciales</a></li>
+<li class="chapter" data-level="8.3.2" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#con-probabilidades-a-priori"><i class="fa fa-check"></i><b>8.3.2</b> Con probabilidades a priori</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#el-teorema-de-bayes"><i class="fa fa-check"></i><b>8.4</b> El teorema de Bayes</a></li>
+<li class="chapter" data-level="8.5" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#variables-aleatorias"><i class="fa fa-check"></i><b>8.5</b> Variables aleatorias</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html"><i class="fa fa-check"></i><b>9</b> Probabilidad: los modelos</a><ul>
+<li class="chapter" data-level="9.1" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#concepto-de-modelización"><i class="fa fa-check"></i><b>9.1</b> Concepto de modelización</a></li>
+<li class="chapter" data-level="9.2" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#distribución-binomial"><i class="fa fa-check"></i><b>9.2</b> Distribución binomial</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#esperanza-y-varianza"><i class="fa fa-check"></i><b>9.2.1</b> Esperanza y varianza</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#distribución-normal"><i class="fa fa-check"></i><b>9.3</b> Distribución normal</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#percentiles"><i class="fa fa-check"></i><b>9.3.1</b> Percentiles</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#la-idea-de-grados-de-libertad"><i class="fa fa-check"></i><b>9.4</b> La idea de grados de libertad</a></li>
+<li class="chapter" data-level="9.5" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#la-distribución-ji-cuadrado-chi2"><i class="fa fa-check"></i><b>9.5</b> La distribución ji cuadrado (<span class="math inline">\(\chi^{2}\)</span>)</a></li>
+<li class="chapter" data-level="9.6" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#la-distribución-t-de-student"><i class="fa fa-check"></i><b>9.6</b> La distribución t de Student</a><ul>
+<li class="chapter" data-level="9.6.1" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#la-distribución-f"><i class="fa fa-check"></i><b>9.6.1</b> La distribución F</a></li>
+</ul></li>
+<li class="chapter" data-level="9.7" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#hacerlo-en-r-5"><i class="fa fa-check"></i><b>9.7</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="9.7.1" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#probabilidades"><i class="fa fa-check"></i><b>9.7.1</b> Probabilidades</a></li>
+<li class="chapter" data-level="9.7.2" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#percentiles-1"><i class="fa fa-check"></i><b>9.7.2</b> Percentiles</a></li>
+<li class="chapter" data-level="9.7.3" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#áreas-centrales"><i class="fa fa-check"></i><b>9.7.3</b> Áreas centrales</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html"><i class="fa fa-check"></i><b>10</b> Distribuciones en el muestreo</a><ul>
+<li class="chapter" data-level="10.1" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#parámetros-y-estimadores"><i class="fa fa-check"></i><b>10.1</b> Parámetros y estimadores</a></li>
+<li class="chapter" data-level="10.2" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#características-de-los-estimadores"><i class="fa fa-check"></i><b>10.2</b> Características de los estimadores</a><ul>
+<li class="chapter" data-level="10.2.1" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#insesgabilidad"><i class="fa fa-check"></i><b>10.2.1</b> Insesgabilidad</a></li>
+<li class="chapter" data-level="10.2.2" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#consistencia"><i class="fa fa-check"></i><b>10.2.2</b> Consistencia</a></li>
+<li class="chapter" data-level="10.2.3" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#eficiencia"><i class="fa fa-check"></i><b>10.2.3</b> Eficiencia</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#distribución-de-la-media-muestral"><i class="fa fa-check"></i><b>10.3</b> Distribución de la media muestral</a></li>
+<li class="chapter" data-level="10.4" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#distribución-de-la-proporción-muestral"><i class="fa fa-check"></i><b>10.4</b> Distribución de la proporción muestral</a></li>
+<li class="chapter" data-level="10.5" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#muestras-pequeñas"><i class="fa fa-check"></i><b>10.5</b> Muestras pequeñas</a></li>
+<li class="chapter" data-level="10.6" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#distribución-de-la-varianza"><i class="fa fa-check"></i><b>10.6</b> Distribución de la varianza</a></li>
+<li class="chapter" data-level="10.7" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#distribución-del-cociente-de-varianzas"><i class="fa fa-check"></i><b>10.7</b> Distribución del cociente de varianzas</a></li>
+<li class="chapter" data-level="10.8" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#resumen-de-la-relación-entre-estimadores-y-parámetros"><i class="fa fa-check"></i><b>10.8</b> Resumen de la relación entre estimadores y parámetros</a></li>
+<li class="chapter" data-level="10.9" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#hacerlo-en-r-6"><i class="fa fa-check"></i><b>10.9</b> Hacerlo en R</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html"><i class="fa fa-check"></i><b>11</b> Estimación por intervalo</a><ul>
+<li class="chapter" data-level="11.1" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#estimación-puntual"><i class="fa fa-check"></i><b>11.1</b> Estimación puntual</a></li>
+<li class="chapter" data-level="11.2" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#intervalos-de-confianza"><i class="fa fa-check"></i><b>11.2</b> Intervalos de confianza</a><ul>
+<li class="chapter" data-level="11.2.1" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#estimación-de-la-media"><i class="fa fa-check"></i><b>11.2.1</b> Estimación de la media</a></li>
+<li class="chapter" data-level="11.2.2" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#estimación-de-la-proporción"><i class="fa fa-check"></i><b>11.2.2</b> Estimación de la proporción</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#la-calidad-de-las-estimaciones-por-intervalo"><i class="fa fa-check"></i><b>11.3</b> La calidad de las estimaciones por intervalo</a><ul>
+<li class="chapter" data-level="11.3.1" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#el-error-de-estimación-en-la-proporción"><i class="fa fa-check"></i><b>11.3.1</b> El error de estimación en la proporción</a></li>
+<li class="chapter" data-level="11.3.2" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#probabilidad-de-cobertura"><i class="fa fa-check"></i><b>11.3.2</b> Probabilidad de cobertura</a></li>
+</ul></li>
+<li class="chapter" data-level="11.4" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#hacerlo-en-r-7"><i class="fa fa-check"></i><b>11.4</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="11.4.1" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#intervalo-para-la-media"><i class="fa fa-check"></i><b>11.4.1</b> Intervalo para la media</a></li>
+<li class="chapter" data-level="11.4.2" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#intervalo-para-la-proporción"><i class="fa fa-check"></i><b>11.4.2</b> Intervalo para la proporción</a></li>
+<li class="chapter" data-level="11.4.3" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#cobertura"><i class="fa fa-check"></i><b>11.4.3</b> Cobertura</a></li>
+<li class="chapter" data-level="11.4.4" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#operaciones-sobre-la-base-enprecosp"><i class="fa fa-check"></i><b>11.4.4</b> Operaciones sobre la base ENPreCoSP</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html"><i class="fa fa-check"></i><b>12</b> Prueba de hipótesis: la lógica</a><ul>
+<li class="chapter" data-level="12.1" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#el-razonamiento-de-la-prueba-de-hipótesis"><i class="fa fa-check"></i><b>12.1</b> El razonamiento de la prueba de hipótesis</a><ul>
+<li class="chapter" data-level="12.1.1" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#prueba-sobre-la-media"><i class="fa fa-check"></i><b>12.1.1</b> Prueba sobre la media</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#los-puntos-críticos-en-términos-del-estimador"><i class="fa fa-check"></i><b>12.2</b> Los puntos críticos en términos del estimador</a><ul>
+<li class="chapter" data-level="12.2.1" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#pruebas-unilaterales"><i class="fa fa-check"></i><b>12.2.1</b> Pruebas unilaterales</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#prueba-sobre-la-proporción"><i class="fa fa-check"></i><b>12.3</b> Prueba sobre la proporción</a></li>
+<li class="chapter" data-level="12.4" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#tipos-de-error-en-las-pruebas-de-hipótesis"><i class="fa fa-check"></i><b>12.4</b> Tipos de error en las pruebas de hipótesis</a></li>
+<li class="chapter" data-level="12.5" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#etii-mu-alpha-y-n"><i class="fa fa-check"></i><b>12.5</b> <em>ETII:</em> <span class="math inline">\(\mu\)</span>, <span class="math inline">\(\alpha\)</span> y <span class="math inline">\(n\)</span></a><ul>
+<li class="chapter" data-level="12.5.1" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#curva-de-potencia"><i class="fa fa-check"></i><b>12.5.1</b> Curva de potencia</a></li>
+<li class="chapter" data-level="12.5.2" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#significación-estadística-y-valor-p"><i class="fa fa-check"></i><b>12.5.2</b> Significación estadística y valor <span class="math inline">\(p\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="12.6" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#muestras-pequeñas-y-pruebas-t"><i class="fa fa-check"></i><b>12.6</b> Muestras pequeñas y pruebas <span class="math inline">\(t\)</span></a></li>
+<li class="chapter" data-level="12.7" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#hacerlo-en-r-8"><i class="fa fa-check"></i><b>12.7</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="12.7.1" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#media"><i class="fa fa-check"></i><b>12.7.1</b> Media</a></li>
+<li class="chapter" data-level="12.7.2" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#proporción"><i class="fa fa-check"></i><b>12.7.2</b> Proporción</a></li>
+</ul></li>
+<li class="chapter" data-level="12.8" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#resumen-de-pruebas-sobre-una-muestra"><i class="fa fa-check"></i><b>12.8</b> Resumen de pruebas sobre una muestra</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html"><i class="fa fa-check"></i><b>13</b> Prueba de hipótesis: las aplicaciones</a><ul>
+<li class="chapter" data-level="13.1" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#muestras-independientes"><i class="fa fa-check"></i><b>13.1</b> Muestras independientes</a><ul>
+<li class="chapter" data-level="13.1.1" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#prueba-de-diferencia-de-medias"><i class="fa fa-check"></i><b>13.1.1</b> Prueba de diferencia de medias</a></li>
+<li class="chapter" data-level="13.1.2" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#muestras-apareadas"><i class="fa fa-check"></i><b>13.1.2</b> Muestras apareadas</a></li>
+<li class="chapter" data-level="13.1.3" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#coeficiente-r-de-pearson"><i class="fa fa-check"></i><b>13.1.3</b> Coeficiente r de Pearson</a></li>
+</ul></li>
+<li class="chapter" data-level="13.2" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#hacerlo-en-r-9"><i class="fa fa-check"></i><b>13.2</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="13.2.1" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#ejemplo-1."><i class="fa fa-check"></i><b>13.2.1</b> Ejemplo 1.</a></li>
+<li class="chapter" data-level="13.2.2" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#ejemplo-2."><i class="fa fa-check"></i><b>13.2.2</b> Ejemplo 2.</a></li>
+<li class="chapter" data-level="13.2.3" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#aplicación-a-los-datos-de-adultos-mayores"><i class="fa fa-check"></i><b>13.2.3</b> Aplicación a los datos de Adultos Mayores</a></li>
+<li class="chapter" data-level="13.2.4" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#prueba-apareada"><i class="fa fa-check"></i><b>13.2.4</b> Prueba apareada</a></li>
+<li class="chapter" data-level="13.2.5" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#coeficiente-de-correlación"><i class="fa fa-check"></i><b>13.2.5</b> Coeficiente de correlación</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html"><i class="fa fa-check"></i><b>14</b> Cuando los supuestos no se cumplen</a><ul>
+<li class="chapter" data-level="14.0.1" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#las-pruebas-ji-cuadrado-o-chi-cuadrado"><i class="fa fa-check"></i><b>14.0.1</b> Las pruebas ji cuadrado (o chi cuadrado)</a></li>
+<li class="chapter" data-level="14.0.2" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#coeficiente-r_s-de-spearman"><i class="fa fa-check"></i><b>14.0.2</b> Coeficiente <span class="math inline">\(r_s\)</span> de Spearman</a></li>
+<li class="chapter" data-level="14.0.3" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#alternativas-no-paramétricas-a-las-pruebas-t"><i class="fa fa-check"></i><b>14.0.3</b> Alternativas no paramétricas a las pruebas t</a></li>
+<li class="chapter" data-level="14.1" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#hacerlo-en-r-10"><i class="fa fa-check"></i><b>14.1</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="14.1.1" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#ejemplo-1"><i class="fa fa-check"></i><b>14.1.1</b> Ejemplo 1</a></li>
+<li class="chapter" data-level="14.1.2" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#ejemplo-2"><i class="fa fa-check"></i><b>14.1.2</b> Ejemplo 2</a></li>
+<li class="chapter" data-level="14.1.3" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#prueba-de-la-mediana-1"><i class="fa fa-check"></i><b>14.1.3</b> Prueba de la mediana</a></li>
+<li class="chapter" data-level="14.1.4" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#prueba-de-wilcoxon"><i class="fa fa-check"></i><b>14.1.4</b> Prueba de Wilcoxon</a></li>
+<li class="chapter" data-level="14.1.5" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#muestras-apareadas-1"><i class="fa fa-check"></i><b>14.1.5</b> Muestras apareadas</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html"><i class="fa fa-check"></i><b>15</b> Tamaño del efecto</a><ul>
+<li class="chapter" data-level="15.1" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#significación-estadística-y-significación-práctica"><i class="fa fa-check"></i><b>15.1</b> Significación estadística y significación práctica</a></li>
+<li class="chapter" data-level="15.2" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#medidas-de-tamaño-del-efecto"><i class="fa fa-check"></i><b>15.2</b> Medidas de tamaño del efecto</a><ul>
+<li class="chapter" data-level="15.2.1" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#prueba-t-para-diferencia-de-medias"><i class="fa fa-check"></i><b>15.2.1</b> Prueba t para diferencia de medias</a></li>
+<li class="chapter" data-level="15.2.2" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#análisis-de-la-varianza"><i class="fa fa-check"></i><b>15.2.2</b> Análisis de la varianza</a></li>
+<li class="chapter" data-level="15.2.3" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#correlaciones"><i class="fa fa-check"></i><b>15.2.3</b> Correlaciones</a></li>
+<li class="chapter" data-level="15.2.4" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#regresión-lineal"><i class="fa fa-check"></i><b>15.2.4</b> Regresión lineal</a></li>
+<li class="chapter" data-level="15.2.5" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#pruebas-ji-cuadrado"><i class="fa fa-check"></i><b>15.2.5</b> Pruebas ji cuadrado</a></li>
+</ul></li>
+<li class="chapter" data-level="15.3" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#análisis-de-la-potencia"><i class="fa fa-check"></i><b>15.3</b> Análisis de la potencia</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Generado con bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Estadística para Ciencias Sociales con R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="estimación-por-intervalo" class="section level1">
+<h1><span class="header-section-number">Capítulo 11</span> Estimación por intervalo</h1>
+<p>Hemos llegado a este punto en el que haremos uso de casi todos los
+elementos que se presentaron hasta aquí. Se dedicó la Parte I a la
+descripción de datos provenientes de una muestra y luego, en la Parte II
+se ingresó al terreno de la incertidumbre. Solo resta integrar estos
+elementos en un procedimiento para realizar las estimaciones que
+interesen. Por esta razón se trata de un capítulo de plena aplicación
+práctica.</p>
+<div id="estimación-puntual" class="section level2">
+<h2><span class="header-section-number">11.1</span> Estimación puntual</h2>
+<p>La media muestral <span class="math inline">\(\overline{x}\)</span> es un estimador de la media
+poblacional, por lo que ya se cuenta con una primera estimación de ese
+parámetro <span class="math inline">\(\mu\)</span>. De igual modo, la proporción muestral (<span class="math inline">\(\widehat{p})\)</span>
+estima a la proporción poblacional (<span class="math inline">\(P\)</span>). De modo que ya se conocen
+estimaciones de esos dos parámetros, son estimaciones puntuales. Se
+llaman así porque ofrecen un único valor como estimación del parámetro
+de interés. Por ejemplo si en una muestra de 50 psicólogos que egresaron
+en los últimos diez años se encuentra que han terminado la carrera con
+una nota promedio de <span class="math inline">\(\overline{x} = 6,50\)</span>, disponemos de una media
+muestral; si ahora preguntamos por el promedio con que terminaron la
+carrera todos los psicólogos que egresaron en los últimos diez años, la
+respuesta es tentativa, diremos que “debe ser cercano a 6,50”. Con esta
+expresión imprecisa, hacemos una estimación de la media poblacional
+(<span class="math inline">\(\mu\)</span>). De igual modo, si en la misma muestra de 50 psicólogos, se ve
+que la proporción de mujeres es <span class="math inline">\(\widehat{p} = 0,70\)</span>, podremos decir
+que, del total de psicólogos egresados en los últimos diez años,
+“alrededor del 70% son mujeres”. Así hacemos una estimación de <span class="math inline">\(P\)</span> a
+partir de <span class="math inline">\(\widehat{p}\)</span>. Pero estas estimaciones son deficientes, ya que
+no sabemos cuán cerca puede estar la verdadera nota promedio de 6,50 ó
+la verdadera proporción de mujeres del 70%. Estas son las que se
+denominan estimaciones puntuales.</p>
+<p>La Encuesta Permanente de Hogares de Argentina da para el aglomerado Gran Córdoba, en el tercer trimestre de 2018, un ingreso salarial promedio de</p>
+<pre><code>## [1] 14979.02</code></pre>
+<p>Este es el resultado descriptivo que corresponde a los 754 asalariados que fueron encuestados en ese aglomerado. El ingreso salarial promedio de todos los trabajadores en relación de dependencia es un valor desconocido, que puede ser cercano al que se halló en la media, pero no puede asegurarse.</p>
+<p>La encuesta Latinobarómetro 2017 da la siguiente distribución de frecuencias para las respuestas dadas a la pregunta si cree que se puede o no confiar en la gente.</p>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Hablando en general, ¿Diría Ud. que…
+</th>
+<th style="text-align:center;">
+<span class="math inline">\(f\)</span>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Se puede confiar en la mayoría de las personas
+</td>
+<td style="text-align:center;">
+2833
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Uno nunca es lo suficientemente cuidadoso en el trato con los demás
+</td>
+<td style="text-align:center;">
+16915
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Sum
+</td>
+<td style="text-align:center;">
+19748
+</td>
+</tr>
+</tbody>
+</table>
+<p>La proporción de quienes creen que se puede confiar en la mayoría de las personas es <span class="math inline">\(\widehat{p}=\frac{2833}{19748}= 0.142\)</span>. De esto se puede leer que el 14.2% de los encuestados responde de esa manera, pero la generalización a la población de donde la muestra fue extraída solo puede hacerse de manera tentativa: alrededor del 14.2% del total opina que se puede confiar en la mayoría de las personas.</p>
+<p>Así. la generalización a la población no es la simple transferencia del valor muestral a un conjunto más grande. Las leyes que rigen la relación entre la muestra y la población, son, como se indicó antes, probabilísticas; esas leyes son las que hay que usar para hacer la inferencia desde la muestra hacia la población.</p>
+</div>
+<div id="intervalos-de-confianza" class="section level2">
+<h2><span class="header-section-number">11.2</span> Intervalos de confianza</h2>
+<p>Una estimación más completa de los parámetros mencionados, se denomina
+<strong>estimación por intervalo</strong>. Ella consiste en ofrecer no ya un número
+como en la estimación puntual, sino un intervalo, acerca del cual se
+tiene cierto grado de certeza (o se deposita cierta confianza) que
+contenga al parámetro. Así, en lugar de decir que el promedio con que
+egresa el total de psicólogos de esta facultad “debe ser cercano a 6.50, se
+construirá un intervalo, que dirá, por ejemplo,”hay una confianza del
+95% en que el intervalo <span class="math inline">\([6,10; 6,90]\)</span> contiene al promedio con que
+egresan los psicólogos de esta facultad“. De manera equivalente, en
+lugar de”entre los que egresan hay alrededor del 70% de mujeres“, se
+afirmará algo como”con una confianza del 95%, el intervalo <span class="math inline">\([68; 72]\)</span>%
+contiene a la proporción de mujeres sobre el total de egresados“. O que”con una confianza del 95%, el ingreso salarial promedio de los trabajadores del aglomerado Gran Córdoba está entre <span class="math inline">\(14300\)</span> y <span class="math inline">\(15600\)</span>. Y también que en la población de mayores de 18 años residentes en países de América Latina, hay una confianza de 90% que la propoción de quienes creen que se puede confiar en la mayoría de la gente, esté en el intervalo <span class="math inline">\([14.20, 14.49]\)</span>%.</p>
+<p>Vemos entonces que esta forma de estimar ofrece dos números, los límites de un intervalo, del que esperamos contenga al parámetro que estimamos.
+Decimos “esperamos que se contenga” porque no hay certeza absoluta de
+que se encuentre allí, hay una <em>confianza</em> que en estos ejemplos hemos
+fijado en el <span class="math inline">\(95\)</span>% o en <span class="math inline">\(90\)</span>%, y veremos que puede elegirse.</p>
+<p>Veamos a continuación cómo construir estos intervalos de confianza para
+estimar los dos primeros parámetros que hemos tratado; la media y la
+proporción.</p>
+<div id="estimación-de-la-media" class="section level3">
+<h3><span class="header-section-number">11.2.1</span> Estimación de la media</h3>
+<p>Vamos a hacer uso de lo que sabemos hasta el momento sobre las
+distribuciones en el muestreo para mejorar la calidad de las
+estimaciones puntuales y construir los intervalos de confianza. Para
+ello, empezaremos con la media. Debido a que la muestra ha sido obtenida
+de manera aleatoria, la media muestral es una variable aleatoria, cuya
+distribución tiene media <span class="math inline">\(\mu\)</span> y desviación estándar
+<span class="math inline">\(\sigma_{\overline{x}} = \frac{\sigma}{\sqrt{n}}\)</span>. Además, a medida que
+aumenta el tamaño de la muestra, esa distribución tiende a ser normal,
+es decir que será tanto más cercana a una distribución normal cuanto más
+grande sea <span class="math inline">\(n\)</span>. A los fines prácticos, una muestra de 30 casos se
+considera “suficientemente grande” como para usar la distribución normal
+en la distribución de <span class="math inline">\(\overline{x}\)</span>. Si la muestra es más pequeña que
+ese tamaño, no podemos usar inmediatamente la distribución normal, sino
+que deberemos apelar a la distribución t de Student. Trabajaremos
+primero suponiendo que se trata de muestras lo suficientemente grandes y
+usaremos la distribución normal. Los paquetes informáticos de análisis
+de datos usan la distribución t siempre, cualquiera sea el tamaño de la
+muestra, haciendo uso de la convergencia de esta distribución hacia la
+normal cuando <span class="math inline">\(n\)</span> crece.</p>
+<p>Con esa información, podemos calcular las probabilidades de los
+diferentes valores de <span class="math inline">\(\overline{x}\)</span>. La representación gráfica de esta
+distribución es:</p>
+<div class="figure"><span id="fig:unnamed-chunk-358"></span>
+<img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-358-1.svg" alt="Distribución de las medias muestrales" width="672" />
+<p class="caption">
+Figura 11.1: Distribución de las medias muestrales
+</p>
+</div>
+<p>Ya sabemos que una variable que tenga distribución normal tiene probabilidad 0.95 de tomar un valor que diste menos de <span class="math inline">\(1.96\)</span> desviaciones estándar de la media. Eso mismo, dicho en términos frecuenciales implica que, bajo el modelo normal, el 95% de los casos se encuentra entre 1.96 desviacioens estándar por debajo y 1.96 desviaciones estándar por encima de la media. Por lo cual, si extrajéramos todas las muestras de tamaño <span class="math inline">\(n\)</span> posibles de esa población, el 95% de ellas estaría entre <span class="math inline">\(\mu - 1.96*\sigma_{\overline{x}}\)</span> y <span class="math inline">\(\mu + 1.96*\sigma_{\overline{x}}\)</span>, o lo que es lo mismo, entre <span class="math inline">\(\mu - 1.96*\frac{\sigma}{\sqrt{n}}\)</span> y <span class="math inline">\(\mu + 1.96*\frac{\sigma}{\sqrt{n}}\)</span>.</p>
+<!-- no encuentro la forma de poner los rótulos en los límites del intervalo en el eje x (como está en el libro), ni siquiera como imagen-->
+<div class="figure"><span id="fig:int95"></span>
+<img src="EstadisticaParaCienciasSocialesConR_files/figure-html/int95-1.svg" alt="Intervalo en torno a la media poblacional que incluye al 95% de las posibles medias muestrales" width="672" />
+<p class="caption">
+Figura 11.2: Intervalo en torno a la media poblacional que incluye al 95% de las posibles medias muestrales
+</p>
+</div>
+<p>De manera equivalente, como a 2.57 desviaciones estándar alrededor de la
+media se encuentra el 99% de las observaciones, entonces el 99% de las
+medias muestrales estará entre
+<span class="math inline">\(\mu - 2.57*\frac{\sigma}{\sqrt{n}}\)</span> y <span class="math inline">\(\mu + 2.57*\frac{\sigma}{\sqrt{n}}\)</span>.</p>
+<div class="figure"><span id="fig:int99"></span>
+<img src="EstadisticaParaCienciasSocialesConR_files/figure-html/int99-1.svg" alt="Intervalo en torno a la media poblacional que incluye al 99% de las posibles medias muestrales" width="672" />
+<p class="caption">
+Figura 11.3: Intervalo en torno a la media poblacional que incluye al 99% de las posibles medias muestrales
+</p>
+</div>
+<p>Este es el alcance más operativo de los resultados teóricos, ahora hay
+que ir al problema. Las curvas de arriba solo pueden dibujarse si se
+conoce <span class="math inline">\(\mu\)</span> y es justamente el valor que trata de estimarse. Además, en
+el muestreo no se extraen “todas las muestras” sino solo una, y ella se
+usa para hacer la estimación. Lo que sabemos de esa muestra es que tiene
+una probabilidad del <span class="math inline">\(0.95\)</span> de estar en la zona marcada en el gráfico <a href="estimación-por-intervalo.html#fig:int95">11.2</a> y una probabilidad 0,99 de estar donde indica el gráfico <a href="estimación-por-intervalo.html#fig:int99">11.3</a>. Concentremos nuestra atención en el caso del gráfico <a href="estimación-por-intervalo.html#fig:int95">11.2</a>, correspondiente a la zona donde se halla el 95% de todas las medias muestrales posibles.</p>
+<p>Se extrae la muestra (probabilística, con todos los resguardos que
+corresponda para que admita la generalización de las conclusiones a que
+lleve), en esa muestra calculamos <span class="math inline">\(\overline{x}\)</span>. Supongamos que la
+muestra da lugar a la media que está indicada en este gráfico.</p>
+<!-- se me complican bastante estos gráficos, en el punto verde debería haber una x media-->
+<p><img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-359-1.svg" width="672" /></p>
+<p>Si construimos un intervalo de la misma amplitud que el anterior, pero
+ahora centrado en <span class="math inline">\(\overline{x}\)</span>, en vez de centrado en <span class="math inline">\(\mu\)</span>, vemos que
+ese intervalo contiene a <span class="math inline">\(\mu\)</span>.</p>
+<p><img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-360-1.svg" width="672" /></p>
+<p>Si la <span class="math inline">\(\overline{x}\)</span> fuera la que está
+en el gráfico siguiente.</p>
+<p><img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-361-1.svg" width="672" /></p>
+<p>También un intervalo alrededor de ella contendría a <span class="math inline">\(\mu\)</span>. Por el
+contrario en el caso siguiente:</p>
+<p><img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-362-1.svg" width="672" /></p>
+<p>El intervalo alrededor de <span class="math inline">\(\overline{x}\)</span> no contiene a la media
+poblacional.</p>
+<ul>
+<li><p>¿Qué condición debe cumplir <span class="math inline">\(\overline{x}\)</span> para que el intervalo que
+se construya a su alrededor contenga a <span class="math inline">\(\mu\)</span>?</p></li>
+<li><p>Debe estar entre <span class="math inline">\(\mu - 1.96*\frac{\sigma}{\sqrt{n}}\)</span> y <span class="math inline">\(\mu + 1.96*\frac{\sigma}{\sqrt{n}}\)</span></p></li>
+<li><p>¿Qué proporción de las <span class="math inline">\(\overline{x}\)</span> cumple esa condición?</p></li>
+<li><p>El 95% de ellas.</p></li>
+</ul>
+<p>Así, el 95% de las <span class="math inline">\(\overline{x}\)</span> posibles dará lugar a intervalos que
+contengan a <span class="math inline">\(\mu\)</span>, el 5% restante de las <span class="math inline">\(\overline{x}\)</span> producirá
+intervalos que no contienen a <span class="math inline">\(\mu\)</span>.</p>
+<p>Es importante señalar que no sabemos si nuestro intervalo contiene a
+<span class="math inline">\(\mu\)</span> o no, solo sabemos que hay una probabilidad de 0,95 que la
+contenga. Es decir, es muy probable que el intervalo contenga a <span class="math inline">\(\mu\)</span>,
+pero no es seguro.</p>
+<p>¿Cuál es la expresión de ese intervalo?, dado que está centrado en
+<span class="math inline">\(\overline{x}\)</span>, hay que sumar y restar a ese estimador lo mismo que
+sumamos y restamos a <span class="math inline">\(\mu\)</span> para construir el intervalo anterior, por lo
+que resulta:</p>
+<p><span class="math display">\[\overline{x} - 1.96*\frac{\sigma}{\sqrt{n}}\ ;\ \overline{x} + 1.96*\frac{\sigma}{\sqrt{n}}\]</span></p>
+<p>Estos son dos números que constituyen los límites de un intervalo que
+tiene una probabilidad 0,95 de contener al parámetro <span class="math inline">\(\mu\)</span>. De manera
+equivalente decimos que, de cada 100 intervalos que se construyan con
+este procedimiento, 95 contendrán a la media de la población. O bien que
+el 95% de las muestras aleatorias de tamaño <em>n</em> que se extraigan de la
+población, proveerán valores de <span class="math inline">\(\overline{x}\)</span> que conducirán a
+intervalos que contengan a la media de la población.</p>
+<p>Cuando logramos construir un intervalo así decimos que se ha estimado a
+<span class="math inline">\(\mu\)</span> con un 95% de confianza. El primero valor de los indicados se
+llama límite inferior (<span class="math inline">\(L_i\)</span>) y el segundo, límite superior (<span class="math inline">\(L_s\)</span>).
+Así entonces:</p>
+<p><span class="math display">\[L_{i} = \overline{x} - 1.96*\frac{\sigma}{\sqrt{n}}\]</span></p>
+<p><span class="math display">\[L_{s} = \overline{x} + 1.96*\frac{\sigma}{\sqrt{n}}\]</span></p>
+<p>Podemos ahora mejorar la estimación puntual del ejemplo de los egresados de Psicología, encontramos que la nota promedio con que egresan es de 6,50 (<span class="math inline">\(\overline{x} = 6,50\)</span>). Si se conoce que la desviación estándar de la población es de 0,8 (<span class="math inline">\(\sigma = 0,8\)</span>), estimamos la nota promedio con que egresaron todos los psicólogos reemplazando:</p>
+<p><span class="math display">\[L_{i} = 6.50 - 1.96*\frac{0.8}{\sqrt{400}} = 6.42\ \]</span></p>
+<p><span class="math display">\[L_{s} = 6.50 + 1.96*\frac{0.8}{\sqrt{400}} = 6.58\]</span></p>
+<p>Leemos este resultado diciendo que tenemos un confianza del 95% que el
+intervalo <span class="math inline">\([6.42; 6.58]\)</span> contiene a la media de las notas con que
+egresaron todos los psicólogos de esta facultad. La confianza del 95%
+está incluida en la construcción del intervalo en el número 1.96 que
+multiplica al error estándar de <span class="math inline">\(\overline{x}\)</span>.</p>
+<p>La notación general para los límites de este intervalo al 95% de confianza para la media puede abreviarse indicando de una sola vez ambos límites, si se escribe:</p>
+<p><span class="math display">\[\overline{x} \pm 1.96*\frac{\sigma}{\sqrt{n}}\]</span></p>
+<p>Con lo que queremos indicar que a <span class="math inline">\(\overline{x}\)</span> se le suma y se le
+resta la expresión <span class="math inline">\(1.96*\frac{\sigma}{\sqrt{n}}\)</span></p>
+<p>En el ejemplo, esto haría que escribamos el intervalo de manera
+alternativa como <span class="math inline">\(6.50 \pm 0.08\)</span>, que indica cuál es la media muestral
+(el estimador puntual) y la cantidad que debe sumarse y restarse para
+llegar a los límites.</p>
+<p>Si quisiéramos estar más seguros acerca de que el intervalo contiene a
+<span class="math inline">\(\mu\)</span>, podríamos usar los puntos que delimitan el 99% del área. Para
+ello, z vale 2.57 y los límites del intervalo resultan:
+<span class="math inline">\(\overline{x} \pm 2.57*\frac{\sigma}{\sqrt{n}}\)</span></p>
+<p>Para el ejemplo anterior, con una confianza del 99%, el intervalo es:</p>
+<p><span class="math display">\[L_{i} = 6.50 - 2.57*0.04 = 6.50 - 0.10 = 6.40\]</span></p>
+<p><span class="math display">\[L_{s} = 6.50 + 2.57*0.04 = 6.50 + 0.10 = 6.60\]</span></p>
+<p>Con lo que ahora diremos que, con una confianza del 99%, el intervalo
+<span class="math inline">\([6.40; 6.60]\)</span> contiene a la media de las notas con que egresaron todos
+los psicólogos de esta facultad. Otra opción es la de escribir el
+intervalo como <span class="math inline">\(6.50 \pm 0.10\)</span>, la media muestral es la misma y aumentó
+lo que debe alejarse de ella para llegar a los límites.</p>
+<p>Notemos que este aumento en la confianza de la estimación, al pasar del
+95 al 99%, tiene un costo, porque el intervalo es ahora más amplio: el
+límite inferior es menor que en el anterior y el superior, mayor. Antes
+el intervalo iba desde 6.42 hasta 6.58 y ahora va desde 6.40 hasta 6.60, el segundo intervalo empieza antes y termina después; es de mayor longitud. Más tarde volveremos sobre este punto.</p>
+<p>De manera general, el intervalo se escribe como
+<span class="math inline">\(\overline{x} \pm z*\frac{\sigma}{\sqrt{n}}\)</span>, dejando z como variable,
+que puede reemplazarse por el valor que corresponda según la confianza
+que se elija para la estimación (por ahora 1.96 para 95% y 2.57 para
+99%)</p>
+<p>Sin embargo, esta manera de calcular los límites del intervalo tiene un
+problema para usarse en la práctica, ya las fórmulas para calcular los
+límites, requieren que se conozca <span class="math inline">\(\sigma\)</span>, la desviación estándar de la
+población. Pero como nuestros datos son muestrales, no conocemos
+<span class="math inline">\(\sigma\)</span>, a cambio de ella usaremos la desviación estándar de la
+muestra, a la que podemos calcular a partir de los datos
+disponibles<a href="#fn64" class="footnote-ref" id="fnref64"><sup>64</sup></a>. Con ese ajuste, la expresión para el cálculo de los
+límites del intervalo de confianza será:</p>
+<p><span class="math display">\[\overline{x} \pm z*\frac{s}{\sqrt{n}}\]</span></p>
+<p>Que puede representarse gráficamente así:
+<!-- acá imagen intervalo_1--></p>
+<p>En este gráfico solo podemos dibujar el segmento que representa al
+intervalo en torno a <span class="math inline">\(\overline{x}\)</span>, pero no podemos dibujar la campana
+correspondiente a la distribución, ya que no conocemos <span class="math inline">\(\mu\)</span> que es
+donde la campana se centra.</p>
+<p>Ejemplo (datos reales): Se dispone de una muestra de 277 alumnos que
+rindieron el primer parcial, conocemos sus notas y queremos usarlas para
+hacer una estimación de la nota promedio de todo el curso (que cuenta
+con 1600 alumnos). Haremos esa estimación con una confianza del 95%.</p>
+<p>De la muestra hemos obtenido <span class="math inline">\(\overline{x} = 6.63\)</span> y <span class="math inline">\(s = 2.15\)</span>, con lo
+que los límites resultan:</p>
+<p><span class="math display">\[\overline{x} \pm z*\frac{s}{\sqrt{n}} = 6.63 \pm 1.96*\frac{2.15}{\sqrt{277}} = 6,63 \pm 1.96*0.13 = 6.63 \pm 0.25\]</span></p>
+<p>Usando primero el signo menos, obtenemos <span class="math inline">\(L_i= 6.38\)</span> y luego sumando
+<span class="math inline">\(L_s = 6.88\)</span>. Entonces podemos afirmar el intervalo <span class="math inline">\([6.38; 6.88\)</span>] contiene a la nota promedio del total de alumnos del curso, con una confianza del 95%.</p>
+<p>Ejemplo (datos reales): Para estimar los ingresos salariales de los trabajadores del Gran Córdoba, se parte de los valores de media y desviación estándar que da la EPH: <span class="math inline">\(\overline{x} = 14979.02\)</span>, <span class="math inline">\(s=9453.94\)</span> y <span class="math inline">\(n=754\)</span> para reemplazar:</p>
+<p><span class="math display">\[\overline{x} \pm z*\frac{s}{\sqrt{n}} = 14979.02 \pm 1.96*\frac{9453.94}{\sqrt{754}} = 14979.02 \pm 1.96*344.29 = 14979.02 \pm 674.8\]</span></p>
+<p>Así, hay una confianza de 95% que el intervalo <span class="math inline">\([14304.2, 15653.8]\)</span> contenga al promedio de ingresos salariales de toda la población que trabaja en relación de dependencia y reside en el aglomerado Gran Córdoba, en el tercer trimestre de 2018.</p>
+<p>Una representación gráfica de esta estimación es:</p>
+<!-- No tengo la imagen de estoy dos gráficos, las hice en word, no conozco graficador en R, las hago y las paso a la carpeta-->
+<p>Para construir en intervalo con un nivel de confianza de 99%, reemplazamos el valor de <span class="math inline">\(z\)</span> anterio de <span class="math inline">\(1.96\)</span> por el de <span class="math inline">\(2.57\)</span></p>
+<p><span class="math display">\[\overline{x} \pm z*\frac{s}{\sqrt{n}} = 14979.02 \pm 2.57*\frac{9453.94}{\sqrt{754}} = 14979.02 \pm 2.57*344.29 = 14979.02 \pm 884.8\]</span></p>
+<p>Ahora hay una confianza de 99% que el intervalo <span class="math inline">\([14094.2, 15863.8]\)</span> contenga al parámetro que se está estimando. Comparada con la salida anterior, solo han cambiado los límites del intervalo, ya que son los mismos datos muestrales. El cambio en la confianza se realiza por un cambio en el valor de <span class="math inline">\(z\)</span>, los percentiles de la distribución normal y eso hace que cambien los límites. El gráfico tiene ahora la forma:</p>
+<!-- otra vez  un gráfico que queda para hacer-->
+<p>Se observa que un aumento en la confianza incide en la amplitud del
+intervalo, éste último es más amplio que el primero construido, los límites están más lejos uno de otro. Más adelante trataremos esta relación con detalle.</p>
+</div>
+<div id="estimación-de-la-proporción" class="section level3">
+<h3><span class="header-section-number">11.2.2</span> Estimación de la proporción</h3>
+<p>Cuando trabajamos con variables cualitativas (nominales u ordinales) no
+es posible calcular la media ni la desviación estándar sino solo
+considerar la proporción de casos que hay en una categoría que elegimos.
+La proporción es la frecuencia relativa de la categoría que se elige, la
+cantidad de casos en esa categoría dividida el tamaño de la muestra.
+Cuando se trata de variables con solo dos categorías (dicotómicas) puede
+elegirse cualquiera de ellas. Por ejemplo si es el resultado de un
+examen y las categorías son aprobado – no aprobado, podemos interesarnos
+por la proporción de cualquiera de ellas, ya que la otra es el
+complemento (lo que le falta para llegar a uno). Si una es 0,70 (70%),
+la otra no puede sino ser 0,30 (30%). Es diferente si la variable tiene
+más de dos categorías, por ejemplo si se trata de la intención de voto
+para las elecciones presidenciales. Allí es usual que haya más de dos
+candidatos, por lo que la proporción de uno de ellos no nos dice mucho
+sobre la de cada uno de los otros: si hay cinco candidatos y uno se
+lleva el 40%, solo sabemos que el 60% restante se reparte entre los
+otros cuatro, pero no sabemos cuánto le corresponde a cada uno. A estos
+casos los trataremos como si fueran dicotómicos: una categoría será el
+candidato que nos interesa y la otra categoría estará formada por todos
+los demás. Así, si un candidato tiene una proporción de su favor, solo
+nos interesa que tiene una proporción de 0,60 que no está a su favor y
+no nos preocupamos por saber cómo se reparte ese 60% en los demás
+candidatos. Tratamos una categoría frente a todas las demás. De este
+modo es que puede definirse la proporción de personas que usa
+anticonceptivos orales, frente a quienes usan todos los demás métodos; o
+la proporción de alumnos promocionados frente a regulares y libres; o la
+proporción de argentinos entre todos los estudiantes extranjeros que hay
+en España, sin interesarnos por el modo en que se distribuye la
+proporción entre las demás nacionalidades. Lo que hacemos con este
+procedimiento es simplemente llamar la atención sobre una categoría y
+confrontarla con el resto indiscriminado. La categoría elegida o
+categoría de referencia, se llama <strong>éxito</strong>, su frecuencia absoluta,
+<strong>cantidad de éxitos</strong> y su frecuencia relativa <strong>proporción de éxitos</strong>.</p>
+<p>Por este procedimiento trataremos siempre con dos grupos, uno formado
+por los casos que son de nuestro interés y el otro por los demás casos.</p>
+<p>Existen varios procedimientos para construir intervalos de confianza
+para la proporción, aquí mencionaremos el de Clopper-Pearson, el de Wald
+y el de Wilson.</p>
+<div id="intervalo-de-clopper-pearson" class="section level4">
+<h4><span class="header-section-number">11.2.2.1</span> Intervalo de Clopper-Pearson</h4>
+<p>El primer modo para construir un intervalo para estimar la proporción,
+es usar la distribución binomial. Para ello, partimos del estimador
+puntual y buscamos los dos valores de <span class="math inline">\(\widehat{p}\)</span> que delimiten el 95%
+central de la distribución.</p>
+<p>Ejemplo (datos reales): a partir de la muestra de alumnos que rindieron
+el parcial se busca estimar, al 95% de confianza, la proporción de
+quienes lo aprobaron.</p>
+<p>Sabemos que, de los 277 muestreados que rindieron, 255 lo aprobaron, en
+consecuencia la proporción de aprobados es, en la muestra<a href="#fn65" class="footnote-ref" id="fnref65"><sup>65</sup></a>,
+<span class="math inline">\(\widehat{p} = \frac{255}{277} = 0.920.\)</span> Este es nuestro estimador
+puntual de la proporción de aprobados para todo el curso. La variable aleatorio “número de éxitos que se obtiene en cada muestra”, que es <span class="math inline">\(\widehat{x}\)</span>, tiene una distribución binomial con <span class="math inline">\(n=277\)</span> y <span class="math inline">\(p=255/277\)</span>, por lo tanto, los valores de <span class="math inline">\(\widehat{p}\)</span> resultan <span class="math inline">\(\widehat{p}=\frac{\widehat{x}}{n}=\frac{\widehat{x}}{277}\)</span>. Se pueden encontrar los valores de <span class="math inline">\(\widehat{x}\)</span> que acumulan 2.5% (el percentil 0.025) y el 97.5% (percentil .975) de la distribución binomial (en lugar de 0.920, usamos el cociente de 255/277, así se evita la pérdida de decimales):</p>
+<pre><code>## [1] 246</code></pre>
+<pre><code>## [1] 263</code></pre>
+<p>Y luego llevarlos a <span class="math inline">\(\widehat{p}\)</span>, dividiendo por 277. Con lo que los límites del intervalo para estimar <span class="math inline">\(P\)</span> al 95% son estas cantidades de éxitos (<span class="math inline">\(\widehat{x}\)</span>) divididas el tamaño de la muestra:</p>
+<pre><code>## [1] 0.8880866</code></pre>
+<pre><code>## [1] 0.9494585</code></pre>
+<p>Diremos entonces que, con una confianza del 95%, el intervalo <span class="math inline">\([88.81; 94,95]\)</span>% contiene a la proporción de alumnos que aprobaron, en toda la
+población.</p>
+<p>Se puede solicitar de un solo paso, por medio de:</p>
+<pre><code>## [1] 88.81 94.95</code></pre>
+<p>Para el problema de la confianza en los demás, con los datos de Latinobarómetro, la tabla muestra que de 19748 personas que respondieron, 2833 creen que se puede confiar en la mayoría de las personas; es decir que, en la muestra, el 14.3% acuerda con esa afirmación. Para extrapolar ese resultado a la población a la que representa la encuesta procedemos como recién. Sea ahora la confianza del 99% (percentiles 0.005 y 0.995)</p>
+<pre><code>## [1] 13.71 14.84</code></pre>
+<p>Entonces, hay una confianza del 99% que el intervalo <span class="math inline">\([13.7; 14.8]\)</span>% contenga a la proporción de quienes creen que en general se puede confiar en las personas, en la población a la que se refiere el estudio Latinobarómetro.</p>
+<p>Esta forma de construir el intervalo de confianza para la proporción -de Clopper-Pearson-, es la más antigua, se la conoce también como “método exacto”, porque no apela a aproximaciones para calcular los límites, sino que usa la distribución que corresponde al experimento: la binomial.</p>
+</div>
+<div id="intervalo-de-wald" class="section level4">
+<h4><span class="header-section-number">11.2.2.2</span> Intervalo de Wald</h4>
+<p>Si se cumplen las condiciones para realizar una aproximación normal de
+la distribución binomial, el razonamiento que seguimos para la
+estimación de <span class="math inline">\(P\)</span> será análogo al que seguimos para estimar <span class="math inline">\(\mu\)</span>. La
+estructura de los límites del intervalo de confianza es ahora:</p>
+<p><span class="math display">\[L_{i} = \widehat{p} - z*\sigma_{\widehat{p}}\]</span></p>
+<p><span class="math display">\[L_{s} = \widehat{p} + z*\sigma_{\widehat{p}}\]</span></p>
+<p>En la que:</p>
+<p><span class="math inline">\(\widehat{p}\)</span> es la proporción de casos en la categoría que estimamos
+calculada sobre los datos de la muestra.</p>
+<p><em>z</em> asume el valor de 1.96 si vamos a estimar con una confianza del 95%, ó de 2.57 si queremos una confianza del 99%.</p>
+<p><span class="math inline">\(\sigma_{\widehat{p}}\)</span> es la desviación estándar del estimador:</p>
+<p><span class="math display">\[\sigma_{\widehat{p}} = \sqrt{\frac{P*(1 - P)}{n}}\]</span></p>
+<p>Pero, tal como pasó con la estimación de <span class="math inline">\(\overline{x}\)</span>, en la que
+ignorábamos <span class="math inline">\(\sigma\)</span> por tratarse de un valor poblacional, ahora
+desconocemos <em>P</em> (¡es exactamente lo que estamos tratando de estimar!),
+por lo que deberemos necesariamente reemplazarla por su
+estimador:<span class="math inline">\(\ \widehat{p}\)</span><a href="#fn66" class="footnote-ref" id="fnref66"><sup>66</sup></a>. Resultará:</p>
+<p><span class="math display">\[{\widehat{\sigma}}_{\widehat{p}} = \sqrt{\frac{\widehat{p}*(1 - \widehat{p})}{n}}\]</span></p>
+<p>Y los límites del intervalo son:</p>
+<p><span class="math display">\[\widehat{p} \pm z\sqrt{\frac{\widehat{p}*(1 - \widehat{p})}{n}}\]</span></p>
+<p>Ejemplo (datos reales): la muestra de alumnos que rindieron el parcial a
+partir de la cual se busca estimar, al 95%, la proporción de quienes lo
+aprobaron. Sabemos que, de los 277 que rindieron, 255 lo aprobaron, en
+consecuencia la proporción de aprobados es
+<span class="math inline">\(\widehat{p} = \frac{255}{277} = 0.920\)</span> Este es nuestro estimador
+puntual de la proporción de aprobados para todo el curso. Para hacer el
+intervalo, usamos la expresión anterior y resulta:</p>
+<p><span class="math display">\[\widehat{p} \pm z\sqrt{\frac{\widehat{p}*(1 - \widehat{p})}{n}} = 0.920 \pm 1.96*\sqrt{\frac{0.92*0.08}{277}} = 0.920 \pm 0.032\]</span></p>
+<p>Cuando restamos, obtenemos el límite inferior del intervalo:</p>
+<p><span class="math display">\[L_{i} = 0.920 - 0.032 = 0.892\]</span></p>
+<p>y sumando:</p>
+<p><span class="math display">\[L_{s} = 0.920 + 0.032 = 0.952\]</span></p>
+<p>Si se escribe de manera abreviada, la expresión toma la forma:</p>
+<p><span class="math display">\[L_{i} = 0.920 \pm 0.032\]</span></p>
+<p>Con el valor explícito de la proporción muestral que es el estimador
+puntual de <span class="math inline">\(P\)</span>.</p>
+<p>El resultado dice que hay una confianza del 95% que el intervalo <span class="math inline">\([89.2; 95.2]\)</span>% contenga a la proporción de aprobados de toda la población. El intervalo difiere un poco del hallado con el método exacto, porque es
+una aproximación.</p>
+<p>La aplicación de este mismo método aproximado a la pregunta de Latinobarómetro, da por resultado, con una confianza de 99%:</p>
+<pre><code>## [1] 13.70 14.83</code></pre>
+<p>Que casi no difiere de la aplicación del método exacto</p>
+<p>Esta forma de construir el intervalo de confianza para P resulta de
+calidad aceptable si el producto <span class="math inline">\(n*\widehat{p}*(1 - \widehat{p})\)</span> es
+mayor a 5, y mejor aun si ese resultado es mayor a 10 (Canavos, 1988).
+Sin embargo, Cepeda-Cuervos y otros (2008) señalan evidencia sobre la
+inadecuación de esta estimación aun cuando la condición se cumple. Por
+esta razón se limita el uso de este modo de calcular el intervalo cuando el número de observaciones en mayor a cien<a href="#fn67" class="footnote-ref" id="fnref67"><sup>67</sup></a>.</p>
+</div>
+<div id="intervalo-de-wilson" class="section level4">
+<h4><span class="header-section-number">11.2.2.3</span> Intervalo de Wilson</h4>
+<p>Una mejora para la calidad de la estimación es propuesta por Newcombe y
+Merino (2006), con un intervalo llamado de <em>score</em> o de Wilson, cuyos
+límites son:</p>
+<p><span class="math display">\[\widehat{p} \pm \frac{z}{n}*\sqrt{\frac{\left( \widehat{p}*\left( 1 - \widehat{p} \right) + \frac{z}{4*n} \right)}{n}}\]</span></p>
+<p>Este intervalo no colapsa para <span class="math inline">\(\widehat{p} = 0\)</span> ó <span class="math inline">\(\widehat{p} = 1\)</span> y
+tiene mejor calidad que el de Wald, es conveniente optar por esta
+alternativa si se trata de pequeñas muestras o de valores de
+<span class="math inline">\(\widehat{p}\)</span> próximos a cero o a uno. De todos modos, siempre es
+preferible utilizar la distribución binomial que es la adecuada para
+modelar el proceso.</p>
+</div>
+</div>
+</div>
+<div id="la-calidad-de-las-estimaciones-por-intervalo" class="section level2">
+<h2><span class="header-section-number">11.3</span> La calidad de las estimaciones por intervalo</h2>
+<p>Intuitivamente, una estimación es de mejor calidad si es “ajustada”, es
+decir si el intervalo es pequeño. Por ejemplo, si estimamos la edad de
+una persona entre 28 y 30 años, tenemos una estimación de mejor calidad
+que si decimos que tiene entre 20 y 40 años. Eso es porque el primer
+intervalo es más pequeño, los límites están más cerca. La primera
+estimación nos da más información que la segunda, porque delimita el
+valor al que estima entre números más cercanos. En las estimaciones que
+hemos hecho hasta aquí, de la media y de la proporción, hemos partido
+del estimador puntual (<span class="math inline">\(\overline{x}\)</span> y <span class="math inline">\(\widehat{p}\)</span>) y desde él
+sumamos y restamos la misma cantidad para obtener los límites del
+intervalo.</p>
+<p>Esa cantidad que sumamos y restamos determina la amplitud del intervalo:
+cuanto más grande sea, tanto mayor será el intervalo, es decir, tanto
+mayor será la distancia entre los límites inferior y superior. Esa
+cantidad se denomina <strong>error de estimación</strong>. Las estimaciones están
+siempre acompañadas de un error, es un componente intrínseco al proceso.
+No es error en el sentido de equivocación o de falla, sino de
+imprecisión, una imprecisión que no puede evitarse, que no puede hacerse
+igual a cero. Se calcula como la distancia que hay desde el centro del
+intervalo hasta cualquiera de los límites. En el ejemplo anterior, sobre
+la estimación intuitiva de la edad de alguien, el centro del primer
+intervalo es 29, por lo que el error es 1 año, por eso se puede también
+escribir como <span class="math inline">\(29 \pm 1\)</span>. El segundo intervalo de este ejemplo tiene
+centro en 30 y el error es de 10 años, lo escribimos <span class="math inline">\(30 \pm 10\)</span>.
+Independientemente que el centro de los intervalos difiera levemente,
+este segundo intervalo tiene un mayor error de estimación. Esto es
+equivalente a decir que tiene menos <strong>precisión</strong>.</p>
+<table>
+<colgroup>
+<col width="100%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="center">Se llama <strong>error de estimación</strong> a la distancia que hay entre el estimador puntual y cualquiera de los límites del intervalo. Cuanto mayor es el error de estimación menor es su <strong>precisión</strong>.</td>
+</tr>
+</tbody>
+</table>
+<p>En la estimación del promedio con que egresan los psicólogos, escribimos
+<span class="math inline">\(6.50 \pm 0.08\)</span> al estimar al 95% de confianza y <span class="math inline">\(6.50 \pm 0.10\)</span> cuando
+la confianza se pasó al 99%. Allí estábamos escribiendo el intervalo
+como el estimador más/menos el error de estimación. En el primer caso el
+error de estimación es de 0.08 y en el segundo de 0.10, por eso decimos
+que la primera estimación es más precisa, tiene menos error.
+Con la estimación de los ingresos salariales sucedió lo mismo, al 95% el error 675 fue y al 99% subió a 887.
+Del mismo modo, al estimar, con una confianza del 95%, la proporción de
+quienes aprobaron el parcial escribimos <span class="math inline">\(0.920 \pm 0.032\)</span>, el error de
+estimación es en este caso de 0.032 (ó 3.2%). La estimación de la proporción de gente que cree que se puede confiar en los demas, hecha con el mismo nivel de confianza, arrojó un error de estimación de 0.0056, 0.56%.</p>
+<div id="el-error-de-estimación-en-la-media" class="section level4">
+<h4><span class="header-section-number">11.3.0.1</span> El error de estimación en la media</h4>
+<p>En la expresión general de la estimación por intervalo de <span class="math inline">\(\mu\)</span>, el
+error es el término que se suma y resta: <span class="math inline">\(z*\frac{s}{\sqrt{n}}\)</span>. ¿De qué
+depende que ese término sea grande o chico?</p>
+<p>Hay tres elementos en este término: <span class="math inline">\(z\)</span>, <span class="math inline">\(s\)</span> y <span class="math inline">\(n\)</span>. De ellos va a
+depender que haya más o menos error en la estimación o, dicho de otra
+manera, que la estimación sea más o menos precisa. Veamos el efecto de
+cada uno:</p>
+<ul>
+<li><p><span class="math inline">\(z\)</span>: Es elegido por el investigador cuando establece la confianza. En los ejemplos que hemos visto, asumió el valor de 1,96 para un 95% de confianza o de 2,57 para una confianza de 99%. Cuanto más confianza o certeza queramos tener en nuestra estimación, más grande será <span class="math inline">\(z\)</span> y, en consecuencia mayor será el error de estimación. Por lo tanto no se pueden tener las dos cosas: más confianza va acompañada de menos precisión. Si todos los demás elementos del error quedan fijos, los intervalos más amplios proveen menos información, pero mayor certeza en la inclusión del parámetro que se estima. Para elegir el nivel de confianza (y en consecuencia determinar <span class="math inline">\(z\)</span>) debe tomarse una decisión que equilibre la confianza y la precisión, ya que si una crece la otra disminuye. Si alguien intentara lograr precisión absoluta, es decir, error igual a cero, encontraría una confianza también igual a cero, es decir, ninguna certeza. A la inversa, intentar fijar la confianza en el 100%, lleva a un error infinito.</p></li>
+<li><p><span class="math inline">\(s\)</span>: La desviación estándar en la muestra. Es la medida de la variabilidad de los datos que se observan, y es una estimación de la verdadera variabilidad que tiene la característica que estamos estudiando en la población. Incide negativamente sobre el error, cuanto más grande es <span class="math inline">\(s\)</span> más error tenemos. Eso refleja el hecho que si la población es muy heterogénea respecto de la cualidad que queremos estimar, tendremos estimaciones de peor calidad que si es similar para los individuos de la población. Sobre <span class="math inline">\(s\)</span> no podemos decidir, no tenemos control sobre su valor, si es grande, tendremos peores estimaciones que si es pequeña. El muestreo estratificado es una forma de enfrentar situaciones de mucha dispersión, construyendo subconjuntos (estratos) que contengan elementos homogéneos en su interior, es decir que tengan menos dispersión que el conjunto completo.</p></li>
+<li><p><span class="math inline">\(n\)</span>: El tamaño de la muestra, se encuentra en el denominador del término del error, por lo que su aumento reduce el error. Cuanto más grande sea <span class="math inline">\(n\)</span>, menor será el error, es decir que muestras de mayor tamaño dan mayor precisión. En principio, podemos elegir <span class="math inline">\(n\)</span>, pero depende del presupuesto que se prevea para la investigación. Si se puede obtener una muestra grande siempre es preferible, porque se lograrán estimaciones con menos error, de mejor calidad.</p></li>
+</ul>
+<p>Esto no debe confundirse con la calidad de la muestra. Todo lo
+mencionado sobre estimación, supone que se trata de muestras
+probabilísticas, es decir muestras aleatorias, para las cuales rigen las leyes de probabilidad que hemos usado. Si la muestra no es aleatoria, no se pueden hacer estimaciones con estos procedimientos y; esto es muy importante: no se mejora una muestra tomando más casos. Si la muestra no es probabilística, la estimación no mejorará porque se tomen muchos casos.</p>
+<p>La distribución <span class="math inline">\(t\)</span> de Student tiene aplicación cuando se trata de muestras pequeñas, sin embargo, como se señaló antes, cuando los grados de libertad aumentan, esta distribución se aproxima a la normal. Por esta razón, al construir los intervalos, no hay inconveniente en calcular los percentiles que corresponden al nivel de confianza elegido, usando el modelo <span class="math inline">\(t\)</span>. Si la muestra es suficientemente grande, el resultado será el mismo que con la normal. Así se evita decidir cada vez, en base al tamaño ed la muestra, si se usa una distribución o la otra. Por esa razón, de aquí en adelante, calcularemos los percentiles necesarios para estimar la media, con la distribución <span class="math inline">\(t\)</span> con <span class="math inline">\(n-1\)</span> grados de libertad.</p>
+<p>Para ejemplificar los efectos de los diferentes elementos en el error de
+estimación, usaremos la base de la Encuesta Nacional sobre Prevalencias de Consumo de Sustancias Psicoactivas 2011. Con esos datos, estimaremos la edad promedio a la que los encuestados dicen que tomaron alcohol por primera vez en su vida. La variable se llama BIBA03 y corresponde a la siguiente pregunta del cuestionario:</p>
+<p>¿Qué edad tenía cuando consumió bebidas alcohólicas por primera vez?
+(Edad en años)
+Cuya descripción es la siguiente:</p>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+medida
+</th>
+<th style="text-align:center;">
+valor
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+media
+</td>
+<td style="text-align:center;">
+18.07
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+mediana
+</td>
+<td style="text-align:center;">
+17.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+desviación estándar
+</td>
+<td style="text-align:center;">
+4.71
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+n
+</td>
+<td style="text-align:center;">
+24949.00
+</td>
+</tr>
+</tbody>
+</table>
+<p>Para el cálculo de los límites del intervalo, usamos media, desviación, tamaño de muestra y, para una confianza de 90% usamos los percentiles .05 y .95 de la distribución <span class="math inline">\(t\)</span> con 24948 grados de libertad (que no difiere de la normal)</p>
+<pre><code>## [1] 18.02 18.12</code></pre>
+<p>El error es de:</p>
+<pre><code>## [1] 0.049</code></pre>
+<p>Variamos el nivel de confianza, primero al 95%:</p>
+<pre><code>## [1] 18.01 18.13</code></pre>
+<p>Con un error de estimación:</p>
+<pre><code>## [1] 0.058</code></pre>
+<p>Y luego al 99%</p>
+<pre><code>## [1] 17.99 18.15</code></pre>
+<p>que lleva el error de estimación a:</p>
+<pre><code>## [1] 0.077</code></pre>
+<p>Estas tres primeras estimaciones muestran cómo, sin cambiar el tamaño de la muestra ni la dispersión, el error aumenta (los intervalos se vuelven más amplios) cuando crece la confianza.</p>
+<p>Ahora se seleccionan solo las respuestas dadas por mujeres, con lo que la descripción de la variable es:</p>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+medida
+</th>
+<th style="text-align:center;">
+valor
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+media
+</td>
+<td style="text-align:center;">
+18.97
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+mediana
+</td>
+<td style="text-align:center;">
+18.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+desviación estándar
+</td>
+<td style="text-align:center;">
+5.47
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+n
+</td>
+<td style="text-align:center;">
+12196.00
+</td>
+</tr>
+</tbody>
+</table>
+<p>El total de casos es de 12196, al construir el intervalo al 90%</p>
+<pre><code>## [1] 18.89 19.05</code></pre>
+<p>Cuyo error es:</p>
+<pre><code>## [1] 0.081</code></pre>
+<p>Bastante más grande que el que se obtuvo al mismo nivel de confianza, para la muestra completa.</p>
+</div>
+<div id="el-error-de-estimación-en-la-proporción" class="section level3">
+<h3><span class="header-section-number">11.3.1</span> El error de estimación en la proporción</h3>
+<p>En la construcción del intervalo de Wald, el término del error en la
+estimación de la proporción es:</p>
+<p><span class="math display">\[z*\sqrt{\frac{\widehat{p}*\left( 1 - \widehat{p} \right)}{n}}\]</span></p>
+<p>En él hay dos elementos en común con el error en la estimación de la
+media: los valores de <span class="math inline">\(z\)</span> y de <span class="math inline">\(n\)</span>. No agregaremos nada sobre ellos,
+porque el efecto es el mismo que en la media: un aumento de <span class="math inline">\(z\)</span> por
+aumento de la confianza, da lugar a un incremento en el error de
+estimación, mientras que un aumento en el tamaño de la muestra, lo
+reduce.</p>
+<p>Lo nuevo en este caso es que no hay <span class="math inline">\(s\)</span>, por el contrario, lo que hay en su lugar es el producto de la proporción por su complemento
+<span class="math inline">\(\widehat{p}*\left( 1 - \widehat{p} \right)\)</span>, que se encuentra afectado
+por la raíz, pero eso no interesa para analizar su efecto sobre la
+precisión.</p>
+<p>Recordemos el problema de la medición de la dispersión para variables
+nominales. Se vio que una variable nominal tiene poca dispersión cuando
+una categoría “absorbe” a las otras, cuando muchos casos están en una
+sola categoría, o cuando una categoría tiene una frecuencia superior a
+todas las demás. Por el contrario, la dispersión es elevada cuando las
+frecuencias son similares, cuando la distribución de casos es “pareja”
+en todas las categorías. En la estimación de la proporción estamos
+tratando solo con dos categorías, por lo que la dispersión será máxima
+cuando las proporciones de ellas sean similares. Siendo solo dos, son
+iguales cuando cada una de ellas vale <span class="math inline">\(0,50\)</span>
+(<span class="math inline">\(\widehat{p} = 0,50\)</span> y<span class="math inline">\(( 1 - \widehat{p}) = 0,50\)</span>), porque
+la mitad de los casos está en cada categoría. Por el contrario, la
+dispersión será menor cuanto más concentrados estén los casos en una de
+las categorías. Si, por ejemplo la proporción es
+<span class="math inline">\(0,10\)</span> <span class="math inline">\((\widehat{p} = 0,10\)</span> y <span class="math inline">\(( 1 - \widehat{p}) = 0,90)\)</span>
+tendremos concentración de casos en una categoría, es decir, poca
+dispersión. Eso está expresado en la variabilidad medida como el
+producto de <span class="math inline">\(\widehat{p}\)</span> por su complemento:
+<span class="math inline">\(\widehat{p}*(1 - \widehat{p})\)</span></p>
+<p>Cuando <span class="math inline">\(\widehat{p} = 0,50\)</span> y <span class="math inline">\(( 1 - \widehat{p}) = 0,50\)</span>, entonces, el producto <span class="math inline">\(\widehat{p}*(1 - \widehat{p}) = 0,25\)</span>. Por el contrario, cuando <span class="math inline">\(\widehat{p} = 0,10\)</span> y <span class="math inline">\(( 1 - \widehat{p}) = 0,90\)</span>, entonces, el producto <span class="math inline">\(\widehat{p}*( 1 - \widehat{p}) = 0,09\)</span>.</p>
+<p>Por eso, el producto <span class="math inline">\(\widehat{p}*( 1 - \widehat{p})\)</span> es una medida de la dispersión de la variable nominal y ocupa, dentro del término del error, un lugar equivalente al de la varianza en la estimación de la media.</p>
+<p>¿Cómo incide esto en el error de estimación? Como con la media, cuando la dispersión es grande, el error también lo es, entonces el error será mayor cuanto más parecidas sean <span class="math inline">\(\widehat{p}\)</span> y<span class="math inline">\(( 1 - \widehat{p})\)</span>, dicho de otra manera, cuando <span class="math inline">\(\widehat{p}\)</span> sea cercana a 0,50.</p>
+<p>El razonamiento es el mismo que con la media, cuanto mayor sea la
+dispersión tanto más grande será el error y menos precisa la estimación.
+Pero en el caso de la media, la dispersión está medida con la desviación
+estándar, mientras que en la proporción, viene dada por el producto
+<span class="math inline">\(\widehat{p}*( 1 - \widehat{p})\)</span>, que es máximo cuando
+<span class="math inline">\(\widehat{p}\)</span> es cercano a 0,50. Entonces, las peores condiciones para
+hacer una estimación de la proporción, serán aquellas en que la
+característica que se estima afecta a porciones cercanas a la mitad de
+la muestra, allí será máxima la dispersión y en consecuencia también el
+error de estimación.</p>
+<p>Ejemplo: a partir de una encuesta, se estima la proporción de votos que
+tendrá un candidato en las próximas elecciones. La muestra es de 400
+casos y 90 personas dijeron que votarán a ese candidato. Como 90 es el
+22,5% de 400 (su frecuencia relativa), esa es la proporción que se halla
+en la muestra y la estimación por intervalo al 95% de confianza da:</p>
+<p><span class="math display">\[\widehat{p} \pm z*\sqrt{\frac{\widehat{p}*(1 - \widehat{p})}{n}} = 0.225 \pm 1.96*\sqrt{\frac{0.225*(1 - 0.225)}{400}} = 0.225 \pm 0.041\]</span></p>
+<p>Los límites del intervalo son <span class="math inline">\(L_i = 0.1841\)</span> y <span class="math inline">\(L_s = 0.2659\)</span>. Para
+comunicarlo, diremos que el candidato tiene una intención de voto de
+entre el 18,41% y el 26,59%. Aunque la lectura correcta es que hay una
+confianza del 95% que el intervalo <span class="math inline">\([18,41; 26,59]\)</span>% contenga a la
+verdadera proporción de personas que dicen que votarán al candidato.</p>
+<p>Repitamos el ejercicio, ahora suponiendo que la cantidad de personas que
+dice que lo votaría son 200 de los 400 encuestados, es decir si la
+proporción muestral hubiese sido del 50%. Siempre al 95% de confianza,
+la estimación es:</p>
+<p><span class="math display">\[\widehat{p} \pm z*\sqrt{\frac{\widehat{p}*(1 - \widehat{p})}{n}} = 0,50 \pm 1,96*\sqrt{\frac{0,50*(1 - 0,50)}{400}} = 0,50 \pm 0,049\]</span></p>
+<p>Vemos que el error de estimación ha pasado de 4,1% en el anterior a 4,9%
+ahora, sin que hayamos cambiado la confianza ni el tamaño de la muestra.
+Ese es el efecto de la proporción cuando es cercana al 50%.</p>
+<p>Sobre la misma encuesta anterior, se estima la proproción de personas que dicen haber bebido alguna vez en su vida. La pregunta se llama BIBA01 y está formulada:
+¿Ha consumido alguna bebida alcohólica, como por ejemplo vino, cerveza, whisky o similares, alguna vez en la vida?
+1 Sí
+2 No
+9 Ns/nc</p>
+<p>La tabla de distribución de frecuencias genera:</p>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+¿Ha consumido alguna bebida alcohólica, como por ejemplo vino, cerveza, whisky o similares, alguna vez en la vida?
+</th>
+<th style="text-align:center;">
+<span class="math inline">\(f\)</span>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Sí
+</td>
+<td style="text-align:center;">
+25709
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+No
+</td>
+<td style="text-align:center;">
+8621
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Ns/nc
+</td>
+<td style="text-align:center;">
+13
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Sum
+</td>
+<td style="text-align:center;">
+34343
+</td>
+</tr>
+</tbody>
+</table>
+<p>Cuando se consideran solo los casos válidos, la tabla queda:</p>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+¿Ha consumido alguna bebida alcohólica, como por ejemplo vino, cerveza, whisky o similares, alguna vez en la vida?
+</th>
+<th style="text-align:center;">
+<span class="math inline">\(f\)</span>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Sí
+</td>
+<td style="text-align:center;">
+25709
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+No
+</td>
+<td style="text-align:center;">
+8621
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Sum
+</td>
+<td style="text-align:center;">
+34330
+</td>
+</tr>
+</tbody>
+</table>
+<p>A nivel de la muestra, quienes contestan que han bebido alguna vez son el <span class="math inline">\(74.9\)</span>% (<span class="math inline">\(25709/34330\)</span>). Extendemos ese resultado a la población construyendo un intervalo al 95% y expresando el resultado en porcentajes:</p>
+<pre><code>## [1] 74.43 75.35</code></pre>
+<p>El error de estimación es 0.92% y, si aumenta la confianza al 99%:</p>
+<pre><code>## [1] 74.28 75.49</code></pre>
+<p>Con un error de 1.2</p>
+<p>Vemos que al aumentar el nivel de confianza se reduce la precisión, ya
+que los límites se distancian, volviendo más amplio al intervalo, aumentando el error de estimación.</p>
+</div>
+<div id="probabilidad-de-cobertura" class="section level3">
+<h3><span class="header-section-number">11.3.2</span> Probabilidad de cobertura</h3>
+<p>Un elemento adicional a considerar sobre la calidad de una estimación es la <strong>probabilidad de cobertura</strong>, que indica la probabilidad que tienen los límites de contener efectivamente al parámetro. En el caso de la media, se escribe <span class="math inline">\(P(L_{i}\leq \mu \leq L_{s})\)</span> y para la proporción, se escribe como <span class="math inline">\(P(L_{i} \leq P \leq L_{s})\)</span> en la que <span class="math inline">\(L_i\)</span> y <span class="math inline">\(L_s\)</span> son variables aleatorias que corresponden a los límites del intervalo. Esta probabilidad de cobertura puede ser igual, menor o mayor que la confianza, que es una cobertura nominal, es decir, la que predice la teoría. La probabilidad de cobertura se calcula por
+simulación.</p>
+<p>Para el caso de la estimación de la proporción, Cepeda Cuervo et. al. (2008) muestran que el intervalo de Clopper-Pearson tiene una probabilidad de cobertura que supera a la nominal para todos los tamaños de muestra, por eso se lo considera conservador; ya que ofrece más certidumbre que la que se declara en la
+confianza. Al contrario, el intervalo de Wald muestra probabilidad de
+cobertura inferior a la nominal aun cuando se usen muestras grandes. El
+intervalo de Wilson ofrece una probabilidad de cobertura más cercana a
+la nominal que el de Wald y que el exacto.</p>
+<p>Los siguientes esquemas provienen de <a href="https://istats.shinyapps.io/ExploreCoverage/" class="uri">https://istats.shinyapps.io/ExploreCoverage/</a> y muestran la construcción de 100 intervalos para estimar:</p>
+<ul>
+<li>La proporción por dos métodos, el exacto de Clopper-Perason y el de Wald</li>
+<li>La media, para los dos casos de distribución simétrica o asimétrica en la población.</li>
+</ul>
+<p>En los gráficos puede verse cuántos de los 100 intervalos contienen efectivamente al parámetro que se estima. La probabilidad de cobertura se refiere a esa proporción.</p>
+<!-- Acá entran los .png que se llaman "cobertura" primero los dos de proporción y luego los dos de media-->
+<p>En este capítulo hemos puesto en juego lo visto en los anteriores para
+poder generalizar las observaciones muestrales a toda la población de
+referencia, vemos que el modo con el que se hace es a través de los
+intervalos de confianza, que formalizan una práctica a la que estamos
+acostumbrados cuando hacemos estimaciones sobre cantidades que
+desconocemos: indicamos entre qué valores es más probable hallarlas.</p>
+<p>La estructura general de los intervalos es:</p>
+<p><span class="math display">\[estimador \pm error\ de\ estimacion\]</span></p>
+<p>Esa expresión ha tomado diferentes formas, ya sea para estimar la media
+de variables cuantitativas o la proporción de éxitos, para la que hay
+varios procedimientos de obtención de los límites.</p>
+<p>En cualquiera de los casos, la lectura del intervalo obtenido se
+expresa:</p>
+<p>Hay una confianza <span class="math inline">\(1 - \alpha\)</span> que el intervalo obtenido contenga al
+parámetro.</p>
+</div>
+</div>
+<div id="hacerlo-en-r-7" class="section level2">
+<h2><span class="header-section-number">11.4</span> Hacerlo en R</h2>
+<p>La construcción de intervalos puede realizarse aplicando los procedimientos descriptos en el capítulo y dependiendo de cuál sea el origen de los datos.</p>
+<div id="intervalo-para-la-media" class="section level3">
+<h3><span class="header-section-number">11.4.1</span> Intervalo para la media</h3>
+<p>Para el ejemplo de los ingresos salariales, vamos a construir el intervalo de manera directa, teniendo en cuenta que los valores -1.96 y 1.96 provienen de las probabillidades acumuladas de 0.025 y 0.975, que son las que delimitan la probabilidad 0.95 central. De modo que esos dos valores que estamos escribiendo “de memoria”, pueden pedirse al momento de construir los límites del intervalo. Además, por la razón que mencionamos antes, puede usarse la distribución <span class="math inline">\(t\)</span> con <span class="math inline">\(n-1\)</span> grados de libertad en todos los casos, ya que cuando la muestra es grande su valor coincide con el de la normal. Llamamos Li95 y Ls95 a esos límites y resulta:</p>
+<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb283-1" data-line-number="1">Li95 &lt;-<span class="st"> </span><span class="kw">mean</span>(asalariados_cba<span class="op">$</span>PP08D1) <span class="op">+</span></a>
+<a class="sourceLine" id="cb283-2" data-line-number="2"><span class="st">  </span><span class="kw">qt</span>(.<span class="dv">025</span>, <span class="dv">753</span>) <span class="op">*</span><span class="st"> </span><span class="kw">sd</span>(asalariados_cba<span class="op">$</span>PP08D1) <span class="op">/</span></a>
+<a class="sourceLine" id="cb283-3" data-line-number="3"><span class="st">    </span><span class="kw">sqrt</span>(<span class="kw">length</span>(asalariados_cba<span class="op">$</span>PP08D1))</a>
+<a class="sourceLine" id="cb283-4" data-line-number="4">Li95</a></code></pre></div>
+<pre><code>## [1] 14303.13</code></pre>
+<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb285-1" data-line-number="1">Ls95 &lt;-<span class="st"> </span><span class="kw">mean</span>(asalariados_cba<span class="op">$</span>PP08D1) <span class="op">+</span></a>
+<a class="sourceLine" id="cb285-2" data-line-number="2"><span class="st">  </span><span class="kw">qt</span>(.<span class="dv">975</span>, <span class="dv">753</span>) <span class="op">*</span><span class="st"> </span><span class="kw">sd</span>(asalariados_cba<span class="op">$</span>PP08D1) <span class="op">/</span></a>
+<a class="sourceLine" id="cb285-3" data-line-number="3"><span class="st">    </span><span class="kw">sqrt</span>(<span class="kw">length</span>(asalariados_cba<span class="op">$</span>PP08D1))</a>
+<a class="sourceLine" id="cb285-4" data-line-number="4">Ls95</a></code></pre></div>
+<pre><code>## [1] 15654.9</code></pre>
+<ul>
+<li>Límite inferior= 1.430313210^{4}</li>
+<li>Límite superior= 1.565490510^{4}</li>
+</ul>
+<p>Observemos que las dos veces sumamos, el signo viene automático, porque el percentil 2.5 de <span class="math inline">\(z\)</span> es negativo y el 97.5 positivo. Para escribirlo más compacto calculamos la media por un lado y el error de estimación, por otro:</p>
+<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb287-1" data-line-number="1"><span class="kw">mean</span>(asalariados_cba<span class="op">$</span>PP08D1)</a></code></pre></div>
+<pre><code>## [1] 14979.02</code></pre>
+<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb289-1" data-line-number="1"><span class="kw">qt</span>(.<span class="dv">025</span>, <span class="dv">753</span>) <span class="op">*</span><span class="st"> </span><span class="kw">sd</span>(asalariados_cba<span class="op">$</span>PP08D1) <span class="op">/</span></a>
+<a class="sourceLine" id="cb289-2" data-line-number="2"><span class="st">  </span><span class="kw">sqrt</span>(<span class="kw">length</span>(asalariados_cba<span class="op">$</span>PP08D1))</a></code></pre></div>
+<pre><code>## [1] -675.8864</code></pre>
+<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb291-1" data-line-number="1"><span class="kw">qt</span>(.<span class="dv">975</span>, <span class="dv">753</span>) <span class="op">*</span><span class="st"> </span><span class="kw">sd</span>(asalariados_cba<span class="op">$</span>PP08D1) <span class="op">/</span></a>
+<a class="sourceLine" id="cb291-2" data-line-number="2"><span class="st">  </span><span class="kw">sqrt</span>(<span class="kw">length</span>(asalariados_cba<span class="op">$</span>PP08D1))</a></code></pre></div>
+<pre><code>## [1] 675.8864</code></pre>
+<p>Las dos operaciones dan el mismo valor absoluto, con el signo opuesto, entonces el resultado de la estimación se escribe: <span class="math display">\[14979 \pm 675\]</span></p>
+<p>Para construir en intervalo con un nivel de confianza de 99%, usamos los percentiles 0.5 y 99.5 y llamamos Li99 y Ls99 a los límites:</p>
+<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb293-1" data-line-number="1">Li99 &lt;-<span class="st"> </span><span class="kw">mean</span>(asalariados_cba<span class="op">$</span>PP08D1) <span class="op">+</span></a>
+<a class="sourceLine" id="cb293-2" data-line-number="2"><span class="st">  </span><span class="kw">qt</span>(.<span class="dv">005</span>, <span class="dv">753</span>) <span class="op">*</span><span class="st"> </span><span class="kw">sd</span>(asalariados_cba<span class="op">$</span>PP08D1) <span class="op">/</span></a>
+<a class="sourceLine" id="cb293-3" data-line-number="3"><span class="st">    </span><span class="kw">sqrt</span>(<span class="kw">length</span>(asalariados_cba<span class="op">$</span>PP08D1))</a>
+<a class="sourceLine" id="cb293-4" data-line-number="4">Li99</a></code></pre></div>
+<pre><code>## [1] 14089.93</code></pre>
+<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb295-1" data-line-number="1">Ls99 &lt;-<span class="st"> </span><span class="kw">mean</span>(asalariados_cba<span class="op">$</span>PP08D1) <span class="op">+</span></a>
+<a class="sourceLine" id="cb295-2" data-line-number="2"><span class="st">  </span><span class="kw">qt</span>(.<span class="dv">995</span>, <span class="dv">753</span>) <span class="op">*</span><span class="st"> </span><span class="kw">sd</span>(asalariados_cba<span class="op">$</span>PP08D1) <span class="op">/</span></a>
+<a class="sourceLine" id="cb295-3" data-line-number="3"><span class="st">    </span><span class="kw">sqrt</span>(<span class="kw">length</span>(asalariados_cba<span class="op">$</span>PP08D1))</a>
+<a class="sourceLine" id="cb295-4" data-line-number="4">Ls99</a></code></pre></div>
+<pre><code>## [1] 15868.11</code></pre>
+<ul>
+<li>Límite inferior= 1.408992810^{4}</li>
+<li>Límite superior= 1.586810910^{4}</li>
+</ul>
+<p>Nuevamente para la notación abreviada, como la media es la misma y sabemos que lo que se suma es lo mismo que lo que se resta, solo calculamos:</p>
+<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb297-1" data-line-number="1"><span class="kw">qt</span>(.<span class="dv">995</span>, <span class="dv">753</span>) <span class="op">*</span><span class="st"> </span><span class="kw">sd</span>(asalariados_cba<span class="op">$</span>PP08D1) <span class="op">/</span></a>
+<a class="sourceLine" id="cb297-2" data-line-number="2"><span class="st">  </span><span class="kw">sqrt</span>(<span class="kw">length</span>(asalariados_cba<span class="op">$</span>PP08D1))</a></code></pre></div>
+<pre><code>## [1] 889.0909</code></pre>
+<p>Y la estimación se escribe:<span class="math display">\[14979 \pm 887\]</span></p>
+</div>
+<div id="intervalo-para-la-proporción" class="section level3">
+<h3><span class="header-section-number">11.4.2</span> Intervalo para la proporción</h3>
+<p>Para estimar la propoción de inactivos a partir de la base de la EPH, hay que definir a esa categoría como la de referencia (1) en la variable ESTADO y asignar cero a las demás categorias. Para hacerlo, definimos “inactivos”, como una nueva variable de la base eph.3.18 cuyo valor dependerá del que tenga “ESTADO”. Si “ESTADO” vale:</p>
+<ul>
+<li>3 (inactivo), entonces “inactivos” vale 1</li>
+<li>0 o 4, “inactivos” no se cuenta, porque son entrevistas no realizadas, o menores de 10 años, corresponde NA</li>
+<li>1 o 2 “inactivos” vale cero</li>
+</ul>
+<p>Y con una tabla verificamos que el 1 de la nueva variable corresponda al 3 de “ESTADO” y que todos los demás valores de “ESTADO” tengan asociado un cero en “activos”.</p>
+<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb299-1" data-line-number="1">eph.<span class="fl">3.18</span><span class="op">$</span>inactivos &lt;-<span class="st"> </span><span class="kw">ifelse</span>(</a>
+<a class="sourceLine" id="cb299-2" data-line-number="2">  eph.<span class="fl">3.18</span><span class="op">$</span>ESTADO <span class="op">==</span><span class="st"> </span><span class="dv">3</span>, <span class="dv">1</span>, <span class="kw">ifelse</span>(</a>
+<a class="sourceLine" id="cb299-3" data-line-number="3">    eph.<span class="fl">3.18</span><span class="op">$</span>ESTADO <span class="op">==</span><span class="st"> </span><span class="dv">0</span> <span class="op">|</span><span class="st"> </span>eph.<span class="fl">3.18</span><span class="op">$</span>ESTADO <span class="op">==</span><span class="st"> </span><span class="dv">4</span>, <span class="ot">NA</span>, <span class="dv">0</span></a>
+<a class="sourceLine" id="cb299-4" data-line-number="4">  )</a>
+<a class="sourceLine" id="cb299-5" data-line-number="5">)</a>
+<a class="sourceLine" id="cb299-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb299-7" data-line-number="7"><span class="kw">addmargins</span>(<span class="kw">table</span>(eph.<span class="fl">3.18</span><span class="op">$</span>ESTADO, eph.<span class="fl">3.18</span><span class="op">$</span>inactivos))</a></code></pre></div>
+<pre><code>##      
+##           0     1   Sum
+##   0       0     0     0
+##   1   23398     0 23398
+##   2    1870     0  1870
+##   3       0 23167 23167
+##   4       0     0     0
+##   Sum 25268 23167 48435</code></pre>
+<p>El total de casos es ahora 48435, porque se quitaron los ceros y cuatros. Ahora la estimación al 95% de la proporción poblacional de inactivos, por método de Clopper-Pearson requiere que calculemos los percentiles .025 y .975 de la distribución binomial con <span class="math inline">\(n=48435\)</span> y <span class="math inline">\(p=23167/48435=0.478=47.8\%\)</span> y que los dividamos por el tamaño de la muestra.</p>
+<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb301-1" data-line-number="1">Li &lt;-<span class="st"> </span><span class="kw">qbinom</span>(.<span class="dv">025</span>, <span class="dv">48435</span>, <span class="fl">.478</span>) <span class="op">/</span><span class="st"> </span><span class="dv">48435</span></a>
+<a class="sourceLine" id="cb301-2" data-line-number="2">Ls &lt;-<span class="st"> </span><span class="kw">qbinom</span>(.<span class="dv">975</span>, <span class="dv">48435</span>, <span class="fl">.478</span>) <span class="op">/</span><span class="st"> </span><span class="dv">48435</span></a>
+<a class="sourceLine" id="cb301-3" data-line-number="3"><span class="kw">round</span>(<span class="kw">c</span>(Li, Ls), <span class="dv">4</span>) <span class="op">*</span><span class="st"> </span><span class="dv">100</span></a></code></pre></div>
+<pre><code>## [1] 47.35 48.24</code></pre>
+<p>Si tenemos en cuenta que es una muestra grande, puede usarse el método de Wald, con <span class="math inline">\(\widehat{p}=0.478\)</span> con el que los límites resultan:</p>
+<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb303-1" data-line-number="1">Li &lt;-<span class="st"> </span><span class="fl">.478</span> <span class="op">+</span><span class="st"> </span><span class="kw">qnorm</span>(.<span class="dv">025</span>) <span class="op">*</span><span class="st"> </span><span class="kw">sqrt</span>(.<span class="dv">478</span> <span class="op">*</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="fl">.478</span>) <span class="op">/</span></a>
+<a class="sourceLine" id="cb303-2" data-line-number="2"><span class="st">  </span><span class="dv">48435</span>)</a>
+<a class="sourceLine" id="cb303-3" data-line-number="3">Ls &lt;-<span class="st"> </span><span class="fl">.478</span> <span class="op">+</span><span class="st"> </span><span class="kw">qnorm</span>(.<span class="dv">975</span>) <span class="op">*</span><span class="st"> </span><span class="kw">sqrt</span>(.<span class="dv">478</span> <span class="op">*</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="fl">.478</span>) <span class="op">/</span></a>
+<a class="sourceLine" id="cb303-4" data-line-number="4"><span class="st">  </span><span class="dv">48435</span>)</a>
+<a class="sourceLine" id="cb303-5" data-line-number="5"><span class="kw">kable</span>(<span class="kw">round</span>(<span class="kw">c</span>(Li, Ls), <span class="dv">4</span>) <span class="op">*</span><span class="st"> </span><span class="dv">100</span>,</a>
+<a class="sourceLine" id="cb303-6" data-line-number="6">  <span class="dt">col.names =</span> <span class="kw">c</span>(<span class="st">&quot;límites&quot;</span>)</a>
+<a class="sourceLine" id="cb303-7" data-line-number="7">)</a></code></pre></div>
+<table>
+<thead>
+<tr>
+<th style="text-align:right;">
+límites
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+47.36
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+48.24
+</td>
+</tr>
+</tbody>
+</table>
+<p>Efectivamente, con un tamaño de muestra grande, el método de Wald, que usa la distribución normal como aproximación a la binomial da un resultado casi idéntico.</p>
+</div>
+<div id="cobertura" class="section level3">
+<h3><span class="header-section-number">11.4.3</span> Cobertura</h3>
+<p>Los siguientes comandos generan 20 intervalos para estimar la media de ingresos salariales de la EPH a partir de 20 meustras cada una de tamaño 30. Es una simulación, porque se trata a los datos de la EPH como si fuera una población y a la media de la EPH como si fuera el parámetro poblacional. El ejercicio sirve para observar el efecto, por ejemplo del tamaño de la muestra.</p>
+<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb304-1" data-line-number="1">resultado &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</a>
+<a class="sourceLine" id="cb304-2" data-line-number="2">  <span class="dt">Limite_inferior =</span> <span class="kw">double</span>(),</a>
+<a class="sourceLine" id="cb304-3" data-line-number="3">  <span class="dt">Limite_superior =</span> <span class="kw">double</span>(),</a>
+<a class="sourceLine" id="cb304-4" data-line-number="4">  <span class="dt">contiene_al_parametro =</span> <span class="kw">integer</span>()</a>
+<a class="sourceLine" id="cb304-5" data-line-number="5">)</a>
+<a class="sourceLine" id="cb304-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb304-7" data-line-number="7"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">20</span>) {</a>
+<a class="sourceLine" id="cb304-8" data-line-number="8">  x &lt;-<span class="st"> </span><span class="kw">round</span>(<span class="kw">runif</span>(<span class="dv">30</span>, <span class="dv">1</span>, <span class="dv">754</span>), <span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb304-9" data-line-number="9">  muestra &lt;-<span class="st"> </span>asalariados_cba[x, ]</a>
+<a class="sourceLine" id="cb304-10" data-line-number="10">  resultado[i, <span class="dv">1</span>] &lt;-<span class="st"> </span><span class="kw">round</span>(<span class="kw">mean</span>(muestra<span class="op">$</span>PP08D1, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb304-11" data-line-number="11"><span class="st">    </span><span class="kw">qt</span>(.<span class="dv">025</span>, <span class="dv">29</span>) <span class="op">*</span><span class="st"> </span><span class="kw">sd</span>(muestra<span class="op">$</span>PP08D1, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>) <span class="op">/</span><span class="st"> </span><span class="kw">sqrt</span>(<span class="kw">length</span>(muestra<span class="op">$</span>PP08D1)), <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb304-12" data-line-number="12">  resultado[i, <span class="dv">2</span>] &lt;-<span class="st"> </span><span class="kw">round</span>(<span class="kw">mean</span>(muestra<span class="op">$</span>PP08D1, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb304-13" data-line-number="13"><span class="st">    </span><span class="kw">qt</span>(.<span class="dv">975</span>, <span class="dv">29</span>) <span class="op">*</span><span class="st"> </span><span class="kw">sd</span>(muestra<span class="op">$</span>PP08D1, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>) <span class="op">/</span><span class="st"> </span><span class="kw">sqrt</span>(<span class="kw">length</span>(muestra<span class="op">$</span>PP08D1)), <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb304-14" data-line-number="14">  resultado[i, <span class="dv">3</span>] &lt;-<span class="st"> </span><span class="kw">ifelse</span>(<span class="kw">mean</span>(asalariados_cba<span class="op">$</span>PP08D1, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>) <span class="op">&gt;=</span><span class="st"> </span>resultado[i, <span class="dv">1</span>] <span class="op">&amp;</span></a>
+<a class="sourceLine" id="cb304-15" data-line-number="15"><span class="st">    </span><span class="kw">mean</span>(asalariados_cba<span class="op">$</span>PP08D1, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>) <span class="op">&lt;=</span><span class="st"> </span>resultado[i, <span class="dv">2</span>], <span class="dv">1</span>, <span class="dv">0</span>)</a>
+<a class="sourceLine" id="cb304-16" data-line-number="16">}</a>
+<a class="sourceLine" id="cb304-17" data-line-number="17"></a>
+<a class="sourceLine" id="cb304-18" data-line-number="18"><span class="kw">kable</span>(resultado)</a></code></pre></div>
+<table>
+<thead>
+<tr>
+<th style="text-align:right;">
+Limite_inferior
+</th>
+<th style="text-align:right;">
+Limite_superior
+</th>
+<th style="text-align:right;">
+contiene_al_parametro
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+7643.1
+</td>
+<td style="text-align:right;">
+14224.9
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+10554.0
+</td>
+<td style="text-align:right;">
+16792.7
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+9808.6
+</td>
+<td style="text-align:right;">
+16024.8
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+12831.4
+</td>
+<td style="text-align:right;">
+18275.2
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+9479.2
+</td>
+<td style="text-align:right;">
+17074.2
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+10016.6
+</td>
+<td style="text-align:right;">
+18322.0
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+11358.2
+</td>
+<td style="text-align:right;">
+17835.1
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+12296.0
+</td>
+<td style="text-align:right;">
+18464.0
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+15535.2
+</td>
+<td style="text-align:right;">
+22387.4
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+14056.7
+</td>
+<td style="text-align:right;">
+22052.6
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+12660.2
+</td>
+<td style="text-align:right;">
+20526.4
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+11782.2
+</td>
+<td style="text-align:right;">
+19416.5
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+10419.3
+</td>
+<td style="text-align:right;">
+18420.7
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+12194.9
+</td>
+<td style="text-align:right;">
+18137.1
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+10819.0
+</td>
+<td style="text-align:right;">
+17567.7
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+11444.5
+</td>
+<td style="text-align:right;">
+17475.5
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+11329.7
+</td>
+<td style="text-align:right;">
+19583.6
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+10297.3
+</td>
+<td style="text-align:right;">
+17902.7
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+13491.1
+</td>
+<td style="text-align:right;">
+19988.9
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+12897.6
+</td>
+<td style="text-align:right;">
+21802.4
+</td>
+<td style="text-align:right;">
+1
+</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb305-1" data-line-number="1"><span class="kw">paste</span>(<span class="st">&quot;cobertura real: &quot;</span>, <span class="dv">100</span> <span class="op">*</span><span class="st"> </span><span class="kw">round</span>(<span class="kw">mean</span>(resultado<span class="op">$</span>contiene_al_parametro), <span class="dv">3</span>), <span class="st">&quot;%&quot;</span>)</a></code></pre></div>
+<pre><code>## [1] &quot;cobertura real:  90 %&quot;</code></pre>
+</div>
+<div id="operaciones-sobre-la-base-enprecosp" class="section level3">
+<h3><span class="header-section-number">11.4.4</span> Operaciones sobre la base ENPreCoSP</h3>
+<p>Debido a que solo se dirige a quienes alguna vez en su vida tomaron alcohol, que representan el 75% del total de los encuestados, esta pregunta tiene 25% de casos “no corresponde”, que están codificados con un “.” y es necesario eliminarlos de esta parte del análisis, porque está limitado a las personas que alguna vez tomaron alcohol. Esto se hace reteniendo un subconjunto de la base original, aquel para el cual esa variable (BIBA03) no asuma el valor “.” Luego debe indicarse que esa variable es numérica, ya que por haber tenido ese código no numérico, fue reconocida como factor.</p>
+<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb307-1" data-line-number="1">enprecosp_base &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;bases/archivostxt/Base.Usuario.ENPreCoSP.2011_A.txt&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">sep =</span> <span class="st">&quot;;&quot;</span>)</a>
+<a class="sourceLine" id="cb307-2" data-line-number="2">enprecosp &lt;-<span class="st"> </span><span class="kw">subset</span>(enprecosp_base, enprecosp_base<span class="op">$</span>BIBA03 <span class="op">!=</span><span class="st"> &quot;.&quot;</span>)</a>
+<a class="sourceLine" id="cb307-3" data-line-number="3">enprecosp<span class="op">$</span>BIBA03 &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(<span class="kw">as.character</span>(enprecosp<span class="op">$</span>BIBA03))</a></code></pre></div>
+<p>Luego de estas operaciones, podemos pedir un resumen,que incluya media, mediana, desviación estándar y cantidad de casos:</p>
+<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb308-1" data-line-number="1">medida &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;media&quot;</span>, <span class="st">&quot;mediana&quot;</span>, <span class="st">&quot;desviación estándar&quot;</span>, <span class="st">&quot;n&quot;</span>)</a>
+<a class="sourceLine" id="cb308-2" data-line-number="2">valor &lt;-<span class="st"> </span><span class="kw">round</span>(<span class="kw">c</span>(<span class="kw">mean</span>(enprecosp<span class="op">$</span>BIBA03), <span class="kw">median</span>(enprecosp<span class="op">$</span>BIBA03), <span class="kw">sd</span>(enprecosp<span class="op">$</span>BIBA03), <span class="kw">length</span>(enprecosp<span class="op">$</span>BIBA03)), <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb308-3" data-line-number="3">descr.BIBA03 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(medida, valor)</a>
+<a class="sourceLine" id="cb308-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb308-5" data-line-number="5"><span class="kw">library</span>(<span class="st">&quot;kableExtra&quot;</span>)</a>
+<a class="sourceLine" id="cb308-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb308-7" data-line-number="7"><span class="kw">kable</span>(descr.BIBA03)</a></code></pre></div>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+medida
+</th>
+<th style="text-align:right;">
+valor
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+media
+</td>
+<td style="text-align:right;">
+18.07
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+mediana
+</td>
+<td style="text-align:right;">
+17.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+desviación estándar
+</td>
+<td style="text-align:right;">
+4.71
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+n
+</td>
+<td style="text-align:right;">
+24949.00
+</td>
+</tr>
+</tbody>
+</table>
+<p>Para retener solo el subconjunto de mujeres, que es el que tiene <code>BHCH04 == 2</code>.</p>
+
+</div>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="64">
+<li id="fn64"><p>Esto es válido en la medida que se trate de muestras grandes (<span class="math inline">\(n &gt; 30\)</span>), en caso contrario, la distribución que debemos usar es la <em>t</em> de Student. Cuando fijemos la confianza, ya no serán <em>z</em> los valores que multiplicarán a <span class="math inline">\(\frac{\sigma}{\sqrt{n}}\)</span> sino puntajes <em>t</em>, cuyos grados de libertad se calculan como <span class="math inline">\(n-1\)</span>. Pero, para poder usar la distribución <em>t</em>, los valores de la muestra deben provenir de una distribución normal en la población. Si esto no se cumple, la estimación puede realizarse buscando los límites a partir de una reconstrucción de la distribución empírica, por un método de remuestreo llamado “bootstrap”.<a href="estimación-por-intervalo.html#fnref64" class="footnote-back">↩</a></p></li>
+<li id="fn66"><p>Como antes hicimos reemplazando a <span class="math inline">\(\sigma\)</span> por <span class="math inline">\(s\)</span>.<a href="estimación-por-intervalo.html#fnref66" class="footnote-back">↩</a></p></li>
+<li id="fn67"><p>Pero si <span class="math inline">\(\widehat{p}\)</span> es muy pequeño, el límite inferior es negativo y si <span class="math inline">\(\widehat{p}\)</span> es muy cercano a uno, el límite superior puede superar a 1, decimos que en estos casos el intervalo colapsa.<a href="estimación-por-intervalo.html#fnref67" class="footnote-back">↩</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="distribuciones-en-el-muestreo.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="prueba-de-hipótesis-la-lógica.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/jcrodriguez1989/EstadisticaParaCienciasSocialesConR/edit/master/11-capitulo10.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["EstadisticaParaCienciasSocialesConR.pdf", "EstadisticaParaCienciasSocialesConR.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -1,0 +1,1875 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 7 Obtención de la muestra | Estadística para Ciencias Sociales con R</title>
+  <meta name="description" content="Capítulo 7 Obtención de la muestra | Estadística para Ciencias Sociales con R" />
+  <meta name="generator" content="bookdown 0.14.1 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 7 Obtención de la muestra | Estadística para Ciencias Sociales con R" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  <meta name="github-repo" content="jcrodriguez1989/EstadisticaParaCienciasSocialesConR" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 7 Obtención de la muestra | Estadística para Ciencias Sociales con R" />
+  
+  
+  
+
+<meta name="author" content="Eduardo Bologna" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="relación-entre-variables-el-análisis.html"/>
+<link rel="next" href="probabilidad-los-fundamentos.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Estadística para Ciencias Sociales con R</a></li>
+
+<li class="divider"></li>
+<li><a href="index.html#section"></a></li>
+<li class="chapter" data-level="1" data-path="materiales-y-herramientas.html"><a href="materiales-y-herramientas.html"><i class="fa fa-check"></i><b>1</b> Materiales y herramientas</a><ul>
+<li class="chapter" data-level="1.1" data-path="materiales-y-herramientas.html"><a href="materiales-y-herramientas.html#materiales"><i class="fa fa-check"></i><b>1.1</b> Materiales</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="materiales-y-herramientas.html"><a href="materiales-y-herramientas.html#encuesta-permanente-de-hogares-eph.3.18"><i class="fa fa-check"></i><b>1.1.1</b> Encuesta Permanente de Hogares (eph.3.18)</a></li>
+<li class="chapter" data-level="1.1.2" data-path="materiales-y-herramientas.html"><a href="materiales-y-herramientas.html#encuesta-nacional-de-factores-de-riesgo-enfr2013"><i class="fa fa-check"></i><b>1.1.2</b> Encuesta Nacional de Factores de Riesgo (ENFR2013)</a></li>
+<li class="chapter" data-level="1.1.3" data-path="materiales-y-herramientas.html"><a href="materiales-y-herramientas.html#latinobarómetro-latinob2017"><i class="fa fa-check"></i><b>1.1.3</b> Latinobarómetro (latinob2017)</a></li>
+<li class="chapter" data-level="1.1.4" data-path="materiales-y-herramientas.html"><a href="materiales-y-herramientas.html#encuesta-nacional-sobre-prevalencias-de-consumo-de-sustancias-psicoactivas-enprecosp2011"><i class="fa fa-check"></i><b>1.1.4</b> Encuesta Nacional sobre Prevalencias de Consumo de Sustancias Psicoactivas (ENPreCoSP2011)</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="materiales-y-herramientas.html"><a href="materiales-y-herramientas.html#herramientas"><i class="fa fa-check"></i><b>1.2</b> Herramientas</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="materiales-y-herramientas.html"><a href="materiales-y-herramientas.html#la-elección-de-r"><i class="fa fa-check"></i><b>1.2.1</b> La elección de R</a></li>
+<li class="chapter" data-level="1.2.2" data-path="materiales-y-herramientas.html"><a href="materiales-y-herramientas.html#instalación-de-r-y-rstudio"><i class="fa fa-check"></i><b>1.2.2</b> Instalación de R y RStudio</a></li>
+<li class="chapter" data-level="1.2.3" data-path="materiales-y-herramientas.html"><a href="materiales-y-herramientas.html#los-componentes-de-rstudio"><i class="fa fa-check"></i><b>1.2.3</b> Los componentes de RStudio</a></li>
+<li class="chapter" data-level="1.2.4" data-path="materiales-y-herramientas.html"><a href="materiales-y-herramientas.html#operaciones-en-el-script"><i class="fa fa-check"></i><b>1.2.4</b> Operaciones en el script</a></li>
+<li class="chapter" data-level="1.2.5" data-path="materiales-y-herramientas.html"><a href="materiales-y-herramientas.html#instalación-de-paquetes"><i class="fa fa-check"></i><b>1.2.5</b> Instalación de paquetes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html"><i class="fa fa-check"></i><b>2</b> Los datos estadísticos</a><ul>
+<li class="chapter" data-level="2.1" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#la-selección-de-la-información-pertinente"><i class="fa fa-check"></i><b>2.1</b> La selección de la información pertinente</a></li>
+<li class="chapter" data-level="2.2" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#los-individuos"><i class="fa fa-check"></i><b>2.2</b> Los individuos</a></li>
+<li class="chapter" data-level="2.3" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#las-variables"><i class="fa fa-check"></i><b>2.3</b> Las variables</a></li>
+<li class="chapter" data-level="2.4" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#las-categorías"><i class="fa fa-check"></i><b>2.4</b> Las categorías</a></li>
+<li class="chapter" data-level="2.5" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#los-símbolos-numéricos"><i class="fa fa-check"></i><b>2.5</b> Los símbolos numéricos</a></li>
+<li class="chapter" data-level="2.6" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#la-medición"><i class="fa fa-check"></i><b>2.6</b> La medición</a><ul>
+<li class="chapter" data-level="2.6.1" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#niveles-de-medición"><i class="fa fa-check"></i><b>2.6.1</b> Niveles de medición</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#resumen-de-los-niveles-de-medición"><i class="fa fa-check"></i><b>2.7</b> Resumen de los niveles de medición</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html"><i class="fa fa-check"></i><b>3</b> Distribuciones de frecuencia</a><ul>
+<li class="chapter" data-level="3.1" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#tablas-de-distribución-de-frecuencia"><i class="fa fa-check"></i><b>3.1</b> Tablas de distribución de frecuencia</a></li>
+<li class="chapter" data-level="3.2" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#recategorización"><i class="fa fa-check"></i><b>3.2</b> Recategorización</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#variable-discreta-con-muchas-categorías"><i class="fa fa-check"></i><b>3.2.1</b> Variable discreta con muchas categorías</a></li>
+<li class="chapter" data-level="3.2.2" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#variable-continua"><i class="fa fa-check"></i><b>3.2.2</b> Variable continua</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#la-presentación-gráfica-de-los-resultados"><i class="fa fa-check"></i><b>3.3</b> La presentación gráfica de los resultados</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html"><i class="fa fa-check"></i><b>4</b> La expresión resumida de la información</a><ul>
+<li class="chapter" data-level="4.1" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#medidas-de-posición"><i class="fa fa-check"></i><b>4.1</b> Medidas de posición</a><ul>
+<li class="chapter" data-level="4.1.1" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#variables-nominales-proporciones"><i class="fa fa-check"></i><b>4.1.1</b> Variables nominales: proporciones</a></li>
+<li class="chapter" data-level="4.1.2" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#variables-nominales-tasas"><i class="fa fa-check"></i><b>4.1.2</b> Variables nominales: tasas</a></li>
+<li class="chapter" data-level="4.1.3" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#variables-nominales-razones"><i class="fa fa-check"></i><b>4.1.3</b> Variables nominales: razones</a></li>
+<li class="chapter" data-level="4.1.4" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#variables-nominales-el-modo"><i class="fa fa-check"></i><b>4.1.4</b> Variables nominales: el modo</a></li>
+<li class="chapter" data-level="4.1.5" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#variables-ordinales-percentiles"><i class="fa fa-check"></i><b>4.1.5</b> Variables ordinales: percentiles</a></li>
+<li class="chapter" data-level="4.1.6" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#variables-ordinales-la-mediana"><i class="fa fa-check"></i><b>4.1.6</b> Variables ordinales: la mediana</a></li>
+<li class="chapter" data-level="4.1.7" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#los-cuartiles"><i class="fa fa-check"></i><b>4.1.7</b> Los cuartiles</a></li>
+<li class="chapter" data-level="4.1.8" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#los-percentiles"><i class="fa fa-check"></i><b>4.1.8</b> Los percentiles</a></li>
+<li class="chapter" data-level="4.1.9" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#hacerlo-en-r"><i class="fa fa-check"></i><b>4.1.9</b> Hacerlo en R</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#la-forma-de-la-distribución"><i class="fa fa-check"></i><b>4.2</b> La forma de la distribución</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#asimetría"><i class="fa fa-check"></i><b>4.2.1</b> Asimetría</a></li>
+<li class="chapter" data-level="4.2.2" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#curtosis"><i class="fa fa-check"></i><b>4.2.2</b> Curtosis</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#box-plots"><i class="fa fa-check"></i><b>4.3</b> Box-plots</a></li>
+<li class="chapter" data-level="4.4" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#medidas-de-dispersión"><i class="fa fa-check"></i><b>4.4</b> Medidas de dispersión</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#recorrido"><i class="fa fa-check"></i><b>4.4.1</b> Recorrido</a></li>
+<li class="chapter" data-level="4.4.2" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#amplitud-intercuartílica"><i class="fa fa-check"></i><b>4.4.2</b> Amplitud intercuartílica</a></li>
+<li class="chapter" data-level="4.4.3" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#medidas-de-dispersión-basadas-en-la-media"><i class="fa fa-check"></i><b>4.4.3</b> Medidas de dispersión basadas en la media</a></li>
+<li class="chapter" data-level="4.4.4" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#varianza"><i class="fa fa-check"></i><b>4.4.4</b> Varianza</a></li>
+<li class="chapter" data-level="4.4.5" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#desviación-estándar"><i class="fa fa-check"></i><b>4.4.5</b> Desviación estándar</a></li>
+<li class="chapter" data-level="4.4.6" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#coeficiente-de-variación"><i class="fa fa-check"></i><b>4.4.6</b> Coeficiente de variación</a></li>
+<li class="chapter" data-level="4.4.7" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#hacerlo-en-r-1"><i class="fa fa-check"></i><b>4.4.7</b> Hacerlo en R</a></li>
+<li class="chapter" data-level="4.4.8" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#box-plots-y-dispersión"><i class="fa fa-check"></i><b>4.4.8</b> Box-plots y dispersión</a></li>
+<li class="chapter" data-level="4.4.9" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#medida-de-la-dispersión-cuando-no-hay-distancias"><i class="fa fa-check"></i><b>4.4.9</b> Medida de la dispersión cuando no hay distancias</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#el-individuo-en-relación-a-su-grupo"><i class="fa fa-check"></i><b>4.5</b> El individuo en relación a su grupo</a></li>
+<li class="chapter" data-level="4.6" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#resumen-de-medidas-descriptivas"><i class="fa fa-check"></i><b>4.6</b> Resumen de medidas descriptivas</a><ul>
+<li class="chapter" data-level="4.6.1" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#medidas-de-posición-1"><i class="fa fa-check"></i><b>4.6.1</b> Medidas de posición</a></li>
+<li class="chapter" data-level="4.6.2" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#medidas-de-dispersión-1"><i class="fa fa-check"></i><b>4.6.2</b> Medidas de dispersión</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html"><i class="fa fa-check"></i><b>5</b> Relación entre variables: los fundamentos</a><ul>
+<li class="chapter" data-level="5.1" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#tablas-de-contingencia"><i class="fa fa-check"></i><b>5.1</b> Tablas de contingencia</a></li>
+<li class="chapter" data-level="5.2" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#frecuencias-relativas"><i class="fa fa-check"></i><b>5.2</b> Frecuencias relativas</a></li>
+<li class="chapter" data-level="5.3" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#una-clasificación-en-referencia-al-tiempo"><i class="fa fa-check"></i><b>5.3</b> Una clasificación en referencia al tiempo</a></li>
+<li class="chapter" data-level="5.4" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#la-dirección-de-la-relación"><i class="fa fa-check"></i><b>5.4</b> La dirección de la relación</a></li>
+<li class="chapter" data-level="5.5" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#concepto-de-riesgo-relativo"><i class="fa fa-check"></i><b>5.5</b> Concepto de riesgo relativo</a></li>
+<li class="chapter" data-level="5.6" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#la-intensidad"><i class="fa fa-check"></i><b>5.6</b> La intensidad</a></li>
+<li class="chapter" data-level="5.7" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#el-concepto-de-independencia-estadística"><i class="fa fa-check"></i><b>5.7</b> El concepto de independencia estadística</a></li>
+<li class="chapter" data-level="5.8" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#hacerlo-en-r-2"><i class="fa fa-check"></i><b>5.8</b> Hacerlo en R</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html"><i class="fa fa-check"></i><b>6</b> Relación entre variables: el análisis</a><ul>
+<li class="chapter" data-level="6.1" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#variables-nominales-con-más-de-dos-categorías-cada-una"><i class="fa fa-check"></i><b>6.1</b> Variables nominales con más de dos categorías cada una</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#la-distancia-entre-frecuencias-esperadas-y-observadas"><i class="fa fa-check"></i><b>6.1.1</b> La distancia entre frecuencias esperadas y observadas</a></li>
+<li class="chapter" data-level="6.1.2" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#coeficientes-de-asociación-para-variables-nominales"><i class="fa fa-check"></i><b>6.1.2</b> Coeficientes de asociación para variables nominales</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#variables-de-nivel-ordinal"><i class="fa fa-check"></i><b>6.2</b> Variables de nivel ordinal</a></li>
+<li class="chapter" data-level="6.3" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#nivel-intervalar-o-proporcional"><i class="fa fa-check"></i><b>6.3</b> Nivel intervalar o proporcional</a></li>
+<li class="chapter" data-level="6.4" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#dicotomías-reales-y-artificiales"><i class="fa fa-check"></i><b>6.4</b> Dicotomías reales y artificiales</a></li>
+<li class="chapter" data-level="6.5" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#niveles-de-medición-combinados"><i class="fa fa-check"></i><b>6.5</b> Niveles de medición combinados</a><ul>
+<li class="chapter" data-level="6.5.1" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#una-variable-dicotómica-real-y-una-proporcional"><i class="fa fa-check"></i><b>6.5.1</b> Una variable dicotómica real y una proporcional</a></li>
+<li class="chapter" data-level="6.5.2" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#una-variable-continua-dicotomizada-y-una-proporcional"><i class="fa fa-check"></i><b>6.5.2</b> Una variable continua dicotomizada y una proporcional</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#resumen-de-coeficientes-de-asociación"><i class="fa fa-check"></i><b>6.6</b> Resumen de coeficientes de asociación</a></li>
+<li class="chapter" data-level="6.7" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#matriz-de-correlaciones"><i class="fa fa-check"></i><b>6.7</b> Matriz de correlaciones</a></li>
+<li class="chapter" data-level="6.8" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#la-forma-de-la-relación"><i class="fa fa-check"></i><b>6.8</b> La forma de la relación</a><ul>
+<li class="chapter" data-level="6.8.1" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#ordenada-al-origen"><i class="fa fa-check"></i><b>6.8.1</b> Ordenada al origen</a></li>
+<li class="chapter" data-level="6.8.2" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#pendiente"><i class="fa fa-check"></i><b>6.8.2</b> Pendiente</a></li>
+<li class="chapter" data-level="6.8.3" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#obtención-de-la-recta-de-regresión"><i class="fa fa-check"></i><b>6.8.3</b> Obtención de la recta de regresión</a></li>
+</ul></li>
+<li class="chapter" data-level="6.9" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#la-importancia-de-la-visualización"><i class="fa fa-check"></i><b>6.9</b> La importancia de la visualización</a></li>
+<li class="chapter" data-level="6.10" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#hacerlo-en-r-3"><i class="fa fa-check"></i><b>6.10</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="6.10.1" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#distancia-chi2"><i class="fa fa-check"></i><b>6.10.1</b> Distancia <span class="math inline">\(\chi^{2}\)</span></a></li>
+<li class="chapter" data-level="6.10.2" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#coeficientes"><i class="fa fa-check"></i><b>6.10.2</b> Coeficientes</a></li>
+<li class="chapter" data-level="6.10.3" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#modelo-lineal"><i class="fa fa-check"></i><b>6.10.3</b> Modelo lineal</a></li>
+<li class="chapter" data-level="6.10.4" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#cuarteto-de-anscombe"><i class="fa fa-check"></i><b>6.10.4</b> Cuarteto de Anscombe</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html"><i class="fa fa-check"></i><b>7</b> Obtención de la muestra</a><ul>
+<li class="chapter" data-level="7.1" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#población"><i class="fa fa-check"></i><b>7.1</b> Población</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestra"><i class="fa fa-check"></i><b>7.1.1</b> Muestra</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreos-probabilísticos"><i class="fa fa-check"></i><b>7.2</b> Muestreos probabilísticos</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-irrestricto-aleatorio-o-aleatorio-simple"><i class="fa fa-check"></i><b>7.2.1</b> Muestreo irrestricto aleatorio o aleatorio simple</a></li>
+<li class="chapter" data-level="7.2.2" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-sistemático"><i class="fa fa-check"></i><b>7.2.2</b> Muestreo sistemático</a></li>
+<li class="chapter" data-level="7.2.3" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-estratificado"><i class="fa fa-check"></i><b>7.2.3</b> Muestreo estratificado</a></li>
+<li class="chapter" data-level="7.2.4" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-por-conglomerados"><i class="fa fa-check"></i><b>7.2.4</b> Muestreo por conglomerados</a></li>
+<li class="chapter" data-level="7.2.5" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#método-de-kish"><i class="fa fa-check"></i><b>7.2.5</b> Método de Kish</a></li>
+<li class="chapter" data-level="7.2.6" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#uso-combinado-de-técnicas-de-muestreo"><i class="fa fa-check"></i><b>7.2.6</b> Uso combinado de técnicas de muestreo</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreos-no-probabilísticos"><i class="fa fa-check"></i><b>7.3</b> Muestreos no probabilísticos</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-por-cuotas"><i class="fa fa-check"></i><b>7.3.1</b> Muestreo por cuotas</a></li>
+<li class="chapter" data-level="7.3.2" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-de-juicio-o-intencional"><i class="fa fa-check"></i><b>7.3.2</b> Muestreo de juicio o intencional</a></li>
+<li class="chapter" data-level="7.3.3" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-autoelegido"><i class="fa fa-check"></i><b>7.3.3</b> Muestreo autoelegido</a></li>
+<li class="chapter" data-level="7.3.4" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-accidental-o-según-disponibilidad"><i class="fa fa-check"></i><b>7.3.4</b> Muestreo accidental o según disponibilidad</a></li>
+<li class="chapter" data-level="7.3.5" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-bola-de-nieve"><i class="fa fa-check"></i><b>7.3.5</b> Muestreo bola de nieve</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#resumen-de-técnicas-de-muestreo"><i class="fa fa-check"></i><b>7.4</b> Resumen de técnicas de muestreo</a></li>
+<li class="chapter" data-level="7.5" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#hacerlo-en-r-4"><i class="fa fa-check"></i><b>7.5</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="7.5.1" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#aleatorio-simple"><i class="fa fa-check"></i><b>7.5.1</b> Aleatorio simple</a></li>
+<li class="chapter" data-level="7.5.2" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#estratificado"><i class="fa fa-check"></i><b>7.5.2</b> Estratificado</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html"><i class="fa fa-check"></i><b>8</b> Probabilidad: los fundamentos</a><ul>
+<li class="chapter" data-level="8.1" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#el-rol-de-la-probabilidad-en-estadística"><i class="fa fa-check"></i><b>8.1</b> El rol de la probabilidad en Estadística</a></li>
+<li class="chapter" data-level="8.2" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#formas-para-asignar-probabilidades"><i class="fa fa-check"></i><b>8.2</b> Formas para asignar probabilidades</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#asignación-a-priori"><i class="fa fa-check"></i><b>8.2.1</b> Asignación a priori</a></li>
+<li class="chapter" data-level="8.2.2" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#asignación-a-posteriori"><i class="fa fa-check"></i><b>8.2.2</b> Asignación a posteriori</a></li>
+<li class="chapter" data-level="8.2.3" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#la-relación-entre-asignación-a-priori-y-a-posteriori"><i class="fa fa-check"></i><b>8.2.3</b> La relación entre asignación a priori y a posteriori</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#operando-con-probabilidades"><i class="fa fa-check"></i><b>8.3</b> Operando con probabilidades</a><ul>
+<li class="chapter" data-level="8.3.1" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#con-probabilidades-frecuenciales"><i class="fa fa-check"></i><b>8.3.1</b> Con probabilidades frecuenciales</a></li>
+<li class="chapter" data-level="8.3.2" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#con-probabilidades-a-priori"><i class="fa fa-check"></i><b>8.3.2</b> Con probabilidades a priori</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#el-teorema-de-bayes"><i class="fa fa-check"></i><b>8.4</b> El teorema de Bayes</a></li>
+<li class="chapter" data-level="8.5" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#variables-aleatorias"><i class="fa fa-check"></i><b>8.5</b> Variables aleatorias</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html"><i class="fa fa-check"></i><b>9</b> Probabilidad: los modelos</a><ul>
+<li class="chapter" data-level="9.1" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#concepto-de-modelización"><i class="fa fa-check"></i><b>9.1</b> Concepto de modelización</a></li>
+<li class="chapter" data-level="9.2" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#distribución-binomial"><i class="fa fa-check"></i><b>9.2</b> Distribución binomial</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#esperanza-y-varianza"><i class="fa fa-check"></i><b>9.2.1</b> Esperanza y varianza</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#distribución-normal"><i class="fa fa-check"></i><b>9.3</b> Distribución normal</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#percentiles"><i class="fa fa-check"></i><b>9.3.1</b> Percentiles</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#la-idea-de-grados-de-libertad"><i class="fa fa-check"></i><b>9.4</b> La idea de grados de libertad</a></li>
+<li class="chapter" data-level="9.5" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#la-distribución-ji-cuadrado-chi2"><i class="fa fa-check"></i><b>9.5</b> La distribución ji cuadrado (<span class="math inline">\(\chi^{2}\)</span>)</a></li>
+<li class="chapter" data-level="9.6" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#la-distribución-t-de-student"><i class="fa fa-check"></i><b>9.6</b> La distribución t de Student</a><ul>
+<li class="chapter" data-level="9.6.1" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#la-distribución-f"><i class="fa fa-check"></i><b>9.6.1</b> La distribución F</a></li>
+</ul></li>
+<li class="chapter" data-level="9.7" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#hacerlo-en-r-5"><i class="fa fa-check"></i><b>9.7</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="9.7.1" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#probabilidades"><i class="fa fa-check"></i><b>9.7.1</b> Probabilidades</a></li>
+<li class="chapter" data-level="9.7.2" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#percentiles-1"><i class="fa fa-check"></i><b>9.7.2</b> Percentiles</a></li>
+<li class="chapter" data-level="9.7.3" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#áreas-centrales"><i class="fa fa-check"></i><b>9.7.3</b> Áreas centrales</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html"><i class="fa fa-check"></i><b>10</b> Distribuciones en el muestreo</a><ul>
+<li class="chapter" data-level="10.1" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#parámetros-y-estimadores"><i class="fa fa-check"></i><b>10.1</b> Parámetros y estimadores</a></li>
+<li class="chapter" data-level="10.2" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#características-de-los-estimadores"><i class="fa fa-check"></i><b>10.2</b> Características de los estimadores</a><ul>
+<li class="chapter" data-level="10.2.1" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#insesgabilidad"><i class="fa fa-check"></i><b>10.2.1</b> Insesgabilidad</a></li>
+<li class="chapter" data-level="10.2.2" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#consistencia"><i class="fa fa-check"></i><b>10.2.2</b> Consistencia</a></li>
+<li class="chapter" data-level="10.2.3" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#eficiencia"><i class="fa fa-check"></i><b>10.2.3</b> Eficiencia</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#distribución-de-la-media-muestral"><i class="fa fa-check"></i><b>10.3</b> Distribución de la media muestral</a></li>
+<li class="chapter" data-level="10.4" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#distribución-de-la-proporción-muestral"><i class="fa fa-check"></i><b>10.4</b> Distribución de la proporción muestral</a></li>
+<li class="chapter" data-level="10.5" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#muestras-pequeñas"><i class="fa fa-check"></i><b>10.5</b> Muestras pequeñas</a></li>
+<li class="chapter" data-level="10.6" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#distribución-de-la-varianza"><i class="fa fa-check"></i><b>10.6</b> Distribución de la varianza</a></li>
+<li class="chapter" data-level="10.7" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#distribución-del-cociente-de-varianzas"><i class="fa fa-check"></i><b>10.7</b> Distribución del cociente de varianzas</a></li>
+<li class="chapter" data-level="10.8" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#resumen-de-la-relación-entre-estimadores-y-parámetros"><i class="fa fa-check"></i><b>10.8</b> Resumen de la relación entre estimadores y parámetros</a></li>
+<li class="chapter" data-level="10.9" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#hacerlo-en-r-6"><i class="fa fa-check"></i><b>10.9</b> Hacerlo en R</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html"><i class="fa fa-check"></i><b>11</b> Estimación por intervalo</a><ul>
+<li class="chapter" data-level="11.1" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#estimación-puntual"><i class="fa fa-check"></i><b>11.1</b> Estimación puntual</a></li>
+<li class="chapter" data-level="11.2" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#intervalos-de-confianza"><i class="fa fa-check"></i><b>11.2</b> Intervalos de confianza</a><ul>
+<li class="chapter" data-level="11.2.1" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#estimación-de-la-media"><i class="fa fa-check"></i><b>11.2.1</b> Estimación de la media</a></li>
+<li class="chapter" data-level="11.2.2" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#estimación-de-la-proporción"><i class="fa fa-check"></i><b>11.2.2</b> Estimación de la proporción</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#la-calidad-de-las-estimaciones-por-intervalo"><i class="fa fa-check"></i><b>11.3</b> La calidad de las estimaciones por intervalo</a><ul>
+<li class="chapter" data-level="11.3.1" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#el-error-de-estimación-en-la-proporción"><i class="fa fa-check"></i><b>11.3.1</b> El error de estimación en la proporción</a></li>
+<li class="chapter" data-level="11.3.2" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#probabilidad-de-cobertura"><i class="fa fa-check"></i><b>11.3.2</b> Probabilidad de cobertura</a></li>
+</ul></li>
+<li class="chapter" data-level="11.4" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#hacerlo-en-r-7"><i class="fa fa-check"></i><b>11.4</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="11.4.1" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#intervalo-para-la-media"><i class="fa fa-check"></i><b>11.4.1</b> Intervalo para la media</a></li>
+<li class="chapter" data-level="11.4.2" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#intervalo-para-la-proporción"><i class="fa fa-check"></i><b>11.4.2</b> Intervalo para la proporción</a></li>
+<li class="chapter" data-level="11.4.3" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#cobertura"><i class="fa fa-check"></i><b>11.4.3</b> Cobertura</a></li>
+<li class="chapter" data-level="11.4.4" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#operaciones-sobre-la-base-enprecosp"><i class="fa fa-check"></i><b>11.4.4</b> Operaciones sobre la base ENPreCoSP</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html"><i class="fa fa-check"></i><b>12</b> Prueba de hipótesis: la lógica</a><ul>
+<li class="chapter" data-level="12.1" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#el-razonamiento-de-la-prueba-de-hipótesis"><i class="fa fa-check"></i><b>12.1</b> El razonamiento de la prueba de hipótesis</a><ul>
+<li class="chapter" data-level="12.1.1" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#prueba-sobre-la-media"><i class="fa fa-check"></i><b>12.1.1</b> Prueba sobre la media</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#los-puntos-críticos-en-términos-del-estimador"><i class="fa fa-check"></i><b>12.2</b> Los puntos críticos en términos del estimador</a><ul>
+<li class="chapter" data-level="12.2.1" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#pruebas-unilaterales"><i class="fa fa-check"></i><b>12.2.1</b> Pruebas unilaterales</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#prueba-sobre-la-proporción"><i class="fa fa-check"></i><b>12.3</b> Prueba sobre la proporción</a></li>
+<li class="chapter" data-level="12.4" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#tipos-de-error-en-las-pruebas-de-hipótesis"><i class="fa fa-check"></i><b>12.4</b> Tipos de error en las pruebas de hipótesis</a></li>
+<li class="chapter" data-level="12.5" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#etii-mu-alpha-y-n"><i class="fa fa-check"></i><b>12.5</b> <em>ETII:</em> <span class="math inline">\(\mu\)</span>, <span class="math inline">\(\alpha\)</span> y <span class="math inline">\(n\)</span></a><ul>
+<li class="chapter" data-level="12.5.1" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#curva-de-potencia"><i class="fa fa-check"></i><b>12.5.1</b> Curva de potencia</a></li>
+<li class="chapter" data-level="12.5.2" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#significación-estadística-y-valor-p"><i class="fa fa-check"></i><b>12.5.2</b> Significación estadística y valor <span class="math inline">\(p\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="12.6" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#muestras-pequeñas-y-pruebas-t"><i class="fa fa-check"></i><b>12.6</b> Muestras pequeñas y pruebas <span class="math inline">\(t\)</span></a></li>
+<li class="chapter" data-level="12.7" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#hacerlo-en-r-8"><i class="fa fa-check"></i><b>12.7</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="12.7.1" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#media"><i class="fa fa-check"></i><b>12.7.1</b> Media</a></li>
+<li class="chapter" data-level="12.7.2" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#proporción"><i class="fa fa-check"></i><b>12.7.2</b> Proporción</a></li>
+</ul></li>
+<li class="chapter" data-level="12.8" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#resumen-de-pruebas-sobre-una-muestra"><i class="fa fa-check"></i><b>12.8</b> Resumen de pruebas sobre una muestra</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html"><i class="fa fa-check"></i><b>13</b> Prueba de hipótesis: las aplicaciones</a><ul>
+<li class="chapter" data-level="13.1" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#muestras-independientes"><i class="fa fa-check"></i><b>13.1</b> Muestras independientes</a><ul>
+<li class="chapter" data-level="13.1.1" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#prueba-de-diferencia-de-medias"><i class="fa fa-check"></i><b>13.1.1</b> Prueba de diferencia de medias</a></li>
+<li class="chapter" data-level="13.1.2" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#muestras-apareadas"><i class="fa fa-check"></i><b>13.1.2</b> Muestras apareadas</a></li>
+<li class="chapter" data-level="13.1.3" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#coeficiente-r-de-pearson"><i class="fa fa-check"></i><b>13.1.3</b> Coeficiente r de Pearson</a></li>
+</ul></li>
+<li class="chapter" data-level="13.2" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#hacerlo-en-r-9"><i class="fa fa-check"></i><b>13.2</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="13.2.1" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#ejemplo-1."><i class="fa fa-check"></i><b>13.2.1</b> Ejemplo 1.</a></li>
+<li class="chapter" data-level="13.2.2" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#ejemplo-2."><i class="fa fa-check"></i><b>13.2.2</b> Ejemplo 2.</a></li>
+<li class="chapter" data-level="13.2.3" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#aplicación-a-los-datos-de-adultos-mayores"><i class="fa fa-check"></i><b>13.2.3</b> Aplicación a los datos de Adultos Mayores</a></li>
+<li class="chapter" data-level="13.2.4" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#prueba-apareada"><i class="fa fa-check"></i><b>13.2.4</b> Prueba apareada</a></li>
+<li class="chapter" data-level="13.2.5" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#coeficiente-de-correlación"><i class="fa fa-check"></i><b>13.2.5</b> Coeficiente de correlación</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html"><i class="fa fa-check"></i><b>14</b> Cuando los supuestos no se cumplen</a><ul>
+<li class="chapter" data-level="14.0.1" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#las-pruebas-ji-cuadrado-o-chi-cuadrado"><i class="fa fa-check"></i><b>14.0.1</b> Las pruebas ji cuadrado (o chi cuadrado)</a></li>
+<li class="chapter" data-level="14.0.2" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#coeficiente-r_s-de-spearman"><i class="fa fa-check"></i><b>14.0.2</b> Coeficiente <span class="math inline">\(r_s\)</span> de Spearman</a></li>
+<li class="chapter" data-level="14.0.3" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#alternativas-no-paramétricas-a-las-pruebas-t"><i class="fa fa-check"></i><b>14.0.3</b> Alternativas no paramétricas a las pruebas t</a></li>
+<li class="chapter" data-level="14.1" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#hacerlo-en-r-10"><i class="fa fa-check"></i><b>14.1</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="14.1.1" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#ejemplo-1"><i class="fa fa-check"></i><b>14.1.1</b> Ejemplo 1</a></li>
+<li class="chapter" data-level="14.1.2" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#ejemplo-2"><i class="fa fa-check"></i><b>14.1.2</b> Ejemplo 2</a></li>
+<li class="chapter" data-level="14.1.3" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#prueba-de-la-mediana-1"><i class="fa fa-check"></i><b>14.1.3</b> Prueba de la mediana</a></li>
+<li class="chapter" data-level="14.1.4" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#prueba-de-wilcoxon"><i class="fa fa-check"></i><b>14.1.4</b> Prueba de Wilcoxon</a></li>
+<li class="chapter" data-level="14.1.5" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#muestras-apareadas-1"><i class="fa fa-check"></i><b>14.1.5</b> Muestras apareadas</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html"><i class="fa fa-check"></i><b>15</b> Tamaño del efecto</a><ul>
+<li class="chapter" data-level="15.1" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#significación-estadística-y-significación-práctica"><i class="fa fa-check"></i><b>15.1</b> Significación estadística y significación práctica</a></li>
+<li class="chapter" data-level="15.2" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#medidas-de-tamaño-del-efecto"><i class="fa fa-check"></i><b>15.2</b> Medidas de tamaño del efecto</a><ul>
+<li class="chapter" data-level="15.2.1" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#prueba-t-para-diferencia-de-medias"><i class="fa fa-check"></i><b>15.2.1</b> Prueba t para diferencia de medias</a></li>
+<li class="chapter" data-level="15.2.2" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#análisis-de-la-varianza"><i class="fa fa-check"></i><b>15.2.2</b> Análisis de la varianza</a></li>
+<li class="chapter" data-level="15.2.3" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#correlaciones"><i class="fa fa-check"></i><b>15.2.3</b> Correlaciones</a></li>
+<li class="chapter" data-level="15.2.4" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#regresión-lineal"><i class="fa fa-check"></i><b>15.2.4</b> Regresión lineal</a></li>
+<li class="chapter" data-level="15.2.5" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#pruebas-ji-cuadrado"><i class="fa fa-check"></i><b>15.2.5</b> Pruebas ji cuadrado</a></li>
+</ul></li>
+<li class="chapter" data-level="15.3" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#análisis-de-la-potencia"><i class="fa fa-check"></i><b>15.3</b> Análisis de la potencia</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Generado con bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Estadística para Ciencias Sociales con R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="obtención-de-la-muestra" class="section level1">
+<h1><span class="header-section-number">Capítulo 7</span> Obtención de la muestra</h1>
+<p>La estadística inferencial provee los procedimientos para estudiar un
+subconjunto de elementos y generalizar las conclusiones obtenidas un
+total; esto se debe a que estudiar uno o varios atributos o variables en
+todos los elementos, como se hace en los censos, requiere mucha
+inversión, de tiempo y de dinero. Por ello es que se procede estudiando
+tales variables en una muestra y se estiman por inferencia los valores
+de la población. Se reducen así los costos y se disminuye el tiempo
+necesario para llevar adelante las investigaciones, si se respetan los
+procedimientos de la estadística inferencial el error que proviene de
+trabajar sólo con una parte de la población puede ser conocido y
+controlado.</p>
+<p>El muestreo es un conjunto de procedimientos mediante los cuales se
+selecciona, de un universo determinado, llamado población, un
+subconjunto que recibe el nombre de muestra, con el objetivo de llegar
+al conocimiento de determinadas características de los elementos de la
+población a través de la observación y generalización de esas
+características presentes en los elementos de la muestra.</p>
+<p>Este recurso no es ajeno a la vida cotidiana, por ejemplo, cuando se
+considera a una persona “poco confiable” suele ser a partir de varias
+veces en que esa persona mintió. Al hacerlo, se extiende ese
+comportamiento (se generaliza) a situaciones que no han sido observadas,
+se espera que en el futuro, esa persona actúe de modo similar. Esta
+forma de generalizar tienen requisitos, ya que no es suficiente que haya
+mentido una vez para caracterizarlo como poco confiable, ni que haya
+mentido varias veces sobre un mismo asunto. Por el contrario, debe ser
+una conducta que se haya apreciado en diversidad de situaciones, la que permita hacer un juicio sobre la persona. Por la complejidad de los procesos que involucran a personas, el conocimiento que tengamos de ellos siempre será fragmentario, solo está a nuestro alcance conocer una porción de la infinidad de situaciones humanas posibles. Esos fragmentos constituyen nuestra experiencia cotidiana y necesitamos generalizar intuitivamente para orientarnos en el mundo, para tomar decisiones de todos los días. Pero cuando queremos dar a ese conocimiento un carácter tan validado como sea posible, debemos poner bajo análisis crítico nuestras observaciones y el modo en que han sido seleccionadas. De eso se trata el muestreo; de elegir algunas observaciones que permitan generalizar parcialmente. No lograremos afirmaciones universales, pero sabremos cuáles son los límites de esas afirmaciones.</p>
+<p>En la generalización estadística hay dos subprocesos. El primero es la selección, que consiste en operaciones mediante las cuales se incluyen algunos elementos de la población en la muestra. El segundo es la estimación, donde, a partir de lo observado en la muestra, ofrecemos una aproximación a los valores poblacionales. A su vez, la selección de la muestra implica decidir cuáles y cuántos casos seleccionar, es decir, la calidad del proceso de selección por un lado, y la cantidad de casos a seleccionar por otro. En este capítulo nos ocupamos de la primera de estas preguntas: de qué modo seleccionar individuos para que lo que se observe de ellos pueda extrapolarse a otros individuos no observados. El número de casos que deben seleccionarse, será tema de los capítulos posteriores.</p>
+<p>Destaquemos aquí un punto importante: la calidad de la muestra es un requisito de base. Si la muestra está correctamente elegida, los procedimientos de inferencia son válidos, de lo contrario no lo son, es una clasificación dicotómica, por sí o por no. Por el contrario, el tamaño de la muestra incide gradualmente, veremos que si las muestras son más grandes se detectan mejor las diferencias y se reduce el error de estimación. Pero esto es cierto a condición que se cumpla la primera condición. Si la muestra no es adecuada, el aumento en el número de casos no mejora la estimación, e inclusive puede empeorarla.</p>
+<div id="población" class="section level2">
+<h2><span class="header-section-number">7.1</span> Población</h2>
+<p>Utilizaremos la palabra <strong>población</strong> o, indistintamente, <strong>universo</strong>,
+para designar, de manera genérica, a un conjunto de unidades de análisis
+que son objeto de un estudio particular. Tal conjunto puede estar
+definido con precisión en el tiempo y el espacio o no, a él se referirán
+los resultados obtenidos en la investigación por muestreo. Ejemplos de
+estos son: los pacientes con trastornos alimenticios del hospital
+Misericordia de la ciudad de Córdoba en el año 2009, o los votantes en
+las elecciones para intendente de la ciudad de Río Cuarto en 2008, las
+escuelas primarias de la provincia de Córdoba, las carreras que se
+dictan en universidades en Argentina en 2017, los países representados en la ONU.</p>
+<p>Las unidades de análisis antes mencionadas constituyen los elementos de la población, son entidades de diferente naturaleza: personas, hogares, instituciones, ciudades, países, etc.</p>
+<p>El tamaño que tiene una población influye en el diseño de la muestra
+porque dependiendo de su tamaño, la población puede ser tratada como
+finita o infinita. Se dice que es finita si el número de elementos es
+limitado y se puede tener acceso a todos o casi todos los elementos,
+ejemplo de ello serían los alumnos de cuarto año del colegio Manuel
+Belgrano del ciclo lectivo 2020 o los pacientes admitidos en el Hospital
+de Clínicas en mayo de 2017 o el conjunto de países representados en la ONU en 2015, los senadores electos en un país en un año determinado. Se habla de población infinita<a href="#fn33" class="footnote-ref" id="fnref33"><sup>33</sup></a> cuando
+el número de elementos que integra la misma es elevado, por ejemplo, los automovilistas que circulan por rutas nacionales en una provincia, o alumnos de nivel inicial de la República Argentina. En ciertas ocasiones no se especifica con precisión el tiempo por lo que se habla de población hipotética, tal caso sería el de alumnos de primer año de la carrera de Psicología en UNC (sin especificar ciclo lectivo), por lo que no sólo se incluyen los elementos existentes hoy y en años anteriores, sino también los que en el futuro lo hagan. En este caso, la población no puede siquiera enumerarse. Así sucede también con estudios que plantean probar los efectos de un tipo de psicoterapia sobre pacientes diagnosticados como esquizofrénicos. En ese caso la “población” es la de las personas diagnosticadas como esquizofrénicas en la actualidad y también aquellas que lo serán en el futuro. Cuando se ensaya en una muestra una droga para la hipertensión, la generalización se espera válida para una población que no puede enumerarse: la de “los hipertensos”, tanto los ya diagnosticados como aquellos que lo serán en el futuro. En casos como estos no tenemos posibilidad de delimitar la población completa, decimos que se trata de <strong>poblaciones hipotéticas</strong>.</p>
+<p>Para analizar características de las unidades de análisis, puede creerse que lo mejor sería realizar un <strong>relevamiento exhaustivo</strong> de las mismas. Este relevamiento consistiría en observar dicha característica (variable) en cada uno de los individuos de la población. Tal modo de recolectar la información se conoce con el nombre de <strong>censo</strong>.</p>
+<p>Desde el punto de vista práctico, es frecuente realizar relevamientos exhaustivos cuando las poblaciones son de pequeño tamaño y están bien delimitadas en el tiempo y en el espacio. Un ejemplo de este caso sería la situación en que se pretende conocer la opinión de los alumnos de un curso acerca de su docente, aquí lo más adecuado es indagar (vía encuesta) a cada uno de ellos.</p>
+<p>Sin embargo, la mayoría de las poblaciones de interés para la
+investigación social tienen dimensiones considerables (todos los alumnos de primer grado del país) o son inaccesibles (los consumidores de una marca de gaseosa, los practicantes del budismo) o son hipotéticas (las personas diagnosticadas de depresión, los ciudadanos con ideología de derecha).</p>
+<p>Cuando se busca dar generalidad a los resultados alcanzados a través de experimentos, la población de referencia suele ser hipotética: los
+efectos de una droga sobre la depresión, la relación entre xenofobia y autoritarismo, la eficacia de una estrategia didáctica. Son casos que aspiran a generar
+resultados válidos para una población hipotética, por lo que el
+relevamiento completo es imposible y solo se puede observar a unos pocos
+casos. El modo en que seleccionemos esos pocos casos es de la máxima
+importancia para que los resultados también sean válidos para los casos
+que no son observados.</p>
+<p>Además de permitir economía de recursos, el muestreo permite profundizar
+los estudios que se realizan sobre los elementos de la muestra. En
+efecto, en los relevamientos exhaustivos de gran magnitud, como los
+censos nacionales o provinciales, no es posible profundizar con la
+indagación; por el contrario se deben hacer pocas preguntas a fin de
+alcanzar a una gran población en un tiempo aceptable. Si se trabaja con
+una muestra, se puede indagar con más detalle y profundidad, y luego,
+con los procedimientos adecuados, extender los hallazgos a la población
+de la cual la muestra proviene.</p>
+<div id="muestra" class="section level3">
+<h3><span class="header-section-number">7.1.1</span> Muestra</h3>
+<p>Se llama <strong>muestra</strong> a un subconjunto de una población que comparte sus
+características en los aspectos de interés para la investigación. El
+concepto de muestra va ligado al de representatividad, es decir a su
+capacidad de actuar como “representante” de los elementos de la
+población que no han sido seleccionados. Tal representatividad no
+implica una identidad en todos los aspectos, son solamente aquellas
+características que se encuentran bajo análisis las que deben ser
+compartidas por la muestra y la población.</p>
+<!--Esquema Relación entre la muestra y la población-->
+<ul>
+<li>Población de quienes votan en una ciudad –&gt; muestra de votantes para consulta de opinión política.</li>
+<li>Población de docentes universitaries –&gt; muestra de docentes para analizar la distribución de tiempo entre docencia, investigación y extensión.</li>
+<li>Población de hogares existentes en una ciudad –&gt; muestra de hogares para conocer sus condiciones de vida</li>
+</ul>
+<p>Cuando se planifica la extracción de una muestra, no se conoce en
+detalle a la población, por lo que no es posible saber a priori cómo
+debe ser la muestra que la represente. Si se conoce algunas características de la población que estén relacionadas con el aspecto que se estudia, entonces corresponde reproducirlas en la muestra. En el primero de los ejemplos anteriores, la muestra de votantes debe respetar las proporciones de varones y mujeres que hay en la población, así como de los diferentes grupos de edad. Si se extrajera una muestra que solo tenga mujeres de 18 a 25 años sería una muestra sesgada, porque solo tomaría en cuenta un grupo que puede tener comportamiento electoral diferente al resto de la población. Una muestra así, sirve para estudiar el comportamiento de ese grupo particular (mujeres de 18 a 25 años), pero no se puede generalizar a la población.</p>
+<p>En el segundo ejemplo, si sabemos que en la población de docentes universitaries, hay 60% de mujeres, y se espera que las respuestas que den las mujeres sean diferentes a las de los varones, entonces debe respetarse ese porcentaje en la muestra. Pero si el 70% de les docentes va a trabajar en auto y esto no tiene ninguna relación con la distribución de tiempo en las diferentes actividades, entonces ese porcentaje es irrelevante para el muestreo. Por otro lado, si la dedicación (simple, semiexclusiva o exclusiva) incide en el tema de
+investigación, entonces, las diferentes categorías de dedicación deben estar representadas en la muestra.</p>
+<p>La posibilidad de extrapolar los resultados muestrales a la población
+completa está ligada a la posibilidad de asignar probabilidades a
+cada una de las muestras que podrían seleccionarse de una población. De manera que sólo será lícito utilizar los resultados muestrales como
+estimación de valores poblacionales cuando sea posible conocer a priori
+cuál es la probabilidad que cada individuo (cada unidad de análisis definida) de la población tiene de ser
+incluido en la muestra. Las técnicas de muestreo que permiten asegurar
+este requisito se denominan de carácter <strong>probabilístico</strong>. Otras
+técnicas que no cumplen esta condición se llaman muestreos <strong>no probabilísticos</strong> y muchas veces son utilizadas con el objetivo de
+reducir tiempos y costos, pero los resultados obtenidos de ellas no
+pueden utilizarse para extraer conclusiones acerca de la población. Son
+adecuados en estudios que no buscan generalidad de sus conclusiones sino
+profundidad en el análisis de los casos observados. Sin embargo, hay
+investigaciones que usan muestras no probabilísticas para dar carácter
+general a los resultados que se obtienen. Cuando se hace esto, nunca hay
+certeza del grado de generalidad de lo que se concluye y hasta qué punto
+no se trata de características específicas de los individuos a los que
+se observó, porque no puede conocerse el margen de error de lo que se
+estima. Cuando las limitaciones prácticas hacen imposible la obtención
+de una muestra probabilística, se deben tomar recaudos para que la
+muestra sea heterogénea y que la inclusión de casos dependa lo menos
+posible de la voluntad de los participantes.</p>
+<p>Para que sea posible asignar probabilidades a cada una de los individuos
+de formar parte de la muestra, el método por el cual los individuos son
+seleccionados debe excluir la elección voluntaria. Esto implica que el
+proceso de elección debe quedar estrictamente librado al azar, sin dejar
+margen para que se filtre la intencionalidad, no se trata de elegir a
+“cualquiera”. En consecuencia, caerán en la categoría de técnicas de
+muestreo no probabilísticas todos los procedimientos en que exista
+alguien que pueda tomar la decisión acerca de si una unidad va a ser o
+no incluida en una muestra.</p>
+<table>
+<colgroup>
+<col width="100%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="center"><strong>Muestreos probabilísticos</strong>: las muestras obtenidas por estos procedimientos permiten generalizar los resultados obtenidos en ellas a toda la población de referencia. El requisito para que una muestra sea probabilística es que sus elementos hayan sido elegidos al azar (aleatoriamente), sin la participación voluntaria que decida a quién incluir y a quién excluir de la muestra.</td>
+</tr>
+</tbody>
+</table>
+<table>
+<colgroup>
+<col width="100%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td align="center"><strong>Muestreos no probabilísticos</strong>: en estas muestras no se cumple el requisito de aleatoriedad en la selección de los elementos que la componen. Los resultados no se pueden generalizar de manera probabilística más allá de los casos observados.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="muestreos-probabilísticos" class="section level2">
+<h2><span class="header-section-number">7.2</span> Muestreos probabilísticos</h2>
+<p>Cuando se pretende que los resultados obtenidos en una muestra puedan
+ser generalizados a la población de la cual ésta proviene, se hace
+necesario recurrir a muestreos de tipo probabilísticos. Se trata de
+diseños que requieren más cuidado en su elaboración y de manera
+concomitante son más costosos. Señalamos a continuación los tipos puros
+de muestreos probabilísticos y luego veremos algunas combinaciones de
+ellos que se usan a menudo.</p>
+<div id="muestreo-irrestricto-aleatorio-o-aleatorio-simple" class="section level3">
+<h3><span class="header-section-number">7.2.1</span> Muestreo irrestricto aleatorio o aleatorio simple</h3>
+<p>Se trata de una técnica que asigna igual probabilidad de pertenecer a la
+muestra a todos los individuos de la población. Para su realización se
+requiere contar con una lista de los elementos de la población. Este
+listado es lo que se denomina el <strong>marco de la muestra</strong>. Dicho marco
+debe cumplir con los requisitos de exhaustividad (es decir, que sea
+completo) y debe cuidarse que no existan duplicaciones. La tarea de
+depuración de un listado puede insumir bastante tiempo según el tamaño
+de la población y el tipo de marco muestral de que se trate. Es
+diferente el caso de un registro electoral, del total de historias
+clínicas de un gran hospital o del listado de todos los alumnos de una
+facultad, o los diputados de la cámara).</p>
+<p>Su realización consiste en numerar los elementos del listado y elegir
+aleatoriamente una cantidad <span class="math inline">\(n\)</span> de ellos (el tamaño de la muestra). La
+aleatoriedad de la elección queda garantizada por el uso de una tabla de
+números aleatorios o de un generador electrónico de los mismos, algunas
+calculadoras de los teléfonos disponen de esta opción en la tecla <em>#RAN</em> (por random, aleatorio).</p>
+<p>La exigencia de contar con el listado de los elementos de la población
+es una limitación importante para este tipo de muestreo por lo que, como
+se verá más adelante, a menudo se lo utiliza en combinación con otros
+procedimientos. Además, puede ocurrir que los elementos elegidos en la
+muestra se encuentren dispersos geográficamente de manera que resulte
+notablemente costoso ubicar a cada uno de ellos para entrevistarlos.</p>
+<p>Una ventaja importante es que no exige que se conozca a priori ninguna
+característica de la población. Desde el punto de vista estrictamente
+estadístico, resulta más fácil acotar el error de muestreo ya que las
+distribuciones de probabilidad subyacentes son bien conocidas para este
+tipo de muestreo.</p>
+</div>
+<div id="muestreo-sistemático" class="section level3">
+<h3><span class="header-section-number">7.2.2</span> Muestreo sistemático</h3>
+<p>Un procedimiento alternativo al muestreo irrestricto aleatorio lo constituye el muestreo sistemático. En este caso solo se selecciona un elemento aleatoriamente y, comenzando por él, se recorre el marco de la muestra tomando los elementos siguientes a intervalos regulares. El primer paso consiste en determinar el número de veces que se incluye la muestra en la población. Ese valor es el que resulta de dividir el tamaño de la población en el tamaño de la muestra:</p>
+<p><span class="math display">\[r = \frac{N}{n}\]</span></p>
+<p>Donde:</p>
+<p><span class="math inline">\(r\)</span> representa a las veces que la población contiene a la muestra,</p>
+<p><span class="math inline">\(N\)</span>: tamaño de la población,</p>
+<p><span class="math inline">\(n\)</span>: tamaño de la muestra.</p>
+<p>Luego se genera un número aleatorio entre 1 y <span class="math inline">\(r\)</span>, éste constituye el
+primer elemento de la muestra al que llamaremos “a”. A continuación se
+selecciona el elemento que se encuentra <span class="math inline">\(r\)</span> unidades más adelante en la lista (el elemento que ocupa el lugar <span class="math inline">\(a+r\)</span>) y así sucesivamente hasta recorrer la lista completa, lo cual ocurrirá cuando se haya alcanzado al
+enésimo y último elemento de la muestra.</p>
+<p>El gráfico siguiente ilustra este procedimiento, las flechas a la
+derecha señalan los primeros elementos que constituyen la muestra; el
+procedimiento prosigue de idéntica manera hasta la última unidad de la
+muestra.</p>
+<!-- caption: Ilustración del procedimiento de muestreo sistemático-->
+<!-- todo: poner este caption -->
+<table>
+<tbody>
+<tr class="odd">
+<td></td>
+<td align="left">1</td>
+</tr>
+<tr class="even">
+<td></td>
+<td align="left">…</td>
+</tr>
+<tr class="odd">
+<td>→</td>
+<td align="left">a</td>
+</tr>
+<tr class="even">
+<td></td>
+<td align="left">…</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td align="left">…</td>
+</tr>
+<tr class="even">
+<td>→</td>
+<td align="left">a+r</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td align="left">…</td>
+</tr>
+<tr class="even">
+<td></td>
+<td align="left">…</td>
+</tr>
+<tr class="odd">
+<td>→</td>
+<td align="left">a+2r</td>
+</tr>
+<tr class="even">
+<td></td>
+<td align="left">…</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td align="left">…</td>
+</tr>
+<tr class="even">
+<td></td>
+<td align="left">N</td>
+</tr>
+</tbody>
+</table>
+<p>Esta técnica tiene, en principio, los mismos requerimientos que el
+muestreo irrestricto aleatorio, en cuanto a la necesidad de disponer del
+marco de la muestra, pero puede adaptarse cuando no se cuenta con la
+lista.</p>
+<p>Su uso se justifica por dos razones. La primera es que si la lista no
+presenta ninguna tendencia especial, el muestreo sistemático facilita la
+extracción de la muestra, simplifica la operación, ya que la elección de
+todos los números aleatoriamente puede ser lenta por la aparición de
+elementos repetidos que deben descartarse. La segunda razón es que puede
+ocurrir que el listado este ordenado según algún criterio (por fechas, o
+por edades de los individuos, etc.), de ser así, existe el riesgo que
+una muestra irrestricta aleatoria concentre los elementos elegidos en
+alguna “zona” de la lista, sobre-representando de esta manera a los
+individuos que tienen alguna característica en común. En este caso el
+muestreo sistemático asegura que el marco de la muestra sea recorrido
+completamente a intervalos iguales.</p>
+<p>Por otra parte, existen situaciones en que el muestreo sistemático es
+desaconsejado: diremos que la población presenta un comportamiento
+cíclico si cierta característica se repite regularmente cada cierta
+cantidad fija de casos. Un ejemplo de esto es una muestra a lo largo del
+tiempo, en que algunos “momentos”, tales como inicios o finales de mes,
+determinados días de la semana, etc., se repiten periódicamente en el
+año. Sea que tratamos de estimar los ingresos a un hospital y elegimos, de manera sistemática, los días que constituirán la muestra. Si el valor de r fuera 7 ó un múltiplo de él, la muestra contendría siempre al mismo día de la semana y sería un sesgo grave, porque los ingresos al hospital pueden ser muy diferentes en los diferentes días de la semana. Aun cuando el ejemplo va más allá de lo realista, su utilidad está en alertar contra el uso de procedimientos sistemáticos cuando se sospecha de la existencia de una tendencia cíclica en el listado con que se cuenta.</p>
+<p>Por último, hay casos en que el muestreo sistemático se usa para
+prescindir del marco de la muestra. Es cuando se seleccionan casos a
+partir de poblaciones en movimiento: la cola para entrar al cine es un
+caso. Otro caso frecuente son las encuestas “boca de urna” en las que se
+pregunta por quién votó a personas que salen del lugar de votación. Allí
+no hay listado al que recurrir, es a la gente que está físicamente
+presente que debemos encuestar. El recurso consiste en elegir a una
+persona cada <span class="math inline">\(r\)</span>, buscando que la muestra incluya a personas que llegaron temprano y que llegaron tarde, que votaron a la mañana y a la tarde, es decir que recorramos la “fila” alcanzando a quienes están en los primeros lugares y también a quienes están al final.</p>
+</div>
+<div id="muestreo-estratificado" class="section level3">
+<h3><span class="header-section-number">7.2.3</span> Muestreo estratificado</h3>
+<p>El procedimiento consiste en extraer muestras de subconjuntos de la
+población llamados estratos. Se espera que tales estratos sean
+homogéneos en su interior con respecto a alguna característica conocida
+a priori. Dicha característica se denomina criterio de estratificación.</p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-222"></span>
+<img src="imagenes/image87.png" alt="En el muestreo estratificado se eligen muestras diferentes de cada uno de los subconjuntos definidos en la población." width="134" />
+<p class="caption">
+Figura 7.1: En el muestreo estratificado se eligen muestras diferentes de cada uno de los subconjuntos definidos en la población.
+</p>
+</div>
+<p>Un ejemplo puede aclarar esta idea: supongamos que se requiere estimar
+el consumo de bebidas alcohólicas de los jóvenes. Como se supone que esa
+variable está influida por el nivel socioeconómico, puede utilizarse
+este último como criterio para estratificar a la población, dividiéndola
+en subconjuntos en los que el nivel socioeconómico sea homogéneo. La
+cantidad de estratos que puedan definirse de esta manera dependerá del
+grado de precisión con que pueda medirse el nivel socioeconómico. Si
+estratificamos con categorías nivel socioeconómico alto, medio y bajo,
+entonces será <span class="math inline">\(k=3\)</span> y seleccionaremos jóvenes de cada uno de los tres
+estratos.</p>
+<p>Es de destacar que la división de la población en estratos demanda
+cierta información acerca de ella (en este ejemplo el nivel
+socioeconómico). Cuanta más precisión se pretenda lograr con la
+estratificación, tanto mayor será la información necesaria a priori.</p>
+<p>A veces los estratos están dados de manera más inmediata, como sucede
+con los alumnos de una carrera universitaria. Si se busca una muestra
+que represente a los estudiantes de la carrera, es conveniente
+estratificar por año de cursado, de modo de incluir en ella alumnos de
+todos los años.</p>
+<p>Este procedimiento de muestreo se utiliza cuando se busca aumentar la
+precisión de la estimación sobre la población total o bien para mejorar
+la precisión sobre los estratos individuales. Se obtendrá tanto mayor
+ganancia en la estimación cuanto más homogéneos sean los estratos en su
+interior y más diferentes (heterogéneos) sean entre ellos. Veremos en
+detalle las razones de esto cuando presentemos el error en la estimación
+por intervalo.</p>
+<div id="muestreo-estratificado-con-afijación-igual-o-uniforme" class="section level4">
+<h4><span class="header-section-number">7.2.3.1</span> Muestreo estratificado con afijación igual o uniforme</h4>
+<p>Se llama afijación a la modalidad que se utilice para distribuir la
+muestra sobre los estratos definidos. Según la información con que se
+cuente a priori, se podrán utilizar diferentes formas de afijar, la
+primera que tratamos es la afijación igual o uniforme.</p>
+<p>Ésta se aplica cuando no existe información alguna acerca de los
+estratos y no hay razón para ponderar especialmente alguno de ellos. El
+procedimiento es simplemente extraer la misma cantidad de casos de cada
+estrato. Las muestras tienen así el mismo tamaño que resulta:</p>
+<p><span class="math display">\[n_{i} = \frac{n}{k}\]</span></p>
+<p>Donde:</p>
+<p><span class="math inline">\(n_{i}\)</span> es el tamaño de las muestras extraídas de cada estrato</p>
+<p><span class="math inline">\(n\)</span> es el tamaño de la muestra total.</p>
+<p><span class="math inline">\(k\)</span> representa el número de estratos en que fue dividida la población.</p>
+<p>En el ejemplo sobre el consumo de bebidas alcohólicas, si se trata de
+una muestra de 600 jóvenes, con este tipo de afijación, y como son tres
+estratos, extraeremos 200 casos de cada estrato.</p>
+</div>
+<div id="muestreo-estratificado-con-afijación-proporcional" class="section level4">
+<h4><span class="header-section-number">7.2.3.2</span> Muestreo estratificado con afijación proporcional</h4>
+<p>Consiste en extraer de cada estrato una muestra cuyo tamaño resulte
+proporcional al estrato del que proviene. Para ello, primero calculamos <span class="math inline">\(f\)</span>
+que es la proporción de población que integra la muestra:</p>
+<p><span class="math display">\[f = \frac{n}{N}\]</span></p>
+<p>Este cociente se llama <strong>fracción de muestreo</strong>, en su cálculo:</p>
+<p><span class="math inline">\(n\)</span> es el tamaño de la muestra total.</p>
+<p><span class="math inline">\(N\)</span> representa el tamaño de la población.</p>
+<p>Una vez que conocemos la fracción de muestreo, la aplicamos a cada uno
+de los estratos para obtener la cantidad de casos que deben extraerse de
+cada uno:</p>
+<p><span class="math display">\[n_{i} = f*N_{i}\]</span></p>
+<p>Donde:</p>
+<p><span class="math inline">\(N_{i}\)</span>: es la cantidad de casos en el estrato i-ésimo (en la población),</p>
+<p><span class="math inline">\(n_{i}\)</span>: es la cantidad de casos que se extraerán del estrato i-ésimo,</p>
+<p><span class="math inline">\(f\)</span>: es la fracción de muestreo que calculamos antes.</p>
+<p>Para usar este tipo de afijación en el ejemplo del consumo de bebidas
+alcohólicas necesitaríamos conocer la cantidad de jóvenes que hay en
+cada estrato, es decir cuántos jóvenes de nivel socioeconómico alto,
+medio y bajo hay en la población. Este dato usualmente es desconocido.</p>
+<p>Veamos un ejemplo con datos reales: en el año 2008 en Psicología, la
+siguiente era la distribución de alumnos según el año en que habían
+ingresado a la carrera (considerando solo a los ingresados a partir del
+año 2000).</p>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:center;">
+Año de ingreso a la carrera
+</th>
+<th style="text-align:center;">
+Cantidad de alumnos
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+2008
+</td>
+<td style="text-align:center;">
+1357
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+2007
+</td>
+<td style="text-align:center;">
+1113
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+2006
+</td>
+<td style="text-align:center;">
+1001
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+2005
+</td>
+<td style="text-align:center;">
+807
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+2004
+</td>
+<td style="text-align:center;">
+859
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+2003
+</td>
+<td style="text-align:center;">
+764
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+2002
+</td>
+<td style="text-align:center;">
+700
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+2001
+</td>
+<td style="text-align:center;">
+483
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+2000
+</td>
+<td style="text-align:center;">
+399
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+total
+</td>
+<td style="text-align:center;">
+7483
+</td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td style="padding: 0; border: 0;" colspan="100%">
+<span style="font-style: italic;">Fuente: </span> <sup></sup> Anuario estadístico 2008, UNC.
+</td>
+</tr>
+</tfoot>
+</table>
+<p>Si queremos una muestra de 200 alumnos de esa población, la fracción de
+muestreo será:<span class="math inline">\(f = \frac{200}{7483} = 0,027\)</span> que redondeamos a <span class="math inline">\(0,03\)</span>.
+Aplicaremos esta fracción a cada estrato, es decir multiplicamos por esa
+fracción a la cantidad de casos que hay en cada estrato y redondeamos al
+entero más próximo.</p>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:center;">
+Año de ingreso a la carrera
+</th>
+<th style="text-align:center;">
+Cantidad de alumnos
+</th>
+<th style="text-align:center;">
+Casos a seleccionar
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+2008
+</td>
+<td style="text-align:center;">
+1357
+</td>
+<td style="text-align:center;">
+41
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+2007
+</td>
+<td style="text-align:center;">
+1113
+</td>
+<td style="text-align:center;">
+33
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+2006
+</td>
+<td style="text-align:center;">
+1001
+</td>
+<td style="text-align:center;">
+30
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+2005
+</td>
+<td style="text-align:center;">
+807
+</td>
+<td style="text-align:center;">
+24
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+2004
+</td>
+<td style="text-align:center;">
+859
+</td>
+<td style="text-align:center;">
+26
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+2003
+</td>
+<td style="text-align:center;">
+764
+</td>
+<td style="text-align:center;">
+23
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+2002
+</td>
+<td style="text-align:center;">
+700
+</td>
+<td style="text-align:center;">
+21
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+2001
+</td>
+<td style="text-align:center;">
+483
+</td>
+<td style="text-align:center;">
+14
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+2000
+</td>
+<td style="text-align:center;">
+399
+</td>
+<td style="text-align:center;">
+12
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+total
+</td>
+<td style="text-align:center;">
+7483
+</td>
+<td style="text-align:center;">
+</td>
+</tr>
+</tbody>
+</table>
+<p>Entonces, para la muestra debemos elegir 41 alumnos que hayan ingresado
+en 2008, luego 33 del 2007 y así sucesivamente. A esa selección la
+hacemos aleatoria, ya que es posible contar con el marco de la muestra
+que es el registro de alumnos que tiene la facultad.</p>
+<p>Existen otras formas de afijación, más complejas, que tienen en cuenta
+más información acerca de la población. Por ejemplo, la afijación óptima
+tiene en cuenta la heterogeneidad de cada estrato para elegir la
+cantidad de casos que se extraen de cada uno. Ya que cuando los
+elementos son muy homogéneos, bastan unos pocos casos para tener una
+imagen adecuada del conjunto completo, por el contrario, cuanto más
+dispares (heterogéneos) sean los elementos de la población, tantas más
+observaciones serán necesarias para hacer estimaciones de buena calidad.
+Este es el criterio que se usa en el procedimiento llamado afijación
+óptima. Si se dispone de suficiente información, es posible incluir el
+costo de acceso a los casos pertenecientes a diferentes estratos y
+realizar una afijación que minimice el costo global del muestreo, para
+más detalles sugerimos arrobaMendenhall1971.</p>
+<p>Solo nos ocuparemos de las dos formas de afijación que hemos mencionado: igual y proporcional.</p>
+<p>Dos puntos que deben recordarse para decidir el uso del muestreo
+estratificado:</p>
+<ul>
+<li><p>Cada criterio de estratificación demanda información acerca de la
+población. Esa información debe provenir de un conocimiento anterior al
+muestreo.</p></li>
+<li><p>El muestreo estratificado implica un aumento de la calidad de la
+estimación bajo la condición que los elementos que están en un mismo
+estrato sean homogéneos entre sí y que los estratos sean diferentes unos de otros (heterogéneos entre sí).</p></li>
+</ul>
+</div>
+</div>
+<div id="muestreo-por-conglomerados" class="section level3">
+<h3><span class="header-section-number">7.2.4</span> Muestreo por conglomerados</h3>
+<p>Se denomina conglomerado a una unidad de muestreo que está constituida,
+en su interior, por varios elementos de la población. Para un diseño por
+conglomerado deben definirse unidades primarias de muestreo (conocidas como PSU por sus siglas en inglés) que contengan en su interior a las unidades elementales.</p>
+<p>Un ejemplo clásico de este tipo de muestreo lo constituye el caso en que
+se requiere extraer una muestra de hogares en una ciudad. Se trata de
+una situación en la que resulta imposible contar con un listado de las
+unidades primarias (los hogares). Un muestreo por conglomerados permite
+resolver este problema tomando como unidad de selección a los radios censales. Numerando estas unidades sobre un plano de la ciudad (o del
+área que se pretenda relevar) se selecciona aleatoriamente un número <span class="math inline">\(n\)</span> de ellas. Una vez identificadas las unidades primarias que constituirán
+la muestra (los radios censales) se relevan todos los hogares (unidades elementales) que residen en cada una de ellos.</p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-225"></span>
+<img src="imagenes/radios-Rio-Cuarto.png" alt="Radios censales 2010 de la ciudad de Río Cuarto, provincia de Córdoba, Argentina." width="827" />
+<p class="caption">
+Figura 7.2: Radios censales 2010 de la ciudad de Río Cuarto, provincia de Córdoba, Argentina.
+</p>
+</div>
+<p>Otro ejemplo es aquel en el que necesitamos una muestra de 100 alumnos
+de primer grado de escuelas municipales la ciudad de Córdoba. Tenemos dos problemas: el primero es que no hay una lista de estudiantes, no contamos con un marco muestral. El segundo es que, aunque la tuviéramos, tendríamos que ir a
+buscar a cada uno de los 100 alumnos muestreados al lugar donde viven, lo que tendría un costo muy elevado. En este caso, el
+conglomerado (o unidad primaria) que se elige es la escuela: en lugar de
+elegir 100 alumnos al azar, se eligen, por ejemplo 10 escuelas al azar del listado de ellas, que sí existe. Luego, en cada escuela elegimos 10 alumnos, también al azar, a partir del listado de alumnos de primer grado, que sí está disponible en cada escuela.</p>
+<p>Los requisitos para la efectividad de este tipo de muestreo pueden ser
+resumidos como sigue:</p>
+<ul>
+<li><p>Las unidades primarias de muestreo deben ser homogéneas entre sí, de
+tal manera que cada unidad sea intercambiable con otra.</p></li>
+<li><p>Cada unidad primaria debe contener, en su interior, la heterogeneidad propia de la población que se releva.</p></li>
+</ul>
+<p>Volviendo al ejemplo anterior en que las unidades primarias son los radios censales, se espera que cada radio sea similar a los vecinos en cuanto a su composición (dentro de un área geográfica dada, se trata de un supuesto válido). Además, cada radio dispondrá, en su interior, de la
+variedad que sea propia del área en cuestión (en términos de su
+composición: proporción de hogares particulares, comercios, escuelas, etc.).</p>
+<p>Además del ejemplo de los radios censales como unidad primaria previa a los hogares, otros conglomerados utilizados son: establecimientos educativos, para muestrear a su interior docentes o estudiantes, empresas, identificando luego trabajadores, organizaciones religiosas, etc. En general, todo conjunto que contenga en su interior a las unidades elementales, puede elegirse como conglomerado.</p>
+</div>
+<div id="método-de-kish" class="section level3">
+<h3><span class="header-section-number">7.2.5</span> Método de Kish</h3>
+<p>Es un procedimiento para seleccionar aleatoriamente un individuo entre los que residen en un hogar, que es independiente del método de muestreo utilizado para seleccionar los hogares. Solo depende de la composición del hogar y se usa para controlar el sesgo que se pueda producir si el encuestador elige quién encuestar o encuesta al que tiene más accesible.
+Se trata de ordenar a los integrantes del hogar, asignando un número a cada uno de acuerdo a su sexo y edad. El Centro de Control de Enfermedades de Estados Unidos sugiere asignar el número 1 a la persona de mayor edad y sucesivamente a los demás miembros. En el caso que hubiese dos personas de la misma edad, se puede usar la fecha de cumpleaños para decidir cuál va primero. Luego se consulta una planilla que el encuestador lleva consigo, donde tiene impresos números aleatorios entre 1 y el total de personas que habitan en el hogar.</p>
+<p>La planilla tiene cada fila para identificar el número de hogar al que se está encuestando, que es el número de cuestionario que se va a aplicar. Cada columna de la planilla tiene la cantidad de integrantes que hay en el hogar. Por ejemplo: si es el quinto hogar que el encuestador visita y en él viven seis personas adultas, luego de enumerarlas según edad, de acuerdo a la siguiente tabla, debe aplicar el cuestionario a la persona que tiene el número 3.</p>
+<!-- hay que darle formato a esta tabla-->
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+hogar
+</div>
+</th>
+<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="11">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Cantidad de integrantes
+</div>
+</th>
+</tr>
+<tr>
+<th style="text-align:center;">
+</th>
+<th style="text-align:center;">
+1
+</th>
+<th style="text-align:center;">
+2
+</th>
+<th style="text-align:center;">
+3
+</th>
+<th style="text-align:center;">
+4
+</th>
+<th style="text-align:center;">
+5
+</th>
+<th style="text-align:center;">
+6
+</th>
+<th style="text-align:center;">
+7
+</th>
+<th style="text-align:center;">
+8
+</th>
+<th style="text-align:center;">
+9
+</th>
+<th style="text-align:center;">
+10
+</th>
+<th style="text-align:center;">
+12
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+3
+</td>
+<td style="text-align:center;">
+4
+</td>
+<td style="text-align:center;">
+4
+</td>
+<td style="text-align:center;">
+4
+</td>
+<td style="text-align:center;">
+4
+</td>
+<td style="text-align:center;">
+4
+</td>
+<td style="text-align:center;">
+8
+</td>
+<td style="text-align:center;">
+3
+</td>
+<td style="text-align:center;">
+7
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+2
+</td>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+2
+</td>
+<td style="text-align:center;">
+2
+</td>
+<td style="text-align:center;">
+4
+</td>
+<td style="text-align:center;">
+5
+</td>
+<td style="text-align:center;">
+3
+</td>
+<td style="text-align:center;">
+3
+</td>
+<td style="text-align:center;">
+7
+</td>
+<td style="text-align:center;">
+4
+</td>
+<td style="text-align:center;">
+7
+</td>
+<td style="text-align:center;">
+8
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+3
+</td>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+2
+</td>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+4
+</td>
+<td style="text-align:center;">
+5
+</td>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+5
+</td>
+<td style="text-align:center;">
+6
+</td>
+<td style="text-align:center;">
+5
+</td>
+<td style="text-align:center;">
+1
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+4
+</td>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+2
+</td>
+<td style="text-align:center;">
+4
+</td>
+<td style="text-align:center;">
+2
+</td>
+<td style="text-align:center;">
+5
+</td>
+<td style="text-align:center;">
+3
+</td>
+<td style="text-align:center;">
+9
+</td>
+<td style="text-align:center;">
+6
+</td>
+<td style="text-align:center;">
+6
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+5
+</td>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+3
+</td>
+<td style="text-align:center;">
+4
+</td>
+<td style="text-align:center;">
+4
+</td>
+<td style="text-align:center;">
+<strong>3</strong>
+</td>
+<td style="text-align:center;">
+7
+</td>
+<td style="text-align:center;">
+3
+</td>
+<td style="text-align:center;">
+5
+</td>
+<td style="text-align:center;">
+7
+</td>
+<td style="text-align:center;">
+9
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+6
+</td>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+3
+</td>
+<td style="text-align:center;">
+4
+</td>
+<td style="text-align:center;">
+2
+</td>
+<td style="text-align:center;">
+2
+</td>
+<td style="text-align:center;">
+2
+</td>
+<td style="text-align:center;">
+3
+</td>
+<td style="text-align:center;">
+5
+</td>
+<td style="text-align:center;">
+4
+</td>
+<td style="text-align:center;">
+7
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+7
+</td>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+2
+</td>
+<td style="text-align:center;">
+2
+</td>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+3
+</td>
+<td style="text-align:center;">
+5
+</td>
+<td style="text-align:center;">
+3
+</td>
+<td style="text-align:center;">
+7
+</td>
+<td style="text-align:center;">
+3
+</td>
+<td style="text-align:center;">
+6
+</td>
+<td style="text-align:center;">
+10
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+8
+</td>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+2
+</td>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+2
+</td>
+<td style="text-align:center;">
+3
+</td>
+<td style="text-align:center;">
+5
+</td>
+<td style="text-align:center;">
+2
+</td>
+<td style="text-align:center;">
+5
+</td>
+<td style="text-align:center;">
+9
+</td>
+<td style="text-align:center;">
+4
+</td>
+</tr>
+</tbody>
+</table>
+<p>Las encuestas de salud, como la Encuesta Nacional de Factores de Riesgo de Argentina, usan este método. Ver <a href="https://www.who.int/ncds/surveillance/steps/Parte2_Seccion2.pdf">https://www.who.int/ncds/surveillance/steps/Parte2_Seccion2.pdf</a> y <a href="https://www.cdc.gov/Spanish/EncuestasSR/disenoM/muestreo2.html">https://www.cdc.gov/Spanish/EncuestasSR/disenoM/muestreo2.html</a> para las recomendaciones de la Organización Mundial de la Salud y del Centro de Control de Enfermedades.</p>
+</div>
+<div id="uso-combinado-de-técnicas-de-muestreo" class="section level3">
+<h3><span class="header-section-number">7.2.6</span> Uso combinado de técnicas de muestreo</h3>
+<p>Las modalidades de muestreo presentadas pueden combinarse de varias
+formas para resolver problemas particulares.</p>
+<p>En el muestreo por conglomerados puede usarse una segunda etapa
+posterior a la selección de las unidades primarias consistente en la
+incorporación en la muestra sólo de algunas de las unidades elementales
+contenidas en ellas. Tal elección puede realizarse por un diseño
+aleatorio irrestricto o sistemático.</p>
+<p>Aplicando este concepto al ejemplo anterior, la situación consistirá en
+la elección de algunos hogares dentro de los radios seleccionadas (en
+lugar de relevarlos a todos). Para lograr esta muestra, se instruye a
+los encuestadores para que, recorriendo un circuito establecido de antemano, entrevisten
+a un hogar cada una cantidad dada (uno cada diez por ejemplo para contar
+con una muestra del 10% de los hogares del radio).</p>
+<p>O bien, en el ejemplo de los alumnos de primer grado, se trataría de
+seleccionar a 10 de ellos en cada escuela de manera aleatoria.</p>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-227"></span>
+<img src="imagenes/image90.png" alt="Muestreo por conglomerados en dos etapas." width="566" />
+<p class="caption">
+Figura 7.3: Muestreo por conglomerados en dos etapas.
+</p>
+</div>
+<p>La obtención de una muestra en una situación real implica la combinación de varios de estos procedimientos. Por ejemplo, para un sondeo de
+opinión sobre la población adulta de una ciudad, el primer paso es
+estratificar a la población (los adultos residentes en la ciudad), según nivel socioeconómico, porque esta es una variable que suele hacer diferencias marcadas en opinión política o en pautas de consumo. Un dato que puede tenerse sobre el nivel socioeconómico de los habitantes, es el
+provisto por el censo de población, que incluye preguntas que permiten
+hacer una caracterización de los hogares según esta variable. Sin
+embargo, el censo se hace cada diez años y se vuelve desactualizada al
+poco tiempo. Por eso suele usarse, como aproximación al nivel
+socioeconómico, el área de residencia. Si bien no es absoluta, la
+división puede aproximarse con barrios habitados mayoritariamente por
+hogares con nivel socioeconómico más alto y más bajo. Así, en un primer
+momento es posible dividir la ciudad en estratos, determinados por
+grandes áreas que aproximan el nivel socioeconómico. Con los datos del censo se conoce la cantidad de habitantes de cada una de esas áreas (según los cercano que sea el último censo, este dato será más o menos certero), por lo que el muestreo estratificado se puede hacer con estratificación proporcional.</p>
+<p>En la etapa siguiente, en lugar de seleccionar a las personas que
+responderán a la encuesta, se seleccionan unidades geográficas más pequeñas que los barrios: los radios censales. Éstos son enumerados dentro de cada estrato (barrio) y se selecciona aleatoriamente la cantidad de radios que sea necesaria para el tamaño de muestra establecido. Una vez seleccionados los radios, a cada encuestador se le indica que recorra el que le tocó según un circuito establecido de antemano y que llame a la puerta en un domicilio cada <span class="math inline">\(k\)</span>. En cada domicilio seleccionado se debe preguntar por las personas adultas que viven allí y se debe seleccionar aleatoriamente a una de ellas, por el método de Kish, quien será finalmente la que responda a nuestro cuestionario.</p>
+<p>A este esquema general deben agregarse precisiones para casos
+particulares, como el rechazo a responder o la falta de gente en el
+domicilio seleccionado. Lo usual es volver dos veces luego de un rechazo y si se fracasa las dos veces, entonces ese domicilio se reemplaza por otro, según una regla establecida de antemano. También hay que aclarar desde el principio qué hacer en los casos de edificios, barrios cerrados, etc.</p>
+<p>Para los sondeos de opinión, en una ciudad mediana, se estila usar 400
+casos en 20 conglomerados de 20 casos cada uno.</p>
+<p>Como se ve, lo que se busca es dejar el menor margen posible para
+improvisar, para evitar que la selección sea voluntaria. Esto se hace
+para asegurar que la muestra sea aleatoria y por tanto probabilística.</p>
+<p>Si se busca una muestra de pacientes internados en centros de salud de
+una determinada región, se empezará por el listado de esos centros, a
+los cuales es posible estratificar según su dependencia pública o
+privada, según su tamaño, o según otra característica de interés. Una
+vez establecida la estratificación, se seleccionan al azar una cierta
+cantidad de centros de salud de cada estrato y, en cada centro será
+necesario contar con el registro de pacientes internados, aquí se
+introducirán las restricciones propias de cada investigación, el período
+durante el cual nos interesan los datos, las patologías que fueron
+motivo de la internación, etc. La selección de casos (historias clínicas
+de los pacientes internados) puede realizarse de manera irrestricta
+aleatoria si se dispone del listado.</p>
+</div>
+</div>
+<div id="muestreos-no-probabilísticos" class="section level2">
+<h2><span class="header-section-number">7.3</span> Muestreos no probabilísticos</h2>
+<p>Los procedimientos que pretenden estimar valores de la población a
+partir de resultados muestrales sólo pueden aplicarse cuando es posible
+asignar probabilidades a priori a los individuos de ser parte de la
+muestra. Aun cuando no cumplen con este requisito, las técnicas de
+muestreo no probabilísticas se utilizan en situaciones en que se
+pretende adquirir un conocimiento inicial de un problema que se
+encuentra escasamente delimitado, como sucede en los estudios de tipo
+exploratorio. También es frecuente su uso cuando no se pretende un
+conocimiento acabado sobre la población completa sino que el objetivo es
+profundizar sobre algunos casos en particular (estudios de casos) a
+través de entrevistas en profundidad que reconstruyan la historia de
+vida de algunas personas solamente. Un tercer uso es el de aproximar los
+resultados que se obtendrían con muestras probabilísticas. Como
+señalamos antes, deben tenerse recaudos con la generalidad de las
+conclusiones provenientes de este tipo de muestreo.</p>
+<p>Una clasificación útil para este tipo de muestreo toma en consideración
+su definición, esto es que la elección no depende del azar sino de la
+voluntad de alguien. De esta manera los muestreos no probabilísticos
+pueden clasificarse según quien sea el responsable de la elección en:
+muestreo por cuotas, de juicio o intencional, autoelegido y accidental.
+Una combinación de estos procedimientos es el muestro por bola de nieve.</p>
+<div id="muestreo-por-cuotas" class="section level3">
+<h3><span class="header-section-number">7.3.1</span> Muestreo por cuotas</h3>
+<p>En este muestreo se busca reproducir de la manera lo más ajustada
+posible las características de la población en la muestra. Se llama
+cuotas a las fracciones de la muestra con las distintas características.
+Este muestreo se usa cuando se conocen algunas características de la
+población y se busca reproducirlas en la muestra. Por ejemplo, si la
+muestra contiene una proporción de varones y mujeres igual a la que hay
+en la población y además respeta las proporciones de diferentes grupos
+de edad, decimos que usamos cuotas de sexo y edad. A estos criterios
+suele agregarse otros, según los objetivos de la investigación, por
+ejemplo, en las encuestas políticas, es frecuente establecer cuotas de
+acuerdo al voto en las elecciones pasadas. Los ejemplos que indicamos
+antes, como reproducir la proporción de varones y mujeres entre los
+docentes primarios, o de las diferentes proporciones de niveles
+educativos de la población en la muestra, son casos de muestreo por
+cuotas.</p>
+<p>En la práctica, se encarga a los encuestadores una cantidad especificada
+de casos a relevar, sin indicar quiénes serán esos casos ni cómo
+hallarlos, esto le da el carácter de no probabilístico, pero respetando
+las cantidades de casos en cada cuota. El entrevistador elige a
+“cualquiera”, según su comodidad o preferencias, es decir que no es
+posible conocer a priori qué probabilidad tienen los elementos de la
+población de caer en la muestra, pero esa elección está limitada por la
+exigencia que los elementos reúnan ciertas características.</p>
+<p>Un ejemplo es en el que se indica a un encuestador que complete 10
+entrevistas a médicos que trabajen en relación de dependencia en la
+ciudad de Córdoba que tengan hasta diez años de egresados; a otro, que
+entreviste a 15 médicos también en relación de dependencia, pero que
+tengan más de diez años de egresados. Si bien en este caso los
+entrevistadores pueden elegir según su preferencia cuáles serán los
+médicos a los que entrevistará, sus posibilidades de elección están
+restringidas a cumplir la cuota asignada.</p>
+<p>En las encuestas políticas, el encuestador puede verse limitado a elegir
+personas de sexo femenino, de 45 años, que en las elecciones pasadas
+hayan votado por el partido X (mientras que a otros encuestadores se les
+encargarán otras cuotas). No hay azar, porque el encuestador elegirá a
+quienes prefiera o tenga más a su alcance, pero deberá respetar las
+cantidades que le fueron indicadas.</p>
+<p>Atención: una muestra construida por cuotas, es evidentemente
+representativa de los criterios correspondientes de las cuotas con los
+que fue elaborada (sexo, edad, ocupación, región, <span class="math inline">\(\ldots\)</span>). Pero no hay ningún
+medio para saber si es representativa de aquello para lo cual fue
+construida, es decir, el tema de la investigación: la opinión, los
+rendimientos académicos, las actitudes, etc.</p>
+</div>
+<div id="muestreo-de-juicio-o-intencional" class="section level3">
+<h3><span class="header-section-number">7.3.2</span> Muestreo de juicio o intencional</h3>
+<p>En este tipo de muestreo, conocido también como “selección experta”, es
+el investigador quien decide qué elementos son los más adecuados para
+realizar la investigación. La elección se basa en la apreciación
+subjetiva del investigador sobre la representatividad de los elementos
+que muestrea. En algunos ámbitos de la investigación, suele solicitarse
+a expertos que seleccionen los elementos de la población que consideren
+más adecuados para construir la muestra, esta selección se apoya en la
+experiencia de los consultados.</p>
+<p>Un primer uso de este tipo de muestreo es aquel en el que el interés no
+se centra en la representatividad sino en la riqueza de contenidos que
+pueden ofrecer algunos individuos a diferencia de otros.</p>
+<p>Si se pretende reconstruir la historia de un asentamiento urbano
+marginal, sería más adecuado elegir a personas que hayan residido en él
+por largo tiempo. Se espera que los pobladores más antiguos puedan dar
+mayor información acerca de la génesis y evolución que los que han
+arribado recientemente. En este caso, el investigador se preocupará
+primero por identificar a los residentes en el asentamiento y, a partir
+de ese conocimiento, decidirá a quiénes va a incluir en la muestra.</p>
+<p>Aquí no se pretende la generalización de los resultados, ni se busca
+encontrar una historia típica en el sentido de que, en mayor o menor
+grado, la mayoría de los pobladores la comparta. Lo que se busca es
+profundizar el análisis a partir del testimonio de aquellos a los que
+consideramos como informantes más idóneos.</p>
+</div>
+<div id="muestreo-autoelegido" class="section level3">
+<h3><span class="header-section-number">7.3.3</span> Muestreo autoelegido</h3>
+<p>Usado principalmente en razón de la reducción de costos que implica,
+cuando se usa este tipo de muestreo no se selecciona a los sujetos del
+estudio, sino que se solicita a las personas que participen
+voluntariamente. La decisión de formar parte o no de la muestra queda en
+manos de la persona invitada, por eso se llama autoelegido, es ella
+quien optará por participar o no hacerlo (por falta de interés, de
+tiempo, etc.).</p>
+<p>Supongamos que se pretende estudiar el gasto por familia en actividades
+de recreación y para reducir costos, en lugar de enviar encuestadores,
+se envían por correo formularios anónimos a los domicilios de los
+hogares seleccionados aleatoriamente. Podría suceder que aquellos
+hogares que tienen gastos en recreación muy bajos contesten en
+proporción menor que los que más gastan. De esta manera, las respuestas
+resultantes darían un valor promedio por encima del verdadero por el
+hecho que, inadvertidamente, la muestra estaría representando en mayor
+medida a los hogares que tienen los más altos gastos en recreación.</p>
+<p>En el estudio acerca del comportamiento sexual de las mujeres en Estados
+Unidos, el Informe Hite (1976) basó sus conclusiones sobre el 3% de
+mujeres que remitieron completos los cuestionarios que habían recibido
+por correo. Aun cuando el número de cuestionarios respondidos sea alto
+(gracias a una numerosa muestra inicial), resulta riesgoso extender las
+conclusiones a la población en general. Es así porque no se sabe si ese
+pequeño porcentaje de mujeres que respondieron tiene conductas
+semejantes o muy diferentes de aquellas que no lo hicieron.</p>
+<p>En la actualidad ya no se envían formularios por correo postal para que
+la gente responda, pero sí se hacen encuestas por mail o se invita a
+expresar la opinión en encuestas en sitios web. A esas encuestas
+responde una fracción muy específica de la población: la que accede a
+internet, que visita esa página, que tiene tiempo e interés por
+responder a las preguntas que allí se hacen. No es posible saber qué
+recorte de la población es representado por esa muestra y es
+completamente inválido extender los resultados a toda la población, como
+lo es generalizar a los visitantes de esa página, ya que no todos tienen
+el tiempo ni el interés para responder. Se trata de un dato imposible de
+adjudicar a alguna población identificable, es simplemente “la opinión
+de los que opinaron”. Sin embargo a veces se tratan equivocadamente esos
+resultados como si representaran una tendencia de opinión.</p>
+<p>El muestreo autoelegido tiene una aplicación en el campo de experimental
+cuando se trabaja con sujetos humanos. Allí, la selección de quienes
+participarán de los experimentos, muy raramente puede hacerse al azar,
+habitualmente resulta de la voluntad de personas que se prestan para los
+estudios. Sin embargo, es un requisito indispensable en los experimentos
+que se asignen las personas de manera aleatoria a los grupos
+experimental y control. Es decir, que se elija aleatoriamente a cuáles
+de las personas voluntarias se someterá a los tratamientos que se ponen
+a prueba y a cuáles se tomará como controles. También es frecuente usar
+cuotas en la asignación de sujetos a los dos grupos de modo que estén
+equilibrados respecto de algunas variables, cuya determinación depende
+del estudio particular. En este caso las cuotas indican qué proporción
+de casos se requieren en cada categoría de las variables de interés, la
+selección de los sujetos que constituirán el grupo experimental y el
+grupo control se hace aleatoriamente. Este tema se desarrolla con
+detalle en Metodología de la Investigación.</p>
+</div>
+<div id="muestreo-accidental-o-según-disponibilidad" class="section level3">
+<h3><span class="header-section-number">7.3.4</span> Muestreo accidental o según disponibilidad</h3>
+<p>Esta modalidad cuenta con sustancial difusión, en particular por los
+medios de comunicación, y consiste en entrevistar a los individuos que
+se encuentran accidentalmente en determinado lugar. La expresión
+“accidental” se presta a equívocos ya que puede confundirse con
+“aleatorio”. Si bien no resulta posible identificar a quien toma la
+decisión por la selección de la muestra, nos encontramos en una
+situación en que múltiples factores son los responsables de la misma.
+Algunos de estos factores son: la voluntad de los encuestados para
+prestarse o no a participar de la entrevista, la elección (consciente o
+no) que el entrevistador hace entre las personas que transitan, el lugar
+donde se hace la entrevista (ciertas personas difícilmente transitan por
+determinadas áreas de una ciudad), etc.</p>
+<p>El hecho que se trate de la confluencia de múltiples factores fortuitos,
+lo que determina cuáles serán las personas que formarán parte de la
+muestra y quienes no, no puede considerarse sinónimo de aleatoriedad.
+Por lo tanto, no se trata de un muestreo probabilístico dado que no es
+posible asignar probabilidades a priori de pertenecer a la muestra a los
+elementos de la población.</p>
+<p>En consecuencia, las conclusiones obtenidas a través de este tipo de
+relevamiento (porcentaje de opiniones a favor o en contra de un tema
+cualquiera, etc.) sólo pueden ser válidas para aquellas personas que
+fueron parte integrante de la muestra, no pudiendo generalizarse los
+resultados más allá de la misma.</p>
+<p>Por el contrario cuando se lo utiliza en ámbitos académicos, suelen
+tomarse los resguardos mencionados antes para conseguir que sea tan
+representativo como sea posible. Para hacer esto se consideran en primer
+lugar las características conocidas de la población y se las reproduce
+en la muestra por ejemplo la proporción de varones y mujeres, los
+niveles de educación, como en el caso del muestreo por cuotas. Luego se
+busca la mayor heterogeneidad posible y un número elevado de casos. Con
+estos cuidados, este tipo de muestreo puede usarse, por ejemplo para la
+validación de escalas psicométricas.</p>
+</div>
+<div id="muestreo-bola-de-nieve" class="section level3">
+<h3><span class="header-section-number">7.3.5</span> Muestreo bola de nieve</h3>
+<p>Esta técnica fue publicada por primera vez por Leo Goodman (1961), de la
+Universidad de Chicago. Es adecuada cuando se debe estudiar una
+población infrecuente, poco representada en el total general y no hay un
+marco disponible para el muestreo. Estas situaciones se presentan, por
+ejemplo, si se requiere entrevistar a consumidores de drogas ilegales,
+personas afectadas por alguna enfermedad rara, trabajadores inmigrantes.</p>
+<p>Comienza con la selección de una muestra inicial o básica de individuos
+y en cada entrevista se pregunta a qué otras personas de la población el
+entrevistado conoce. Luego se visita a esos casos referenciados por los
+primeros, repitiendo el procedimiento hasta que se completa la muestra.
+Así, al entrevistar a cada miembro de un grupo, se puede pedir que
+indique otros individuos en ese grupo que podrían dar información sobre
+el tema; o pedirle que mencione personas que compartan sus puntos de
+vista y a otras de opinión opuesta. De este modo se entrevistan nuevos
+individuos y se continúa del mismo modo hasta que no se encuentran
+nuevos puntos de vista. Cuando se llega a ese punto, se dice que se ha
+saturado el tema. Este es un buen método para recoger los distintos
+puntos de vista existentes en un grupo, o para alcanzar a persona que no
+son visibles en una comunidad, pero no ofrece información sobre la
+distribución de los casos en la población.</p>
+<p>Si es posible, la primera selección se hace en forma probabilística, y
+los casos siguientes quedan determinados por las referencias que se van
+encontrando. Lo más frecuente es que se carezca de datos iniciales, por
+lo que la primera muestra deberá seleccionarse en forma intencional o
+estar constituida por voluntarios. En cualquier caso se trata de un
+muestreo no probabilístico, cuya ventaja es que puede asegurar una
+amplia cobertura, porque permite llegar a través de contactos
+personales, a individuos que de otro modo permanecerían invisibles. El
+carácter no representativo viene dado porque la probabilidad de
+entrevistar a una determinada persona depende de sus conexiones:
+aquellas muy conectadas tendrán más probabilidad de ser entrevistadas
+que las que estén aisladas, o tengan pocos conocidos.</p>
+<p>Este método puede mejorarse para lograr que la muestra sea
+representativa de la población. Para eso se lo combina con un modelo
+matemático que da peso diferente a los casos teniendo en cuenta que han
+sido seleccionados de manera no aleatoria. La técnica que así resulta se
+llama “Muestreo Dirigido por el Respondente” y fue desarrollado por
+Douglas Heckathorn en 1997, como parte de un proyecto de investigación
+sobre prevención de VIH dirigido a consumidores de drogas inyectables en
+varias ciudades de Connecticut. Aplicando este procedimiento se logran
+muestras no sesgadas (representativas) aun cuando se haya partido, como
+generalmente sucede, con una muestra no probabilística. Para detalles
+sobre el modo de usarlo, puede consultarse
+<a href="http://www.respondentdrivensampling.org/">http://www.respondentdrivensampling.org/</a>, donde se encuentran abundantes
+ejemplos de aplicación.</p>
+</div>
+</div>
+<div id="resumen-de-técnicas-de-muestreo" class="section level2">
+<h2><span class="header-section-number">7.4</span> Resumen de técnicas de muestreo</h2>
+<!-- todo: cambiar esto por imagen -->
+<!-- ----------------------------------------------------------------------------------------------------------------------------------------------- -->
+<!-- Probabilísticos                                                     Irrestricto aleatorio o Aleatorio simple    -->
+<!-- -Selección aleatoria                                                                                            -->
+<!-- -Permiten conocer el error en la generalización de los resultados                                               -->
+<!-- ------------------------------------------------------------------- ------------------------------------------ -------------------------------- -->
+<!--                                                                     Sistemático                                 -->
+<!--                                                                     Estratificado                              Con afijación igual o uniforme -->
+<!--                                                                                                                Con afijación proporcional -->
+<!--                                                                     Por conglomerados o racimos                En una etapa -->
+<!--                                                                                                                En dos o más etapas -->
+<!-- ----------------------------------------------------------------------------------------------------------------------------------------------- -->
+<!-- ------------------------------------------------------------------------------------------------------- -->
+<!-- No probabilísticos                                                    Por cuotas -->
+<!-- -Selección voluntaria                                                  -->
+<!-- -Según el tipo, permiten generalizar aproximadamente los resultados    -->
+<!-- -No se conoce el error de estimación                                   -->
+<!-- --------------------------------------------------------------------- --------------------------------- -->
+<!--                                                                       De juicio o intencional -->
+<!--                                                                       Autoelegido -->
+<!--                                                                       Accidental o por disponibilidad -->
+<!-- ------------------------------------------------------------------------------------------------------- -->
+</div>
+<div id="hacerlo-en-r-4" class="section level2">
+<h2><span class="header-section-number">7.5</span> Hacerlo en R</h2>
+<div id="aleatorio-simple" class="section level3">
+<h3><span class="header-section-number">7.5.1</span> Aleatorio simple</h3>
+<p>Una muestra aleatoria de casos de una matriz de datos, es una selección aleatoria de un número determinado de filas, manteniendo todas las columnas igual.</p>
+<p>En primer lugar leeremos la base Encuesta Nacional de Factores de Riesgo con el nombre enfr y luego, extraeremos una submuestra aleatoria de 100 casos de ella a la que denominamos enfr100.</p>
+<p>El corchete se refiere a los elementos de enfr que se van a seleccionar. De las filas (primer componente dentro del corchete, antes dela coma) se elige una muestra de 100 filas de enfr.Luego de la coma no se indica nada, con lo que se dejan todas las columnas de la base original. En el panel superior derecho se observa la aparición del nuevo objeto enfr100, con 100 casos y 204 variables, las mismas que tenía enfr.</p>
+</div>
+<div id="estratificado" class="section level3">
+<h3><span class="header-section-number">7.5.2</span> Estratificado</h3>
+<div id="afijación-uniforme" class="section level4">
+<h4><span class="header-section-number">7.5.2.1</span> Afijación uniforme</h4>
+<p>Es necesario instalar un paquete específico y cargarlo en la sesión</p>
+<p>Luego se define la nueva matriz muestra.estrat.eph, indicando la matriz de donde se extrae la muestra, el criterio de estratificación y la cantidad de casos. Pediremos 100 casos de cada nivel de educación:</p>
+<p>Para ver el resultado, se puede pedir cualquier tabla, con los márgenes a fin de ver el total de casos en cada categoría:</p>
+<pre><code>##      
+##         1   2   3   4   5   6   7 Sum
+##   1    55  46  53  37  39  44  55 329
+##   2    45  54  47  63  61  56  45 371
+##   Sum 100 100 100 100 100 100 100 700</code></pre>
+<p>La muestra tiene 700 casos que son 100 de cada nivel de educación. También se puede pedir más de un criterio de estratificación, por ejemplo, educación y sexo:</p>
+<pre><code>##      
+##          1    2    3    4    5    6    7  Sum
+##   1    100  100  100  100  100  100  100  700
+##   2    100  100  100  100  100  100  100  700
+##   Sum  200  200  200  200  200  200  200 1400</code></pre>
+<p>Ahora hay 1400 casos en total 100 en cada combinación de sexo y nivel de educación (2X7).</p>
+</div>
+<div id="afijación-proporcional" class="section level4">
+<h4><span class="header-section-number">7.5.2.2</span> Afijación proporcional</h4>
+<p>En lugar de especificar la cantidad de casos, se puede indicar la proporción de casos que se requieren de cada categoría, por ejemplo para el 10%:</p>
+<pre><code>##      
+##          1    2    3    4    5    6    7  Sum
+##   1    404  337  620  536  298  270  264 2729
+##   2    428  391  559  561  344  407  270 2960
+##   Sum  832  728 1179 1097  642  677  534 5689</code></pre>
+<p>La cantidad de casos en cada categoría depende de cuántos casos había en la matriz original.</p>
+<!-- todo: chequear que sea la nota 48 -->
+
+</div>
+</div>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="33">
+<li id="fn33"><p>La idea de infinito no es la de la matemática, sino que se refiere a una relación pequeña entre la cantidad de casos de muestra y los de la de la población. Ver nota 48.<a href="obtención-de-la-muestra.html#fnref33" class="footnote-back">↩</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="relación-entre-variables-el-análisis.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="probabilidad-los-fundamentos.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/jcrodriguez1989/EstadisticaParaCienciasSocialesConR/edit/master/07-capitulo6.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["EstadisticaParaCienciasSocialesConR.pdf", "EstadisticaParaCienciasSocialesConR.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
