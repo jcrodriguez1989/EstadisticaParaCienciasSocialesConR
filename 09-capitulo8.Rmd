@@ -186,7 +186,7 @@ información:
 
 - el número de veces cuya probabilidad calculamos (el número de éxitos) ($x=3$)
 
-Esta información es suficiente para aplicar el modelo binomial, que se va a escribir formalmente como $$B(n, p, x)$$. En la que la $B $es por binomial, $n$ es el número de repeticiones, $p$ es la probabilidad de éxito a cada repetición y $x$ el número de éxitos cuya probabilidad se calcula.
+Esta información es suficiente para aplicar el modelo binomial, que se va a escribir formalmente como $$B(n, p, x)$$. En la que la $B$ es por binomial, $n$ es el número de repeticiones, $p$ es la probabilidad de éxito a cada repetición y $x$ el número de éxitos cuya probabilidad se calcula.
 
 Cuando se trata de variables discretas como en este ejemplo, los modelos admiten el cálculo de la probabilidad:
 
@@ -200,12 +200,12 @@ Si se requiere la probabilidad de los valores mayores a uno dado $P(X>x)$, se co
 
 Cuando se trata de variables continuas, las probabilidades exactas son cero, por lo que solo pueden calcularse la acumuladas: $P(X\leq x)$ y su complemento a uno: $P(X>x)$
 
-Resulta claro que la realización manual de estas operaciones es larga y engorrosa, sobre todo en situaciones reales donde hay más observaciones que en la moneda. Por ejemplo, un examen consiste de 20 preguntas de opción múltiple con cinco opciones de respuesta cada una, una sola de las cuales es correcta. Para aprobar el examen es necesario contestar bien al menos 12 de ellas (el 60%). Se pregunta: ¿Qué probabilidad tiene un alumno de aprobar solo por azar? Es decir si responde a cada pregunta por sorteo. Es una problema de distribución binomial: hay 20 repeticiones (una por cada pregunta) de un experimento que tiene 0.20 (1/5) de probabilidad de éxito. Para aprobar se necesitan al menos 12 éxitos. La resolución manual de este problema requiere considerar que para aprobar los éxitos pueden ser 12, 13, 14, etc. Y que cada cantidad de éxitos puede lograrse de varias formas. Doce aciertos pueden provenir de las doce primeras preguntas, o de las diez primeras y las dos últimas, o muchas otras combinaciones posibles. 
+Resulta claro que la realización manual de estas operaciones es larga y engorrosa, sobre todo en situaciones reales donde hay más observaciones que en la moneda. Por ejemplo, un examen consiste de 20 preguntas de opción múltiple con cinco opciones de respuesta cada una, una sola de las cuales es correcta. Para aprobar el examen es necesario contestar bien al menos 12 de ellas (el 60%). Se pregunta: ¿Qué probabilidad tiene un estudiante de aprobar solo por azar? Es decir si responde a cada pregunta por sorteo. Es una problema de distribución binomial: hay 20 repeticiones (una por cada pregunta) de un experimento que tiene 0.20 (1/5) de probabilidad de éxito. Para aprobar se necesitan al menos 12 éxitos. La resolución manual de este problema requiere considerar que para aprobar los éxitos pueden ser 12, 13, 14, etc. Y que cada cantidad de éxitos puede lograrse de varias formas. Doce aciertos pueden provenir de las doce primeras preguntas, o de las diez primeras y las dos últimas, o muchas otras combinaciones posibles. 
 
-Si bien existen fórmulas para simplificar estas operaciones, usaremos directamente el software para calcular la probabilidad bajo modelos dados, a condición que el modelo se adapte al problema y que se cumplan los supuestos del modelo. En este caso, la expresión, para 12 éxitos exactamente es $$B(20, .20, 12)$$
+Si bien existen fórmulas para simplificar estas operaciones, usaremos directamente el software para calcular la probabilidad bajo modelos dados, a condición que el modelo se adapte al problema y que se cumplan sus supuestos. En este caso, la expresión, para exactamente 12 éxitos es $$B(20, .20, 12)$$
 Pero para aprobar, 12 es el número mínimo de aciertos que se requieren, por lo que hará falta la probabilidad de 12 y de todos los valores siguientes, hasta 20. 
 
-En R disponemos de las rutinas para calcular probabilidades simples y acumuladas bajo diferentes modelos. Para la binomial, el comando `dbinom`, tiene como argumentos: el número de éxitos cuya probabilidad se solicita, el número de repeticiones y la probabilidad de éxito a cada repetición. La probabilidad de obtener una cara al lanzar una moneda equilibrada ($p=0.5$), dos veces es:
+En R disponemos de las rutinas para calcular probabilidades simples y acumuladas bajo diferentes modelos. Para la binomial, el comando `dbinom`, tiene como argumentos: el número de éxitos cuya probabilidad se solicita($x$), el número de repeticiones ($n$) y la probabilidad de éxito a cada repetición ($p$). La probabilidad de obtener una cara al lanzar una moneda equilibrada ($p=0.5$), dos veces es:
 
 ```{r}
 dbinom(1, 2, .5)
@@ -217,7 +217,7 @@ Y la probabilidad de tres caras en cuatro lanzamientos de una moneda equilibrada
 round(dbinom(3, 4, .5), 4)
 ```
 
-El la que hemos pedido un redondeo a cuatro decimales.
+El la que hemos pedido un redondeo a dos decimales.
 
 Para pedir la probabilidad acumulada, como por ejemplo la de obtener tres caras o menos ($P(X\leq 3)$) en cuatro lanzamientos, el comando es `pbinom`, con los mismos argumentos:
 
@@ -231,15 +231,19 @@ La respuesta al problema del examen se resuelve en dos pasos, porque para aproba
 round(pbinom(11, 20, .2), 4)
 ```
 
-Y luego complementamos el resultado para obtener la probabilidad de superar los 11 aciertos `r 1-round(pbinom(11,20,.2), 4)`. $P(X>11)=$`r 1-round(pbinom(11,20,.2), 4)`.
+Y luego complementamos el resultado para obtener la probabilidad de superar los 11 aciertos  
+`r 1-round(pbinom(11,20,.2), 4)`.  
+$P(X>11)=$ `r 1-round(pbinom(11,20,.2), 4)`.
 
-Otro ejemplo es aquel en el que se elige una muestra aleatoria de 15 estudiantes de primer año de la carrera de Biología para un experimento. Si se sabe que la proporción de mujeres de primer año de esa carrera es del 70%, ¿Cuál es la probabilidad que en la muestra resulten todas mujeres?. Cada persona que se selecciona aleatoriamente es una repetición, en la que la probabilidad que esa persona sea mujer es 0.70, y se pregunta por la probabilidad de hallar 15 éxitos. Entonces, la pregunta se formula así:
+Otro ejemplo es aquel en el que se elige una muestra aleatoria de 15 estudiantes de primer año de la carrera de Biología para un experimento. Si se sabe que la proporción de mujeres de primer año de esa carrera es del 70%, ¿Cuál es la probabilidad que en la muestra resulten todas mujeres?. Cada persona que se selecciona aleatoriamente es una repetición, en la que la probabilidad que esa persona sea mujer es 0.70, y se pregunta por la probabilidad de hallar 15 éxitos. El resultado es:
 
 ```{r}
 dbinom(15, 15, .7)
 ```
 
-Y el resutado se expresa así: $$P(X=15)=B(15,15,.7)=0.0047$$
+Y el resutado se expresa así: $$P(X=15)=B(15,15,.7)=0.0047$$  
+Al final del capítulo veremos cómo pedir estas probabiidades a R.  
+
 
 ### Esperanza y varianza
 
@@ -260,9 +264,7 @@ este tema.
 El gráfico de esta distribución se construye calculando las
 probabilidades de los diferentes valores de $x$, que puede ir desde 0
 hasta el número total de repeticiones del experimento. El siguiente es
-el correspondiente a 20 repeticiones con diferentes valores de p:
-
-<!--a los gráficos siguientes habría que completarlos con p=.5, .6 y .8, de manera menos manual, se pueden mejorar bastante-->
+el correspondiente a 20 repeticiones con diferentes valores de $p$:
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 exitos_ej_1 <- c(0:20)
@@ -289,7 +291,7 @@ grid.arrange(grobs = ggps, ncol = 2)
 ```
 
 Observemos la forma en que aparece representada la diferencia entre las
-varianzas de las distribuciones[^54].
+varianzas de las distribuciones, la màxima ocurre con $p=0.50$ [^54].
 
 ## Distribución normal
 
@@ -382,7 +384,7 @@ ggplot(data = data.frame(z = c(-4, 4)), aes(z)) +
 Cualquier hoja de cálculo (como OpenOfficeCalc o Excel)
 calcula las probabilidades (o áreas) bajo la curva normal. En R es muy directo, porque del mismo modo en que dispusimos de una función para la binomial acumulada (pbinom), tenemos ahora el comando `pnorm` para obtener probabilidades acumuladas ($P(Z\leq z)$) bajo un modelo de distribución normal estándar. Y, al igual que con cualquier otra distribución, el valor de $P(Z>z)$ se logra restando de 1, que es el área completa bajo la curva. Por ejemplo, el área acumulada por debajo de $z=0$ es la mitad de la campana, $P(Z\leq 0)=0.5$, por lo que $P(Z>z)=0.5$.
 
-Si lo pedimos a R:
+Si lo pedimos a R, el resultado es:
 ```{r}
 pnorm(0)
 ```
@@ -413,7 +415,7 @@ ggplot(NULL, aes(c(-4, 4))) +
 
 El área sombreada vale 0.50.
 
-Para el área por debajo de $Z=2$, redondeado a cuatro decimales:
+Para el área por debajo de $z=2$, redondeado a cuatro decimales:
 
 ```{r}
 round(pnorm(2), 4)
@@ -542,7 +544,7 @@ ggplot(NULL, aes(c(-4, 4))) +
   geom_area(stat = "function", fun = dnorm, col = "black", fill = "white", xlim = c(1, 4)) +
   ylab("") + xlab("z") + geom_segment(aes(x = -4, xend = -1, y = .3, yend = .3)) + annotate(geom = "text", label = "P(z<-1) = 0.1587", x = -3, y = .32) +
   geom_segment(aes(x = -4, xend = 1, y = .4, yend = .4)) + annotate(geom = "text", label = "P(z<1) = 0.8413", x = -3, y = .42) +
-  geom_segment(aes(x = -1, xend = -1, y = .3, yend = .25), arrow = arrow(type = "closed")) +
+  geom_segment(aes(x = -1, xend = -1, y = .3, yend = .25), arrow = arrow()) +
   geom_segment(aes(x = 1, xend = 1, y = .4, yend = .25), arrow = arrow()) +
   geom_segment(aes(x = 2, xend = 0, y = .35, yend = .3), arrow = arrow()) +
   annotate(geom = "text", label = "P(-1<z<1) = 0.6835", x = 3, y = .37) +
@@ -550,20 +552,16 @@ ggplot(NULL, aes(c(-4, 4))) +
 ```
 
 
-El área comprendida entre -2 y 2 se calcula del mismo modo, ya que
+El área comprendida entre -2 y 2 se calcula del mismo modo, solicitado a R, se obtiene:
 
-```{r}
-round(pnorm(-2), 4)
-round(pnorm(2), 4)
-round(pnorm(2), 4) - round(pnorm(-2), 4)
-```
+P(z < 2) = ´ r round(pnorm(-2), 4)´  
+P(z < - 2) = ´r round(pnorm(2), 4)´
 
 $$P(- 2 < z < 2) = P(z < 2) - P(z < - 2) = 0,9772 - 0,0228 = 0,9544$$
 
 Y los valores $\pm3$ delimitan:
 
 ```{r}
-pnorm(3) - pnorm(-3)
 round((pnorm(3) - pnorm(-3)), 4)
 ```
 
@@ -577,14 +575,13 @@ La regla empírica que se mencionó en el capítulo <!-- ya veremos cual es, o q
 
 ### Percentiles
 
-De mismo modo que con las distribuciones de frecuencia, los valores de la variable que acumulan una determinada probabilidad son los percentiles. El valor $z=-1$ es el percentil $.1587$ de la variable y $z=2$  es el percentil $.9772$.
+De mismo modo que con las distribuciones de frecuencia, los valores de la variable que acumulan una determinada probabilidad son los percentiles. El valor $z=-1$ es el percentil $15.87$ de la variable y $z=2$  es el percentil $97.72$.
 
 Para determinar ahora los valores de $z$ que acumulan cierta probabilidad, se necesita la operación inversa a la que se realizó hasta aquí, porque hay que hallar cuál es el valor de la variable ($z$) que deja por debajo una determinada probabilidad. Según la definición de percentiles, el percentil $P_{r}$ de la variable es el valor por debajo del cual la probabilidad de hallarla es $r\%$. Gráficamente, se trataría de fijar el área ($r\%$) y determinar cuál es el $z$ que la acumula.
 
-Nuevamente, recurrimos a R para solicitar este valor, el comando es `qnorm`, que a partir de la probabilidad acumulada, devuelve el valor de $z$. Por ejemplo, el percentil $95$ ($P_{95}$) de la distribución normal es:
+Nuevamente, recurrimos a R para solicitar este valor, que a partir de la probabilidad acumulada, devuelve el valor de $z$. Por ejemplo, el percentil $95$ ($P_{95}$) de la distribución normal es:
 
 ```{r}
-qnorm(.95)
 round(qnorm(.95), 4)
 ```
 
@@ -594,7 +591,7 @@ El valor 1.6449 acumula el 95% o bien $P(z\leq1.6449=.95)$. Y del mismo modo el 
 round(qnorm(.99), 4)
 ```
 
-$$P_{99}=1.6449$$
+$$P_{99}=2.3263$$
 
 Por la simetría de la distribución, los percentiles complementarios son valores opuestos de la variable:
 
@@ -758,24 +755,21 @@ ggplot(NULL, aes(c(-4, 4))) +
   scale_y_continuous(breaks = NULL) + theme_tufte()
 ```
 
-A esta probabilidad sabemos cómo solicitarla:
+Esta probabilidad es:
 ```{r}
 pnorm(-2.25)
 ```
 
-Ésta es la probabilidad de hallar niños que al nacer tengan pesos
-inferiores a los 1500 gramos.
+Indica la probabilidad de hallar niños que al nacer tengan pesos inferiores a los 1500 gramos.
 
 Del mismo modo podemos operar si nos interesa conocer la probabilidad de hallar niños que nazcan con peso comprendido entre 3500 y .
 Transformando cada uno de los valores se obtiene:
 
-$$x = 3500arrow z = \frac{3500 - 3300}{800} = 0,25$$
+$$x = 3500 \rightarrow z = \frac{3500 - 3300}{800} = 0,25$$
 
-$$x = 4500arrow z = \frac{4500 - 3300}{800} = 1,50$$
+$$x = 4500 \rightarrow z = \frac{4500 - 3300}{800} = 1,50$$
 
-Entonces, que $x$ (el peso de los niños al nacer) esté entre 3500 y ,
-equivale a que $z$ (cantidad de desviaciones estándar) se encuentre
-entre 0,25 y 1,50. Esto se expresa simbólicamente así:
+Entonces, que $x$ (el peso de los niños al nacer) esté entre 3500 y equivale a que $z$ (cantidad de desviaciones estándar) se encuentre entre 0,25 y 1,50. Esto se expresa simbólicamente así:
 
 $$P(3500 < x < 4500) = P(0,25 < z < 1,50)$$
 
@@ -811,7 +805,7 @@ $$P(3500 < x < 4500) = P(0,25 < z < 1,50) = P(z < 1,50) - P(z < 0,25)$$
 La última operación la solicitamos a R:
 
 ```{r}
-pnorm(1.5) - pnorm(.25)
+round(pnorm(1.5) - pnorm(.25),4)
 ```
 
 Leemos el resultado diciendo que la probabilidad de hallar a un niño que haya nacido con un peso comprendido entre los 3500 y los 4500 gramos es de $0.3345$.
@@ -830,7 +824,7 @@ Que se calcula como la diferencia entre la probabilidad acumulada hasta
 
 $$P(3500 < x < 4500) = P(x < 4500) - P(x < 3500)$$
 
-Al comando `pnorm` en R ahora le agregamos los valores de la media y la desviación estándar, para que calcule la probabilidad directamente sobre $x$:
+En R puede solicitarse la probabilidad directamente sobre $x$ indicando los valores de la media y la desviación estándar, y se obtiene:
 
 ```{r}
 pnorm(4500, 3300, 800) - pnorm(3500, 3300, 800)
@@ -841,16 +835,11 @@ transformación a puntaje $z$, pero ahora pidiéndola directamente desde
 $x$. Aunque éste sea el procedimiento más cómodo para calcular
 probabilidades, es necesario estar familiarizado con la distribución
 normal estándar (en $z$), por los usos que haremos en los próximos
-capítulos.
+capítulos.  
+Al final de capítulo veremos cómo pedir a R el cálculo.  
 
-La distribución normal tiene un uso muy amplio y varios campos de
-aplicación. Más adelante veremos que para aplicar algunos procedimientos
-de análisis, es necesario que los datos provengan de una distribución
-normal, y existen pruebas para verificar que esto se cumpla. Una primera
-aproximación para ver si un conjunto de datos tiene distribución cercana
-a la normal es observar el histograma y evaluar si su forma se aproxima
-a la normalidad: si es unimodal y aproximadamente simétrica, es decir si
-la mediana es semejante a la media. Luego se calculan los coeficientes
+La distribución normal tiene un uso muy amplio y varios campos de aplicación. Más adelante veremos que para aplicar algunos procedimientos de análisis, es necesario que los datos provengan de una distribución normal, y existen pruebas para verificar que esto se cumpla. Una primera
+aproximación para ver si un conjunto de datos tiene distribución cercana a la normal es observar el histograma y evaluar si su forma se aproxima a la normalidad: si es unimodal y aproximadamente simétrica, es decir si la mediana es semejante a la media. Luego se calculan los coeficientes
 de curtosis y asimetría y, si éstos están entre $-0,50$ y $+0,50$, puede aceptarse, en primera instancia, la normalidad de los datos.
 
 ## La idea de grados de libertad
@@ -957,14 +946,9 @@ puede modelarse con cierta distribución (pruebas de bondad de ajuste) y
 también para analizar la independencia entre variables nominales.
 
 Del mismo modo en que tratamos a la distribución normal, no haremos uso
-de la fórmula para calcular probabilidades, sino que las buscaremos en
-una tabla disponible en cualquier hoja de cálculo. Además de la forma
-asimétrica, hay otra diferencia con la distribución normal, la
-$\chi^{2}$ no es una distribución única: no es suficiente especificar un valor de la variable para conocer su probabilidad acumulada sino que la forma que tenga dependerá de los recientemente mencionados "grados de libertad", los cuales en una primera aproximación tomaremos como $n-1$, donde $n$es el tamaño de la muestra.
+de la fórmula para calcular probabilidades, sino que las pediremos a R. Además de la forma asimétrica, hay otra diferencia con la distribución normal, la $\chi^{2}$ no es una distribución única: no es suficiente especificar un valor de la variable para conocer su probabilidad acumulada sino que la forma que tenga dependerá de los recientemente mencionados "grados de libertad", los cuales en una primera aproximación tomaremos como $n-1$, donde $n$es el tamaño de la muestra.  
 
-Las siguientes son las formas diferentes que tiene la distribución
-$\chi^{2}$ para diferentes valores de los $gl$, el eje horizontal indica los valores de la variable $\chi^{2}$. Como en la normal, las
-probabilidades se representan como áreas bajo la curva:
+Las siguientes son las formas diferentes que tiene la distribución $\chi^{2}$ para diferentes valores de los $gl$, el eje horizontal indica los valores de la variable $\chi^{2}$. Como en la normal, las probabilidades se representan como áreas bajo la curva:
 
 ```{r fig.cap="distribución $chi^{2}$ con diferentes grados de libertad (df)."}
 ggplot(data = data.frame(chi = c(0, 20)), aes(chi)) +
@@ -982,17 +966,15 @@ ggplot(data = data.frame(chi = c(0, 20)), aes(chi)) +
   scale_y_continuous(breaks = NULL) + theme_tufte() + ggtitle("df = 10")
 ```
 
-Los gráficos muestran que a medida que se incrementan los grados de
-libertad, la forma de la distribución gana en simetría y se asemeja a la distribución normal.
+Los gráficos muestran que a medida que se incrementan los grados de libertad, la forma de la distribución gana en simetría y se asemeja a la distribución normal.
 
-Para hallar las probabilidades correspondientes a valores de la
-variable, usaremos nuevamente el comando de R que provee probabilidades bajo modelos especificados; el que provee los acumulados de la distribución chi cuadrado es `pchisq`. Para hallar la probabilidad acumulada hasta el valor 8 bajo un modelo $\chi^{2}$ con $10$ grados de libertad, lo pedimos así:
+Para hallar las probabilidades correspondientes a valores de la variable, usaremos nuevamente el comando de R que provee probabilidades bajo modelos especificados; al final del capítulo veremos los comandos para hacerlo. Para hallar la probabilidad acumulada hasta el valor 8 bajo un modelo $\chi^{2}$ con $10$ grados de libertad, obtenemos:
 
 ```{r}
 pchisq(8, 10)
 ```
 
-Cuyos argumentos son el valor de la variable ($8$) y los grados de libertad del modelo ($10$). Gráficamente se ubica en:
+La información requerida para el cálculo (los argumentos) son el valor de la variable ($8$) y los grados de libertad del modelo ($10$). Gráficamente se ubica en:
 
 ```{r}
 ggplot(NULL, aes(c(0, 30))) +
@@ -1018,7 +1000,7 @@ ggplot(NULL, aes(c(0, 30))) +
   scale_y_continuous(breaks = NULL) + theme_tufte()
 ```
 
-Para encontrar percentiles bajo este modelo, el comando es `qchisq`, que tiene como argumentos: la probabilidad acumulada y los grados de libertad, y devuelve el valor de la variable $\chi^{2}$. Por ejemplo, el percentil 95 de una distribución $\chi^{2}$ con 15 grados de libertad es:
+Para encontrar percentiles bajo este modelo, se debe contar como argumentos: la probabilidad acumulada y los grados de libertad, el comando adecuado (ver al final del capítulo) devuelve el valor de la variable $\chi^{2}$. Por ejemplo, el percentil 95 de una distribución $\chi^{2}$ con 15 grados de libertad es:
 ```{r}
 qchisq(.95, 15)
 ```
@@ -1065,13 +1047,13 @@ valor de la variable y los grados de libertad. La probabilidad que una variable 
 
 $$P(t_{1} \leq 2)$$
 
-Y se solicita:
+Solicitado a R, se debe informar el valor de la variable ($2$) y los grados de libertad ($1$):
 
 ```{r}
 pt(2, 1)
 ```
 
-Que dice que $$P(t_{1} \leq 2)=0.8524$$
+Que dice que $$P(t_{1} \leq 2)=0.8524$$  
 Su ubicación gráfica es:
 ```{r}
 ggplot(NULL, aes(c(-8, 8))) +
@@ -1088,10 +1070,10 @@ supere a 2, es decir:
 
 $$P(t_{30} > 2)$$
 
-Lo solicitamos directamente como:
+Pedido a R resulta:
 
 ```{r}
-1 - pt(2, 30)
+round((1 - pt(2, 30)),4)
 ```
 
 Los dos resultados tienen estas representaciones gráficas;
@@ -1110,16 +1092,16 @@ En los gráficos y en los valores de las probabilidades se ve que el
 aumento de los grados de libertad en la distribución t tiene el efecto
 de reducir la probabilidad de los valores extremos.
 
-Los percentiles de la distribución t se solicitan con qt, por ejemplo, el percentil 95 bajo un modelo t con 1 grado de libertad es:
+Los percentiles de la distribución t se solicitan, si se conocen los grados de libertad y el percentil, por ejemplo, el percentil 95 bajo un modelo t con 1 grado de libertad es:
 
 ```{r}
-qt(.95, 1)
+round(qt(.95, 1),4)
 ```
 
 Y el mismo percentil, si la distribución tiene 30 grados de libertad es:
 
 ```{r}
-qt(.95, 30)
+round(qt(.95, 30),4)
 ```
 
 Esto quiere decir que un valor t como por ejemplo 3, se considerará extremo bajo una distribución con 30 grados de libertad, pero será un valor esperable si la distribución tiene 1 grado de libertad.
@@ -1151,12 +1133,10 @@ ggplot(data = data.frame(F = c(0, 10)), aes(F)) +
   scale_y_continuous(breaks = NULL) + theme_tufte() + ggtitle("df = 15,10")
 ```
 
-En el cálculo de las probabilidades, ahora debemos informar los grados
-de libertad del numerador y del denominador separadamente. Para
-solicitar, por ejemplo, la $P(F_{3,2} \leq 4)$, se usa el comando `pf`, indicando el valor de la variable y los grados de libertad del numerador y el denominador en ese orden:
+En el cálculo de las probabilidades, ahora debemos informar los grados de libertad del numerador y del denominador separadamente. Para solicitar, por ejemplo, la $P(F_{3,2} \leq 4)$, se indica el valor de la variable (4) y los grados de libertad del numerador y el denominador en ese orden (3,2):
 
 ```{r}
-pf(4, 3, 2)
+round(pf(4, 3, 2),4)
 ```
 
 Es decir: $P(F_{3,2} \leq 4)=0.7936$
@@ -1172,7 +1152,7 @@ ggplot(NULL, aes(c(0, 10))) +
 El área superior es la diferencia a uno:
 
 ```{r}
-1 - pf(4, 3, 2)
+round((1 - pf(4, 3, 2)),4)
 ```
 
 De modo que $P(F_{3,2} > 4) = 0,2064$.
@@ -1180,7 +1160,7 @@ De modo que $P(F_{3,2} > 4) = 0,2064$.
 El percentil 95 de una distrindución F con 3 grados de libertad en el numerador y dos en el denominador es:
 
 ```{r}
-qf(.95, 3, 2)
+round(qf(.95, 3, 2),4)
 ```
 
 Que se lee indicando que el 5% de los valores de la variable $F_{3,2}$ superan a $19.16$. $P(F_{3,2}>19.16)=.05$
@@ -1188,7 +1168,7 @@ Que se lee indicando que el 5% de los valores de la variable $F_{3,2}$ superan a
 Cuando pedimos el mismo percentil de otra variable que tenga distribución $F_{5,10}$, se obtiene:
 
 ```{r}
-qf(.95, 5, 10)
+round(qf(.95, 5, 10),4)
 ```
 
 Los gráficos del $P_{95}$ en las dos distribuciones son los siguientes:
@@ -1224,6 +1204,82 @@ Para solicitar las probabilidades acumuladas hasta determinado valor ($x$) de la
 - t de Student: pt(x, "grados de libertad")
 - F de Fisher: pf(x, "grados de libertad del numerador", "grados de libertad del denominador")
 
+#### Ejemplos
+
+##### Normal estándar  
+
+$P(z<1.5)$
+```{r echo=TRUE}
+pnorm(1.5)
+```
+
+Redondeado a cuatro decimales:
+
+```{r echo=TRUE}
+round(pnorm(1.5),4)
+```
+
+$P(z>2.3)$
+```{r echo=TRUE}
+round((1-pnorm(2.3)),4)
+```
+
+#### Normal  
+
+Si $x$ tiene distribución normal con media 5 y desviación estándar 2, la $P(x<6.3)$
+```{r echo=TRUE}
+round(pnorm(6.3,5,2),4)
+```
+
+$P(6<x<8)$
+```{r echo=TRUE}
+round((pnorm(8,5,2)-pnorm(6,5,2)),4)
+```
+
+#### Chi cuadrado
+$P(\chi^2_{15}<10)$
+```{r echo=TRUE}
+pchisq(10,15)
+```
+
+Redondeado
+```{r echo=TRUE}
+round(pchisq(10,15),4)
+```
+
+#### t de Student
+
+$P(t_{10}<2.5)$
+
+```{r  echo=TRUE}
+pt(2.5,10)
+```
+O bien:
+
+```{r  echo=TRUE}
+round(pt(2.5,10),4)
+```
+
+$P(t_{25}>1.8)$
+```{r  echo=TRUE}
+
+round((1-pt(1.8,25)),4)
+```
+
+
+#### F de Fisher
+
+$P(F_{5,7}<2.7)$
+
+```{r echo=TRUE}
+pf(2.7,5,7)
+```
+Y el área por encima, $P(F_{5,7}>2.7)$:
+
+```{r echo=TRUE}
+1-pf(2.7,5,7)
+```
+
 ### Percentiles
 
 Para hallar percentiles, los comandos tienen una $q$ delante del nombre del modelo: qbinom, qnorm, qchisq, qt, qf. Y debe indicarse el percentil que se busca, junto a los parámetros que corresponden a cada distribución. Llamando r al percentil que interesa encontrar, la solicitud a R para cada modelo es:
@@ -1237,7 +1293,7 @@ Para hallar percentiles, los comandos tienen una $q$ delante del nombre del mode
 
 ### Áreas centrales
 
-En lo que sigue será frecuente que se necesiten percetiles de la variable que dellimitan determinadas áreas centrales de la distribución. Cuanquiera se el modelo de probabilidad que se use, suele denominarse $1-\alpha$ al área central, con lo que $\alpha$ es el área que queda por fuera de la zona central, dividida en dos. Los percentiles que delimitan esa área central de $1-\alpha$ son $\frac{\alpha}{2}$ y $1-\frac{\alpha}{2}$.
+En lo que sigue será frecuente que se necesiten percentiles de la variable que delimitan determinadas áreas centrales de la distribución. Cualquiera sea el modelo de probabilidad que se use, suele denominarse $1-\alpha$ al área central, con lo que $\alpha$ es el área que queda por fuera de la zona central, dividida en dos. Los percentiles que delimitan esa área central de $1-\alpha$ son $\frac{\alpha}{2}$ y $1-\frac{\alpha}{2}$.
 
 Por ejemplo, para determinar cuáles son los valores de una distribución $\chi^2$ con 13 grados delibertad que delimitan un 90% de área central, calculamos $\alpha$, que es el 10% restante y los percentiles son: 5 ($\frac{\alpha}{2}$) y 95 ($1-\frac{\alpha}{2}$). 
 ```{r}

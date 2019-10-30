@@ -579,4 +579,166 @@ Tiempo requerido para completar una tarea, ingreso per cápita familiar @INDEC20
 
 [^medicion_de_tiempo]: El ejemplo de los calendarios judío y cristiano, aunque es una medición de tiempo, no es absoluta. Es diferente de la medición con un cronómetro, que establece un inicio de cuenta al momento en que se lo dispara y da lugar a una variable de nivel proporcional.
 
-[^precision]: La cantidad de valores depende de la precisión con que se mida. Si se mide con precisión de un centímetro, en un metro caben 100 valores, pero si se mide al milímetro en el mismo intervalo de un metro se ubican 1000 categorías.
+[^precision]: La cantidad de valores depende de la precisión con que se mida. Si se mide con precisión de un centímetro, en un metro caben 100 valores, pero si se mide al milímetro en el mismo intervalo de un metro se ubican 1000 categorías.  
+
+## Hacerlo en R
+
+### Lectura de la base
+
+Para operar sobre un conjunto de datos es necesario contar con la matriz de datos cargada en la sesión de trabajo; debe ser un objeto disponible para usarlo. Para ello, se elige el nombre que se dará a ese objeto y se le asigna ($=$ o $<-$) la lectura de la base.
+La lectura debe hacerse desde el lugar donde se encuentra el archivo. Si no se conoce su ruta, el comando "file.choose" abre una ventana para llegar él. La respuesta de ese comando es la ruta completa que aparece en la consola de resultados.
+La lectura de los archivos .txt se puede realizar con varios comandos, que dependen de que el archivo tenga o no encabezado, del separador que se use para delimitar los campos, del separador de decimales, etc. El comando read.table es el más genérico y debe indicársele:
+
+- El nombre del archivo a leer junto con la ruta para llegar a él: que se copia de la consola.
+
+- Si el archivo tiene encabezado: este es el caso casi siempre, porque la primeraa fila de la matriz de datos tiene los nombres de las variables. Se indica: $header=TRUE$
+
+- El separador de campos: suelen ser comas, punto y comas o pipe | (alt124 en windows). Si los campos están separados por comas. se indica sep="," y así con los demás separadores, siempre entrecomillados.
+
+-Si a los casos perdidos se los ha codificado de algún modo particular, por ejemplo como 9999, debe indicarse na,strings="9999".
+
+Conviene mirar la base original, desde el archivo .txt, que puede abrirse con bloc de notas, para asegurarse qué sepadores tiene.
+
+Para leer la base de prueba, que se llama base2019.txt, que tiene los campos separados por punto y comas, primero se ubica la ruta del archivo:
+
+```{r eval=FALSE, echo=TRUE}
+file.choose()
+```
+Aquí se abre un explorador para llegar al archivo que se busca, cuando se lo selecciona, la respuesta es su ruta, que debe pegarse como argumento de read.table. Luego se pide su lectura, asignándo el resultado al objeto base.ejemplo:
+
+```{r echo=TRUE}
+base.ejemplo=read.table("bases/archivostxt/base2019.txt",
+           header = TRUE, sep = ";", na.strings = "999")
+```
+Además del nombre y la ruta del archivo, en este caso indicamos que la primera fila contiene los nombres de las variables y que los casos perdidos están codificados como 999.
+
+```{r include=FALSE}
+base.ejemplo=base.ejemplo[, -4]
+
+```
+
+En el panel superior derecho ha aparecido este primer objeto, del que se indica el tipo, su tamaño, y las cantidades de observaciones y de variables.  
+El tipo de objeto se solicita:
+```{r echo=TRUE}
+class(base.ejemplo)
+```
+
+Es una matriz de datos, como se esperaba y se la puede ver pidiendo:
+
+```{r  echo=TRUE, eval=FALSE}
+View(base.ejemplo)
+```
+
+En esta exploración inicial, se pueden listar los nombres de las columnas (las variables):
+
+```{r echo=TRUE}
+names(base.ejemplo)
+```
+
+Y pedir las primeras filas de la matriz:
+
+```{r echo=TRUE}
+head(base.ejemplo)
+```
+Por defecto muestra las seis primera filas, en todas  las columnas (se usaron dos bloques porque no cabe horizontalmente).  
+Para tener más accesibles las variables, vamos a ponerle un nombre a cada columna:
+
+```{r echo=TRUE}
+names(base.ejemplo)=c("caso", "grupo", "n.cuest", "nombre","sexo", "genero",
+                  "edad", "acceso.redes","red.usada","red.otra" ,
+   "tiempo.red", "con.q.vive", "relacion.otros",
+                  "q.aporta","q.aporta.amigos" ,"edad.partida",
+   "razon.partida",
+                  "razon.partida.otra","calidad.sueño", 
+                  "preocupacion","golpeo", "robo","cuanto.da", "comision")
+```
+
+Si pedimos nuevamente el encabezado, tenemos:
+```{r echo=TRUE}
+head(base.ejemplo)
+```
+Ahora hicieron falta cuantro bloques (cada uno numera del 1 al 6, las seis primeras filas), porque con los nuevos nombres la matriz quedó más ancha.  
+
+### Las variables
+
+Cada variable es una columna de la matriz, y para acceder a cada una y operar con ellas, se usa el signo "pesos" luego del nombre de la matriz. Por ejemplo la variable "sexo" La codificación numérica de la variable sexo (1 y 2 para varones y mujeres respectivamente), fue útil para la recolección y la carga de los datos, pero ahora necesitamos tratarla commo  lo que es. En efecto:
+```{r echo=TRUE}
+class(base.ejemplo$sexo)
+```
+
+Esta almacenada como un número entero, pero es nominal, que en el lenguaje de R, se llama factor, y sus categorías, se llaman "niveles" o "niveles del factor". Para transformarla a ese tipo de variable hay dos opciones:  
+
+- Redefinir la variable sexo, cambiándola por una que en lugar de entera sea nominal, o bien
+- Crear una nueva variable en la matriz, a partir de sexo, con un nombre diferente.
+
+Elegimos la primera opción, es decir que operamos sobre la misma variable sexo. Primero la volvemos factor:
+
+```{r echo=TRUE}
+base.ejemplo$sexo=as.factor(base.ejemplo$sexo)
+```
+
+Y le damos nombres a las categorías (los niveles del factor):
+
+```{r echo=TRUE}
+levels(base.ejemplo$sexo)=c("varones", "mujeres")
+
+```
+
+Repetimos estas operaciones sobre las otras preguntas del cuestionario:
+
+```{r echo=TRUE}
+base.ejemplo$con.q.vive=as.factor(base.ejemplo$con.q.vive)
+levels(base.ejemplo$con.q.vive)=c("flia.origen", "flia.nueva",
+                              "hermanes.o.amigues", "solo",
+                              "con.otres")
+base.ejemplo$q.aporta=as.factor(base.ejemplo$q.aporta)
+levels(base.ejemplo$q.aporta)=c("el.mismo", "flia.origen",
+                            "flia.nueva","entre.amigos")
+
+base.ejemplo$acceso.redes=as.factor(base.ejemplo$acceso.redes)
+levels(base.ejemplo$acceso.redes)=c("si", "no")
+
+base.ejemplo$red.usada=as.factor(base.ejemplo$red.usada)
+levels(base.ejemplo$red.usada)=c("Instagram", "Facebook", "Twitter",
+                             "Linkedin","Tinder/Grindr/happn",
+                             "Snapchat", "Ninguna", "Otra")
+
+
+base.ejemplo$razon.partida=as.factor(base.ejemplo$razon.partida)
+levels(base.ejemplo$razon.partida)=c("estudio","nueva.flia","ganas","otras")
+```
+
+
+La cantidad de casos es el número de filas de la matriz de datos. En el caso de una variable, es decir de una columna, la cantidad de observaciones es la longitud del vector que la representa. Para conocer cuántos casos tiene una variable en particular, el comando es length:
+
+```{r echo=TRUE}
+length(base.ejemplo$sexo)
+
+```
+
+Cuando se aplica a una matriz de datos, su longitud en el número de variables:
+
+```{r echo=TRUE}
+length(base.ejemplo)
+```
+
+
+Los elementos de la matriz de datos pueden accederse por filas o por columnas. Unos corchetes puestos a continuación del nombre identifican filas (casos), columnas (variables) o elementos (categorías). El corchete tiene como argumento dos números separados por una coma; el primero se refiere a la fila, el segundo a la columna, ambos juntos determinan un valor.
+
+El valor que está en la fila 254, columna 7 de base.ejemplo es 30, que es la edad (columna 7) de la persona que está en la fila 254
+
+```{r echo=TRUE}
+base.ejemplo[254,7]
+```
+
+Si uno de los dos elementos del corchete se deja en blanco, toma todos los correspondientes de fila o de columna. No vamos a hacer el experimento, porque tendríamos, o bien los valores en cada una de las 24 variables de un sujeto, si pedimos una fila; o bien los 5003 valores de alguna variable, si pedimos una columna.  
+
+### Los niveles de medición en R
+
+Como se ha visto, en el lenguaje de R, el concepto de variable, se asimila a un vector. Es cada columna de la matriz de datos, compuesta por símbolos que pueden ser numéricos o no. En cuanto a sus tipos:  
+
+- Las que hemos llamado nominales son factores y sus categorías se llaman niveles.  
+- Las ordinales, son factores ordenados.  
+- Las cuantitativas (sin distinción entre intervalares y proporcionales) son:  
+   – numéricas las continuas y  
+   – enteras las discretas.
