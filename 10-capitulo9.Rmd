@@ -687,8 +687,10 @@ descripción de la población de las notas del tercer parcial:
 
 
 ```{r}
-tres_parciales_2009 <- read.table("bases/archivostxt/tres.parciales.2009.txt", header = TRUE, sep = ";")
-tres_parciales_2009$Tercero <- as.numeric(as.character(tres_parciales_2009$Tercero))
+tres_parciales_2009 <- read.table(
+  "bases/archivostxt/tres.parciales.2009.txt", header = TRUE, sep = ";")
+tres_parciales_2009$Tercero <- 
+  as.numeric(as.character(tres_parciales_2009$Tercero))
 summary(tres_parciales_2009$Tercero)
 ```
 
@@ -707,7 +709,11 @@ $$\sigma^{2} = 4.12$$
 El histograma de las notas del tercer parcial es:
 
 ```{r}
-ggplot(tres_parciales_2009) + geom_histogram(aes(Tercero), fill = "green", bins = 10, col = "black") + xlab("notas del tercer parcial 2009") + ylab("frecuencia") + theme_tufte()
+ggplot(tres_parciales_2009) +
+  geom_histogram(aes(Tercero), fill = "green", bins = 10, col = "black") +
+  xlab("notas del tercer parcial 2009") +
+  ylab("frecuencia") +
+  theme_tufte()
 ```
 
 <!-- A esto no lo se hacer en R-->
@@ -720,11 +726,29 @@ que contiene una media muestral y una varianza muestral para cada una de
 las 200 muestras calculadas. Cuando solicitamos un resumen de estas
 variables obtenemos:
 
-Variable n Media Var(n) Mín Máx
+<!-- JCR: Asi estara bien? -->
 
-Media 200 5.78 0.05 5.01 6.35
+```{r}
+muestras <- data.frame(
+  Media = rep(NA, 200),
+  Varianza = rep(NA, 200)
+)
 
-Varianza 200 4.12 0.28 2.89 5.69
+set.seed(8818)
+for (i in 1:200) {
+  muestra_act <- sample(tres_parciales_2009$Tercero, size = 80)
+  muestras$Media[[i]] <- mean(muestra_act, na.rm = TRUE)
+  muestras$Varianza[[i]] <- var(muestra_act, na.rm = TRUE)
+}
+
+summary(muestras)
+```
+
+<!-- Variable n Media Var(n) Mín Máx -->
+
+<!-- Media 200 5.78 0.05 5.01 6.35 -->
+
+<!-- Varianza 200 4.12 0.28 2.89 5.69 -->
 
 Observemos en detalle la salida: n=200 es la cantidad de muestras que se
 extrajeron (y no el tamaño de cada muestra), ahora cada muestra
@@ -751,9 +775,13 @@ $\sigma_{\overline{x}}^{2} = \frac{4.12}{80} = 0.05$
 
 El histograma de las medias muestrales es:
 
-```{r fig.cap="", fig.asp = 0.1, fig.width = 3, fig.align='center'}
-knitr::include_graphics("imagenes/image153.png")
+```{r}
+ggplot(muestras) +
+  geom_histogram(aes(Media), fill = "green", bins = 10, col = "black") +
+  ylab("frecuencia relativa") +
+  theme_tufte()
 ```
+
 
 En el que hemos usado la misma escala de 1 a 10 para que se vea con
 claridad la reducción en la dispersión de esta nueva variable.
@@ -1009,11 +1037,10 @@ Si $n$ tiene a $\infty$ y $n*P$ y $n-(1-P)$ son mayores a $5$.
 
 #### Ejemplo con datos ficticios
 
-Sea que para una locallidad determinada, el 20% de los habitantes  consultó al centro de salud municipal durante el año pasado.Si extraemos muestras de tamaño 100 y en cada una de ellas observamos la proporción de personas que consultaron a ese centro de salud durante el año pasado, el gráfico de la distribución binomial de la cantidad de consultantes en cada muestra será:
-
+Sea que para una locallidad determinada, el 20% de los habitantes  consultó al centro de salud municipal durante el año pasado. Si extraemos muestras de tamaño 100 y en cada una de ellas observamos la proporción de personas que consultaron a ese centro de salud durante el año pasado, el gráfico de la distribución binomial de la cantidad de consultantes en cada muestra será:
 
 ```{r}
-ggplot(data = data.frame(z = c(0, 100)), aes(z)) +
+ggplot(data.frame(z = c(0, 100)), aes(z)) +
   stat_function(fun = dbinom, n = 101, args = list(100, .2)) +
   ylab("") + xlab("cantidad de consultantes al centro municipal en muestras de 100 casos") +
   scale_y_continuous(breaks = NULL) + theme_tufte()
@@ -1039,8 +1066,6 @@ Por lo que el gráfico anterior puede tratarse a escala de $\widehat{p}$
 knitr::include_graphics("imagenes/image155.png")
 ```
 
-height="1.5in"}
-
 Si nos interesamos por la probabilidad de obtener una proporción de 0,25 ó superior en la muestra, debemos transformarla a una cantidad de éxitos muestrales:
 
 $$\widehat{x} = n*\widehat{p} = 100*0,25 = 25$$
@@ -1055,7 +1080,7 @@ Al que solicitamos como complemento de la probabilidad acumulada de 24:
 ```
 
 
-$$B( \widehat{x} \geq 25;100;0,20) = 0,1314$$
+$$P( \widehat{x} \geq 25;100;0,20) = 0,1314$$
 
 Interpretamos este resultado diciendo que, si en la población completa,
 la proporción de personas que consultan es del 20%, la probabilidad que

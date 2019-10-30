@@ -730,14 +730,13 @@ años de un hospital materno infantil, conocemos que el peso medio en el
 momento de nacer (de niños varones, a término, con madre entre 20 y 29
 años) es de 3300 gramos y que la desviación estándar es de 800 gramos. Además sabemos que la distribución normal es adecuada para describir la variable *peso al nacer*. Entonces podemos calcular la probabilidad que un niño al nacer tenga un peso por debajo de los 1500 gramos. El problema es averiguar el área sombreada en el siguiente gráfico:
 
-<!-- en eje x solo 3300 y 1500, en eje y, nada-->
 ```{r}
 normal.1 <- function(x) dnorm(x, mean = 3300, sd = 800)
 
 ggplot(NULL, aes(c(100, 6500))) +
   geom_area(stat = "function", fun = normal.1, col = "black", fill = "green", xlim = c(100, 1500)) +
   geom_area(stat = "function", fun = normal.1, col = "black", fill = "white", xlim = c(1500, 6500)) + ylab("") + xlab("x = pesos de los niños al nacer") +
-  scale_y_continuous(breaks = NULL) + theme_tufte()
+  scale_y_continuous(breaks = NULL) + scale_x_continuous(breaks = c(1500, 3300)) + theme_tufte()
 ```
 
 Para calcular el área marcada -que corresponde a la probabilidad

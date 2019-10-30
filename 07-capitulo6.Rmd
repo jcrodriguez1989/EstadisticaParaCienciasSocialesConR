@@ -1,4 +1,4 @@
-```{r echo=FALSE}
+```{r message=FALSE, warning=FALSE, include=FALSE}
 source("depencias.R")
 knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
 kable_outp <- ifelse(knitr::is_latex_output(), "latex", "html")
@@ -219,23 +219,28 @@ derecha señalan los primeros elementos que constituyen la muestra; el
 procedimiento prosigue de idéntica manera hasta la última unidad de la
 muestra.
 
-<!-- caption: Ilustración del procedimiento de muestreo sistemático-->
-<!-- todo: poner este caption -->
-
---- ------
-    1
-    ...
-→   a
-    ...
-    ...
-→   a+r
-    ...
-    ...
-→   a+2r
-    ...
-    ...
-    N
---- ------
+```{r}
+aux_table <- tibble::tribble(
+  ~"", ~"",
+  "",    "$1$",
+  "",  "$\\ldots$",
+  "$\\rightarrow$",   "$a$",
+  "",  "$\\ldots$",
+  "",  "$\\ldots$",
+  "$\\rightarrow$", "$a+r$",
+  "",  "$\\ldots$",
+  "",  "$\\ldots$",
+  "$\\rightarrow$", "$a+2r$",
+  "",  "$\\ldots$",
+  "",  "$\\ldots$",
+  "",  "N",
+)
+knitr::kable(
+  aux_table, kable_outp,
+  booktabs = TRUE, align = "lc", escape = FALSE, caption = "Ilustración del procedimiento de muestreo sistemático.",
+) %>%
+  kableExtra::kable_styling(latex_options = "striped")
+```
 
 Esta técnica tiene, en principio, los mismos requerimientos que el
 muestreo irrestricto aleatorio, en cuanto a la necesidad de disponer del

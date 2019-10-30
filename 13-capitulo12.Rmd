@@ -568,21 +568,30 @@ $$H_{1}:\mu_{1} - \mu_{2} < 0$$
 
 Los resultados descriptivos de los dos grupos son:
 
-<!-- ```{r} -->
-<!-- adultos_mayores <- read.csv("bases/archivostxt/Adultos.mayores.txt", -->
-<!--   sep = ";", header = TRUE -->
-<!-- ) -->
+```{r}
+adultos_mayores <- read.csv("bases/archivostxt/Adultos.mayores.txt",
+  sep = ";", header = TRUE, fileEncoding="latin1"
+)
 
-<!-- adultos_mayores$edad <- as.numeric(as.character(adultos_mayores$edad)) -->
-<!-- adultos_mayores$hijos <- as.numeric(as.character(adultos_mayores$hijos)) -->
+adultos_mayores$edad <- as.numeric(as.character(adultos_mayores$edad))
+adultos_mayores$hijos <- as.numeric(as.character(adultos_mayores$hijos))
 
-<!-- adultos_mayores$grupo_edad <- ifelse(adultos_mayores$edad < 66, 1, 2) -->
-<!-- adultos_mayores$grupo_edad <- as.factor(adultos_mayores$grupo_edad) -->
-<!-- resumen_hijos <- summaryBy(hijos ~ grupo_edad, data = subset(adultos_mayores, is.na(adultos_mayores$hijos) == FALSE & is.na(adultos_mayores$grupo_edad) == FALSE), FUN = c(length, mean, median, sd)) -->
-<!-- kable(resumen_hijos) -->
-<!-- ``` -->
+adultos_mayores$grupo_edad <- ifelse(adultos_mayores$edad < 66, 1, 2)
+adultos_mayores$grupo_edad <- as.factor(adultos_mayores$grupo_edad)
+resumen_hijos <- summaryBy(
+  hijos ~ grupo_edad,
+  data = adultos_mayores[
+    !is.na(adultos_mayores$hijos) & !is.na(adultos_mayores$grupo_edad),],
+  FUN = c(length, mean, median, sd))
+# colnames(resumen_hijos) <- gsub("_", "\\.", colnames(resumen_hijos))
+knitr::kable(
+  resumen_hijos, kable_outp,
+  booktabs = TRUE, align = "ccccc", escape = TRUE,
+) %>%
+  kableExtra::kable_styling(latex_options = "striped")
+```
 
-El nombre de la variable grupo_edad, corresponde a los grupos 1, hasta 65 años y 2, de 66 ó más. Los grupos tienen 243 y 260 personas
+El nombre de la variable `grupo_edad`, corresponde a los grupos 1, hasta 65 años y 2, de 66 ó más. Los grupos tienen 243 y 260 personas
 respectivamente. La descripción muestra la media, mediana y desviación estándar.
 
 Vemos que hay diferencia en el número de hijos promedio de los dos
@@ -596,9 +605,9 @@ Para realizar una prueba de diferencia de medias entre muestras independientes, 
 
 La salida R para esta prueba es:
 
-<!-- ```{r message=FALSE, warning=FALSE} -->
-<!-- t.test(hijos ~ grupo_edad, data = adultos_mayores, alternative = "less") -->
-<!-- ``` -->
+```{r message=FALSE, warning=FALSE}
+t.test(hijos ~ grupo_edad, data = adultos_mayores, alternative = "less")
+```
 
 Por cuestiones de economía de recursos, los software usan siempre distribución t. La salida muestra: la variable que se analiza (hijos), según la que clasifica los grupos (grupo_edad), el valor del estadístico de prueba (t=-0.94), los grados de libertad (495), el valor de probabilidad asociado a la
 prueba (0.17), el tipo de prueba, que es unilateral izquierda en este caso, un intervalo de confianza unilateral, como fue pedida la prueba y finalmente, las medias (2.49 y 2.61) de cantidades de hijos de cada grupo
@@ -1108,32 +1117,32 @@ Ahora la lectura es que el valor p es grande por lo que no se rechaza la $H_{0}$
 
 ### Aplicación a los datos de Adultos Mayores
 
-Se lee la base y se la nombra como adultos_mayores:  
+Se lee la base y se la nombra como `adultos_mayores`:
 
-<!-- ```{r echo=TRUE} -->
-<!-- adultos_mayores <- read.csv("bases\\archivostxt\\Adultos.mayores.txt", -->
-<!--   sep = ";", header = TRUE -->
-<!-- ) -->
-<!-- ``` -->
+```{r echo=TRUE}
+adultos_mayores <- read.csv("bases/archivostxt/Adultos.mayores.txt",
+  sep = ";", header = TRUE, fileEncoding="latin1"
+)
+```
 
 Luego, se llevan a numéricas la edad y la cantidad de hijos, porque fueron leídas como factores:  
 
-<!-- ```{r echo=TRUE} -->
-<!-- adultos_mayores$edad <- as.numeric(as.character(adultos_mayores$edad)) -->
-<!-- adultos_mayores$hijos <- as.numeric(as.character(adultos_mayores$hijos)) -->
-<!-- ``` -->
+```{r echo=TRUE}
+adultos_mayores$edad <- as.numeric(as.character(adultos_mayores$edad))
+adultos_mayores$hijos <- as.numeric(as.character(adultos_mayores$hijos))
+```
 
 Se construye la variable que agrupa las edades:  
 
-<!-- ```{r echo=TRUE} -->
-<!-- adultos_mayores$grupo_edad <- ifelse(adultos_mayores$edad < 66, 1, 2) -->
-<!-- ``` -->
+```{r echo=TRUE}
+adultos_mayores$grupo_edad <- ifelse(adultos_mayores$edad < 66, 1, 2)
+```
 
 Y se solicita la prueba de hijos según grupos de edad, unilateral izquierda:
 
-<!-- ```{r echo=TRUE} -->
-<!-- t.test(hijos ~ grupo_edad, data = adultos_mayores, alternative = "less") -->
-<!-- ``` -->
+```{r echo=TRUE}
+t.test(hijos ~ grupo_edad, data = adultos_mayores, alternative = "less")
+```
 
 ### Prueba apareada
 
