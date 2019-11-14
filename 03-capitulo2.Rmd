@@ -264,7 +264,7 @@ Si la variable es continua la recategorización es necesaria, porque no es posib
 
 Se utilizan tres criterios para recategorizar variables: intervalos iguales, intervalos proporcionales e intervalos teóricos.
 
-#### Intervalos iguales:
+#### Intervalos de amplitud igual
 
 Se organizan los valores de la variable para lograr que el campo de variación quede dividido en tantos intervalos como se desee siendo ellos de igual amplitud. Si es una variable discreta y la cantidad de categorías originales no es múltiplo de número de intervalos que se desean, la cantidad de valores en cada uno no será idéntica, sino aproximadamente igual. La variable edad, con cuatro categorías queda, según este criterio, así: 
 
@@ -288,7 +288,7 @@ kableExtra::kable_styling(
 
 Los intervalos son de la misma amplitud, pero el primero de ellos tiene más del 70% de las observaciones, con lo que se pierde detalle de la distribuciión.
 
-#### Criterio proporcional
+#### Intervalos de amplitud proporcional
 
 Este criterio busca que los intervalos incluyan aproximadamente a la misma cantidad de casos, por lo que su amplitud puede ser diferente. En el capítulo siguiente se verá que los puntos para establecer los cortes de intervalos, se llaman percentiles. Por ahora interesa que con este criterio se logran grupos homogéneos en términos de cantidad de observaciones. la edad de los estudiantes, con cuatro intervalos resulta así categorizada:
 
@@ -325,7 +325,7 @@ kableExtra::kable_styling(
 
 Ahora la distribución está más equilibrada (hay alrededor de 1000 casos en cada una), y los intervalos tienen amplitud diferente. El último intervalo, de 26 años de  amplitud, tiene casi la misma cantidad de casos que el primero, que cubre tres años.
 
-#### Criterio teórico
+#### Interalos de amplitud teórica
 
 Aquí la decisión por el lugar donde establecer los puntos de corte para definir los intervalos es del investigador y debe estar fundamentada. Si se considera que la edad esperada de los alumnos observados es entre 19 y 20 años, se pueden hacer cuatro intervalos con quienes tienen menos de esa edad, quienes tienen la edad esperada, los que tienen más de esa edad y los más mayores (superan los 40 años). Los intervalos resultan así:
 
@@ -587,3 +587,289 @@ kableExtra::kable_styling(
 ```
 
 [^categ_inf]: La cantidad de valores depende de la precisión con que se haga la medición.
+
+## Hacerlo en R  
+Volvemos  sobre la base que se trabajó en el capítulo anterior:  
+```{r echo=TRUE, warning=FALSE}
+base.ejemplo=read.table("bases/archivostxt/base2019.txt",
+header = TRUE, sep = " ", na.strings = "999")
+```
+
+Y repetimos las operaciones anteriores, de dar nombre a las variables, y de tranformar en factor y etiquetar las variables que corresponda (para esto alcanza con copiar y pegar las instrucciones del capítulo anterior):  
+```{r warning=FALSE, echo=TRUE}
+# nombres de columnas:
+names(base.ejemplo)=c("caso", "grupo", "n.cuest", "nombre","sexo", "genero",
+"edad", "acceso.redes","red.usada","red.otra" ,
+"tiempo.red", "con.q.vive", "relacion.otros",
+"q.aporta","q.aporta.amigos" ,"edad.partida",
+"razon.partida",
+"razon.partida.otra","calidad.sueño",
+"preocupacion","golpeo", "robo","cuanto.da", "comision")
+
+# transformar en factor y etiquetar las nominales:  
+base.ejemplo$sexo=as.factor(base.ejemplo$sexo)
+levels(base.ejemplo$sexo)=c("varones", "mujeres")
+
+base.ejemplo$con.q.vive=as.factor(base.ejemplo$con.q.vive)
+levels(base.ejemplo$con.q.vive)=c("flia.origen", "flia.nueva",
+"hermanes.o.amigues", "solo",
+"con.otres")
+
+base.ejemplo$q.aporta=as.factor(base.ejemplo$q.aporta)
+levels(base.ejemplo$q.aporta)=c("el.mismo", "flia.origen",
+"flia.nueva","entre.amigos")
+
+base.ejemplo$acceso.redes=as.factor(base.ejemplo$acceso.redes)
+levels(base.ejemplo$acceso.redes)=c("si", "no")
+
+base.ejemplo$red.usada=as.factor(base.ejemplo$red.usada)
+levels(base.ejemplo$red.usada)=c("Instagram", "Facebook", "Twitter",
+"Linkedin","Tinder/Grindr/happn",
+"Snapchat", "Ninguna", "Otra")
+
+base.ejemplo$razon.partida=as.factor(base.ejemplo$razon.partida)
+levels(base.ejemplo$razon.partida)=c("estudio","nueva.flia","ganas","otras")
+
+```
+
+### Tablas univariadas  
+
+Las tablas de distribución de frecuencias se solicitan con un comando del paquete {base} que se llama `table`, que tiene como argumento la variable cuya tabla se pide. Así, para la tabla de sexo:
+```{r echo=TRUE}
+table(base.ejemplo$sexo)
+```
+
+Para "quien aporta":
+```{r echo=TRUE}
+table(base.ejemplo$q.aporta)
+```
+
+Por defecto, este comando descarta los casos perdidos (los NA). Si se los quiere ver,  hay que pedirlo expresamente:
+
+```{r echo=TRUE}
+table(base.ejemplo$q.aporta, useNA = "always")
+```
+
+Las opciones de `useNA` son "$no$", que se la que se aplica por defecto, "$ifany$" (si hay alguno) y la que hemos usado en este ejemplo, "$always$" (siempre).  
+
+Existe un paquete especializado para descripciones estadísticas, llamado {summarytools} que contiene herramientas que simplifican operaciones y ofrecen una presentación más familiar de las tablas. Primero se lo debe instalar:  
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, echo=TRUE}
+install.packages("summarytools")
+```
+
+Y cargarlo en la sesión:  
+```{r  echo=TRUE, message=FALSE, warning=FALSE}
+library(summarytools)
+
+```
+
+En este paquete, el comando para pedir una tabla es `freq`. Para la misma variable anterior:
+
+```{r echo=TRUE}
+freq(base.ejemplo$q.aporta)
+```
+
+La diferencia entre frecuencias válidas y totales es que las primeras descuentan los casos perdidos (NA). Si bien la tabla tiene ahora mejor aspecto, las columnas 3 y 5 (correspondientes a frecuencias acumuladas), no pueden interpretarse, porque esta variable no admite frecuencias acumuladas, que este comando calcula por defecto. Puede solicitarse expresamente que no lo haga:  
+```{r echo=TRUE}
+freq(base.ejemplo$q.aporta, cumul = FALSE)
+```
+
+Y se obtienen frecuencias absolutas y relativas, estas últimas respecto de los casos válidos y respecto del total de casos.  
+Si la variable es ordinal, las frecuencias acumuladas sí admiten interpretación. Para la variable "ocasión en que golpeó a alguien", tenemos:  
+
+```{r echo=TRUE}
+
+freq(base.ejemplo$golpeo)
+```
+
+La salida se puede simplificar si no hay interés en un análisis puntual sobre los casos perdidos, eliminando su aparición. En el comando `freq`, el argumento `report.nas=FALSE` establece que se elimine la refencia a los casos perdidos, ya que aun cuando no haya, la tabla los menciona, con frecuencia cero.  
+```{r}
+freq(base.ejemplo$golpeo, report.nas = FALSE)
+```
+
+Que es la versión más familiar de la tabla. con frecuencias absolutas, relativas simples y acumuladas y ya no hay mención a válidos o totales, porque solo están presentes los válidos.  
+
+### Recategorización  
+La construcción de categorías a partir de una variable continua, se realiza con el comando `cut`, cuyo argumento contiene a la variable que se va a recategorizar, y una instrucción `breaks=` que especifica el modo de hacer los cortes, esta instrucción difiere según los tipos de racategorización.  
+Para ver los comandos, vamos a generar nuevas variables en la base, que se llaman edad4i, edad4p y edad4t (edad en cuatro categorías, con criterio de amplitud igual, proporcional y teórica), y definimos esas categorías de las tres maneras diferentes que se han visto. Antes de eso vamos a eliminar de la base los casos que no tengan información en la variable edad. El modo de hacerlo es redefinir el data frame base.ejemplo, como un subconjunto de él que solo contenga los casos para los cuales la variable edad no es NA:  
+```{r echo=TRUE}
+base.ejemplo=subset(base.ejemplo,
+                    is.na(base.ejemplo$edad)==FALSE)
+```
+
+Ahora la base tiene 4991 observaciones.
+
+#### Intervalos de amplitud igual  
+
+Para que lo ontervalos sean iguales, solo se indica la cantidad de ellos que se quiere, en este caso, cuatro:  
+```{r echo=TRUE}
+base.ejemplo$edad4i=cut(base.ejemplo$edad, breaks = 4 )
+
+```
+
+Y pedimos una tabla:  
+
+```{r echo=TRUE}
+freq(base.ejemplo$edad4i, report.nas=FALSE)
+```
+  
+Los intervalos se presentan con un paréntesis a la izquierda y un corchete a la derecha, lo que indica que los intervalos son abiertos a la izquierda y cerrados a la derecha, incluyen al límite superior y excluyen al inferior. Por ejemplo las personas con edad 27 años están contadas en el primer intervalo y no en el segundo, aunque el 27 aparezca en ambos.
+
+#### Intervalos de amplitud proporcional
+
+Para lograr que cada intervalo tenga aproximadamente la misma proporción de casos, primero hay que saber cuál es esa proporción. En este ejemplo, son cuatro intervalos, por lo que un cuarto de los casos debe estar en cada uno, es decir el 25%. En el próximo capítulo se definirán medidas resumen que marcan estos puntos de corte, se denominan cuantiles: para este ejemplo, hay que cortar el campo de variación en los valores de la variable que acumulen 25%, 50% y 75%, de modo que entre cada par de ellos quede 25% de casos. Esos números se llaman cuantiles 0.25, 0.50 y 0.75. Así se especifica en el comando:  
+```{r echo=TRUE}
+base.ejemplo$edad4p<-cut(base.ejemplo$edad,
+                         breaks = c(min(base.ejemplo$edad),
+              quantile(base.ejemplo$edad, .25),
+              quantile(base.ejemplo$edad, .50),
+              quantile(base.ejemplo$edad, .75),
+              max(base.ejemplo$edad)))
+```
+
+Allí se han indicado todos los cortes: el mínimo valor de la variable, los cuantiles y el máximo.  
+La tabla es:
+
+```{r}
+freq(base.ejemplo$edad4p, report.nas=FALSE)
+```
+
+Como se trata de una variable discreta, la aproximación del 25% en cada intervalo no es muy cercana. En este ejemplo sucede que la edad 18 años tiene muchos casos, por lo que incluirla en el primer intervalo o en el segundo, cambia mucho la proporción de casos que quedan dentro del intervalo.  
+
+#### Intervalos de amplitud teórica
+
+De mismo modo que antes, se indica al argumento breaks, la  concatenación de los puntos de corte, solo que éstos se establecen de antemano, por ejemplo, para hacer grupos 15-18, 19-23, 24-35 y 36 en adelante, pedimos:  
+
+```{r echo=TRUE}
+base.ejemplo$edad4t<-cut(base.ejemplo$edad, breaks = c(min(base.ejemplo$edad),18, 23, 35, max(base.ejemplo$edad)))
+
+```
+
+La tabla resulta:
+```{r echo=TRUE}
+freq(base.ejemplo$edad4t, report.nas=FALSE)
+
+```
+
+### Representaciones gráficas
+
+El paquete {base} contiene rutinas elementales de graficación, sin embargo, desde aquí vamos a empezar a usar un paquete específico paraeso. TRAER LA INTRO A GGPLOT, LAS CAPAS...
+```{r echo=TRUE}
+library(ggplot2)
+```
+
+Para hacer un gráfico de barras, empezamos indicando sobre qué base trabajaremos, en el argumento de ggplot y agregamos una capa de barras (geom_bar) con la variable:  
+
+```{r echo=TRUE}
+ggplot(base.ejemplo)+geom_bar(aes(red.usada))
+```
+Y vamos a mejorarlo en su aspecto. Para quitar los NA, tomamos como argumento de ggplot, no la base completa, sino un subconjunto que no tenga NA en esta variable:
+
+```{r echo=TRUE}
+ggplot(subset(base.ejemplo, is.na(base.ejemplo$red.usada)==FALSE))+
+  geom_bar(aes(red.usada))
+```
+
+Además de hacer el gráfico (ejecutar el comando) podemos guardarlo como un objeto, lo llamamos p1:
+```{r echo=TRUE}
+p1<-ggplot(subset(base.ejemplo, is.na(base.ejemplo$red.usada)==FALSE))+
+  geom_bar(aes(red.usada))
+```
+
+El objeto (de clase ggplot) aparece en el panel superior derecho. A las capas subsiguientes las agregamos sobre p1. Una capa de rótulos y se crea p2:
+
+
+```{r echo=TRUE}
+(p2<-p1+xlab("Red más usada")+ ylab("cantidad de casos"))
+
+```
+
+El paréntesis que encierra toda la expresión se usa  para que, al mismo tiempo que se defina el objeto p2, se ejecute el comando y se vea el gráfico.
+Las etiquetas de los ejes se vuelven más legibles si se giran los ejes:
+
+```{r echo=TRUE}
+p2+coord_flip()
+```
+
+
+Vamos a usar este ejemplo para ilustrar la diferencia entre "fijar" y "mapear" a un atributo estético, que en este caso será el color de relleno de las barras. Fijar el color es simplemente establecerlo como preferencia para todas las barras, es un argumento de la capa geom_bar:
+
+
+```{r echo=TRUE}
+ggplot(subset(base.ejemplo, is.na(base.ejemplo$red.usada)==FALSE))+
+  geom_bar(aes(red.usada), fill="green")+coord_flip()
+```
+
+Por el contrario, "mapear" es pedir que el color de relleno cambie en base a las categorías de la variable, éste es un argumento de aes:  
+```{r echo=TRUE}
+ggplot(subset(base.ejemplo, is.na(base.ejemplo$red.usada)==FALSE))+
+  geom_bar(aes(red.usada, fill=red.usada))+coord_flip()
+```
+
+Dos diferencias importantes en la sintaxis:  
+- el comando ´fill´ va dentro de aes cuando se mapea y fuera cuando se fija  
+- el color fijo (green en este ejemplo) va entre comillas, el nombre de la variable, no.  
+
+Y en el gráfico el cambio se ve en que se usó un color para cada categoría de red.usada.  
+
+El mapeo es muy útil para introducir otra variable y ver las diferencias. Por ejemplo, el uso de redes según sexo:  
+```{r echo=TRUE}
+ggplot(subset(base.ejemplo, is.na(base.ejemplo$red.usada)==FALSE & is.na(base.ejemplo$sexo)==FALSE))+
+  geom_bar(aes(red.usada, fill=sexo))+coord_flip()
+```
+
+El histograma tiene su propia capa, para la variable edad:  
+
+```{r echo=TRUE}
+ggplot(base.ejemplo)+
+  geom_histogram(aes(edad))
+```
+
+Por defecto, se toman 30 intervalos, lo cual puede ajustarse, por ejemplo, a 15:  
+```{r echo=TRUE}
+ggplot(base.ejemplo)+
+  geom_histogram(aes(edad), bins = 15)
+```
+
+Las opciones de mapeo son como con geom_bar:  
+```{r echo=TRUE}
+ggplot(subset(base.ejemplo,
+              is.na(base.ejemplo$sexo)==FALSE))+
+  geom_histogram(aes(edad, fill=sexo), bins=15)
+```
+
+El polígono de frecuencias es una capa:  
+```{r echo=TRUE}
+ggplot(base.ejemplo)+
+  geom_histogram(aes(edad))+
+  geom_freqpoly(aes(edad))
+```
+
+Si se quiere ajustar el número de intervalos, conviene hacerlo igual en las dos capas:  
+```{r echo=TRUE}
+ggplot(base.ejemplo)+
+  geom_histogram(aes(edad), bins = 15)+
+  geom_freqpoly(aes(edad), bins=15)
+```
+
+La ojiva tiene una capa llamada stat_ecdf, para el cálculo de la distribución de frecuencias acumuladas empíricas. Su sintaxis sigue la misma lógica: en aes se indica la variable que se grafica:   
+```{r echo=TRUE}
+ggplot(base.ejemplo)+stat_ecdf(aes(edad))
+
+```
+
+
+Por defecto grafica escalones que representan los saltos de frecuencia, se puede modificar por puntos, con el argumento geom:
+
+```{r echo=TRUE}
+ggplot(base.ejemplo)+stat_ecdf(aes(edad), geom = "point")
+```
+
+O estilizando los escalones con una línea:  
+
+```{r echo=TRUE}
+ggplot(base.ejemplo)+stat_ecdf(aes(edad), geom = "line")
+```
+
+Hay muchas opciones para mejorar la visualización de estos gráficos, que s eirán presentando más adelante.

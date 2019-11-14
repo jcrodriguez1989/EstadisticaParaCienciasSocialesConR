@@ -71,6 +71,7 @@ ciudades <- c(
   rep("áreas rurales", 5)
 )
 violencia <- data.frame(tipo, ciudades)
+write.csv(violencia, "bases/archivostxt/violencia.txt", row.names = FALSE)
 tabla25 <- table(violencia$tipo, violencia$ciudades)
 aux_table <- addmargins(tabla25)
 colnames(aux_table) <- sub("Sum", "Total", colnames(aux_table))
@@ -1622,11 +1623,38 @@ En la misma dirección, Steph Locke (arrobadatasaurus2018, arrobalocke2018) gene
 
 En el paquete base de R existe una función que realiza operaciones relacionadas con el puntaje $\chi^{2}$; el comando es chi.test y se aplica sobre una tabla de contingencia. Estas operaciones contituyen lo que se denomina "prueba $\chi^{2}$", sobre la que trabajaremos más adelante. Por ahora, solo se usará una parte de los resultados de esta prueba. 
 
-La aplicación de la prueba a una tabla de contingencia da como resultado un objeto de clase "htest", de ello, nos van a interesar sus componentes. A continuación llamamos "tabla.viol" a la que cruza los tipos de violencia con el tamaño de las ciudades y aplicamos la prueba a esa tabla. Al resultado de la prueba lo guardamos con el nombre "jicu.viol". Luego preguntamos cuáles son los atributos de este objeto:
+La aplicación de la prueba a una tabla de contingencia da como resultado un objeto de clase "htest", de ello, nos van a interesar sus componentes. Para construir la tabla que cruza los tipos de violencia con el tamaño de las ciudades, primero debemos leer la base (datos ficticios), denominamos "violencia" a esa base: 
+```{r}
+violencia<-read.table("bases/archivostxt/violencia.txt", sep=",", header = TRUE)
+```
+
+Los nombres de las variables son:
+
+```{r}
+names(violencia)
+```
+
+
+A continuación llamamos "tabla.viol" al cruce de las dos variables:  
 
 ```{r, echo=TRUE}
 tabla.viol <- table(violencia$tipo, violencia$ciudades)
+```
+
+Y vemos su aspecto:  
+
+```{r}
+tabla.viol
+```
+
+Ahora aplicamos la prueba a esa tabla, y se guarda el resultado de la prueba con el nombre "jicu.viol".  
+```{r}
 jicu.viol <- chisq.test(tabla.viol)
+
+```
+
+Preguntamos cuáles son los atributos de este objeto:  
+```{r}
 attributes(jicu.viol)
 ```
 

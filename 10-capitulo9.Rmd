@@ -18,10 +18,9 @@ para establecer las bases de los procedimientos de inferencia
 estadística. La parte III tratará con datos que provienen de muestras
 probabilísticas, es decir, unidades de análisis que habrán sido
 seleccionadas usando alguno de los procedimientos de muestreo
-probabilístico. En consecuencia, las medidas que se calculen a partir de esos datos dependerán del azar[^65].
-
-- El conjunto completo de estudiantes de Psicología en 2014 tenía una edad promedio de 26.8 años (UNC, 2014). Si ese año se hubiese extraído una muestra de 20 alumnos al azar, la edad promedio podría haber sido un número muy diferente de 26.8 años.
-- En las elecciones de 2019 en la provincia de Córdoba, el candidato a gobernador que ganó, obtuvo 57% de los votos. Si se selecciona aleatoriamente una muestra de 50 ciudadanos que hayan votado ese año, el porcentaje de quienes eligieron a ese cantidato pordría ser diferente a 57%
+probabilístico. En consecuencia, las medidas que se calculen a partir de esos datos dependerán del azar[^65]. El concepto que desarrollamos en este capítulo es el de *variabilidad muestral*. La idea central es que cuando se extraen muestras aleatorias de una población, los resultados que se obtienen en esas muestras, son aleatorios. Dos ejemplos de ello:  
+- El conjunto completo de estudiantes de Psicología en 2014 tenía una edad promedio de 26.8 años (UNC, 2014). Si ese año se hubiese extraído una muestra de 20 alumnos al azar, la edad promedio podría haber sido un número muy diferente de 26.8 años. Una posible muestra es la que tiene a  20 estudiantes muy jóvenes, por lo que la edad promedio de esa muestra va a ser menos de 26.8. Otra muestra podría tener estudiantes de más edad, por lo que promedio de esa muestra sería superior al de la población completa.  
+- En las elecciones de 2019 en la provincia de Córdoba, el candidato a gobernador que ganó, obtuvo 57% de los votos. Si se selecciona aleatoriamente una muestra de 50 ciudadanos que hayan votado ese año, el porcentaje de quienes eligieron a ese cantidato pordría ser diferente a 57%. Alguna muestra podría dar cero, es decir no contener a ningún votante de ese candidato.  
 
 Recordemos que las muestras tienen carácter aleatorio, no podemos asegurar que la variable que estamos estudiando se asemeje en la muestra al valor que tiene en la población. Por eso, el resultado que obtengamos en la muestra depende del azar: se trata de una variable aleatoria. Tanto la media muestral, en el ejemplo de las edades de los 20 estudiantes, como la proporción muestral, en el ejemplo de los 50 votantes, son medidas calculadas sobre los valores obtenidos en muestras aleatorias, son variables aleatorias, sus valores dependen de cuáles sean los casos que constituyen la muestra y esto depende del azar, que es lo que hemos pedido como requisito al procedimiento de muestreo.
 
@@ -322,7 +321,7 @@ Antes de analizar estos resultados, los organizaremos mejor, presentando las dis
 
 ```{r}
 aux_table <- tibble::tribble(
-  ~"$\\overline{x}$", ~"$f$", ~"$f'$", ~"$\\overline{x}$", ~"$f$", ~"$f'$",
+  ~"$\\overline{x}$", ~"$f$", ~"$f'$", ~"$\\widehat{p}$", ~"$f$", ~"$f'$",
   "3,0", "1", "0,11", "0,0", "4", "0,44",
   "3,5", "2", "0,22", "0,5", "4", "0,44",
   "4,0", "3", "0,33", "1,0", "1", "0,11",
@@ -353,11 +352,11 @@ probabilidad, leemos en la tabla que la probabilidad de obtener una
 muestra en la que el promedio sea de tres meses de internación es de
 0,11. Expresamos estos simbólicamente así:
 
-$$P\overline{x} = 3 = 0,11$$
+$$P(\overline{x} = 3 )= 0,11$$
 
 Comparando las probabilidades de los diferentes valores de
 $\overline{x}$, se puede ver que resulta más probable hallar una media
-de $4$ que de $3.5$ ó de $3$; porque $P\overline{x} = 4 = 0,33$
+de $4$ que de $3.5$ ó de $3$; porque $P(\overline{x} = 4 )= 0,33$
 mientras que $P(\overline{x} = 3) = 0,11$. Se trata de un resultado
 importante, porque la media de la población es $4$, por lo que vemos que es más probable encontrar una media muestral cerca de la media
 poblacional que lejos de ella.
@@ -393,19 +392,16 @@ probabilidades se indican como $P(\overline{x})$ en el eje vertical.
 
 El Gráfico \@ref(fig:distrX), representa los valores de $x$: los tiempos de internación de cada paciente individualmente. Son tres casos, cada uno es un paciente. Esos son los valores que se ubican en el eje horizontal, las probabilidades del eje vertical son $P(x)$.
 
-La del Gráfico \@ref(fig:distrXBarra) es la distribución en la población, en este caso es uniforme, pero podría tener cualquier otra forma. Por el contrario, la del Gráfico \@ref(fig:distrX) es la distribución de las medias muestrales; es simétrica
+La del Gráfico \@ref(fig:distrX) es la distribución en la población, en este caso es uniforme, pero podría tener cualquier otra forma. Por el contrario, la del Gráfico \@ref(fig:distrXBarra) es la distribución de las medias muestrales; es simétrica
 y va a tender a tener esta forma a medida que las muestras sean de mayor
 tamaño, independientemente de cuál sea la distribución que la variable
 tenga en la población. Luego volveremos sobre esta importante
 observación.
 
 Vamos ahora a describir esta nueva variable $\overline{x}$, a través de
-su esperanza y su varianza.
+su esperanza y su varianza. Calculemos primero la esperanza de $\overline{x}$, aunque, por la forma de la distribución, puede anticiparse:
 
-Calculemos primero la esperanza de $\overline{x}$, aunque, por la forma
-de la distribución, puede anticiparse:
-
-$$E\overline{x} = 3*0,11 + 3,5*0,22 + 4*0,33 + 4,5*0,22 + 5*0,11 = 4$$
+$$E(\overline{x}) = 3*0,11 + 3,5*0,22 + 4*0,33 + 4,5*0,22 + 5*0,11 = 4$$
 
 Se verifica que el valor esperado para las medias muestrales coincide
 con la media de la población. Este es el primer resultado que nos
@@ -432,19 +428,19 @@ insesgado.
 
 Ahora vamos a calcular la varianza de $\overline{x}$:
 
-$$V\overline{x} = 3 - 4^{2}*0,11 + 3,5 - 4^{2}*0,22 + 4 - 4^{2}*0,33 + 4,5 - 4^{2}*0,22 + 5 - 4^{2}*0,11 = 0,33$$
+$$V(\overline{x}) = 3 - 4^{2}*0,11 + 3,5 - 4^{2}*0,22 + 4 - 4^{2}*0,33 + 4,5 - 4^{2}*0,22 + 5 - 4^{2}*0,11 = 0,33$$
 
 Este valor no es el mismo que el de $\sigma^{2}$, sino que es la mitad.
 Se trata nuevamente de un resultado que podemos generalizar y que
 depende del tamaño de la muestra. En el caso de este ejemplo, las
 muestras son de tamaño dos y por esa razón la varianza de la media
 muestral es la varianza poblacional dividida por dos. Si las muestras
-fuesen de tamaño 3, la varianza habría quedado reducida a la tercera
+fuesen de tamaño tres, la varianza habría quedado reducida a la tercera
 parte. Para otro tamaño de muestra, la varianza de $\overline{x}$ será
 diferente. De modo general, la varianza de $\overline{x}$ se relaciona
 con la varianza de $x$ ${(\sigma}^{2}$) a través de:
 
-$$V\overline{x} = \frac{\sigma^{2}}{n}$$
+$$V(\overline{x}) = \frac{\sigma^{2}}{n}$$
 
 De manera alternativa, indicamos a esta varianza como
 $\sigma_{\overline{x}}^{2}$, con lo que:
@@ -488,7 +484,7 @@ muestra y en ella calculamos la media. Lo que hemos visto hasta aquí nos
 dice que la media muestral que se obtenga tiene más chances de estar
 cerca de la media poblacional cuanto más grande sea la muestra que
 tomemos. Esto es así porque a medida que aumenta el número de casos en
-la muestra ($n$) disminuye la varianza y en consecuencia las medias
+la muestra ($n$), disminuye la varianza y en consecuencia las medias
 muestrales tienen más probabilidad de estar cerca de la media
 poblacional. Por eso, será más probable que la única media que se
 obtiene en la muestra sea próxima al parámetro que se estima. No es
@@ -511,27 +507,32 @@ valores de una variable aleatoria (porque esos valores provienen de una
 muestra aleatoria) dividida en el total de casos. Por eso el teorema nos dice que si se trata de muestras grandes, puede tratarse a
 $\overline{x}$ como teniendo una distribución normal.
 
+
+
 Anteriormente se presentó el experimento de tirar un dado dos veces,
 contar la suma de los puntos obtenidos y definir la variable aleatoria
 $S$ que resulta de la suma de dos variables aleatorias, porque cada
 tirada del dado da lugar a un resultado entre 1 y 6 que depende del
 azar. La variable que resulta de tirar una sola vez el dado tiene
 distribución uniforme: todos los números tienen la misma probabilidad
-$1/6$. La suma de puntos de los dos dados, $S$, ya no tiene distribución uniforme, porque es más probable obtener $7$ (que puede resultar de $6+1$, $5+2$, $4+3$, $3+4$, $2+5$ ó $1+6$) que $12$ (que solo puede obtenerse con $6+6$).
+$1/6$. La suma de puntos de los dos dados, $S$, ya no tiene distribución uniforme, porque es más probable obtener $7$ (que puede resultar de $6+1$, $5+2$, $4+3$, $3+4$, $2+5$ ó $1+6$) que $12$ (que solo puede obtenerse con $6+6$).  
 
-```{r message=FALSE, warning=FALSE, fig.cap="Distribución de probabilidades de la variable *x = puntaje obtenido al tirar un dado*"}
+```{r puntosdado, message=FALSE, warning=FALSE, fig.cap="Distribución de probabilidades de la variable *x = puntaje obtenido al tirar un dado*"}
 dado.solo <- data.frame(c(1:6), rep(1 / 6, 6))
 names(dado.solo) <- c("puntos", "probs")
 ggplot(dado.solo, aes(puntos, probs)) + geom_histogram(stat = "identity", fill = "green") + xlab("puntos en el dado") + ylab("probabilidad de resultar por azar") + theme_tufte()
 ```
 
-```{r fig.cap="Distribución de probabilidades de *S = suma de puntajes obtenidos al tirar dos veces un dado*"}
+```{r puntosdosdados, fig.cap="Distribución de probabilidades de *S = suma de puntajes obtenidos al tirar dos veces un dado*"}
 suma.dado <- data.frame(c(2:12), c(1 / 36, 2 / 36, 3 / 36, 4 / 36, 5 / 36, 6 / 36, 5 / 36, 4 / 36, 3 / 36, 2 / 36, 1 / 36))
 names(suma.dado) <- c("puntos", "probs")
 ggplot(suma.dado, aes(puntos, probs)) + geom_histogram(stat = "identity", fill = "green") + xlab("suma de puntos de dos tiradas del dado") + ylab("probabilidad de resultar por azar") + theme_tufte()
 ```
 
-Si bien la distribución de esta variable no es normal, se aprecia la
+
+Los Gráficos \@ref(fig:puntosdado) y \@ref(fig:puntosdosdados) ilustran la diferencia.
+
+Si bien la distribución de $S$ no es normal, se aprecia la
 tendencia, "va camino a ser normal". En este caso la muestra tiene solo
 dos casos (las dos tiradas del dado); cuando son más casos, la
 distribución va volviéndose más cercana a la normal.
@@ -544,8 +545,7 @@ distribución normal a medida que se toman muestras de mayor tamaño. Éste
 es el tercer resultado que necesitamos para relacionar a la media
 muestral con la poblacional y poder hacer las primeras inferencias.
 
-Resumimos en el recuadro siguiente los tres resultados mostrados hasta
-este punto.
+Resumimos los tres resultados mostrados hasta este punto:
 
 - $E(\overline{x})=\mu$ o $\mu_{\overline{x}}=\mu$
 - $V(\overline{x})=\frac{\sigma^2}{n}$
@@ -554,22 +554,19 @@ este punto.
 La última expresión sintetiza las anteriores y agrega que la
 distribución de $\overline{x}$ es normal.
 
-Entonces, del recuadro se lee que:
+Entonces, de lo anterior se lee que:
 
--   La esperanza de $\overline{x}$ es la media de la población
-    (insesgabilidad).
+-   La esperanza de $\overline{x}$ es la media de la población (insesgabilidad).
 
--   La varianza de $\overline{x}$ es la varianza de la población
-    dividida en el tamaño de la muestra[^71] (consistencia).
+-   La varianza de $\overline{x}$ es la varianza de la población dividida en el tamaño de la muestra[^71] (consistencia).
 
--   La media muestral tiende a tener una distribución normal con media $\mu$ y varianza $\frac{\sigma^{2}}{n}$, cuando el tamaño de la muestra
-    aumenta.
+-   La media muestral tiende a tener una distribución normal con media $\mu$ y varianza $\frac{\sigma^{2}}{n}$, cuando el tamaño de la muestra aumenta.
 
 #### Ejemplo con datos ficticios
 
 Supongamos que en la población de adultos la media de horas diarias de
-sueño es de 6,5 hs$\ \mu = 6,5$ con varianza de 9
-hs^2^$\ \sigma^{2} = 9$. Si eligiéramos al azar muestras
+sueño es de 6,5 hs ($\ \mu = 6,5$) con varianza de 9
+hs^2 ($\ \sigma^{2} = 9$). Si eligiéramos al azar muestras
 de 200 personas ($n=200$) y registráramos el número promedio de horas de sueño en cada muestra, encontraríamos que la distribución de esas horas
 promedio sería como la siguiente:
 
@@ -594,7 +591,7 @@ variable y el de la media, dividida en la desviación estándar:
 $$z = \frac{x - \overline{x}}{s}$$
 
 La diferencia ahora es que nuestra variable es $\overline{x}$, su media
-es $\mu$ y su desviación estándar es el que hemos llamado error estándar de la media: $\sigma_{\overline{x}}$. Con lo que el puntaje $z$ asociado a cada valor de$\overline{x}$, tiene ahora la forma:
+es $\mu$ y su desviación estándar es el que hemos llamado error estándar de la media: $\sigma_{\overline{x}}$. Con lo que el puntaje $z$ asociado a cada valor de $\overline{x}$, tiene ahora la forma:
 
 $$z = \frac{\overline{x} - \mu}{\sigma_{\overline{x}}}$$
 
@@ -621,13 +618,13 @@ puntaje $z$ correspondiente a la media de 7 horas:
 
 $$z = \frac{7 - 6,5}{\frac{3}{\sqrt{200}}} = \frac{0,5}{0,21} = 2,38$$
 
-Calculamos la probabilidad de superar este valor como el complemneto de la acumulada[^72]: $1-P(z\leq 2.38)$
+Calculamos la probabilidad de superar este valor como el complemento de la acumulada[^72]: $1-P(z\leq 2.38)$
 
 ```{r}
 1 - pnorm(2.38)
 ```
 
-La lectura de este resultado es que solo el 0,9% de las muestras de tamaño 200 darán media muestral mayor a 7hs.
+La lectura de este resultado es que solo el 0,9% de las muestras de tamaño 200 darán media muestral mayor a 7 horas.
 
 Para ver el efecto del tamaño de la muestra repitamos el cálculo con
 muestras de 30 casos[^73], cuyo gráfico es:
@@ -645,12 +642,12 @@ En el que se observa la mayor varianza de las $\overline{x}$, debido al menor ta
 El puntaje $z$ es ahora:
 
 $$z = \frac{7 - 6,5}{\frac{3}{\sqrt{30}}} = \frac{0,5}{0,55} = 0,91$$
-
+Y la probabilidad de superarlo:
 ```{r}
 1 - pnorm(.91)
 ```
 
-Es decir que el 18% de las muestras de tamaño 30 darán media que supere a 7hs. Esto indica que cuando las muestras son de mayor tamaño es menor la probabilidad de encontrar valores en los extremos de la distribución.
+Es decir que el 18% de las muestras de tamaño 30 darán media que supere a 7 hs. Esto indica que cuando las muestras son de mayor tamaño es menor la probabilidad de encontrar valores en los extremos de la distribución.
 
 Para aclarar la relación entre valores poblacionales y muestrales, supongamos que la variable *horas de sueño* tiene distribución normal en la población y calculemos la probabilidad de encontrar personas que
 duerman más de 7 horas. Antes destaquemos la diferencia entre esta
@@ -669,7 +666,7 @@ ahora:
 1 - pnorm(.17)
 ```
 
-$$Pz > 0,17 = 0,432$$
+$$P(z > 0,17) = 0,432$$
 
 Que leemos diciendo que el 43% de los individuos duerme 7 horas o más.
 Esto indica que es mucho más probable encontrar individuos que se alejen
@@ -687,11 +684,12 @@ descripción de la población de las notas del tercer parcial:
 
 
 ```{r}
-tres_parciales_2009 <- read.table(
-  "bases/archivostxt/tres.parciales.2009.txt", header = TRUE, sep = ";")
-tres_parciales_2009$Tercero <- 
-  as.numeric(as.character(tres_parciales_2009$Tercero))
-summary(tres_parciales_2009$Tercero)
+tres_parciales<-read.table("bases/archivostxt/tres.parciales.2009.txt",
+                        header = TRUE, sep=";")
+
+tres_parciales$Tercero<-as.numeric(as.character(tres_parciales$Tercero))
+summary(tres_parciales$Tercero)
+
 ```
 
 Estas medidas están calculadas sobre la población completa, que es el
@@ -700,33 +698,65 @@ Por ser la población  completa, se trata de parámetros, así:
 
 $$\mu = 5.779$$
 
-```{r}
-var(tres_parciales_2009$Tercero, na.rm = TRUE)
-```
-
 $$\sigma^{2} = 4.12$$
 
 El histograma de las notas del tercer parcial es:
 
 ```{r}
-ggplot(tres_parciales_2009) +
+ggplot(tres_parciales) +
   geom_histogram(aes(Tercero), fill = "green", bins = 10, col = "black") +
   xlab("notas del tercer parcial 2009") +
   ylab("frecuencia") +
   theme_tufte()
 ```
 
-<!-- A esto no lo se hacer en R-->
-Ahora solicitamos a Infostat® que obtenga 200 muestras de 80 casos cada
-una y que en cada una de ellas calcule la media y la varianza muestral.
-No pedimos "todas las muestras posibles" ya que serían un número muy
-elevado, por eso, lo que tendremos será una aproximación a la relación
-entre estimadores y parámetros. Esa solicitud da lugar a una nueva tabla
-que contiene una media muestral y una varianza muestral para cada una de
-las 200 muestras calculadas. Cuando solicitamos un resumen de estas
-variables obtenemos:
+Ahora extraemos 200 muestras de 80 casos cada una y producimos una nueva matriz de datos que tiene 80 filas y 200 columnas. Cada columna corresponde a una muestra, por lo que podemos solicitar la media y la varianza en cada una.No son "todas las muestras posibles de tamaño 80", sino solo 200 por lo que tendremos una *aproximación* a la relación entre estimadores y parámetros. Con las medias y varianzas de cada muestra, resulta una nueva matriz de datos, que contiene una media muestral y una varianza muestral para cada una de las 200 muestras calculadas, y cuyas primeras seis filas son:  
+
+```{r}
+set.seed(1)
+muestras=list()
+for (i in 1:200) {muestras[[i]]<-
+  sample(tres_parciales$Tercero, 80)
+}
+
+muestras.df<-data.frame()
+for (i in 1:200) {for (j in 1:80) {muestras.df[i,j] <-muestras[[i]][j]}}
+muestras.df<-as.matrix(muestras.df)
+muestras.df<-t(muestras.df)
+muestras.df<-as.data.frame(muestras.df)
+
+media=vector("numeric",200)
+for (i in 1:200) {media[[i]]<-round(mean(muestras.df[,i], na.rm = TRUE),2)
+}
+
+varianza=vector("numeric",200)
+for (i in 1:200) {varianza[[i]]<-round(sd(muestras.df[,i],na.rm = TRUE)^2,2)
+}
+
+muestra<-vector("numeric",200)
+for (i in 1:200) {muestra[i]<-i
+
+}
+resumen_muestras=data.frame(muestra, media, varianza)
+print(head(resumen_muestras), row.names = FALSE)
+
+```
+
+
+Cuando solicitamos un resumen de las medias muestrales obtenemos:
+
+```{r}
+summary(resumen_muestras$media)
+```
+
+Y para las varianzas:
+```{r}
+summary(resumen_muestras$varianza)
+```
+
 
 <!-- JCR: Asi estara bien? -->
+<!-- eb: ups, no vi que lo habías hecho, lo hice de nuevo-->
 
 ```{r}
 muestras <- data.frame(
@@ -736,7 +766,7 @@ muestras <- data.frame(
 
 set.seed(8818)
 for (i in 1:200) {
-  muestra_act <- sample(tres_parciales_2009$Tercero, size = 80)
+  muestra_act <- sample(tres_parciales$Tercero, size = 80)
   muestras$Media[[i]] <- mean(muestra_act, na.rm = TRUE)
   muestras$Varianza[[i]] <- var(muestra_act, na.rm = TRUE)
 }
@@ -750,35 +780,37 @@ summary(muestras)
 
 <!-- Varianza 200 4.12 0.28 2.89 5.69 -->
 
-Observemos en detalle la salida: n=200 es la cantidad de muestras que se
+En este resumne, $n=200$ es la cantidad de muestras que se
 extrajeron (y no el tamaño de cada muestra), ahora cada muestra
 representa un caso y las variables que se consideran son la media y la
 varianza de la nota de los 80 casos seleccionados en cada muestra. Se
 aprecia que el campo de variación de la variable original (nota del
 tercer parcial) iba de 1 a 10, mientras que la nueva variable (promedio
-de notas del tercer parcial de muestras de 80 alumnos) varía entre 5.01
-y 6.35, es decir, es notablemente más restringido, tiene menos
-variabilidad.
+de notas del tercer parcial de muestras de 80 alumnos) varía entre 5.03
+y 6.54, es decir, es notablemente más restringido, tiene menos
+variabilidad.  
 
-El valor 5.78 es la media de todas las medias muestrales y como vemos
-coincide con la media poblacional. Del mismo modo, la media de todas las
-varianzas muestrales (4.12) coincide con la varianza poblacional. Eso
-quiere decir que la media y la varianza muestrales, son estimadores
-insesgados de la media y la varianza poblacionales.
+El valor 5.79 es la media de todas las medias muestrales y como vemos
+es muy cercana a la media poblacional, como lo es la media de todas las
+varianzas muestrales comparada con la varianza poblacional. estos números no osn idénticos, porque no se extrajeron todas las muestras, sino solo 200, pero la aproximación en adecuada. Eso quiere decir que la media y la varianza muestrales, son estimadores insesgados de la media y la varianza poblacionales.
 
-Además, la salida muestra la varianza de las medias muestrales, que es
-0.05. La relación de esta varianza con la varianza poblacional es:
-$\sigma_{\overline{x}}^{2} = \frac{\sigma^{2}}{n}$, en la que n
+Además, puede calcularse la variaza de las medias muestrales, que da:
+```{r}
+sd(resumen_muestras$media)^2
+```
+
+La relación teórica de esta varianza con la varianza poblacional es:
+$\sigma_{\overline{x}}^{2} = \frac{\sigma^{2}}{n}$, en la que $n$
 representa el tamaño de las muestras y no la cantidad de muestras
 solicitadas. Con los datos del tercer parcial es:
-$\sigma_{\overline{x}}^{2} = \frac{4.12}{80} = 0.05$
+$\sigma_{\overline{x}}^{2} = \frac{4.12}{80} = 0.05$. El resultado que obtuvimos con nuestro muestreo es una buena aproximación a lo que prevé la teoría.  
 
 El histograma de las medias muestrales es:
 
-```{r}
-ggplot(muestras) +
-  geom_histogram(aes(Media), fill = "green", bins = 10, col = "black") +
-  ylab("frecuencia relativa") +
+```{r warning=FALSE}
+ggplot(resumen_muestras) +
+  geom_histogram(aes(media), fill = "green", bins = 30, col = "black") +
+  ylab("frecuencia relativa") + xlim(c(1,10))+
   theme_tufte()
 ```
 
@@ -786,7 +818,6 @@ ggplot(muestras) +
 En el que hemos usado la misma escala de 1 a 10 para que se vea con
 claridad la reducción en la dispersión de esta nueva variable.
 
-<!-- hasta acá es que no logro reproducirlo en R-->
 
 ## Distribución de la proporción muestral
 
@@ -807,7 +838,7 @@ variable, el promedio de todas esas proporciones muestrales, daría como
 resultado la proporción de casos que hay en esa categoría en la
 población. Por lo que podemos escribir que:
 
-$$E\widehat{p} = P$$
+$$E(\widehat{p}) = P$$
 
 O de manera equivalente:
 
@@ -916,11 +947,11 @@ Como antes, muestras de mayor tamaño dan lugar a menor variabilidad.
 También puede expresarse la varianza de $\widehat{p}$ como
 $\sigma_{\widehat{p}}^{2}$, con lo que:
 
-$$\sigma_{\widehat{p}}^{2} = \frac{P*1 - P}{n}$$
+$$\sigma_{\widehat{p}}^{2} = \frac{P*(1 - P)}{n}$$
 
 La desviación estándar de $\widehat{p}$ será:
 
-$$\sigma_{\widehat{p}} = \sqrt{\frac{P*1 - P}{n}}$$
+$$\sigma_{\widehat{p}} = \sqrt{\frac{P*(1 - P)}{n}}$$
 
 Esta expresión también se conoce como **error estándar de la proporción**.
 
@@ -949,20 +980,20 @@ Remplazando $x$ por su relación con $\widehat{p}$ y usando las propiedades de l
 
 Para la esperanza de $\widehat{p}$ en \@ref(eq:1):
 
-$$En*\widehat{p} = n*P$$
+$$E(n*\widehat{p}) = n*P$$
 
-$$n*E\widehat{p} = n*P$$
+$$n*E(\widehat{p}) = n*P$$
 
-$$E\widehat{p} = P$$
+$$E(\widehat{p}) = P$$
 
 Esta última igualdad muestra que, efectivamente $\widehat{p}$ es un
 estimador insesgado de P.
 
 Para la varianza de $\widehat{p}$, reemplazamos en \@ref(eq:2):
 
-$$Vn*\widehat{p} = n*P*(1 - P)$$
+$$V(n*\widehat{p}) = n*P*(1 - P)$$
 
-$$n^{2}*V\widehat{p} = n*P*(1 - P)$$
+$$n^{2}*V(\widehat{p}) = n*P*(1 - P)$$
 
 $$V\widehat{p} = \frac{P*(1 - P)}{n}$$
 
@@ -1003,7 +1034,7 @@ $$\widehat{x} = n*\widehat{p} = 15*0,40 = 6$$
 
 Ahora la probabilidad es:
 
-$$P\widehat{p} = 0,40 = B6;15;0,70$$
+$$P(\widehat{p} = 0,40) = B(6;15;0.70)$$
 
 ```{r}
 dbinom(6, 15, .70)
@@ -1320,7 +1351,7 @@ var.p <- function(x) {
 
 [^71]: De modo equivalente, la desviación estándar de la media es la desviación estándar de la población dividida en la raíz cuadrada del tamaño de la muestra. Es conocida también como error estándar de la media.
 
-[^72]: Alternativamente podemos ingresar al calculador de InfoStat® con la media 6,5 y la desviación estándar 0,14 y obtener el mismo resultado sin pasar por $z$. Hicimos este recorrido porque necesitamos estar familiarizados con el puntaje $z$ para los contenidos que veremos más adelante.
+[^72]: Alternativamente podemos solicitar a R la probabilidad acumulada de 7 con parámetros $\mu=6.5$ y $\sigma=0.14$ y obtener el mismo resultado sin pasar por $z$. Hacemos este recorrido porque necesitamos estar familiarizados con el puntaje $z$ para los contenidos que veremos más adelante.
 
 [^73]: Es el mínimo tamaño que podemos usar para que sea válida la aplicación de la distribución normal
 

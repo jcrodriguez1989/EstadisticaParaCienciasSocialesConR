@@ -70,7 +70,7 @@ El cuestionario tiene 16 ítems, cada persona que lo responde marca una sola de 
 <!-- JCR: Que se desea hacer con esto? -->
 
 ```{r}
-base.2019 <- read.csv("bases/archivostxt/base2019.txt", header = TRUE, sep = ";", dec = ".", na.strings = 999)
+base.2019 <- read.csv("bases/archivostxt/base2019.txt", header = TRUE, sep = " ", dec = ".", na.strings = 999)
 base.2019 <- base.2019[, -c(1:5, 7)]
 names(base.2019) <- c(
   "sexo", "edad", "acceso.redes", "red.usada", "red.otra", "tiempo.red", "con.q.vive", "relacion.otros", "q.aporta", "q.aporta.amigos", "edad.partida", "razon.partida", "razon.partida.otra", "calidad.sueño",
@@ -595,11 +595,11 @@ La lectura de los archivos .txt se puede realizar con varios comandos, que depen
 
 - El separador de campos: suelen ser comas, punto y comas o pipe | (alt124 en windows). Si los campos están separados por comas. se indica sep="," y así con los demás separadores, siempre entrecomillados.
 
--Si a los casos perdidos se los ha codificado de algún modo particular, por ejemplo como 9999, debe indicarse na,strings="9999".
+- Si a los casos perdidos se los ha codificado de algún modo particular, por ejemplo como 9999, debe indicarse na,strings="9999".  
 
 Conviene mirar la base original, desde el archivo .txt, que puede abrirse con bloc de notas, para asegurarse qué sepadores tiene.
 
-Para leer la base de prueba, que se llama base2019.txt, que tiene los campos separados por punto y comas, primero se ubica la ruta del archivo:
+Para leer la base de prueba, que se llama base2019.txt, que tiene los campos separados por espacios en blanco, primero se ubica la ruta del archivo:
 
 ```{r eval=FALSE, echo=TRUE}
 file.choose()
@@ -608,14 +608,9 @@ Aquí se abre un explorador para llegar al archivo que se busca, cuando se lo se
 
 ```{r echo=TRUE}
 base.ejemplo=read.table("bases/archivostxt/base2019.txt",
-           header = TRUE, sep = ";", na.strings = "999")
+           header = TRUE, sep = " ", na.strings = "999")
 ```
 Además del nombre y la ruta del archivo, en este caso indicamos que la primera fila contiene los nombres de las variables y que los casos perdidos están codificados como 999.
-
-```{r include=FALSE}
-base.ejemplo=base.ejemplo[, -4]
-
-```
 
 En el panel superior derecho ha aparecido este primer objeto, del que se indica el tipo, su tamaño, y las cantidades de observaciones y de variables.  
 El tipo de objeto se solicita:

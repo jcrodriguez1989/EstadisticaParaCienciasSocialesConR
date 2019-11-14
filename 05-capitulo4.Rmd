@@ -1049,46 +1049,111 @@ Pero en el próximo capítulo veremos que para variables de estos niveles de med
 
 ## Hacerlo en R
 
-La elaboración de las tablas en R requiere del comando `table` aplicado sobre las variables de la matriz de datos que se quiera cruzar:
+Para ver el modo de construir las tablas bivariadas de este capítulo, usaremos la base de la Encuesta Permanente de Hogares del tercer trimestre de 2018. El primer paso es leerla desde el lugar donde esté guardada y darle un nombre:  
+```{r}
+eph.3.18<-read.table("bases/archivostxt/usu_individual_T318.txt",
+                     sep=";", header = TRUE)
+```
+
+Se indica que los campos están separados por ";" y que la primera fila contiene los nombres de las variables.  
+Trabajaremos con las variables CH04 (sexo, 1=varones, 2=mujeres) y ESTADO (0=no entrevistado, 1=ocupade, 2=desocupade, 3=inactive, 4=menor de 10 años).  
+
+La elaboración de las tablas en R se pide con el comando `table` aplicado sobre las variables de la matriz de datos que se quiera cruzar:
 
 ```{r warning=FALSE, echo=TRUE}
 table(eph.3.18$CH04, eph.3.18$ESTADO)
 ```
 
-Los marginales deben pedirse explícitamente, con `addmargins`:
+Así presentada, la tabla no es muy clara; solo interesan las categorías válidas de ESTADO, por lo que harán falta algunos ajustes. Para eliminar el 0 y el 4 de ESTADO, tomamos un subconjunto de la base que cumpla con que la variable ESTADO valga 1, 2 ó 3, el simbolo de "o" es "|". Llamamos *eph.3.18.validos.estado* a esa nueva base:
+
+```{r}
+eph.3.18.validos.estado=subset(eph.3.18, eph.3.18$ESTADO==1|
+                                 eph.3.18$ESTADO==2|
+                                 eph.3.18$ESTADO==3)
+```
+
+Vemos en el panel superior derecho que la nueva base tiene la misma cantidad de variables y menos casos.
+
+Ahora hay que etiquetar las categorías de ESTADO y de CH04, pero como ambas tienen codificación numérica, fueron leídas como si fueran numéricas, se transforma ESTADO a factor:
+
+```{r}
+eph.3.18.validos.estado$ESTADO=as.factor(
+  eph.3.18.validos.estado$ESTADO)
+```
+
+Ahora sí, se etiquetan sus niveles:
+```{r}
+levels(eph.3.18.validos.estado$ESTADO)=c("ocupade","desocupade","inactive")
+```
+
+Con CH04 vamos a crear una variable nueva, que se llamará "sexo", para que sea más simple recordarla:
+
+```{r}
+eph.3.18.validos.estado$sexo=as.factor(eph.3.18.validos.estado$CH04)
+```
+
+Vemos ahora en el panel superior derecho que aumentó una variable en la base, es la que acabamos de crear.  
+Luego etiquetamos los niveles:
+```{r}
+levels(eph.3.18.validos.estado$sexo)<-c("varones", "mujeres")
+```
+
+
+Y solicitamos nuevamente la tabla:
+
+
+```{r}
+table(eph.3.18.validos.estado$sexo, eph.3.18.validos.estado$ESTADO)
+```
+
+Que tiene un aspecto más legible.  
+Para evitar escribir cada vez el nombre de la base de donde las variables provienen, se la puede adosar durante la sesión de trabajo, con el comando ´attach´:
+
+```{r}
+attach(eph.3.18.validos.estado)
+```
+
+De este modo, la base queda como referencia para las operaciones que siguen, y la tabla puede pedirse directamente:
+
+```{r}
+table(sexo,ESTADO)
+```
+
+
+Los totales de filas y de columna (frecuencias marginales) deben pedirse explícitamente, con `addmargins`:
 
 ```{r warning=FALSE, echo=TRUE}
-addmargins(table(eph.3.18$CH04, eph.3.18$ESTADO))
+addmargins(table(sexo, ESTADO))
 ```
 
 Así como las relativas, usando `prop.table`:
 
 ```{r warning=FALSE, echo=TRUE}
-prop.table(table(eph.3.18$CH04, eph.3.18$ESTADO))
+prop.table(table(sexo, ESTADO))
 ```
 
 Para reducir los decimales, se solicita redondeo a solo tres:
 
 ```{r warning=FALSE, echo=TRUE}
-round(prop.table(table(eph.3.18$CH04, eph.3.18$ESTADO)), 3)
+round(prop.table(table(sexo, ESTADO)), 3)
 ```
 
 Y para expresarlos como porcentajes, lo multiplicamos por 100:
 
 ```{r warning=FALSE, echo=TRUE}
-round(prop.table(table(eph.3.18$CH04, eph.3.18$ESTADO)), 3) * 100
+round(prop.table(table(sexo, ESTADO)), 3) * 100
 ```
 
 Estas frecuencias relativas, lo son respecto del total, si se las quiere por filas, se indica en el argumento *1*
 
 ```{r warning=FALSE, echo=TRUE}
-round(prop.table(table(eph.3.18$CH04, eph.3.18$ESTADO), 1), 3) * 100
+round(prop.table(table(sexo, ESTADO), 1), 3) * 100
 ```
 
 Para obtenerlas por columnas, se indica *2* en el argumento de `prop.table`:
 
 ```{r warning=FALSE, echo=TRUE}
-round(prop.table(table(eph.3.18$CH04, eph.3.18$ESTADO), 2), 3) * 100
+round(prop.table(table(sexo, ESTADO), 2), 3) * 100
 ```
 
 Para darles formato, una opción es llevar la tabla a una hoja de cálculo y allí rotular, centrar, etc. De lo contrario, R ofrece un entorno llamado R Markdown con muchas posibilidades de formato y exportación a pdf o html.

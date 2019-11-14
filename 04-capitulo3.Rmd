@@ -17,7 +17,7 @@ Como las operaciones que pueda hacerse entre las categorías dependen del nivel 
 
 Cuando se trabaja con una variable de nivel nominal, una manera
 sintética de presentar la información que ofrece la tabla de
-distribución de frecuencias es indicando la **proporción** de casos que se encuentran en una determinada categoría. Se trata de la frecuencia relativa simple (f') de una categoría particular. La siguiente es la distribución de las respuestas a la pregunta "¿Con cuál de las siguientes frases está Ud. más de acuerdo?" (P8STGBS), proveniente de la base latinobarómetro:
+distribución de frecuencias es indicando la **proporción** de casos que se encuentran en una determinada categoría. Se trata de la frecuencia relativa simple (f') de una categoría particular. La siguiente es la distribución de las respuestas a la pregunta "¿Con cuál de las siguientes frases está Ud. más de acuerdo?" (P8STGBS), proveniente de la base latinobarómetro (2017):
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 latinob <- read.csv("bases/archivostxt/latinobarometro2017.txt", encoding = "UTF-8")
@@ -41,7 +41,7 @@ kableExtra::kable_styling(
 )
 ```
 
-Podemos indicar la proporción de personas que respondió que se puede confiar caso como `r tabla7[1]`, que puede también expresarse como `r tabla6[1]`%. La elección de cuál categoría se elige para indicar la proporción depende de los objetivos de la descripción. Al elegir una categoría se llama la atención sobre ella, se la destaca, ya que la proporción restante incluye a todas las demás categorías, los "otros". Esa proporción restante se obtiene restando de 1 (uno) la proporción indicada, o restando de 100 (cien) si ha expresado como porcentaje. En este ejemplo, diremos que `r tabla7[2]` (que proviene de hacer `r 1-tabla7[1]`) es la proporción de quienes no creen que se pueda confiar, o bien que éstos representan el `r tabla6[2]`% (`r 100-tabla6[1]`).
+Podemos indicar la proporción de personas que respondió que se puede confiar en la mayoría de las personas, como `r tabla7[1]`, que puede también expresarse como `r tabla6[1]`%. La elección de cuál categoría se elige para indicar la proporción depende de los objetivos de la descripción. Al elegir una categoría se llama la atención sobre ella, se la destaca, ya que la proporción restante incluye a todas las demás categorías, los "otros". Esa proporción restante se obtiene restando de 1 (uno) la proporción indicada, o restando de 100 (cien) si ha expresado como porcentaje. En este ejemplo, diremos que `r tabla7[2]` (que proviene de hacer 1-`r tabla7[1]`) es la proporción de quienes no creen que se pueda confiar, o bien que éstos representan el `r tabla6[2]`% (`r 100-tabla6[1]`).
 
 ||
 |:--:|
@@ -61,7 +61,7 @@ término cuando se trata de hechos de poca incidencia, es decir que su
 frecuencia es pequeña. En esos casos se la suele expresar cada 1.000,
 cada 10.000, o inclusive cada 100.000 casos, en lugar de porciento. Por ejemplo, la tasa de desocupación en Argentina se define como la proporción de personas desocupadas, respecto del total de personas activas. Estas últimas son quienes tienen una ocupación o que sin tenerla la están buscando activamente. Está compuesta por la población ocupada más la población desocupada arrobaINDEC2018.
 
-Las tasas de mortalidad por causas, indican la proporción de muertes ocurridas en un período de tiempo (usualmente un año), en un espacio geográfico (país, provincia, etc) por una determinada causa, respecto del total de la población que vivía a la mitad de ese año.
+Las tasas se usan especialmente para resumir procesos que suceden a lo largo del tiempo y se resumen en un momento dado. Esos procesos se captan mediante registros continuos, como los registros de nacimientos, defunciones, matrimoniales, de ingresos a hospitales, de declaración de residencia en municipios que lo  solicitan. Por ejemplo, la tasa bruta de mortalidad se calcula dividiendo la cantidad de defunciones ocurridas en un período de tiempo (usualmente un año) y en un espacio geográfico (país, provincia, etc), por el total de la población que vivía en ese espacio geográfico a la mitad de ese año. La palabra "bruta" se refiere a que el cálculo de esta tasa no hace distinción por características de la población, como sexo o edad. Por el contrario, si se dividen las defunciones anuales de personas de una edad determinada por la cantidad de personas de esa edad que había a la mitad del año, se obtiene una tasa específica (por oposición a bruta) de mortalidad para esa edad.
 
 ### Variables nominales: razones
 
@@ -92,7 +92,7 @@ kableExtra::kable_styling(
 
 La proporción de varones es 48.7% y la de mujeres de 51.3%; se calculan respecto de la población total. La razón de feminidad se obtiene dividiendo el total de mujeres en el de varones y a la inversa para la de masculinidad. El cociente $\frac{`r format(mujeres, scientific = FALSE)`}{`r format(varones, scientific = FALSE)`}*100$, que es `r round(mujeres/varones*100,1)` indica que hay en la población `r round(mujeres/varones*100,0)` mujeres por cada 100 varones.
 
-La diferencia entre una razón y una tasa es que en la primera, el numerador no está incluido en el denominador. Las tasas a veces son llamadas **ratio**.
+Lo que distingue a las razones de las tasas y de las proporciones es que el numerador no está incluido en el denominador.
 
 ### Variables nominales: el modo
 
@@ -120,7 +120,7 @@ kableExtra::kable_styling(
 El modo es Psicopedagogía, que es la categoría de mayor frecuencia. Debe cuidarse de no cometer el error de señalar la frecuencia 58 como el modo; el modo no es la frecuencia más alta, sino la categoría de la variable que tiene mayor frecuencia. Para hallarlo, se identifica la más alta de las frecuencias y se señala la categoría que le corresponde. Puede usarse la frecuencia absoluta o la relativa para determinar cuál es el modo de la distribución.
 
 La pregunta "¿Con cuál de las siguientes frases está Ud. más
-de acuerdo?" (P8STGBS), procedente de la base Latinobarómetro, tiene la siguiente distribución de frecuencias:
+de acuerdo?" (P8STGBS), procedente de la base Latinobarómetro (2017), tiene la siguiente distribución de frecuencias:
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 latinob$P8STGBS <- as.factor(latinob$P8STGBS)
@@ -242,13 +242,13 @@ kableExtra::kable_styling(
 )
 ```
 
-### Variables ordinales: percentiles
+### Variables ordinales: cuantiles
 
 Como ya hemos visto, cuando las categorías de la variable están
 ordenadas pueden hacerse juicios como "mayor que" ($>$) o "menor que"
 ($<$), y el nivel de medición es ordinal. En este tipo de variables
-puede calcularse un conjunto de medidas de posición, que usan esa propiedad: la del orden entre categorías. Se trata de los **percentiles**, que se podrán también calcular para escalas superiores (intervalar y proporcional) pero no para escalas nominales, en las que el orden entre categorías no está presente.
-Los percentiles usan las frecuencias relativas acumuladas, por eso solo existen para variables de nivel superior al nominal.  Veamos la presentación por medio de un ejemplo, con la tabla siguiente que tiene calculadas las frecuencias acumuladas y se muestran solo ellas:
+puede calcularse un conjunto de medidas de posición, que usan esa propiedad: la del orden entre categorías. Se trata de los **cuantiles**, que se podrán también calcular para escalas superiores (intervalar y proporcional) pero no para escalas nominales, en las que el orden entre categorías no está presente.
+Los cuantiles usan las frecuencias relativas acumuladas, por eso solo existen para variables de nivel superior al nominal.  Veamos la presentación por medio de un ejemplo, con la tabla siguiente que tiene calculadas las frecuencias acumuladas y se muestran solo ellas:
 
 ```{r}
 eph.3.18 <- read.csv("bases/archivostxt/usu_individual_T318.txt", sep = ";")
@@ -265,15 +265,22 @@ kableExtra::kable_styling(
 )
 ```
 
-La frecuencia acumulada 0.26 indica que el 26% de los estudiantes tiene 20 años o menos. Se dice que el valor 20 años es el percentil 26 y se indica $P_{26}$. El "percentil" en sí mismo no es una medida descriptiva, para que lo sea se debe especificar *qué* percentil es el que se calcula.  En este ejemplo, cada frecuencia acumulada conduce a un percentil particular. El percentil 68 de la variable es 25 años, y se escribe $P_{68} = 25$ años. Estas medidas se definen como el valor de la variable que deja por debajo un determinado porcentaje de observaciones.
+La frecuencia acumulada 0.26 es la proporción de estudiantes que tiene 20 años o menos. Se dice que el valor 20 años es el cuantil 0.26. El "cuantil" en sí mismo no es una medida descriptiva, para que lo sea se debe especificar *qué* cuantil es el que se calcula.  En este ejemplo, cada frecuencia acumulada conduce a un cuantil particular. El cuantil 0.68 de la variable es 25 años. Estas medidas se definen como el valor de la variable que deja por debajo una determinada proporción de observaciones.
+Es muy frecuente expresar los cuantiles en términos de porcentaje, para facilitar la comunicación, y se los llama percentiles. De este modo, el cuantil 0.26 equivale a decir percentil 26, que se escribe $P_{26}$ y el cuantil 0.68 se escribe $P_{68}$. Así, escribimos para la tabla de arriba: $$P_{26}=20$$ y $$P_{68}=25$$.
 
-Los percentiles tienen utilidad como medidas resumen cuando hay un volumen importante de observaciones, de lo contrario, es preferible mostrar la serie de datos. Su aplicación es que permiten describir cada valor de la variable de manera relativa al conjunto completo. Si la nota de un individuo corresponde al percentil 95, se sabe que es una nota alta, porque el 95% de todos los sujetos tiene una nota com esa o inferior. Eso puede expresarse diferente como: solo el 5% del conjunto tiene nota superior a la de él.
 
-A continuación veremos algunos medidas que se definen del mismo modo que los percentiles; en base a las frecuencias relativas acumuladas.
+
+||
+|:--:|
+| Se denominan **cuantiles** los valores de la variable que dejan por debajo una  determinada proporción de las observaciones. El cuantil $r$ (con $0<r<1$) deja por debajo una proporción $r$ de casos, y una proporción $1-r$ de los casos está por encima de él. Cuando las proporciones se expresan como porcentajes, se los denomina **percentiles**|
+
+Los cuantiles tienen utilidad como medidas resumen cuando hay un volumen importante de observaciones, de lo contrario, es preferible mostrar la serie de datos. Su aplicación es que permiten describir cada valor de la variable de manera relativa al conjunto completo. Si la nota de un individuo corresponde al percentil 95 (cuantil 0.95), se sabe que es una nota alta, porque el 95% de todos los sujetos tiene una nota como esa o inferior. Eso puede expresarse diferente como: solo el 5% del conjunto tiene nota superior a la de él.
+
+A continuación veremos algunos medidas que se definen del mismo modo que los cuantiles; en base a las frecuencias relativas acumuladas.
 
 ### Variables ordinales: la mediana
 
-La **mediana** es el percentil 50, es decir que se define como el valor de la variable que deja por debajo la mitad del total de observaciones. Es importante tener en cuenta que se trata de la mitad de los casos y no la mitad de las categorías. La siguiente distribución presenta en serie simple ordenada el número de sesiones de psicoterapia que recibieron 9 pacientes internados en un hospital:
+La **mediana** es el cuantil 0.50 o bien  el percentil 50, es decir que se define como el valor de la variable que deja por debajo la mitad del total de observaciones. Es importante tener en cuenta que se trata de la mitad de los casos y no la mitad de las categorías.  La siguiente distribución presenta en serie simple ordenada el número de sesiones de psicoterapia que recibieron 9 pacientes internados en un hospital:
 
 $$2, 2, 3, 5, 7, 10, 15, 19, 50$$
 
@@ -284,7 +291,7 @@ Si la cantidad de observaciones fuera par como por ejemplo:
 $$2, 2, 3, 5, 7, 10, 15, 19$$
 
 El punto de corte correspondiente a la mitad de las observaciones se
-ubica entre 5 y 7, en este caso, la mediana es el promedio entre los dos valores centrales, que es 6.
+ubica entre 5 y 7, en este caso, por convención, la mediana se considera el promedio entre los dos valores centrales, que es 6.
 
 Cuando hay valores repetidos en la parte central no resulta posible
 indicar la mediana, por ejemplo si la serie fuera:
@@ -294,7 +301,7 @@ $$2, 3, 7, 7, 7, 10, 15, 19$$
 No puede señalarse a 7 como la mediana, porque es superado por tres
 valores (10, 15 y 19) pero supera solo a dos (2 y 3).
 
-La mediana es una medida muy adecuada cuando se necesitan resumir datos que provienen de escalas ordinales o de nivel superior. Sin embargo, su cálculo no aporta nada en series simples con pocos casos (como los que acabamos de ver) ya que allí es más sencillo mostrar el conjunto completo de datos y no usar medidas resumen. Los ejemplos sirven para ilustrar el concepto, pero no se usa en la práctica. Las operaciones de resumen se justifican cuando se tiene un conjunto grande de datos.
+La mediana es una medida muy adecuada cuando se necesitan resumir datos que provienen de escalas ordinales o de nivel superior. Sin embargo, su cálculo no aporta nada en series simples con pocos casos (como los que acabamos de ver) ya que allí es más sencillo mostrar el conjunto completo de datos y no usar medidas resumen. Los ejemplos anteriores sirven para ilustrar el concepto, pero no se usa en la práctica. Las operaciones de resumen se justifican cuando se tiene un conjunto grande de datos.
 
 ||
 |:--:|
@@ -320,7 +327,7 @@ kableExtra::kable_styling(
 )
 ```
 
-El valor de la variable que acumula el 50% de los casos, es el que ocupa el lugar 220, que es mitad de los 440 casos del total. La serie ordenada de esta distribución, coloca a los 40 hogares marginales en lso primeros 40 lugares, pero indistintamente, porque no hay orden entre los hogares al interior de la categoría. Según la tabla, hasta la categoría "medio-bajo" se acumulan 260 hogares y hasta la categoría anterior hay 140 acumulados. De manera que el hogar que ocupa el lugar 220 (de la serie ordenada) es uno de los que se encuentran en la categoría "medio-bajo". Diremos así que la mediana de esta distribución es "medio-bajo". Como puede verse, esta categoría no acumula exactamente la mitad de las observaciones, pero es la que contiene a la observación que supera a la mitad y es superada por la otra mitad. Por esa razón la leemos como la mediana, diciendo que la mitad de los hogares tiene un nivel socioeconómico medio-bajo o inferior a ese. Decir que el que acumula 220 casos es "uno de los hogares de la categoría  medio-bajo" es impreciso, porque todos los hogares son equivalentes en su nivel socioeconómico al interior de la categoría.
+El valor de la variable que acumula el 50% de los casos, es el que ocupa el lugar 220, que es mitad de los 440 casos del total. La serie ordenada de esta distribución, coloca a los 40 hogares de nivel socioeconómico "marginal" en los primeros 40 lugares, pero indistintamente, porque no hay orden entre los hogares al interior de la categoría. Según la tabla, hasta la categoría "medio-bajo" se acumulan 260 hogares y hasta la categoría anterior hay 140 acumulados. De manera que el hogar que ocupa el lugar 220 (de la serie ordenada) es uno de los que se encuentran en la categoría "medio-bajo". Diremos así que la mediana de esta distribución es "medio-bajo". Como puede verse, esta categoría no acumula exactamente la mitad de las observaciones, pero es la que contiene a la observación que supera a la mitad y es superada por la otra mitad. Por esa razón la leemos como la mediana, diciendo que la mitad de los hogares tiene un nivel socioeconómico medio-bajo o inferior a ese. Decir que el que acumula 220 casos es "uno de los hogares de la categoría  medio-bajo" es impreciso, porque todos los hogares son equivalentes en su nivel socioeconómico al interior de la categoría.
 
 Esta imprecisión también aparece si se trata de
 una variable cuantitativa discreta. Si la variable es el *número de síntomas* a partir de los cuales fueron diagnosticados de esquizofrenia un conjunto de pacientes[^manual_dsm]:
@@ -411,7 +418,7 @@ $$M_{dn} = l_{i} + i*\left( \frac{\frac{n}{2} - F_d}{f_{p}} \right)$$
 
 En la que:
 
-- $l_i$ indica el límite inferior del intervalo en que se encuentra la mediana, en este caso es 80.
+- $l_i$ indica el límite inferior del intervalo en que se encuentra la mediana, en este caso es 2.0.
 
 - $i$ es la amplitud del intervalo, es decir la diferencia entre los límites $2.0-2.5 = 0.5$.
 
@@ -457,7 +464,7 @@ matriz de datos, el cálculo debe hacerse usando todos los valores
 observados de la variable. Como esto es largo para hacer manualmente, se
 solicita a un software especializado.
 
-*Variables métricas: la media o promedio*
+### Variables métricas: la media o promedio  
 
 Si se ha alcanzado un nivel de medición intervalar o proporcional, es
 posible hacer uso de las propiedades[^prop_escalas] que estas escalas tienen.
@@ -625,13 +632,21 @@ debajo un cuarto de los casos, o también el que deja por debajo las tres
 cuartas partes de las observaciones. Estos puntos de corte se denominan
 respectivamente: primer cuartil y tercer cuartil.
 
-El primer cuartil es el valor de la variable que deja por debajo un
-cuarto, o el 25% del total de observaciones.
 
-El tercer cuartil es el valor que deja por debajo las tres cuartas
-partes o el 75% del total de observaciones. Como se ve, tanto el modo de
-cálculo como la interpretación son análogos a la mediana. Veamos su
-aplicación a los ejemplos anteriores:
+||
+|:--:|
+| El **primer cuartil** es el valor de la variable que deja por debajo un
+cuarto, o el 25% del total de observaciones. |
+
+
+
+||
+|:--:|
+| El **tercer cuartil** es el valor que deja por debajo las tres cuartas
+partes o el 75% del total de observaciones. |
+
+
+Como se ve, tanto el modo de cálculo como la interpretación son análogos a la mediana. Veamos su aplicación a los ejemplos anteriores:
 
 ```{r}
 aux_table <- tibble::tribble(
@@ -779,15 +794,17 @@ Así, el primer quintil de ingresos representa el valor de ingreso que deja por 
 Para los cálculos con la fórmula de interpolación se reemplaza el
 $\frac{n}{2}$ de la mediana por $\frac{r}{100}$ para el percentil $r$.
 Esta manera de calcular los percentiles tiene la misma limitación
-mencionada para la mediana.
+mencionada para la mediana.  
+Los cortes que generan 10 grupos con la misma cantidad de casos se llaman **deciles**. Por ejemplo, el segundo decil se escribe $D_2$ es el valor de la variables que deja por debajo al 20% de los casos, por lo que coincide con el primer quintil y el percentil 20.    
 
-Resulta entonces que la mediana, los muartiles y los quintiles son solo casos particulares de un conjunto de medidas general: los percentiles. Esta medidas tienen en cuenta el orden de las categorías y se calculan en base a lafrecuencia acumulada (absoluta o relativa). Por el contrario, la media tiene en cuenta los valores de la variable y las frecuencias simples (absolutas o relativas).
+La mediana, los cuartiles, quintiles, deciles y percentiles son todos casos particulares de un conjunto de medidas general: los cuantiles. La mediana es el cuantil 0.50, define dos grupos con la mitad de los casos en cada uno; los cuartiles definen cuatro, los quintiles cinco (con 20% en cada uno), los deciles diez y los cuantiles cortan el campo de variación de la variable en 100 grupos, cada uno de los cuales tiene al 1% del total de casos.  
+Todas estas medidas tienen en cuenta el orden de las categorías y se calculan en base a la frecuencia acumulada (absoluta o relativa).  
 
-Para ser precisos, debe decirse que los percentiles son también casos particulares, de los llamados *cuantiles*, que son valores de la variable que acumulan una proporciónn dada de la distribucion. La particularidad de los percentiles es que hacen los cortes en 100. No existe por ejemplo, el percentil 22.5, solo el 22 o el 23; el valor que acumula 22.5% de los casos se llama cuantil .225. Debido a que no usamos cortes tan precisos, nos quedaremos con los percentiles como los más finos.
 
-#### Obtención gráfica de los percentiles
 
-Todas las medidas que hacen uso de las frecuencias acumuladas (mediana, cuartiles, quintiles, percentiles) pueden obtenerse de manera aproximada a través del gráfico de frecuencias acumuladas, la ojiva de Galton. Veamos el recorte de los niveles de ingresos salariales en cinco grupos, por medio de los quintiles:
+#### Obtención gráfica de los cuantiles
+
+Todas las medidas que hacen uso de las frecuencias acumuladas, es decir los cuantiles (mediana, cuartiles, quintiles, deciles, percentiles) pueden obtenerse de manera aproximada a través del gráfico de frecuencias acumuladas, la ojiva de Galton. Veamos el recorte de los niveles de ingresos salariales en cinco grupos, por medio de los quintiles:
 
 ```{r}
 p95sal <- quantile(eph.3.18$PP08D1, .95, na.rm = TRUE)
@@ -813,82 +830,14 @@ Los quintiles de esta distribución son los siguientes:
 - $P_{60} =$ `r format(quantile(eph.3.18.asal$PP08D1, .6), scientific = FALSE)`
 - $P_{80} =$ `r format(quantile(eph.3.18.asal$PP08D1, .8), scientific = FALSE)`
 
-Y representan valores de ingreso salarial que contienen un qunito de los asalariados cada uno.
+Y representan valores de ingreso salarial que contienen un quinto de los asalariados cada uno. Si un trabajador está en el primer quintil de los ingresos salariales quiere decir que pertenece al 20% que tiene los menores ingresos. Una medida rápida de distribución de salarios se obtiene dividiendo el $P_{80}$ en $P_{20}$. Ese cociente indica cuántas veces más grande es el salario del grupo más alto comparado con el grupo más bajo. En este ejemplo:  $$\frac{P_{80}}{P_{20}} =\frac{21000}{7000}=3$$
 
-### Hacerlo en R
-
-Los nombres de las medidas descriptivas en R están en inglés, por lo que hay que recordarlas. Para el caso de la variable ingreso salarial (`PP08D1` en los microdatos de la EPH), hemos generado una base nueva que solo contiene personas que trabajan como obreros o empleados (son asalariados), sobre ella, las medidas de posición se piden así:
-
-<!-- JCR: Deberiamos decir como conseguir este dataset -->
-
-```{r warning=FALSE, echo=TRUE}
-attach(eph.3.18.asal)
-length(PP08D1) # cantidad de casos (n)
-mean(PP08D1) # la media
-median(PP08D1) # la mediana
-```
-
-Para los percentiles, se debe especificar cuál o cuáles *cuantiles* se piden:
-
-```{r, echo=TRUE}
-quantile(PP08D1, .2) # percentil 20
-quantile(PP08D1, .05) # percentil 5
-quantile(PP08D1, .95) # percentil 95
-quantile(PP08D1, .5) # percentil 50, coincide con la mediana
-```
-
-Si se necesitan varios juntos, por ejemplo los quintiles, se usa el comando `c`, para "concatenar" los valores:
-
-```{r, echo=TRUE}
-quantile(PP08D1, c(.2, .4, .6, .8))
-```
-
-Esta descripción de los datos se lee:
-En la muestra de `r length(eph.3.18.asal$PP08D1)` personas que trabajan como obreros o empleados, el salario promedio es de `r format(mean(eph.3.18.asal$PP08D1), scientific = FALSE)`. El 50% tiene salario de `r format(median(eph.3.18.asal$PP08D1), scientific = FALSE)`, el 20% de más bajos salarios está de `r format(quantile(eph.3.18.asal$PP08D1,.2), scientific = FALSE)` para abajo y el 5% de los menores salarios son de `r format(quantile(eph.3.18.asal$PP08D1,.05), scientific = FALSE)` o menos. El 95% tiene salario de `r format(quantile(eph.3.18.asal$PP08D1,.95), scientific = FALSE)` o menos; que es lo mismo que decir que el 5% de los salarios superan los `r format(quantile(eph.3.18.asal$PP08D1,.95), scientific = FALSE)`.
-
-Para realizar la categorización con los tres criterios vistos antes, se cuenta en R con la función `cut` que se aplica sobre una variable cuantitativa y se controla la cantidad de intervalos y la forma de construirlos en el argumento "breaks". Por ejemlo, para categorizar la edad de la base EPH en cuatro intervalos de igual amplitud, se indica ese número en el argumento. El resultado de esa categorización se guarda en una nueva variable a la que llamamos z y luego se solicita su distribución de frecuencia:
-
-```{r, echo=TRUE}
-z <- cut(eph.3.18$CH06, breaks = 4)
-table(z)
-```
-
-El límite inferior del primer intervalo es negativo por la aplicación de una fórmula de cálculo de las amplitudes, cuando se edita para presentarla, ese número debe ser cero.
-
-La otra opción del argumento "breaks" es indicarle un vector con los límites de los intervalos que se desea. La categorización con criterio proporcional debe indicar que los puntos de corte sean los percentiles correspondientes a la cantidad requerida, para cuatro intervalos, se indica el mínimo de la variable como inicio, luego los cuartiles y termina en el máximo:
-
-```{r, echo=TRUE}
-t <- cut(eph.3.18$CH06, breaks = c(
-  min(eph.3.18$CH06),
-  quantile(eph.3.18$CH06, .25),
-  quantile(eph.3.18$CH06, .5),
-  quantile(eph.3.18$CH06, .75),
-  max(eph.3.18$CH06)
-))
-table(t)
-```
-Con estos cortes, los grupos tienen cantidades de casos similares.
-
-Si el criterio es teórico, se eligen los puntos de corte y se indican en "breaks". Para hacer cuatro grupos de: hasta 14 años, de 15 a 44, de 45 a 64 y 65 o más, se solicita:
-
-```{r, echo=TRUE}
-u <- cut(eph.3.18$CH06, breaks = c(
-  min(eph.3.18$CH06),
-  14,
-  44,
-  64,
-  max(eph.3.18$CH06)
-))
-table(u)
-```
+Leemos que el grupo de asalariados de ingresos más altos los tiene tres veces superiores a los del grupo de menores ingresos. En esta base se eliminó el 5% extremo de salarios, para evitar distorsiones en la media. Por esa razón parece más equitativa de lo que suele ser en la realidad.  
 
 ## La forma de la distribución
 
-La media es una medida muy completa como resumen de los datos, ya que
-los considera a todos con la frecuencia de cada uno. Opera como un punto
-de equilibrio en un conjunto de datos. Sin embargo esto puede ser una
-dificultad en algunos tipos de distribución. Consideremos el siguiente
-ejemplo simple:
+La media es una medida muy completa como resumen de los datos, ya que los considera a todos con la frecuencia de cada uno. Opera como un punto de equilibrio en un conjunto de datos. Sin embargo esto puede ser una dificultad en algunos tipos de distribución. Consideremos el siguiente
+ejemplo simple, que proviene de una matriz de datos ficticia:
 
 ```{r}
 aux_table <- tibble::tribble(
@@ -945,7 +894,7 @@ de los casos con salarios bajos o intermedios y unos pocos casos con
 salarios muy superiores, por eso cuando se calcula la media se obtiene
 un resultado que representa mal al conjunto de datos.
 
-El histograma siguiente muestra la forma de la distribución anterior:
+El histograma siguiente muestra la forma de la distribución:
 
 ```{r}
 ggplot(df1) + geom_bar(aes(x), fill = "green") + xlab("x") + ylab("f") + theme_tufte()
@@ -964,7 +913,7 @@ extremos son mayores que la mayor parte de los datos, la asimetría es
 
 La asimetría puede ser en sentido opuesto, si hay observaciones
 particularmente pequeñas y en ese caso se tratará de una distribución
-**asimétrica hacia la izquierda**. Como en el ejemplo siguiente:
+**asimétrica hacia la izquierda**. Como en el ejemplo siguiente (datos ficticios):
 
 ```{r}
 aux_table <- tibble::tribble(
@@ -989,17 +938,18 @@ Cuyo histograma es:
 x1 <- c(rep(100, 5), rep(200, 10), rep(300, 20), rep(400, 20), rep(500, 50), rep(600, 70))
 y1 <- 1:175
 df2 <- data.frame(x1, y1)
+
+```
+
+```{r}
 ggplot(df2) + geom_bar(aes(x1), fill = "green") + xlab("x") + ylab("f") + theme_tufte()
 ```
+
 
 Aquí los valores extremos se encuentran por debajo del grupo principal
 de datos y la media se inclinará hacia los valores más pequeños. Así,
 aunque la mayoría de los casos se encuentra entre 500 y 600, la media
 es:
-
-```{r}
-round(mean(x1), 2)
-```
 
 $$\overline{x} = \frac{100*5 + 200*10 + 300*20 + 400*20 + 500*50 + 600*70}{175} = 477,14$$
 
@@ -1052,6 +1002,8 @@ En estas distribuciones las medias y medianas son:
 |:--:|
 | Una distribución es **simétrica** si la media coincide con la mediana. La distribución se llama asimétrica a la derecha si la media es mayor que la mediana, y asimétrica a la izquierda si la media es menor que la mediana. |
 
+
+Las siguientes ojivas de Galton corresponden a las tres distribuciones anteriores. De estos gráficos interesa la zona en que crecen más rápido, porque allí es donde está la mayor concentración de casos. Cuando la distribución es simétrica, la parte de crecimiento rápido (donde la curva tiene a ser más vertical) está al centro, si es asimétrica a la derecha, crece rápido al principio, mientras que cuando es asimetrica a la izquierda, la parte de crecimiento rápido corresponde a los valores más altos de la variable.
 ```{r}
 ggplot(df3) + stat_ecdf(aes(sim)) +
   xlab("x1") + ylab("F'") + theme_tufte() + ggtitle("x1, distribución simétrica")
@@ -1132,7 +1084,7 @@ Con datos reales, muy raramente el valor será exactamente cero, por lo
 que se trata como mesocúrtica a una distribución cuyo coeficiente se
 encuentre entre -0,5 y 0,5.
 
-## Box-plots
+### Box-plots
 
 Un gráfico que puede resumir de manera muy compacta la información sobre
 una distribución de frecuencias es el que se llama **diagrama de caja**,
@@ -1164,8 +1116,9 @@ ggplot(univ) +
 Se observa que, aunque en todos los grupos hay estudiantes con edades altas, los inactivos (que no trabajan ni buscan trabajo) son los que se concentran en la edades más bajas.
 
 Además de la caja, se ven dos segmentos que se extienden hasta los
-valores máximo y mínimo de la distribución. La longitud de estos segmentos (llamados a veces "bigotes") depende de una caracteírística de la distribución que se trata en el apartado siguiente: la 
-dispersión.
+valores máximo y mínimo de la distribución. La longitud de estos segmentos (llamados a veces "bigotes") depende de una caracteírística de la distribución que se trata en el apartado siguiente: la dispersión.  
+
+El box plot puede aparecer presentado de manera vertical u horizontal. Los siguientes corresponden a distribuciones de diferente asimetría.  
 
 ```{r}
 ggplot(df3) + geom_boxplot(aes(1, sim), fill = "green") +
@@ -1215,11 +1168,11 @@ segunda.
 Cuando la distribución tiene más casos, el recorrido es insuficiente
 como medida de dispersión, ya que está determinado solo por los valores
 extremos. Por ejemplo, las dos siguientes series tienen la misma media,
-igual a 8:
+igual a 8:  
 
 $$2, 8, 8, 8, 8, 8, 14$$
 
-7, 8, 8, 8, 8, 8, 9
+$$7, 8, 8, 8, 8, 8, 9$$
 
 El recorrido vale 12 para la primera ($R=14–2$) y 2 para la segunda
 ($R=9–7$) es una diferencia muy acentuada aunque las dos distribuciones
@@ -1306,16 +1259,14 @@ y que esta es una cualidad de la media, que no depende de los datos[^indep_media
 La representación gráfica de esta propiedad puede verse pensando en una analogía física; como si cada caso graficado en el histograma fuese un bloque de ciert0, situado en el valor de la variable. Con esa idea, la ubicación de la media es el punto donde habria que apoyar el histograma para que éste quede en equilibrio:
 
 ```{r}
-ggplot(univ) + geom_histogram(aes(CH06), bins = 30) + annotate(
-  geom = "point",
-  x = mean(univ$CH06),
-  y = 0, col = "red", size = 5
-) +
-  xlab("edad") + ylab("f") + theme_tufte()
-# luego se cambia al triangulo con geom=segment
+ggplot(univ) + geom_histogram(aes(CH06), bins = 30) + 
+  geom_point(size=3,stroke=1.4,
+             x = mean(univ$CH06), y=-20, col = "red", shape=17)+
+  xlab("edad") + ylab("f") + theme_tufte()+ylim(c(-30,750))
+
 ```
 
-El punto (triángulo) del gráfico equivale al punto de apoyo que permite el equilibrio de ese "objeto".
+El triángulo del gráfico equivale al punto de apoyo que permite el equilibrio de ese "objeto".
 
 Tan importante es esta propiedad que la usaremos para dar
 una definición más completa de la media:
@@ -1438,69 +1389,6 @@ cuales es diagnosticada la depresión es de siete. Sin embargo este
 número de síntomas es bastante variable según los pacientes y,
 seguramente también según los terapeutas.
 
-### Hacerlo en R
-
-La solicitud de estas medidas es directa en R, para la base de la aplicación del test de Bayley, los pesos al nacer tienen las siguientes medidas de dispersión:
-
-```{r message=FALSE, warning=FALSE, include=FALSE}
-bayley <- read.csv("bases/archivostxt/bayley.txt", sep = ";", dec = ",")
-bayley$peso.nac <- rnorm(454, 3000, 500)
-bayley$long.nac <- rnorm(454, 70, 30)
-```
-
-<!-- JCR: Deberiamos decir como conseguir este dataset -->
-
-```{r warning=FALSE, echo=TRUE}
-attach(bayley)
-R <- max(peso.nac) - min(peso.nac)
-names(R) <- "R"
-round(R, 2)
-
-AIQ <- quantile(peso.nac, .75) - quantile(peso.nac, .25)
-names(AIQ) <- "AIQ"
-round(AIQ, 2)
-
-SRIC <- (quantile(peso.nac, .75) - quantile(peso.nac, .25)) / 2
-names(SRIC) <- "SRIC"
-round(SRIC, 2)
-
-var <- var(peso.nac)
-names(var) <- "s2"
-round(var, 2)
-
-s <- sd(peso.nac)
-names(s) <- "s"
-round(s, 2)
-
-CV <- sd(peso.nac) / mean(peso.nac) * 100
-names(CV) <- "CV"
-round(CV, 2)
-```
-
-La medida relativa de la variabilidad (el $CV$) es adecuada para comparar variables que tienen diferentes unidades, por ejemplo para responder ¿qué es más variable, el peso o la estatura de los niños? Es decir, ¿en cuál de esas dos medidas se diferencian más? Las siguientes son las salidas descriptivas
-
-```{r echo=TRUE}
-c(
-  summary(peso.nac),
-  s = sd(peso.nac),
-  CV = sd(peso.nac) / mean(peso.nac) * 100
-)
-
-c(
-  summary(long.nac),
-  s = sd(long.nac),
-  CV = sd(long.nac) / mean(long.nac) * 100
-)
-```
-
-<!-- AJUSTAR PRESENTACIÓN DE ESTOS RESULTADOS DE FORMA TABULAR-->
-
-Se trata los 454 niños y niñas, evaluados en dos aspectos; su
-peso y su talla al naces, el primero en gramos y la segunda en centímetros. La comparación de las desviaciones estándar no da
-información sobre la diferente variabilidad, porque dependen de esas
-unidades de medida; una está expresada en gramos y la otra en centímetros. Por el contrario, los coeficientes de variación,
-(`r round(sd(peso.nac)/mean(peso.nac)*100)`% para el peso y `r round(sd(peso.nac)/mean(long.nac)*100)`% para la talla) indican que hay más
-diferencias entre entre las longitudes de los recién nacidos que entre los pesos al nacer.
 
 ### Box-plots y dispersión
 
@@ -1541,6 +1429,10 @@ primero (la amplitud intercuartílica) como unidad de medida, luego se calcula u
 medida ($3*AIQ$) como puntos de corte para decidir cuándo una observación se aleja excepcionalmente del grupo. Los segmentos del box plot se cortan si se alcanza el máximo de la distribución (hacia arriba) o el mínimo (hacia abajo). Así, los segmentos tienen una longitud que es o bien $1.5*AIQ$ o bien la distancia hasta el máximo o mínimo.
 
 ```{r}
+bayley <- read.csv("bases/archivostxt/bayley.txt", sep = ";", dec = ",")
+bayley$peso.nac=rnorm(454, 3000,500)
+bayley$long.nac=rnorm(454, 70,30)
+
 ggplot(bayley) + geom_boxplot(aes(1, peso.nac)) + theme_tufte() +
   theme(
     axis.title.x = element_blank(), axis.text.x = element_blank(),
@@ -1909,6 +1801,154 @@ kableExtra::kable_styling(
   latex_options = "striped"
 )
 ```
+
+## Hacerlo en R
+
+Para los ejemplos de este apartado vamos a trabajar sobre los datos de la Encuesta Permanente de Hogares, tercer trimestre de 2018. Leemos la base, indicando que la primera fila son los nombres de las variables y que el separador de campos es ";", y la llamamos eph.3.18:  
+
+
+
+```{r echo=TRUE}
+eph.3.18<-read.table("bases/archivostxt/usu_individual_T318.txt", header = TRUE, sep=";")
+```
+
+Ahora retendremos solo a los asalariados (CAT_OCUP = 3) que tienen ingreso mayor a cero (PP08D1>0 y que no son NA), la nueva base se llama "asalariados":
+```{r echo=TRUE}
+asalariados<-subset(eph.3.18, eph.3.18$CAT_OCUP==3 & 
+                      eph.3.18$PP08D1>0 & is.na(eph.3.18$PP08D1)==FALSE)
+```
+
+Los nombres de las medidas descriptivas en R están en inglés, por lo que hay que recordarlas. Sobre esta base, vamos a describir los ingresos salariales. Las medidas de posición se piden así:
+
+```{r warning=FALSE, echo=TRUE}
+# adosamos la matriz de datos para no mencionarla cada vez
+attach(asalariados)
+
+length(PP08D1) # la cantidad de casos (n)
+mean(PP08D1) # la media
+median(PP08D1) # la mediana
+```
+
+Para los cuantiles, se debe especificar cuál o cuáles se piden, con la proporción de casos acumulados como segundo argumento:
+
+```{r, echo=TRUE}
+quantile(PP08D1, .2) # cuantil 0.20 ó percentil 20
+quantile(PP08D1, .05) # percentil 5
+quantile(PP08D1, .95) # percentil 95
+quantile(PP08D1, .5) # percentil 50, coincide con la mediana
+```
+
+Si se necesitan varios juntos, por ejemplo los quintiles, se usa el comando `c`, para "concatenar" los valores:
+
+```{r, echo=TRUE}
+quantile(PP08D1, c(.2, .4, .6, .8))
+```
+
+Esta descripción de los datos se lee:
+En la muestra de `r length(asalariados$PP08D1)` personas que trabajan como obreros o empleados, el salario promedio es de `r format(mean(asalariados$PP08D1), scientific = FALSE)`. El 50% tiene salario de `r format(median(asalariados$PP08D1), scientific = FALSE)`, el 20% de más bajos salarios está de `r format(quantile(asalariados$PP08D1,.2), scientific = FALSE)` para abajo y el 5% de los menores salarios son de `r format(quantile(asalariados$PP08D1,.05), scientific = FALSE)` o menos. El 95% tiene salario de `r format(quantile(asalariados$PP08D1,.95), scientific = FALSE)` o menos; que es lo mismo que decir que el 5% de los salarios superan los `r format(quantile(asalariados$PP08D1,.95), scientific = FALSE)`.
+
+Repitamos la categorización con los tres criterios vistos antes, por medio del comando `cut` que se aplica sobre una variable cuantitativa y se controla la cantidad de intervalos y la forma de construirlos en el argumento "breaks". Por ejemlo, para categorizar la edad de la base EPH en cuatro intervalos de igual amplitud, se indica ese número en el argumento. El resultado de esa categorización se guarda en una nueva variable a la que llamamos z y luego se solicita su distribución de frecuencia:
+
+```{r, echo=TRUE}
+z <- cut(eph.3.18$CH06, breaks = 4)
+library(summarytools)
+freq(z, report.nas = FALSE)
+```
+
+El límite inferior del primer intervalo es negativo por la aplicación de una fórmula de cálculo de las amplitudes, cuando se edita para presentarla, ese número debe ser cero.
+
+La otra opción del argumento "breaks" es indicarle un vector con los límites de los intervalos que se desea. La categorización con criterio proporcional debe indicar que los puntos de corte sean los cuantiles correspondientes a la cantidad requerida, para cuatro intervalos, se indica el mínimo de la variable como inicio, luego los cuartiles (cuantiles 0.25, 0.50 y 0.75) y termina en el máximo:
+
+```{r, echo=TRUE}
+t <- cut(eph.3.18$CH06, breaks = c(
+  0,
+  quantile(eph.3.18$CH06, .25),
+  quantile(eph.3.18$CH06, .5),
+  quantile(eph.3.18$CH06, .75),
+  max(eph.3.18$CH06)
+))
+freq(t, report.nas = FALSE)
+```
+Con estos cortes, los grupos tienen cantidades de casos similares.
+
+Si el criterio es teórico, se eligen los puntos de corte y se indican en "breaks". Para hacer cuatro grupos de: hasta 14 años, de 15 a 44, de 45 a 64 y 65 o más, se solicita:
+
+```{r, echo=TRUE}
+u <- cut(eph.3.18$CH06, breaks = c(
+  0,
+  14,
+  44,
+  64,
+  max(eph.3.18$CH06)
+))
+freq(u, report.nas = FALSE)
+```
+
+La solicitud de algunas medidas de dispersión es directa en R, otras deben calcularse.  El Recorrido (R), la Amplitud Intercuartílica (AIQ), el Semirrecorrido Intercuartílico (SRIC) así como el Coeficiente de Variación (CV) deben computarse según su definición. Para los ingresos, de la base de asalaridos:
+
+```{r warning=FALSE, echo=TRUE}
+# la base asalariados está adosada, las variables se refieren a ella
+R <- max(PP08D1) - min(PP08D1) # se define R
+names(R) <- "R" # se le da un nombre
+round(R, 2) # se lo redondea a dos decimales
+
+AIQ <- quantile(PP08D1, .75) - quantile(PP08D1, .25)
+names(AIQ) <- "AIQ"
+round(AIQ, 2)
+
+SRIC <- (quantile(PP08D1, .75) - quantile(PP08D1, .25)) / 2
+names(SRIC) <- "SRIC"
+round(SRIC, 2)
+
+var <- var(PP08D1) # el cálculo de la varianza está en el paquete {base}
+names(var) <- "s2"
+round(var, 2)
+
+s <- sd(PP08D1) # también la desviación estándar
+names(s) <- "s"
+round(s, 2)
+
+CV <- sd(PP08D1) / mean(PP08D1) * 100 # al CV hay que definirlo
+names(CV) <- "CV"
+round(CV, 2)
+```
+
+En el paquete {base}, hay una función que ofrece el cálculo de algunas medidas descriptivas, se llama 'summary':  
+```{r echo=TRUE}
+summary(PP08D1)
+```
+
+El paquete 'summarytools' que usamos para las tablas univariadas, es un poco más claro en la presentación y ofrece más medidas por defecto:
+
+```{r echo=TRUE}
+library(summarytools) # se carga en la sesión
+descr(PP08D1)
+```
+
+No seguiremos usando la base de la EPH, por lo que la desadosamos:
+```{r echo=TRUE}
+detach(asalariados)
+```
+
+
+La medida relativa de la variabilidad (el $CV$) es adecuada para comparar variables que tienen diferentes unidades, por ejemplo, sobre la base que contiene los puntajes que los niños obtienen en  una prueba de desarrollo de Bayley cabe pregunta ¿qué es más variable, el puntaje en la subescala motora o en la mental? Es decir, ¿en cuál de esas dos medidas se diferencian más los niños evaluados? Leemos la base
+
+```{r message=FALSE, warning=FALSE, include=FALSE}
+bayley <- read.csv("bases/archivostxt/bayley.txt", sep = ";", dec = ",")
+```
+
+
+```{r warning= FALSE, echo=TRUE}
+attach(bayley)
+descr(baymotor)
+descr(baymenta)
+
+```
+
+<!-- EB: Hice un par de cambios acá: moví el "hacerlo en R" al final (aun está en proceso), saqué lo de los pesos, porque no me gustaba con pesos inventados, no lo puede hacer el lector y metí este paquete que me gusta como presenta los descriptivos-->
+
+
+
 
 [^moda]: Esta es la idea que transmite el lenguaje coloquial: cuando algo es "la moda, es lo que más comúnmente (frecuentemente) se ve.
 
