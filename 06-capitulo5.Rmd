@@ -20,6 +20,12 @@ métricas).
 
 ## Variables nominales con más de dos categorías cada una
 
+### Relaciones entre variables vs. comparación de grupos  
+Según el contexto en que se aplique y también según el modo en que se formulan las preguntas, los resultados de los procedimientos estadísticos que veremos a continuación pueden interpretarse de diferente manera. Tomemos como ejemplo el caso que interese observar la relación del tipo de violencia[^rel_violencia] con el lugar donde sucede, que se analizará más adelante. Aunque son estadísticamente equivalentes, no es lo mismo preguntar si "el lugar incide sobre el tipo de violencia", o si "el tipo de violencia difiere según el lugar". Aquí es más pertinente el planteo del problema como una comparación de grupos (que quedan definidos por los diferentes lugares) antes que como una relación entre variables. Lo mismo pasa cuando se comparan los resultados de un examen entre quienes cursan por la tarde o la mañana. Cuando hay control de variables, como en el diseño experimental o en la evaluación de impacto, el paralelismo entre las dos lecturas es más cercano. Así, preguntar si un grupo de niños que recibió un suplemento en su dieta, tiene mejor desarrollo que uno que no lo recibió (planteo en términos de comparación de grupos), equivale a preguntar si el suplemento dietario incide sobre el desarrollo (planteo en términos de relación entre variables). Las operaciones estadísticas que responden a las dos preguntas son las mismas, pero según el caso, una manera de formular el problema puede ser más adecuada que otra, así como la lectura del resultado.  
+Por ejemplo, cuando se busca evaluar el impacto de una política pública dirigida a reducir enfermedades parasitarias en niños, una estrategia consiste en comparar la prevalencia de esas enfermedades entre niños que han sido destinatarios de esa política, y niños que no lo fueron. La pregunta por la diferencia entre los dos grupos equivale a indagar sobre el efecto de la intervención.  
+La investigación social apela continuamente a las comparaciones: el pasado y el presente, mujeres y varones, sociedades industriales y agrarias (arrobaPescosolido1983), grupos minoritarios y población general, por eso es necesario contar con herramientas que permitan analizar la manera en que suceden estas diferencias y las relaciones entre variables que se asocian a ellas.  
+
+
 ### La distancia entre frecuencias esperadas y observadas
 
 Sobre el final del capítulo anterior presentamos el concepto de
@@ -27,28 +33,7 @@ independencia estadística y vimos la manera de calcular las frecuencias
 de las celdas que se esperarían encontrar si las variables fueran
 independientes. Para hacer esto es suficiente multiplicar las
 frecuencias marginales correspondientes a cada celda y dividir el
-resultado por el total de casos. Sea el caso que interese analizar la
-relación del tipo de violencia[^rel_violencia] con el lugar donde sucede. Aunque
-estadísticamente equivalente, no es adecuado preguntar si el lugar
-incide sobre el tipo de violencia, sino más bien si el tipo de violencia
-difiere según el lugar. Aquí es más pertinente el planteo del problema
-como una comparación de grupos (los definidos por los diferentes
-lugares) antes que como una relación entre variables. Lo mismo pasa
-cuando se comparan los resultados de un examen entre quienes cursan por
-la tarde o la mañana. Cuando hay control de variables, como en el diseño
-experimental o en la evaluación de impacto, el paralelismo entre las dos
-lecturas es más cercano. Así, preguntar si un grupo de niños que recibió
-un suplemento en su dieta, tiene mejor desarrollo que uno que no lo
-recibió (planteo en términos de comparación de grupos), equivale a
-preguntar si el suplemento dietario incide sobre el desarrollo (planteo
-en términos de relación entre variables). Las operaciones estadísticas
-que responden a las dos preguntas son las mismas, pero según el caso,
-una manera de formular el problema puede ser más adecuada que otra.
-
-La investigación social apela continuamente a las comparaciones: el pasado y el presente, mujeres y varones, sociedades industriales y agrarias (arrobaPescosolido1983), grupos minoritarios y población general, por eso es necesario contar con herramientas que permitan analizar la manera en que suceden estas diferencias y las relaciones entre variables que se asocian a ellas.  
-
-Cuando se busca evaluar el impacto de una política pública dirigida a reducir enfermedades parasitarias en niños, una estrategia consiste en comparar la prevalencia de esas enfermedades entre niños que han sido destinatarios de esa política, con niños que no lo fueron. La pregunta por la diferencia entre los dos grupos equivale a indagar sobre el efecto de la política.
-
+resultado por el total de casos. 
 Para el ejemplo de las diferencias en el tipo de violencia según área
 geográfica, una muestra de 500 casos provee la siguiente distribución
 conjunta:
@@ -88,8 +73,7 @@ kableExtra::kable_styling(
 
 Una primera aproximación consiste en calcular frecuencias relativas.
 Dado que nuestro interés está en comparar el tipo de violencia según las
-áreas, calcularemos los porcentajes según las columnas de la tabla 1 y
-resulta:
+áreas, calcularemos los porcentajes según las columnas de la tabla \@ref(tab:frecObs) y resulta:
 
 ```{r}
 aux_table <- 100 * round(addmargins(prop.table(tabla25, 2), 1), 3)
@@ -107,8 +91,7 @@ kableExtra::kable_styling(
 )
 ```
 
-Si no consideramos el área, se ve (en la columna de los totales) que la <!-- esta es la columna que no logro obtener-->
-violencia interpersonal es la más frecuente (60%), seguida de la
+Si no consideramos el área, se ve (en la columna de los totales) que la violencia interpersonal es la más frecuente (60%), seguida de la
 autoinfligida con el 30%. Este patrón de distribución en las distintas
 formas de violencia se mantiene en las diferentes áreas, pero en más
 acentuado en las rurales, donde la categoría modal (que sigue siendo
@@ -141,12 +124,12 @@ anterior, haciendo:
 
 $$f_{ij}^{e} = \frac{f_{i}*f_{j}}{n}$$
 
-Por ejemplo, la frecuencia de la celda 1,2 resultó de $f_{1 2}^{e} = \frac{151*245}{500} = 73,99$ que redondeamos a 74.
+Por ejemplo, la frecuencia de la celda 1,2 resultó de $f_{1 2}^{e} = \frac{151*245}{500} = 73.99$ que redondeamos a 74.
 
 La tabla \@ref(tab:frecEsperada) muestra las frecuencias que esperaríamos encontrar si no hubiera relación entre las variables, si éstas fueran independientes. A ellas debemos compararlas con las que realmente hemos encontrado, las que se denominan frecuencias observadas.
 
 Si halláramos que nuestras frecuencias observadas son muy similares a
-las que se esperan bajo la hipótesis de independencia, diríamos que las variables "están cerca" de ser independientes, o lo que es equivalente, que habría escasa relación entre ellas. Por el contrario, si las frecuencias observadas fueran muy diferentes de las esperadas, creeríamos que las variables "están lejos" de ser independientes, es decir, que habría alguna relación entre ellas. Para decidir, debemos comparar la tabla \@ref(tab:frecObs) con la \@ref(tab:frecEsperada).
+las que se esperan bajo la hipótesis de independencia, diríamos que las variables "están cerca" de ser independientes, o lo que es equivalente, que habría escasa relación entre ellas, . Por el contrario, si las frecuencias observadas fueran muy diferentes de las esperadas, creeríamos que las variables "están lejos" de ser independientes, es decir, que habría alguna relación entre ellas. Para decidir, debemos comparar la tabla \@ref(tab:frecObs) con la \@ref(tab:frecEsperada).
 
 Una opción para medir la distancia entre los dos conjuntos de frecuencias es la de restar las correspondientes de cada celda; pero si hacemos eso nos encontraremos con un problema parecido al que tuvimos cuando intentamos observar la dispersión restando los valores de la media: la suma da cero. Por única vez realizaremos esta operación de manera manual:
 
@@ -1624,13 +1607,13 @@ En la misma dirección, Steph Locke (arrobadatasaurus2018, arrobalocke2018) gene
 En el paquete base de R existe una función que realiza operaciones relacionadas con el puntaje $\chi^{2}$; el comando es chi.test y se aplica sobre una tabla de contingencia. Estas operaciones contituyen lo que se denomina "prueba $\chi^{2}$", sobre la que trabajaremos más adelante. Por ahora, solo se usará una parte de los resultados de esta prueba. 
 
 La aplicación de la prueba a una tabla de contingencia da como resultado un objeto de clase "htest", de ello, nos van a interesar sus componentes. Para construir la tabla que cruza los tipos de violencia con el tamaño de las ciudades, primero debemos leer la base (datos ficticios), denominamos "violencia" a esa base: 
-```{r}
+```{r, echo=TRUE}
 violencia<-read.table("bases/archivostxt/violencia.txt", sep=",", header = TRUE)
 ```
 
 Los nombres de las variables son:
 
-```{r}
+```{r, echo=TRUE}
 names(violencia)
 ```
 
@@ -1643,18 +1626,18 @@ tabla.viol <- table(violencia$tipo, violencia$ciudades)
 
 Y vemos su aspecto:  
 
-```{r}
+```{r, echo=TRUE}
 tabla.viol
 ```
 
 Ahora aplicamos la prueba a esa tabla, y se guarda el resultado de la prueba con el nombre "jicu.viol".  
-```{r}
+```{r, echo=TRUE}
 jicu.viol <- chisq.test(tabla.viol)
 
 ```
 
 Preguntamos cuáles son los atributos de este objeto:  
-```{r}
+```{r, echo=TRUE}
 attributes(jicu.viol)
 ```
 

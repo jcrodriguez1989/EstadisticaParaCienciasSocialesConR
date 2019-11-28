@@ -9,6 +9,15 @@ knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
 kable_outp <- ifelse(knitr::is_latex_output(), "latex", "html")
 ```
 
+# (PART) Estadística Descriptiva {-}
+
+Debido a que la Estadística no trabaja con individuos aislados sino con conjuntos de ellos, siempre es necesario resumir la información, para presentarla de manera accesible a la lectura y para extraer significado.
+Una gran tabla proveniente de registros hospitalarios que muestre las edades de madres primerizas no puede leerse de manera directa; es necesario buscar indicadores de síntesis, uno de ellos, muy difundido, es el promedio, un resumen de la información podría decir: "En este hospital se atendieron durante el año 2017, 350 partos. Las madres tuvieron edades entre los 17 y los 45 años, con una edad promedio de 21".
+Sucede del mismo modo al observar los puntajes de una prueba de memoria aplicada a muchas personas o la distribución de votos luego de una elección. En esos casos podemos resumir esa información indicando el promedio (con las limitaciones que esta medida tiene). También es posible indicar cuántas personas tienen un valor menor a cierta cifra o mayor a otra: ¿cuántas de las madres primerizas son menores de 20 años?, ¿repiten de grado con igual frecuencia los varones que las mujeres? O bien expresar los valores a través de gráficos, que suelen aportar mucha información de manera abreviada (aunque también pueden ser engañosos).
+Si de cada alumno de una escuela se conoce si repite el curso o no, la información agregada puede sintetizarse con la tasa de repitencia a nivel de la escuela, y expresar el resultado como: "en esta escuela uno de cada quince alumnos está repitiendo el curso". Identificar un trending topic requiere observar una gran cantidad de tweets para detectar las repeticiones y las tendencias.
+
+Entonces, la Estadística Descriptiva provee de una serie de procedimientos dirigidos a resumir, a sintetizar información, a volverla manejable para poder interpretarla y extraer conclusiones a partir del conjunto de datos que, de otra manera, serían ininteligibles. 
+
 # Materiales y herramientas
 
 ## Materiales
@@ -80,11 +89,11 @@ Ver si andrès tiene algo
 
 Para realizar análisis de datos existen numerosos programas informáticos, que se ocupan de los procesos computacionales, de manera que el usuario solo deba decidir qué procedimiento aplicar, cuidar que se cumplan las condiciones que hacen válido al procedimiento (los supuestos) y realizar una lectura correcta y completa del resultado que se obtiene, sin involucrarse con las operaciones de cálculo. Estos programas o "paquetes estadísticos" reúnen en un entorno único las operaciones más frecuentemente usadas por investigadores y analistas de datos y las ponen al alcance del usuario no especializado. Algunos de uso muy común son SPSS, SAS, INFOSTAT, STATA, STATISTICAL, etc. De la larga lista de opciones disponibles, este manual usa un software que se llama R, elección que se fundamenta en que R es varias cosas al mismo tiempo:
 
-Es un software para análisis de datos: lo usan estadísticos y analistas de datos para extraer significado de información cuantitativa, descripciones e inferencias, visualización de datos y modelización predictiva.
+Es un software para análisis de datos: lo usan estadísticos, analistas de datos e investigadores de diversas disciplinas para extraer significado de información cuantitativa, para hacer descripciones e inferencias, visualización de datos y modelización predictiva.
 
-Es un lenguaje de programación orientado a objetos, diseñado por estadísticos y para el uso de estadísticos: el análisis se hace escribiendo sentencias en este lenguaje, que provee objetos, operadores y funciones que hacen muy intuitivo el proceso de explorar, modelar y visualizar datos.
+Es un lenguaje de programación orientado a objetos, diseñado por estadísticos y para el uso en investigación cuantitativa: el análisis se hace escribiendo sentencias en este lenguaje, que provee objetos, operadores y funciones que hacen muy intuitivo el proceso de explorar, modelar y visualizar datos.
 
-Es un ambiente para el análisis estadístico: en R hay funciones para prácticamente todo tipo de transformación de datos, de modelización y de representaciones gráficas que pueden hacer falta.
+Es un ambiente para el análisis estadístico: en R hay funciones para prácticamente todo tipo de transformación de datos, de modelización y de representaciones gráficas que pueda hacer falta.
 
 Es un proyecto de código abierto: esto significa no solo que se lo puede descargar y usar gratis, sino que el código es abierto y cualquiera puede inspeccionar o modificar las rutinas. Como sucede con otros proyectos de código abierto, como Linux, R ha mejorado sus códigos tras varios años de "muchos ojos mirando" y aportando soluciones. También como otros proyectos de código abierto, R tiene interfaces abiertas, por lo que se integra fácilmente a otras aplicaciones y sistemas.
 
@@ -92,7 +101,7 @@ Es una comunidad: R fue inicialmente desarrollado por Robert Gentleman y Ross It
 
 
 
-R integra programas llamados paquetes, que sirven para realizar análisis específicos. Los paquetes son rutinas que realizan conjuntos de operaciones especializadas, y una de las potencialidades de R es que diferentes investigadores pueden  desarrollar paquetes para determinados tipos de análisis y ponerlos a disposición de los demás usuarios. En la actualidad hay más de 7000 paquetes y el conjunto crece porque la comunidad R es muy activa y continuamente se hacen aportes. 
+R integra programas llamados paquetes, que sirven para realizar análisis específicos. Los paquetes son rutinas que realizan conjuntos de operaciones especializadas, y una de las potencialidades de R es que diferentes investigadores pueden  desarrollar paquetes para determinados tipos de análisis y ponerlos a disposición de los demás usuarios. En la actualidad hay más de 10000 paquetes y el conjunto crece porque la comunidad R es muy activa y continuamente se hacen aportes. 
 
 Actualmente, los principales medios de comunicación usan R para expresar datos de manera gráfica.
 
@@ -100,11 +109,11 @@ No solo cuenta con los métodos estándar sino que, debido a que los principales
 
 Permite la reproducción de los análisis por parte de cualquiera que conozca el código que se aplicó, por lo que aporta una herramienta necesaria en los proyectos de ciencia abierta, en especial para la reproducibilidad de los resultados.
 
-Hay sitios web (como [https://rdrr.io/snippets/](https://rdrr.io/snippets/), por ejemplo) que permiten ejecutar líneas de código on line, para situaciones en que no se cuenta con R instalado.
+Hay sitios web (como [https://rdrr.io/snippets/](https://rdrr.io/snippets/), por ejemplo) que permiten ejecutar líneas de código on line, para situaciones en que no se cuenta con R instalado. También es posible crear una cuenta el  RStudio cloud (https://rstudio.cloud/) y trabajar con todos los archivos disponibles en la nube.  
 
 Por estas razones, R es uno de los lenguajes de programación que más uso tiene y se está convirtiendo en la lingua franca del análisis de datos
 
-Como lenguaje, R tiene varias interfaces gráficas, que el modo en que un humano puede interactuar con él. R es el motor y del mismo modo en que, para manejar un auto no hace falta saber cómo funciona el motor, también aquí será suficiente contar con un buen conjunto de comandos (volante, pedales…) para hacer uso de la potencia de ese motor. De las interfaces existentes, hemos elegido RStudio <!--falta cita--> que es un entorno de desarrollo integrado (IDE) de R para facilitar la edición de código que ofrece diversas herramientas para hacer muy accesible el uso de R por parte de quienes no se dedican a la programación, sino que son usuarios de procedimientos estadísticos.
+Como lenguaje, R tiene varias interfaces gráficas, que es el modo en que un humano puede interactuar con él. R es el motor y del mismo modo en que, para manejar un auto no hace falta saber cómo funciona el motor, también aquí será suficiente contar con un buen conjunto de comandos (volante, pedales…) para hacer uso de la potencia de ese motor, la interface provee esos comandos. De las interfaces existentes, hemos elegido RStudio <!--falta cita--> que es un entorno de desarrollo integrado (IDE) de R para facilitar la edición de código que ofrece diversas herramientas para hacer muy accesible el uso de R por parte de quienes no se dedican a la programación, sino que son usuarios de procedimientos estadísticos.
 
 
 ### Instalación de R y RStudio
@@ -131,7 +140,13 @@ Cuando abrimos RStudio, vamos a encontrar tres paneles, uno a la izquierda, más
 
 ### Operaciones en el script
 
-El script es un editor de textos en que se escriben comandos y se ejecutan, ya sea con el botón "run" o con una combinación de teclas que, según la configuración puede ser Ctrl+R o Ctrl+Enter. Los elementos que maneja R son objetos: un número, un vector, una base de datos, una tabla y muchos otros. Inicialmente, los que interesan a fin del análisis de datos son: vectores y matrices de datos.
+El script es un editor de textos en que se escriben comandos y se ejecutan, ya sea con el botón "run" o con una combinación de teclas que, según la configuración puede ser Ctrl+R o Ctrl+Enter. En el script pueden pedirse operaciones elementales, como sumar:  
+```{r warning=FALSE, eval=TRUE, echo=TRUE}
+2+3
+```
+
+O cualquier otra operación con los símbolos usuales.  
+Los elementos que maneja R son objetos: un número, un vector, una base de datos, una tabla y muchos otros. Inicialmente, los que interesan a fin del análisis de datos son: vectores y matrices de datos.
 Un objeto numérico puede ser una contante, si definimos a x como el valor 3
 
 ```{r echo=TRUE}

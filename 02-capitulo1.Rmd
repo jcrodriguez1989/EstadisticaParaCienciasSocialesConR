@@ -14,13 +14,14 @@ Podemos decir que una persona tiene más escolarización formal que otra, indica
 
 ## La selección de la información pertinente
 
-Cuando se ha decidido quienes son los sujetos de la observación; es decir, una vez que se sabe a quiénes se observará, deben elegirse ciertas características de esos sujetos para observar[^observar]. Cada unidad que resulta de interés para la investigación tiene un conjunto muy grande de características observables y siempre se realiza una selección de esas características. Se trata de un recorte que permite comprender mejor ciertos aspectos, dejando de lado otros. La información que seleccionamos para observar se denomina pertinente para la investigación.
+Cuando se ha decidido quienes son los sujetos de la observación; es decir, una vez que se sabe a quiénes se observará, deben elegirse ciertas características de esos sujetos para observar[^observar]. Cada unidad que resulta de interés para la investigación tiene un conjunto muy grande de características observables y siempre se realiza una selección de esas características. Se trata de un recorte que permite comprender mejor ciertos aspectos, dejando de lado otros. La información que seleccionamos para observar se denomina pertinente para la investigación.  
+Esta información puede provenir de diferentes fuentes, de manera general se distinguen dos tipos de fuentes: relevamientos y registros. Los primeros que pueden ser censos, encuestas u observaciones experimentales, recogen información en un momento dado, en un corte transversal; una especie de foto que toma nota de características de determinados individuos en el instante que se realiza: un día, una semana, el momento antes y después, etc. Los segundos son los registros continuos, que captan información a medida que esta se produce o bien a intervalos regulares. Ejemplos de estos registros son los registros civiles (de nacimientos, uniones, defunciones), los de ingresos a hospitales, los de inscripción en la universidad, etc. Los relevamientos producen información de stock (instantáneo), los registros, de flujo (continuo). A lo largo del curso se volverá a tratar esta  diferencia.  
 
-Cuando se decide cuál es la información pertinente, se la puede recabar de varios individuos y cambiar la óptica desde el caso particular a la regularidad colectiva. Es un cambio desde el individuo hacia el grupo. La siguiente es una lista que indica el área en que les gustaría trabajar cuando se reciban, a nueve estudiantes de primer año de Psicología:
+Cualquiera sea la  fuente de los datos, una vez que se decide cuál es la información pertinente, se la recaba de varios individuos y se cambia la óptica desde el caso particular a la regularidad colectiva. Es un cambio desde la observación del individuo hacia la mirada puesta en el grupo. La siguiente es una lista que indica el área en que les gustaría trabajar cuando se reciban, a nueve estudiantes de primer año de Psicología:
 
 ```{r}
 preferencia <- tibble::tribble(
-  ~Alumno, ~Área,
+  ~Estudiante, ~Área,
   "Susana", "Clínica",
   "Marcos", "Laboral",
   "Daniel", "Clínica",
@@ -54,7 +55,7 @@ kableExtra::kable_styling(
 )
 ```
 
-Se lee que Clínica es un área preferida por cuatro alumnos, Laboral y Educacional por dos y a Social solo la menciona uno. Las personas desaparecieron, ya no hay nombres, hemos abstraído para referirnos al área preferida, no a los alumnos. En la tabla se ve que lo más frecuente es que se prefiera Clínica, y que Social es poco frecuente. Se pasó de la lista de individuos a la tabla de valores. Nos despegamos de los casos a fin de buscar la regularidad en el conjunto. Más adelante diremos que se ha pasado de la matriz de datos a la distribución de frecuencias, que constituye una reducción o un primer resumen de la información disponible.
+Se lee que Clínica es un área preferida por cuatro alumnos, Laboral y Educacional por dos y a Social solo la menciona uno. Las personas desaparecieron, ya no hay nombres, hemos abstraído para referirnos al área preferida, no a los alumnos. En la tabla se ve que lo más frecuente es que se prefiera Clínica, y que Social es poco frecuente. Se pasó de la lista de individuos a la tabla de valores. Nos despegamos de los casos a fin de buscar la regularidad en el conjunto. Más adelante diremos que se ha pasado de la matriz de datos a la distribución de frecuencias, que constituye una reducción o un primer resumen de la información disponible. Esta operación tiene origen en la publicación, en 1662 de “Observaciones naturales y políticas hechas sobre los boletines de mortalidad” por parte de un comerciante londinense: John Gaunt. Tomó las listas de defunciones sucedidas en Londres durante veinte años en tiempos de la peste y las resumió en orden cronológico. Cambió la lista por la tabla, para observar al proceso (la mortalidad a lo largo del tiempo), en lugar de las muertes registradas individualmente. (Héran, 2002)  
 
 Consideremos el siguiente cuestionario, que se aplicó en 2019 a personas con edades 18 y 35 años. 
 
@@ -65,13 +66,13 @@ knitr::include_graphics("imagenes/cuestionario2019_02.png")
 
 Este instrumento de producción de datos que es el cuestionario, se dirige a una población definida: personas entre 18 y 35 años. En él se solicita información sobre un conjunto seleccionado de características; los ítems numerados desde P1 hasta P16. Se trata de unos pocos aspectos de cada persona los que interesan para esta investigación; no se tiene en cuenta, por ejemplo la opinión política de quienes responden, ni su estatura o la región en que viven. Estas últimas y muchas más son características de estas personas, pero están fuera del alcance de la investigación. Esto muestra a qué nos referimos con que la información seleccionada constituye un recorte, es una parcialización de los individuos que responden, en la que se eligen solo los aspectos que son de interés para una investigación particular.
 
-El cuestionario tiene 16 ítems, cada persona que lo responde marca una sola de las opciones indicadas en cada ítem. Una vez completados los cuestionarios, la información está "en bruto" y es necesario ordenarla para poder tener una visión de conjunto. Eso se logra organizando los datos recogidos en la *matriz de datos* que tiene, para el cuestionario mostrado, la siguiente forma:
+El cuestionario tiene 16 ítems, cada persona que lo responde marca una sola de las opciones indicadas en cada ítem. Una vez completados los cuestionarios, la información está "en bruto" y es necesario ordenarla para poder tener una visión de conjunto. Eso se logra organizando los datos recogidos en la *matriz de datos* que es equivalente a la lista de la tabla 2.1, pero con más aspectos relevados que el área preferida. Para el cuestionario mostrado, el siguiente es un fragmento de esa lista:
 
 <!-- JCR: Que se desea hacer con esto? -->
 
 ```{r}
 base.2019 <- read.csv("bases/archivostxt/base2019.txt", header = TRUE, sep = " ", dec = ".", na.strings = 999)
-base.2019 <- base.2019[, -c(1:5, 7)]
+base.2019 <- base.2019[, -c(1:4,6)]
 names(base.2019) <- c(
   "sexo", "edad", "acceso.redes", "red.usada", "red.otra", "tiempo.red", "con.q.vive", "relacion.otros", "q.aporta", "q.aporta.amigos", "edad.partida", "razon.partida", "razon.partida.otra", "calidad.sueño",
   "preocupacion", "golpeo", "robo", "cuanto.da", "comision"
@@ -86,7 +87,6 @@ levels(base.2019$con.q.vive) <- c(
   "hermanes.o.amigues", "solo",
   "con.otres"
 )
-table(base.2019$q.aporta)
 base.2019$q.aporta <- as.factor(base.2019$q.aporta)
 levels(base.2019$q.aporta) <- c(
   "el.mismo", "flia.origen",
@@ -103,13 +103,12 @@ levels(base.2019$red.usada) <- c(
   "Snapchat", "Ninguna", "Otra"
 )
 
-table(base.2019$razon.partida)
 base.2019$razon.partida <- as.factor(base.2019$razon.partida)
 levels(base.2019$razon.partida) <- c("estudio", "nueva.flia", "ganas", "otras")
-head(base.2019)
+head(base.2019[,c(1:6)] )
 ```
 
-Este ordenamiento de la información tiene filas (horizontales) y columnas (verticales), en esta imagen solo se ven las primeras filas de la matriz, y además, porque no cabe horizontalmente, está subdividida en cuatro bloques de variables (columnas). Cada fila es un individuo y cada columna es un ítem. La primera fila (que continúa en los cuatro bloques) muestra los nombres de los ítems del cuestionario y las seis filas mostradas, las respuestas dadas por los encuestados. Así, la persona que respondió al primer cuestionario es una mujer, que tiene 19 años, tiene acceso a redes sociales y la que más usa es Instagram, como no respodió "otra",  en la columna siguiente tiene NA, que indica que no hay dato allí (Not Available), vive "con otres" y aportan entre amigos y así sigue toda la fila correspondiente a esa persona. 
+Este ordenamiento rectangular de la información tiene filas (horizontales) y columnas (verticales), en esta imagen solo se ven las primeras seis filas y seis columnas de la matriz. Cada fila es un individuo y cada columna es un ítem. La primera fila muestra los nombres de los ítems del cuestionario (en este ejemplo solo los seis primeros) y las seis filas mostradas, indican las respuestas dadas por los encuestados. Así, la persona que respondió al primer cuestionario es una mujer, que tiene 19 años, tiene acceso a redes sociales y la que más usa es Instagram, como no respodió "otra",  en la columna siguiente tiene NA, que indica que no hay dato allí (Not Available), dedica en promedio 120 minutos diarios a las redes y así sigue toda la fila correspondiente a esa persona, que no está mostrada aquí por razones de espacio. 
 
 La matriz de datos contiene toda la información que será insumo de los análisis posteriores, luego será necesario definir qué es cada elemento que la constituye.
 
@@ -119,7 +118,7 @@ La matriz de datos contiene toda la información que será insumo de los anális
 
 ## Los individuos
 
-Hemos dicho que cada fila representa un caso, un individuo al que se observa. Este individuo puede ser una persona como en este ejemplo, pero también una entidad colectiva: un hogar, una empresa, una escuela. Cada una de ellas se denomina *unidad de análisis*.
+Hemos dicho que cada fila representa un caso, un individuo al que se observa. Este individuo puede ser una persona como en este ejemplo, pero también una entidad colectiva: un hogar, una empresa, una escuela. Cada una de ellas se denomina **unidad de análisis**.
 
 Es importante que las unidades de análisis estén claras para la interpretación de los resultados. Por ejemplo, si se afirma que "las personas de menores recursos acceden menos frecuentemente a la educación superior", hablamos de personas, y éstas son las unidades de análisis. Y es muy diferente a decir que "en los países más pobres, es menor la proporción de personas que acceden a la educación superior", porque aquí las unidades de análisis son los países.
 
@@ -127,11 +126,11 @@ Es importante que las unidades de análisis estén claras para la interpretació
 |:--:|
 | Las **unidades de análisis** son los entes individuales acerca de los que se analizan sus cualidades. |
 
-Si las unidades de análisis fuesen escuelas, sus características, dependiendo de la investigación de que se trate, podrían ser: dependencia (estatal o privada), nivel (primaria, secundaria, ambas), cantidad de alumnos, turnos (mañana, tarde, ambos), etc. Si se tratara de hogares, puede observarse: cantidad de miembros, composición, actividad económica, etc.
+Si las unidades de análisis fuesen escuelas, sus características, dependiendo de la investigación de que se trate, podrían ser: dependencia (estatal o privada), nivel (primaria, secundaria, ambas), cantidad de alumnos, turnos (mañana, tarde, ambos), etc. Si se tratara de hogares, puede observarse: cantidad de miembros, composición, actividad económica, etc. Si se observan países, sus características de interés pueden ser: su régimen político, cantidad de habitantes, distribución de la riqueza, etc.
 
 ## Las variables
 
-Cada columna de la matriz de datos es un ítem del cuestionario, es decir un aspecto seleccionado de las unidades de análisis sobre el que se llama la atención. Esos aspectos se denominan variables. Así, el sexo es una variable, como lo es con quién vive, cuánto daría en el experimento, etc. Cada ítem del cuestionario se constituye en una variable, a veces su expresión interrogativa en el cuestionario se transforma en algo más abreviado, como: "¿Cuánto tiempo (en minutos) estuviste conectado/a a las redes sociales en el día de ayer?" se vuela "tiempo.red". Las variables son los aspectos de los individuos que se someterán al análisis. Su cualidad central es la que le da nombre: la de variar.
+Cada columna de la matriz de datos es un ítem del cuestionario, es decir un aspecto seleccionado de las unidades de análisis sobre el que se llama la atención. Esos aspectos se denominan **variables**. Así, el sexo es una variable, como lo es con quién vive, cuánto daría en el experimento, etc. Cada ítem del cuestionario se constituye en una variable, a veces su expresión interrogativa en el cuestionario se transforma en algo más abreviado, como la pregunta: "¿Cuánto tiempo (en minutos) estuviste conectado/a a las redes sociales en el día de ayer?" se trata como la variable "tiempo.red". Las variables son los aspectos de los individuos que se someterán al análisis, aquellos aspectos que se han seleccionado como información pertinente para un estudio en particular. Su cualidad central es la que le da nombre: la de variar.
 
 ||
 |:--:|
@@ -141,15 +140,16 @@ Cada vez que se haga referencia a una variable, debe conocerse cuál es la unida
 
 ## Las categorías
 
-El cuerpo de la matriz de datos tiene números que corresponden a las respuestas que cada respondente dio a cada ítem. El primer caso tiene un número 2 en la primera columna, que quiere decir que esa persona respondió que es una mujer. En esta pregunta, se podía elegir entre dos respuestas diferentes (varón, mujer), en el lenguaje que estamos introduciendo, diremos que esta variable (sexo) puede asumir dos *categorías* diferentes. Para el primer caso, la variable sexo asume la categoría 2. Las categorías son las "posibilidades" que tiene una variable, dentro de las cuales a todas las unidades de análisis les corresponde una y solo una.
+El cuerpo de la matriz de datos tiene números que corresponden a las respuestas que cada respondente dio a cada ítem. El primer caso tiene un número 2 en la primera columna, que quiere decir que esa persona respondió que es una mujer. En esta pregunta, se podía elegir entre dos respuestas diferentes (varón, mujer), en el lenguaje que estamos introduciendo, diremos que esta variable (sexo) puede asumir dos **categorías** diferentes. Para el primer caso, la variable sexo asume la categoría 2. Las categorías son las "posibilidades" que tiene una variable, dentro de las cuales a todas las unidades de análisis les corresponde una y solo una.
 
 ||
 |:--:|
 | Las **categorías** de una variable son los valores que ésta puede asumir. |
 
-Cada vez que se define una variable -es decir cada vez que se selecciona un aspecto de las unidades de análisis para observar-, debe indicarse también el conjunto de categorías que le corresponden, aunque a veces esto está implícito. Si la variable es nivel de escolaridad alcanzado, pueden considerarse las siguientes categorías: ninguno, primario incompleto, primario completo, secundario incompleto, secundario completo, terciario o universitario incompleto, terciario o universitario completo y postgrado. Si tratamos con la variable edad, sus categorías son valores numéricos, entre cero y un máximo de años que se fija según el caso.
+Cada vez que se define una variable ──es decir cada vez que se selecciona un aspecto de las unidades de análisis para observar──, debe indicarse también el conjunto de categorías que le corresponden, aunque a veces esto está implícito. Si la variable es nivel de escolaridad alcanzado, pueden considerarse las siguientes categorías: ninguno, primario incompleto, primario completo, secundario incompleto, secundario completo, terciario o universitario incompleto, terciario o universitario completo y postgrado. Si tratamos con la variable edad, sus categorías son valores numéricos, entre cero y un máximo de años que se fija según el caso.
 
-Hay dos propiedades que debemos asegurar que cumplan las categorías que construyamos. La primera se llama *exclusión mutua*, es decir que cada categoría excluya a todas las demás. Dicho de otra manera, si a un individuo le corresponde una categoría, entonces sabemos que no le corresponde ninguna otra. Si analizamos hogares y a cada persona le preguntamos por su parentesco, sin indicar con quién, tendremos una categorización defectuosa, porque una persona del hogar puede al mismo tiempo ser hijo y hermano, o hijo y padre, si conviven tres generaciones. En cualquiera de los dos casos, a una misma persona le corresponderían dos categorías y se viola el requisito de exclusión mutua. Esto se resuelve estableciendo respecto de quién se declara el parentesco, y todos los integrantes del hogar lo refieren a la misma persona[^jefe_de_hogar].
+### Requisitos de las categorías  
+Hay dos propiedades que debemos asegurar que cumplan las categorías que construyamos. La primera se llama **exclusión mutua**, es decir que cada categoría excluya a todas las demás. Dicho de otra manera, si a un individuo le corresponde una categoría, entonces sabemos que no le corresponde ninguna otra. Si analizamos hogares y a cada persona le preguntamos por su parentesco, sin indicar con quién, tendremos una categorización defectuosa, porque una persona del hogar puede al mismo tiempo ser hijo y hermano, o hijo y padre, si conviven tres generaciones. En cualquiera de los dos casos, a una misma persona le corresponderían dos categorías y se viola el requisito de exclusión mutua. Esto se resuelve estableciendo respecto de quién se declara el parentesco, y todos los integrantes del hogar lo refieren a la misma persona[^jefe_de_hogar].
 
 Al analizar los tipos de lectura preferida, nos equivocaríamos si los categorizáramos como de ficción, de misterio, policiales, románticas, biográficas, de aventuras; ya que la categoría ficción puede incluir misterio, policiales, novelas románticas o de aventuras. 
 
@@ -159,9 +159,9 @@ También se comete ese error si se clasifica a las escuelas como céntricas, par
 |:--:|
 | Las categorías de una variable son **mutuamente excluyentes** si a cada individuo le corresponde no más de una categoría. |
 
-El segundo requisito que solicitaremos a las categorías de una variable es que agoten todas las posibilidades de variación, es decir, que todos los valores posibles estén contemplados. Esta cualidad se llama *exhaustividad*.
+El segundo requisito que solicitaremos a las categorías de una variable es que agoten todas las posibilidades de variación, es decir, que todos los valores posibles estén contemplados. Esta cualidad se llama **exhaustividad**.
 
-Veamos qué sucede si no respetamos este requisito. Si evaluamos la variable situación conyugal y ofrecemos como categorías: casado, soltero, divorciado, viudo; las personas que estén viviendo juntas sin estar casadas no encuentran un lugar donde ubicarse, como tampoco lo encuentran quienes están separados sin haberse divorciado. Para resolver esto es necesario, o bien incluir estas categorías explícitamente: casado, unido, soltero, separado, divorciado, viudo; ampliando así el número de categorías, o bien fusionarlas con las existentes: casado o unido, soltero, separado o divorciado, viudo.
+Veamos qué sucede si no respetamos este requisito. Si evaluamos la variable situación conyugal y ofrecemos como categorías: casado, soltero, divorciado, viudo; las personas que estén viviendo juntas sin estar casadas no encuentran un lugar donde ubicarse, como tampoco lo encuentran quienes están separados sin haberse divorciado. Para resolver esto es necesario, o bien incluir estas categorías explícitamente: casado, unido, soltero, separado, divorciado, viudo; ampliando así el número de categorías, o bien fusionarlas con las existentes: casado o unido, soltero, separado o divorciado, viudo.  
 Con la edad, las categorías son valores numéricos que pueden ir del cero hasta el un máximo, pero ¿dónde fijarlo? Si se eligiera un límite como 100 años, algunas personas quedarían fuera, quizás sean pocas, pero no pueden quedar sin categoría donde incluirse. Por lo demás, puede haber solo una persona de 103 años, otra de 105, por lo que no se justifica seguir extendiendo categorías. Una solución frecuente es la de tomar una categoría "abierta final", fijando como última categoría 100 y más, e incluir allí a todas las personas que declaren una edad de 100 años o superior. Puede verse que esta opción conlleva una pérdida de información, ya que no sabemos la edad exacta de quienes se ubican en esa categoría. Aceptamos esa pérdida a cambio de reducir el número de categorías de la variable, luego volveremos sobre eso.
 
 Algunas preguntas de cuestionarios, luego de un conjunto de opciones para responder, incluyen una categoría que dice "Otro$\ldots$ especificar". Se trata de casos de categorizaciones en las que no se sabe de antemano cuáles son todas las respuestas posibles; son frecuentes en las encuestas de opinión. Por ejemplo, si alguien declara que en las próximas elecciones va a votar en blanco y preguntamos por qué, podemos conocer de antemano algunas de las respuestas posibles, pero debemos dejar espacio para que los encuestados expresen razones que no habíamos previsto. De este modo aseguramos la exhaustividad de las categorías. En el cuestionario del ejemplo, la P7 tiene, en la opción 5, la posibilidad de otras alternativas de convivencia, aparte de las ofrecidas.
@@ -172,7 +172,7 @@ Algunas preguntas de cuestionarios, luego de un conjunto de opciones para respon
 
 En algunas situaciones, el número de categorías de una variable es parte de la decisión del investigador. Hay casos en que las categorías están establecidas de antemano: por ejemplo, en la variable sexo se tiende a usar como categorías las de varón y mujer; sin embargo, si estamos frente a un estudio que trate precisamente sobre orientación sexual de las personas, deberá considerarse un espectro más amplio de categorías, o bien ofrecer preguntas abiertas, sin establecer categorías de antemano. Como ha sido el caso de P2 en el cuestionario, que no ha sido cargada en la matriz de datos, porque requiere una codificación posterior.
 
-Como se señaló,en la edad de las personas suele elegirse terminar las categorías con "100 y más". De hecho, también se podrían mantener las edades exactas hasta 109 años y cerrar con 110 y más. Qué se elija depende de cuánta información y cuánta claridad se decida que tenga la clasificación; lamentablemente, no es posible lograr al mismo tiempo el máximo de información y de claridad en la presentación[^claridad_presentacion].
+Como se señaló, en la edad de las personas suele elegirse terminar las categorías con "100 y más". De hecho, también se podrían mantener las edades exactas hasta 109 años y cerrar con 110 y más. Qué se elija depende de cuánta información y cuánta claridad se decida que tenga la clasificación; lamentablemente, no es posible lograr al mismo tiempo el máximo de información y de claridad en la presentación[^claridad_presentacion].
 
 ## Los símbolos numéricos
 
@@ -220,6 +220,8 @@ kableExtra::kable_styling(
 )
 ```
 
+
+  
 ```{r}
 aux_table <- tibble::tribble(
   ~Código, ~"Estoy muy satisfecho con el modo en que he progresado en mi carrera",
@@ -238,7 +240,7 @@ kableExtra::kable_styling(
 )
 ```
 
-En las variables cuyas categorías son numéricas, no es necesario hacer ninguna codificación. Así, la edad quedará expresada de manera numérica directamente por la cantidad de años, como sucede con la cantidad de materias aprobadas. En estos casos, la exclusión mutua y la exhaustividad se cumplen.
+En las variables cuyas categorías son numéricas, no es necesario hacer ninguna codificación. Así, la edad quedará expresada de manera numérica directamente por la cantidad de años, como sucede con la cantidad de materias aprobadas, el número de hijos o la cantidad de habitantes de un país. En estos casos, la exclusión mutua y la exhaustividad se cumplen sin más.
 
 ## La medición
 
@@ -250,7 +252,7 @@ En Ciencias Sociales tiene plena vigencia el debate acerca de las posibilidades 
 
 Esta última definición, basada en la teoría representacional de la medición, es la que adoptaremos en este curso aunque la discusión sigue vigente. Desde esta definición, evaluar una variable para una unidad de análisis dada, equivale a medir esa unidad de análisis en el aspecto que la variable expresa.
 
-Aun cuando se adopte una definición amplia de lo que es medir, podemos intuir que no se mide una opinión del mismo modo que se mide el salario o la estatura. Esto sugiere que, dentro de las variables de las que hemos hablado hasta aquí habrá que reconocer diferencias, y estas diferencias vendrán dadas por el significado que tengan los números que asignamos a las categorías, es decir, por las reglas que ligan los números con lo que se observa.
+Aun cuando se adopte una definición amplia de lo que es medir, podemos intuir que no se mide una opinión del mismo modo que se mide el salario o la estatura. Además, en ocasiones la palabra *medición* parece forzada. Si se asigna el número 1 a los varones y 2 a las mujeres, decir que con estos números se *mide el sexo* es extraño. Por el contrario, resulta familiar *medir la estatura* asignando a cada persona el número de centímetros que indica una cinta métrica. Sin embargo, desde la teoría representacional, ambas son mediciones.  Esto sugiere que, dentro de las variables de las que hemos hablado hasta aquí habrá que reconocer diferencias, y estas diferencias vendrán dadas por el significado que tengan los números que asignamos a las categorías, es decir, por las reglas que ligan los números con lo que se observa.
 
 ||
 |:--:|
@@ -262,11 +264,11 @@ Así entonces, hay grados diferentes en la libertad que existe para asignar los 
 
 ### Niveles de medición
 
-Según la mayor o menor arbitrariedad que exista en la relación que liga los números a las categorías, hablaremos de diferentes niveles de medición: cuánta más restricción haya en la asignación de los números a las categorías, más alto será el nivel de medición de las variables. Si los números se asignan de manera totalmente arbitraria, el nivel de medición es el más bajo de todos y se llama *nivel nominal* (como en la variable sexo); si los números deben respetar el orden de las categorías (como en la educación), la variable se llama de *nivel ordinal*. Por ahora, nos detenemos en estos dos niveles.
+Según la mayor o menor arbitrariedad que exista en la relación que liga los números a las categorías, hablaremos de diferentes niveles de medición: cuánta más restricción haya en la asignación de los números a las categorías, más alto será el nivel de medición de las variables. Cuanto más alto sea el nivel de medición, mayores son las propiedades que tienen los números, es decir son más amplias las operaciones que puede hacerse son ellos. Si los números se asignan de manera totalmente arbitraria, el nivel de medición es el más bajo de todos y se llama **nivel nominal** (como en la variable sexo); si los números deben respetar el orden de las categorías (como en la educación), la variable se llama de **nivel ordinal**. Por ahora, nos detenemos en estos dos niveles.
 
 #### El nivel nominal
 
-Es el nivel más elemental de medición: las variables de este nivel tienen categorías que son solo nombres (de allí que se llamen nominales). La asignación de códigos numéricos cumple la función de designar las categorías, es decir, de distinguirlas una de otras. Sexo, área de especialización preferida (UA = estudiantes de Psicología), carrera que cursa (UA = estudiantes universitarios); cuyas codificaciones podrían ser:
+Es el nivel más elemental de medición: las variables de este nivel tienen categorías que son solo nombres (de allí que se llamen nominales). La asignación de códigos numéricos cumple la función de designar las categorías, es decir, de distinguirlas una de otras. Área de especialización preferida (UA = estudiantes de Psicología), carrera que cursa (UA = estudiantes universitarios), podrían tener las siguientes codificaciones:  
 
 ```{r}
 aux_table <- tibble::tribble(
@@ -304,7 +306,7 @@ Para unidades de análisis medidas a través de una variable de nivel nominal, e
 
 En la tabla \@ref(tab:nivelNomCod) si a un alumno le corresponde el número 1 y a otro también, solo podemos decir que coinciden en esta variable, ambos estudian la misma carrera (Psicología), si a uno le corresponde el 1 y a otro el 3, sabremos que el primero estudia Psicología y el otro Medicina. El hecho que el número 3 sea más grande que el 1, no tiene ninguna interpretación en este nivel de medición, no puede decirse que Psicología sea menos que Medicina. Como tampoco vale que 3 sea el triple de 1.
 
-Si 1 y 2 son dos categorías de una variable medida a nivel nominal, el único tipo de relación que puede establecerse entre ellas es $1\neq2$, es decir que 1 es diferente de 2.
+Si 1 y 2 son dos categorías de una variable medida a nivel nominal, el único tipo de relación que puede establecerse entre ellas es $$1\neq2$$, es decir que 1 es diferente de 2.
 
 La regla de transformación de una escala nominal en otra es que cualquier número puede cambiarse por cualquiera a condición de no repetir ninguno. La escala nominal 1, 2, 3, 4 puede cambiarse por la 5, 8, 4, 2. Aunque no es obligatorio, en la práctica, lo más frecuente es usar los primeros números naturales para codificar las categorías.
 
@@ -312,7 +314,7 @@ La regla de transformación de una escala nominal en otra es que cualquier núme
 
 Aquí subimos un nivel, ya que a los números que solo tienen la propiedad de designar en las variables nominales, se agrega otra: la de reflejar el orden que existe entre las categorías.
 Simplemente ahora se trata de variables cuyas categorías indican alguna cualidad de las unidades de análisis que crece en una dirección. Eso equivale a decir que se pueden hacer entre ellas, juicios de orden, tales como una categoría es mayor que otra, una categoría es menor que otra. El grado de escolarización cumple con ese requisito: efectivamente, el "primario incompleto" es un nivel de estudios superior a "ninguno", pero inferior a "primario completo".
-Los valores numéricos que representan las categorías rescatan ahora una propiedad adicional: el orden. Además de poder distinguir si dos sujetos tienen la misma característica analizada o una distinta como en el nivel nominal, ahora también podemos saber si un individuo tiene esa característica en mayor o menor grado. Así como "ninguno" es menor que "primario incompleto", los números correspondientes cumplen con que 1 es menor que 2 y resulta más sencillo escribirlo como $1 < 2$.
+Los valores numéricos que representan las categorías rescatan ahora una propiedad adicional: el orden. Además de poder distinguir si dos sujetos tienen la misma característica analizada o una distinta, como en el nivel nominal, ahora también podemos saber si un individuo tiene esa característica en mayor o menor grado. Así como "ninguno" es menor que "primario incompleto", los números correspondientes cumplen con que 1 es menor que 2 y resulta más sencillo escribirlo como $$1 < 2$$.
 
 ||
 |:--:|
@@ -413,15 +415,15 @@ En la que $b_0$ se reemplazó por 3760 y $b_0$ ha desaparecido, es decir que val
 
 Si 1, 2, 3 y 4 son categorías de una variable medida a nivel intervalar, se pueden establecer las relaciones:
 
-$$1 \neq 2$$
-$$1 < 2$$
-$$2 - 1 = 4 - 3$$
+$$1 \neq 2$$  
+$$1 < 2$$  
+$$2 - 1 = 4 - 3$$  
 
 Se agrega la conservación de las distancias a las propiedades que ya tenía la escala anterior.
 
 #### El nivel proporcional[^escalas_de_razon]
 
-Este es el último nivel de medición que trataremos y es el más intuitivo, es el único nivel considerado efectivamente como medición por la teoría clásica, ya que en él se integran todas las propiedades de los niveles anteriores y además se agrega la proporcionalidad de los valores numéricos y el carácter absoluto del cero. Recién a este nivel, los números se comportan realmente como números, ya que se puede operar con ellos del modo al que estamos acostumbrados (sumarlos, multiplicarlos, etc.). ¿Qué variables pueden medirse a este nivel? Todas aquellas para las cuales tengan sentido las dos propiedades adicionales que esta escala incorpora: proporcionalidad de valores y cero absoluto. La cantidad de errores ortográficos cometidos en una prueba de dictado, admite el valor cero como correspondiente a "no errores", es la ausencia de lo que se mide, se trata de un cero absoluto. Además, cometer 10 errores es el doble que cometer 5. Por eso, la variable Número de errores ortográficos cometidos es de nivel proporcional. El tiempo que una persona tarda en resolver una tarea, si se mide en minutos, admite considerar que 4 minutos es el doble de 2, por lo que estamos también en presencia de una escala proporcional, aunque el cero no sea un valor observable. También es proporcional la variable ingresos mensuales del hogar o el número de materias aprobadas.
+Este es el último nivel de medición que trataremos y es el más intuitivo, es el único nivel considerado efectivamente como medición por la teoría clásica, ya que en él se integran todas las propiedades de los niveles anteriores y además se agrega la proporcionalidad de los valores numéricos y el carácter absoluto del cero. Recién a este nivel, los números se comportan realmente como números, ya que se puede operar con ellos del modo al que estamos acostumbrados (sumarlos, multiplicarlos, etc.). ¿Qué variables pueden medirse a este nivel? Todas aquellas para las cuales tengan sentido las dos propiedades adicionales que esta escala incorpora: proporcionalidad de valores y cero absoluto. La cantidad de errores ortográficos cometidos en una prueba de dictado, admite el valor cero como correspondiente a "no errores", es la ausencia de lo que se mide, se trata de un cero absoluto. Además, cometer 10 errores es el doble que cometer 5. Por eso, la variable Número de errores ortográficos cometidos es de nivel proporcional. El tiempo que una persona tarda en resolver una tarea, si se mide en minutos, admite considerar que 4 minutos es el doble de 2, por lo que estamos también en presencia de una escala proporcional, aunque el cero no sea un valor observable. También es proporcional la variable ingresos mensuales del hogar o el número de materias aprobadas, cantidad de diputados de los partidos políticos, población de las provincias.
 
 En general, los valores que provengan de procesos de conteo (como el número de errores) serán siempre proporcionales, como también aquellos que hagan referencia a una unidad de medida estándar como el tiempo[^medicion_de_tiempo] o la distancia.
 
@@ -453,10 +455,10 @@ Ninguna de esas transformaciones pueden modificar la posición del cero, porque 
 
 Si 1, 2, 3 y 4 son categorías de una variable medida a nivel proporcional, se pueden establecer las relaciones:
 
-$$1 \neq 2$$
-$$1 < 2$$
-$$2 - 1 = 4 - 3$$
-$$4 = 2 * 2$$
+$$1 \neq 2$$  
+$$1 < 2$$  
+$$2 - 1 = 4 - 3$$  
+$$4 = 2 * 2$$  
 
 ##### Una subdivisión en las escalas proporcionales
 
@@ -586,20 +588,20 @@ Tiempo requerido para completar una tarea, ingreso per cápita familiar @INDEC20
 ### Lectura de la base
 
 Para operar sobre un conjunto de datos es necesario contar con la matriz de datos cargada en la sesión de trabajo; debe ser un objeto disponible para usarlo. Para ello, se elige el nombre que se dará a ese objeto y se le asigna ($=$ o $<-$) la lectura de la base.
-La lectura debe hacerse desde el lugar donde se encuentra el archivo. Si no se conoce su ruta, el comando "file.choose" abre una ventana para llegar él. La respuesta de ese comando es la ruta completa que aparece en la consola de resultados.
+La lectura debe hacerse desde el lugar donde se encuentra el archivo. Si no se conoce su ruta, el comando "file.choose()" abre una ventana para llegar él. La respuesta de ese comando es la ruta completa que aparece en la consola de resultados.
 La lectura de los archivos .txt se puede realizar con varios comandos, que dependen de que el archivo tenga o no encabezado, del separador que se use para delimitar los campos, del separador de decimales, etc. El comando read.table es el más genérico y debe indicársele:
 
 - El nombre del archivo a leer junto con la ruta para llegar a él: que se copia de la consola.
 
 - Si el archivo tiene encabezado: este es el caso casi siempre, porque la primeraa fila de la matriz de datos tiene los nombres de las variables. Se indica: $header=TRUE$
 
-- El separador de campos: suelen ser comas, punto y comas o pipe | (alt124 en windows). Si los campos están separados por comas. se indica sep="," y así con los demás separadores, siempre entrecomillados.
+- El separador de campos: suelen ser comas, punto y comas, tabulaciones, espacio en blanco o pipe | (alt124 en windows). Si los campos están separados por comas. se indica sep="," y así con los demás separadores, siempre entrecomillados.
 
 - Si a los casos perdidos se los ha codificado de algún modo particular, por ejemplo como 9999, debe indicarse na,strings="9999".  
 
 Conviene mirar la base original, desde el archivo .txt, que puede abrirse con bloc de notas, para asegurarse qué sepadores tiene.
 
-Para leer la base de prueba, que se llama base2019.txt, que tiene los campos separados por espacios en blanco, primero se ubica la ruta del archivo:
+A continuación se usarán datos de la matriz de datos que proviene de la aplicación del cuestionario de la Figura 2.1. La matriz (o base) de daos que tiene los datos cargados está en formato txt, tiene los campos separados por espacios en blanco y se llama base2019.txt. Para leer esa base, primero se ubica la ruta del archivo:
 
 ```{r eval=FALSE, echo=TRUE}
 file.choose()
@@ -607,7 +609,7 @@ file.choose()
 Aquí se abre un explorador para llegar al archivo que se busca, cuando se lo selecciona, la respuesta es su ruta, que debe pegarse como argumento de read.table. Luego se pide su lectura, asignándo el resultado al objeto base.ejemplo:
 
 ```{r echo=TRUE}
-base.ejemplo=read.table("bases/archivostxt/base2019.txt",
+base.ejemplo<-read.table("bases/archivostxt/base2019.txt",
            header = TRUE, sep = " ", na.strings = "999")
 ```
 Además del nombre y la ruta del archivo, en este caso indicamos que la primera fila contiene los nombres de las variables y que los casos perdidos están codificados como 999.
@@ -635,7 +637,7 @@ Y pedir las primeras filas de la matriz:
 ```{r echo=TRUE}
 head(base.ejemplo)
 ```
-Por defecto muestra las seis primera filas, en todas  las columnas (se usaron dos bloques porque no cabe horizontalmente).  
+Por defecto muestra las seis primera filas, en todas  las columnas (se usaron dos bloques porque no cabe horizontalmente). Los <NA> son casos sin respuesta.   
 Para tener más accesibles las variables, vamos a ponerle un nombre a cada columna:
 
 ```{r echo=TRUE}
@@ -648,15 +650,20 @@ names(base.ejemplo)=c("caso", "grupo", "n.cuest", "nombre","sexo", "genero",
                   "preocupacion","golpeo", "robo","cuanto.da", "comision")
 ```
 
-Si pedimos nuevamente el encabezado, tenemos:
+De este modo se sobreescriben los nombres originales y quedan los nuevos. Si pedimos nuevamente los nombres, tenemos:
 ```{r echo=TRUE}
-head(base.ejemplo)
+names(base.ejemplo)
 ```
-Ahora hicieron falta cuantro bloques (cada uno numera del 1 al 6, las seis primeras filas), porque con los nuevos nombres la matriz quedó más ancha.  
+
+Y puede verse la matriz por medio de: 
+```{r, echo=TRUE, eval=FALSE}
+View(base.ejemplo)
+```
+
 
 ### Las variables
 
-Cada variable es una columna de la matriz, y para acceder a cada una y operar con ellas, se usa el signo "pesos" luego del nombre de la matriz. Por ejemplo la variable "sexo" La codificación numérica de la variable sexo (1 y 2 para varones y mujeres respectivamente), fue útil para la recolección y la carga de los datos, pero ahora necesitamos tratarla commo  lo que es. En efecto:
+Cada variable es una columna de la matriz, y para acceder a cada una y operar con ellas, se usa el signo "pesos" luego del nombre de la matriz. Por ejemplo, la codificación numérica de la variable sexo (1 y 2 para varones y mujeres respectivamente), fue útil para la recolección y la carga de los datos, pero ahora necesitamos tratarla como  lo que es. En efecto:
 ```{r echo=TRUE}
 class(base.ejemplo$sexo)
 ```
@@ -666,7 +673,7 @@ Esta almacenada como un número entero, pero es nominal, que en el lenguaje de R
 - Redefinir la variable sexo, cambiándola por una que en lugar de entera sea nominal, o bien
 - Crear una nueva variable en la matriz, a partir de sexo, con un nombre diferente.
 
-Elegimos la primera opción, es decir que operamos sobre la misma variable sexo. Primero la volvemos factor:
+Elegimos la primera opción, es decir que operamos sobre la misma variable sexo, con lo que sobreescribimos la original. Primero la volvemos factor:
 
 ```{r echo=TRUE}
 base.ejemplo$sexo=as.factor(base.ejemplo$sexo)
@@ -678,6 +685,8 @@ Y le damos nombres a las categorías (los niveles del factor):
 levels(base.ejemplo$sexo)=c("varones", "mujeres")
 
 ```
+
+Si se observa la matriz, aparecen ahora los nuevos nombres de las categorías.  
 
 Repetimos estas operaciones sobre las otras preguntas del cuestionario:
 
