@@ -1036,7 +1036,7 @@ table(eph.3.18.validos.estado$sexo, eph.3.18.validos.estado$ESTADO)
 ```
 
 Que tiene un aspecto más legible.  
-Para evitar escribir cada vez el nombre de la base de donde las variables provienen, se la puede adosar durante la sesión de trabajo, con el comando ´attach´:
+Para evitar escribir cada vez el nombre de la base de donde las variables provienen, se la puede adosar durante la sesión de trabajo, con el comando `attach`:
 
 ```{r echo=TRUE, warning=FALSE}
 attach(eph.3.18.validos.estado)
@@ -1045,44 +1045,43 @@ attach(eph.3.18.validos.estado)
 De este modo, la base queda como referencia para las operaciones que siguen, y la tabla puede pedirse directamente:
 
 ```{r echo=TRUE}
-table(sexo,ESTADO)
+# table(sexo, ESTADO)
 ```
-
 
 Los totales de filas y de columna (frecuencias marginales) deben pedirse explícitamente, con `addmargins`:
 
 ```{r warning=FALSE, echo=TRUE}
-addmargins(table(sexo, ESTADO))
+# addmargins(table(sexo, ESTADO))
 ```
 
 Así como las relativas, usando `prop.table`:
 
 ```{r warning=FALSE, echo=TRUE}
-prop.table(table(sexo, ESTADO))
+# prop.table(table(sexo, ESTADO))
 ```
 
 Para reducir los decimales, se solicita redondeo a solo tres:
 
 ```{r warning=FALSE, echo=TRUE}
-round(prop.table(table(sexo, ESTADO)), 3)
+# round(prop.table(table(sexo, ESTADO)), 3)
 ```
 
 Y para expresarlos como porcentajes, lo multiplicamos por 100:
 
 ```{r warning=FALSE, echo=TRUE}
-round(prop.table(table(sexo, ESTADO)), 3) * 100
+# round(prop.table(table(sexo, ESTADO)), 3) * 100
 ```
 
 Estas frecuencias relativas, lo son respecto del total, si se las quiere por filas, se indica en el argumento *1*
 
 ```{r warning=FALSE, echo=TRUE}
-round(prop.table(table(sexo, ESTADO), 1), 3) * 100
+# round(prop.table(table(sexo, ESTADO), 1), 3) * 100
 ```
 
 Para obtenerlas por columnas, se indica *2* en el argumento de `prop.table`:
 
 ```{r warning=FALSE, echo=TRUE}
-round(prop.table(table(sexo, ESTADO), 2), 3) * 100
+# round(prop.table(table(sexo, ESTADO), 2), 3) * 100
 ```
 
 
@@ -1094,13 +1093,13 @@ library(summarytools)
 
 Y como la matriz de datos ya está adosada, solo hace falta indicar el nombre de las variables en el argumento.
 ```{r warning=FALSE, echo=TRUE}
-ctable(ESTADO, sexo)
+# ctable(ESTADO, sexo)
 ```
 
 Por defecto calcula relativas por filas. Si las queremos por columnas:
 
 ```{r warning=FALSE, echo=TRUE}
-ctable(ESTADO, sexo, prop = "c")
+# ctable(ESTADO, sexo, prop = "c")
 
 ```
 
@@ -1108,10 +1107,12 @@ ctable(ESTADO, sexo, prop = "c")
 Si solo se quieren las frecuencias absolutas:
 
 ```{r warning=FALSE, echo=TRUE}
-ctable(ESTADO, sexo, prop = "n")
-
+# ctable(ESTADO, sexo, prop = "n")
 ```
 
+```{r}
+detach(eph.3.18.validos.estado)
+```
 
 Para darles un formato más personalizado, una opción es llevar la tabla a una hoja de cálculo y allí rotular, centrar, etc. De lo contrario, R ofrece un entorno llamado R Markdown con muchas posibilidades de formato y exportación a pdf o html.
 

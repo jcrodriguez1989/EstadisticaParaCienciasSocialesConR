@@ -1835,12 +1835,12 @@ Para los ejemplos de este apartado vamos a trabajar sobre los datos de la Encues
 
 
 ```{r echo=TRUE}
-eph.3.18<-read.table("bases/archivostxt/usu_individual_T318.txt", header = TRUE, sep=";")
+eph.3.18 <- read.table("bases/archivostxt/usu_individual_T318.txt", header = TRUE, sep=";")
 ```
 
 Ahora retendremos solo a los asalariados (CAT_OCUP = 3) que tienen ingreso mayor a cero (PP08D1>0 y que no son NA), la nueva base se llama "asalariados":
 ```{r echo=TRUE}
-asalariados<-subset(eph.3.18, eph.3.18$CAT_OCUP==3 & 
+asalariados <- subset(eph.3.18, eph.3.18$CAT_OCUP==3 & 
                       eph.3.18$PP08D1>0 & is.na(eph.3.18$PP08D1)==FALSE)
 ```
 
@@ -1948,14 +1948,14 @@ El paquete 'summarytools' que usamos para las tablas univariadas, es un poco má
 
 ```{r echo=TRUE}
 library(summarytools) # se carga en la sesión
-descr(PP08D1)
+# descr(PP08D1)
 ```
 
 No seguiremos usando la base de la EPH, por lo que la desadosamos:
+
 ```{r echo=TRUE}
 detach(asalariados)
 ```
-
 
 La medida relativa de la variabilidad (el $CV$) es adecuada para comparar variables que tienen diferentes unidades, por ejemplo, sobre la base que contiene los puntajes que los niños obtienen en  una prueba de desarrollo de Bayley cabe pregunta ¿qué es más variable, el puntaje en la subescala motora o en la mental? Es decir, ¿en cuál de esas dos medidas se diferencian más los niños evaluados? Leemos la base
 
@@ -1966,15 +1966,15 @@ bayley <- read.csv("bases/archivostxt/bayley.txt", sep = ";", dec = ",")
 
 ```{r warning= FALSE, echo=TRUE}
 attach(bayley)
-descr(baymotor)
-descr(baymenta)
-
+# descr(baymotor)
+# descr(baymenta)
 ```
 
 <!-- EB: Hice un par de cambios acá: moví el "hacerlo en R" al final (aun está en proceso), saqué lo de los pesos, porque no me gustaba con pesos inventados, no lo puede hacer el lector y metí este paquete que me gusta como presenta los descriptivos-->
 
-
-
+```{r}
+detach(bayley)
+```
 
 [^moda]: Esta es la idea que transmite el lenguaje coloquial: cuando algo es "la moda, es lo que más comúnmente (frecuentemente) se ve.
 

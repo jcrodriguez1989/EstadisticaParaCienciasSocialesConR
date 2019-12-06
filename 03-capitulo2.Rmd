@@ -6,7 +6,7 @@ output:
 # Distribuciones de frecuencia
 
 ```{r}
-install.packages("summarytools")
+library("summarytools")
 
 tabla_frec <- function(datos, digits = 2, name = "") {
   tbl <- table(datos)
@@ -848,7 +848,8 @@ Dos diferencias importantes en la sintaxis:
 - el color fijo (green en este ejemplo) va entre comillas, el nombre de la variable, no.  
 
 
-En este ejemplo, el mapeo no aporta ninguna información nueva, ya que el nombre de la red está en el eje. Sin embargo, el mapeo es muy útil para introducir otra variable y ver las diferencias, por ejemplo, para observar la diferencia en la preferencia de redes según sexo. Para hacerlo, se recorta la matriz de datos y se retienen solo los casos que no sean NA en red.usada ni tampoco en sexo. Para que se cumplan las dos condiciones indicamos la conjunción $y$, con el  símbolo $&$:  
+En este ejemplo, el mapeo no aporta ninguna información nueva, ya que el nombre de la red está en el eje. Sin embargo, el mapeo es muy útil para introducir otra variable y ver las diferencias, por ejemplo, para observar la diferencia en la preferencia de redes según sexo. Para hacerlo, se recorta la matriz de datos y se retienen solo los casos que no sean NA en red.usada ni tampoco en sexo. Para que se cumplan las dos condiciones indicamos la conjunción $y$, con el símbolo $\&$:
+
 ```{r echo=TRUE}
 ggplot(subset(
   base.ejemplo, is.na(
@@ -856,7 +857,6 @@ ggplot(subset(
       base.ejemplo$sexo)==FALSE))+
   geom_bar(aes(red.usada, fill=sexo))+coord_flip()
 ```
-
 
 Aquí vemos que la preferencia por redes está bastante equilibrada entre mujeres y varones.  
 
