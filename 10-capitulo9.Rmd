@@ -684,12 +684,12 @@ descripción de la población de las notas del tercer parcial:
 
 
 ```{r}
-tres_parciales<-read.table("bases/archivostxt/tres.parciales.2009.txt",
-                        header = TRUE, sep=";")
+tres_parciales <- read.table("bases/archivostxt/tres.parciales.2009.txt",
+  header = TRUE, sep = ";"
+)
 
-tres_parciales$Tercero<-as.numeric(as.character(tres_parciales$Tercero))
+tres_parciales$Tercero <- as.numeric(as.character(tres_parciales$Tercero))
 summary(tres_parciales$Tercero)
-
 ```
 
 Estas medidas están calculadas sobre la población completa, que es el
@@ -714,32 +714,38 @@ Ahora extraemos 200 muestras de 80 casos cada una y producimos una nueva matriz 
 
 ```{r}
 set.seed(1)
-muestras=list()
-for (i in 1:200) {muestras[[i]]<-
-  sample(tres_parciales$Tercero, 80)
+muestras <- list()
+for (i in 1:200) {
+  muestras[[i]] <-
+    sample(tres_parciales$Tercero, 80)
 }
 
-muestras.df<-data.frame()
-for (i in 1:200) {for (j in 1:80) {muestras.df[i,j] <-muestras[[i]][j]}}
-muestras.df<-as.matrix(muestras.df)
-muestras.df<-t(muestras.df)
-muestras.df<-as.data.frame(muestras.df)
+muestras.df <- data.frame()
+for (i in 1:200) {
+  for (j in 1:80) {
+    muestras.df[i, j] <- muestras[[i]][j]
+  }
+}
+muestras.df <- as.matrix(muestras.df)
+muestras.df <- t(muestras.df)
+muestras.df <- as.data.frame(muestras.df)
 
-media=vector("numeric",200)
-for (i in 1:200) {media[[i]]<-round(mean(muestras.df[,i], na.rm = TRUE),2)
+media <- vector("numeric", 200)
+for (i in 1:200) {
+  media[[i]] <- round(mean(muestras.df[, i], na.rm = TRUE), 2)
 }
 
-varianza=vector("numeric",200)
-for (i in 1:200) {varianza[[i]]<-round(sd(muestras.df[,i],na.rm = TRUE)^2,2)
+varianza <- vector("numeric", 200)
+for (i in 1:200) {
+  varianza[[i]] <- round(sd(muestras.df[, i], na.rm = TRUE)^2, 2)
 }
 
-muestra<-vector("numeric",200)
-for (i in 1:200) {muestra[i]<-i
-
+muestra <- vector("numeric", 200)
+for (i in 1:200) {
+  muestra[i] <- i
 }
-resumen_muestras=data.frame(muestra, media, varianza)
+resumen_muestras <- data.frame(muestra, media, varianza)
 print(head(resumen_muestras), row.names = FALSE)
-
 ```
 
 
@@ -810,7 +816,7 @@ El histograma de las medias muestrales es:
 ```{r warning=FALSE}
 ggplot(resumen_muestras) +
   geom_histogram(aes(media), fill = "green", bins = 30, col = "black") +
-  ylab("frecuencia relativa") + xlim(c(1,10))+
+  ylab("frecuencia relativa") + xlim(c(1, 10)) +
   theme_tufte()
 ```
 

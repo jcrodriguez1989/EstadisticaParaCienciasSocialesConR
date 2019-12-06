@@ -570,7 +570,7 @@ Los resultados descriptivos de los dos grupos son:
 
 ```{r}
 adultos_mayores <- read.csv("bases/archivostxt/Adultos.mayores.txt",
-  sep = ";", header = TRUE, fileEncoding="latin1"
+  sep = ";", header = TRUE, fileEncoding = "latin1"
 )
 
 adultos_mayores$edad <- as.numeric(as.character(adultos_mayores$edad))
@@ -581,8 +581,10 @@ adultos_mayores$grupo_edad <- as.factor(adultos_mayores$grupo_edad)
 resumen_hijos <- summaryBy(
   hijos ~ grupo_edad,
   data = adultos_mayores[
-    !is.na(adultos_mayores$hijos) & !is.na(adultos_mayores$grupo_edad),],
-  FUN = c(length, mean, median, sd))
+    !is.na(adultos_mayores$hijos) & !is.na(adultos_mayores$grupo_edad),
+  ],
+  FUN = c(length, mean, median, sd)
+)
 # colnames(resumen_hijos) <- gsub("_", "\\.", colnames(resumen_hijos))
 knitr::kable(
   resumen_hijos, kable_outp,
@@ -1121,7 +1123,7 @@ Se lee la base y se la nombra como `adultos_mayores`:
 
 ```{r echo=TRUE}
 adultos_mayores <- read.csv("bases/archivostxt/Adultos.mayores.txt",
-  sep = ";", header = TRUE, fileEncoding="latin1"
+  sep = ";", header = TRUE, fileEncoding = "latin1"
 )
 ```
 

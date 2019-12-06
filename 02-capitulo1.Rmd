@@ -72,7 +72,7 @@ El cuestionario tiene 16 ítems, cada persona que lo responde marca una sola de 
 
 ```{r}
 base.2019 <- read.csv("bases/archivostxt/base2019.txt", header = TRUE, sep = " ", dec = ".", na.strings = 999)
-base.2019 <- base.2019[, -c(1:4,6)]
+base.2019 <- base.2019[, -c(1:4, 6)]
 names(base.2019) <- c(
   "sexo", "edad", "acceso.redes", "red.usada", "red.otra", "tiempo.red", "con.q.vive", "relacion.otros", "q.aporta", "q.aporta.amigos", "edad.partida", "razon.partida", "razon.partida.otra", "calidad.sueño",
   "preocupacion", "golpeo", "robo", "cuanto.da", "comision"
@@ -105,7 +105,7 @@ levels(base.2019$red.usada) <- c(
 
 base.2019$razon.partida <- as.factor(base.2019$razon.partida)
 levels(base.2019$razon.partida) <- c("estudio", "nueva.flia", "ganas", "otras")
-head(base.2019[,c(1:6)] )
+head(base.2019[, c(1:6)])
 ```
 
 Este ordenamiento rectangular de la información tiene filas (horizontales) y columnas (verticales), en esta imagen solo se ven las primeras seis filas y seis columnas de la matriz. Cada fila es un individuo y cada columna es un ítem. La primera fila muestra los nombres de los ítems del cuestionario (en este ejemplo solo los seis primeros) y las seis filas mostradas, indican las respuestas dadas por los encuestados. Así, la persona que respondió al primer cuestionario es una mujer, que tiene 19 años, tiene acceso a redes sociales y la que más usa es Instagram, como no respodió "otra",  en la columna siguiente tiene NA, que indica que no hay dato allí (Not Available), dedica en promedio 120 minutos diarios a las redes y así sigue toda la fila correspondiente a esa persona, que no está mostrada aquí por razones de espacio. 
@@ -609,8 +609,9 @@ file.choose()
 Aquí se abre un explorador para llegar al archivo que se busca, cuando se lo selecciona, la respuesta es su ruta, que debe pegarse como argumento de read.table. Luego se pide su lectura, asignándo el resultado al objeto base.ejemplo:
 
 ```{r echo=TRUE}
-base.ejemplo<-read.table("bases/archivostxt/base2019.txt",
-           header = TRUE, sep = " ", na.strings = "999")
+base.ejemplo <- read.table("bases/archivostxt/base2019.txt",
+  header = TRUE, sep = " ", na.strings = "999"
+)
 ```
 Además del nombre y la ruta del archivo, en este caso indicamos que la primera fila contiene los nombres de las variables y que los casos perdidos están codificados como 999.
 
@@ -641,13 +642,15 @@ Por defecto muestra las seis primera filas, en todas  las columnas (se usaron do
 Para tener más accesibles las variables, vamos a ponerle un nombre a cada columna:
 
 ```{r echo=TRUE}
-names(base.ejemplo)=c("caso", "grupo", "n.cuest", "nombre","sexo", "genero",
-                  "edad", "acceso.redes","red.usada","red.otra" ,
-   "tiempo.red", "con.q.vive", "relacion.otros",
-                  "q.aporta","q.aporta.amigos" ,"edad.partida",
-   "razon.partida",
-                  "razon.partida.otra","calidad.sueño", 
-                  "preocupacion","golpeo", "robo","cuanto.da", "comision")
+names(base.ejemplo) <- c(
+  "caso", "grupo", "n.cuest", "nombre", "sexo", "genero",
+  "edad", "acceso.redes", "red.usada", "red.otra",
+  "tiempo.red", "con.q.vive", "relacion.otros",
+  "q.aporta", "q.aporta.amigos", "edad.partida",
+  "razon.partida",
+  "razon.partida.otra", "calidad.sueño",
+  "preocupacion", "golpeo", "robo", "cuanto.da", "comision"
+)
 ```
 
 De este modo se sobreescriben los nombres originales y quedan los nuevos. Si pedimos nuevamente los nombres, tenemos:
@@ -676,14 +679,13 @@ Esta almacenada como un número entero, pero es nominal, que en el lenguaje de R
 Elegimos la primera opción, es decir que operamos sobre la misma variable sexo, con lo que sobreescribimos la original. Primero la volvemos factor:
 
 ```{r echo=TRUE}
-base.ejemplo$sexo=as.factor(base.ejemplo$sexo)
+base.ejemplo$sexo <- as.factor(base.ejemplo$sexo)
 ```
 
 Y le damos nombres a las categorías (los niveles del factor):
 
 ```{r echo=TRUE}
-levels(base.ejemplo$sexo)=c("varones", "mujeres")
-
+levels(base.ejemplo$sexo) <- c("varones", "mujeres")
 ```
 
 Si se observa la matriz, aparecen ahora los nuevos nombres de las categorías.  
@@ -691,25 +693,31 @@ Si se observa la matriz, aparecen ahora los nuevos nombres de las categorías.
 Repetimos estas operaciones sobre las otras preguntas del cuestionario:
 
 ```{r echo=TRUE}
-base.ejemplo$con.q.vive=as.factor(base.ejemplo$con.q.vive)
-levels(base.ejemplo$con.q.vive)=c("flia.origen", "flia.nueva",
-                              "hermanes.o.amigues", "solo",
-                              "con.otres")
-base.ejemplo$q.aporta=as.factor(base.ejemplo$q.aporta)
-levels(base.ejemplo$q.aporta)=c("el.mismo", "flia.origen",
-                            "flia.nueva","entre.amigos")
+base.ejemplo$con.q.vive <- as.factor(base.ejemplo$con.q.vive)
+levels(base.ejemplo$con.q.vive) <- c(
+  "flia.origen", "flia.nueva",
+  "hermanes.o.amigues", "solo",
+  "con.otres"
+)
+base.ejemplo$q.aporta <- as.factor(base.ejemplo$q.aporta)
+levels(base.ejemplo$q.aporta) <- c(
+  "el.mismo", "flia.origen",
+  "flia.nueva", "entre.amigos"
+)
 
-base.ejemplo$acceso.redes=as.factor(base.ejemplo$acceso.redes)
-levels(base.ejemplo$acceso.redes)=c("si", "no")
+base.ejemplo$acceso.redes <- as.factor(base.ejemplo$acceso.redes)
+levels(base.ejemplo$acceso.redes) <- c("si", "no")
 
-base.ejemplo$red.usada=as.factor(base.ejemplo$red.usada)
-levels(base.ejemplo$red.usada)=c("Instagram", "Facebook", "Twitter",
-                             "Linkedin","Tinder/Grindr/happn",
-                             "Snapchat", "Ninguna", "Otra")
+base.ejemplo$red.usada <- as.factor(base.ejemplo$red.usada)
+levels(base.ejemplo$red.usada) <- c(
+  "Instagram", "Facebook", "Twitter",
+  "Linkedin", "Tinder/Grindr/happn",
+  "Snapchat", "Ninguna", "Otra"
+)
 
 
-base.ejemplo$razon.partida=as.factor(base.ejemplo$razon.partida)
-levels(base.ejemplo$razon.partida)=c("estudio","nueva.flia","ganas","otras")
+base.ejemplo$razon.partida <- as.factor(base.ejemplo$razon.partida)
+levels(base.ejemplo$razon.partida) <- c("estudio", "nueva.flia", "ganas", "otras")
 ```
 
 
@@ -717,7 +725,6 @@ La cantidad de casos es el número de filas de la matriz de datos. En el caso de
 
 ```{r echo=TRUE}
 length(base.ejemplo$sexo)
-
 ```
 
 Cuando se aplica a una matriz de datos, su longitud en el número de variables:
@@ -732,7 +739,7 @@ Los elementos de la matriz de datos pueden accederse por filas o por columnas. U
 El valor que está en la fila 254, columna 7 de base.ejemplo es 30, que es la edad (columna 7) de la persona que está en la fila 254
 
 ```{r echo=TRUE}
-base.ejemplo[254,7]
+base.ejemplo[254, 7]
 ```
 
 Si uno de los dos elementos del corchete se deja en blanco, toma todos los correspondientes de fila o de columna. No vamos a hacer el experimento, porque tendríamos, o bien los valores en cada una de las 24 variables de un sujeto, si pedimos una fila; o bien los 5003 valores de alguna variable, si pedimos una columna.  

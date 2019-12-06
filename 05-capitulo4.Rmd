@@ -980,8 +980,9 @@ Pero en el próximo capítulo veremos que para variables de estos niveles de med
 
 Para ver el modo de construir las tablas bivariadas de este capítulo, usaremos la base de la Encuesta Permanente de Hogares del tercer trimestre de 2018. El primer paso es leerla desde el lugar donde esté guardada y darle un nombre:  
 ```{r echo=TRUE, warning=FALSE}
-eph.3.18<-read.table("bases/archivostxt/usu_individual_T318.txt",
-                     sep=";", header = TRUE)
+eph.3.18 <- read.table("bases/archivostxt/usu_individual_T318.txt",
+  sep = ";", header = TRUE
+)
 ```
 
 Se indica que los campos están separados por ";" y que la primera fila contiene los nombres de las variables.  
@@ -996,9 +997,9 @@ table(eph.3.18$CH04, eph.3.18$ESTADO)
 Así presentada, la tabla no es muy clara; solo interesan las categorías válidas de ESTADO, por lo que harán falta algunos ajustes. Para eliminar el 0 y el 4 de ESTADO, tomamos un subconjunto de la base que cumpla con que la variable ESTADO valga 1, 2 ó 3, el simbolo de "o" es "|". Llamamos *eph.3.18.validos.estado* a esa nueva base:
 
 ```{r echo=TRUE, warning=FALSE}
-eph.3.18.validos.estado<-subset(eph.3.18, eph.3.18$ESTADO==1|
-                                 eph.3.18$ESTADO==2|
-                                 eph.3.18$ESTADO==3)
+eph.3.18.validos.estado <- subset(eph.3.18, eph.3.18$ESTADO == 1 |
+  eph.3.18$ESTADO == 2 |
+  eph.3.18$ESTADO == 3)
 ```
 
 Vemos en el panel superior derecho que la nueva base tiene la misma cantidad de variables y menos casos.
@@ -1006,25 +1007,26 @@ Vemos en el panel superior derecho que la nueva base tiene la misma cantidad de 
 Ahora hay que etiquetar las categorías de ESTADO y de CH04, pero como ambas tienen codificación numérica, fueron leídas como si fueran numéricas, se transforma ESTADO a factor:
 
 ```{r echo=TRUE, warning=FALSE}
-eph.3.18.validos.estado$ESTADO<-as.factor(
-  eph.3.18.validos.estado$ESTADO)
+eph.3.18.validos.estado$ESTADO <- as.factor(
+  eph.3.18.validos.estado$ESTADO
+)
 ```
 
 Ahora sí, se etiquetan sus niveles:
 ```{r echo=TRUE, warning=FALSE}
-levels(eph.3.18.validos.estado$ESTADO)<-c("ocupade","desocupade","inactive")
+levels(eph.3.18.validos.estado$ESTADO) <- c("ocupade", "desocupade", "inactive")
 ```
 
 Con CH04 vamos a crear una variable nueva, que se llamará "sexo", para que sea más simple recordarla:
 
 ```{r echo=TRUE, warning=FALSE}
-eph.3.18.validos.estado$sexo<-as.factor(eph.3.18.validos.estado$CH04)
+eph.3.18.validos.estado$sexo <- as.factor(eph.3.18.validos.estado$CH04)
 ```
 
 Vemos ahora en el panel superior derecho que aumentó una variable en la base, es la que acabamos de crear.  
 Luego etiquetamos los niveles:
 ```{r echo=TRUE, warning=FALSE}
-levels(eph.3.18.validos.estado$sexo)<-c("varones", "mujeres")
+levels(eph.3.18.validos.estado$sexo) <- c("varones", "mujeres")
 ```
 
 
@@ -1100,7 +1102,6 @@ Por defecto calcula relativas por filas. Si las queremos por columnas:
 
 ```{r warning=FALSE, echo=TRUE}
 # ctable(ESTADO, sexo, prop = "c")
-
 ```
 
 

@@ -794,7 +794,7 @@ $$P(3500 < x < 4500) = P(0.25 < z < 1.50) = P(z < 1.50) - P(z < 0.25)$$
 La última operación la solicitamos a R:
 
 ```{r}
-round(pnorm(1.5) - pnorm(.25),4)
+round(pnorm(1.5) - pnorm(.25), 4)
 ```
 
 Leemos el resultado diciendo que la probabilidad de hallar a un niño que haya nacido con un peso comprendido entre los 3500 y los 4500 gramos es de $0.3345$.
@@ -1058,7 +1058,7 @@ $$P(t_{30} > 2)$$
 Pedido a R resulta:
 
 ```{r}
-round((1 - pt(2, 30)),4)
+round((1 - pt(2, 30)), 4)
 ```
 
 Los dos resultados tienen estas representaciones gráficas;
@@ -1080,13 +1080,13 @@ de reducir la probabilidad de los valores extremos.
 Los percentiles de la distribución t se solicitan, si se conocen los grados de libertad y el percentil, por ejemplo, el percentil 95 bajo un modelo t con 1 grado de libertad es:
 
 ```{r}
-round(qt(.95, 1),4)
+round(qt(.95, 1), 4)
 ```
 
 Y el mismo percentil, si la distribución tiene 30 grados de libertad es:
 
 ```{r}
-round(qt(.95, 30),4)
+round(qt(.95, 30), 4)
 ```
 
 Esto quiere decir que un valor t como por ejemplo 3, se considerará extremo bajo una distribución con 30 grados de libertad, pero será un valor esperable si la distribución tiene 1 grado de libertad.
@@ -1121,7 +1121,7 @@ ggplot(data = data.frame(F = c(0, 10)), aes(F)) +
 En el cálculo de las probabilidades, ahora debemos informar los grados de libertad del numerador y del denominador separadamente. Para solicitar, por ejemplo, la $P(F_{3,2} \leq 4)$, se indica el valor de la variable (4) y los grados de libertad del numerador y el denominador en ese orden (3,2):
 
 ```{r}
-round(pf(4, 3, 2),4)
+round(pf(4, 3, 2), 4)
 ```
 
 Es decir: $P(F_{3,2} \leq 4)=0.7936$  
@@ -1136,7 +1136,7 @@ ggplot(NULL, aes(c(0, 10))) +
 El área superior es la diferencia a uno:
 
 ```{r}
-round((1 - pf(4, 3, 2)),4)
+round((1 - pf(4, 3, 2)), 4)
 ```
 
 De modo que $P(F_{3,2} > 4) = 0,2064$.
@@ -1144,7 +1144,7 @@ De modo que $P(F_{3,2} > 4) = 0,2064$.
 El percentil 95 de una distrindución F con 3 grados de libertad en el numerador y dos en el denominador es:
 
 ```{r}
-round(qf(.95, 3, 2),4)
+round(qf(.95, 3, 2), 4)
 ```
 
 Es decir que $P(F_{3,2}<19.16)=0.95$
@@ -1153,7 +1153,7 @@ Que implica que el 5% de los valores de la variable $F_{3,2}$ superan a $19.16$.
 Cuando pedimos el mismo percentil de otra variable que tenga distribución $F_{5,10}$, se obtiene:
 
 ```{r}
-round(qf(.95, 5, 10),4)
+round(qf(.95, 5, 10), 4)
 ```
 
 Los gráficos del $P_{95}$ en las dos distribuciones son los siguientes:
@@ -1203,35 +1203,35 @@ pnorm(1.5)
 Redondeado a cuatro decimales:
 
 ```{r echo=TRUE}
-round(pnorm(1.5),4)
+round(pnorm(1.5), 4)
 ```
 
 $P(z>2.3)$
 ```{r echo=TRUE}
-round((1-pnorm(2.3)),4)
+round((1 - pnorm(2.3)), 4)
 ```
 
 #### Normal  
 
 Si $x$ tiene distribución normal con media 5 y desviación estándar 2, la $P(x<6.3)$, redondeada a cuatro decimales es: 
 ```{r echo=TRUE}
-round(pnorm(6.3,5,2),4)
+round(pnorm(6.3, 5, 2), 4)
 ```
 
 Y para un intervalo de valores, como $P(6<x<8)$:
 ```{r echo=TRUE}
-round((pnorm(8,5,2)-pnorm(6,5,2)),4)
+round((pnorm(8, 5, 2) - pnorm(6, 5, 2)), 4)
 ```
 
 #### Chi cuadrado  
 $P(\chi^2_{15}<10)$
 ```{r echo=TRUE}
-pchisq(10,15)
+pchisq(10, 15)
 ```
 
 Redondeado
 ```{r echo=TRUE}
-round(pchisq(10,15),4)
+round(pchisq(10, 15), 4)
 ```
 
 #### t de Student
@@ -1239,18 +1239,18 @@ round(pchisq(10,15),4)
 $P(t_{10}<2.5)$
 
 ```{r  echo=TRUE}
-pt(2.5,10)
+pt(2.5, 10)
 ```
 O bien:
 
 ```{r  echo=TRUE}
-round(pt(2.5,10),4)
+round(pt(2.5, 10), 4)
 ```
 
 Para un área superior, $P(t_{25}>1.8)$  
 ```{r  echo=TRUE}
 
-round((1-pt(1.8,25)),4)
+round((1 - pt(1.8, 25)), 4)
 ```
 
 
@@ -1259,12 +1259,12 @@ round((1-pt(1.8,25)),4)
 $P(F_{5,7}<2.7)$
 
 ```{r echo=TRUE}
-pf(2.7,5,7)
+pf(2.7, 5, 7)
 ```
 Y el área por encima, $P(F_{5,7}>2.7)$:
 
 ```{r echo=TRUE}
-1-pf(2.7,5,7)
+1 - pf(2.7, 5, 7)
 ```
 
 ### Cuantiles
@@ -1285,7 +1285,6 @@ Puntaje $z$ que acumula el 75% de los casos, es decir, se busca el $P_{75}$ de u
 
 ```{r  echo=TRUE}
 qnorm(.75)
-
 ```
 Con lo que $P(z<.6745)=0.75$  
 El $z$ que deja $3\%$ por encima es el cuantil 0.97 (o $P_{97}$ y vale
@@ -1297,7 +1296,7 @@ qnorm(.97)
 ##### Normal  
 Si $x$ tiene una distribución normal con media 100 y desviación estándar 15, el cuantil 99 de esa distribución es:  
 ```{r echo=TRUE}
-qnorm(.99, 100,15)
+qnorm(.99, 100, 15)
 ```
 
 Que indica que el $99\%$ de los casos está por debajo de ese valor, o que solo el $1\%$ lo supera 
@@ -1306,7 +1305,7 @@ Que indica que el $99\%$ de los casos está por debajo de ese valor, o que solo 
 ##### Chi cuadrado  
 Si una variable tiene distribución $\chi^2$ con $5$ grados de libertad, su percentil 95 es:
 ```{r  echo=TRUE}
-qchisq(.95,5)
+qchisq(.95, 5)
 ```
 
 Que se escribe $P(\chi^2_5<11.07)=0.95$. El $5\%$ de los casos está por encima de este valor.  
@@ -1314,7 +1313,7 @@ Que se escribe $P(\chi^2_5<11.07)=0.95$. El $5\%$ de los casos está por encima 
 ##### t de Student  
 Si $t_30$ es una variable con distribución t con $30$ grados de libertad, entonces, el valor que deja por debajo al $95\%$ de los casos es:
 ```{r echo=TRUE}
-qt(.95,30)
+qt(.95, 30)
 ```
 
 Y el que acumula al $2\%$ es
@@ -1327,7 +1326,7 @@ qt(.02, 30)
 ##### F de Fisher  
 Si una variable tiene distribución F con 5 grados de libertad en el numerador y 13 en el denominador, su percentil 99 es: 
 ```{r echo=TRUE}
-qf(.99,5,13)
+qf(.99, 5, 13)
 ```
 
 Y se escribe: $P(F_{5,13}<4.86)=0.99)$, que es lo mismo que $P(F_{5,13}>4.86)=0.01)$
