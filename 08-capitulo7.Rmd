@@ -105,7 +105,7 @@ La expresión formal de esta asignación de probabilidades es.
 
 $$P(A)=\frac{\#A}{\#\Omega}$$
 
-En la que $\#A$ (que se lee "numeral de A") indica el número de maneras enque puede suceder el evento A, y $\#\Omega$ (numeral de omega) es el número
+En la que $\#A$ (que se lee "numeral de A") indica el número de maneras en que puede suceder el evento A, y $\#\Omega$ (numeral de omega) es el número
 total de resultados que se pueden obtener al realizar el experimento. $\Omega$
 es el conjunto de resultados posibles, es llamado *espacio muestral*. En
 el caso del ejemplo, el experimento es el de tirar el dado y buscar un
@@ -334,7 +334,7 @@ de cara es $1/3$ (una cara de tres tiradas) y así sigue:
 
 ```{r}
 aux_table <- tibble::tribble(
-  ~"Tirada", ~"Cantidad de tiradas", ~"Resultado", ~"Cantidad de caras acumuladas", ~'Frecuencia relativa del evento "cara"',
+  ~"Tirada", ~"Cantidad de tiradas", ~"Resultado", ~"Caras acumuladas", ~'Frecuencia relativa "caras"',
   "Primera", "1", "C", "1", "1/1 = 1,00",
   "Segunda", "2", "X", "1", "1/2 = 0,50",
   "Tercera", "3", "X", "1", "1/3 = 0,33",
@@ -415,7 +415,7 @@ En primer lugar, y con carácter de axiomas, las siguientes
 características son condición para que un número $P(A)$ pueda ser
 considerado una probabilidad:
 
-- La probabilidad es un número comprendido entre cero y uno: $0 \leq P(A) \leq 1$
+- La probabilidad es un número comprendido entre cero y uno: $$0 \leq P(A) \leq 1$$
 
 - La probabilidad del conjunto completo de resultados posibles (del espacio muestral) es uno: $P(\Omega) = 1$
 
@@ -609,7 +609,7 @@ Aplicada a los ejemplos:
 
 $$P(Q \cup R) = P(Q) + P(R)$$
 
-$$P(Córdoba \cup Rosario) = P(Córdoba) + P(Rosario)$$
+$$P(Cordoba \cup Rosario) = P(Cordoba) + P(Rosario)$$
 
 #### Probabilidad de la unión de eventos no mutuamente excluyentes
 
@@ -640,7 +640,7 @@ como lo indica el tercer axioma.
 
 Aplicada al ejemplo, el cálculo es:
 
-$$P(Córdoba \cup T) = P(Córdoba) + P(T) - P(Córdoba \cap T) =$$
+$$P(Cordoba \cup T) = P(Cordoba) + P(T) - P(Cordoba \cap T) =$$
 $$\frac{650}{1530} + \frac{320}{1530} - \frac{50}{1350} = \frac{920}{1530} = 0,60$$
 
 ```{r}
@@ -679,7 +679,7 @@ Entonces ahora, el nuevo total es de solo 650 personas, los que viven en
 Córdoba. De ellos, 100 piensan votar a S, por lo que la probabilidad que
 nos interesa es $100/650$.
 
-Entonces: $P(S/Córdoba) = \frac{100}{650} = 0,15$.
+Entonces: $P(S/Cordoba) = \frac{100}{650} = 0,15$.
 
 ```{r}
 aux_table <- tibble::tribble(
@@ -738,18 +738,18 @@ conmutativas:
 
 Compararemos ahora la probabilidad de hallar alguien que vaya a votar a Q y que viva en Córdoba ($P(Q \cap Córdoba)$) con la probabilidad que vaya a votarlo si se sabe que vive en Córdoba ($P(Q/Córdoba)$).
 
-$$P(Q \cap Córdoba) = \frac{200}{1503}$$
+$$P(Q \cap Cordoba) = \frac{200}{1503}$$
 
-$$P(Q/Córdoba) = \frac{200}{650}$$
+$$P(Q/Cordoba) = \frac{200}{650}$$
 
 Si dividimos entre sí estas dos expresiones obtenemos:
 
-$$\frac{P(Q \cap Córdoba)}{P(Q/Córdoba)} = \frac{\frac{200}{1503}}{\frac{200}{650}} = \frac{650}{1503}$$
+$$\frac{P(Q \cap Cordoba)}{P(Q/Cordoba)} = \frac{\frac{200}{1503}}{\frac{200}{650}} = \frac{650}{1503}$$
 
 El último cociente es la probabilidad marginal correspondiente a
 Córdoba, por lo que:
 
-$$\frac{P(Q \cap Córdoba)}{P(Q/Córdoba)} = P(Córdoba)$$
+$$\frac{P(Q \cap Cóodoba)}{P(Q/Cordoba)} = P(Cordoba)$$
 
 Esta expresión, que es general, nos ofrece una relación muy útil entre las probabilidades condicional y conjunta. Una forma más frecuente de escribir esta relación, para dos eventos cualesquiera A y B es:
 
@@ -813,10 +813,9 @@ knitr::include_graphics("imagenes/image92.png")
 ```
 
 Este concepto de independencia entre eventos en muy valioso para
-analizar uno de nuestros más importantes problemas: las relaciones entre variables. Veamos su aplicación a la Tabla 2. Si la intención de voto fuera independiente de la ciudad donde se vive (quiere decir si votaran del mismo modo personas de las diferentes ciudades) la probabilidad de encontrar una persona que vote a R si vive en Córdoba sería simplemente la probabilidad de votar a R, es decir $P(R/Córdoba)=P(R)$ y del mismo modo para los demás eventos. En nuestro ejemplo no se obtiene esa
-igualdad, ya que:
+analizar uno de nuestros más importantes problemas: las relaciones entre variables. Veamos su aplicación a la Tabla 2. Si la intención de voto fuera independiente de la ciudad donde se vive (quiere decir si votaran del mismo modo personas de las diferentes ciudades) la probabilidad de encontrar una persona que vote a R si vive en Córdoba sería simplemente la probabilidad de votar a R, es decir $P(R/Cordoba)=P(R)$ y del mismo modo para los demás eventos. En nuestro ejemplo no se obtiene esa igualdad, ya que:
 
-$P(R/Córdoba)=300/650=0,46$, mientras que: $P(R)=600/1530=0,39$
+$P(R/Cordoba)=300/650=0,46$, mientras que: $P(R)=600/1530=0,39$
 
 Por lo que estos eventos no son independientes en sentido estadístico.
 
@@ -1001,7 +1000,7 @@ probabilidades y, para los dos ejemplos citados, toma la forma:
 
 ```{r}
 aux_table <- tibble::tribble(
-  ~"X = número de caras", ~"$P(X)$",
+  ~"X = número de caras", ~"P(X)",
   "0", "1/2",
   "1", "1/2",
   "Total", "1",
@@ -1015,7 +1014,7 @@ knitr::kable(
 
 ```{r}
 aux_table <- tibble::tribble(
-  ~"S = suma de puntos de dos dados", ~"$P(S)$",
+  ~"S = suma de puntos de dos dados", ~"P(S)",
   "2", "0.028",
   "3", "0.056",
   "4", "0.083",

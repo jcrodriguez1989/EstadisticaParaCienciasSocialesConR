@@ -109,7 +109,7 @@ No solo cuenta con los métodos estándar sino que, debido a que los principales
 
 Permite la reproducción de los análisis por parte de cualquiera que conozca el código que se aplicó, por lo que aporta una herramienta necesaria en los proyectos de ciencia abierta, en especial para la reproducibilidad de los resultados.
 
-Hay sitios web (como [https://rdrr.io/snippets/](https://rdrr.io/snippets/), por ejemplo) que permiten ejecutar líneas de código on line, para situaciones en que no se cuenta con R instalado. También es posible crear una cuenta el  RStudio cloud (https://rstudio.cloud/) y trabajar con todos los archivos disponibles en la nube.  
+Hay sitios web (como [https://rdrr.io/snippets/](https://rdrr.io/snippets/), por ejemplo) que permiten ejecutar líneas de código on line, para situaciones en que no se cuenta con R instalado. También es posible crear una cuenta en  RStudio cloud (https://rstudio.cloud/) y trabajar con todos los archivos disponibles en la nube, sin necesidad de instalar localmente el software.  
 
 Por estas razones, R es uno de los lenguajes de programación que más uso tiene y se está convirtiendo en la lingua franca del análisis de datos
 
@@ -120,7 +120,7 @@ Como lenguaje, R tiene varias interfaces gráficas, que es el modo en que un hum
 
 En [http://cran.r-project.org](http://cran.r-project.org) "Download R for [Linux, Mac o Windows]", y luego "install R for the first time". Una vez descargado, se instala siguiendo las instrucciones de las pantallas, aceptando las opciones por defecto que se ofrecen. 
 
-Una vez que R está instalado, se debe sumar RStudio. El lugar de descarga es [http://www.rstudio.com/products/rstudio/download/](http://www.rstudio.com/products/rstudio/download/), Allí se elige la version gratis (free version) de RStudio Desktop y se baja hasta encontrar el sistema operativo y la version que corresponda a nuestro equipo. Luego se ejecuta el instalador de RStudio y se eligen las opciones por defecto. Cuando esté ya instalado, se accede por medio de RStudio; si al instalar R se creó un acceso directo a R en el escritorio, se lo puede eliminar. Al abrir RStudio, R es detectado automáticamente y desde allí operaremos.
+Una vez que R está instalado, se debe sumar RStudio. El lugar de descarga es [http://www.rstudio.com/products/rstudio/download/](http://www.rstudio.com/products/rstudio/download/). Allí se elige la version gratis (free version) de RStudio Desktop y se baja hasta encontrar el sistema operativo y la version que corresponda a nuestro equipo. Luego se ejecuta el instalador de RStudio y se eligen las opciones por defecto. Cuando esté ya instalado, se accede por medio de RStudio; si al instalar R se creó un acceso directo a R en el escritorio, se lo puede eliminar. Al abrir RStudio, R es detectado automáticamente y desde allí operaremos.
 
 ### Los componentes de RStudio
 
@@ -222,7 +222,7 @@ Y no veremos su valor hasta que no lo solicitemos
 y
 ```
 
-Suma resta, multiplicación y división se hacen con los signos que conocemos, para elevar a una potencia se usa ^, para hacer dos a la tercera potencia, es:
+Suma, resta, multiplicación y división se hacen con los signos que conocemos, para elevar a una potencia se usa ^, para hacer dos a la tercera potencia, es:
 
 ```{r echo=TRUE}
 2^3
@@ -275,7 +275,25 @@ Pero veremos luego que para esto hay una función de biblioteca que calcula la m
 mean(pib5)
 ```
 
-Una concatenación de varios vectores de la misma longitud, constituye una *data frame*, una matriz de datos. Será la materia prima del trabajo que realizaremos a continuación.
+Una concatenación de varios vectores de la misma longitud, constituye un *data frame*, una matriz de datos. Será la materia prima del trabajo que realizaremos a continuación.  
+Por ejemplo, si a cinco estudiantes se preguntó: sexo, edad y lugar de nacimiento; y las respuestas fueron, para sexo: femenino, masculino, masculino, femenino, masculino, para edad: 25, 23, 21, 25, 22 y para lugar de nacimiento: esta ciudad, esta ciudad, otra ciudad de esta provincia, esta ciudad, otra provincia. La información se organiza por medio de la construcción de tres vectores, uno por cada aspecto que se preguntó:  
+```{r}
+sexo<-c("femenino", "masculino", "masculino", "femenino", "masculino")
+edad<-c(25, 23, 21, 25, 22)
+lugar.nacimiento<-c("esta ciudad", "esta ciudad", "otra ciudad de esta provincia", "esta ciudad", "otra provincia")
+```
+En el panel derecho superior se observa la aparición de estos tres nuevos objetos. Nótese que los vectores que son de clase carácter (sexo y lugar de nacimiento), requieren que se pongan comillas en cada uno, lo numéricos no lo necesitan.   
+Ahora construimos un data.frame con estos tres vectores y lo llamamos df.ejemplo.1:  
+```{r}
+df.ejemplo.1<-as.data.frame(cbind(sexo, edad, lugar.nacimiento))
+
+```
+
+La instrucción dice que se asigne al nuevo objeto df.ejemplo.1 la concatenación por columnas (cbind) de los tres vectores definidos antes y que a eso lo trate como un data.frame. El resultado es el siguiente arreglo:  
+```{r}
+df.ejemplo.1
+```
+Este es el objeto con el que trabajaremos como insumo en los análisis que se desarrollan más adelante. En el próximo capítulo se desarrolla en detalle esta forma de organizar la información.    
 
 Para ver un ejemplo de gráfico básico, puede copiar y pegar el código que está más abajo en su script. Allí se define a $x$ como una secuencia de números que va de 1 a 10 en intervalos de 0.1. Luego se define $y$ como una función lineal de $x$ ($y=3-2*x$). El tercer comando indica que se grafiquen las dos variables y les pone nombre a los ejes y al título del gráfico.
 
@@ -294,5 +312,5 @@ plot(x, y,
 
 Cuando se descarga R y RStudio se cuenta con el sistema básico del lenguaje R. Las operaciones mencionadas en el apartado anterior y otras, están disponibles en esa base. Sin embargo, una gran cantidad de procedimientos están programados y ofrecidos como "paquetes", que sirven para tareas específicas. Su creación y desarrollo es parte de la potencialidad de R, porque son aportes de la comunidad que los diseña y los ofrece continuamente. En la actualidad hay más de 10000 paquetes en la CRAN (Comprehensive R Archive Network) aplicables a una gran diversidad de procedimientos.
 
-La instalación de paquetes de R puede hacerse desde la línea de comando con install.packages("") y el nombre del paquete.  
+La instalación de paquetes de R puede hacerse desde la línea de comando con la instrucción install.packages("") y el nombre del paquete entre comillas, también puede hacerse más directo, porque la IDE RStudio tiene, en el panel inferior derecho, una pestaña (la tercera) que dice *packages* y en ella, una opción *install* que abre una ventana para escribir (con autocompletado para los existentes) el nombre del paquete que se quiere instalar.  
 A lo largo del curso y en la medida que sea necesario, se cargarán paquetes específicos.

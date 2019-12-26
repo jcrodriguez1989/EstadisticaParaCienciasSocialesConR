@@ -154,7 +154,7 @@ entonces la tabla anterior, tenemos:
 
 ```{r}
 aux_table <- tibble::tribble(
-  ~"$x$", ~"$P(x)$",
+  ~"x", ~"P(x)",
   "0", "1/16 (0,0625)",
   "1", "4/16 (0,25)",
   "2", "6/16 (0,375)",
@@ -186,7 +186,7 @@ información:
 
 - el número de veces cuya probabilidad calculamos (el número de éxitos) ($x=3$)
 
-Esta información es suficiente para aplicar el modelo binomial, que se va a escribir formalmente como $$B(n, p, x)$$
+Esta información es suficiente para aplicar el modelo binomial, que se va a escribir formalmente como: $$B(x, n, p)$$
 En la que la $B$ es por binomial, $n$ es el número de repeticiones, $p$ es la probabilidad de éxito a cada repetición y $x$ el número de éxitos cuya probabilidad se calcula.
 
 Cuando se trata de variables discretas como en este ejemplo, los modelos admiten el cálculo de la probabilidad:
@@ -201,7 +201,7 @@ Si se requiere la probabilidad de los valores mayores a uno dado $P(X>x)$, se co
 
 Cuando se trata de variables continuas, las probabilidades exactas son cero, por lo que solo pueden calcularse la acumuladas: $P(X\leq x)$ y su complemento a uno: $P(X>x)$
 
-Resulta claro que la realización manual de estas operaciones es larga y engorrosa, sobre todo en situaciones reales donde hay más observaciones que en la moneda. Por ejemplo, un examen consiste de 20 preguntas de opción múltiple con cinco opciones de respuesta cada una, una sola de las cuales es correcta. Para aprobar el examen es necesario contestar bien al menos 12 de ellas (el 60%). Se pregunta: ¿Qué probabilidad tiene un estudiante de aprobar solo por azar? Es decir si responde a cada pregunta por sorteo. Es una problema de distribución binomial: hay 20 repeticiones (una por cada pregunta) de un experimento que tiene 0.20 (1/5) de probabilidad de éxito. Para aprobar se necesitan al menos 12 éxitos. La resolución manual de este problema requiere considerar que para aprobar los éxitos pueden ser 12, 13, 14, etc. Y que cada cantidad de éxitos puede lograrse de varias formas. Doce aciertos pueden provenir de las doce primeras preguntas, o de las diez primeras y las dos últimas, o muchas otras combinaciones posibles. Así como los tres éxitos en los cuatro lanzamiento de la  moneda se dieron como 4 de las 16 combinaciones posibles, en el caso del examen, 12 éxitos pueden obtenerse de 125970 maneras diferentes, respecto de un total de 1048576 combinaciones posibles de aciertos y errores.  
+Resulta claro que la realización manual de estas operaciones es larga y engorrosa, sobre todo en situaciones reales donde hay más observaciones que en la moneda. Por ejemplo, un examen consiste de 20 preguntas de opción múltiple con cinco opciones de respuesta cada una, una sola de las cuales es correcta. Para aprobar el examen es necesario contestar bien al menos 12 de ellas (el 60%). Se pregunta: ¿Qué probabilidad tiene un estudiante de aprobar solo por azar? Es decir si responde a cada pregunta por sorteo. Es una problema de distribución binomial: hay 20 repeticiones (una por cada pregunta) de un experimento que tiene 0.20 (1/5) de probabilidad de éxito. Para aprobar se necesitan al menos 12 éxitos. La resolución manual de este problema requiere considerar que para aprobar los éxitos pueden ser 12, 13, 14, etc. Y que cada cantidad de éxitos puede lograrse de varias formas. Doce aciertos pueden provenir de las doce primeras preguntas, o de las diez primeras y las dos últimas, o muchas otras combinaciones posibles. Así como los tres éxitos en los cuatro lanzamiento de la  moneda se dieron como 4 de las 16 combinaciones posibles, en el caso del examen, 12 éxitos pueden obtenerse de 125970 maneras diferentes, respecto de un total de 1048576 combinaciones posibles de aciertos y errores. Evidentemente, no son volúmenes de datos con los que se pueda operar manualmente.  
 En este ejemplo, la probabilidad de aprobar se escribe así: $$B( X\ge12, n=20, p=.20)$$
 
 Los valores de $n$ y $p$ son los parámetros de la distribución; establecen las caraterísticas particulares del caso al que se aplica el modelo binomial. Por su parte, $X$ es la variable aleatoria, que puede asumir cualquier valor (discreto) entre cero y veinte.  
@@ -218,27 +218,27 @@ i
 El cálculo de esta probabilidad por medio de la fórmula es largo, por lo que usamos calculadoras electrónicas para hacerlo. Hay algunas on-line, también pueden usarse hojas de cálculo y la mayoría de los paquetes estadísticos las incluyen; existe una aplicación para teléfonos llamada "Probability Distributions". Algunas de estas calculadoras muestran también el gráfico de la distribución. Todos estos medios calculan probabilidades bajo varios modelos, que se verán más adelante. Las diferencias entre ellos están en cuál es la probabilidad que calculan por defecto. Además de la exacta ($P(X=x)$), lo más frecuente es que ofrezcan la acumulada ($P(X\le x)$), pero también puede que den su complemento ($P(X>x)$). En cada caso hay que verificar qué convención se está aplicando para poder interpretar el resultado.  
 En R disponemos de las rutinas para calcular probabilidades simples y acumuladas bajo diferentes modelos. Para la binomial, el comando `dbinom`, tiene como argumentos: el número de éxitos cuya probabilidad se solicita($x$), el número de repeticiones ($n$) y la probabilidad de éxito a cada repetición ($p$). La probabilidad de obtener una cara al lanzar una moneda equilibrada ($p=0.5$), dos veces es:
 
-```{r}
+```{r echo=TRUE}
 dbinom(1, 2, .5)
 ```
 
 Y la probabilidad de tres caras en cuatro lanzamientos de una moneda equilibrada ($P(X=3)$) es:
 
-```{r}
-round(dbinom(3, 4, .5), 4)
+```{r echo=TRUE}
+round(dbinom(3, 4, .5), 2)
 ```
 
 El la que hemos pedido un redondeo a dos decimales.
 
 Para pedir la probabilidad acumulada, como por ejemplo la de obtener tres caras o menos ($P(X\leq 3)$) en cuatro lanzamientos, el comando es `pbinom`, con los mismos argumentos:
 
-```{r}
+```{r echo=TRUE}
 round(pbinom(3, 4, .5), 4)
 ```
 
 La respuesta al problema del examen se resuelve en dos pasos, porque para aprobar hacen falta 12 aciertos *o más*. Entonces, primero calculamos la probabilidad acumulada de 11 ($P(X\leq 11)$), que es la probabilidad de no aprobar (obtener 11 aciertos o menos):  
 
-```{r}
+```{r echo=TRUE}
 round(pbinom(11, 20, .2), 4)
 ```
 
@@ -248,12 +248,12 @@ $P(X>11)=$ `r 1-round(pbinom(11,20,.2), 6)`.
 
 Otro ejemplo es aquel en el que se elige una muestra aleatoria de 15 estudiantes de primer año de la carrera de Biología para un experimento. Si se sabe que la proporción de mujeres de primer año de esa carrera es del 70%, ¿Cuál es la probabilidad que en la muestra resulten todas mujeres?. Cada persona que se selecciona aleatoriamente es una repetición, en la que la probabilidad que esa persona sea mujer es 0.70, y se pregunta por la probabilidad de hallar 15 éxitos. El resultado es:
 
-```{r}
+```{r echo=TRUE}
 dbinom(15, 15, .7)
 ```
 
 Y se expresa así: $$P(X=15)=B(15,15,.7)=0.0047$$   
-Al final del capítulo veremos cómo pedir estas probabiidades a R.  
+Al final del capítulo veremos con más detalle cómo pedir estas probabiidades a R.  
 
 
 ### Esperanza y varianza
@@ -278,6 +278,7 @@ hasta el número total de repeticiones del experimento. El siguiente es
 el correspondiente a 20 repeticiones con diferentes valores de $p$:
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(gridExtra)
 exitos_ej_1 <- c(0:20)
 valores_p <- c(.1, .3, .5, .6, .8)
 ej_binom <- data.frame(cbind(
@@ -290,7 +291,7 @@ colnames(ej_binom) <- c("exitos", paste0("probs.", valores_p))
 
 ggps <- lapply(valores_p, function(p) {
   ggplot(ej_binom, aes_string("exitos", paste0("probs.", p))) +
-    geom_bar(stat = "identity", col = "green", fill = "green") +
+    geom_point(stat = "identity", col = "green", fill = "green") +
     xlab("cantidad de éxitos en 20 ensayos") +
     ylab("probabilidad") +
     ggtitle(paste0("p = ", p)) +
@@ -445,6 +446,7 @@ Queda delimitada por debajo de $z=2$ un área de 0.9772. $P(z\leq2)=0.9772$.
 
 Si solicitamos las probabilidades acumuladas por debajo de diferentes valores de $z$, empezando con los negativos, pasando por el cero y siguiendo por los positivos, obtenemos lo siguiente:
 
+![normales_diversas](imagenes/imagen250.png)
 <!-- todo: poner las imagenes -->
 <!-- acá voy a copiar la imagen, muy complicado pedirlos con este formato a R-->
 ------ ------------ ------------------------------------------------------------------------------------------------- -- ----- ------------ ------------------------------------------------------------------------------------------------
@@ -568,7 +570,7 @@ De mismo modo que con las distribuciones de frecuencia, los valores de la variab
 
 Para determinar ahora los valores de $z$ que acumulan cierta probabilidad, se necesita la operación inversa a la que se realizó hasta aquí, porque hay que hallar cuál es el valor de la variable ($z$) que deja por debajo una determinada probabilidad. Según la definición de percentiles, el percentil $P_{r}$ de la variable es el valor por debajo del cual la probabilidad de hallarla es $r\%$. Gráficamente, se trataría de fijar el área ($r\%$) y determinar cuál es el $z$ que la acumula.
 
-Nuevamente, recurrimos a R para solicitar este valor, que a partir de la probabilidad acumulada, devuelve el valor de $z$. Por ejemplo, el percentil $95$ ($P_{95}$) de la distribución normal es:
+Usamos un software (al final vemos cómo hacerlo con R) para solicitar este valor: a partir de la probabilidad acumulada, pedimos el valor de $z$. Por ejemplo, el percentil $95$ ($P_{95}$) de la distribución normal es:
 
 ```{r}
 round(qnorm(.95), 4)
@@ -791,7 +793,7 @@ probabilidad acumulada hasta $z=1.50$, la acumulada hasta $z=0.25$:
 
 $$P(3500 < x < 4500) = P(0.25 < z < 1.50) = P(z < 1.50) - P(z < 0.25)$$
 
-La última operación la solicitamos a R:
+La última operación da:
 
 ```{r}
 round(pnorm(1.5) - pnorm(.25), 4)
@@ -803,8 +805,7 @@ Toda variable que puede modelarse con una distribución normal puede
 transformarse a puntaje $z$ y así hallar la probabilidad asociada a
 diferentes intervalos.
 
-Hemos realizado las operaciones de este modo hasta aquí, porque es importante tener clara la relación entre las variable concreta que se mide u observa, con la variable abstracta, $z$. Sin embargo, es posible ingresar al comando de R directamente con los valores de la variable original e informar la media y la desviación estándar, para obtener las probabilidades correspondientes. Veamos el modo de obtener el resultado de manera directa, sin pasar por $z$. La
-probabilidad que nos interesa es, como antes:
+Hemos realizado las operaciones de este modo hasta aquí, porque es importante tener clara la relación entre las variable concreta que se mide u observa, con la variable abstracta, $z$. Sin embargo, es posible solicitar las probabilidades a cualquier software o calculadora de probabilidades a partir de los valores de la variable original e informar la media y la desviación estándar. Para obtener el resultado de manera directa, sin pasar por $z$, aa probabilidad es:
 
 $$P(3500 < x < 4500)$$
 
@@ -813,7 +814,7 @@ Que se calcula como la diferencia entre la probabilidad acumulada hasta
 
 $$P(3500 < x < 4500) = P(x < 4500) - P(x < 3500)$$
 
-En R puede solicitarse la probabilidad directamente sobre $x$ indicando los valores de la media y la desviación estándar, y se obtiene:
+Al final del capítulo veremos la manera de pedir esto a R, para obtener:
 
 ```{r}
 pnorm(4500, 3300, 800) - pnorm(3500, 3300, 800)
@@ -821,11 +822,11 @@ pnorm(4500, 3300, 800) - pnorm(3500, 3300, 800)
 
 Es el mismo resultado al que habíamos llegado a través de la
 transformación a puntaje $z$, pero ahora pidiéndola directamente desde
-$x$. Aunque éste sea el procedimiento más cómodo para calcular
+$x$.  
+Aunque éste sea el procedimiento más cómodo para calcular
 probabilidades, es necesario estar familiarizado con la distribución
 normal estándar (en $z$), por los usos que haremos en los próximos
 capítulos.  
-Al final de capítulo veremos cómo pedir a R el cálculo.  
 
 La distribución normal tiene un uso muy amplio y varios campos de aplicación. Más adelante veremos que para aplicar algunos procedimientos de análisis, es necesario que los datos provengan de una distribución normal, y existen pruebas para verificar que esto se cumpla. Una primera
 aproximación para ver si un conjunto de datos tiene distribución cercana a la normal es observar el histograma y evaluar si su forma se aproxima a la normalidad: si es unimodal y aproximadamente simétrica, es decir si la mediana es semejante a la media. Luego se calculan los coeficientes
@@ -1179,9 +1180,29 @@ distribuciones, a través del cociente de las varianzas.
 
 ## Hacerlo en R
 
-### Probabilidades
+### Probabilidades puntuales  
+Las probabilidades de valores particulares de la variable solo pueden calcularse para variables discretas, de ellas, solo hemos mencionado la binomial. Para calcular la probabilidad de un valor de esa variable, hay que especificar el número de repeticiones y la probabilidad de éxito en cada una al comando dbinom:
+dbinom(x, "cantidad de ensayos", "probabilidad de éxito a cada ensayo")
 
-Para solicitar las probabilidades acumuladas hasta determinado valor ($x$) de la variable, bajo diferentes modelos, los comandos llevan una $p$ delante del nombre de la distribución: pbinom, pnorm, pchisq, pt, pf. Y según la distribución, deben indicarse los *parámetros* que la especifican:
+#### Ejemplo
+Si una variable consiste en la cantidad de éxitos que se obtienen al repetir 15 veces un experimento que a cada repetición tiene probabilidad 0.20 de ser éxito, se trata de una distribución binomial con parámetros $n=15$ y $p=0.20$. La probabilidad de obtener exactamente 7 éxitos, que es $B(x=7, n=15, p=0.20)$ se pide a R así:
+
+```{r echo=TRUE}
+dbinom(x=7, size=15, prob = .2)
+```
+
+Si se respeta el orden ($x, n, p$), no es necesario indicar qué representa cada número:
+```{r echo=TRUE}
+dbinom(7, 15, .2)
+```
+Para expresar el resultado redondeado a cuatro decimales:
+```{r echo=TRUE}
+round(dbinom(7, 15, .2),4)
+```
+Este es el valor de la función de densidad binomial, no se calcula para variables continuas.
+
+### Probabilidades acumuladas  
+Para solicitar las probabilidades acumuladas hasta determinado valor ($x$) de la variable, que es la función de distribución, los comandos llevan una $p$ delante del nombre del modelo: pbinom, pnorm, pchisq, pt, pf. Y según la distribución, deben indicarse los *parámetros* que la especifican:
 
 - Binomial: pbinom(x, "cantidad de ensayos", "probabilidad de éxito a cada ensayo")
 - Normal estándar: pnorm (z), la media vale cero y la desviación estándar, uno. No hace falta indicarlo.
@@ -1193,9 +1214,21 @@ El primer argumento (dentro del paréntesis) siempre es el valor de la variable.
 
 #### Ejemplos
 
+##### Binomial  
+Para la variable del ejemplos anterior con los mismos parámetros, la probabilidad de obtener 7 éxitos **o menos** se escribe: $B(x\leq7, n=15, p=0.20)$ y se solicita a R con el siguiente comando:  
+```{r echo=TRUE}
+pbinom(7,15,.20)
+```
+
+Con cuatro decimales, queda:  
+```{r}
+round(pbinom(7,15,.20),4)
+```
+
+
 ##### Normal estándar  
 
-$P(z<1.5)$
+Para obtener la $P(z<1.5)$, se pide:
 ```{r echo=TRUE}
 pnorm(1.5)
 ```
@@ -1206,48 +1239,48 @@ Redondeado a cuatro decimales:
 round(pnorm(1.5), 4)
 ```
 
-$P(z>2.3)$
+Para $P(z>2.3)$, hay que complemnetar a 1 y redondear el resultado:
 ```{r echo=TRUE}
 round((1 - pnorm(2.3)), 4)
 ```
 
 #### Normal  
 
-Si $x$ tiene distribución normal con media 5 y desviación estándar 2, la $P(x<6.3)$, redondeada a cuatro decimales es: 
+Si $x$ tiene distribución normal con media 5 y desviación estándar 2, la $P(x<6.3)$, redondeada a cuatro decimales se pide: 
 ```{r echo=TRUE}
 round(pnorm(6.3, 5, 2), 4)
 ```
 
-Y para un intervalo de valores, como $P(6<x<8)$:
+Y para un intervalo de valores, como $P(6<x<8)$, se restan sus probabilidades acumuladas:
 ```{r echo=TRUE}
 round((pnorm(8, 5, 2) - pnorm(6, 5, 2)), 4)
 ```
 
 #### Chi cuadrado  
-$P(\chi^2_{15}<10)$
+La probabilidad de hallar una variable con distribución $\chi^2$ con 15 grados de libertad, por debajo de 10, se escribe $P(\chi^2_{15}<10)$ yse solicita:
 ```{r echo=TRUE}
 pchisq(10, 15)
 ```
 
-Redondeado
+Redondeado a cuatro decimales:
 ```{r echo=TRUE}
 round(pchisq(10, 15), 4)
 ```
 
 #### t de Student
 
-$P(t_{10}<2.5)$
+Si una t tiene 10 grados de libertad, la a$P(t_{10}<2.5)$ se pide:
 
 ```{r  echo=TRUE}
 pt(2.5, 10)
 ```
-O bien:
+O bien, redondeando:
 
 ```{r  echo=TRUE}
 round(pt(2.5, 10), 4)
 ```
 
-Para un área superior, $P(t_{25}>1.8)$  
+Para un área superior, $P(t_{25}>1.8)$, se complementa a 1:  
 ```{r  echo=TRUE}
 
 round((1 - pt(1.8, 25)), 4)
@@ -1256,12 +1289,12 @@ round((1 - pt(1.8, 25)), 4)
 
 #### F de Fisher
 
-$P(F_{5,7}<2.7)$
+Con cinco grados de libertad en el numerador y siete en el denominador, $P(F_{5,7}<2.7)$ se pide así:
 
 ```{r echo=TRUE}
 pf(2.7, 5, 7)
 ```
-Y el área por encima, $P(F_{5,7}>2.7)$:
+Y el área por encima, $P(F_{5,7}>2.7)$ es su complemento a uno:
 
 ```{r echo=TRUE}
 1 - pf(2.7, 5, 7)
@@ -1280,6 +1313,13 @@ Para hallar cuantiles, los comandos tienen una $q$ delante del nombre del modelo
 
 #### Ejemplos
 
+#####  Binomial  
+Manteniendo el modelo binomial de los ejemplos anteriores ($n=15$ y $p=0.20$), podemos conocer, por ejemplo, el percentil 90, es decir, el valor de la variable (número de éxitos) por debajo del cual está el 90%. En este caso, $q=0.90$ y los parámetros son los mismos que antes:  
+```{r echo=TRUE}
+qbinom(.9,15,.2)
+```
+Que indica que hay una probabilidad 0.90 que el número de éxitos no supere a cinco.  
+
 ##### Normal estándar
 Puntaje $z$ que acumula el 75% de los casos, es decir, se busca el $P_{75}$ de una distribución normal estándar
 
@@ -1287,7 +1327,7 @@ Puntaje $z$ que acumula el 75% de los casos, es decir, se busca el $P_{75}$ de u
 qnorm(.75)
 ```
 Con lo que $P(z<.6745)=0.75$  
-El $z$ que deja $3\%$ por encima es el cuantil 0.97 (o $P_{97}$ y vale
+El $z$ que deja $3\%$ por encima es el cuantil 0.97 (o $P_{97}$) y vale
 ```{r echo=TRUE}
 qnorm(.97)
 ```
@@ -1333,15 +1373,15 @@ Y se escribe: $P(F_{5,13}<4.86)=0.99)$, que es lo mismo que $P(F_{5,13}>4.86)=0.
 
 ### Áreas centrales
 
-En lo que sigue será frecuente que se necesiten percentiles de la variable que delimitan determinadas áreas centrales de la distribución. Cualquiera sea el modelo de probabilidad que se use, suele denominarse $1-\alpha$ al área central, con lo que $\alpha$ es el área que queda por fuera de la zona central, dividida en dos. Los percentiles que delimitan esa área central de $1-\alpha$ son $\frac{\alpha}{2}$ y $1-\frac{\alpha}{2}$.
+En lo que sigue será frecuente que se necesiten percentiles de la variable que delimitan determinadas áreas centrales de la distribución. Cualquiera sea el modelo de probabilidad que se use, suele denominarse $1-\alpha$ al área central, con lo que $\alpha$ es el área que queda por fuera de la zona central, dividida en dos. Los cuantiles que delimitan esa área central de $1-\alpha$ son $\frac{\alpha}{2}$ y $1-\frac{\alpha}{2}$.
 
-Por ejemplo, para determinar cuáles son los valores de una distribución $\chi^2$ con 13 grados delibertad que delimitan un 90% de área central, calculamos $\alpha$, que es el 10% restante y los percentiles son: 5 ($\frac{\alpha}{2}$) y 95 ($1-\frac{\alpha}{2}$). 
+Por ejemplo, para determinar cuáles son los valores de una distribución $\chi^2$ con 13 grados delibertad que delimitan un 90% de área central, calculamos $\alpha$, que es el 10% restante y los cuantiles son: 0.05 ($\frac{\alpha}{2}$) y 0.95 ($1-\frac{\alpha}{2}$). 
 ```{r echo=TRUE}
 qchisq(.05, 13)
 qchisq(.95, 13)
 ```
 
-Que gráficamente se ve así:
+Son los percentiles 5 y 95 ($P_5$ y $P_95$), que gráficamente delimitan el área:
 
 ```{r}
 ggplot(NULL, aes(c(0, 30))) +
