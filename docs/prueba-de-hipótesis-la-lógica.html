@@ -1138,7 +1138,7 @@ encima (porque es una prueba unilateral derecha) al 5% de los valores
 posibles. Buscamos el percentil 95 de la distribución binomial corespondiente a los parámetros:
 <span class="math inline">\(n = 50\)</span>, <span class="math inline">\(P = 0.30\)</span> y <span class="math inline">\(P( X &gt; x) = 0.05\)</span></p>
 <p>La probabilidad es la de la cola derecha de la distribución, por ser una prueba unilateral derecha, y corresponde a una probabilidad acumulada de 0.95, de modo que el percentil es 95, que equivale a <span class="math inline">\(P( X \leq x) = 0.95\)</span> es:</p>
-<div class="sourceCode" id="cb599"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb599-1" data-line-number="1"><span class="kw">qbinom</span>(.<span class="dv">95</span>, <span class="dv">50</span>, <span class="fl">.30</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb597"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb597-1" data-line-number="1"><span class="kw">qbinom</span>(.<span class="dv">95</span>, <span class="dv">50</span>, <span class="fl">.30</span>)</a></code></pre></div>
 <pre><code>## [1] 20</code></pre>
 <p>El número de éxitos es 20. Por lo que el valor de <span class="math inline">\(\widehat{x}\)</span> que
 es superado por el 5% de los valores muestrales posibles es 20. La
@@ -1550,7 +1550,7 @@ necesario hallar esa área bajo la curva normal centrada en 6.55, lo que
 requiere que se lo transforme a puntaje <span class="math inline">\(z\)</span>:</p>
 <p><span class="math display">\[z = \frac{6.60 - 6.55}{\frac{0.60}{\sqrt{100}}} = \frac{0.05}{0.06} = 0.83\]</span></p>
 <p>Cuya área izquierda asociada es:</p>
-<div class="sourceCode" id="cb601"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb601-1" data-line-number="1"><span class="kw">pnorm</span>(.<span class="dv">83</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb599"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb599-1" data-line-number="1"><span class="kw">pnorm</span>(.<span class="dv">83</span>)</a></code></pre></div>
 <pre><code>## [1] 0.7967306</code></pre>
 <p><span class="math inline">\(P(z \leq 0.83)=0.7967\)</span></p>
 <p>Éste es el valor de <span class="math inline">\(\beta\)</span> para esta prueba y esta media alternativa. Leemos
@@ -2016,7 +2016,7 @@ probabilidad, transformamos <span class="math inline">\(\overline{x}\)</span> a 
 <p>Entonces debemos hallar <span class="math inline">\(P( z \geq 2.50 )\)</span> y ya no hace falta
 indicar la condición (si <span class="math inline">\(\mu = 6.50\)</span>), porque está incluida en el
 cálculo de <span class="math inline">\(z\)</span>. Para eso complementamos la probabilidad acumulada hasta <span class="math inline">\(2.50\)</span>:</p>
-<div class="sourceCode" id="cb603"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb603-1" data-line-number="1"><span class="kw">round</span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(<span class="fl">2.5</span>),<span class="dv">4</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb601"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb601-1" data-line-number="1"><span class="kw">round</span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(<span class="fl">2.5</span>), <span class="dv">4</span>)</a></code></pre></div>
 <pre><code>## [1] 0.0062</code></pre>
 <p><span class="math display">\[P( z \geq 2.50) = 0.0062\]</span></p>
 <p>Ese es el valor <span class="math inline">\(p\)</span>, e indica cuál es la probabilidad de encontrar un
@@ -2039,7 +2039,7 @@ extremo que éste-, si fuera verdadera <span class="math inline">\(H_{0}\)</span
 <p>Para calcular esta probabilidad transformamos el valor de <span class="math inline">\(\widehat{p}\)</span>
 a puntaje <span class="math inline">\(z\)</span>:</p>
 <p><span class="math display">\[z = \frac{\widehat{p} - P}{\sqrt{\frac{P*(1 - P)}{n}}} = \frac{0.32 - 0.30}{\sqrt{\frac{0.30*(1 - 0.30)}{200}}} = 0.617\]</span></p>
-<div class="sourceCode" id="cb605"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb605-1" data-line-number="1"><span class="kw">round</span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(.<span class="dv">617</span>), <span class="dv">4</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb603"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb603-1" data-line-number="1"><span class="kw">round</span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(.<span class="dv">617</span>), <span class="dv">4</span>)</a></code></pre></div>
 <pre><code>## [1] 0.2686</code></pre>
 <p><span class="math display">\[P( \widehat{p} \geq 0.32/P = 0.30)=0.2686\]</span>
 Se trata de una probabilidad “grande”, si se compara con los niveles de
@@ -2053,7 +2053,7 @@ la variable <em>número de éxitos</em>. En el ejemplo, el número observado de
 éxitos era de 16, la probabilidad condicional que corresponde al valor <span class="math inline">\(p\)</span> es entonces la probabilidad de hallar en la muestra de 50 casos, 16
 personas o más que vayan a votar al candidato, si en la población la
 proporción de quienes lo votarán fuera de 30% (<span class="math inline">\(H_0\)</span> verdadera). Se complementa la probabilildad acumulada hasta 15 (variable dicreta):</p>
-<div class="sourceCode" id="cb607"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb607-1" data-line-number="1"><span class="kw">round</span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pbinom</span>(<span class="dv">15</span>, <span class="dv">50</span>, <span class="fl">.3</span>),<span class="dv">4</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb605"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb605-1" data-line-number="1"><span class="kw">round</span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pbinom</span>(<span class="dv">15</span>, <span class="dv">50</span>, <span class="fl">.3</span>), <span class="dv">4</span>)</a></code></pre></div>
 <pre><code>## [1] 0.4308</code></pre>
 <p><span class="math display">\[P(\widehat{x} \geq 16/n = 50,\ P = 0.30) = 0.4308\]</span></p>
 <p>Nuevamente es un valor elevado para p, por lo que no se rechaza <span class="math inline">\(H_{0}\)</span>.</p>
@@ -2171,13 +2171,13 @@ nivel de significación que haya fijado. Para facilitar la interpretación, los 
 <div id="prueba-sobre-la-media-1" class="section level3">
 <h3><span class="header-section-number">11.7.1</span> Prueba sobre la media</h3>
 <p>Sea el caso de una prueba de hipótesis acerca del promedio del número de hijas e hijos por mujer en una comunidad dada. Se busca evidencia para decidir si, según los datos de una muestra de 150 casos, la población de la que esa muestra proviene tiene en promedio dos hijos e hijas por mujer o si ese promedio es mayor a 2. En la muestra de 150 observaciones se obtuvieron las siguientes medidas descriptivas (los datos son ficticios, por lo que se generan aleatoriamente a partir de una distribución normal, la variable se llama <span class="math inline">\(x\)</span>):</p>
-<div class="sourceCode" id="cb609"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb609-1" data-line-number="1"><span class="kw">set.seed</span>(<span class="dv">13</span>)</a>
-<a class="sourceLine" id="cb609-2" data-line-number="2">x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">150</span>, <span class="fl">2.15</span>, <span class="dv">1</span>)</a></code></pre></div>
-<div class="sourceCode" id="cb610"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb610-1" data-line-number="1"><span class="kw">round</span>(<span class="kw">mean</span>(x),<span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb607"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb607-1" data-line-number="1"><span class="kw">set.seed</span>(<span class="dv">13</span>)</a>
+<a class="sourceLine" id="cb607-2" data-line-number="2">x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">150</span>, <span class="fl">2.15</span>, <span class="dv">1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb608"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb608-1" data-line-number="1"><span class="kw">round</span>(<span class="kw">mean</span>(x), <span class="dv">2</span>)</a></code></pre></div>
 <pre><code>## [1] 2.09</code></pre>
-<div class="sourceCode" id="cb612"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb612-1" data-line-number="1"><span class="kw">round</span>(<span class="kw">sd</span>(x),<span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb610"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb610-1" data-line-number="1"><span class="kw">round</span>(<span class="kw">sd</span>(x), <span class="dv">2</span>)</a></code></pre></div>
 <pre><code>## [1] 0.95</code></pre>
-<div class="sourceCode" id="cb614"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb614-1" data-line-number="1"><span class="kw">length</span>(x)</a></code></pre></div>
+<div class="sourceCode" id="cb612"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb612-1" data-line-number="1"><span class="kw">length</span>(x)</a></code></pre></div>
 <pre><code>## [1] 150</code></pre>
 <p>Con el valor muestral de 2.09, la pregunta es si se trata de evidencia suficiente como para afirmar que la media poblacional supera al valor de dos hijos e hijas por mujer.
 Las hipótesis entonces son:</p>
@@ -2190,7 +2190,7 @@ Las hipótesis entonces son:</p>
 <li>Unilateral izquierda: alternative = “less”</li>
 </ul>
 <p>Así, la prueba se pide:</p>
-<div class="sourceCode" id="cb616"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb616-1" data-line-number="1"><span class="kw">t.test</span>(x, <span class="dt">alternative =</span> <span class="st">&quot;greater&quot;</span>, <span class="dt">mu =</span> <span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb614"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb614-1" data-line-number="1"><span class="kw">t.test</span>(x, <span class="dt">alternative =</span> <span class="st">&quot;greater&quot;</span>, <span class="dt">mu =</span> <span class="dv">2</span>)</a></code></pre></div>
 <pre><code>## 
 ##  One Sample t-test
 ## 
@@ -2219,51 +2219,51 @@ Las hipótesis entonces son:</p>
 <li>9 Ns/Nc peso y/o talla</li>
 </ul>
 <p>Para obtener la distribución, primero se lee la base (que tiene separador de campos el signo “<span class="math inline">\(|\)</span>”), se solicita la tabla con el total y luego la tabla de de frecuencias relativas se redondea a 3 decimales:</p>
-<div class="sourceCode" id="cb618"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb618-1" data-line-number="1">ENFR2013 &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;bases/archivostxt/ENFR2013_baseusuario.txt&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;|&quot;</span>)</a>
-<a class="sourceLine" id="cb618-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb618-3" data-line-number="3"><span class="kw">addmargins</span>(<span class="kw">table</span>(ENFR2013<span class="op">$</span>IMC_AGRUPADO))</a></code></pre></div>
+<div class="sourceCode" id="cb616"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb616-1" data-line-number="1">ENFR2013 &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;bases/archivostxt/ENFR2013_baseusuario.txt&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;|&quot;</span>)</a>
+<a class="sourceLine" id="cb616-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb616-3" data-line-number="3"><span class="kw">addmargins</span>(<span class="kw">table</span>(ENFR2013<span class="op">$</span>IMC_AGRUPADO))</a></code></pre></div>
 <pre><code>## 
 ##     1     2     3     9   Sum 
 ## 12442 11343  6505  2075 32365</code></pre>
-<div class="sourceCode" id="cb620"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb620-1" data-line-number="1"><span class="kw">round</span>(<span class="kw">addmargins</span>(<span class="kw">prop.table</span>(<span class="kw">table</span>(ENFR2013<span class="op">$</span>IMC_AGRUPADO))), <span class="dv">3</span>) <span class="op">*</span><span class="st"> </span><span class="dv">100</span></a></code></pre></div>
+<div class="sourceCode" id="cb618"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb618-1" data-line-number="1"><span class="kw">round</span>(<span class="kw">addmargins</span>(<span class="kw">prop.table</span>(<span class="kw">table</span>(ENFR2013<span class="op">$</span>IMC_AGRUPADO))), <span class="dv">3</span>) <span class="op">*</span><span class="st"> </span><span class="dv">100</span></a></code></pre></div>
 <pre><code>## 
 ##     1     2     3     9   Sum 
 ##  38.4  35.0  20.1   6.4 100.0</code></pre>
 <p>Esta tabla está construida sobre los datos muestrales, una comparación correcta exige que se usen los factores de ponderación de la encuesta, que están calculados teniendo en cuenta el diseño de la muestra. Para tenerlos en cuenta, hace falta la función “wtd.table” (tabla ponderada), del paquete <code>questionr</code>, y cuyos argumentos son: la o las variables que se van a tabular y la variable que define las ponderaciones.<br />
 Se instala el paquete correspondiente:</p>
-<div class="sourceCode" id="cb622"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb622-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">&quot;questionr&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb620"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb620-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">&quot;questionr&quot;</span>)</a></code></pre></div>
 <p>Y carga en sesión</p>
-<div class="sourceCode" id="cb623"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb623-1" data-line-number="1"><span class="kw">library</span>(<span class="st">&quot;questionr&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb621"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb621-1" data-line-number="1"><span class="kw">library</span>(<span class="st">&quot;questionr&quot;</span>)</a></code></pre></div>
 <p>Tomando en cuenta los ponderadores de la ENFR2013, la tabla tiene esta forma:</p>
-<div class="sourceCode" id="cb624"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb624-1" data-line-number="1"><span class="kw">addmargins</span>(<span class="kw">wtd.table</span>(ENFR2013<span class="op">$</span>IMC_AGRUPADO, <span class="dt">weights =</span> ENFR2013<span class="op">$</span>PONDERACION))</a></code></pre></div>
+<div class="sourceCode" id="cb622"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb622-1" data-line-number="1"><span class="kw">addmargins</span>(<span class="kw">wtd.table</span>(ENFR2013<span class="op">$</span>IMC_AGRUPADO, <span class="dt">weights =</span> ENFR2013<span class="op">$</span>PONDERACION))</a></code></pre></div>
 <pre><code>##        1        2        3        9      Sum 
 ## 10180480  8953836  5027227  1616044 25777587</code></pre>
-<div class="sourceCode" id="cb626"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb626-1" data-line-number="1"><span class="kw">round</span>(<span class="kw">addmargins</span>(<span class="kw">prop.table</span>(<span class="kw">wtd.table</span>(ENFR2013<span class="op">$</span>IMC_AGRUPADO, <span class="dt">weights =</span> ENFR2013<span class="op">$</span>PONDERACION))), <span class="dv">3</span>) <span class="op">*</span><span class="st"> </span><span class="dv">100</span></a></code></pre></div>
+<div class="sourceCode" id="cb624"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb624-1" data-line-number="1"><span class="kw">round</span>(<span class="kw">addmargins</span>(<span class="kw">prop.table</span>(<span class="kw">wtd.table</span>(ENFR2013<span class="op">$</span>IMC_AGRUPADO, <span class="dt">weights =</span> ENFR2013<span class="op">$</span>PONDERACION))), <span class="dv">3</span>) <span class="op">*</span><span class="st"> </span><span class="dv">100</span></a></code></pre></div>
 <pre><code>##     1     2     3     9   Sum 
 ##  39.5  34.7  19.5   6.3 100.0</code></pre>
 <p>Que expande los aproximadamente 35 mil casos relevados a casi 26 millones de la población a la que la ENFR2013 representa. Las frecuencias relativas de las dos tablas son similares. Aplicar los ponderadores es útil para observar medidas descriptivas, pero no puede usarse para hacer inferencias, ya que se incrementaría de manera artificial el tamaño de la muestra. Esto debe cuidarse en algunos programas de análisis de datos, que permiten fijar poderadores y dejarlos activos para cualquier procedimiento. Una prueba de hipótesis o un intervalo de confianza realizado con los factores de ponderación están mal calculados, porque el tamaño de muestra es falso. Salvo en el caso que los ponderadores estén reescalados a <span class="math inline">\(1\)</span>, porque así no se altera el tamaño de la muestra, solo se ajusta su composición.</p>
 <p>Para realizar la prueba sobre la proporción, se debe construir la categoría de referencia, que en este caso es la 3 de las tablas anteriores (obesidad). Se genera una nueva variable, que se llamará “obesidad” en la matriz de datos, de tal modo que: cuando “IMC_agrupado” valga 3 tengamos lo que llamamos “éxito”; cuando sea 9, sea un caso perdido (NA): y si vale 1 ó 2, vale cero.<br />
 Luego se verifica que las nuevas categorías coincidan con las previstas, por medio de una tabla bivariada entre la variable original y la nueva. Una tabla univariada da los absolutos de “obesidad” y finalmente los relativos, donde se ve que en la muestra, la proporción de personas con obesidad es del <span class="math inline">\(21\%\)</span>.</p>
-<div class="sourceCode" id="cb628"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb628-1" data-line-number="1">ENFR2013<span class="op">$</span>obesidad &lt;-<span class="st"> </span><span class="kw">ifelse</span>(ENFR2013<span class="op">$</span>IMC_AGRUPADO <span class="op">==</span><span class="st"> </span><span class="dv">3</span>, <span class="dv">1</span>, <span class="kw">ifelse</span>(ENFR2013<span class="op">$</span>IMC_AGRUPADO <span class="op">==</span><span class="st"> </span><span class="dv">9</span>, <span class="ot">NA</span>, <span class="dv">0</span>))</a>
-<a class="sourceLine" id="cb628-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb628-3" data-line-number="3"><span class="kw">table</span>(ENFR2013<span class="op">$</span>IMC_AGRUPADO, ENFR2013<span class="op">$</span>obesidad)</a></code></pre></div>
+<div class="sourceCode" id="cb626"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb626-1" data-line-number="1">ENFR2013<span class="op">$</span>obesidad &lt;-<span class="st"> </span><span class="kw">ifelse</span>(ENFR2013<span class="op">$</span>IMC_AGRUPADO <span class="op">==</span><span class="st"> </span><span class="dv">3</span>, <span class="dv">1</span>, <span class="kw">ifelse</span>(ENFR2013<span class="op">$</span>IMC_AGRUPADO <span class="op">==</span><span class="st"> </span><span class="dv">9</span>, <span class="ot">NA</span>, <span class="dv">0</span>))</a>
+<a class="sourceLine" id="cb626-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb626-3" data-line-number="3"><span class="kw">table</span>(ENFR2013<span class="op">$</span>IMC_AGRUPADO, ENFR2013<span class="op">$</span>obesidad)</a></code></pre></div>
 <pre><code>##    
 ##         0     1
 ##   1 12442     0
 ##   2 11343     0
 ##   3     0  6505
 ##   9     0     0</code></pre>
-<div class="sourceCode" id="cb630"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb630-1" data-line-number="1"><span class="kw">addmargins</span>(<span class="kw">table</span>(ENFR2013<span class="op">$</span>obesidad))</a></code></pre></div>
+<div class="sourceCode" id="cb628"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb628-1" data-line-number="1"><span class="kw">addmargins</span>(<span class="kw">table</span>(ENFR2013<span class="op">$</span>obesidad))</a></code></pre></div>
 <pre><code>## 
 ##     0     1   Sum 
 ## 23785  6505 30290</code></pre>
-<div class="sourceCode" id="cb632"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb632-1" data-line-number="1"><span class="kw">round</span>(<span class="kw">addmargins</span>(<span class="kw">prop.table</span>(<span class="kw">table</span>(ENFR2013<span class="op">$</span>obesidad))), <span class="dv">3</span>) <span class="op">*</span><span class="st"> </span><span class="dv">100</span></a></code></pre></div>
+<div class="sourceCode" id="cb630"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb630-1" data-line-number="1"><span class="kw">round</span>(<span class="kw">addmargins</span>(<span class="kw">prop.table</span>(<span class="kw">table</span>(ENFR2013<span class="op">$</span>obesidad))), <span class="dv">3</span>) <span class="op">*</span><span class="st"> </span><span class="dv">100</span></a></code></pre></div>
 <pre><code>## 
 ##     0     1   Sum 
 ##  78.5  21.5 100.0</code></pre>
 <p>El resultado muestral es una prevalencia de obesidad de <span class="math inline">\(21.5\%\)</span> en los 30290 casos válidos de la muestra, <span class="math inline">\(\widehat{p}=0.215\)</span>. La diferencia con el <span class="math inline">\(20.1\%\)</span> de la primera tabla es porque ahora no se están contando los casos perdidos.<br />
 Ahora puede realizarse una prueba <span class="math inline">\(t\)</span> idéntica a la de la media, porque se cuenta con una variable dicotómica con categorías 0 - 1:</p>
-<div class="sourceCode" id="cb634"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb634-1" data-line-number="1"><span class="kw">t.test</span>(ENFR2013<span class="op">$</span>obesidad, <span class="dt">mu =</span> <span class="fl">.13</span>, <span class="dt">alternative =</span> <span class="st">&quot;greater&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb632"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb632-1" data-line-number="1"><span class="kw">t.test</span>(ENFR2013<span class="op">$</span>obesidad, <span class="dt">mu =</span> <span class="fl">.13</span>, <span class="dt">alternative =</span> <span class="st">&quot;greater&quot;</span>)</a></code></pre></div>
 <pre><code>## 
 ##  One Sample t-test
 ## 

@@ -141,9 +141,8 @@ realiza comparando los correspondientes estimadores de las medias
 poblacionales. De modo equivalente a la relación media muestral - media poblacional, ahora parámetro a estimar es la diferencia de medias poblacionales: $\mu_1-\mu_2$, y el estimador es la diferencia de medias muestrales: $\bar{x}_1-\bar{x}_2)$. Esta última es la variable aleatoria que, bajo los supuestos mencionados antes, tiene distribución normal centrada en el parámetro. El siguiente esquema recuerda la notación:
 
 ```{r warning=FALSE}
-ggplot(data = data.frame(z = c(-4,4)), aes(z)) +
-  stat_function(fun=dnorm)+ xlab((TeX('$\\mu_1 - \\mu_2$'))) +ylab("") + scale_x_discrete(breaks =NULL)+ scale_y_continuous(breaks = NULL)+annotate("text", x=4, y=-.03, label=TeX('$\\bar{x}_1 - \\bar{x}_2$'))+annotate(geom = "rect", xmin = -.01, xmax = .01, ymin = -.01, ymax = .01, col = "black")+ theme_tufte()
-
+ggplot(data = data.frame(z = c(-4, 4)), aes(z)) +
+  stat_function(fun = dnorm) + xlab((TeX("$\\mu_1 - \\mu_2$"))) + ylab("") + scale_x_discrete(breaks = NULL) + scale_y_continuous(breaks = NULL) + annotate("text", x = 4, y = -.03, label = TeX("$\\bar{x}_1 - \\bar{x}_2$")) + annotate(geom = "rect", xmin = -.01, xmax = .01, ymin = -.01, ymax = .01, col = "black") + theme_tufte()
 ```
 
 Una vez que se dispone de los datos muestrales, el estadístico de prueba toma la forma;
@@ -262,7 +261,7 @@ ggplot(data = data.frame(z = c(-4, 4)), aes(z)) +
   ylab("") + xlab("") + scale_x_discrete(breaks = NULL) +
   geom_segment(x = -4, xend = 4, y = 0, yend = 0) +
   scale_y_continuous(breaks = NULL) + theme_tufte() +
-  geom_text(aes(label = "0"), x = 0, y = -.019) +annotate("text", x=2.7, y=-.03, label=TeX('$\\bar{x}_1 - \\bar{x}_2$'))+
+  geom_text(aes(label = "0"), x = 0, y = -.019) + annotate("text", x = 2.7, y = -.03, label = TeX("$\\bar{x}_1 - \\bar{x}_2$")) +
   annotate(geom = "rect", xmin = -.01, xmax = .01, ymin = -.01, ymax = .01, col = "red")
 ```
 
@@ -546,6 +545,8 @@ $$H_{1}:\mu_{1} - \mu_{2} < 0$$
 Los resultados descriptivos de los dos grupos son:
 
 ```{r}
+library("doBy")
+
 adultos_mayores <- read.csv("bases/archivostxt/Adultos.mayores.txt",
   sep = ";", header = TRUE, fileEncoding = "latin1"
 )
@@ -1015,7 +1016,7 @@ knitr::kable(
   aux_table, kable_outp,
   booktabs = TRUE, align = "cccc", escape = FALSE,
 ) %>%
-  kableExtra::kable_styling(latex_options = c("striped","scale_down"))
+  kableExtra::kable_styling(latex_options = c("striped", "scale_down"))
 ```
 
 ## Hacerlo en R  

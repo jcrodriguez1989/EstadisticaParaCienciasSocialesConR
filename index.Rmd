@@ -33,7 +33,7 @@ source("depencias.R")
 
 ```{r fig.align='center', echo=FALSE, include=identical(knitr:::pandoc_to(), 'html')}
 # tapa del libro (aparece solo el gitbook)
-knitr::include_graphics('imagenes/cover.jpg', dpi = NA)
+knitr::include_graphics("imagenes/cover.jpg", dpi = NA)
 ```
 
 # Presentación {.unnumbered}
@@ -205,7 +205,7 @@ Los elementos que maneja R son objetos: un número, un vector, una base de datos
 Un objeto numérico puede tener un valor fijo, si definimos a **x** como el número 3  
 
 ```{r echo=TRUE}
-x<-3
+x <- 3
 ```
 
 En el panel superior derecho aparece este objeto. El signo <- que define el objeto es equivalente a = que da la idea de asignar a **x** el valor 3.
@@ -229,7 +229,7 @@ Es numérico.
 Si hubiésemos definido el objeto:
 
 ```{r echo=TRUE}
-t<-"a"
+t <- "a"
 class(t)
 ```
 
@@ -241,7 +241,7 @@ $t<-a$
 Buscará ese objeto, que no ha sido definido antes y dará error. Esta cualidad se puede usar cuando los números codifican categorías, como cuando se usa 1 para varones y 2 para mujeres:
 
 ```{r echo=TRUE}
-u<-"1"
+u <- "1"
 class(u)
 ```
 
@@ -250,7 +250,7 @@ Allí se entiende al número como un código.
 Otros tipos de objeto son lógicos
 
 ```{r echo=TRUE}
-v<-TRUE
+v <- TRUE
 class(v)
 ```
 
@@ -259,8 +259,8 @@ El objeto **v** es lógico, esta clase de objeto puede tomar dos valores TRUE y 
 Es posible transformar una clase de objeto en otra. Por ejemplo, si un valor numérico fue cargado como carácter, como el caso de **u** en el ejemplo anterior, se lo vuelve numérico pidiendo:
 
 ```{r echo=TRUE}
-u<-as.numeric(u)
-class (u)
+u <- as.numeric(u)
+class(u)
 ```
 
 
@@ -270,13 +270,13 @@ Pero si intentáramos eso con **t**, el resultado falla, porque no se interpreta
 Cuando el objeto es un número, se puede operar simplemente con él
 
 ```{r echo=TRUE}
-5*x
+5 * x
 ```
 
 
 Aquí no se creó ningún objeto nuevo, solo se hizo la operación y se mostró el resultado. Para crearlo, hace falta ponerle nombre:
 ```{r echo=TRUE}
-y<-5*x
+y <- 5 * x
 ```
 
 Y no veremos su valor hasta que no lo solicitemos
@@ -288,11 +288,11 @@ y
 Suma resta, multiplicación y división se hacen con los signos que conocemos:
 
 ```{r echo=TRUE}
-x+y
-x-y
-x*y
-y/x
-6*x+4*y
+x + y
+x - y
+x * y
+y / x
+6 * x + 4 * y
 ```
 
 Para elevar a una potencia se usa ^, por ejemplo, para hacer dos a la tercera potencia, es:
@@ -311,7 +311,7 @@ x^5
 Las raíces son potencias fraccionarias, por lo que puede conseguirse la raíz cuadrada de $x$ así:
 
 ```{r echo=TRUE}
-x^(1/2)
+x^(1 / 2)
 ```
 
 Pero como se usa a menudo, hay una función de biblioteca para eso:
@@ -323,17 +323,17 @@ sqrt(x)
 Para raíces que no sean cuadradas, se debe usar la potencia fraccionaria. Para la raiz quinta de 24 es:
 
 ```{r echo=TRUE}
-24^(1/5)
+24^(1 / 5)
 ```
 
 Un comando útil es el de redondeo. Si no queremos expresar la raiz de siete con seis decimales, sino solo con dos, se redondea a dos decimales:  
 
 ```{r echo=TRUE}
-x<-sqrt(7)
+x <- sqrt(7)
 x
-round(x,2)
+round(x, 2)
 ## o todo de una sola vez:
-round(sqrt(7),2)
+round(sqrt(7), 2)
 ```
 
 
@@ -341,8 +341,8 @@ round(sqrt(7),2)
 Cuando se trabaja con variables, el conjunto de valores que asume es un objeto que se llama vector. Se lo genera con una letra c y paréntesis que indica concatenar valores. Por definición, un vector contiene elementos de la misma clase:
 
 ```{r echo=TRUE}
-a<-c(1,5,8)
-b<-c("x", "y", "z")
+a <- c(1, 5, 8)
+b <- c("x", "y", "z")
 class(a)
 class(b)
 ```
@@ -350,7 +350,7 @@ class(b)
 Si se intenta combinar diferentes clases de objeto, el vector tomará la clase con menos propiedades:
 
 ```{r echo=TRUE}
-l<-c(1,3,"a")
+l <- c(1, 3, "a")
 class(l)
 ```
 
@@ -368,7 +368,7 @@ Esto sucede porque los números fueron tratados como caracteres.
 Ejemplo: Los valores de PBI de cinco países son 10000, 3000, 7000, 4000 y 15000, se los puede concatenar así, definiendo el vector que los contiene con el nombre pib5:
 
 ```{r echo=TRUE}
-pib5<-c(10000, 3000, 7000, 4000, 15000)
+pib5 <- c(10000, 3000, 7000, 4000, 15000)
 ```
 
 Y se pueden hacer operaciones con él, por ejemplo, sumar sus valores
@@ -381,7 +381,7 @@ O sumarlos y dividir por 5, que va a dar el promedio:
 
 
 ```{r echo=TRUE}
-sum(pib5)/5
+sum(pib5) / 5
 ```
 
 
@@ -394,7 +394,7 @@ mean(pib5)
 O definir un nuevo vector que consista en cada uno de ellos incrementado en un 10%:
 
 ```{r echo=TRUE}
-pib5_10<-1.1*pib5
+pib5_10 <- 1.1 * pib5
 pib5_10
 ```
 
@@ -402,7 +402,7 @@ pib5_10
 Un vector puede crearse de este modo, concatenando varios valores, o bien como secuencia de números, por ejemplo creamos el vector $diez.pri$ como la secuencia de los números que van del 1 al 10, y pedimos que se muestre:  
 
 ```{r echo=TRUE}
-diez.pri<-1:10
+diez.pri <- 1:10
 diez.pri
 ```
 
@@ -411,7 +411,7 @@ Como puede verse, una vez que los objetos han sido creados, RStudio ofrece el au
 Si se quiere que la secuencia tenga saltos de magnitud diferente a 1, el comando es `seq`, cuyos argumentos son: los números inicial y final de la secuencia y la amplitud del salto de cada valor al siguiente. Para ir del 1 al 10 de a 0.50:  
 
 ```{r echo=TRUE}
-seq(1,10,.5)
+seq(1, 10, .5)
 ```
 
 En este ejemplo, no creamos ningún objeto, solo solicitamos la secuencia para verla. El [16] que está debajo del [1] indica que el valor 8.5 ocupa el lugar 16 de la secuencia.   
@@ -419,32 +419,32 @@ En este ejemplo, no creamos ningún objeto, solo solicitamos la secuencia para v
 El comando `rep`, repite un valor las veces que se solicite, repetir el valor 4, siete veces es:
 
 ```{r echo=TRUE}
-rep(4,7)
+rep(4, 7)
 ```
 
 O el valor "perro", tres veces:
 
 ```{r echo=TRUE}
-rep("perro",3)
+rep("perro", 3)
 ```
 
 Estas maneras de generar secuencias pueden combinarse:
 
 ```{r echo=TRUE}
-c(1:5, seq(1,7,.8),rep(65,4))
+c(1:5, seq(1, 7, .8), rep(65, 4))
 ```
 
 Notemos que hay un decimal (cero) en los enteros, eso es porque los números que componen el vector fueron interpretados como valores reales y no como enteros, como sucedió en el ejemplo anterior. Con que haya un solo número decimal, todos los componentes del vector son tratados como tales, a los enteros les corresponderá parte decimal igual a cero. Un vector siempre contiene elementos de la misma clase.  
 
 Una clase de vector frecuente cuando se trata con variables cualitativas es el "factor", que está constituido por números que corresponden a etiquetas de valor. Por ejemplo, se define un vector como los códigos 1 y 2 para personas pertenecientes a los grupos experimental y control respectivamente y pedimos que se muestre:  
 ```{r echo=TRUE}
-grupo<-c(1,2)
+grupo <- c(1, 2)
 class(grupo)
 grupo
 ```
 Es un vector numérico con valores 1 y 2. Luego indicamos que lo trate como un factor y volvemos a pedir su visualización:
 ```{r echo=TRUE}
-grupo<-as.factor(grupo)
+grupo <- as.factor(grupo)
 class(grupo)
 grupo
 ```
@@ -456,7 +456,7 @@ levels(grupo)
 
 Y también definirse, como etiquetas:
 ```{r echo=TRUE}
-levels(grupo)<-c("experimental", "control")
+levels(grupo) <- c("experimental", "control")
 ```
 
 Ahora éstos son los nuevos niveles:
@@ -466,10 +466,10 @@ levels(grupo)
 
 Observemos la diferencia que esto tiene con haber evitado la codificación numérica y definir:
 ```{r echo=TRUE}
-grupo_2<-c("experimental", "control")
+grupo_2 <- c("experimental", "control")
 class(grupo_2)
 grupo_2
-grupo_2<-as.factor(grupo_2)
+grupo_2 <- as.factor(grupo_2)
 levels(grupo_2)
 grupo_2
 ```
@@ -478,10 +478,9 @@ Como el vector fue creado como de caracteres, sus valores se ordenan alfabética
 
 Si 10 personas han sido asignadas al grupo experimental y otras 10 al grupo control, el vector que representa su pertenencia puede ser:
 ```{r echo=TRUE}
-pertenencia<-c(rep(1,10), rep(2,10))
-pertenencia<-as.factor(pertenencia)
-levels(pertenencia)<-c("experimental", "control")
-
+pertenencia <- c(rep(1, 10), rep(2, 10))
+pertenencia <- as.factor(pertenencia)
+levels(pertenencia) <- c("experimental", "control")
 ```
 
 
@@ -492,15 +491,15 @@ is.factor(x)
 ```
 O si uno dividido cero es infinito:
 ```{r echo=TRUE}
-is.infinite(1/0)
+is.infinite(1 / 0)
 ```
 
 Este comando da un resultado de clase lógica, con FALSE y TRUE como posibilidades.  
 
 Los corchetes, [], permiten seleccionar elementos de un vector. La lectura es que, del vector, se retienen los valores que cumplen con la condición que está dentro del corchete. Se define $z$, como la secuencia de 1 a 6 y luego a h como los elementos de z que sean menores a 5:
 ```{r echo=TRUE}
-z<-c(1,2,3,4,5,6)
-h<-z[z<5]
+z <- c(1, 2, 3, 4, 5, 6)
+h <- z[z < 5]
 z
 h
 ```
@@ -531,20 +530,20 @@ length(pertenencia)
 Cuando se combinan varios vectores, todos de la misma longitud, se construye un "data frame", una matriz de datos, cuyo formato más frecuente es que tenga los casos en las filas y variables en las columnas; cada columna es un vector que contiene los valores de cada variable.  
 Por ejemplo, si tenemos 10 observaciones que corresponden a 7 varones y 3 mujeres, que son estudiantes de la universidad, y el vector que  representa el sexo de esas personas, con las categorías codificadas como 1 y 2, es:  
 ```{r echo=TRUE}
-sexo<-c(rep(1, 7), rep(2, 3))
-sexo<-as.factor(sexo)
-levels(sexo)<-c("varones", "mujeres")
+sexo <- c(rep(1, 7), rep(2, 3))
+sexo <- as.factor(sexo)
+levels(sexo) <- c("varones", "mujeres")
 ```
 
 Se ha creado el vector *sexo* por medio de la concatenación de dos repeticiones, del 1 siete veces y del 2, tres veces. Luego se trató a ese vector como un factor y se etiquetaron sus niveles. El siguiente vector contiene las edades de las mismas personas:  
 ```{r echo=TRUE}
-edad<-c(25,28,31,20,21,22,25,28,28,28)
+edad <- c(25, 28, 31, 20, 21, 22, 25, 28, 28, 28)
 ```
 
 Entonces, se crea una matriz de datos con el comando:  
 
 ```{r echo=TRUE}
-sexo_edad_estudiantes<-data.frame(sexo, edad)
+sexo_edad_estudiantes <- data.frame(sexo, edad)
 ```
 
 En el panel superior derecho han aparecido los objetos que acaban de crearse. De este último se indica allí la cantidad de casos (observaciones) y de varables. Cuando se lo cliquea, se obtiene una vista en una ventana separada del script.  
@@ -594,7 +593,7 @@ levels(sexo_edad_estudiantes$sexo)
 Y se los puede redefinir:  
 
 ```{r echo=TRUE}
-levels(sexo_edad_estudiantes$sexo)<-c("femenino", "masculino")
+levels(sexo_edad_estudiantes$sexo) <- c("femenino", "masculino")
 ```
 
 Ahora la matriz se ve:
@@ -613,8 +612,9 @@ table(sexo_edad_estudiantes$edad)
 #### Lectura de una matriz de datos {.unnumbered}  
 Es poco frecuente la creación de matrices de datos en R, salvo a fines de ejemplificación. Por el  contrario, a menudo es necesario leer un base que está guardada con un determinado formato (xls, ods, sav, sas, txt, csv, etc). El comando genérico es `read.table`, que requiere especificación sobre los simbolos que separan los campos y los decimales, si la primera fila lleva el nombre de las variables. Otros comandos más específicos son `read.csv`, `read.csv2`, el primero usa como separador por defecto ",", el segundo usa ";" y no necesitan que se indique si están los  nombres de las variables, porque por defecto los toman. A modo de ejemplo, leemos la base de la Encuesta Permanente de Hogares correspondiente al tercer trimestre de 2018. El archivo tiene frmato de texto (.txt) y se llama "usu_individual_T318.txt". Vamos a darle el nuevo nombre de eph.3.18:  
 ```{r echo=TRUE}
-eph.3.18<-read.table("bases/archivostxt/usu_individual_T318.txt",
-                     sep=";", header = TRUE)
+eph.3.18 <- read.table("bases/archivostxt/usu_individual_T318.txt",
+  sep = ";", header = TRUE
+)
 ```
 
 Hemos indicado:  
@@ -629,10 +629,12 @@ En el panel superior derecho aparece el nombre de este nuevo objeto con la canti
 Para ver un ejemplo de gráfico básico, puede copiar y pegar el siguiente código en su script. Allí se define a $x$ como una secuencia de números que va de 1 a 10 en intervalos de 0.1. Luego se define $y$ como una función lineal de $x$ ($y=3-2*x$) a la que se agregan valores aleatorios provenientes de una distribución normal con media uno y desviación estándar cero. El tercer comando indica que se grafiquen las dos variables y les pone nombre a los ejes y al título del gráfico.
 
 ```{r echo=TRUE}
-x<-seq(1,10,.1)
-y<-3-2*x+rnorm(91)
-plot(x,y, xlab = "valor de x", ylab = "valor de y",
-     main = "Tendencia lineal decreciente")
+x <- seq(1, 10, .1)
+y <- 3 - 2 * x + rnorm(91)
+plot(x, y,
+  xlab = "valor de x", ylab = "valor de y",
+  main = "Tendencia lineal decreciente"
+)
 ```
 
 

@@ -51,7 +51,7 @@ La Encuesta Permanente de Hogares de Argentina da para el aglomerado Gran Córdo
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 eph.3.18 <- read.csv("bases/archivostxt/usu_individual_T318.txt", sep = ";")
 asalariados_cba <- subset(eph.3.18, eph.3.18$PP08D1 > 0 & eph.3.18$AGLOMERADO == 13)
-varones_asalariados_cba <- subset(eph.3.18, eph.3.18$PP08D1 > 0 & eph.3.18$AGLOMERADO == 13 & eph.3.18$CH04==1)
+varones_asalariados_cba <- subset(eph.3.18, eph.3.18$PP08D1 > 0 & eph.3.18$AGLOMERADO == 13 & eph.3.18$CH04 == 1)
 mean(varones_asalariados_cba$PP08D1, na.rm = TRUE)
 ```
 
@@ -127,6 +127,7 @@ diferentes valores de $\overline{x}$. La representación gráfica de esta
 distribución es la de la figura \@ref(fig:medias):
 
 ```{r medias, fig.cap="Distribución de las medias muestrales", echo=FALSE, message=FALSE, warning=FALSE}
+library("latex2exp")
 
 ggplot(data = data.frame(z = c(-4, 4)), aes(z)) +
   stat_function(fun = dnorm) +
@@ -134,7 +135,7 @@ ggplot(data = data.frame(z = c(-4, 4)), aes(z)) +
   geom_segment(x = -4, xend = 4, y = 0, yend = 0) +
   scale_y_continuous(breaks = NULL) + theme_tufte() +
   geom_text(aes(label = "µ"), x = 0, y = -.015) +
-  geom_text(aes(label = TeX("$\\bar{x}", output = "character")), x = 3.5, y = -.02, parse=TRUE) +
+  geom_text(aes(label = TeX("$\\bar{x}", output = "character")), x = 3.5, y = -.02, parse = TRUE) +
   annotate(geom = "rect", xmin = -.01, xmax = .01, ymin = -.01, ymax = .01, col = "red")
 ```
 
@@ -195,7 +196,7 @@ ggplot(data = data.frame(z = c(-4, 4)), aes(z)) +
   scale_y_continuous(breaks = NULL) + theme_tufte() +
   geom_text(aes(label = "µ"), x = 0, y = -.015) +
   geom_text(aes(label = TeX("$\\bar{x}", output = "character")), x = 3.5, y = -.02, parse = TRUE) + geom_text(aes(label = "95%"), x = 0, y = dnorm(0) / 2, size = 5) +
-  annotate(geom = "rect", xmin = -.01, xmax = .01, ymin = -.01, ymax = .01, col = "red") + annotate(geom = "point", x = 1, y = 0, size = 4, col = "green")+geom_text(aes(label = TeX("$\\bar{x}_{obs}", output = "character")), x = 1, y = -.02, parse = TRUE)
+  annotate(geom = "rect", xmin = -.01, xmax = .01, ymin = -.01, ymax = .01, col = "red") + annotate(geom = "point", x = 1, y = 0, size = 4, col = "green") + geom_text(aes(label = TeX("$\\bar{x}_{obs}", output = "character")), x = 1, y = -.02, parse = TRUE)
 ```
 
 
@@ -214,7 +215,7 @@ ggplot(data = data.frame(z = c(-4, 4)), aes(z)) +
   geom_text(aes(label = "µ"), x = 0, y = -.015) +
   geom_text(aes(label = TeX("$\\bar{x}", output = "character")), x = 3.5, y = -.005, parse = TRUE) + geom_text(aes(label = "95%"), x = 0, y = dnorm(0) / 2, size = 5) +
   annotate(geom = "rect", xmin = -.01, xmax = .01, ymin = -.01, ymax = .01, col = "red") + annotate(geom = "point", x = 1, y = 0, size = 4, col = "green") +
-  geom_segment(x = 1, xend = 1, y = 0, yend = -.019) + geom_segment(x = 1 - qnorm(.975), xend = 1 + qnorm(.975), y = -.019, yend = -.019)+geom_text(aes(label = TeX("$\\bar{x}_{obs}", output = "character")), x = 1, y = -.02, parse = TRUE)
+  geom_segment(x = 1, xend = 1, y = 0, yend = -.019) + geom_segment(x = 1 - qnorm(.975), xend = 1 + qnorm(.975), y = -.019, yend = -.019) + geom_text(aes(label = TeX("$\\bar{x}_{obs}", output = "character")), x = 1, y = -.02, parse = TRUE)
 ```
 
 
@@ -234,7 +235,7 @@ ggplot(data = data.frame(z = c(-4, 4)), aes(z)) +
   geom_text(aes(label = "µ"), x = 0, y = -.015) +
   geom_text(aes(label = TeX("$\\bar{x}", output = "character")), x = 3.5, y = -.005, parse = TRUE) + geom_text(aes(label = "95%"), x = 0, y = dnorm(0) / 2, size = 5) +
   annotate(geom = "rect", xmin = -.01, xmax = .01, ymin = -.01, ymax = .01, col = "red") + annotate(geom = "point", x = -1.5, y = 0, size = 4, col = "green") +
-  geom_segment(x = -1.5, xend = -1.5, y = 0, yend = -.019) + geom_segment(x = -1.5 - qnorm(.975), xend = -1.5 + qnorm(.975), y = -.019, yend = -.019)+geom_text(aes(label = TeX("$\\bar{x}_{obs}", output = "character")), x = -1.5, y = -.02, parse = TRUE)
+  geom_segment(x = -1.5, xend = -1.5, y = 0, yend = -.019) + geom_segment(x = -1.5 - qnorm(.975), xend = -1.5 + qnorm(.975), y = -.019, yend = -.019) + geom_text(aes(label = TeX("$\\bar{x}_{obs}", output = "character")), x = -1.5, y = -.02, parse = TRUE)
 ```
 
 
@@ -254,7 +255,7 @@ ggplot(data = data.frame(z = c(-4, 4)), aes(z)) +
   geom_text(aes(label = "µ"), x = 0, y = -.015) +
   geom_text(aes(label = TeX("$\\bar{x}", output = "character")), x = 3.5, y = -.005, parse = TRUE) + geom_text(aes(label = "95%"), x = 0, y = dnorm(0) / 2, size = 5) +
   annotate(geom = "rect", xmin = -.01, xmax = .01, ymin = -.01, ymax = .01, col = "red") + annotate(geom = "point", x = -2.2, y = 0, size = 4, col = "green") +
-  geom_segment(x = -2.2, xend = -2.2, y = 0, yend = -.019) + geom_segment(x = -2.2 - qnorm(.975), xend = -2.2 + qnorm(.975), y = -.019, yend = -.019)+geom_text(aes(label = TeX("$\\bar{x}_{obs}", output = "character")), x = -2.2, y = -.02, parse = TRUE)
+  geom_segment(x = -2.2, xend = -2.2, y = 0, yend = -.019) + geom_segment(x = -2.2 - qnorm(.975), xend = -2.2 + qnorm(.975), y = -.019, yend = -.019) + geom_text(aes(label = TeX("$\\bar{x}_{obs}", output = "character")), x = -2.2, y = -.02, parse = TRUE)
 ```
 
 El intervalo alrededor de $\overline{x}_{obs}$ **no** contiene a la media
@@ -466,8 +467,8 @@ Para determinar los límites, primero se buscan los valores de $\widehat{x}$ que
 Y luego se los lleva a $\widehat{p}$, dividiendo por 277. Con lo que los límites del intervalo para estimar $P$ al 95% son estas cantidades de éxitos ($\widehat{x}$) divididas el tamaño de la muestra:
 
 ```{r echo=TRUE}
-(Li <- round(P.025 / 277,4))
-(Ls <- round(P.975 / 277,4))
+(Li <- round(P.025 / 277, 4))
+(Ls <- round(P.975 / 277, 4))
 ```
 
 
@@ -681,11 +682,11 @@ Para el cálculo de los límites del intervalo, usamos media, desviación, tama�
 ```{r echo=TRUE, message=FALSE, warning=FALSE}
 Li_90 <- mean(enprecosp$BIBA03) +
   qt(.05, 24948) * sd(enprecosp$BIBA03) /
-  sqrt(length(enprecosp$BIBA03))
+    sqrt(length(enprecosp$BIBA03))
 
 Ls_90 <- mean(enprecosp$BIBA03) +
   qt(.95, 24948) * sd(enprecosp$BIBA03) /
-  sqrt(length(enprecosp$BIBA03))
+    sqrt(length(enprecosp$BIBA03))
 
 round(c(Li_90, Ls_90), 2)
 ```
@@ -699,11 +700,11 @@ Variamos el nivel de confianza, primero al 95%:
 ```{r echo=TRUE, message=FALSE, warning=FALSE}
 Li_95 <- mean(enprecosp$BIBA03) +
   qt(.025, 24948) * sd(enprecosp$BIBA03) /
-  sqrt(length(enprecosp$BIBA03))
+    sqrt(length(enprecosp$BIBA03))
 
 Ls_95 <- mean(enprecosp$BIBA03) +
   qt(.975, 24948) * sd(enprecosp$BIBA03) /
-  sqrt(length(enprecosp$BIBA03))
+    sqrt(length(enprecosp$BIBA03))
 
 round(c(Li_95, Ls_95), 2)
 ```
@@ -717,11 +718,11 @@ Y luego al 99%
 ```{r echo=TRUE, message=FALSE, warning=FALSE}
 Li_99 <- mean(enprecosp$BIBA03) +
   qt(.005, 24948) * sd(enprecosp$BIBA03) /
-  sqrt(length(enprecosp$BIBA03))
+    sqrt(length(enprecosp$BIBA03))
 
 Ls_99 <- mean(enprecosp$BIBA03) +
   qt(.995, 24948) * sd(enprecosp$BIBA03) /
-  sqrt(length(enprecosp$BIBA03))
+    sqrt(length(enprecosp$BIBA03))
 
 round(c(Li_99, Ls_99), 2)
 ```
@@ -866,7 +867,7 @@ knitr::kable(
   col.names = c("¿Ha consumido alguna bebida alcohólica, como por ejemplo vino, cerveza, whisky o similares, alguna vez en la vida?", "$f$"),
   booktabs = TRUE, align = "lc", escape = FALSE
 ) %>%
-  kableExtra::kable_styling(latex_options =c("striped",  "scale_down"))
+  kableExtra::kable_styling(latex_options = c("striped", "scale_down"))
 ```
 Cuando se consideran solo los casos válidos, la tabla queda:
  
@@ -879,7 +880,7 @@ knitr::kable(
   col.names = c("¿Ha consumido alguna bebida alcohólica, como por ejemplo vino, cerveza, whisky o similares, alguna vez en la vida?", "$f$"),
   booktabs = TRUE, align = "lc", escape = FALSE
 ) %>%
-  kableExtra::kable_styling(latex_options = c("striped",  "scale_down"))
+  kableExtra::kable_styling(latex_options = c("striped", "scale_down"))
 ```
 
 
@@ -1056,9 +1057,9 @@ Los siguientes comandos generan 200 intervalos para estimar la media de ingresos
 
 ```{r echo= TRUE}
 resultado <- data.frame()
-mu=mean(asalariados_cba$PP08D1, na.rm = TRUE)
-N=length(asalariados_cba$PP08D1)
-n=30
+mu <- mean(asalariados_cba$PP08D1, na.rm = TRUE)
+N <- length(asalariados_cba$PP08D1)
+n <- 30
 ```
 
 - Se repite 200 veces (cantidad de muestras, cada repetición produce una diferente)
@@ -1073,21 +1074,20 @@ n=30
 ```{r echo=TRUE}
 for (i in 1:200) {
   x <- round(runif(n, 1, N), 0)
-  muestra <- asalariados_cba[x,95]
+  muestra <- asalariados_cba[x, 95]
   resultado[i, 1] <- round(mean(muestra, na.rm = TRUE) +
-                             qt(.025, 29) * sd(muestra, na.rm = TRUE) / sqrt(length(muestra)), 1)
+    qt(.025, 29) * sd(muestra, na.rm = TRUE) / sqrt(length(muestra)), 1)
   resultado[i, 2] <- round(mean(muestra, na.rm = TRUE) +
-                             qt(.975, 29) * sd(muestra, na.rm = TRUE) / sqrt(length(muestra)), 1)
+    qt(.975, 29) * sd(muestra, na.rm = TRUE) / sqrt(length(muestra)), 1)
   resultado[i, 3] <- ifelse(
-    resultado[i, 1] <= mu & resultado[i, 2] >= mu, "si", "no")
+    resultado[i, 1] <= mu & resultado[i, 2] >= mu, "si", "no"
+  )
 }
-
 ```
 
 Finalmente se pone nombre a las columnas de **resultado**:  
 ```{r echo=TRUE}
-names(resultado)<-c("Límite_inferior", "Límite_superior", "contiene_al_parametro")
-
+names(resultado) <- c("Límite_inferior", "Límite_superior", "contiene_al_parametro")
 ```
 
 La matriz puede visualizarse, desde el panel superior derecho o verse sus primeras filas:  
@@ -1099,7 +1099,7 @@ head(resultado)
 Y resumirse en una distridición de frecuencias:
 
 ```{r echo=TRUE}
-(tabla_cobertura<-freq(resultado$contiene_al_parametro, report.nas = FALSE, cumul = FALSE))
+(tabla_cobertura <- freq(resultado$contiene_al_parametro, report.nas = FALSE, cumul = FALSE))
 ```
 
 En este caso, la cobertura real es de `r tabla_cobertura[2,2]`%. Cada vez que se ejecute esta sintaxis se obtendrán resultados diferentes.

@@ -895,13 +895,12 @@ salariales por sectores. A menudo se escucha que no se justifica un
 aumento porque el salario promedio del sector es de *X pesos*. Argumento al que se contrapone (expresado de diferentes maneras) que ese promedio incluye al personal que tiene salarios muy altos. Se trata de distribuciones asimétricas, que tienen la mayor parte de los casos con salarios bajos o intermedios y unos pocos casos con salarios muy superiores, como lo muestra el histograma siguiente.  
 
 ```{r fig.cap= "Distribución de los ingresos salariales", fig.asp = 0.7, fig.width = 3, fig.align = 'center'}
-eph.3.18.ingresos<-subset(eph.3.18, eph.3.18$PP08D1>0 & is.na(eph.3.18$PP08D1)==FALSE) 
+eph.3.18.ingresos <- subset(eph.3.18, eph.3.18$PP08D1 > 0 & is.na(eph.3.18$PP08D1) == FALSE)
 
-ggplot(eph.3.18.ingresos)+
-  geom_histogram(aes(PP08D1), fill= "green")+
-  xlab("ingresos salariales")+
-  ylab("frecuencia absoluta")+theme_tufte()
-
+ggplot(eph.3.18.ingresos) +
+  geom_histogram(aes(PP08D1), fill = "green") +
+  xlab("ingresos salariales") +
+  ylab("frecuencia absoluta") + theme_tufte()
 ```
 
 
@@ -970,25 +969,25 @@ df3 <- data.frame(
   asim_izq = asim_izq # asimetrica a izquierda
 )
 ggplot(df3) + geom_histogram(aes(sim), fill = "green", bins = 30) +
-  xlab("x1") + ylab("f") + theme_tufte() + ggtitle("Distribución simétrica")+ theme(
-plot.title = element_text(size=7),
-axis.title = element_text(size=6),
-axis.text = element_text(size=5)
-)
+  xlab("x1") + ylab("f") + theme_tufte() + ggtitle("Distribución simétrica") + theme(
+    plot.title = element_text(size = 7),
+    axis.title = element_text(size = 6),
+    axis.text = element_text(size = 5)
+  )
 
 ggplot(df3) + geom_histogram(aes(asim_der), fill = "green", bins = 30) +
-  xlab("x2") + ylab("f") + theme_tufte() + ggtitle("Distribución asimétrica a la derecha")+ theme(
-plot.title = element_text(size=7),
-axis.title = element_text(size=6),
-axis.text = element_text(size=5)
-)
+  xlab("x2") + ylab("f") + theme_tufte() + ggtitle("Distribución asimétrica a la derecha") + theme(
+    plot.title = element_text(size = 7),
+    axis.title = element_text(size = 6),
+    axis.text = element_text(size = 5)
+  )
 
 ggplot(df3) + geom_histogram(aes(asim_izq), fill = "green", bins = 30) +
-  xlab("x3") + ylab("f") + theme_tufte() + ggtitle("Distribución asimétrica a la izquierda")+ theme(
-plot.title = element_text(size=7),
-axis.title = element_text(size=6),
-axis.text = element_text(size=5)
-)
+  xlab("x3") + ylab("f") + theme_tufte() + ggtitle("Distribución asimétrica a la izquierda") + theme(
+    plot.title = element_text(size = 7),
+    axis.title = element_text(size = 6),
+    axis.text = element_text(size = 5)
+  )
 ```
 
 La asimetría puede evaluarse directamente a partir de las medidas de
@@ -1019,25 +1018,25 @@ En estas distribuciones las medias y medianas son:
 Las siguientes ojivas de Galton corresponden a las tres distribuciones anteriores. De estos gráficos interesa la zona en que crecen más rápido, porque allí es donde está la mayor concentración de casos. Cuando la distribución es simétrica, la parte de crecimiento rápido (donde la curva tiene a ser más vertical) está al centro, si es asimétrica a la derecha, crece rápido al principio, mientras que cuando es asimetrica a la izquierda, la parte de crecimiento rápido corresponde a los valores más altos de la variable.
 ```{r fig.cap= "Ojivas de Galton correspondientes a variables con diferente asimetría", fig.asp = 0.7, fig.width = 3, fig.align = 'center'}
 ggplot(df3) + stat_ecdf(aes(sim)) +
-  xlab("x1") + ylab("F'") + theme_tufte() + ggtitle("Distribución simétrica")+ theme(
-plot.title = element_text(size=7),
-axis.title = element_text(size=6),
-axis.text = element_text(size=5)
-)
+  xlab("x1") + ylab("F'") + theme_tufte() + ggtitle("Distribución simétrica") + theme(
+    plot.title = element_text(size = 7),
+    axis.title = element_text(size = 6),
+    axis.text = element_text(size = 5)
+  )
 
 ggplot(df3) + stat_ecdf(aes(asim_der)) +
-  xlab("x2") + ylab("F'") + theme_tufte() + ggtitle("Distribución asimétrica a la derecha")+ theme(
-plot.title = element_text(size=7),
-axis.title = element_text(size=6),
-axis.text = element_text(size=5)
-)
+  xlab("x2") + ylab("F'") + theme_tufte() + ggtitle("Distribución asimétrica a la derecha") + theme(
+    plot.title = element_text(size = 7),
+    axis.title = element_text(size = 6),
+    axis.text = element_text(size = 5)
+  )
 
 ggplot(df3) + stat_ecdf(aes(asim_izq)) +
-  xlab("x3") + ylab("F'") + theme_tufte() + ggtitle("Distribución asimétrica a la izquierda")+ theme(
-plot.title = element_text(size=7),
-axis.title = element_text(size=6),
-axis.text = element_text(size=5)
-)
+  xlab("x3") + ylab("F'") + theme_tufte() + ggtitle("Distribución asimétrica a la izquierda") + theme(
+    plot.title = element_text(size = 7),
+    axis.title = element_text(size = 6),
+    axis.text = element_text(size = 5)
+  )
 ```
 
 La evaluación cuantitativa de la asimetría de una distribución permite la comparación entre distribuciones en cuanto al grado de asimetría, para indicar cuándo una distribución es más asimétrica que otra. Para hacerlo se usan los **coeficientes de asimetría**. Estos coeficientes miden dos aspectos
@@ -1079,25 +1078,25 @@ df4 <- data.frame(
 )
 ggplot(df4) + geom_histogram(aes(n1), fill = "green", bins = 30) +
   xlim(100, 300) + ylim(0, 320) +
-  xlab("x4") + ylab("f") + ggtitle("Distribución leptocúrtica") + theme_tufte()+ theme(
-plot.title = element_text(size=7),
-axis.title = element_text(size=6),
-axis.text = element_text(size=5)
-)
+  xlab("x4") + ylab("f") + ggtitle("Distribución leptocúrtica") + theme_tufte() + theme(
+    plot.title = element_text(size = 7),
+    axis.title = element_text(size = 6),
+    axis.text = element_text(size = 5)
+  )
 ggplot(df4) + geom_histogram(aes(n2), fill = "green", bins = 30) +
   xlim(100, 300) + ylim(0, 320) +
-  xlab("x5") + ylab("f") + ggtitle("Distribución mesocúrtica") + theme_tufte()+ theme(
-plot.title = element_text(size=7),
-axis.title = element_text(size=6),
-axis.text = element_text(size=5)
-)
+  xlab("x5") + ylab("f") + ggtitle("Distribución mesocúrtica") + theme_tufte() + theme(
+    plot.title = element_text(size = 7),
+    axis.title = element_text(size = 6),
+    axis.text = element_text(size = 5)
+  )
 ggplot(df4) + geom_histogram(aes(n3), fill = "green", bins = 30) +
   xlim(100, 300) + ylim(0, 320) +
-  xlab("x6") + ylab("f") + ggtitle("Distribución platicúrtica") + theme_tufte()+ theme(
-plot.title = element_text(size=7),
-axis.title = element_text(size=6),
-axis.text = element_text(size=5)
-)
+  xlab("x6") + ylab("f") + ggtitle("Distribución platicúrtica") + theme_tufte() + theme(
+    plot.title = element_text(size = 7),
+    axis.title = element_text(size = 6),
+    axis.text = element_text(size = 5)
+  )
 ```
 
 Estos tres ejemplos corresponden a distribuciones simétricas, pero
@@ -1161,31 +1160,31 @@ ggplot(df3) + geom_boxplot(aes(1, sim), fill = "green") +
   theme(
     axis.title.y = element_blank(), axis.text.y = element_blank(),
     axis.ticks.y = element_blank()
-  ) + xlab("x1") + ggtitle("Distribución simétrica") + coord_flip()+ theme(
-plot.title = element_text(size=7),
-axis.title = element_text(size=6),
-axis.text = element_text(size=5)
-)
+  ) + xlab("x1") + ggtitle("Distribución simétrica") + coord_flip() + theme(
+    plot.title = element_text(size = 7),
+    axis.title = element_text(size = 6),
+    axis.text = element_text(size = 5)
+  )
 
 ggplot(df3) + geom_boxplot(aes(1, asim_der), fill = "green") +
   xlab("x2") + theme_tufte() + theme(
     axis.title.y = element_blank(), axis.text.y = element_blank(),
     axis.ticks.y = element_blank()
-  ) + xlab("x2") + ggtitle("Distribución asimétrica a la derecha") + coord_flip()+ theme(
-plot.title = element_text(size=7),
-axis.title = element_text(size=6),
-axis.text = element_text(size=5)
-)
+  ) + xlab("x2") + ggtitle("Distribución asimétrica a la derecha") + coord_flip() + theme(
+    plot.title = element_text(size = 7),
+    axis.title = element_text(size = 6),
+    axis.text = element_text(size = 5)
+  )
 
 ggplot(df3) + geom_boxplot(aes(1, asim_izq), fill = "green") +
   xlab("x3") + theme_tufte() + theme(
     axis.title.y = element_blank(), axis.text.y = element_blank(),
     axis.ticks.y = element_blank()
-  ) + xlab("x3") + ggtitle("Distribución asimétrica a la izquierda") + coord_flip()+ theme(
-plot.title = element_text(size=7),
-axis.title = element_text(size=6),
-axis.text = element_text(size=5)
-)
+  ) + xlab("x3") + ggtitle("Distribución asimétrica a la izquierda") + coord_flip() + theme(
+    plot.title = element_text(size = 7),
+    axis.title = element_text(size = 6),
+    axis.text = element_text(size = 5)
+  )
 ```
 
 ## Medidas de dispersión
@@ -1303,16 +1302,16 @@ y que esta es una cualidad de la media, que no depende de los datos[^indep_media
 La representación gráfica de esta propiedad puede verse pensando en una analogía física; como si cada caso graficado en el histograma fuese un bloque de cierto peso, situado en el valor de la variable. Con esa idea, la ubicación de la media es el punto donde habria que apoyar el histograma para que éste quede en equilibrio:
 
 ```{r fig.cap="Esquema de la ubicación de la media en el punto de equilibrio del histograma", fig.asp = 0.7, fig.width = 3, fig.align = 'center'}
-ggplot(univ) + geom_histogram(aes(CH06), bins = 30, fill="green") +
+ggplot(univ) + geom_histogram(aes(CH06), bins = 30, fill = "green") +
   geom_point(
     size = 2, stroke = 1.4,
     x = mean(univ$CH06), y = -20, col = "red", shape = 17
   ) +
-  xlab("edad") + ylab("f") + theme_tufte() + ylim(c(-30, 750))+ theme(
-plot.title = element_text(size=7),
-axis.title = element_text(size=6),
-axis.text = element_text(size=5)
-)
+  xlab("edad") + ylab("f") + theme_tufte() + ylim(c(-30, 750)) + theme(
+    plot.title = element_text(size = 7),
+    axis.title = element_text(size = 6),
+    axis.text = element_text(size = 5)
+  )
 ```
 
 El triángulo del gráfico equivale al punto de apoyo que permite el equilibrio de ese "objeto".
@@ -1813,19 +1812,18 @@ ggplot(dos.hist) +
   geom_histogram(aes(unif), fill = "green", bins = 30) +
   geom_point(
     size = 3, stroke = 1.4,
-    x = mean(unif)-1.5*sd(unif), y = -2, col = "red", shape = 2
-  )  +
+    x = mean(unif) - 1.5 * sd(unif), y = -2, col = "red", shape = 2
+  ) +
   geom_point(
     size = 3, stroke = 1.4,
-    x = mean(unif)+1.5*sd(unif), y = -2, col = "red", shape = 2
+    x = mean(unif) + 1.5 * sd(unif), y = -2, col = "red", shape = 2
   ) +
   ylab("f") +
-  geom_segment(x=mean(unif)-1.5*sd(unif), xend=mean(unif)-1.5*sd(unif), y=0, yend=40)+
-  geom_segment(x=mean(unif)+1.5*sd(unif), xend=mean(unif)+1.5*sd(unif), y=0, yend=40)+
-  geom_text(aes(label="al menos 75% de \n las observaciones \n se encuentra en esta zona", x=mean(unif), y=20), size=3)+
+  geom_segment(x = mean(unif) - 1.5 * sd(unif), xend = mean(unif) - 1.5 * sd(unif), y = 0, yend = 40) +
+  geom_segment(x = mean(unif) + 1.5 * sd(unif), xend = mean(unif) + 1.5 * sd(unif), y = 0, yend = 40) +
+  geom_text(aes(label = "al menos 75% de \n las observaciones \n se encuentra en esta zona", x = mean(unif), y = 20), size = 3) +
   xlab("") +
   theme_tufte()
-
 ```
 
 Mientras que la siguiente distribución es unimodal y aproximadamente simétrica, por lo que es válida la regla empírica.
@@ -1834,15 +1832,15 @@ Mientras que la siguiente distribución es unimodal y aproximadamente simétrica
 ggplot(dos.hist) + geom_histogram(aes(norm), fill = "green", bins = 30) + ylab("f") +
   geom_point(
     size = 3, stroke = 1.4,
-    x = mean(norm)-2*sd(norm), y = -2, col = "red", shape = 2
-  )  +
+    x = mean(norm) - 2 * sd(norm), y = -2, col = "red", shape = 2
+  ) +
   geom_point(
     size = 3, stroke = 1.4,
-    x = mean(norm)+2*sd(norm), y = -2, col = "red", shape = 2
+    x = mean(norm) + 2 * sd(norm), y = -2, col = "red", shape = 2
   ) +
-  geom_segment(x=mean(norm)-2*sd(norm), xend=mean(norm)-2*sd(norm), y=0, yend=40)+
-  geom_segment(x=mean(norm)+2*sd(norm), xend=mean(norm)+2*sd(norm), y=0, yend=40)+
-  geom_text(aes(label="aproximadamente el 95% \n de las observaciones se \n encuentra en esta zona", x=mean(norm), y=30), size=3)+ xlab("") + theme_tufte()
+  geom_segment(x = mean(norm) - 2 * sd(norm), xend = mean(norm) - 2 * sd(norm), y = 0, yend = 40) +
+  geom_segment(x = mean(norm) + 2 * sd(norm), xend = mean(norm) + 2 * sd(norm), y = 0, yend = 40) +
+  geom_text(aes(label = "aproximadamente el 95% \n de las observaciones se \n encuentra en esta zona", x = mean(norm), y = 30), size = 3) + xlab("") + theme_tufte()
 ```
 
 Volveremos sobre este tema con más detalle cuando tratemos una distribución teórica que se llama distribución normal.
@@ -1894,7 +1892,8 @@ Para los ejemplos de este apartado vamos a trabajar sobre los datos de la Encues
 ```{r echo=TRUE}
 eph.3.18 <- read.table(
   "bases/archivostxt/usu_individual_T318.txt",
-  header = TRUE, sep = ";")
+  header = TRUE, sep = ";"
+)
 ```
 
 Ahora retendremos solo a los asalariados (CAT_OCUP = 3) que tienen ingreso mayor a cero (PP08D1>0 y que no son NA), la nueva base se llama "asalariados":
@@ -1934,7 +1933,9 @@ Repitamos la categorización con los tres criterios vistos antes, por medio del 
 
 ```{r, echo=TRUE, warning=FALSE, message=FALSE}
 edad_4_igual <- cut(eph.3.18$CH06, breaks = 4)
-library(summarytools)
+
+library("summarytools")
+
 freq(edad_4_igual, report.nas = FALSE)
 ```
 
@@ -1971,7 +1972,7 @@ La solicitud de algunas medidas de dispersión es directa en R, otras deben calc
 
 ```{r warning=FALSE, echo=TRUE}
 
-R <- max(asalariades$PP08D1) - 
+R <- max(asalariades$PP08D1) -
   min(asalariades$PP08D1) # se define R
 names(R) <- "R" # se le da un nombre
 round(R, 2) # se lo redondea a dos decimales
@@ -2012,13 +2013,13 @@ bayley <- read.csv("bases/archivostxt/bayley.txt", sep = ";", dec = ",")
 
 Calculamos los coeficientes de variación de los puntajes de las escalas motora y mental, por medio del cociente de la desviación estándar y la media de cada una, multiplicado por cien y redondeado a un decimal:
 ```{r warning= FALSE, echo=TRUE}
-cv_motora<-round(100*sd(bayley$baymotor)/mean(bayley$baymotor),1)
-cv_mental<-round(100*sd(bayley$bayment)/mean(bayley$bayment),1)
+cv_motora <- round(100 * sd(bayley$baymotor) / mean(bayley$baymotor), 1)
+cv_mental <- round(100 * sd(bayley$bayment) / mean(bayley$bayment), 1)
 ```
 
 Y los observamos:
 ```{r warning= FALSE, echo=TRUE}
-paste(cv_motora,"%")
+paste(cv_motora, "%")
 paste(cv_mental, "%")
 ```
 

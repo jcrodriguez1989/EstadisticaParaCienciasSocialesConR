@@ -507,8 +507,9 @@ $$z_{\text{obs}} = \frac{{\overline{x}}_{\text{obs}} - \mu}{\frac{s}{\sqrt{n}}}$
 Para un nivel de significación de 0.05 (ó 5%), en el ejemplo:
 
 ```{r rechZ, echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Ubicación de la zona de rechazo de $H_{0}$ a un nivel de significación de 0.05, sobre puntajes estándar ($z$), y del valor observado"}
-library(ggplot2)
-library(ggthemes)
+library("ggplot2")
+library("ggthemes")
+
 ggplot(data = data.frame(z = c(-4, 4)), aes(z)) +
   geom_area(stat = "function", fun = dnorm, fill = "green", xlim = c(-4, qnorm(.025)), col = "black") +
   geom_area(stat = "function", fun = dnorm, fill = "white", xlim = c(qnorm(.025), qnorm(.975)), col = "black") +
@@ -555,7 +556,7 @@ ggplot(data = data.frame(z = c(6.7, 7.9)), aes(z)) +
   geom_text(aes(label = "7.55"), x = 7.555, y = -.1) +
   geom_text(aes(label = TeX("$\\bar{x}$", output = "character")), x = 8, y = -.1, parse = TRUE) +
   annotate(geom = "rect", xmin = 7.298, xmax = 7.302, ymin = -.05, ymax = .05, col = "red") +
-  geom_text(aes(label=TeX("$\\bar{x}_{obs} = 7.5$", output="character")), x = 7.7, y = 1.3, parse = TRUE) +
+  geom_text(aes(label = TeX("$\\bar{x}_{obs} = 7.5$", output = "character")), x = 7.7, y = 1.3, parse = TRUE) +
   geom_text(aes(label = TeX("$\\mu = 7.3", output = "character")), x = 7.3, y = .1, parse = TRUE) +
   geom_point(aes(x = 7.5, y = 0), col = "green", size = 5) +
   geom_segment(x = 7.6, xend = 7.5, y = 1.2, yend = 0, arrow = arrow())
@@ -587,7 +588,7 @@ ggplot(data = data.frame(z = c(-4.4)), aes(z)) +
   geom_segment(x = -4, xend = 4, y = 0, yend = 0) +
   scale_y_continuous(breaks = NULL) + theme_tufte() +
   geom_text(aes(label = "0"), x = 0, y = -.015) +
-  geom_text(aes(label = TeX("$\\z_{c} = 1.64$", output="character")), x = 1.64, y = -.015, parse = TRUE) +
+  geom_text(aes(label = TeX("$\\z_{c} = 1.64$", output = "character")), x = 1.64, y = -.015, parse = TRUE) +
   geom_text(aes(label = "z"), x = 3.5, y = -.01) + annotate(geom = "rect", xmin = -.01, xmax = .01, ymin = -.01, ymax = .01, col = "red")
 ```
 
@@ -620,12 +621,12 @@ ggplot(data = data.frame(z = c(6.26, 6.74)), aes(z)) +
   ylab("") + xlab("") + scale_x_discrete(breaks = NULL) +
   geom_segment(x = 6.26, xend = 6.74, y = 0, yend = 0) +
   scale_y_continuous(breaks = NULL) +
-  geom_text(aes(label = TeX("$\\mu = 6.50$", output="character")), x = 6.5, y = -.3, parse = TRUE) +
-  geom_text(aes(label = TeX("$\\bar{x}_c = 6.60$", output="character")), x = 6.6, y = -.25, parse = TRUE) +
-  geom_text(aes(label = TeX("$\\bar{x}$", output="character")), x = 6.7, y = -.3, parse=TRUE) +
+  geom_text(aes(label = TeX("$\\mu = 6.50$", output = "character")), x = 6.5, y = -.3, parse = TRUE) +
+  geom_text(aes(label = TeX("$\\bar{x}_c = 6.60$", output = "character")), x = 6.6, y = -.25, parse = TRUE) +
+  geom_text(aes(label = TeX("$\\bar{x}$", output = "character")), x = 6.7, y = -.3, parse = TRUE) +
   annotate(geom = "rect", xmin = 6.499, xmax = 6.501, ymin = -.1, ymax = .1, col = "red") +
-  geom_text(aes(label = TeX("$\\bar{x}_{obs} = 6.65$", output="character")), x = 6.7, y = 1.5, parse = TRUE) +
-  geom_segment(x = 6.7, xend = 6.65, y = 1.3, yend = 0, arrow = arrow())+xlim(6.2, 6.8)+theme_tufte()
+  geom_text(aes(label = TeX("$\\bar{x}_{obs} = 6.65$", output = "character")), x = 6.7, y = 1.5, parse = TRUE) +
+  geom_segment(x = 6.7, xend = 6.65, y = 1.3, yend = 0, arrow = arrow()) + xlim(6.2, 6.8) + theme_tufte()
 ```
 
 El valor observado de $\overline{x}$ había sido 6.65 que es mayor que el punto crítico, con lo que rechazamos la $H_{0}$ y concluimos que el promedio al egreso es significativamente mayor al histórico.
@@ -931,7 +932,7 @@ ggplot(data = data.frame(z = c(-4.4)), aes(z)) +
   geom_segment(x = -4, xend = 4, y = 0, yend = 0) +
   scale_y_continuous(breaks = NULL) + theme_tufte() +
   geom_text(aes(label = "0"), x = 0, y = -.015) +
-  geom_text(aes(label =TeX("$\\z_{c} = 1.64$", output = "character")), x = 1.64, y = -.015, parse = TRUE) +
+  geom_text(aes(label = TeX("$\\z_{c} = 1.64$", output = "character")), x = 1.64, y = -.015, parse = TRUE) +
   geom_text(aes(label = "z"), x = 3.5, y = -.01) + annotate(geom = "rect", xmin = -.01, xmax = .01, ymin = -.01, ymax = .01, col = "red")
 ```
 
@@ -1000,12 +1001,12 @@ ggplot(data = data.frame(z = c(.28, .32)), aes(z)) +
   ylab("") + xlab("") + scale_x_discrete(breaks = NULL) +
   geom_segment(x = .28, xend = .32, y = 0, yend = 0) +
   scale_y_continuous(breaks = NULL) +
-  geom_text(aes(label = TeX("$\\P = 0.30$", output="character")), x = .3, y = -.7, parse = TRUE) +
-  geom_text(aes(label = TeX("$\\widehat{p}_{c} = 0.353$", output="character")), x = .353, y = -.7, parse = TRUE) +
-  geom_text(aes(label = TeX("$\\widehat{p}$", output="character")), x = .41, y = -.7, parse=TRUE) +
+  geom_text(aes(label = TeX("$\\P = 0.30$", output = "character")), x = .3, y = -.7, parse = TRUE) +
+  geom_text(aes(label = TeX("$\\widehat{p}_{c} = 0.353$", output = "character")), x = .353, y = -.7, parse = TRUE) +
+  geom_text(aes(label = TeX("$\\widehat{p}$", output = "character")), x = .41, y = -.7, parse = TRUE) +
   annotate(geom = "rect", xmin = .299, xmax = .301, ymin = -.1, ymax = .1, col = "red") +
-  geom_text(aes(label = TeX("$\\widehat{p}_{obs}=0.32$", output="character")), x = .32, y = 5, parse = TRUE)+ xlim(.15,.45)+ylim(-1,13) +
-  geom_segment(x = 0.32, xend = 0.32, y = 4.5, yend = 0, arrow = arrow())+theme_tufte()
+  geom_text(aes(label = TeX("$\\widehat{p}_{obs}=0.32$", output = "character")), x = .32, y = 5, parse = TRUE) + xlim(.15, .45) + ylim(-1, 13) +
+  geom_segment(x = 0.32, xend = 0.32, y = 4.5, yend = 0, arrow = arrow()) + theme_tufte()
 ```
 
 
@@ -1539,12 +1540,12 @@ ggplot(data = data.frame(z = c(-4.4)), aes(z)) +
   geom_segment(x = -4, xend = 4, y = 0, yend = 0) +
   scale_y_continuous(breaks = NULL) + theme_tufte() +
   geom_text(aes(label = "0"), x = 0, y = -.015) +
-  geom_text(aes(label = TeX("$\\z_c=1.64$", output = "character")), x = 1.64, y = -.015, parse=TRUE) +
-  geom_text(aes(label = "z"), x = 4, y = -.01) + annotate(geom = "rect", xmin = -.01, xmax = .01, ymin = -.01, ymax = .01, col = "red") + geom_point(aes(x = 2, y = 0), size = 2.5)  +
-  geom_text(aes(label = TeX("$\\z_{obs}^{(a)}=2$", output = "character")), x = 2, y = .17, parse=TRUE) +
-  geom_segment(x = 2, xend = 2, y = .15, yend = 0, arrow = arrow())+ geom_point(aes(x = 3.2, y = 0), size = 2.5)+
-  geom_text(aes(label = TeX("$\\z_{obs}^{(b)}=3.2$", output = "character")), x = 3.2, y = .1, parse=TRUE)+
-  geom_segment(x = 3.2, xend = 3.2, y = .08, yend = 0, arrow = arrow())+ geom_point(aes(x = 3.2, y = 0), size = 2.5) 
+  geom_text(aes(label = TeX("$\\z_c=1.64$", output = "character")), x = 1.64, y = -.015, parse = TRUE) +
+  geom_text(aes(label = "z"), x = 4, y = -.01) + annotate(geom = "rect", xmin = -.01, xmax = .01, ymin = -.01, ymax = .01, col = "red") + geom_point(aes(x = 2, y = 0), size = 2.5) +
+  geom_text(aes(label = TeX("$\\z_{obs}^{(a)}=2$", output = "character")), x = 2, y = .17, parse = TRUE) +
+  geom_segment(x = 2, xend = 2, y = .15, yend = 0, arrow = arrow()) + geom_point(aes(x = 3.2, y = 0), size = 2.5) +
+  geom_text(aes(label = TeX("$\\z_{obs}^{(b)}=3.2$", output = "character")), x = 3.2, y = .1, parse = TRUE) +
+  geom_segment(x = 3.2, xend = 3.2, y = .08, yend = 0, arrow = arrow()) + geom_point(aes(x = 3.2, y = 0), size = 2.5)
 ```
 
 
@@ -1631,7 +1632,7 @@ Entonces debemos hallar $P( z \geq 2.50 )$ y ya no hace falta
 indicar la condición (si $\mu = 6.50$), porque está incluida en el
 cálculo de $z$. Para eso complementamos la probabilidad acumulada hasta $2.50$:
 ```{r echo=TRUE}
-round(1 - pnorm(2.5),4)
+round(1 - pnorm(2.5), 4)
 ```
 
 $$P( z \geq 2.50) = 0.0062$$
@@ -1685,7 +1686,7 @@ personas o más que vayan a votar al candidato, si en la población la
 proporción de quienes lo votarán fuera de 30% ($H_0$ verdadera). Se complementa la probabilildad acumulada hasta 15 (variable dicreta):
 
 ```{r echo=TRUE}
-round(1 - pbinom(15, 50, .3),4)
+round(1 - pbinom(15, 50, .3), 4)
 ```
 
 
@@ -1782,8 +1783,8 @@ x <- rnorm(150, 2.15, 1)
 ```
 
 ```{r echo=TRUE}
-round(mean(x),2)
-round(sd(x),2)
+round(mean(x), 2)
+round(sd(x), 2)
 length(x)
 ```
 

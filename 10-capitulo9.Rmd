@@ -729,7 +729,6 @@ for (i in 1:200) {
   muestras$Varianza[[i]] <- var(muestra_act, na.rm = TRUE)
 }
 head(muestras)
-
 ```
 
 Cuando solicitamos un resumen de las medias muestrales obtenemos:
@@ -765,7 +764,7 @@ El histograma de las medias muestrales es:
 
 ```{r warning=FALSE}
 ggplot(muestras) +
-  geom_histogram(aes(Media), fill = "green", bins = 30, col = "black") +ylab("frecuencia relativa") + xlim(c(1, 10)) +
+  geom_histogram(aes(Media), fill = "green", bins = 30, col = "black") + ylab("frecuencia relativa") + xlim(c(1, 10)) +
   theme_tufte()
 ```
 
@@ -976,7 +975,7 @@ Esto quiere decir que pedir que la proporción muestral ($\widehat{p}$) sea 1 (1
 $$P(\widehat{p} = 1) = B( 15;15;0.70)$$
 
 ```{r echo=TRUE}
-round(dbinom(15, 15, .7),4)
+round(dbinom(15, 15, .7), 4)
 ```
 
 
@@ -992,7 +991,7 @@ Ahora la probabilidad es:
 $$P(\widehat{p} = 0.40) = B(6;15;0.70)$$
 
 ```{r}
-round(dbinom(6, 15, .70),4)
+round(dbinom(6, 15, .70), 4)
 ```
 
 
@@ -1021,7 +1020,8 @@ Si $n$ tiende a $\infty$ y $n*P$ y $n*(1-P)$ son mayores a $5$.
 Sea que para una localidad determinada, el 20% de la población adulta  consultó al centro de salud municipal durante el año pasado. Si extraemos muestras de tamaño 100 y en cada una de ellas observamos la proporción de personas que consultaron a ese centro de salud durante el año pasado, el gráfico de la distribución binomial de la cantidad de consultantes en cada muestra será:
 
 ```{r}
-library(ggplot2)
+library("ggplot2")
+
 ggplot(data.frame(z = c(0, 100)), aes(z)) +
   stat_function(fun = dbinom, n = 101, args = list(100, .2)) +
   ylab("") + xlab("cantidad de consultantes al centro municipal en muestras de 100 casos") +
@@ -1044,11 +1044,11 @@ $$\widehat{p} = \frac{\widehat{x}}{n}$$
 Por lo que el gráfico anterior puede tratarse a escala de $\widehat{p}$
 
 ```{r}
-nuevosrotulos<-c("0","0.25","0.50","0.75","1")
+nuevosrotulos <- c("0", "0.25", "0.50", "0.75", "1")
 ggplot(data.frame(z = c(0, 100)), aes(z)) +
   stat_function(fun = dbinom, n = 101, args = list(100, .2)) +
   ylab("") + xlab("proporción de consultantes al centro municipal en muestras de 100 casos") +
-  scale_y_continuous(breaks = NULL) + scale_x_continuous(labels= nuevosrotulos)+ theme_tufte()
+  scale_y_continuous(breaks = NULL) + scale_x_continuous(labels = nuevosrotulos) + theme_tufte()
 ```
 
 Si nos interesamos por la probabilidad de obtener una proporción de 0.25 ó superior en la muestra, debemos transformarla a una cantidad de éxitos muestrales:
@@ -1061,7 +1061,7 @@ $$P(\widehat{p} \geq 0.25) = P(\widehat{x} \geq 25) = B(\widehat{x} \geq 25;\ 10
 
 Al que solicitamos como complemento de la probabilidad acumulada de 24:
 ```{r echo=TRUE}
-round(1 - pbinom(24, 100, .2),4)
+round(1 - pbinom(24, 100, .2), 4)
 ```
 
 
@@ -1114,7 +1114,7 @@ $$P(\widehat{p} \geq 0.25) = P(z \geq 1.125)$$
 Que es el complemento de la probabilidad acumulada:
 
 ```{r echo=TRUE}
-round(1 - pnorm(1.125),4)
+round(1 - pnorm(1.125), 4)
 ```
 
 $$P(\widehat{p} \geq 0.25) = 0.1303$$
@@ -1171,7 +1171,7 @@ de las horas de sueño <!--referencia a ese ejemplo-->, si las muestras fueran d
 $$P(\overline{x} > 7) = P(t_{14} > \frac{7 - 6.5}{\frac{3}{\sqrt{15}}}) = P(t_{14} > 3.87)$$
 
 ```{r echo=TRUE}
-round(1 - pt(3.87, 14),5)
+round(1 - pt(3.87, 14), 5)
 ```
 
 
@@ -1179,7 +1179,7 @@ Cuando la muestra crece, la diferencia entre los modelos normal y t, se
 reduce. Si se repite la operación del ejemplo de las horas de sueño, con muestras de tamaño 200, usando la distribución $t$, resulta que:
 
 ```{r}
-round(1 - pt(2.38, 199),5)
+round(1 - pt(2.38, 199), 5)
 ```
 
 
@@ -1197,15 +1197,20 @@ solicitan 10000 muestras de tamaño 10, el siguiente es el histograma de ellas, 
 mostrar la calidad del ajuste:
 
 ```{r}
-muestra_tercer_parcial<-read.csv("bases/archivostxt/muestra_tercer_parcial.csv")
+muestra_tercer_parcial <- read.csv("bases/archivostxt/muestra_tercer_parcial.csv")
 ```
 
 
 ```{r echo=TRUE, warning=FALSE}
-ggplot(muestra_tercer_parcial)+geom_histogram(aes(x=Media,
-    y =..density..), fill="green")+stat_function(
-      fun = dnorm, args = list(mean = mean(muestra_tercer_parcial$Media),
-                               sd = sd(muestra_tercer_parcial$Media)))+
+ggplot(muestra_tercer_parcial) + geom_histogram(aes(
+  x = Media,
+  y = ..density..
+), fill = "green") + stat_function(
+  fun = dnorm, args = list(
+    mean = mean(muestra_tercer_parcial$Media),
+    sd = sd(muestra_tercer_parcial$Media)
+  )
+) +
   theme_tufte()
 ```
 
@@ -1216,8 +1221,10 @@ varianzas muestrales, se obtiene:
 
 
 ```{r echo=TRUE, warning=FALSE}
-ggplot(muestra_tercer_parcial)+geom_histogram(aes(x=Varianza,
-    y =..density..), fill="green")+
+ggplot(muestra_tercer_parcial) + geom_histogram(aes(
+  x = Varianza,
+  y = ..density..
+), fill = "green") +
   theme_tufte()
 ```
 
@@ -1267,7 +1274,7 @@ aux_table <- tibble::tribble(
   "Número de éxitos en la población X", "$\\widehat{x}$", "", "$B(x, n,p)$",
   "Proporción de casos en una categoría: P (muestras grandes)", "$\\widehat{p}$", "$\\frac{\\widehat{p} - P}{\\sigma_{\\widehat{p}}}$", "$N(P,\\frac{P*(1 - P)}{n})$",
   "Varianza: $\\sigma^{2}$", "$s^{2}$", "$\\frac{n - 1*s^{2}}{\\sigma^{2}}$", "$\\chi_{n - 1}^{2}$",
-  "Cociente de varianzas: $\\frac{\\sigma_{1}^{2}}{\\sigma_{2}^{2}}$", "$\\frac{s_{1}^{2}}{s_{2}^{2}}$", "$\\frac{s_1^2*\\sigma_2^2}{s_2^2*\\sigma_1^2}$" , "$F_{n_{1} - 1,n_{2} - 1}$"
+  "Cociente de varianzas: $\\frac{\\sigma_{1}^{2}}{\\sigma_{2}^{2}}$", "$\\frac{s_{1}^{2}}{s_{2}^{2}}$", "$\\frac{s_1^2*\\sigma_2^2}{s_2^2*\\sigma_1^2}$", "$F_{n_{1} - 1,n_{2} - 1}$"
 )
 knitr::kable(
   aux_table, kable_outp,

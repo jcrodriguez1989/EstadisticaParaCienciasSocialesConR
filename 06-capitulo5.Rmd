@@ -993,7 +993,8 @@ distribución normal, que se verá más adelante[^40].
 <!-- a este cuadro hay que arreglarlo, no está muy mal, pero las columnas están mal definidas-->
 
 ```{r}
-library(kableExtra)
+library("kableExtra")
+
 aux_table <- tibble::tribble(
   ~"Nivel de medición de las variables", ~"Coeficiente", ~"Rango de variación", ~"Lectura",
   "Ambas dicotómicas reales", "$\\varphi$ (phi) de Yule", "$[-1; 1]$", "No importa el signo, la relación es fuerte si es cercano a 1 ó a -1 y débil si está cerca de 0",
@@ -1006,8 +1007,9 @@ aux_table <- tibble::tribble(
   "Una dicotómica proveniente de una continua recategorizada y otra proporcional", "$r_b$ biserial", "$[-1; 1]$", "Más intensa si es próximo a 1 o a $-1$",
 )
 kableExtra::kable_styling(
-  knitr::kable(aux_table, format = "markdown", booktabs = TRUE, align = "llcl"),bootstrap_options = c("striped", "hover")
-  )
+  knitr::kable(aux_table, format = "markdown", booktabs = TRUE, align = "llcl"),
+  bootstrap_options = c("striped", "hover")
+)
 ```
 
 ## Matriz de correlaciones
@@ -1546,7 +1548,8 @@ En el paquete base de R existe una función que realiza operaciones relacionadas
 La aplicación de la prueba a una tabla de contingencia da como resultado un objeto de clase "htest", de ello, nos van a interesar sus componentes. Para construir la tabla que cruza los tipos de violencia con el tamaño de las ciudades, primero debemos leer la base (datos ficticios), denominamos "violencia" a esa base: 
 ```{r, echo=TRUE}
 violencia <- read.table("bases/archivostxt/violencia.txt",
-                        sep = ",", header = TRUE)
+  sep = ",", header = TRUE
+)
 ```
 
 Los nombres de las variables son:
@@ -1671,14 +1674,16 @@ sqrt(d.ji.cuad / (n * min(c - 1, f - 1)))
 El comando para calcular coeficientes de  correlación en R es `cor`, al cual en este caso deberá indicársele que estamos trabajando con variables ordinales, por lo que queremos el coeficiente de Spearman; de lo contrario, por defecto calcula el coeficiente de Pearson. La matriz de datos del ejemplo mostrado antes se llama merito.educa.mad y las variables son OM (orden de mérito) y educamadre. Así definidas, el pedido del coeficiente se hace indicando cuáles son las dos variables que se correlacionan y qué método debe usarse, en base a su nivel de medición:
 
 ```{r, echo=TRUE}
-cor(merito.educa.mad$OM, merito.educa.mad$educamadre, 
-    method = "spearman")
+cor(merito.educa.mad$OM, merito.educa.mad$educamadre,
+  method = "spearman"
+)
 ```
 
 Redondeado a tres decimales
 ```{r, echo=TRUE}
-round(cor(merito.educa.mad$OM, merito.educa.mad$educamadre, 
-    method = "spearman"), 3)
+round(cor(merito.educa.mad$OM, merito.educa.mad$educamadre,
+  method = "spearman"
+), 3)
 ```
 
 
@@ -1743,8 +1748,10 @@ Los grupos deben codificarse como cero y uno, para luego solicitar un coeficient
 
 ```{r, echo=TRUE}
 grupo <- c(rep("control", 7), rep("experimental", 10))
-puntaje <- c(8, 5, 6, 5, 6, 8, 6, 4, 5.6, 5.6, 8, 7.2, 6.4,
-             7.2, 8, 8, 7.2)
+puntaje <- c(
+  8, 5, 6, 5, 6, 8, 6, 4, 5.6, 5.6, 8, 7.2, 6.4,
+  7.2, 8, 8, 7.2
+)
 grupo.cod <- c(rep(0, 7), rep(1, 10))
 compara.grupos <- data.frame(grupo, puntaje, grupo.cod)
 
@@ -1831,12 +1838,12 @@ Para ver las medidas descriptivas, se solicita el resumen completo de la matriz 
 
 ```{r, echo=TRUE}
 summary(anscombe)
-
 ```
 
 Un modo de expresar el resultado de manera más compacta es usando el paquete `dplyr`:
 ```{r, echo=TRUE}
-library(dplyr)
+library("dplyr")
+
 apply(anscombe, 2, summary)
 ```
 
@@ -1847,10 +1854,10 @@ Se observa la similitud de las medidas resumen de $x_1$, $x_2$, $x_3$, $x_4$ por
 Además, las correlaciones entre los pares son casi idénticas:
 
 ```{r, echo=TRUE}
-round(cor(anscombe$x1, anscombe$y1),3)
-round(cor(anscombe$x2, anscombe$y2),3)
-round(cor(anscombe$x3, anscombe$y3),3)
-round(cor(anscombe$x4, anscombe$y4),3)
+round(cor(anscombe$x1, anscombe$y1), 3)
+round(cor(anscombe$x2, anscombe$y2), 3)
+round(cor(anscombe$x3, anscombe$y3), 3)
+round(cor(anscombe$x4, anscombe$y4), 3)
 ```
 
 Y también son muy similares los modelos lineales que ajustan cada relación. Las ordenadas al origen:
@@ -1874,7 +1881,7 @@ lm(anscombe$y4 ~ anscombe$x4)$coefficients[2]
 Sin embargo, los diagramas de dispersión muestran que se trata de conjuntos muy diferentes entre sí. Usamos el paquete ggplot para hacer los cuatro gráficos a los que se llama $p_1, p_2, p_3, p_4$. En la primera capa de cada gráfico colocamos el origen de los datos, que es la matriz *anscombe*, luego sumamos una capa con puntos correspondientes a $x_1, y_1$ en el primer gráfico y así en los tres siguientes. La tercera capa es la función lineal que mejor ajusta los puntos. Finalmente el theme_tufte da a cada gráfico el formato que elegimos. Para mostrarlos, usamos el comando grid.arrange al que indicamos los cuatro objetos y la dimensión del arreglo, que son dos filas y dos columnas:
 
 ```{r, echo=TRUE}
-p1 <- ggplot(anscombe) + geom_point(aes(x1, y1)) + geom_abline()+
+p1 <- ggplot(anscombe) + geom_point(aes(x1, y1)) + geom_abline() +
   theme_tufte()
 p2 <- ggplot(anscombe) + geom_point(aes(x2, y2)) + geom_abline() +
   theme_tufte()
@@ -1883,7 +1890,7 @@ p3 <- ggplot(anscombe) + geom_point(aes(x3, y3)) + geom_abline() +
 p4 <- ggplot(anscombe) + geom_point(aes(x4, y4)) + geom_abline() +
   theme_tufte()
 
-grid.arrange(p1, p2, p3, p4, nrow = 2, ncol = 2) #para ordenar los
+grid.arrange(p1, p2, p3, p4, nrow = 2, ncol = 2) # para ordenar los
 # cuatro gráficos en una grilla de 2 x 2
 ```
 
@@ -1891,8 +1898,8 @@ grid.arrange(p1, p2, p3, p4, nrow = 2, ncol = 2) #para ordenar los
 Para usar el Datasaurus, se debe primero instalar el paquete y cargarlo en la sesión, la matriz de datos se llama `datasaurus_dozen`:
 
 ```{r echo=TRUE, warning=FALSE, message=FALSE}
-
 library("datasauRus")
+
 datasaurus_dozen
 ```
 
@@ -1916,7 +1923,7 @@ Cada fila corresponde a un subconjunto de datos. En la tabla se observa la simil
 
 ```{r, echo=TRUE}
 ggplot(datasaurus_dozen) + # haremos un plot con los datos
-  #datasaurus_dozen
+  # datasaurus_dozen
   geom_point(aes(x, y, col = dataset)) + # puntos x, y, con el color
   ## mapeado al nombre de cada conjunto de datos
   geom_abline() + # agregamos una linea recta

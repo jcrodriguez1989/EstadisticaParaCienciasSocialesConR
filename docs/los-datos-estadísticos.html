@@ -1213,27 +1213,27 @@ La lectura de los archivos .txt se puede realizar con varios comandos, que depen
 </ul>
 <p>Conviene mirar la base original, desde el archivo .txt, que puede abrirse con bloc de notas, para asegurarse qué sepadores tiene.</p>
 <p>A continuación se usarán datos de la matriz de datos que proviene de la aplicación del cuestionario de la Figura <a href="los-datos-estadísticos.html#fig:cuestionario">1.1</a>. La matriz (o base) de datos que tiene los datos cargados está en formato txt, tiene los campos separados por espacios en blanco y se llama base2019.txt. Para leer esa base, primero se ubica la ruta del archivo:</p>
-<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb173-1" data-line-number="1"><span class="kw">file.choose</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb171-1" data-line-number="1"><span class="kw">file.choose</span>()</a></code></pre></div>
 <p>Aquí se abre un explorador para llegar al archivo que se busca, cuando se lo selecciona, la respuesta es su ruta, que debe pegarse como argumento de <code>read.table</code>. Luego se pide su lectura, asignando el resultado al objeto base.ejemplo:</p>
-<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb174-1" data-line-number="1">base.ejemplo &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;bases/archivostxt/base2019.txt&quot;</span>,</a>
-<a class="sourceLine" id="cb174-2" data-line-number="2">  <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">sep =</span> <span class="st">&quot; &quot;</span>, <span class="dt">na.strings =</span> <span class="st">&quot;999&quot;</span></a>
-<a class="sourceLine" id="cb174-3" data-line-number="3">)</a></code></pre></div>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb172-1" data-line-number="1">base.ejemplo &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;bases/archivostxt/base2019.txt&quot;</span>,</a>
+<a class="sourceLine" id="cb172-2" data-line-number="2">  <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">sep =</span> <span class="st">&quot; &quot;</span>, <span class="dt">na.strings =</span> <span class="st">&quot;999&quot;</span></a>
+<a class="sourceLine" id="cb172-3" data-line-number="3">)</a></code></pre></div>
 <p>Además del nombre y la ruta del archivo, en este caso indicamos que la primera fila contiene los nombres de las variables y que los casos perdidos están codificados como 999.</p>
 <p>En el panel superior derecho ha aparecido este primer objeto, del que se indica el tipo, su tamaño, y las cantidades de observaciones y de variables.<br />
 El tipo de objeto se solicita:</p>
-<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb175-1" data-line-number="1"><span class="kw">class</span>(base.ejemplo)</a></code></pre></div>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb173-1" data-line-number="1"><span class="kw">class</span>(base.ejemplo)</a></code></pre></div>
 <pre><code>## [1] &quot;data.frame&quot;</code></pre>
 <p>Es una matriz de datos, como se esperaba y se la puede ver pidiendo:</p>
-<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb177-1" data-line-number="1"><span class="kw">View</span>(base.ejemplo)</a></code></pre></div>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb175-1" data-line-number="1"><span class="kw">View</span>(base.ejemplo)</a></code></pre></div>
 <p>En esta exploración inicial, se pueden listar los nombres de las columnas (las variables):</p>
-<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb178-1" data-line-number="1"><span class="kw">names</span>(base.ejemplo)</a></code></pre></div>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb176-1" data-line-number="1"><span class="kw">names</span>(base.ejemplo)</a></code></pre></div>
 <pre><code>##  [1] &quot;caso&quot;         &quot;grupo&quot;        &quot;cuestionario&quot; &quot;nombre&quot;       &quot;P1&quot;          
 ##  [6] &quot;P2&quot;           &quot;P3&quot;           &quot;P4&quot;           &quot;P5&quot;           &quot;P5.otra&quot;     
 ## [11] &quot;P6&quot;           &quot;P7&quot;           &quot;P7.otra&quot;      &quot;P8&quot;           &quot;P9&quot;          
 ## [16] &quot;P10&quot;          &quot;P11&quot;          &quot;P11.otra&quot;     &quot;P12&quot;          &quot;P13&quot;         
 ## [21] &quot;P14&quot;          &quot;P15&quot;          &quot;P16&quot;          &quot;comision&quot;</code></pre>
 <p>Y pedir las primeras filas de la matriz. Para la presentación aquí y para que quede visible, elegimos solo las columnas de la quinta a la undécima; es lo que está indicado en el corchete que acompaña al nombre de la base. Cuando se aplica a una matriz de datos, ese corchete es para seleccionar algunas filas o algunas columnas y admite dos valores separados por una coma, el primero se refiere a la o las fila(s) y el segundo la o las columna(s). En este caso el primer elemento está en blanco, eso quiere decir que se usen todas las filas, el segundo elemento dice que se seleccionen solo las columnas de la 5 a la 11:</p>
-<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb180-1" data-line-number="1"><span class="kw">head</span>(base.ejemplo[,<span class="dv">5</span><span class="op">:</span><span class="dv">11</span>] )</a></code></pre></div>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb178-1" data-line-number="1"><span class="kw">head</span>(base.ejemplo[, <span class="dv">5</span><span class="op">:</span><span class="dv">11</span>])</a></code></pre></div>
 <pre><code>##   P1        P2 P3 P4 P5 P5.otra  P6
 ## 1  2  femenino 19  1  1    &lt;NA&gt; 120
 ## 2  1 masculino 29  1  2    &lt;NA&gt;  90
@@ -1243,17 +1243,17 @@ El tipo de objeto se solicita:</p>
 ## 6  1         m 22  1  2    &lt;NA&gt; 240</code></pre>
 <p>Si no se hubiera hecho la selección de esas columnas, por defecto se muestran las seis primera filas, en todas las columnas. Los <NA> son casos sin respuesta.<br />
 Para tener más accesibles las variables, vamos a ponerle un nombre a cada columna:</p>
-<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb182-1" data-line-number="1"><span class="kw">names</span>(base.ejemplo) &lt;-<span class="st"> </span><span class="kw">c</span>(</a>
-<a class="sourceLine" id="cb182-2" data-line-number="2">  <span class="st">&quot;caso&quot;</span>, <span class="st">&quot;grupo&quot;</span>, <span class="st">&quot;n.cuest&quot;</span>, <span class="st">&quot;nombre&quot;</span>, <span class="st">&quot;sexo&quot;</span>, <span class="st">&quot;genero&quot;</span>,</a>
-<a class="sourceLine" id="cb182-3" data-line-number="3">  <span class="st">&quot;edad&quot;</span>, <span class="st">&quot;acceso.redes&quot;</span>, <span class="st">&quot;red.usada&quot;</span>, <span class="st">&quot;red.otra&quot;</span>,</a>
-<a class="sourceLine" id="cb182-4" data-line-number="4">  <span class="st">&quot;tiempo.red&quot;</span>, <span class="st">&quot;con.q.vive&quot;</span>, <span class="st">&quot;relacion.otros&quot;</span>,</a>
-<a class="sourceLine" id="cb182-5" data-line-number="5">  <span class="st">&quot;q.aporta&quot;</span>, <span class="st">&quot;q.aporta.amigos&quot;</span>, <span class="st">&quot;edad.partida&quot;</span>,</a>
-<a class="sourceLine" id="cb182-6" data-line-number="6">  <span class="st">&quot;razon.partida&quot;</span>,</a>
-<a class="sourceLine" id="cb182-7" data-line-number="7">  <span class="st">&quot;razon.partida.otra&quot;</span>, <span class="st">&quot;calidad.sueño&quot;</span>,</a>
-<a class="sourceLine" id="cb182-8" data-line-number="8">  <span class="st">&quot;preocupacion&quot;</span>, <span class="st">&quot;golpeo&quot;</span>, <span class="st">&quot;robo&quot;</span>, <span class="st">&quot;cuanto.da&quot;</span>, <span class="st">&quot;comision&quot;</span></a>
-<a class="sourceLine" id="cb182-9" data-line-number="9">)</a></code></pre></div>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb180-1" data-line-number="1"><span class="kw">names</span>(base.ejemplo) &lt;-<span class="st"> </span><span class="kw">c</span>(</a>
+<a class="sourceLine" id="cb180-2" data-line-number="2">  <span class="st">&quot;caso&quot;</span>, <span class="st">&quot;grupo&quot;</span>, <span class="st">&quot;n.cuest&quot;</span>, <span class="st">&quot;nombre&quot;</span>, <span class="st">&quot;sexo&quot;</span>, <span class="st">&quot;genero&quot;</span>,</a>
+<a class="sourceLine" id="cb180-3" data-line-number="3">  <span class="st">&quot;edad&quot;</span>, <span class="st">&quot;acceso.redes&quot;</span>, <span class="st">&quot;red.usada&quot;</span>, <span class="st">&quot;red.otra&quot;</span>,</a>
+<a class="sourceLine" id="cb180-4" data-line-number="4">  <span class="st">&quot;tiempo.red&quot;</span>, <span class="st">&quot;con.q.vive&quot;</span>, <span class="st">&quot;relacion.otros&quot;</span>,</a>
+<a class="sourceLine" id="cb180-5" data-line-number="5">  <span class="st">&quot;q.aporta&quot;</span>, <span class="st">&quot;q.aporta.amigos&quot;</span>, <span class="st">&quot;edad.partida&quot;</span>,</a>
+<a class="sourceLine" id="cb180-6" data-line-number="6">  <span class="st">&quot;razon.partida&quot;</span>,</a>
+<a class="sourceLine" id="cb180-7" data-line-number="7">  <span class="st">&quot;razon.partida.otra&quot;</span>, <span class="st">&quot;calidad.sueño&quot;</span>,</a>
+<a class="sourceLine" id="cb180-8" data-line-number="8">  <span class="st">&quot;preocupacion&quot;</span>, <span class="st">&quot;golpeo&quot;</span>, <span class="st">&quot;robo&quot;</span>, <span class="st">&quot;cuanto.da&quot;</span>, <span class="st">&quot;comision&quot;</span></a>
+<a class="sourceLine" id="cb180-9" data-line-number="9">)</a></code></pre></div>
 <p>De este modo se sobreescriben los nombres originales y quedan los nuevos. Si pedimos nuevamente los nombres, tenemos:</p>
-<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb183-1" data-line-number="1"><span class="kw">names</span>(base.ejemplo)</a></code></pre></div>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb181-1" data-line-number="1"><span class="kw">names</span>(base.ejemplo)</a></code></pre></div>
 <pre><code>##  [1] &quot;caso&quot;               &quot;grupo&quot;              &quot;n.cuest&quot;           
 ##  [4] &quot;nombre&quot;             &quot;sexo&quot;               &quot;genero&quot;            
 ##  [7] &quot;edad&quot;               &quot;acceso.redes&quot;       &quot;red.usada&quot;         
@@ -1263,12 +1263,12 @@ Para tener más accesibles las variables, vamos a ponerle un nombre a cada colum
 ## [19] &quot;calidad.sueño&quot;      &quot;preocupacion&quot;       &quot;golpeo&quot;            
 ## [22] &quot;robo&quot;               &quot;cuanto.da&quot;          &quot;comision&quot;</code></pre>
 <p>Y puede verse la matriz por medio de:</p>
-<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb185-1" data-line-number="1"><span class="kw">View</span>(base.ejemplo)</a></code></pre></div>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb183-1" data-line-number="1"><span class="kw">View</span>(base.ejemplo)</a></code></pre></div>
 </div>
 <div id="las-variables-1" class="section level3">
 <h3><span class="header-section-number">1.8.2</span> Las variables</h3>
 <p>Cada variable es una columna de la matriz, que ahora tienen los nombres que acabamos de darles. Para acceder a cada una y operar con ellas, se usa el signo “pesos” <span class="math inline">\(\$\)</span> luego del nombre de la matriz. Por ejemplo, la codificación numérica de la variable sexo (1 y 2 para varones y mujeres respectivamente), fue útil para la recolección y la carga de los datos, pero ahora necesitamos tratarla como lo que es. En efecto:</p>
-<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb186-1" data-line-number="1"><span class="kw">class</span>(base.ejemplo<span class="op">$</span>sexo)</a></code></pre></div>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb184-1" data-line-number="1"><span class="kw">class</span>(base.ejemplo<span class="op">$</span>sexo)</a></code></pre></div>
 <pre><code>## [1] &quot;integer&quot;</code></pre>
 <p>Esta almacenada como un número entero, pero es nominal, que en el lenguaje de R, se llama factor, y sus categorías, se llaman “niveles” (levels) o “niveles del factor” (factor levels). Para transformarla a ese tipo de variable hay dos opciones:</p>
 <ul>
@@ -1276,49 +1276,50 @@ Para tener más accesibles las variables, vamos a ponerle un nombre a cada colum
 <li>Crear una nueva variable en la matriz, a partir de sexo, con un nombre diferente.</li>
 </ul>
 <p>Elegimos la primera opción, es decir que operamos sobre la misma variable sexo, con lo que sobreescribimos la original. Primero la volvemos factor:</p>
-<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb188-1" data-line-number="1">base.ejemplo<span class="op">$</span>sexo &lt;-<span class="st"> </span><span class="kw">as.factor</span>(base.ejemplo<span class="op">$</span>sexo)</a></code></pre></div>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb186-1" data-line-number="1">base.ejemplo<span class="op">$</span>sexo &lt;-<span class="st"> </span><span class="kw">as.factor</span>(base.ejemplo<span class="op">$</span>sexo)</a></code></pre></div>
 <p>Si preguntamos por los niveles que tiene este factor, obtenemos:</p>
-<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb189-1" data-line-number="1"><span class="kw">levels</span>(base.ejemplo<span class="op">$</span>sexo)</a></code></pre></div>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb187-1" data-line-number="1"><span class="kw">levels</span>(base.ejemplo<span class="op">$</span>sexo)</a></code></pre></div>
 <pre><code>## [1] &quot;1&quot; &quot;2&quot;</code></pre>
 <p>Mantiene los valores 1 y 2 pero entre comillas, lo que indica que no los trata como números sino como códigos de una variable nominal (categórica).<br />
 Ahora le damos nombres a las categorías (los niveles del factor):</p>
-<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb191-1" data-line-number="1"><span class="kw">levels</span>(base.ejemplo<span class="op">$</span>sexo) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;varones&quot;</span>, <span class="st">&quot;mujeres&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb189-1" data-line-number="1"><span class="kw">levels</span>(base.ejemplo<span class="op">$</span>sexo) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;varones&quot;</span>, <span class="st">&quot;mujeres&quot;</span>)</a></code></pre></div>
 <p>Si se observa la matriz, aparecen ahora los nuevos nombres de las categorías.<br />
 Repetimos estas operaciones sobre las otras preguntas del cuestionario:</p>
-<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb192-1" data-line-number="1">base.ejemplo<span class="op">$</span>con.q.vive &lt;-<span class="st"> </span><span class="kw">as.factor</span>(base.ejemplo<span class="op">$</span>con.q.vive)</a>
-<a class="sourceLine" id="cb192-2" data-line-number="2"><span class="kw">levels</span>(base.ejemplo<span class="op">$</span>con.q.vive) &lt;-<span class="st"> </span><span class="kw">c</span>(</a>
-<a class="sourceLine" id="cb192-3" data-line-number="3">  <span class="st">&quot;flia.origen&quot;</span>, <span class="st">&quot;flia.nueva&quot;</span>,</a>
-<a class="sourceLine" id="cb192-4" data-line-number="4">  <span class="st">&quot;hermanes.o.amigues&quot;</span>, <span class="st">&quot;solo&quot;</span>,</a>
-<a class="sourceLine" id="cb192-5" data-line-number="5">  <span class="st">&quot;con.otres&quot;</span></a>
-<a class="sourceLine" id="cb192-6" data-line-number="6">)</a>
-<a class="sourceLine" id="cb192-7" data-line-number="7">base.ejemplo<span class="op">$</span>q.aporta &lt;-<span class="st"> </span><span class="kw">as.factor</span>(base.ejemplo<span class="op">$</span>q.aporta)</a>
-<a class="sourceLine" id="cb192-8" data-line-number="8"><span class="kw">levels</span>(base.ejemplo<span class="op">$</span>q.aporta) &lt;-<span class="st"> </span><span class="kw">c</span>(</a>
-<a class="sourceLine" id="cb192-9" data-line-number="9">  <span class="st">&quot;el.mismo&quot;</span>, <span class="st">&quot;flia.origen&quot;</span>,</a>
-<a class="sourceLine" id="cb192-10" data-line-number="10">  <span class="st">&quot;flia.nueva&quot;</span>, <span class="st">&quot;entre.amigos&quot;</span></a>
-<a class="sourceLine" id="cb192-11" data-line-number="11">)</a>
-<a class="sourceLine" id="cb192-12" data-line-number="12"></a>
-<a class="sourceLine" id="cb192-13" data-line-number="13">base.ejemplo<span class="op">$</span>acceso.redes &lt;-<span class="st"> </span><span class="kw">as.factor</span>(base.ejemplo<span class="op">$</span>acceso.redes)</a>
-<a class="sourceLine" id="cb192-14" data-line-number="14"><span class="kw">levels</span>(base.ejemplo<span class="op">$</span>acceso.redes) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;si&quot;</span>, <span class="st">&quot;no&quot;</span>)</a>
-<a class="sourceLine" id="cb192-15" data-line-number="15"></a>
-<a class="sourceLine" id="cb192-16" data-line-number="16">base.ejemplo<span class="op">$</span>red.usada &lt;-<span class="st"> </span><span class="kw">as.factor</span>(base.ejemplo<span class="op">$</span>red.usada)</a>
-<a class="sourceLine" id="cb192-17" data-line-number="17"><span class="kw">levels</span>(base.ejemplo<span class="op">$</span>red.usada) &lt;-<span class="st"> </span><span class="kw">c</span>(</a>
-<a class="sourceLine" id="cb192-18" data-line-number="18">  <span class="st">&quot;Instagram&quot;</span>, <span class="st">&quot;Facebook&quot;</span>, <span class="st">&quot;Twitter&quot;</span>,</a>
-<a class="sourceLine" id="cb192-19" data-line-number="19">  <span class="st">&quot;Linkedin&quot;</span>, <span class="st">&quot;Tinder/Grindr/happn&quot;</span>,</a>
-<a class="sourceLine" id="cb192-20" data-line-number="20">  <span class="st">&quot;Snapchat&quot;</span>, <span class="st">&quot;Ninguna&quot;</span>, <span class="st">&quot;Otra&quot;</span></a>
-<a class="sourceLine" id="cb192-21" data-line-number="21">)</a>
-<a class="sourceLine" id="cb192-22" data-line-number="22"></a>
-<a class="sourceLine" id="cb192-23" data-line-number="23">base.ejemplo<span class="op">$</span>razon.partida &lt;-<span class="st"> </span><span class="kw">as.factor</span>(base.ejemplo<span class="op">$</span>razon.partida)</a>
-<a class="sourceLine" id="cb192-24" data-line-number="24"><span class="kw">levels</span>(base.ejemplo<span class="op">$</span>razon.partida) &lt;-<span class="st"> </span><span class="kw">c</span>(</a>
-<a class="sourceLine" id="cb192-25" data-line-number="25">  <span class="st">&quot;estudio&quot;</span>,<span class="st">&quot;nueva.flia&quot;</span>, <span class="st">&quot;ganas&quot;</span>, <span class="st">&quot;otras&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb190-1" data-line-number="1">base.ejemplo<span class="op">$</span>con.q.vive &lt;-<span class="st"> </span><span class="kw">as.factor</span>(base.ejemplo<span class="op">$</span>con.q.vive)</a>
+<a class="sourceLine" id="cb190-2" data-line-number="2"><span class="kw">levels</span>(base.ejemplo<span class="op">$</span>con.q.vive) &lt;-<span class="st"> </span><span class="kw">c</span>(</a>
+<a class="sourceLine" id="cb190-3" data-line-number="3">  <span class="st">&quot;flia.origen&quot;</span>, <span class="st">&quot;flia.nueva&quot;</span>,</a>
+<a class="sourceLine" id="cb190-4" data-line-number="4">  <span class="st">&quot;hermanes.o.amigues&quot;</span>, <span class="st">&quot;solo&quot;</span>,</a>
+<a class="sourceLine" id="cb190-5" data-line-number="5">  <span class="st">&quot;con.otres&quot;</span></a>
+<a class="sourceLine" id="cb190-6" data-line-number="6">)</a>
+<a class="sourceLine" id="cb190-7" data-line-number="7">base.ejemplo<span class="op">$</span>q.aporta &lt;-<span class="st"> </span><span class="kw">as.factor</span>(base.ejemplo<span class="op">$</span>q.aporta)</a>
+<a class="sourceLine" id="cb190-8" data-line-number="8"><span class="kw">levels</span>(base.ejemplo<span class="op">$</span>q.aporta) &lt;-<span class="st"> </span><span class="kw">c</span>(</a>
+<a class="sourceLine" id="cb190-9" data-line-number="9">  <span class="st">&quot;el.mismo&quot;</span>, <span class="st">&quot;flia.origen&quot;</span>,</a>
+<a class="sourceLine" id="cb190-10" data-line-number="10">  <span class="st">&quot;flia.nueva&quot;</span>, <span class="st">&quot;entre.amigos&quot;</span></a>
+<a class="sourceLine" id="cb190-11" data-line-number="11">)</a>
+<a class="sourceLine" id="cb190-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb190-13" data-line-number="13">base.ejemplo<span class="op">$</span>acceso.redes &lt;-<span class="st"> </span><span class="kw">as.factor</span>(base.ejemplo<span class="op">$</span>acceso.redes)</a>
+<a class="sourceLine" id="cb190-14" data-line-number="14"><span class="kw">levels</span>(base.ejemplo<span class="op">$</span>acceso.redes) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;si&quot;</span>, <span class="st">&quot;no&quot;</span>)</a>
+<a class="sourceLine" id="cb190-15" data-line-number="15"></a>
+<a class="sourceLine" id="cb190-16" data-line-number="16">base.ejemplo<span class="op">$</span>red.usada &lt;-<span class="st"> </span><span class="kw">as.factor</span>(base.ejemplo<span class="op">$</span>red.usada)</a>
+<a class="sourceLine" id="cb190-17" data-line-number="17"><span class="kw">levels</span>(base.ejemplo<span class="op">$</span>red.usada) &lt;-<span class="st"> </span><span class="kw">c</span>(</a>
+<a class="sourceLine" id="cb190-18" data-line-number="18">  <span class="st">&quot;Instagram&quot;</span>, <span class="st">&quot;Facebook&quot;</span>, <span class="st">&quot;Twitter&quot;</span>,</a>
+<a class="sourceLine" id="cb190-19" data-line-number="19">  <span class="st">&quot;Linkedin&quot;</span>, <span class="st">&quot;Tinder/Grindr/happn&quot;</span>,</a>
+<a class="sourceLine" id="cb190-20" data-line-number="20">  <span class="st">&quot;Snapchat&quot;</span>, <span class="st">&quot;Ninguna&quot;</span>, <span class="st">&quot;Otra&quot;</span></a>
+<a class="sourceLine" id="cb190-21" data-line-number="21">)</a>
+<a class="sourceLine" id="cb190-22" data-line-number="22"></a>
+<a class="sourceLine" id="cb190-23" data-line-number="23">base.ejemplo<span class="op">$</span>razon.partida &lt;-<span class="st"> </span><span class="kw">as.factor</span>(base.ejemplo<span class="op">$</span>razon.partida)</a>
+<a class="sourceLine" id="cb190-24" data-line-number="24"><span class="kw">levels</span>(base.ejemplo<span class="op">$</span>razon.partida) &lt;-<span class="st"> </span><span class="kw">c</span>(</a>
+<a class="sourceLine" id="cb190-25" data-line-number="25">  <span class="st">&quot;estudio&quot;</span>, <span class="st">&quot;nueva.flia&quot;</span>, <span class="st">&quot;ganas&quot;</span>, <span class="st">&quot;otras&quot;</span></a>
+<a class="sourceLine" id="cb190-26" data-line-number="26">)</a></code></pre></div>
 <p>La cantidad de casos es el número de filas de la matriz de datos. En el caso de una variable, es decir de una columna, la cantidad de observaciones es la longitud del vector que la representa. Para conocer cuántos casos tiene una variable en particular, el comando es length:</p>
-<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb193-1" data-line-number="1"><span class="kw">length</span>(base.ejemplo<span class="op">$</span>sexo)</a></code></pre></div>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb191-1" data-line-number="1"><span class="kw">length</span>(base.ejemplo<span class="op">$</span>sexo)</a></code></pre></div>
 <pre><code>## [1] 5003</code></pre>
 <p>Cuando se aplica a una matriz de datos, su longitud en el número de variables:</p>
-<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb195-1" data-line-number="1"><span class="kw">length</span>(base.ejemplo)</a></code></pre></div>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb193-1" data-line-number="1"><span class="kw">length</span>(base.ejemplo)</a></code></pre></div>
 <pre><code>## [1] 24</code></pre>
 <p>Los elementos de la matriz de datos pueden accederse por filas o por columnas. Unos corchetes puestos a continuación del nombre identifican filas (casos), columnas (variables) o elementos (categorías). El corchete tiene como argumento dos números separados por una coma; el primero se refiere a la fila, el segundo a la columna, ambos juntos determinan un valor.</p>
 <p>El valor que está en la fila 254, columna 7 de base.ejemplo es 30, que es la edad (columna 7) de la persona que está en la fila 254</p>
-<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb197-1" data-line-number="1">base.ejemplo[<span class="dv">254</span>, <span class="dv">7</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb195-1" data-line-number="1">base.ejemplo[<span class="dv">254</span>, <span class="dv">7</span>]</a></code></pre></div>
 <pre><code>## [1] 30</code></pre>
 <p>Si uno de los dos elementos del corchete se deja en blanco, toma todos los correspondientes de fila o de columna. No vamos a hacer el experimento, porque tendríamos, o bien los valores en cada una de las 24 variables de un sujeto, si pedimos una fila; o bien los 5003 valores de alguna variable, si pedimos una columna; pero es el recurso que se usó para seleccionar algunas columnas en la visualización de la matriz.</p>
 </div>

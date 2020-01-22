@@ -649,9 +649,11 @@ levels(base.ejemplo$red.usada) <- c(
 )
 
 base.ejemplo$razon.partida <- as.factor(
-  base.ejemplo$razon.partida)
+  base.ejemplo$razon.partida
+)
 levels(base.ejemplo$razon.partida) <- c(
-  "estudio","nueva.flia", "ganas", "otras")
+  "estudio", "nueva.flia", "ganas", "otras"
+)
 ```
 
 ### Tablas univariadas  
@@ -682,7 +684,7 @@ install.packages("summarytools")
 
 Y cargarlo en la sesión:  
 ```{r  echo=TRUE, message=FALSE, warning=FALSE}
-library(summarytools)
+library("summarytools")
 ```
 
 En este paquete, el comando para pedir una tabla es `freq`. Para la misma variable anterior:
@@ -788,7 +790,7 @@ install.packages("ggplot2")
 
 y cargarse en la sesión  
 ```{r echo=TRUE}
-library(ggplot2)
+library("ggplot2")
 ```
 
 La construcción de los gráficos en `ggplot` se hace por medio de capas que se van agregando. Las capas tienen cinco componentes:  
@@ -805,27 +807,27 @@ Cada figura geométrica (`geom`) tiene asociada una transformación estadística
 La primera instrucción para crear un gráfico es `ggplot()`. Esta instrucción va a tener como argumento, la matriz de donde provienen las variables a graficar. Puede incluirse el mapeo estético también, pero en este ejemplo lo vamos a agregar en las capas que indican el tipo de gráfico.  
 Si se aplica ese comando a la base.ejemplo:
 ```{r echo=TRUE, fig.asp = 0.7, fig.width = 3, fig.align = 'center'}
-ggplot(base.ejemplo)+theme_gray(base_size = 9)
+ggplot(base.ejemplo) + theme_gray(base_size = 9)
 ```
 
 El resultado son solo los ejes, no se ha indicado aun qué variables graficar ni qué tipo de gráfico hacer. Eso se especifica en las capas.  
 Para hacer un gráfico de barras, luego de indicar sobre qué base se va a trabajar, en el argumento de ggplot, se agrega una capa de barras (`geom_bar`) con la variable que se va a representar (no hace falta indicar de qué matriz de datos proviene, eso ya está en el argumento de `ggplot`):  
 
 ```{r echo=TRUE, fig.asp = 0.7, fig.width = 3, fig.align = 'center'}
-ggplot(base.ejemplo) + geom_bar(aes(red.usada))+theme_gray(base_size = 9)
+ggplot(base.ejemplo) + geom_bar(aes(red.usada)) + theme_gray(base_size = 9)
 ```
 
 Y vamos a mejorarlo en su aspecto. Para quitar los NA, tomamos como argumento de ggplot, no la base completa, sino un subconjunto que no tenga NA en esta variable:
 
 ```{r echo=TRUE, fig.asp = 0.7, fig.width = 3, fig.align = 'center'}
 ggplot(subset(base.ejemplo, is.na(base.ejemplo$red.usada) == FALSE)) +
-  geom_bar(aes(red.usada))+theme_gray(base_size = 9)
+  geom_bar(aes(red.usada)) + theme_gray(base_size = 9)
 ```
 
 Además de hacer el gráfico (ejecutar el comando) podemos guardarlo como un objeto, lo llamamos p1:
 ```{r echo=TRUE}
 p1 <- ggplot(subset(base.ejemplo, is.na(base.ejemplo$red.usada) == FALSE)) +
-  geom_bar(aes(red.usada))+
+  geom_bar(aes(red.usada)) +
   theme_gray(base_size = 9)
 ```
 

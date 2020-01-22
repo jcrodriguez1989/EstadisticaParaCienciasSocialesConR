@@ -241,8 +241,9 @@ Gráfico 1: Ubicación del punto crítico que deja un 5% de área superior
 en una distribución $\chi^{2}$ con 2 grados de libertad.
 
 ```{r}
-library(ggplot2)
-library(ggthemes)
+library("ggplot2")
+library("ggthemes")
+
 ggplot(data = data.frame(chi = c(0, 8)), aes(chi)) +
   geom_area(stat = "function", fun = dchisq, args = list(df = 1), fill = "white", xlim = c(0, qchisq(.95, 1)), col = "black") +
   geom_area(stat = "function", fun = dchisq, args = list(df = 1), fill = "green", xlim = c(qchisq(.95, 1), 6), col = "black") +
@@ -551,7 +552,7 @@ decisión es la de no rechazar $H_0$ y concluir que "no hay evidencia para creer
 El valor $p$ asociado a esta observación es:
 
 ```{r}
-2 * (1-pt(1.43, 18))
+2 * (1 - pt(1.43, 18))
 ```
 
 
@@ -610,7 +611,8 @@ datos_ejemplo_1_chi <- data.frame(resultado, turno)
 Y construimos la tabla
 
 ```{r echo=TRUE}
-library(kableExtra)
+library("kableExtra")
+
 resultado_por_turno <- table(datos_ejemplo_1_chi$resultado, datos_ejemplo_1_chi$turno)
 resultado_por_turno
 ```
@@ -625,7 +627,6 @@ prueba <- chisq.test(resultado_por_turno, correct = FALSE)
 El objeto "prueba" contiene los resultados, veamos cuáles son:  
 ```{r echo=TRUE}
 names(prueba)
-
 ```
  Consultemos algunos de los valores:
 ```{r echo=TRUE}
@@ -645,7 +646,7 @@ prueba
 
 Para ver el modo en que se llegó a ese valor $p$, se calcula la probabilidad de superar el puntaje $\chi_{obs}^2$. Se lo obtiene complementando la probabilidad acumulada.  
 ```{r echo=TRUE}
-1-pchisq(.9028,1)
+1 - pchisq(.9028, 1)
 ```
 
 El resultado conduce a no rechazar la hipótesis nula.  
@@ -661,7 +662,7 @@ tabla_condicion
 ```
 Y la de relativos, redondeada a tres decimales:  
 ```{r echo=TRUE}
-round(prop.table(tabla_condicion),3)
+round(prop.table(tabla_condicion), 3)
 ```
 
 En la aplicación de la prueba, los argumentos son la tabla univariada y las proporciones esperadas (hipotéticas) en cada categoría (en el orden que aparecen):
@@ -692,15 +693,16 @@ install.packages("agricolae")
 ```
 
 ```{r echo=TRUE, warning=FALSE, eval=FALSE}
-library(agricolae)
+library("agricolae")
 ```
 
 La prueba tiene como argumentos a las dos variables y se solicita que no haga una corrección interna:
   
 ```{r echo=TRUE, warning=FALSE}
-  prueba_mediana<-Median.test(datos_prueba_mediana$concepto,
-            datos_prueba_mediana$docente,
-            correct = FALSE)
+prueba_mediana <- Median.test(datos_prueba_mediana$concepto,
+  datos_prueba_mediana$docente,
+  correct = FALSE
+)
 ```
 Los componentes de este objeto son:  
 ```{r echo=TRUE, warning=FALSE}
@@ -764,9 +766,9 @@ Se ilustra con un ejemplo sobre evaluaciones antes y después de una intervenci�
 <!--esto no se muestra-->
 ```{r}
 set.seed(21)
-antes <- round(rnorm(20, 5, 1),1)
-despues <- round(rnorm(20, 8, 3),1)
-puntaje<-cbind(antes, despues)
+antes <- round(rnorm(20, 5, 1), 1)
+despues <- round(rnorm(20, 8, 3), 1)
+puntaje <- cbind(antes, despues)
 datos_apareadas <- data.frame(puntaje)
 write.csv(datos_apareadas, "bases/archivostxt/datos_apareadas.csv")
 ```

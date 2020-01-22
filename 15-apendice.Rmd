@@ -166,196 +166,244 @@ rechazar una $H_0$ que es falsa) estamos dispuestos a asumir.
 Los gráficos siguientes ilustran la relación entre estos elementos para diferentes combinaciones de tamaño del efecto, nivel de significación y tamaño de muestra. Las áreas sombreadas más claro corresponden a la probabilidad de cometer Error de Tipo II (el complemento de la potencia), las oscuras a la probabilidad de cometer Error de Tipo I (el nivel de significación), la distancia entre los centros de las campanas representa el tamaño del efecto, la diferente amplitud de las campanas indica la diferente varianza según el tamaño de la muestra.  
 
 ```{r warning=FALSE}
-library(ggplot2)
-library(ggthemes)
-library(gridExtra)
+library("ggplot2")
+library("ggthemes")
+library("gridExtra")
 
-s=1
-alpha=.05
-mu_1<-.5
+s <- 1
+alpha <- .05
+mu_1 <- .5
 
-efecto_chico_alpha5_s1<-ggplot(data.frame(x = c(-3.5,7.5)), aes(x)) +
-  stat_function(fun = dnorm, args = list(mean = 0, sd = s), col="grey17") +
-  stat_function(fun = dnorm, args = list(mean = 0, sd = s), fill="grey17",
-                xlim = c(qnorm(1-alpha),4),
-                geom = "area")+
-  stat_function(fun = dnorm, args = list(mean = mu_1, sd = s), col="grey57")+
-  stat_function(fun = dnorm, args = list(mean = mu_1, sd = s), 
-                xlim = c(-4,qnorm(1-alpha)),fill="grey57", alpha=.5, geom = "area")+geom_vline(xintercept = 0, col="grey17")+
-  geom_vline(xintercept = mu_1,col="grey57")+
-  scale_y_continuous(breaks = NULL)+scale_x_continuous(breaks = NULL)+
-  theme_tufte()+xlab("")+ylab("")
-
-
-mu_1<-1
-efecto_mediano_alpha5_s1<-ggplot(data.frame(x = c(-3.5,7.5)), aes(x)) +
-  stat_function(fun = dnorm, args = list(mean = 0, sd = s), col="grey17") +
-  stat_function(fun = dnorm, args = list(mean = 0, sd = s), fill="grey17",
-                xlim = c(qnorm(1-alpha),4),
-                geom = "area")+
-  stat_function(fun = dnorm, args = list(mean = mu_1, sd = s), col="grey57")+
-  stat_function(fun = dnorm, args = list(mean = mu_1, sd = s), 
-                xlim = c(-4,qnorm(1-alpha)),fill="grey57", alpha=.5, geom = "area")+geom_vline(xintercept = 0, col="grey17")+
-  geom_vline(xintercept = mu_1,col="grey57")+
-  scale_y_continuous(breaks = NULL)+scale_x_continuous(breaks = NULL)+
-  theme_tufte()+xlab("")+ylab("")
+efecto_chico_alpha5_s1 <- ggplot(data.frame(x = c(-3.5, 7.5)), aes(x)) +
+  stat_function(fun = dnorm, args = list(mean = 0, sd = s), col = "grey17") +
+  stat_function(
+    fun = dnorm, args = list(mean = 0, sd = s), fill = "grey17",
+    xlim = c(qnorm(1 - alpha), 4),
+    geom = "area"
+  ) +
+  stat_function(fun = dnorm, args = list(mean = mu_1, sd = s), col = "grey57") +
+  stat_function(
+    fun = dnorm, args = list(mean = mu_1, sd = s),
+    xlim = c(-4, qnorm(1 - alpha)), fill = "grey57", alpha = .5, geom = "area"
+  ) + geom_vline(xintercept = 0, col = "grey17") +
+  geom_vline(xintercept = mu_1, col = "grey57") +
+  scale_y_continuous(breaks = NULL) + scale_x_continuous(breaks = NULL) +
+  theme_tufte() + xlab("") + ylab("")
 
 
-mu_1<-3
-efecto_grande_alpha5_s1<-ggplot(data.frame(x = c(-3.5,7.5)), aes(x)) +
-  stat_function(fun = dnorm, args = list(mean = 0, sd = s), col="grey17") +
-  stat_function(fun = dnorm, args = list(mean = 0, sd = s), fill="grey17", 
-                xlim = c(qnorm(1-alpha),4),
-                geom = "area")+
-  stat_function(fun = dnorm, args = list(mean = mu_1, sd = s), col="grey57")+
-  stat_function(fun = dnorm, args = list(mean = mu_1, sd = s), 
-                xlim = c(-4,qnorm(1-alpha)),fill="grey57", alpha=.5, geom = "area")+geom_vline(xintercept = 0, col="grey17")+
-  geom_vline(xintercept = mu_1,col="grey57")+
-  scale_y_continuous(breaks = NULL)+scale_x_continuous(breaks = NULL)+
-  theme_tufte()+xlab("")+ylab("")
+mu_1 <- 1
+efecto_mediano_alpha5_s1 <- ggplot(data.frame(x = c(-3.5, 7.5)), aes(x)) +
+  stat_function(fun = dnorm, args = list(mean = 0, sd = s), col = "grey17") +
+  stat_function(
+    fun = dnorm, args = list(mean = 0, sd = s), fill = "grey17",
+    xlim = c(qnorm(1 - alpha), 4),
+    geom = "area"
+  ) +
+  stat_function(fun = dnorm, args = list(mean = mu_1, sd = s), col = "grey57") +
+  stat_function(
+    fun = dnorm, args = list(mean = mu_1, sd = s),
+    xlim = c(-4, qnorm(1 - alpha)), fill = "grey57", alpha = .5, geom = "area"
+  ) + geom_vline(xintercept = 0, col = "grey17") +
+  geom_vline(xintercept = mu_1, col = "grey57") +
+  scale_y_continuous(breaks = NULL) + scale_x_continuous(breaks = NULL) +
+  theme_tufte() + xlab("") + ylab("")
 
 
-alpha=.01
-mu_1<-.5
-
-efecto_chico_alpha1_s1<-ggplot(data.frame(x = c(-3.5,7.5)), aes(x)) +
-  stat_function(fun = dnorm, args = list(mean = 0, sd = s), col="grey17") +
-  stat_function(fun = dnorm, args = list(mean = 0, sd = s), fill="grey17",
-                xlim = c(qnorm(1-alpha),4),
-                geom = "area")+
-  stat_function(fun = dnorm, args = list(mean = mu_1, sd = s), col="grey57")+
-  stat_function(fun = dnorm, args = list(mean = mu_1, sd = s), 
-                xlim = c(-4,qnorm(1-alpha)),fill="grey57", alpha=.5, geom = "area")+geom_vline(xintercept = 0, col="grey17")+
-  geom_vline(xintercept = mu_1,col="grey57")+
-  scale_y_continuous(breaks = NULL)+scale_x_continuous(breaks = NULL)+
-  theme_tufte()+xlab("")+ylab("")
-
-
-mu_1<-1
-efecto_mediano_alpha1_s1<-ggplot(data.frame(x = c(-3.5,7.5)), aes(x)) +
-  stat_function(fun = dnorm, args = list(mean = 0, sd = s), col="grey17") +
-  stat_function(fun = dnorm, args = list(mean = 0, sd = s), fill="grey17",
-                xlim = c(qnorm(1-alpha),4),
-                geom = "area")+
-  stat_function(fun = dnorm, args = list(mean = mu_1, sd = s), col="grey57")+
-  stat_function(fun = dnorm, args = list(mean = mu_1, sd = s), 
-                xlim = c(-4,qnorm(1-alpha)),fill="grey57", alpha=.5, geom = "area")+geom_vline(xintercept = 0, col="grey17")+
-  geom_vline(xintercept = mu_1,col="grey57")+
-  scale_y_continuous(breaks = NULL)+scale_x_continuous(breaks = NULL)+
-  theme_tufte()+xlab("")+ylab("")
+mu_1 <- 3
+efecto_grande_alpha5_s1 <- ggplot(data.frame(x = c(-3.5, 7.5)), aes(x)) +
+  stat_function(fun = dnorm, args = list(mean = 0, sd = s), col = "grey17") +
+  stat_function(
+    fun = dnorm, args = list(mean = 0, sd = s), fill = "grey17",
+    xlim = c(qnorm(1 - alpha), 4),
+    geom = "area"
+  ) +
+  stat_function(fun = dnorm, args = list(mean = mu_1, sd = s), col = "grey57") +
+  stat_function(
+    fun = dnorm, args = list(mean = mu_1, sd = s),
+    xlim = c(-4, qnorm(1 - alpha)), fill = "grey57", alpha = .5, geom = "area"
+  ) + geom_vline(xintercept = 0, col = "grey17") +
+  geom_vline(xintercept = mu_1, col = "grey57") +
+  scale_y_continuous(breaks = NULL) + scale_x_continuous(breaks = NULL) +
+  theme_tufte() + xlab("") + ylab("")
 
 
-mu_1<-3
-efecto_grande_alpha1_s1<-ggplot(data.frame(x = c(-3.5,7.5)), aes(x)) +
-  stat_function(fun = dnorm, args = list(mean = 0, sd = s), col="grey17") +
-  stat_function(fun = dnorm, args = list(mean = 0, sd = s), fill="grey17", 
-                xlim = c(qnorm(1-alpha),4),
-                geom = "area")+
-  stat_function(fun = dnorm, args = list(mean = mu_1, sd = s), col="grey57")+
-  stat_function(fun = dnorm, args = list(mean = mu_1, sd = s), 
-                xlim = c(-4,qnorm(1-alpha)),fill="grey57", alpha=.5, geom = "area")+geom_vline(xintercept = 0, col="grey17")+
-  geom_vline(xintercept = mu_1,col="grey57")+
-  scale_y_continuous(breaks = NULL)+scale_x_continuous(breaks = NULL)+
-  theme_tufte()+xlab("")+ylab("")
+alpha <- .01
+mu_1 <- .5
+
+efecto_chico_alpha1_s1 <- ggplot(data.frame(x = c(-3.5, 7.5)), aes(x)) +
+  stat_function(fun = dnorm, args = list(mean = 0, sd = s), col = "grey17") +
+  stat_function(
+    fun = dnorm, args = list(mean = 0, sd = s), fill = "grey17",
+    xlim = c(qnorm(1 - alpha), 4),
+    geom = "area"
+  ) +
+  stat_function(fun = dnorm, args = list(mean = mu_1, sd = s), col = "grey57") +
+  stat_function(
+    fun = dnorm, args = list(mean = mu_1, sd = s),
+    xlim = c(-4, qnorm(1 - alpha)), fill = "grey57", alpha = .5, geom = "area"
+  ) + geom_vline(xintercept = 0, col = "grey17") +
+  geom_vline(xintercept = mu_1, col = "grey57") +
+  scale_y_continuous(breaks = NULL) + scale_x_continuous(breaks = NULL) +
+  theme_tufte() + xlab("") + ylab("")
+
+
+mu_1 <- 1
+efecto_mediano_alpha1_s1 <- ggplot(data.frame(x = c(-3.5, 7.5)), aes(x)) +
+  stat_function(fun = dnorm, args = list(mean = 0, sd = s), col = "grey17") +
+  stat_function(
+    fun = dnorm, args = list(mean = 0, sd = s), fill = "grey17",
+    xlim = c(qnorm(1 - alpha), 4),
+    geom = "area"
+  ) +
+  stat_function(fun = dnorm, args = list(mean = mu_1, sd = s), col = "grey57") +
+  stat_function(
+    fun = dnorm, args = list(mean = mu_1, sd = s),
+    xlim = c(-4, qnorm(1 - alpha)), fill = "grey57", alpha = .5, geom = "area"
+  ) + geom_vline(xintercept = 0, col = "grey17") +
+  geom_vline(xintercept = mu_1, col = "grey57") +
+  scale_y_continuous(breaks = NULL) + scale_x_continuous(breaks = NULL) +
+  theme_tufte() + xlab("") + ylab("")
+
+
+mu_1 <- 3
+efecto_grande_alpha1_s1 <- ggplot(data.frame(x = c(-3.5, 7.5)), aes(x)) +
+  stat_function(fun = dnorm, args = list(mean = 0, sd = s), col = "grey17") +
+  stat_function(
+    fun = dnorm, args = list(mean = 0, sd = s), fill = "grey17",
+    xlim = c(qnorm(1 - alpha), 4),
+    geom = "area"
+  ) +
+  stat_function(fun = dnorm, args = list(mean = mu_1, sd = s), col = "grey57") +
+  stat_function(
+    fun = dnorm, args = list(mean = mu_1, sd = s),
+    xlim = c(-4, qnorm(1 - alpha)), fill = "grey57", alpha = .5, geom = "area"
+  ) + geom_vline(xintercept = 0, col = "grey17") +
+  geom_vline(xintercept = mu_1, col = "grey57") +
+  scale_y_continuous(breaks = NULL) + scale_x_continuous(breaks = NULL) +
+  theme_tufte() + xlab("") + ylab("")
 
 ##
 
-s=.7
-alpha=.05
-mu_1<-.5
+s <- .7
+alpha <- .05
+mu_1 <- .5
 
-efecto_chico_alpha5_s.5<-ggplot(data.frame(x = c(-3.5,7.5)), aes(x)) +
-  stat_function(fun = dnorm, args = list(mean = 0, sd = s), col="grey17") +
-  stat_function(fun = dnorm, args = list(mean = 0, sd = s), fill="grey17",
-                xlim = c(qnorm(1-alpha),4),
-                geom = "area")+
-  stat_function(fun = dnorm, args = list(mean = mu_1, sd = s), col="grey57")+
-  stat_function(fun = dnorm, args = list(mean = mu_1, sd = s), 
-                xlim = c(-4,qnorm(1-alpha)),fill="grey57", alpha=.5, geom = "area")+geom_vline(xintercept = 0, col="grey17")+
-  geom_vline(xintercept = mu_1,col="grey57")+
-  scale_y_continuous(breaks = NULL)+scale_x_continuous(breaks = NULL)+
-  theme_tufte()+xlab("")+ylab("")
-
-
-mu_1<-1
-efecto_mediano_alpha5_s.5<-ggplot(data.frame(x = c(-3.5,7.5)), aes(x)) +
-  stat_function(fun = dnorm, args = list(mean = 0, sd = s), col="grey17") +
-  stat_function(fun = dnorm, args = list(mean = 0, sd = s), fill="grey17",
-                xlim = c(qnorm(1-alpha),4),
-                geom = "area")+
-  stat_function(fun = dnorm, args = list(mean = mu_1, sd = s), col="grey57")+
-  stat_function(fun = dnorm, args = list(mean = mu_1, sd = s), 
-                xlim = c(-4,qnorm(1-alpha)),fill="grey57", alpha=.5, geom = "area")+geom_vline(xintercept = 0, col="grey17")+
-  geom_vline(xintercept = mu_1,col="grey57")+
-  scale_y_continuous(breaks = NULL)+scale_x_continuous(breaks = NULL)+
-  theme_tufte()+xlab("")+ylab("")
+efecto_chico_alpha5_s.5 <- ggplot(data.frame(x = c(-3.5, 7.5)), aes(x)) +
+  stat_function(fun = dnorm, args = list(mean = 0, sd = s), col = "grey17") +
+  stat_function(
+    fun = dnorm, args = list(mean = 0, sd = s), fill = "grey17",
+    xlim = c(qnorm(1 - alpha), 4),
+    geom = "area"
+  ) +
+  stat_function(fun = dnorm, args = list(mean = mu_1, sd = s), col = "grey57") +
+  stat_function(
+    fun = dnorm, args = list(mean = mu_1, sd = s),
+    xlim = c(-4, qnorm(1 - alpha)), fill = "grey57", alpha = .5, geom = "area"
+  ) + geom_vline(xintercept = 0, col = "grey17") +
+  geom_vline(xintercept = mu_1, col = "grey57") +
+  scale_y_continuous(breaks = NULL) + scale_x_continuous(breaks = NULL) +
+  theme_tufte() + xlab("") + ylab("")
 
 
-mu_1<-3
-efecto_grande_alpha5_s.5<-ggplot(data.frame(x = c(-3.5,7.5)), aes(x)) +
-  stat_function(fun = dnorm, args = list(mean = 0, sd = s), col="grey17") +
-  stat_function(fun = dnorm, args = list(mean = 0, sd = s), fill="grey17", 
-                xlim = c(qnorm(1-alpha),4),
-                geom = "area")+
-  stat_function(fun = dnorm, args = list(mean = mu_1, sd = s), col="grey57")+
-  stat_function(fun = dnorm, args = list(mean = mu_1, sd = s), 
-                xlim = c(-4,qnorm(1-alpha)),fill="grey57", alpha=.5, geom = "area")+geom_vline(xintercept = 0, col="grey17")+
-  geom_vline(xintercept = mu_1,col="grey57")+
-  scale_y_continuous(breaks = NULL)+scale_x_continuous(breaks = NULL)+
-  theme_tufte()+xlab("")+ylab("")
+mu_1 <- 1
+efecto_mediano_alpha5_s.5 <- ggplot(data.frame(x = c(-3.5, 7.5)), aes(x)) +
+  stat_function(fun = dnorm, args = list(mean = 0, sd = s), col = "grey17") +
+  stat_function(
+    fun = dnorm, args = list(mean = 0, sd = s), fill = "grey17",
+    xlim = c(qnorm(1 - alpha), 4),
+    geom = "area"
+  ) +
+  stat_function(fun = dnorm, args = list(mean = mu_1, sd = s), col = "grey57") +
+  stat_function(
+    fun = dnorm, args = list(mean = mu_1, sd = s),
+    xlim = c(-4, qnorm(1 - alpha)), fill = "grey57", alpha = .5, geom = "area"
+  ) + geom_vline(xintercept = 0, col = "grey17") +
+  geom_vline(xintercept = mu_1, col = "grey57") +
+  scale_y_continuous(breaks = NULL) + scale_x_continuous(breaks = NULL) +
+  theme_tufte() + xlab("") + ylab("")
 
 
-alpha=.01
-mu_1<-.5
-
-efecto_chico_alpha1_s.5<-ggplot(data.frame(x = c(-3.5,7.5)), aes(x)) +
-  stat_function(fun = dnorm, args = list(mean = 0, sd = s), col="grey17") +
-  stat_function(fun = dnorm, args = list(mean = 0, sd = s), fill="grey17",
-                xlim = c(qnorm(1-alpha),4),
-                geom = "area")+
-  stat_function(fun = dnorm, args = list(mean = mu_1, sd = s), col="grey57")+
-  stat_function(fun = dnorm, args = list(mean = mu_1, sd = s), 
-                xlim = c(-4,qnorm(1-alpha)),fill="grey57", alpha=.5, geom = "area")+geom_vline(xintercept = 0, col="grey17")+
-  geom_vline(xintercept = mu_1,col="grey57")+
-  scale_y_continuous(breaks = NULL)+scale_x_continuous(breaks = NULL)+
-  theme_tufte()+xlab("")+ylab("")
-
-
-mu_1<-1
-efecto_mediano_alpha1_s.5<-ggplot(data.frame(x = c(-3.5,7.5)), aes(x)) +
-  stat_function(fun = dnorm, args = list(mean = 0, sd = s), col="grey17") +
-  stat_function(fun = dnorm, args = list(mean = 0, sd = s), fill="grey17",
-                xlim = c(qnorm(1-alpha),4),
-                geom = "area")+
-  stat_function(fun = dnorm, args = list(mean = mu_1, sd = s), col="grey57")+
-  stat_function(fun = dnorm, args = list(mean = mu_1, sd = s), 
-                xlim = c(-4,qnorm(1-alpha)),fill="grey57", alpha=.5, geom = "area")+geom_vline(xintercept = 0, col="grey17")+
-  geom_vline(xintercept = mu_1,col="grey57")+
-  scale_y_continuous(breaks = NULL)+scale_x_continuous(breaks = NULL)+
-  theme_tufte()+xlab("")+ylab("")
+mu_1 <- 3
+efecto_grande_alpha5_s.5 <- ggplot(data.frame(x = c(-3.5, 7.5)), aes(x)) +
+  stat_function(fun = dnorm, args = list(mean = 0, sd = s), col = "grey17") +
+  stat_function(
+    fun = dnorm, args = list(mean = 0, sd = s), fill = "grey17",
+    xlim = c(qnorm(1 - alpha), 4),
+    geom = "area"
+  ) +
+  stat_function(fun = dnorm, args = list(mean = mu_1, sd = s), col = "grey57") +
+  stat_function(
+    fun = dnorm, args = list(mean = mu_1, sd = s),
+    xlim = c(-4, qnorm(1 - alpha)), fill = "grey57", alpha = .5, geom = "area"
+  ) + geom_vline(xintercept = 0, col = "grey17") +
+  geom_vline(xintercept = mu_1, col = "grey57") +
+  scale_y_continuous(breaks = NULL) + scale_x_continuous(breaks = NULL) +
+  theme_tufte() + xlab("") + ylab("")
 
 
-mu_1<-3
-efecto_grande_alpha1_s.5<-ggplot(data.frame(x = c(-3.5,7.5)), aes(x)) +
-  stat_function(fun = dnorm, args = list(mean = 0, sd = s), col="grey17") +
-  stat_function(fun = dnorm, args = list(mean = 0, sd = s), fill="grey17", 
-                xlim = c(qnorm(1-alpha),4),
-                geom = "area")+
-  stat_function(fun = dnorm, args = list(mean = mu_1, sd = s), col="grey57")+
-  stat_function(fun = dnorm, args = list(mean = mu_1, sd = s), 
-                xlim = c(-4,qnorm(1-alpha)),fill="grey57", alpha=.5, geom = "area")+geom_vline(xintercept = 0, col="grey17")+
-  geom_vline(xintercept = mu_1,col="grey57")+
-  scale_y_continuous(breaks = NULL)+scale_x_continuous(breaks = NULL)+
-  theme_tufte()+xlab("")+ylab("")
+alpha <- .01
+mu_1 <- .5
+
+efecto_chico_alpha1_s.5 <- ggplot(data.frame(x = c(-3.5, 7.5)), aes(x)) +
+  stat_function(fun = dnorm, args = list(mean = 0, sd = s), col = "grey17") +
+  stat_function(
+    fun = dnorm, args = list(mean = 0, sd = s), fill = "grey17",
+    xlim = c(qnorm(1 - alpha), 4),
+    geom = "area"
+  ) +
+  stat_function(fun = dnorm, args = list(mean = mu_1, sd = s), col = "grey57") +
+  stat_function(
+    fun = dnorm, args = list(mean = mu_1, sd = s),
+    xlim = c(-4, qnorm(1 - alpha)), fill = "grey57", alpha = .5, geom = "area"
+  ) + geom_vline(xintercept = 0, col = "grey17") +
+  geom_vline(xintercept = mu_1, col = "grey57") +
+  scale_y_continuous(breaks = NULL) + scale_x_continuous(breaks = NULL) +
+  theme_tufte() + xlab("") + ylab("")
+
+
+mu_1 <- 1
+efecto_mediano_alpha1_s.5 <- ggplot(data.frame(x = c(-3.5, 7.5)), aes(x)) +
+  stat_function(fun = dnorm, args = list(mean = 0, sd = s), col = "grey17") +
+  stat_function(
+    fun = dnorm, args = list(mean = 0, sd = s), fill = "grey17",
+    xlim = c(qnorm(1 - alpha), 4),
+    geom = "area"
+  ) +
+  stat_function(fun = dnorm, args = list(mean = mu_1, sd = s), col = "grey57") +
+  stat_function(
+    fun = dnorm, args = list(mean = mu_1, sd = s),
+    xlim = c(-4, qnorm(1 - alpha)), fill = "grey57", alpha = .5, geom = "area"
+  ) + geom_vline(xintercept = 0, col = "grey17") +
+  geom_vline(xintercept = mu_1, col = "grey57") +
+  scale_y_continuous(breaks = NULL) + scale_x_continuous(breaks = NULL) +
+  theme_tufte() + xlab("") + ylab("")
+
+
+mu_1 <- 3
+efecto_grande_alpha1_s.5 <- ggplot(data.frame(x = c(-3.5, 7.5)), aes(x)) +
+  stat_function(fun = dnorm, args = list(mean = 0, sd = s), col = "grey17") +
+  stat_function(
+    fun = dnorm, args = list(mean = 0, sd = s), fill = "grey17",
+    xlim = c(qnorm(1 - alpha), 4),
+    geom = "area"
+  ) +
+  stat_function(fun = dnorm, args = list(mean = mu_1, sd = s), col = "grey57") +
+  stat_function(
+    fun = dnorm, args = list(mean = mu_1, sd = s),
+    xlim = c(-4, qnorm(1 - alpha)), fill = "grey57", alpha = .5, geom = "area"
+  ) + geom_vline(xintercept = 0, col = "grey17") +
+  geom_vline(xintercept = mu_1, col = "grey57") +
+  scale_y_continuous(breaks = NULL) + scale_x_continuous(breaks = NULL) +
+  theme_tufte() + xlab("") + ylab("")
 
 grid.arrange(efecto_chico_alpha5_s1, efecto_mediano_alpha5_s1,
-             efecto_grande_alpha5_s1, efecto_chico_alpha1_s1,
-             efecto_mediano_alpha1_s1, efecto_grande_alpha1_s1,
-             efecto_chico_alpha5_s.5, efecto_mediano_alpha5_s.5,
-             efecto_grande_alpha5_s.5, efecto_chico_alpha1_s.5,
-             efecto_mediano_alpha1_s.5, efecto_grande_alpha1_s.5,
-             ncol = 3, nrow=4)
-
+  efecto_grande_alpha5_s1, efecto_chico_alpha1_s1,
+  efecto_mediano_alpha1_s1, efecto_grande_alpha1_s1,
+  efecto_chico_alpha5_s.5, efecto_mediano_alpha5_s.5,
+  efecto_grande_alpha5_s.5, efecto_chico_alpha1_s.5,
+  efecto_mediano_alpha1_s.5, efecto_grande_alpha1_s.5,
+  ncol = 3, nrow = 4
+)
 ```
 
 
@@ -385,13 +433,12 @@ install.packages("pwr")
 ```
 
 ```{r echo=TRUE}
-library(pwr)
+library("pwr")
 ```
 
 Luego se indica el tipo de prueba; `pwr.t.test` para una prueba t, y los valores de: significación, potencia, tamaño del efecto y lateralidad de la prueba.  
 ```{r}
-pwr.t.test( sig.level = .05, power= .8, d=0.85, alternative = "greater")
-
+pwr.t.test(sig.level = .05, power = .8, d = 0.85, alternative = "greater")
 ```
 
 El valor 31 para el tamaño de muestra se considera óptimo porque a

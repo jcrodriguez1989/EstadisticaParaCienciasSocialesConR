@@ -86,8 +86,10 @@ aux_table <- tibble::tribble(
   "Extendido", "", "", "",
 )
 kableExtra::kable_styling(
-  knitr::kable(aux_table, format = "pandoc", booktabs = TRUE, align = "lccc",
-    caption = "Disposición de las variables para el análisis de su relación."),
+  knitr::kable(aux_table,
+    format = "pandoc", booktabs = TRUE, align = "lccc",
+    caption = "Disposición de las variables para el análisis de su relación."
+  ),
   latex_options = "striped"
 )
 ```
@@ -461,17 +463,17 @@ Ejemplo (datos reales): usamos una pregunta del cuestionario del  Operativo Naci
 <!--opción B-->
 
 ```{r}
-one<-read.csv("bases/archivostxt/ONE_2000_cordoba.txt", sep=";")
-levels(one$P16)<-c(NA, "si", "no", NA)
-one$P16<-factor(one$P16)
-levels(one$CATRENLEN)<-c(NA, "bajo", "alto")
-one$CATRENLEN<-factor(one$CATRENLEN)
-lectura_rendim_absolutas<-addmargins(table(one$P16, one$CATRENLEN))
-dimnames(lectura_rendim_absolutas)[[1]][3]<-"Total"
-dimnames(lectura_rendim_absolutas)[[2]][3]<-"Total"
+one <- read.csv("bases/archivostxt/ONE_2000_cordoba.txt", sep = ";")
+levels(one$P16) <- c(NA, "si", "no", NA)
+one$P16 <- factor(one$P16)
+levels(one$CATRENLEN) <- c(NA, "bajo", "alto")
+one$CATRENLEN <- factor(one$CATRENLEN)
+lectura_rendim_absolutas <- addmargins(table(one$P16, one$CATRENLEN))
+dimnames(lectura_rendim_absolutas)[[1]][3] <- "Total"
+dimnames(lectura_rendim_absolutas)[[2]][3] <- "Total"
 
-lectura_rendim_relativas<-round(addmargins(prop.table(table(one$P16, one$CATRENLEN),1),2),2)
-dimnames(lectura_rendim_relativas)[[2]][3]<-"Total"
+lectura_rendim_relativas <- round(addmargins(prop.table(table(one$P16, one$CATRENLEN), 1), 2), 2)
+dimnames(lectura_rendim_relativas)[[2]][3] <- "Total"
 ```
 
 ```{r}
@@ -480,7 +482,6 @@ kableExtra::kable_styling(
   latex_options = "striped"
 ) %>%
   footnote(general = "Fuente: ONE 2000")
-
 ```
 
 
@@ -511,7 +512,6 @@ kableExtra::kable_styling(
   latex_options = "striped"
 ) %>%
   footnote(general = "Fuente: ONE 2000")
-
 ```
 
 
@@ -899,7 +899,7 @@ esperaría encontrar serían como las que calculamos con este
 procedimiento. ¿Y qué sería en ese caso de las frecuencias relativas?
 
 ```{r}
-tabla18 <- round(prop.table(addmargins(round(ji$expected, 0), 2), 2),3)
+tabla18 <- round(prop.table(addmargins(round(ji$expected, 0), 2), 2), 3)
 colnames(tabla18) <- sub("Sum", "Total", colnames(tabla18))
 kableExtra::kable_styling(
   knitr::kable(tabla18,
@@ -1022,21 +1022,24 @@ eph.3.18.validos.estado$ESTADO <- as.factor(
 Ahora sí, se etiquetan sus niveles:
 ```{r echo=TRUE, warning=FALSE}
 levels(eph.3.18.validos.estado$ESTADO) <- c(
-  "ocupade", "desocupade", "inactive")
+  "ocupade", "desocupade", "inactive"
+)
 ```
 
 Con CH04 vamos a crear una variable nueva, que se llamará "sexo", para que sea más simple recordarla:
 
 ```{r echo=TRUE, warning=FALSE}
 eph.3.18.validos.estado$sexo <- as.factor(
-  eph.3.18.validos.estado$CH04)
+  eph.3.18.validos.estado$CH04
+)
 ```
 
 Vemos ahora en el panel superior derecho que aumentó una variable en la base, es la que acabamos de crear.  
 Luego etiquetamos los niveles:
 ```{r echo=TRUE, warning=FALSE}
 levels(eph.3.18.validos.estado$sexo) <- c(
-  "varones", "mujeres")
+  "varones", "mujeres"
+)
 ```
 
 
@@ -1050,8 +1053,10 @@ table(eph.3.18.validos.estado$sexo, eph.3.18.validos.estado$ESTADO)
 Que tiene un aspecto más legible.  
 Guardamos esta tabla con un nombre, para poder usarla después:
 ```{r}
-sexo_por_estado<-table(eph.3.18.validos.estado$sexo,
-                       eph.3.18.validos.estado$ESTADO)
+sexo_por_estado <- table(
+  eph.3.18.validos.estado$sexo,
+  eph.3.18.validos.estado$ESTADO
+)
 ```
 
 
@@ -1096,20 +1101,23 @@ El paquete {summarytools} que se usó para tablas univariadas, tiene comandos pa
 Se carga el paquete correspondiente:
 
 ```{r warning=FALSE,echo=TRUE}
-library(summarytools)
+library("summarytools")
 ```
 
 ```{r warning=FALSE, echo=TRUE, eval=FALSE}
-ctable(eph.3.18.validos.estado$sexo,
-                       eph.3.18.validos.estado$ESTADO)
+ctable(
+  eph.3.18.validos.estado$sexo,
+  eph.3.18.validos.estado$ESTADO
+)
 ```
 
 Por defecto calcula relativas por filas. Si las queremos por columnas, se indica como `prop = "c"`:
 
 ```{r warning=FALSE, echo=TRUE, eval=FALSE}
 ctable(eph.3.18.validos.estado$sexo,
-                       eph.3.18.validos.estado$ESTADO,
-       prop = "c")
+  eph.3.18.validos.estado$ESTADO,
+  prop = "c"
+)
 ```
 
 
@@ -1117,8 +1125,9 @@ Si solo se quieren las frecuencias absolutas, `prop = "n"`:
 
 ```{r warning=FALSE, echo=TRUE, eval=FALSE}
 ctable(eph.3.18.validos.estado$sexo,
-                       eph.3.18.validos.estado$ESTADO,
-       prop = "n")
+  eph.3.18.validos.estado$ESTADO,
+  prop = "n"
+)
 ```
 
 Para darles un formato más personalizado, una opción es llevar la tabla a una hoja de cálculo y allí rotular, centrar, etc. De lo contrario, R ofrece un entorno llamado R Markdown con muchas posibilidades de formato y exportación a pdf o html.

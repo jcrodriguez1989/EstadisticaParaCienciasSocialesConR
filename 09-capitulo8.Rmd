@@ -208,14 +208,13 @@ Para pedir la probabilidad acumulada, como por ejemplo la de obtener tres caras 
 
 ```{r echo=TRUE}
 round(pbinom(3, size = 4, prob = 0.5), 4)
-
 ```
 
 Que es la suma de las probabillidades exactas desde cero hasta tres:  
 ```{r}
-dbinom(3, size = 4, prob = 0.5)+
-  dbinom(2, size = 4, prob = 0.5)+
-  dbinom(1, size = 4, prob = 0.5)+
+dbinom(3, size = 4, prob = 0.5) +
+  dbinom(2, size = 4, prob = 0.5) +
+  dbinom(1, size = 4, prob = 0.5) +
   dbinom(0, size = 4, prob = 0.5)
 ```
 
@@ -264,7 +263,8 @@ hasta el número total de repeticiones del experimento. El siguiente es
 el correspondiente a 20 repeticiones con diferentes valores de $p$:
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
-library(gridExtra)
+library("gridExtra")
+
 exitos_ej_1 <- c(0:20)
 valores_p <- c(.1, .3, .5, .6, .8)
 ej_binom <- data.frame(cbind(
@@ -1192,7 +1192,7 @@ dbinom(x, "cantidad de ensayos", "probabilidad de éxito a cada ensayo")
 Si una variable consiste en la cantidad de éxitos que se obtienen al repetir 15 veces un experimento que a cada repetición tiene probabilidad 0.20 de ser éxito, se trata de una distribución binomial con parámetros $n=15$ y $p=0.20$. La probabilidad de obtener exactamente 7 éxitos, que es $B(x=7, n=15, p=0.20)$ se pide a R así:
 
 ```{r echo=TRUE}
-dbinom(x=7, size=15, prob = .2)
+dbinom(x = 7, size = 15, prob = .2)
 ```
 
 Si se respeta el orden ($x, n, p$), no es necesario indicar qué representa cada número:
@@ -1201,7 +1201,7 @@ dbinom(7, 15, .2)
 ```
 Para expresar el resultado redondeado a cuatro decimales:
 ```{r echo=TRUE}
-round(dbinom(7, 15, .2),4)
+round(dbinom(7, 15, .2), 4)
 ```
 Este es el valor de la función de densidad binomial, no se calcula para variables continuas.
 
@@ -1222,12 +1222,12 @@ El primer argumento (dentro del paréntesis) siempre es el valor de la variable.
 ##### Binomial  
 Para la variable del ejemplos anterior con los mismos parámetros, la probabilidad de obtener 7 éxitos **o menos** se escribe: $B(x\leq7, n=15, p=0.20)$ y se solicita a R con el siguiente comando:  
 ```{r echo=TRUE}
-pbinom(7,15,.20)
+pbinom(7, 15, .20)
 ```
 
 Con cuatro decimales, queda:  
 ```{r echo=TRUE}
-round(pbinom(7,15,.20),4)
+round(pbinom(7, 15, .20), 4)
 ```
 
 
@@ -1321,7 +1321,7 @@ Para hallar cuantiles, los comandos tienen una $q$ delante del nombre del modelo
 #####  Binomial  
 Manteniendo el modelo binomial de los ejemplos anteriores ($n=15$ y $p=0.20$), podemos conocer, por ejemplo, el percentil 90, es decir, el valor de la variable (número de éxitos) por debajo del cual está el 90%. En este caso, $q=0.90$ y los parámetros son los mismos que antes:  
 ```{r echo=TRUE}
-qbinom(.9,15,.2)
+qbinom(.9, 15, .2)
 ```
 Que indica que hay una probabilidad 0.90 que el número de éxitos no supere a cinco.  
 

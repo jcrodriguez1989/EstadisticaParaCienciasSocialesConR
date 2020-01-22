@@ -2029,38 +2029,41 @@ frecuencia absoluta de cada celda es:</p>
 <div id="hacerlo-en-r-3" class="section level2">
 <h2><span class="header-section-number">4.8</span> Hacerlo en R</h2>
 <p>Para ver el modo de construir las tablas bivariadas de este capítulo, usaremos la base de la Encuesta Permanente de Hogares del tercer trimestre de 2018. El primer paso es leerla desde el lugar donde esté guardada y darle un nombre:</p>
-<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb291-1" data-line-number="1">eph.<span class="fl">3.18</span> &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;bases/archivostxt/usu_individual_T318.txt&quot;</span>,</a>
-<a class="sourceLine" id="cb291-2" data-line-number="2">  <span class="dt">sep =</span> <span class="st">&quot;;&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span></a>
-<a class="sourceLine" id="cb291-3" data-line-number="3">)</a></code></pre></div>
+<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb289-1" data-line-number="1">eph.<span class="fl">3.18</span> &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;bases/archivostxt/usu_individual_T318.txt&quot;</span>,</a>
+<a class="sourceLine" id="cb289-2" data-line-number="2">  <span class="dt">sep =</span> <span class="st">&quot;;&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span></a>
+<a class="sourceLine" id="cb289-3" data-line-number="3">)</a></code></pre></div>
 <p>Se indica que los campos están separados por “;” y que la primera fila contiene los nombres de las variables.<br />
 Trabajaremos con las variables CH04 (sexo, 1=varones, 2=mujeres) y ESTADO (0=no entrevistado, 1=ocupade, 2=desocupade, 3=inactive, 4=menor de 10 años).</p>
 <p>La elaboración de las tablas en R se pide con el comando <code>table</code> aplicado sobre las variables de la matriz de datos que se quiera cruzar:</p>
-<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb292-1" data-line-number="1"><span class="kw">table</span>(eph.<span class="fl">3.18</span><span class="op">$</span>CH04, eph.<span class="fl">3.18</span><span class="op">$</span>ESTADO)</a></code></pre></div>
+<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb290-1" data-line-number="1"><span class="kw">table</span>(eph.<span class="fl">3.18</span><span class="op">$</span>CH04, eph.<span class="fl">3.18</span><span class="op">$</span>ESTADO)</a></code></pre></div>
 <pre><code>##    
 ##         0     1     2     3     4
 ##   1    34 13202   940  8787  4256
 ##   2    26 10196   930 14380  4128</code></pre>
 <p>Así presentada, la tabla no es muy clara; solo interesan las categorías válidas de ESTADO, por lo que harán falta algunos ajustes. Para eliminar el 0 y el 4 de ESTADO, tomamos un subconjunto de la base que cumpla con que la variable ESTADO valga 1, 2 ó 3, el simbolo de “o” es “|”. Llamamos <em>eph.3.18.validos.estado</em> a esa nueva base:</p>
-<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb294-1" data-line-number="1">eph.<span class="dv">3</span>.<span class="fl">18.</span>validos.estado &lt;-<span class="st"> </span><span class="kw">subset</span>(eph.<span class="fl">3.18</span>, eph.<span class="fl">3.18</span><span class="op">$</span>ESTADO <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">|</span></a>
-<a class="sourceLine" id="cb294-2" data-line-number="2"><span class="st">  </span>eph.<span class="fl">3.18</span><span class="op">$</span>ESTADO <span class="op">==</span><span class="st"> </span><span class="dv">2</span> <span class="op">|</span></a>
-<a class="sourceLine" id="cb294-3" data-line-number="3"><span class="st">  </span>eph.<span class="fl">3.18</span><span class="op">$</span>ESTADO <span class="op">==</span><span class="st"> </span><span class="dv">3</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb292-1" data-line-number="1">eph.<span class="dv">3</span>.<span class="fl">18.</span>validos.estado &lt;-<span class="st"> </span><span class="kw">subset</span>(eph.<span class="fl">3.18</span>, eph.<span class="fl">3.18</span><span class="op">$</span>ESTADO <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">|</span></a>
+<a class="sourceLine" id="cb292-2" data-line-number="2"><span class="st">  </span>eph.<span class="fl">3.18</span><span class="op">$</span>ESTADO <span class="op">==</span><span class="st"> </span><span class="dv">2</span> <span class="op">|</span></a>
+<a class="sourceLine" id="cb292-3" data-line-number="3"><span class="st">  </span>eph.<span class="fl">3.18</span><span class="op">$</span>ESTADO <span class="op">==</span><span class="st"> </span><span class="dv">3</span>)</a></code></pre></div>
 <p>Vemos en el panel superior derecho que la nueva base tiene la misma cantidad de variables y menos casos.</p>
 <p>Ahora hay que etiquetar las categorías de ESTADO y de CH04, pero como ambas tienen codificación numérica, fueron leídas como si fueran numéricas, se transforma ESTADO a factor:</p>
-<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb295-1" data-line-number="1">eph.<span class="dv">3</span>.<span class="fl">18.</span>validos.estado<span class="op">$</span>ESTADO &lt;-<span class="st"> </span><span class="kw">as.factor</span>(</a>
-<a class="sourceLine" id="cb295-2" data-line-number="2">  eph.<span class="dv">3</span>.<span class="fl">18.</span>validos.estado<span class="op">$</span>ESTADO</a>
-<a class="sourceLine" id="cb295-3" data-line-number="3">)</a></code></pre></div>
+<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb293-1" data-line-number="1">eph.<span class="dv">3</span>.<span class="fl">18.</span>validos.estado<span class="op">$</span>ESTADO &lt;-<span class="st"> </span><span class="kw">as.factor</span>(</a>
+<a class="sourceLine" id="cb293-2" data-line-number="2">  eph.<span class="dv">3</span>.<span class="fl">18.</span>validos.estado<span class="op">$</span>ESTADO</a>
+<a class="sourceLine" id="cb293-3" data-line-number="3">)</a></code></pre></div>
 <p>Ahora sí, se etiquetan sus niveles:</p>
-<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb296-1" data-line-number="1"><span class="kw">levels</span>(eph.<span class="dv">3</span>.<span class="fl">18.</span>validos.estado<span class="op">$</span>ESTADO) &lt;-<span class="st"> </span><span class="kw">c</span>(</a>
-<a class="sourceLine" id="cb296-2" data-line-number="2">  <span class="st">&quot;ocupade&quot;</span>, <span class="st">&quot;desocupade&quot;</span>, <span class="st">&quot;inactive&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb294-1" data-line-number="1"><span class="kw">levels</span>(eph.<span class="dv">3</span>.<span class="fl">18.</span>validos.estado<span class="op">$</span>ESTADO) &lt;-<span class="st"> </span><span class="kw">c</span>(</a>
+<a class="sourceLine" id="cb294-2" data-line-number="2">  <span class="st">&quot;ocupade&quot;</span>, <span class="st">&quot;desocupade&quot;</span>, <span class="st">&quot;inactive&quot;</span></a>
+<a class="sourceLine" id="cb294-3" data-line-number="3">)</a></code></pre></div>
 <p>Con CH04 vamos a crear una variable nueva, que se llamará “sexo”, para que sea más simple recordarla:</p>
-<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb297-1" data-line-number="1">eph.<span class="dv">3</span>.<span class="fl">18.</span>validos.estado<span class="op">$</span>sexo &lt;-<span class="st"> </span><span class="kw">as.factor</span>(</a>
-<a class="sourceLine" id="cb297-2" data-line-number="2">  eph.<span class="dv">3</span>.<span class="fl">18.</span>validos.estado<span class="op">$</span>CH04)</a></code></pre></div>
+<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb295-1" data-line-number="1">eph.<span class="dv">3</span>.<span class="fl">18.</span>validos.estado<span class="op">$</span>sexo &lt;-<span class="st"> </span><span class="kw">as.factor</span>(</a>
+<a class="sourceLine" id="cb295-2" data-line-number="2">  eph.<span class="dv">3</span>.<span class="fl">18.</span>validos.estado<span class="op">$</span>CH04</a>
+<a class="sourceLine" id="cb295-3" data-line-number="3">)</a></code></pre></div>
 <p>Vemos ahora en el panel superior derecho que aumentó una variable en la base, es la que acabamos de crear.<br />
 Luego etiquetamos los niveles:</p>
-<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb298-1" data-line-number="1"><span class="kw">levels</span>(eph.<span class="dv">3</span>.<span class="fl">18.</span>validos.estado<span class="op">$</span>sexo) &lt;-<span class="st"> </span><span class="kw">c</span>(</a>
-<a class="sourceLine" id="cb298-2" data-line-number="2">  <span class="st">&quot;varones&quot;</span>, <span class="st">&quot;mujeres&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb296-1" data-line-number="1"><span class="kw">levels</span>(eph.<span class="dv">3</span>.<span class="fl">18.</span>validos.estado<span class="op">$</span>sexo) &lt;-<span class="st"> </span><span class="kw">c</span>(</a>
+<a class="sourceLine" id="cb296-2" data-line-number="2">  <span class="st">&quot;varones&quot;</span>, <span class="st">&quot;mujeres&quot;</span></a>
+<a class="sourceLine" id="cb296-3" data-line-number="3">)</a></code></pre></div>
 <p>Y solicitamos nuevamente la tabla:</p>
-<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb299-1" data-line-number="1"><span class="kw">table</span>(eph.<span class="dv">3</span>.<span class="fl">18.</span>validos.estado<span class="op">$</span>sexo, eph.<span class="dv">3</span>.<span class="fl">18.</span>validos.estado<span class="op">$</span>ESTADO)</a></code></pre></div>
+<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb297-1" data-line-number="1"><span class="kw">table</span>(eph.<span class="dv">3</span>.<span class="fl">18.</span>validos.estado<span class="op">$</span>sexo, eph.<span class="dv">3</span>.<span class="fl">18.</span>validos.estado<span class="op">$</span>ESTADO)</a></code></pre></div>
 <pre><code>##          
 ##           ocupade desocupade inactive
 ##   varones   13202        940     8787
@@ -2068,55 +2071,59 @@ Luego etiquetamos los niveles:</p>
 <p>Que tiene un aspecto más legible.<br />
 Guardamos esta tabla con un nombre, para poder usarla después:</p>
 <p>Los totales de filas y de columna (frecuencias marginales) deben pedirse explícitamente, con <code>addmargins</code>, lo aplicamos sobre la tabla que ya está guardada:</p>
-<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb301-1" data-line-number="1"><span class="kw">addmargins</span>(sexo_por_estado)</a></code></pre></div>
+<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb299-1" data-line-number="1"><span class="kw">addmargins</span>(sexo_por_estado)</a></code></pre></div>
 <pre><code>##          
 ##           ocupade desocupade inactive   Sum
 ##   varones   13202        940     8787 22929
 ##   mujeres   10196        930    14380 25506
 ##   Sum       23398       1870    23167 48435</code></pre>
 <p>Así como las relativas, usando <code>prop.table</code>:</p>
-<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb303-1" data-line-number="1"><span class="kw">prop.table</span>(sexo_por_estado)</a></code></pre></div>
+<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb301-1" data-line-number="1"><span class="kw">prop.table</span>(sexo_por_estado)</a></code></pre></div>
 <pre><code>##          
 ##              ocupade desocupade   inactive
 ##   varones 0.27257149 0.01940745 0.18141840
 ##   mujeres 0.21050893 0.01920099 0.29689274</code></pre>
 <p>Para reducir los decimales, se solicita redondeo a solo tres:</p>
-<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb305-1" data-line-number="1"><span class="kw">round</span>(<span class="kw">prop.table</span>(sexo_por_estado), <span class="dv">3</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb303-1" data-line-number="1"><span class="kw">round</span>(<span class="kw">prop.table</span>(sexo_por_estado), <span class="dv">3</span>)</a></code></pre></div>
 <pre><code>##          
 ##           ocupade desocupade inactive
 ##   varones   0.273      0.019    0.181
 ##   mujeres   0.211      0.019    0.297</code></pre>
 <p>Y para expresarlos como porcentajes, lo multiplicamos por 100:</p>
-<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb307-1" data-line-number="1"><span class="kw">round</span>(<span class="kw">prop.table</span>(sexo_por_estado), <span class="dv">3</span>) <span class="op">*</span><span class="st"> </span><span class="dv">100</span></a></code></pre></div>
+<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb305-1" data-line-number="1"><span class="kw">round</span>(<span class="kw">prop.table</span>(sexo_por_estado), <span class="dv">3</span>) <span class="op">*</span><span class="st"> </span><span class="dv">100</span></a></code></pre></div>
 <pre><code>##          
 ##           ocupade desocupade inactive
 ##   varones    27.3        1.9     18.1
 ##   mujeres    21.1        1.9     29.7</code></pre>
 <p>Estas frecuencias relativas, lo son respecto del total, si se las quiere por filas, se indica en el argumento <em>1</em></p>
-<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb309-1" data-line-number="1"><span class="kw">round</span>(<span class="kw">prop.table</span>(sexo_por_estado, <span class="dv">1</span>), <span class="dv">3</span>) <span class="op">*</span><span class="st"> </span><span class="dv">100</span></a></code></pre></div>
+<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb307-1" data-line-number="1"><span class="kw">round</span>(<span class="kw">prop.table</span>(sexo_por_estado, <span class="dv">1</span>), <span class="dv">3</span>) <span class="op">*</span><span class="st"> </span><span class="dv">100</span></a></code></pre></div>
 <pre><code>##          
 ##           ocupade desocupade inactive
 ##   varones    57.6        4.1     38.3
 ##   mujeres    40.0        3.6     56.4</code></pre>
 <p>Para obtenerlas por columnas, se indica <em>2</em> en el argumento de <code>prop.table</code>:</p>
-<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb311-1" data-line-number="1"><span class="kw">round</span>(<span class="kw">prop.table</span>(sexo_por_estado, <span class="dv">2</span>), <span class="dv">3</span>) <span class="op">*</span><span class="st"> </span><span class="dv">100</span></a></code></pre></div>
+<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb309-1" data-line-number="1"><span class="kw">round</span>(<span class="kw">prop.table</span>(sexo_por_estado, <span class="dv">2</span>), <span class="dv">3</span>) <span class="op">*</span><span class="st"> </span><span class="dv">100</span></a></code></pre></div>
 <pre><code>##          
 ##           ocupade desocupade inactive
 ##   varones    56.4       50.3     37.9
 ##   mujeres    43.6       49.7     62.1</code></pre>
 <p>El paquete {summarytools} que se usó para tablas univariadas, tiene comandos para tablas bivariadas también, se trata de <code>ctable</code>. Sus argumentos son: en primer lugar la variable que se quiere ubicar en las filas, luego la de las columnas y la opción <code>prop</code> que especifica en qué dirección calcular las frecuencias relativas; sus posibilidades son: “n”: ninguna, “c”: por columnas, “r”: por filas, “t”: sobre el total. Si no se indica, por defecto, la calcula por filas.<br />
 Se carga el paquete correspondiente:</p>
-<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb313-1" data-line-number="1"><span class="kw">library</span>(summarytools)</a></code></pre></div>
-<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb314-1" data-line-number="1"><span class="kw">ctable</span>(eph.<span class="dv">3</span>.<span class="fl">18.</span>validos.estado<span class="op">$</span>sexo,</a>
-<a class="sourceLine" id="cb314-2" data-line-number="2">                       eph.<span class="dv">3</span>.<span class="fl">18.</span>validos.estado<span class="op">$</span>ESTADO)</a></code></pre></div>
+<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb311-1" data-line-number="1"><span class="kw">library</span>(<span class="st">&quot;summarytools&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb312-1" data-line-number="1"><span class="kw">ctable</span>(</a>
+<a class="sourceLine" id="cb312-2" data-line-number="2">  eph.<span class="dv">3</span>.<span class="fl">18.</span>validos.estado<span class="op">$</span>sexo,</a>
+<a class="sourceLine" id="cb312-3" data-line-number="3">  eph.<span class="dv">3</span>.<span class="fl">18.</span>validos.estado<span class="op">$</span>ESTADO</a>
+<a class="sourceLine" id="cb312-4" data-line-number="4">)</a></code></pre></div>
 <p>Por defecto calcula relativas por filas. Si las queremos por columnas, se indica como <code>prop = &quot;c&quot;</code>:</p>
-<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb315-1" data-line-number="1"><span class="kw">ctable</span>(eph.<span class="dv">3</span>.<span class="fl">18.</span>validos.estado<span class="op">$</span>sexo,</a>
-<a class="sourceLine" id="cb315-2" data-line-number="2">                       eph.<span class="dv">3</span>.<span class="fl">18.</span>validos.estado<span class="op">$</span>ESTADO,</a>
-<a class="sourceLine" id="cb315-3" data-line-number="3">       <span class="dt">prop =</span> <span class="st">&quot;c&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb313-1" data-line-number="1"><span class="kw">ctable</span>(eph.<span class="dv">3</span>.<span class="fl">18.</span>validos.estado<span class="op">$</span>sexo,</a>
+<a class="sourceLine" id="cb313-2" data-line-number="2">  eph.<span class="dv">3</span>.<span class="fl">18.</span>validos.estado<span class="op">$</span>ESTADO,</a>
+<a class="sourceLine" id="cb313-3" data-line-number="3">  <span class="dt">prop =</span> <span class="st">&quot;c&quot;</span></a>
+<a class="sourceLine" id="cb313-4" data-line-number="4">)</a></code></pre></div>
 <p>Si solo se quieren las frecuencias absolutas, <code>prop = &quot;n&quot;</code>:</p>
-<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb316-1" data-line-number="1"><span class="kw">ctable</span>(eph.<span class="dv">3</span>.<span class="fl">18.</span>validos.estado<span class="op">$</span>sexo,</a>
-<a class="sourceLine" id="cb316-2" data-line-number="2">                       eph.<span class="dv">3</span>.<span class="fl">18.</span>validos.estado<span class="op">$</span>ESTADO,</a>
-<a class="sourceLine" id="cb316-3" data-line-number="3">       <span class="dt">prop =</span> <span class="st">&quot;n&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb314-1" data-line-number="1"><span class="kw">ctable</span>(eph.<span class="dv">3</span>.<span class="fl">18.</span>validos.estado<span class="op">$</span>sexo,</a>
+<a class="sourceLine" id="cb314-2" data-line-number="2">  eph.<span class="dv">3</span>.<span class="fl">18.</span>validos.estado<span class="op">$</span>ESTADO,</a>
+<a class="sourceLine" id="cb314-3" data-line-number="3">  <span class="dt">prop =</span> <span class="st">&quot;n&quot;</span></a>
+<a class="sourceLine" id="cb314-4" data-line-number="4">)</a></code></pre></div>
 <p>Para darles un formato más personalizado, una opción es llevar la tabla a una hoja de cálculo y allí rotular, centrar, etc. De lo contrario, R ofrece un entorno llamado R Markdown con muchas posibilidades de formato y exportación a pdf o html.</p>
 
 </div>

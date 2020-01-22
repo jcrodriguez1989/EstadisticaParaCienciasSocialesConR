@@ -1696,12 +1696,12 @@ ejemplos de aplicación.</p>
 <h3><span class="header-section-number">6.4.1</span> Aleatorio simple</h3>
 <p>Una muestra aleatoria de casos de una matriz de datos, es una selección aleatoria de un número determinado de filas, manteniendo todas las columnas igual.</p>
 <p>En primer lugar leeremos la base Encuesta Nacional de Factores de Riesgo con el nombre enfr y luego, extraeremos una submuestra aleatoria de 100 casos de ella a la que denominamos enfr100.</p>
-<div class="sourceCode" id="cb413"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb413-1" data-line-number="1">enfr &lt;-<span class="st"> </span><span class="kw">read.table</span>(</a>
-<a class="sourceLine" id="cb413-2" data-line-number="2">  <span class="st">&quot;bases/archivostxt/ENFR2013_baseusuario.txt&quot;</span>,</a>
-<a class="sourceLine" id="cb413-3" data-line-number="3">  <span class="dt">sep =</span> <span class="st">&quot;|&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span></a>
-<a class="sourceLine" id="cb413-4" data-line-number="4">)</a>
-<a class="sourceLine" id="cb413-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb413-6" data-line-number="6">enfr100 &lt;-<span class="st"> </span>enfr[<span class="kw">sample</span>(<span class="kw">nrow</span>(enfr), <span class="dv">100</span>), ]</a></code></pre></div>
+<div class="sourceCode" id="cb411"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb411-1" data-line-number="1">enfr &lt;-<span class="st"> </span><span class="kw">read.table</span>(</a>
+<a class="sourceLine" id="cb411-2" data-line-number="2">  <span class="st">&quot;bases/archivostxt/ENFR2013_baseusuario.txt&quot;</span>,</a>
+<a class="sourceLine" id="cb411-3" data-line-number="3">  <span class="dt">sep =</span> <span class="st">&quot;|&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span></a>
+<a class="sourceLine" id="cb411-4" data-line-number="4">)</a>
+<a class="sourceLine" id="cb411-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb411-6" data-line-number="6">enfr100 &lt;-<span class="st"> </span>enfr[<span class="kw">sample</span>(<span class="kw">nrow</span>(enfr), <span class="dv">100</span>), ]</a></code></pre></div>
 <p>El corchete se refiere a los elementos de enfr que se van a seleccionar. De las filas (primer componente dentro del corchete, antes de la coma) se elige una muestra de 100 filas de enfr. Luego de la coma no se indica nada, con lo que se dejan todas las columnas de la base original. En el panel superior derecho se observa la aparición del nuevo objeto enfr100, con 100 casos y 204 variables, las mismas que tenía enfr.</p>
 </div>
 <div id="estratificado" class="section level3">
@@ -1709,22 +1709,22 @@ ejemplos de aplicación.</p>
 <div id="afijación-uniforme" class="section level4">
 <h4><span class="header-section-number">6.4.2.1</span> Afijación uniforme</h4>
 <p>Es necesario instalar un paquete específico y cargarlo en la sesión</p>
-<div class="sourceCode" id="cb414"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb414-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">&quot;splitstackshape&quot;</span>)</a></code></pre></div>
-<div class="sourceCode" id="cb415"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb415-1" data-line-number="1"><span class="kw">library</span>(splitstackshape)</a></code></pre></div>
+<div class="sourceCode" id="cb412"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb412-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">&quot;splitstackshape&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb413"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb413-1" data-line-number="1"><span class="kw">library</span>(<span class="st">&quot;splitstackshape&quot;</span>)</a></code></pre></div>
 <p>Luego se define la nueva matriz muestra.estrat.eph, indicando la matriz de donde se extrae la muestra, el criterio de estratificación y la cantidad de casos. Pediremos 100 casos de cada nivel de educación:</p>
-<div class="sourceCode" id="cb416"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb416-1" data-line-number="1">eph.<span class="fl">3.18</span> &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;bases/archivostxt/usu_individual_T318.txt&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;;&quot;</span>)</a>
-<a class="sourceLine" id="cb416-2" data-line-number="2">muestra.estrat.eph &lt;-<span class="st"> </span><span class="kw">stratified</span>(eph.<span class="fl">3.18</span>, <span class="st">&quot;NIVEL_ED&quot;</span>, <span class="dv">100</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb414"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb414-1" data-line-number="1">eph.<span class="fl">3.18</span> &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;bases/archivostxt/usu_individual_T318.txt&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;;&quot;</span>)</a>
+<a class="sourceLine" id="cb414-2" data-line-number="2">muestra.estrat.eph &lt;-<span class="st"> </span><span class="kw">stratified</span>(eph.<span class="fl">3.18</span>, <span class="st">&quot;NIVEL_ED&quot;</span>, <span class="dv">100</span>)</a></code></pre></div>
 <p>Para ver el resultado, se puede pedir cualquier tabla, con los márgenes a fin de ver el total de casos en cada categoría:</p>
-<div class="sourceCode" id="cb417"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb417-1" data-line-number="1"><span class="kw">addmargins</span>(<span class="kw">table</span>(muestra.estrat.eph<span class="op">$</span>CH04, muestra.estrat.eph<span class="op">$</span>NIVEL_ED))</a></code></pre></div>
+<div class="sourceCode" id="cb415"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb415-1" data-line-number="1"><span class="kw">addmargins</span>(<span class="kw">table</span>(muestra.estrat.eph<span class="op">$</span>CH04, muestra.estrat.eph<span class="op">$</span>NIVEL_ED))</a></code></pre></div>
 <pre><code>##      
 ##         1   2   3   4   5   6   7 Sum
 ##   1    55  46  53  37  39  44  55 329
 ##   2    45  54  47  63  61  56  45 371
 ##   Sum 100 100 100 100 100 100 100 700</code></pre>
 <p>La muestra tiene 700 casos que son 100 de cada nivel de educación. También se puede pedir más de un criterio de estratificación, por ejemplo, educación y sexo:</p>
-<div class="sourceCode" id="cb419"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb419-1" data-line-number="1">muestra.estrat.eph &lt;-<span class="st"> </span><span class="kw">stratified</span>(eph.<span class="fl">3.18</span>, <span class="kw">c</span>(<span class="st">&quot;NIVEL_ED&quot;</span>, <span class="st">&quot;CH04&quot;</span>), <span class="dv">100</span>)</a>
-<a class="sourceLine" id="cb419-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb419-3" data-line-number="3"><span class="kw">addmargins</span>(<span class="kw">table</span>(muestra.estrat.eph<span class="op">$</span>CH04, muestra.estrat.eph<span class="op">$</span>NIVEL_ED))</a></code></pre></div>
+<div class="sourceCode" id="cb417"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb417-1" data-line-number="1">muestra.estrat.eph &lt;-<span class="st"> </span><span class="kw">stratified</span>(eph.<span class="fl">3.18</span>, <span class="kw">c</span>(<span class="st">&quot;NIVEL_ED&quot;</span>, <span class="st">&quot;CH04&quot;</span>), <span class="dv">100</span>)</a>
+<a class="sourceLine" id="cb417-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb417-3" data-line-number="3"><span class="kw">addmargins</span>(<span class="kw">table</span>(muestra.estrat.eph<span class="op">$</span>CH04, muestra.estrat.eph<span class="op">$</span>NIVEL_ED))</a></code></pre></div>
 <pre><code>##      
 ##          1    2    3    4    5    6    7  Sum
 ##   1    100  100  100  100  100  100  100  700
@@ -1735,11 +1735,11 @@ ejemplos de aplicación.</p>
 <div id="afijación-proporcional-1" class="section level4">
 <h4><span class="header-section-number">6.4.2.2</span> Afijación proporcional</h4>
 <p>En lugar de especificar la cantidad de casos, se puede indicar la proporción de casos que se requieren de cada categoría, por ejemplo para el 10%:</p>
-<div class="sourceCode" id="cb421"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb421-1" data-line-number="1">muestra.estrat.prop.eph &lt;-<span class="st"> </span><span class="kw">stratified</span>(eph.<span class="fl">3.18</span>, <span class="st">&quot;NIVEL_ED&quot;</span>, <span class="fl">.1</span>)</a>
-<a class="sourceLine" id="cb421-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb421-3" data-line-number="3"><span class="kw">addmargins</span>(</a>
-<a class="sourceLine" id="cb421-4" data-line-number="4">  <span class="kw">table</span>(muestra.estrat.prop.eph<span class="op">$</span>CH04, muestra.estrat.prop.eph<span class="op">$</span>NIVEL_ED)</a>
-<a class="sourceLine" id="cb421-5" data-line-number="5">)</a></code></pre></div>
+<div class="sourceCode" id="cb419"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb419-1" data-line-number="1">muestra.estrat.prop.eph &lt;-<span class="st"> </span><span class="kw">stratified</span>(eph.<span class="fl">3.18</span>, <span class="st">&quot;NIVEL_ED&quot;</span>, <span class="fl">.1</span>)</a>
+<a class="sourceLine" id="cb419-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb419-3" data-line-number="3"><span class="kw">addmargins</span>(</a>
+<a class="sourceLine" id="cb419-4" data-line-number="4">  <span class="kw">table</span>(muestra.estrat.prop.eph<span class="op">$</span>CH04, muestra.estrat.prop.eph<span class="op">$</span>NIVEL_ED)</a>
+<a class="sourceLine" id="cb419-5" data-line-number="5">)</a></code></pre></div>
 <pre><code>##      
 ##          1    2    3    4    5    6    7  Sum
 ##   1    404  337  620  536  298  270  264 2729
