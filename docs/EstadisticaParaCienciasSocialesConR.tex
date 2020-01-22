@@ -2,48 +2,43 @@
 \PassOptionsToPackage{hyphens}{url}
 \PassOptionsToPackage{dvipsnames,svgnames*,x11names*}{xcolor}
 %
-\documentclass[
-]{book}
+\documentclass[]{book}
 \usepackage{lmodern}
 \usepackage{amssymb,amsmath}
 \usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
 \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
   \usepackage{textcomp} % provides euro and other symbols
 \else % if luatex or xelatex
   \usepackage{unicode-math}
-  \defaultfontfeatures{Scale=MatchLowercase}
-  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
 \fi
 % use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
-\IfFileExists{microtype.sty}{% use microtype if available
-  \usepackage[]{microtype}
-  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage[]{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
 }{}
-\makeatletter
-\@ifundefined{KOMAClassName}{% if non-KOMA class
-  \IfFileExists{parskip.sty}{%
-    \usepackage{parskip}
-  }{% else
-    \setlength{\parindent}{0pt}
-    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
-}{% if KOMA class
-  \KOMAoptions{parskip=half}}
-\makeatother
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
 \usepackage{xcolor}
-\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
-\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\usepackage{hyperref}
 \hypersetup{
-  pdftitle={Un Recorrido por los Métodos Cuantitativos en Ciencias Sociales a bordo de R},
-  pdfauthor={Eduardo Bologna},
-  colorlinks=true,
-  linkcolor=Maroon,
-  filecolor=Maroon,
-  citecolor=Blue,
-  urlcolor=Blue,
-  breaklinks=true}
+            pdftitle={Un Recorrido por los Métodos Cuantitativos en Ciencias Sociales a bordo de R},
+            pdfauthor={Eduardo Bologna},
+            colorlinks=true,
+            linkcolor=Maroon,
+            filecolor=Maroon,
+            citecolor=Blue,
+            urlcolor=Blue,
+            breaklinks=true}
 \urlstyle{same}  % don't use monospace font for urls
 \usepackage{color}
 \usepackage{fancyvrb}
@@ -86,9 +81,8 @@
 \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
 \usepackage{longtable,booktabs}
-% Allow footnotes in longtable head/foot
-\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
-\makesavenoteenv{longtable}
+% Fix footnotes in tables (requires footnote package)
+\IfFileExists{footnote.sty}{\usepackage{footnote}\makesavenoteenv{longtable}}{}
 \usepackage{graphicx,grffile}
 \makeatletter
 \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
@@ -104,12 +98,12 @@
 \setcounter{secnumdepth}{5}
 % Redefines (sub)paragraphs to behave more like sections
 \ifx\paragraph\undefined\else
-  \let\oldparagraph\paragraph
-  \renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
 \fi
 \ifx\subparagraph\undefined\else
-  \let\oldsubparagraph\subparagraph
-  \renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
 \fi
 
 % set default figure placement to htbp
@@ -187,8 +181,8 @@
 \addcontentsline{toc}{section}{Edición en bookdown:}
 
 \hypertarget{juan-cruz-rodriguez}{%
-\subsection*{Juan Cruz Rodriguez}\label{juan-cruz-rodriguez}}
-\addcontentsline{toc}{subsection}{Juan Cruz Rodriguez}
+\subsection*{\texorpdfstring{\href{https://jcrodriguez.rbind.io/}{Juan Cruz Rodriguez}}{Juan Cruz Rodriguez}}\label{juan-cruz-rodriguez}}
+\addcontentsline{toc}{subsection}{\href{https://jcrodriguez.rbind.io/}{Juan Cruz Rodriguez}}
 
 \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
@@ -2381,7 +2375,7 @@ Total & 56879\tabularnewline
 \bottomrule
 \end{longtable}
 
-A la cantidad de casos, que proviene del recuento del número de unos y doses en la columna de sexo, se llama \textbf{frecuencia absoluta simple} y se la indica como f.~La tabla resulta entonces:
+A la cantidad de casos, que proviene del recuento del número de unos y doses en la columna de sexo, se llama \textbf{frecuencia absoluta simple} y se la indica como f. La tabla resulta entonces:
 
 \begin{longtable}[]{@{}lc@{}}
 \caption{\label{tab:unnamed-chunk-101}Distribución por sexos: frecuencia absoluta.}\tabularnewline
@@ -5011,8 +5005,8 @@ operaciones que involucra. Se trata de seis casos clínicos diagnosticados de de
   todas o casi todas las actividades, la mayor parte del día, casi cada
   día (según refiere el propio sujeto u observan los demás)
 
-  3. Pérdida importante de peso sin hacer régimen o aumento de peso (p.
-  ej., un cambio de más del 5\% del peso corporal en 1 mes), o pérdida o
+  3. Pérdida importante de peso sin hacer régimen o aumento de peso (
+  p.~ej., un cambio de más del 5\% del peso corporal en 1 mes), o pérdida o
   aumento del apetito casi cada día. Nota: En niños hay que valorar el
   fracaso en lograr los aumentos de peso esperables
 
@@ -7320,8 +7314,8 @@ la hipotética relación entre dos variables de nivel nominal con más de
 dos categorías cada una y variables de nivel superior (ordinales y
 métricas).
 
-\hypertarget{relaciones-entre-variables-vs.-comparaciuxf3n-de-grupos}{%
-\section{Relaciones entre variables vs.~comparación de grupos}\label{relaciones-entre-variables-vs.-comparaciuxf3n-de-grupos}}
+\hypertarget{relaciones-entre-variables-vs.comparaciuxf3n-de-grupos}{%
+\section{Relaciones entre variables vs.~comparación de grupos}\label{relaciones-entre-variables-vs.comparaciuxf3n-de-grupos}}
 
 Según el contexto en que se aplique y también según el modo en que se formulan las preguntas, los resultados de los procedimientos estadísticos que veremos a continuación pueden interpretarse de diferente manera. Tomemos como ejemplo el caso que interese observar la relación del tipo de violencia\footnote{Según la clasificación sugerida por el Informe Mundial sobre la Violencia y la Salud, Organización Panamericana de la Salud, 2003.} con el lugar donde sucede, que se analizará más adelante. Aunque son estadísticamente equivalentes, no es lo mismo preguntar si ``el lugar incide sobre el tipo de violencia'', o si ``el tipo de violencia difiere según el lugar''. Aquí es más pertinente el planteo del problema como una comparación de grupos (que quedan definidos por los diferentes lugares) antes que como una relación entre variables. Lo mismo pasa cuando se comparan los resultados de un examen entre quienes cursan por la tarde o la mañana. Cuando hay control de variables, como en el diseño experimental o en la evaluación de impacto, el paralelismo entre las dos lecturas es más cercano. Así, preguntar si un grupo de deportistas que recibió un suplemento en su dieta, tiene mejor rendimiento que uno que no lo recibió (planteo en términos de comparación de grupos), equivale a preguntar si el suplemento dietario incide sobre el rendimiento (planteo en términos de relación entre variables). Las operaciones estadísticas que responden a las dos preguntas son las mismas, pero según el caso, una manera de formular el problema puede ser más adecuada que otra, así como la lectura del resultado.\\
 Por ejemplo, cuando se busca evaluar el impacto de una política pública dirigida a reducir enfermedades parasitarias en memnores de edad, una estrategia consiste en comparar la prevalencia de esas enfermedades entre quienes han sido destinatarios de esa política, y quienes no lo fueron. Esta prevalencia es la ``variable de salida'' o ``de respuesta'' y es aquello sobre lo cual la política pretende impactar. La pregunta por la diferencia entre los dos grupos equivale a indagar sobre el efecto de la intervención.\\
@@ -10804,8 +10798,8 @@ Para ver el resultado, se puede pedir cualquier tabla, con los márgenes a fin d
 \begin{verbatim}
 ##      
 ##         1   2   3   4   5   6   7 Sum
-##   1    57  48  59  53  42  38  54 351
-##   2    43  52  41  47  58  62  46 349
+##   1    55  46  53  37  39  44  55 329
+##   2    45  54  47  63  61  56  45 371
 ##   Sum 100 100 100 100 100 100 100 700
 \end{verbatim}
 
@@ -10847,8 +10841,8 @@ En lugar de especificar la cantidad de casos, se puede indicar la proporción de
 \begin{verbatim}
 ##      
 ##          1    2    3    4    5    6    7  Sum
-##   1    414  326  599  525  277  270  277 2688
-##   2    418  402  580  572  365  407  257 3001
+##   1    404  337  620  536  298  270  264 2729
+##   2    428  391  559  561  344  407  270 2960
 ##   Sum  832  728 1179 1097  642  677  534 5689
 \end{verbatim}
 
@@ -11034,7 +11028,7 @@ igualmente probable que resulte un varón o una mujer y no podemos
 asignar probabilidad \(1/2\) a cada resultado. Aunque el experimento tenga dos
 resultados posibles, éstos no son igualmente probables.
 
-En otro ejemplo, si a la persona aleatoriamente seleccionada (por ejemplo, quien ocupa el lugar 108 en la lista de inscriptos a un curso) se le pregunta
+En otro ejemplo, si a la persona aleatoriamente seleccionada (por ejemplo, quien ocupa el lugar 98 en la lista de inscriptos a un curso) se le pregunta
 por el tipo de colegio del que egresó, con los resultados posibles:
 ``público'', ``privado laico'', ``privado religioso'', el resultado que se
 obtenga también depende del azar, porque así fue elegida la persona, la
@@ -13925,24 +13919,24 @@ Ahora extraemos 200 muestras de 80 casos cada una y producimos una nueva matriz 
 
 \begin{verbatim}
 ##      Media Varianza
-## 1 6.180328 3.716940
-## 2 5.984848 2.661305
-## 3 5.492308 3.972596
-## 4 5.850746 3.947083
-## 5 5.514286 4.572257
-## 6 5.802817 3.389135
+## 1 5.523077 4.253365
+## 2 5.728571 4.780331
+## 3 5.692308 3.747596
+## 4 5.967742 3.539926
+## 5 5.344262 4.229508
+## 6 5.666667 4.967742
 \end{verbatim}
 
 Cuando solicitamos un resumen de las medias muestrales obtenemos:
 
 \begin{verbatim}
 ##      Media          Varianza    
-##  Min.   :5.161   Min.   :2.429  
-##  1st Qu.:5.613   1st Qu.:3.717  
-##  Median :5.773   Median :4.070  
-##  Mean   :5.782   Mean   :4.090  
-##  3rd Qu.:5.955   3rd Qu.:4.545  
-##  Max.   :6.532   Max.   :5.891
+##  Min.   :5.083   Min.   :2.578  
+##  1st Qu.:5.594   1st Qu.:3.685  
+##  Median :5.759   Median :4.179  
+##  Mean   :5.764   Mean   :4.136  
+##  3rd Qu.:5.952   3rd Qu.:4.531  
+##  Max.   :6.532   Max.   :6.554
 \end{verbatim}
 
 Este resumen se refiere a las variables que están en la matriz de datos que contiene un resultado muestral en cada fila, por eso \(n=200\) es la cantidad de muestras que se extrajeron (y no el tamaño de cada muestra), ahora cada muestra
@@ -13961,7 +13955,7 @@ varianzas muestrales comparada con la varianza poblacional. estos números no so
 Además, puede calcularse la varianza de las medias muestrales, que da:
 
 \begin{verbatim}
-## [1] 0.05919378
+## [1] 0.07254758
 \end{verbatim}
 
 La relación teórica de esta varianza con la varianza poblacional es:
@@ -15816,12 +15810,12 @@ La matriz puede visualizarse, desde el panel superior derecho o verse sus primer
 
 \begin{verbatim}
 ##   Límite_inferior Límite_superior contiene_al_parametro
-## 1         10290.5         16329.5                    si
-## 2         12245.7         17807.6                    si
-## 3         13029.4         19330.6                    si
-## 4         10684.0         18754.6                    si
-## 5         10866.2         17420.5                    si
-## 6         14089.7         22306.3                    si
+## 1         13282.4         20990.9                    si
+## 2          9979.1         17119.6                    si
+## 3         11920.1         17833.3                    si
+## 4          8808.0         17592.0                    si
+## 5         14672.3         23047.7                    si
+## 6         16968.9         25897.7                    no
 \end{verbatim}
 
 Y resumirse en una distridición de frecuencias:
@@ -20274,6 +20268,6 @@ son pequeñas, lo que no se justifica aumentar el número de casos.
 
 El vídeo \emph{tamaño del efecto}, en \url{https://youtu.be/s2nGqz5Nh4A} ofrece detalles adicionales sobre el uso del paquete \texttt{pwr} en el entorno RStudio.
 
-  \bibliography{bibliografia.bib}
+\bibliography{bibliografia.bib}
 
 \end{document}
