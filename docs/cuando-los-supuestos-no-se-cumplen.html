@@ -1,37 +1,38 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html >
+
 <head>
 
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Capítulo 14 Cuando los supuestos no se cumplen | Estadística para Ciencias Sociales con R</title>
-  <meta name="description" content="Capítulo 14 Cuando los supuestos no se cumplen | Estadística para Ciencias Sociales con R" />
-  <meta name="generator" content="bookdown 0.14.1 and GitBook 2.6.7" />
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Capítulo 13 Cuando los supuestos no se cumplen | Un Recorrido por los Métodos Cuantitativos en Ciencias Sociales a bordo de R</title>
+  <meta name="description" content="Capítulo 13 Cuando los supuestos no se cumplen | Un Recorrido por los Métodos Cuantitativos en Ciencias Sociales a bordo de R">
+  <meta name="generator" content="bookdown  and GitBook 2.6.7">
 
-  <meta property="og:title" content="Capítulo 14 Cuando los supuestos no se cumplen | Estadística para Ciencias Sociales con R" />
+  <meta property="og:title" content="Capítulo 13 Cuando los supuestos no se cumplen | Un Recorrido por los Métodos Cuantitativos en Ciencias Sociales a bordo de R" />
   <meta property="og:type" content="book" />
   
-  
+  <meta property="og:image" content="imagenes/cover.jpg" />
   
   <meta name="github-repo" content="jcrodriguez1989/EstadisticaParaCienciasSocialesConR" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Capítulo 14 Cuando los supuestos no se cumplen | Estadística para Ciencias Sociales con R" />
+  <meta name="twitter:title" content="Capítulo 13 Cuando los supuestos no se cumplen | Un Recorrido por los Métodos Cuantitativos en Ciencias Sociales a bordo de R" />
   
   
-  
+  <meta name="twitter:image" content="imagenes/cover.jpg" />
 
-<meta name="author" content="Eduardo Bologna" />
+<meta name="author" content="Eduardo Bologna">
 
 
 
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="prueba-de-hipótesis-las-aplicaciones.html"/>
-<link rel="next" href="apéndice-tamaño-del-efecto.html"/>
+<link rel="prev" href="prueba-de-hipótesis-las-aplicaciones.html">
+<link rel="next" href="tamaño-del-efecto.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -39,9 +40,6 @@
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
-
-
 
 
 
@@ -58,6 +56,7 @@ a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
 a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
@@ -69,7 +68,7 @@ a.sourceLine { text-indent: -1em; padding-left: 1em; }
 pre.numberSource a.sourceLine
   { position: relative; left: -4em; }
 pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+  { content: attr(title);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
     border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
@@ -131,271 +130,294 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">Estadística para Ciencias Sociales con R</a></li>
 
 <li class="divider"></li>
-<li><a href="index.html#section"></a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Colaboradores</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#edición-en-bookdown"><i class="fa fa-check"></i>Edición en bookdown:</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#juan-cruz-rodriguez"><i class="fa fa-check"></i>Juan Cruz Rodriguez</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#comité-editorial"><i class="fa fa-check"></i>Comité Editorial:</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="presentación.html"><a href="presentación.html"><i class="fa fa-check"></i>Presentación</a><ul>
+<li class="chapter" data-level="" data-path="presentación.html"><a href="presentación.html#recorridos-posibles"><i class="fa fa-check"></i>Recorridos posibles</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="introducción.html"><a href="introducción.html"><i class="fa fa-check"></i>Introducción</a></li>
+<li class="chapter" data-level="" data-path="materiales-y-herramientas.html"><a href="materiales-y-herramientas.html"><i class="fa fa-check"></i>Materiales y herramientas</a><ul>
+<li class="chapter" data-level="" data-path="materiales-y-herramientas.html"><a href="materiales-y-herramientas.html#materiales"><i class="fa fa-check"></i>Materiales</a><ul>
+<li class="chapter" data-level="" data-path="materiales-y-herramientas.html"><a href="materiales-y-herramientas.html#encuesta-permanente-de-hogares"><i class="fa fa-check"></i>Encuesta Permanente de Hogares</a></li>
+<li class="chapter" data-level="" data-path="materiales-y-herramientas.html"><a href="materiales-y-herramientas.html#encuesta-nacional-de-factores-de-riesgo"><i class="fa fa-check"></i>Encuesta Nacional de Factores de Riesgo</a></li>
+<li class="chapter" data-level="" data-path="materiales-y-herramientas.html"><a href="materiales-y-herramientas.html#latinobarómetro"><i class="fa fa-check"></i>Latinobarómetro</a></li>
+<li class="chapter" data-level="" data-path="materiales-y-herramientas.html"><a href="materiales-y-herramientas.html#encuesta-nacional-sobre-prevalencias-de-consumo-de-sustancias-psicoactivas"><i class="fa fa-check"></i>Encuesta Nacional sobre Prevalencias de Consumo de Sustancias Psicoactivas</a></li>
+<li class="chapter" data-level="" data-path="materiales-y-herramientas.html"><a href="materiales-y-herramientas.html#aplicación-de-la-escala-de-bayley"><i class="fa fa-check"></i>Aplicación de la escala de Bayley</a></li>
+<li class="chapter" data-level="" data-path="materiales-y-herramientas.html"><a href="materiales-y-herramientas.html#adultos-mayores"><i class="fa fa-check"></i>Adultos mayores</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="materiales-y-herramientas.html"><a href="materiales-y-herramientas.html#herramientas"><i class="fa fa-check"></i>Herramientas</a><ul>
+<li class="chapter" data-level="" data-path="materiales-y-herramientas.html"><a href="materiales-y-herramientas.html#la-elección-de-r"><i class="fa fa-check"></i>La elección de R</a></li>
+<li class="chapter" data-level="" data-path="materiales-y-herramientas.html"><a href="materiales-y-herramientas.html#instalación-de-r-y-rstudio"><i class="fa fa-check"></i>Instalación de R y RStudio</a></li>
+<li class="chapter" data-level="" data-path="materiales-y-herramientas.html"><a href="materiales-y-herramientas.html#los-componentes-de-rstudio"><i class="fa fa-check"></i>Los componentes de RStudio</a></li>
+<li class="chapter" data-level="" data-path="materiales-y-herramientas.html"><a href="materiales-y-herramientas.html#operaciones-en-el-script"><i class="fa fa-check"></i>Operaciones en el script</a></li>
+<li class="chapter" data-level="" data-path="materiales-y-herramientas.html"><a href="materiales-y-herramientas.html#instalación-de-paquetes"><i class="fa fa-check"></i>Instalación de paquetes</a></li>
+</ul></li>
+</ul></li>
 <li class="part"><span><b>I Estadística Descriptiva</b></span></li>
-<li class="chapter" data-level="1" data-path="materiales-y-herramientas.html"><a href="materiales-y-herramientas.html"><i class="fa fa-check"></i><b>1</b> Materiales y herramientas</a><ul>
-<li class="chapter" data-level="1.1" data-path="materiales-y-herramientas.html"><a href="materiales-y-herramientas.html#materiales"><i class="fa fa-check"></i><b>1.1</b> Materiales</a><ul>
-<li class="chapter" data-level="1.1.1" data-path="materiales-y-herramientas.html"><a href="materiales-y-herramientas.html#encuesta-permanente-de-hogares-eph.3.18"><i class="fa fa-check"></i><b>1.1.1</b> Encuesta Permanente de Hogares (eph.3.18)</a></li>
-<li class="chapter" data-level="1.1.2" data-path="materiales-y-herramientas.html"><a href="materiales-y-herramientas.html#encuesta-nacional-de-factores-de-riesgo-enfr2013"><i class="fa fa-check"></i><b>1.1.2</b> Encuesta Nacional de Factores de Riesgo (ENFR2013)</a></li>
-<li class="chapter" data-level="1.1.3" data-path="materiales-y-herramientas.html"><a href="materiales-y-herramientas.html#latinobarómetro-latinob2017"><i class="fa fa-check"></i><b>1.1.3</b> Latinobarómetro (latinob2017)</a></li>
-<li class="chapter" data-level="1.1.4" data-path="materiales-y-herramientas.html"><a href="materiales-y-herramientas.html#encuesta-nacional-sobre-prevalencias-de-consumo-de-sustancias-psicoactivas-enprecosp2011"><i class="fa fa-check"></i><b>1.1.4</b> Encuesta Nacional sobre Prevalencias de Consumo de Sustancias Psicoactivas (ENPreCoSP2011)</a></li>
-<li class="chapter" data-level="1.1.5" data-path="materiales-y-herramientas.html"><a href="materiales-y-herramientas.html#aplicación-de-la-escala-de-bayley"><i class="fa fa-check"></i><b>1.1.5</b> Aplicación de la escala de Bayley</a></li>
-<li class="chapter" data-level="1.1.6" data-path="materiales-y-herramientas.html"><a href="materiales-y-herramientas.html#adultos-mayores"><i class="fa fa-check"></i><b>1.1.6</b> Adultos mayores</a></li>
+<li class="chapter" data-level="1" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html"><i class="fa fa-check"></i><b>1</b> Los datos estadísticos</a><ul>
+<li class="chapter" data-level="1.1" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#la-selección-de-la-información-pertinente"><i class="fa fa-check"></i><b>1.1</b> La selección de la información pertinente</a></li>
+<li class="chapter" data-level="1.2" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#las-entidades"><i class="fa fa-check"></i><b>1.2</b> Las entidades</a></li>
+<li class="chapter" data-level="1.3" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#las-variables"><i class="fa fa-check"></i><b>1.3</b> Las variables</a></li>
+<li class="chapter" data-level="1.4" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#las-categorías"><i class="fa fa-check"></i><b>1.4</b> Las categorías</a><ul>
+<li class="chapter" data-level="1.4.1" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#requisitos-de-las-categorías"><i class="fa fa-check"></i><b>1.4.1</b> Requisitos de las categorías</a></li>
 </ul></li>
-<li class="chapter" data-level="1.2" data-path="materiales-y-herramientas.html"><a href="materiales-y-herramientas.html#herramientas"><i class="fa fa-check"></i><b>1.2</b> Herramientas</a><ul>
-<li class="chapter" data-level="1.2.1" data-path="materiales-y-herramientas.html"><a href="materiales-y-herramientas.html#la-elección-de-r"><i class="fa fa-check"></i><b>1.2.1</b> La elección de R</a></li>
-<li class="chapter" data-level="1.2.2" data-path="materiales-y-herramientas.html"><a href="materiales-y-herramientas.html#instalación-de-r-y-rstudio"><i class="fa fa-check"></i><b>1.2.2</b> Instalación de R y RStudio</a></li>
-<li class="chapter" data-level="1.2.3" data-path="materiales-y-herramientas.html"><a href="materiales-y-herramientas.html#los-componentes-de-rstudio"><i class="fa fa-check"></i><b>1.2.3</b> Los componentes de RStudio</a></li>
-<li class="chapter" data-level="1.2.4" data-path="materiales-y-herramientas.html"><a href="materiales-y-herramientas.html#operaciones-en-el-script"><i class="fa fa-check"></i><b>1.2.4</b> Operaciones en el script</a></li>
-<li class="chapter" data-level="1.2.5" data-path="materiales-y-herramientas.html"><a href="materiales-y-herramientas.html#instalación-de-paquetes"><i class="fa fa-check"></i><b>1.2.5</b> Instalación de paquetes</a></li>
+<li class="chapter" data-level="1.5" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#los-símbolos-numéricos"><i class="fa fa-check"></i><b>1.5</b> Los símbolos numéricos</a></li>
+<li class="chapter" data-level="1.6" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#la-medición"><i class="fa fa-check"></i><b>1.6</b> La medición</a><ul>
+<li class="chapter" data-level="1.6.1" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#niveles-de-medición"><i class="fa fa-check"></i><b>1.6.1</b> Niveles de medición</a></li>
 </ul></li>
-</ul></li>
-<li class="chapter" data-level="2" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html"><i class="fa fa-check"></i><b>2</b> Los datos estadísticos</a><ul>
-<li class="chapter" data-level="2.1" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#la-selección-de-la-información-pertinente"><i class="fa fa-check"></i><b>2.1</b> La selección de la información pertinente</a></li>
-<li class="chapter" data-level="2.2" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#los-individuos"><i class="fa fa-check"></i><b>2.2</b> Los individuos</a></li>
-<li class="chapter" data-level="2.3" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#las-variables"><i class="fa fa-check"></i><b>2.3</b> Las variables</a></li>
-<li class="chapter" data-level="2.4" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#las-categorías"><i class="fa fa-check"></i><b>2.4</b> Las categorías</a><ul>
-<li class="chapter" data-level="2.4.1" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#requisitos-de-las-categorías"><i class="fa fa-check"></i><b>2.4.1</b> Requisitos de las categorías</a></li>
-</ul></li>
-<li class="chapter" data-level="2.5" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#los-símbolos-numéricos"><i class="fa fa-check"></i><b>2.5</b> Los símbolos numéricos</a></li>
-<li class="chapter" data-level="2.6" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#la-medición"><i class="fa fa-check"></i><b>2.6</b> La medición</a><ul>
-<li class="chapter" data-level="2.6.1" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#niveles-de-medición"><i class="fa fa-check"></i><b>2.6.1</b> Niveles de medición</a></li>
-</ul></li>
-<li class="chapter" data-level="2.7" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#resumen-de-los-niveles-de-medición"><i class="fa fa-check"></i><b>2.7</b> Resumen de los niveles de medición</a></li>
-<li class="chapter" data-level="2.8" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>2.8</b> Hacerlo en R</a><ul>
-<li class="chapter" data-level="2.8.1" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#lectura-de-la-base"><i class="fa fa-check"></i><b>2.8.1</b> Lectura de la base</a></li>
-<li class="chapter" data-level="2.8.2" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#las-variables-1"><i class="fa fa-check"></i><b>2.8.2</b> Las variables</a></li>
-<li class="chapter" data-level="2.8.3" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#los-niveles-de-medición-en-r"><i class="fa fa-check"></i><b>2.8.3</b> Los niveles de medición en R</a></li>
+<li class="chapter" data-level="1.7" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#resumen-de-los-niveles-de-medición"><i class="fa fa-check"></i><b>1.7</b> Resumen de los niveles de medición</a></li>
+<li class="chapter" data-level="1.8" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>1.8</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="1.8.1" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#lectura-de-la-base"><i class="fa fa-check"></i><b>1.8.1</b> Lectura de la base</a></li>
+<li class="chapter" data-level="1.8.2" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#las-variables-1"><i class="fa fa-check"></i><b>1.8.2</b> Las variables</a></li>
+<li class="chapter" data-level="1.8.3" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#los-niveles-de-medición-en-r"><i class="fa fa-check"></i><b>1.8.3</b> Los niveles de medición en R</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html"><i class="fa fa-check"></i><b>3</b> Distribuciones de frecuencia</a><ul>
-<li class="chapter" data-level="3.1" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#tablas-de-distribución-de-frecuencia"><i class="fa fa-check"></i><b>3.1</b> Tablas de distribución de frecuencia</a></li>
-<li class="chapter" data-level="3.2" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#recategorización"><i class="fa fa-check"></i><b>3.2</b> Recategorización</a><ul>
-<li class="chapter" data-level="3.2.1" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#variable-discreta-con-muchas-categorías"><i class="fa fa-check"></i><b>3.2.1</b> Variable discreta con muchas categorías</a></li>
-<li class="chapter" data-level="3.2.2" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#variable-continua"><i class="fa fa-check"></i><b>3.2.2</b> Variable continua</a></li>
+<li class="chapter" data-level="2" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html"><i class="fa fa-check"></i><b>2</b> Distribuciones de frecuencia</a><ul>
+<li class="chapter" data-level="2.1" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#tablas-de-distribución-de-frecuencia"><i class="fa fa-check"></i><b>2.1</b> Tablas de distribución de frecuencia</a></li>
+<li class="chapter" data-level="2.2" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#recategorización"><i class="fa fa-check"></i><b>2.2</b> Recategorización</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#variable-discreta-con-muchas-categorías"><i class="fa fa-check"></i><b>2.2.1</b> Variable discreta con muchas categorías</a></li>
+<li class="chapter" data-level="2.2.2" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#variable-continua"><i class="fa fa-check"></i><b>2.2.2</b> Variable continua</a></li>
+<li class="chapter" data-level="2.2.3" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#formas-de-recategorizar"><i class="fa fa-check"></i><b>2.2.3</b> Formas de recategorizar</a></li>
 </ul></li>
-<li class="chapter" data-level="3.3" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#la-presentación-gráfica-de-los-resultados"><i class="fa fa-check"></i><b>3.3</b> La presentación gráfica de los resultados</a></li>
-<li class="chapter" data-level="3.4" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#hacerlo-en-r-1"><i class="fa fa-check"></i><b>3.4</b> Hacerlo en R</a><ul>
-<li class="chapter" data-level="3.4.1" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#tablas-univariadas"><i class="fa fa-check"></i><b>3.4.1</b> Tablas univariadas</a></li>
-<li class="chapter" data-level="3.4.2" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#recategorización-1"><i class="fa fa-check"></i><b>3.4.2</b> Recategorización</a></li>
-<li class="chapter" data-level="3.4.3" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#representaciones-gráficas"><i class="fa fa-check"></i><b>3.4.3</b> Representaciones gráficas</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="4" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html"><i class="fa fa-check"></i><b>4</b> La expresión resumida de la información</a><ul>
-<li class="chapter" data-level="4.1" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#medidas-de-posición"><i class="fa fa-check"></i><b>4.1</b> Medidas de posición</a><ul>
-<li class="chapter" data-level="4.1.1" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#variables-nominales-proporciones"><i class="fa fa-check"></i><b>4.1.1</b> Variables nominales: proporciones</a></li>
-<li class="chapter" data-level="4.1.2" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#variables-nominales-tasas"><i class="fa fa-check"></i><b>4.1.2</b> Variables nominales: tasas</a></li>
-<li class="chapter" data-level="4.1.3" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#variables-nominales-razones"><i class="fa fa-check"></i><b>4.1.3</b> Variables nominales: razones</a></li>
-<li class="chapter" data-level="4.1.4" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#variables-nominales-el-modo"><i class="fa fa-check"></i><b>4.1.4</b> Variables nominales: el modo</a></li>
-<li class="chapter" data-level="4.1.5" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#variables-ordinales-cuantiles"><i class="fa fa-check"></i><b>4.1.5</b> Variables ordinales: cuantiles</a></li>
-<li class="chapter" data-level="4.1.6" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#variables-métricas-la-media-o-promedio"><i class="fa fa-check"></i><b>4.1.6</b> Variables métricas: la media o promedio</a></li>
-</ul></li>
-<li class="chapter" data-level="4.2" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#la-forma-de-la-distribución"><i class="fa fa-check"></i><b>4.2</b> La forma de la distribución</a><ul>
-<li class="chapter" data-level="4.2.1" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#asimetría"><i class="fa fa-check"></i><b>4.2.1</b> Asimetría</a></li>
-<li class="chapter" data-level="4.2.2" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#curtosis"><i class="fa fa-check"></i><b>4.2.2</b> Curtosis</a></li>
-<li class="chapter" data-level="4.2.3" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#box-plots"><i class="fa fa-check"></i><b>4.2.3</b> Box-plots</a></li>
-</ul></li>
-<li class="chapter" data-level="4.3" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#medidas-de-dispersión"><i class="fa fa-check"></i><b>4.3</b> Medidas de dispersión</a><ul>
-<li class="chapter" data-level="4.3.1" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#recorrido"><i class="fa fa-check"></i><b>4.3.1</b> Recorrido</a></li>
-<li class="chapter" data-level="4.3.2" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#amplitud-intercuartílica"><i class="fa fa-check"></i><b>4.3.2</b> Amplitud intercuartílica</a></li>
-<li class="chapter" data-level="4.3.3" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#medidas-de-dispersión-basadas-en-la-media"><i class="fa fa-check"></i><b>4.3.3</b> Medidas de dispersión basadas en la media</a></li>
-<li class="chapter" data-level="4.3.4" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#varianza"><i class="fa fa-check"></i><b>4.3.4</b> Varianza</a></li>
-<li class="chapter" data-level="4.3.5" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#desviación-estándar"><i class="fa fa-check"></i><b>4.3.5</b> Desviación estándar</a></li>
-<li class="chapter" data-level="4.3.6" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#coeficiente-de-variación"><i class="fa fa-check"></i><b>4.3.6</b> Coeficiente de variación</a></li>
-<li class="chapter" data-level="4.3.7" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#box-plots-y-dispersión"><i class="fa fa-check"></i><b>4.3.7</b> Box-plots y dispersión</a></li>
-<li class="chapter" data-level="4.3.8" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#medida-de-la-dispersión-cuando-no-hay-distancias"><i class="fa fa-check"></i><b>4.3.8</b> Medida de la dispersión cuando no hay distancias</a></li>
-</ul></li>
-<li class="chapter" data-level="4.4" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#el-individuo-en-relación-a-su-grupo"><i class="fa fa-check"></i><b>4.4</b> El individuo en relación a su grupo</a></li>
-<li class="chapter" data-level="4.5" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#resumen-de-medidas-descriptivas"><i class="fa fa-check"></i><b>4.5</b> Resumen de medidas descriptivas</a><ul>
-<li class="chapter" data-level="4.5.1" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#medidas-de-posición-1"><i class="fa fa-check"></i><b>4.5.1</b> Medidas de posición</a></li>
-<li class="chapter" data-level="4.5.2" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#medidas-de-dispersión-1"><i class="fa fa-check"></i><b>4.5.2</b> Medidas de dispersión</a></li>
-</ul></li>
-<li class="chapter" data-level="4.6" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#hacerlo-en-r-2"><i class="fa fa-check"></i><b>4.6</b> Hacerlo en R</a></li>
-</ul></li>
-<li class="chapter" data-level="5" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html"><i class="fa fa-check"></i><b>5</b> Relación entre variables: los fundamentos</a><ul>
-<li class="chapter" data-level="5.1" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#tablas-de-contingencia"><i class="fa fa-check"></i><b>5.1</b> Tablas de contingencia</a></li>
-<li class="chapter" data-level="5.2" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#frecuencias-relativas"><i class="fa fa-check"></i><b>5.2</b> Frecuencias relativas</a></li>
-<li class="chapter" data-level="5.3" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#una-clasificación-en-referencia-al-tiempo"><i class="fa fa-check"></i><b>5.3</b> Una clasificación en referencia al tiempo</a></li>
-<li class="chapter" data-level="5.4" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#la-dirección-de-la-relación"><i class="fa fa-check"></i><b>5.4</b> La dirección de la relación</a></li>
-<li class="chapter" data-level="5.5" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#concepto-de-riesgo-relativo"><i class="fa fa-check"></i><b>5.5</b> Concepto de riesgo relativo</a></li>
-<li class="chapter" data-level="5.6" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#la-intensidad"><i class="fa fa-check"></i><b>5.6</b> La intensidad</a></li>
-<li class="chapter" data-level="5.7" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#el-concepto-de-independencia-estadística"><i class="fa fa-check"></i><b>5.7</b> El concepto de independencia estadística</a></li>
-<li class="chapter" data-level="5.8" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#hacerlo-en-r-3"><i class="fa fa-check"></i><b>5.8</b> Hacerlo en R</a></li>
-</ul></li>
-<li class="chapter" data-level="6" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html"><i class="fa fa-check"></i><b>6</b> Relación entre variables: el análisis</a><ul>
-<li class="chapter" data-level="6.1" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#variables-nominales-con-más-de-dos-categorías-cada-una"><i class="fa fa-check"></i><b>6.1</b> Variables nominales con más de dos categorías cada una</a><ul>
-<li class="chapter" data-level="6.1.1" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#relaciones-entre-variables-vs.comparación-de-grupos"><i class="fa fa-check"></i><b>6.1.1</b> Relaciones entre variables vs. comparación de grupos</a></li>
-<li class="chapter" data-level="6.1.2" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#la-distancia-entre-frecuencias-esperadas-y-observadas"><i class="fa fa-check"></i><b>6.1.2</b> La distancia entre frecuencias esperadas y observadas</a></li>
-<li class="chapter" data-level="6.1.3" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#coeficientes-de-asociación-para-variables-nominales"><i class="fa fa-check"></i><b>6.1.3</b> Coeficientes de asociación para variables nominales</a></li>
-</ul></li>
-<li class="chapter" data-level="6.2" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#variables-de-nivel-ordinal"><i class="fa fa-check"></i><b>6.2</b> Variables de nivel ordinal</a></li>
-<li class="chapter" data-level="6.3" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#nivel-intervalar-o-proporcional"><i class="fa fa-check"></i><b>6.3</b> Nivel intervalar o proporcional</a></li>
-<li class="chapter" data-level="6.4" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#dicotomías-reales-y-artificiales"><i class="fa fa-check"></i><b>6.4</b> Dicotomías reales y artificiales</a></li>
-<li class="chapter" data-level="6.5" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#niveles-de-medición-combinados"><i class="fa fa-check"></i><b>6.5</b> Niveles de medición combinados</a><ul>
-<li class="chapter" data-level="6.5.1" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#una-variable-dicotómica-real-y-una-proporcional"><i class="fa fa-check"></i><b>6.5.1</b> Una variable dicotómica real y una proporcional</a></li>
-<li class="chapter" data-level="6.5.2" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#una-variable-continua-dicotomizada-y-una-proporcional"><i class="fa fa-check"></i><b>6.5.2</b> Una variable continua dicotomizada y una proporcional</a></li>
-</ul></li>
-<li class="chapter" data-level="6.6" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#resumen-de-coeficientes-de-asociación"><i class="fa fa-check"></i><b>6.6</b> Resumen de coeficientes de asociación</a></li>
-<li class="chapter" data-level="6.7" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#matriz-de-correlaciones"><i class="fa fa-check"></i><b>6.7</b> Matriz de correlaciones</a></li>
-<li class="chapter" data-level="6.8" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#la-forma-de-la-relación"><i class="fa fa-check"></i><b>6.8</b> La forma de la relación</a><ul>
-<li class="chapter" data-level="6.8.1" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#ordenada-al-origen"><i class="fa fa-check"></i><b>6.8.1</b> Ordenada al origen</a></li>
-<li class="chapter" data-level="6.8.2" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#pendiente"><i class="fa fa-check"></i><b>6.8.2</b> Pendiente</a></li>
-<li class="chapter" data-level="6.8.3" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#obtención-de-la-recta-de-regresión"><i class="fa fa-check"></i><b>6.8.3</b> Obtención de la recta de regresión</a></li>
-</ul></li>
-<li class="chapter" data-level="6.9" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#la-importancia-de-la-visualización"><i class="fa fa-check"></i><b>6.9</b> La importancia de la visualización</a></li>
-<li class="chapter" data-level="6.10" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#hacerlo-en-r-4"><i class="fa fa-check"></i><b>6.10</b> Hacerlo en R</a><ul>
-<li class="chapter" data-level="6.10.1" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#distancia-chi2"><i class="fa fa-check"></i><b>6.10.1</b> Distancia <span class="math inline">\(\chi^{2}\)</span></a></li>
-<li class="chapter" data-level="6.10.2" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#coeficientes"><i class="fa fa-check"></i><b>6.10.2</b> Coeficientes</a></li>
-<li class="chapter" data-level="6.10.3" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#modelo-lineal"><i class="fa fa-check"></i><b>6.10.3</b> Modelo lineal</a></li>
-<li class="chapter" data-level="6.10.4" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#cuarteto-de-anscombe"><i class="fa fa-check"></i><b>6.10.4</b> Cuarteto de Anscombe</a></li>
+<li class="chapter" data-level="2.3" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#la-presentación-gráfica-de-los-resultados"><i class="fa fa-check"></i><b>2.3</b> La presentación gráfica de los resultados</a></li>
+<li class="chapter" data-level="2.4" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#hacerlo-en-r-1"><i class="fa fa-check"></i><b>2.4</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#tablas-univariadas"><i class="fa fa-check"></i><b>2.4.1</b> Tablas univariadas</a></li>
+<li class="chapter" data-level="2.4.2" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#recategorización-1"><i class="fa fa-check"></i><b>2.4.2</b> Recategorización</a></li>
+<li class="chapter" data-level="2.4.3" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#representaciones-gráficas"><i class="fa fa-check"></i><b>2.4.3</b> Representaciones gráficas</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html"><i class="fa fa-check"></i><b>7</b> Obtención de la muestra</a><ul>
-<li class="chapter" data-level="7.1" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#población"><i class="fa fa-check"></i><b>7.1</b> Población</a><ul>
-<li class="chapter" data-level="7.1.1" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestra"><i class="fa fa-check"></i><b>7.1.1</b> Muestra</a></li>
+<li class="chapter" data-level="3" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html"><i class="fa fa-check"></i><b>3</b> La expresión resumida de la información</a><ul>
+<li class="chapter" data-level="3.1" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#medidas-de-posición"><i class="fa fa-check"></i><b>3.1</b> Medidas de posición</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#variables-nominales-proporciones"><i class="fa fa-check"></i><b>3.1.1</b> Variables nominales: proporciones</a></li>
+<li class="chapter" data-level="3.1.2" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#variables-nominales-tasas"><i class="fa fa-check"></i><b>3.1.2</b> Variables nominales: tasas</a></li>
+<li class="chapter" data-level="3.1.3" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#variables-nominales-razones"><i class="fa fa-check"></i><b>3.1.3</b> Variables nominales: razones</a></li>
+<li class="chapter" data-level="3.1.4" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#variables-nominales-el-modo"><i class="fa fa-check"></i><b>3.1.4</b> Variables nominales: el modo</a></li>
+<li class="chapter" data-level="3.1.5" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#variables-ordinales-cuantiles"><i class="fa fa-check"></i><b>3.1.5</b> Variables ordinales: cuantiles</a></li>
+<li class="chapter" data-level="3.1.6" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#variables-métricas-la-media-o-promedio"><i class="fa fa-check"></i><b>3.1.6</b> Variables métricas: la media o promedio</a></li>
 </ul></li>
-<li class="chapter" data-level="7.2" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreos-probabilísticos"><i class="fa fa-check"></i><b>7.2</b> Muestreos probabilísticos</a><ul>
-<li class="chapter" data-level="7.2.1" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-irrestricto-aleatorio-o-aleatorio-simple"><i class="fa fa-check"></i><b>7.2.1</b> Muestreo irrestricto aleatorio o aleatorio simple</a></li>
-<li class="chapter" data-level="7.2.2" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-sistemático"><i class="fa fa-check"></i><b>7.2.2</b> Muestreo sistemático</a></li>
-<li class="chapter" data-level="7.2.3" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-estratificado"><i class="fa fa-check"></i><b>7.2.3</b> Muestreo estratificado</a></li>
-<li class="chapter" data-level="7.2.4" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-por-conglomerados"><i class="fa fa-check"></i><b>7.2.4</b> Muestreo por conglomerados</a></li>
-<li class="chapter" data-level="7.2.5" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#método-de-kish"><i class="fa fa-check"></i><b>7.2.5</b> Método de Kish</a></li>
-<li class="chapter" data-level="7.2.6" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#uso-combinado-de-técnicas-de-muestreo"><i class="fa fa-check"></i><b>7.2.6</b> Uso combinado de técnicas de muestreo</a></li>
+<li class="chapter" data-level="3.2" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#la-forma-de-la-distribución"><i class="fa fa-check"></i><b>3.2</b> La forma de la distribución</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#asimetría"><i class="fa fa-check"></i><b>3.2.1</b> Asimetría</a></li>
+<li class="chapter" data-level="3.2.2" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#curtosis"><i class="fa fa-check"></i><b>3.2.2</b> Curtosis</a></li>
+<li class="chapter" data-level="3.2.3" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#box-plots"><i class="fa fa-check"></i><b>3.2.3</b> Box-plots</a></li>
 </ul></li>
-<li class="chapter" data-level="7.3" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreos-no-probabilísticos"><i class="fa fa-check"></i><b>7.3</b> Muestreos no probabilísticos</a><ul>
-<li class="chapter" data-level="7.3.1" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-por-cuotas"><i class="fa fa-check"></i><b>7.3.1</b> Muestreo por cuotas</a></li>
-<li class="chapter" data-level="7.3.2" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-de-juicio-o-intencional"><i class="fa fa-check"></i><b>7.3.2</b> Muestreo de juicio o intencional</a></li>
-<li class="chapter" data-level="7.3.3" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-autoelegido"><i class="fa fa-check"></i><b>7.3.3</b> Muestreo autoelegido</a></li>
-<li class="chapter" data-level="7.3.4" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-accidental-o-según-disponibilidad"><i class="fa fa-check"></i><b>7.3.4</b> Muestreo accidental o según disponibilidad</a></li>
-<li class="chapter" data-level="7.3.5" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-bola-de-nieve"><i class="fa fa-check"></i><b>7.3.5</b> Muestreo bola de nieve</a></li>
+<li class="chapter" data-level="3.3" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#medidas-de-dispersión"><i class="fa fa-check"></i><b>3.3</b> Medidas de dispersión</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#recorrido"><i class="fa fa-check"></i><b>3.3.1</b> Recorrido</a></li>
+<li class="chapter" data-level="3.3.2" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#amplitud-intercuartílica"><i class="fa fa-check"></i><b>3.3.2</b> Amplitud intercuartílica</a></li>
+<li class="chapter" data-level="3.3.3" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#medidas-de-dispersión-basadas-en-la-media"><i class="fa fa-check"></i><b>3.3.3</b> Medidas de dispersión basadas en la media</a></li>
+<li class="chapter" data-level="3.3.4" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#varianza"><i class="fa fa-check"></i><b>3.3.4</b> Varianza</a></li>
+<li class="chapter" data-level="3.3.5" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#desviación-estándar"><i class="fa fa-check"></i><b>3.3.5</b> Desviación estándar</a></li>
+<li class="chapter" data-level="3.3.6" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#coeficiente-de-variación"><i class="fa fa-check"></i><b>3.3.6</b> Coeficiente de variación</a></li>
+<li class="chapter" data-level="3.3.7" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#box-plots-y-dispersión"><i class="fa fa-check"></i><b>3.3.7</b> Box-plots y dispersión</a></li>
+<li class="chapter" data-level="3.3.8" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#medida-de-la-dispersión-cuando-no-hay-distancias"><i class="fa fa-check"></i><b>3.3.8</b> Medida de la dispersión cuando no hay distancias</a></li>
 </ul></li>
-<li class="chapter" data-level="7.4" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#resumen-de-técnicas-de-muestreo"><i class="fa fa-check"></i><b>7.4</b> Resumen de técnicas de muestreo</a></li>
-<li class="chapter" data-level="7.5" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#hacerlo-en-r-5"><i class="fa fa-check"></i><b>7.5</b> Hacerlo en R</a><ul>
-<li class="chapter" data-level="7.5.1" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#aleatorio-simple"><i class="fa fa-check"></i><b>7.5.1</b> Aleatorio simple</a></li>
-<li class="chapter" data-level="7.5.2" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#estratificado"><i class="fa fa-check"></i><b>7.5.2</b> Estratificado</a></li>
+<li class="chapter" data-level="3.4" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#el-individuo-en-relación-a-su-grupo"><i class="fa fa-check"></i><b>3.4</b> El individuo en relación a su grupo</a></li>
+<li class="chapter" data-level="3.5" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#resumen-de-medidas-descriptivas"><i class="fa fa-check"></i><b>3.5</b> Resumen de medidas descriptivas</a><ul>
+<li class="chapter" data-level="3.5.1" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#medidas-de-posición-1"><i class="fa fa-check"></i><b>3.5.1</b> Medidas de posición</a></li>
+<li class="chapter" data-level="3.5.2" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#medidas-de-dispersión-1"><i class="fa fa-check"></i><b>3.5.2</b> Medidas de dispersión</a></li>
 </ul></li>
+<li class="chapter" data-level="3.6" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#hacerlo-en-r-2"><i class="fa fa-check"></i><b>3.6</b> Hacerlo en R</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html"><i class="fa fa-check"></i><b>8</b> Probabilidad: los fundamentos</a><ul>
-<li class="chapter" data-level="8.1" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#el-rol-de-la-probabilidad-en-estadística"><i class="fa fa-check"></i><b>8.1</b> El rol de la probabilidad en Estadística</a></li>
-<li class="chapter" data-level="8.2" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#formas-para-asignar-probabilidades"><i class="fa fa-check"></i><b>8.2</b> Formas para asignar probabilidades</a><ul>
-<li class="chapter" data-level="8.2.1" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#asignación-a-priori"><i class="fa fa-check"></i><b>8.2.1</b> Asignación a priori</a></li>
-<li class="chapter" data-level="8.2.2" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#asignación-a-posteriori"><i class="fa fa-check"></i><b>8.2.2</b> Asignación a posteriori</a></li>
-<li class="chapter" data-level="8.2.3" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#la-relación-entre-asignación-a-priori-y-a-posteriori"><i class="fa fa-check"></i><b>8.2.3</b> La relación entre asignación a priori y a posteriori</a></li>
+<li class="chapter" data-level="4" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html"><i class="fa fa-check"></i><b>4</b> Relación entre variables: los fundamentos</a><ul>
+<li class="chapter" data-level="4.1" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#tablas-de-contingencia"><i class="fa fa-check"></i><b>4.1</b> Tablas de contingencia</a></li>
+<li class="chapter" data-level="4.2" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#frecuencias-relativas"><i class="fa fa-check"></i><b>4.2</b> Frecuencias relativas</a></li>
+<li class="chapter" data-level="4.3" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#una-clasificación-en-referencia-al-tiempo"><i class="fa fa-check"></i><b>4.3</b> Una clasificación en referencia al tiempo</a></li>
+<li class="chapter" data-level="4.4" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#la-dirección-de-la-relación"><i class="fa fa-check"></i><b>4.4</b> La dirección de la relación</a></li>
+<li class="chapter" data-level="4.5" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#concepto-de-riesgo-relativo"><i class="fa fa-check"></i><b>4.5</b> Concepto de riesgo relativo</a></li>
+<li class="chapter" data-level="4.6" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#la-intensidad"><i class="fa fa-check"></i><b>4.6</b> La intensidad</a></li>
+<li class="chapter" data-level="4.7" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#el-concepto-de-independencia-estadística"><i class="fa fa-check"></i><b>4.7</b> El concepto de independencia estadística</a></li>
+<li class="chapter" data-level="4.8" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#hacerlo-en-r-3"><i class="fa fa-check"></i><b>4.8</b> Hacerlo en R</a></li>
 </ul></li>
-<li class="chapter" data-level="8.3" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#operando-con-probabilidades"><i class="fa fa-check"></i><b>8.3</b> Operando con probabilidades</a><ul>
-<li class="chapter" data-level="8.3.1" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#con-probabilidades-frecuenciales"><i class="fa fa-check"></i><b>8.3.1</b> Con probabilidades frecuenciales</a></li>
-<li class="chapter" data-level="8.3.2" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#con-probabilidades-a-priori"><i class="fa fa-check"></i><b>8.3.2</b> Con probabilidades a priori</a></li>
+<li class="chapter" data-level="5" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html"><i class="fa fa-check"></i><b>5</b> Relación entre variables: el análisis</a><ul>
+<li class="chapter" data-level="5.1" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#relaciones-entre-variables-vs.-comparación-de-grupos"><i class="fa fa-check"></i><b>5.1</b> Relaciones entre variables vs. comparación de grupos</a></li>
+<li class="chapter" data-level="5.2" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#variables-nominales"><i class="fa fa-check"></i><b>5.2</b> Variables nominales</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#coeficientes-de-asociación-para-variables-nominales"><i class="fa fa-check"></i><b>5.2.1</b> Coeficientes de asociación para variables nominales</a></li>
 </ul></li>
-<li class="chapter" data-level="8.4" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#el-teorema-de-bayes"><i class="fa fa-check"></i><b>8.4</b> El teorema de Bayes</a></li>
-<li class="chapter" data-level="8.5" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#variables-aleatorias"><i class="fa fa-check"></i><b>8.5</b> Variables aleatorias</a></li>
+<li class="chapter" data-level="5.3" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#variables-de-nivel-ordinal"><i class="fa fa-check"></i><b>5.3</b> Variables de nivel ordinal</a></li>
+<li class="chapter" data-level="5.4" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#nivel-intervalar-o-proporcional"><i class="fa fa-check"></i><b>5.4</b> Nivel intervalar o proporcional</a></li>
+<li class="chapter" data-level="5.5" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#dicotomías-reales-y-artificiales"><i class="fa fa-check"></i><b>5.5</b> Dicotomías reales y artificiales</a></li>
+<li class="chapter" data-level="5.6" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#niveles-de-medición-combinados"><i class="fa fa-check"></i><b>5.6</b> Niveles de medición combinados</a><ul>
+<li class="chapter" data-level="5.6.1" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#una-variable-dicotómica-real-y-una-proporcional"><i class="fa fa-check"></i><b>5.6.1</b> Una variable dicotómica real y una proporcional</a></li>
+<li class="chapter" data-level="5.6.2" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#una-variable-continua-dicotomizada-y-una-proporcional"><i class="fa fa-check"></i><b>5.6.2</b> Una variable continua dicotomizada y una proporcional</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html"><i class="fa fa-check"></i><b>9</b> Probabilidad: los modelos</a><ul>
-<li class="chapter" data-level="9.1" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#concepto-de-modelización"><i class="fa fa-check"></i><b>9.1</b> Concepto de modelización</a></li>
-<li class="chapter" data-level="9.2" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#distribución-binomial"><i class="fa fa-check"></i><b>9.2</b> Distribución binomial</a><ul>
-<li class="chapter" data-level="9.2.1" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#esperanza-y-varianza"><i class="fa fa-check"></i><b>9.2.1</b> Esperanza y varianza</a></li>
+<li class="chapter" data-level="5.7" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#resumen-de-coeficientes-de-asociación"><i class="fa fa-check"></i><b>5.7</b> Resumen de coeficientes de asociación</a></li>
+<li class="chapter" data-level="5.8" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#matriz-de-correlaciones"><i class="fa fa-check"></i><b>5.8</b> Matriz de correlaciones</a></li>
+<li class="chapter" data-level="5.9" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#la-forma-de-la-relación"><i class="fa fa-check"></i><b>5.9</b> La forma de la relación</a><ul>
+<li class="chapter" data-level="5.9.1" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#ordenada-al-origen"><i class="fa fa-check"></i><b>5.9.1</b> Ordenada al origen</a></li>
+<li class="chapter" data-level="5.9.2" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#pendiente"><i class="fa fa-check"></i><b>5.9.2</b> Pendiente</a></li>
+<li class="chapter" data-level="5.9.3" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#obtención-de-la-recta-de-regresión"><i class="fa fa-check"></i><b>5.9.3</b> Obtención de la recta de regresión</a></li>
 </ul></li>
-<li class="chapter" data-level="9.3" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#distribución-normal"><i class="fa fa-check"></i><b>9.3</b> Distribución normal</a><ul>
-<li class="chapter" data-level="9.3.1" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#cuantiles"><i class="fa fa-check"></i><b>9.3.1</b> Cuantiles</a></li>
-</ul></li>
-<li class="chapter" data-level="9.4" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#la-idea-de-grados-de-libertad"><i class="fa fa-check"></i><b>9.4</b> La idea de grados de libertad</a></li>
-<li class="chapter" data-level="9.5" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#la-distribución-ji-cuadrado-chi2"><i class="fa fa-check"></i><b>9.5</b> La distribución ji cuadrado (<span class="math inline">\(\chi^{2}\)</span>)</a></li>
-<li class="chapter" data-level="9.6" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#la-distribución-t-de-student"><i class="fa fa-check"></i><b>9.6</b> La distribución t de Student</a><ul>
-<li class="chapter" data-level="9.6.1" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#la-distribución-f"><i class="fa fa-check"></i><b>9.6.1</b> La distribución F</a></li>
-</ul></li>
-<li class="chapter" data-level="9.7" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#hacerlo-en-r-6"><i class="fa fa-check"></i><b>9.7</b> Hacerlo en R</a><ul>
-<li class="chapter" data-level="9.7.1" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#probabilidades"><i class="fa fa-check"></i><b>9.7.1</b> Probabilidades</a></li>
-<li class="chapter" data-level="9.7.2" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#cuantiles-1"><i class="fa fa-check"></i><b>9.7.2</b> Cuantiles</a></li>
-<li class="chapter" data-level="9.7.3" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#áreas-centrales"><i class="fa fa-check"></i><b>9.7.3</b> Áreas centrales</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="10" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html"><i class="fa fa-check"></i><b>10</b> Distribuciones en el muestreo</a><ul>
-<li class="chapter" data-level="10.1" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#parámetros-y-estimadores"><i class="fa fa-check"></i><b>10.1</b> Parámetros y estimadores</a></li>
-<li class="chapter" data-level="10.2" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#características-de-los-estimadores"><i class="fa fa-check"></i><b>10.2</b> Características de los estimadores</a><ul>
-<li class="chapter" data-level="10.2.1" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#insesgabilidad"><i class="fa fa-check"></i><b>10.2.1</b> Insesgabilidad</a></li>
-<li class="chapter" data-level="10.2.2" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#consistencia"><i class="fa fa-check"></i><b>10.2.2</b> Consistencia</a></li>
-<li class="chapter" data-level="10.2.3" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#eficiencia"><i class="fa fa-check"></i><b>10.2.3</b> Eficiencia</a></li>
-</ul></li>
-<li class="chapter" data-level="10.3" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#distribución-de-la-media-muestral"><i class="fa fa-check"></i><b>10.3</b> Distribución de la media muestral</a></li>
-<li class="chapter" data-level="10.4" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#distribución-de-la-proporción-muestral"><i class="fa fa-check"></i><b>10.4</b> Distribución de la proporción muestral</a></li>
-<li class="chapter" data-level="10.5" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#muestras-pequeñas"><i class="fa fa-check"></i><b>10.5</b> Muestras pequeñas</a></li>
-<li class="chapter" data-level="10.6" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#distribución-de-la-varianza"><i class="fa fa-check"></i><b>10.6</b> Distribución de la varianza</a></li>
-<li class="chapter" data-level="10.7" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#distribución-del-cociente-de-varianzas"><i class="fa fa-check"></i><b>10.7</b> Distribución del cociente de varianzas</a></li>
-<li class="chapter" data-level="10.8" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#resumen-de-la-relación-entre-estimadores-y-parámetros"><i class="fa fa-check"></i><b>10.8</b> Resumen de la relación entre estimadores y parámetros</a></li>
-<li class="chapter" data-level="10.9" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#hacerlo-en-r-7"><i class="fa fa-check"></i><b>10.9</b> Hacerlo en R</a></li>
-</ul></li>
-<li class="chapter" data-level="11" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html"><i class="fa fa-check"></i><b>11</b> Estimación por intervalo</a><ul>
-<li class="chapter" data-level="11.1" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#estimación-puntual"><i class="fa fa-check"></i><b>11.1</b> Estimación puntual</a></li>
-<li class="chapter" data-level="11.2" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#intervalos-de-confianza"><i class="fa fa-check"></i><b>11.2</b> Intervalos de confianza</a><ul>
-<li class="chapter" data-level="11.2.1" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#estimación-de-la-media"><i class="fa fa-check"></i><b>11.2.1</b> Estimación de la media</a></li>
-<li class="chapter" data-level="11.2.2" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#estimación-de-la-proporción"><i class="fa fa-check"></i><b>11.2.2</b> Estimación de la proporción</a></li>
-</ul></li>
-<li class="chapter" data-level="11.3" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#la-calidad-de-las-estimaciones-por-intervalo"><i class="fa fa-check"></i><b>11.3</b> La calidad de las estimaciones por intervalo</a><ul>
-<li class="chapter" data-level="11.3.1" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#el-error-de-estimación-en-la-proporción"><i class="fa fa-check"></i><b>11.3.1</b> El error de estimación en la proporción</a></li>
-<li class="chapter" data-level="11.3.2" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#probabilidad-de-cobertura"><i class="fa fa-check"></i><b>11.3.2</b> Probabilidad de cobertura</a></li>
-</ul></li>
-<li class="chapter" data-level="11.4" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#hacerlo-en-r-8"><i class="fa fa-check"></i><b>11.4</b> Hacerlo en R</a><ul>
-<li class="chapter" data-level="11.4.1" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#intervalo-para-la-media"><i class="fa fa-check"></i><b>11.4.1</b> Intervalo para la media</a></li>
-<li class="chapter" data-level="11.4.2" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#intervalo-para-la-proporción"><i class="fa fa-check"></i><b>11.4.2</b> Intervalo para la proporción</a></li>
-<li class="chapter" data-level="11.4.3" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#cobertura"><i class="fa fa-check"></i><b>11.4.3</b> Cobertura</a></li>
-<li class="chapter" data-level="11.4.4" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#operaciones-sobre-la-base-enprecosp"><i class="fa fa-check"></i><b>11.4.4</b> Operaciones sobre la base ENPreCoSP</a></li>
+<li class="chapter" data-level="5.10" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#la-visualización-de-los-datos"><i class="fa fa-check"></i><b>5.10</b> La visualización de los datos</a></li>
+<li class="chapter" data-level="5.11" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#hacerlo-en-r-4"><i class="fa fa-check"></i><b>5.11</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="5.11.1" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#distancia-chi2"><i class="fa fa-check"></i><b>5.11.1</b> Distancia <span class="math inline">\(\chi^{2}\)</span></a></li>
+<li class="chapter" data-level="5.11.2" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#coeficientes"><i class="fa fa-check"></i><b>5.11.2</b> Coeficientes</a></li>
+<li class="chapter" data-level="5.11.3" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#modelo-lineal"><i class="fa fa-check"></i><b>5.11.3</b> Modelo lineal</a></li>
+<li class="chapter" data-level="5.11.4" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#cuarteto-de-anscombe"><i class="fa fa-check"></i><b>5.11.4</b> Cuarteto de Anscombe</a></li>
+<li class="chapter" data-level="5.11.5" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#datasaurus"><i class="fa fa-check"></i><b>5.11.5</b> Datasaurus</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html"><i class="fa fa-check"></i><b>12</b> Prueba de hipótesis: la lógica</a><ul>
-<li class="chapter" data-level="12.1" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#el-razonamiento-de-la-prueba-de-hipótesis"><i class="fa fa-check"></i><b>12.1</b> El razonamiento de la prueba de hipótesis</a><ul>
-<li class="chapter" data-level="12.1.1" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#prueba-sobre-la-media"><i class="fa fa-check"></i><b>12.1.1</b> Prueba sobre la media</a></li>
+<li class="part"><span><b>II De la descripción a la inferencia</b></span></li>
+<li class="chapter" data-level="6" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html"><i class="fa fa-check"></i><b>6</b> Obtención de la muestra</a><ul>
+<li class="chapter" data-level="6.1" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#población"><i class="fa fa-check"></i><b>6.1</b> Población</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestra"><i class="fa fa-check"></i><b>6.1.1</b> Muestra</a></li>
 </ul></li>
-<li class="chapter" data-level="12.2" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#los-puntos-críticos-en-términos-del-estimador"><i class="fa fa-check"></i><b>12.2</b> Los puntos críticos en términos del estimador</a><ul>
-<li class="chapter" data-level="12.2.1" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#pruebas-unilaterales"><i class="fa fa-check"></i><b>12.2.1</b> Pruebas unilaterales</a></li>
+<li class="chapter" data-level="6.2" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreos-probabilísticos"><i class="fa fa-check"></i><b>6.2</b> Muestreos probabilísticos</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-irrestricto-aleatorio-o-aleatorio-simple"><i class="fa fa-check"></i><b>6.2.1</b> Muestreo irrestricto aleatorio o aleatorio simple</a></li>
+<li class="chapter" data-level="6.2.2" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-sistemático"><i class="fa fa-check"></i><b>6.2.2</b> Muestreo sistemático</a></li>
+<li class="chapter" data-level="6.2.3" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-estratificado"><i class="fa fa-check"></i><b>6.2.3</b> Muestreo estratificado</a></li>
+<li class="chapter" data-level="6.2.4" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-por-conglomerados"><i class="fa fa-check"></i><b>6.2.4</b> Muestreo por conglomerados</a></li>
+<li class="chapter" data-level="6.2.5" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#método-de-kish"><i class="fa fa-check"></i><b>6.2.5</b> Método de Kish</a></li>
+<li class="chapter" data-level="6.2.6" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#uso-combinado-de-técnicas-de-muestreo"><i class="fa fa-check"></i><b>6.2.6</b> Uso combinado de técnicas de muestreo</a></li>
+<li class="chapter" data-level="6.2.7" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-de-panel"><i class="fa fa-check"></i><b>6.2.7</b> Muestreo de panel</a></li>
 </ul></li>
-<li class="chapter" data-level="12.3" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#prueba-sobre-la-proporción"><i class="fa fa-check"></i><b>12.3</b> Prueba sobre la proporción</a></li>
-<li class="chapter" data-level="12.4" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#tipos-de-error-en-las-pruebas-de-hipótesis"><i class="fa fa-check"></i><b>12.4</b> Tipos de error en las pruebas de hipótesis</a></li>
-<li class="chapter" data-level="12.5" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#etii-mu-alpha-y-n"><i class="fa fa-check"></i><b>12.5</b> <em>ETII:</em> <span class="math inline">\(\mu\)</span>, <span class="math inline">\(\alpha\)</span> y <span class="math inline">\(n\)</span></a><ul>
-<li class="chapter" data-level="12.5.1" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#curva-de-potencia"><i class="fa fa-check"></i><b>12.5.1</b> Curva de potencia</a></li>
-<li class="chapter" data-level="12.5.2" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#significación-estadística-y-valor-p"><i class="fa fa-check"></i><b>12.5.2</b> Significación estadística y valor <span class="math inline">\(p\)</span></a></li>
+<li class="chapter" data-level="6.3" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreos-no-probabilísticos"><i class="fa fa-check"></i><b>6.3</b> Muestreos no probabilísticos</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-por-cuotas"><i class="fa fa-check"></i><b>6.3.1</b> Muestreo por cuotas</a></li>
+<li class="chapter" data-level="6.3.2" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-de-juicio-o-intencional"><i class="fa fa-check"></i><b>6.3.2</b> Muestreo de juicio o intencional</a></li>
+<li class="chapter" data-level="6.3.3" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-autoelegido"><i class="fa fa-check"></i><b>6.3.3</b> Muestreo autoelegido</a></li>
+<li class="chapter" data-level="6.3.4" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-accidental-o-según-disponibilidad"><i class="fa fa-check"></i><b>6.3.4</b> Muestreo accidental o según disponibilidad</a></li>
+<li class="chapter" data-level="6.3.5" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-bola-de-nieve"><i class="fa fa-check"></i><b>6.3.5</b> Muestreo bola de nieve</a></li>
 </ul></li>
-<li class="chapter" data-level="12.6" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#muestras-pequeñas-y-pruebas-t"><i class="fa fa-check"></i><b>12.6</b> Muestras pequeñas y pruebas <span class="math inline">\(t\)</span></a></li>
-<li class="chapter" data-level="12.7" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#hacerlo-en-r-9"><i class="fa fa-check"></i><b>12.7</b> Hacerlo en R</a><ul>
-<li class="chapter" data-level="12.7.1" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#media"><i class="fa fa-check"></i><b>12.7.1</b> Media</a></li>
-<li class="chapter" data-level="12.7.2" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#proporción"><i class="fa fa-check"></i><b>12.7.2</b> Proporción</a></li>
-</ul></li>
-<li class="chapter" data-level="12.8" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#resumen-de-pruebas-sobre-una-muestra"><i class="fa fa-check"></i><b>12.8</b> Resumen de pruebas sobre una muestra</a></li>
-</ul></li>
-<li class="chapter" data-level="13" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html"><i class="fa fa-check"></i><b>13</b> Prueba de hipótesis: las aplicaciones</a><ul>
-<li class="chapter" data-level="13.1" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#muestras-independientes"><i class="fa fa-check"></i><b>13.1</b> Muestras independientes</a><ul>
-<li class="chapter" data-level="13.1.1" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#prueba-de-diferencia-de-medias"><i class="fa fa-check"></i><b>13.1.1</b> Prueba de diferencia de medias</a></li>
-<li class="chapter" data-level="13.1.2" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#muestras-apareadas"><i class="fa fa-check"></i><b>13.1.2</b> Muestras apareadas</a></li>
-<li class="chapter" data-level="13.1.3" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#coeficiente-r-de-pearson"><i class="fa fa-check"></i><b>13.1.3</b> Coeficiente r de Pearson</a></li>
-</ul></li>
-<li class="chapter" data-level="13.2" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#hacerlo-en-r-10"><i class="fa fa-check"></i><b>13.2</b> Hacerlo en R</a><ul>
-<li class="chapter" data-level="13.2.1" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#ejemplo-1."><i class="fa fa-check"></i><b>13.2.1</b> Ejemplo 1.</a></li>
-<li class="chapter" data-level="13.2.2" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#ejemplo-2."><i class="fa fa-check"></i><b>13.2.2</b> Ejemplo 2.</a></li>
-<li class="chapter" data-level="13.2.3" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#aplicación-a-los-datos-de-adultos-mayores"><i class="fa fa-check"></i><b>13.2.3</b> Aplicación a los datos de Adultos Mayores</a></li>
-<li class="chapter" data-level="13.2.4" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#prueba-apareada"><i class="fa fa-check"></i><b>13.2.4</b> Prueba apareada</a></li>
-<li class="chapter" data-level="13.2.5" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#coeficiente-de-correlación"><i class="fa fa-check"></i><b>13.2.5</b> Coeficiente de correlación</a></li>
+<li class="chapter" data-level="6.4" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#hacerlo-en-r-5"><i class="fa fa-check"></i><b>6.4</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="6.4.1" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#aleatorio-simple"><i class="fa fa-check"></i><b>6.4.1</b> Aleatorio simple</a></li>
+<li class="chapter" data-level="6.4.2" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#estratificado"><i class="fa fa-check"></i><b>6.4.2</b> Estratificado</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html"><i class="fa fa-check"></i><b>14</b> Cuando los supuestos no se cumplen</a><ul>
-<li class="chapter" data-level="14.0.1" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#las-pruebas-ji-cuadrado-o-chi-cuadrado"><i class="fa fa-check"></i><b>14.0.1</b> Las pruebas ji cuadrado (o chi cuadrado)</a></li>
-<li class="chapter" data-level="14.0.2" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#coeficiente-r_s-de-spearman"><i class="fa fa-check"></i><b>14.0.2</b> Coeficiente <span class="math inline">\(r_s\)</span> de Spearman</a></li>
-<li class="chapter" data-level="14.0.3" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#alternativas-no-paramétricas-a-las-pruebas-t"><i class="fa fa-check"></i><b>14.0.3</b> Alternativas no paramétricas a las pruebas t</a></li>
-<li class="chapter" data-level="14.1" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#hacerlo-en-r-11"><i class="fa fa-check"></i><b>14.1</b> Hacerlo en R</a><ul>
-<li class="chapter" data-level="14.1.1" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#ejemplo-1"><i class="fa fa-check"></i><b>14.1.1</b> Ejemplo 1</a></li>
-<li class="chapter" data-level="14.1.2" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#ejemplo-2"><i class="fa fa-check"></i><b>14.1.2</b> Ejemplo 2</a></li>
-<li class="chapter" data-level="14.1.3" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#prueba-de-la-mediana-1"><i class="fa fa-check"></i><b>14.1.3</b> Prueba de la mediana</a></li>
-<li class="chapter" data-level="14.1.4" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#prueba-de-wilcoxon"><i class="fa fa-check"></i><b>14.1.4</b> Prueba de Wilcoxon</a></li>
-<li class="chapter" data-level="14.1.5" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#muestras-apareadas-1"><i class="fa fa-check"></i><b>14.1.5</b> Muestras apareadas</a></li>
+<li class="chapter" data-level="7" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html"><i class="fa fa-check"></i><b>7</b> Probabilidad: los fundamentos</a><ul>
+<li class="chapter" data-level="7.1" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#formas-para-asignar-probabilidades"><i class="fa fa-check"></i><b>7.1</b> Formas para asignar probabilidades</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#asignación-a-priori"><i class="fa fa-check"></i><b>7.1.1</b> Asignación a priori</a></li>
+<li class="chapter" data-level="7.1.2" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#asignación-a-posteriori"><i class="fa fa-check"></i><b>7.1.2</b> Asignación a posteriori</a></li>
+<li class="chapter" data-level="7.1.3" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#la-relación-entre-asignación-a-priori-y-a-posteriori"><i class="fa fa-check"></i><b>7.1.3</b> La relación entre asignación a priori y a posteriori</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#operando-con-probabilidades"><i class="fa fa-check"></i><b>7.2</b> Operando con probabilidades</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#con-probabilidades-frecuenciales"><i class="fa fa-check"></i><b>7.2.1</b> Con probabilidades frecuenciales</a></li>
+<li class="chapter" data-level="7.2.2" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#con-probabilidades-a-priori"><i class="fa fa-check"></i><b>7.2.2</b> Con probabilidades a priori</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#el-teorema-de-bayes"><i class="fa fa-check"></i><b>7.3</b> El teorema de Bayes</a></li>
+<li class="chapter" data-level="7.4" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#variables-aleatorias"><i class="fa fa-check"></i><b>7.4</b> Variables aleatorias</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html"><i class="fa fa-check"></i><b>8</b> Probabilidad: los modelos</a><ul>
+<li class="chapter" data-level="8.1" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#concepto-de-modelización"><i class="fa fa-check"></i><b>8.1</b> Concepto de modelización</a></li>
+<li class="chapter" data-level="8.2" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#distribución-binomial"><i class="fa fa-check"></i><b>8.2</b> Distribución binomial</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#esperanza-y-varianza"><i class="fa fa-check"></i><b>8.2.1</b> Esperanza y varianza</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#distribución-normal"><i class="fa fa-check"></i><b>8.3</b> Distribución normal</a><ul>
+<li class="chapter" data-level="8.3.1" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#cuantiles"><i class="fa fa-check"></i><b>8.3.1</b> Cuantiles</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#la-idea-de-grados-de-libertad"><i class="fa fa-check"></i><b>8.4</b> La idea de grados de libertad</a></li>
+<li class="chapter" data-level="8.5" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#la-distribución-ji-cuadrado-chi2"><i class="fa fa-check"></i><b>8.5</b> La distribución ji cuadrado (<span class="math inline">\(\chi^{2}\)</span>)</a></li>
+<li class="chapter" data-level="8.6" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#la-distribución-t-de-student"><i class="fa fa-check"></i><b>8.6</b> La distribución t de Student</a><ul>
+<li class="chapter" data-level="8.6.1" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#la-distribución-f"><i class="fa fa-check"></i><b>8.6.1</b> La distribución F</a></li>
+</ul></li>
+<li class="chapter" data-level="8.7" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#hacerlo-en-r-6"><i class="fa fa-check"></i><b>8.7</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="8.7.1" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#probabilidades-exactas"><i class="fa fa-check"></i><b>8.7.1</b> Probabilidades exactas</a></li>
+<li class="chapter" data-level="8.7.2" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#probabilidades-acumuladas"><i class="fa fa-check"></i><b>8.7.2</b> Probabilidades acumuladas</a></li>
+<li class="chapter" data-level="8.7.3" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#cuantiles-1"><i class="fa fa-check"></i><b>8.7.3</b> Cuantiles</a></li>
+<li class="chapter" data-level="8.7.4" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#áreas-centrales"><i class="fa fa-check"></i><b>8.7.4</b> Áreas centrales</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="15" data-path="apéndice-tamaño-del-efecto.html"><a href="apéndice-tamaño-del-efecto.html"><i class="fa fa-check"></i><b>15</b> Apéndice: Tamaño del efecto</a><ul>
-<li class="chapter" data-level="15.1" data-path="apéndice-tamaño-del-efecto.html"><a href="apéndice-tamaño-del-efecto.html#significación-estadística-y-significación-práctica"><i class="fa fa-check"></i><b>15.1</b> Significación estadística y significación práctica</a></li>
-<li class="chapter" data-level="15.2" data-path="apéndice-tamaño-del-efecto.html"><a href="apéndice-tamaño-del-efecto.html#medidas-de-tamaño-del-efecto"><i class="fa fa-check"></i><b>15.2</b> Medidas de tamaño del efecto</a><ul>
-<li class="chapter" data-level="15.2.1" data-path="apéndice-tamaño-del-efecto.html"><a href="apéndice-tamaño-del-efecto.html#prueba-t-para-diferencia-de-medias"><i class="fa fa-check"></i><b>15.2.1</b> Prueba t para diferencia de medias</a></li>
-<li class="chapter" data-level="15.2.2" data-path="apéndice-tamaño-del-efecto.html"><a href="apéndice-tamaño-del-efecto.html#análisis-de-la-varianza"><i class="fa fa-check"></i><b>15.2.2</b> Análisis de la varianza</a></li>
-<li class="chapter" data-level="15.2.3" data-path="apéndice-tamaño-del-efecto.html"><a href="apéndice-tamaño-del-efecto.html#correlaciones"><i class="fa fa-check"></i><b>15.2.3</b> Correlaciones</a></li>
-<li class="chapter" data-level="15.2.4" data-path="apéndice-tamaño-del-efecto.html"><a href="apéndice-tamaño-del-efecto.html#regresión-lineal"><i class="fa fa-check"></i><b>15.2.4</b> Regresión lineal</a></li>
-<li class="chapter" data-level="15.2.5" data-path="apéndice-tamaño-del-efecto.html"><a href="apéndice-tamaño-del-efecto.html#pruebas-ji-cuadrado"><i class="fa fa-check"></i><b>15.2.5</b> Pruebas ji cuadrado</a></li>
+<li class="chapter" data-level="9" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html"><i class="fa fa-check"></i><b>9</b> Distribuciones en el muestreo</a><ul>
+<li class="chapter" data-level="9.1" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#variabilidad-muestral"><i class="fa fa-check"></i><b>9.1</b> Variabilidad muestral</a><ul>
+<li class="chapter" data-level="9.1.1" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#dos-aspectos-importantes-para-recordar-cuando-se-usan-muestras"><i class="fa fa-check"></i><b>9.1.1</b> Dos aspectos importantes para recordar cuando se usan muestras:</a></li>
 </ul></li>
-<li class="chapter" data-level="15.3" data-path="apéndice-tamaño-del-efecto.html"><a href="apéndice-tamaño-del-efecto.html#análisis-de-la-potencia"><i class="fa fa-check"></i><b>15.3</b> Análisis de la potencia</a></li>
+<li class="chapter" data-level="9.2" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#características-de-los-estimadores"><i class="fa fa-check"></i><b>9.2</b> Características de los estimadores</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#insesgabilidad"><i class="fa fa-check"></i><b>9.2.1</b> Insesgabilidad</a></li>
+<li class="chapter" data-level="9.2.2" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#consistencia"><i class="fa fa-check"></i><b>9.2.2</b> Consistencia</a></li>
+<li class="chapter" data-level="9.2.3" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#eficiencia"><i class="fa fa-check"></i><b>9.2.3</b> Eficiencia</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#distribuciones-de-probabilidad-de-los-estimadores"><i class="fa fa-check"></i><b>9.3</b> Distribuciones de probabilidad de los estimadores</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#primera-aproximación"><i class="fa fa-check"></i><b>9.3.1</b> Primera aproximación</a></li>
+<li class="chapter" data-level="9.3.2" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#distribución-de-la-media-muestral"><i class="fa fa-check"></i><b>9.3.2</b> Distribución de la media muestral</a></li>
+<li class="chapter" data-level="9.3.3" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#distribución-de-la-proporción-muestral"><i class="fa fa-check"></i><b>9.3.3</b> Distribución de la proporción muestral</a></li>
+<li class="chapter" data-level="9.3.4" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#muestras-pequeñas"><i class="fa fa-check"></i><b>9.3.4</b> Muestras pequeñas</a></li>
+<li class="chapter" data-level="9.3.5" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#distribución-de-la-varianza"><i class="fa fa-check"></i><b>9.3.5</b> Distribución de la varianza</a></li>
+<li class="chapter" data-level="9.3.6" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#muestreo-desde-dos-poblaciones"><i class="fa fa-check"></i><b>9.3.6</b> Muestreo desde dos poblaciones</a></li>
+<li class="chapter" data-level="9.3.7" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#distribución-del-cociente-de-varianzas"><i class="fa fa-check"></i><b>9.3.7</b> Distribución del cociente de varianzas</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#resumen-de-la-relación-entre-estimadores-y-parámetros"><i class="fa fa-check"></i><b>9.4</b> Resumen de la relación entre estimadores y parámetros</a></li>
+<li class="chapter" data-level="9.5" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#hacerlo-en-r-7"><i class="fa fa-check"></i><b>9.5</b> Hacerlo en R</a></li>
+</ul></li>
+<li class="part"><span><b>III Estadística inferencial</b></span></li>
+<li class="chapter" data-level="10" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html"><i class="fa fa-check"></i><b>10</b> Estimación por intervalo</a><ul>
+<li class="chapter" data-level="10.1" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#estimación-puntual"><i class="fa fa-check"></i><b>10.1</b> Estimación puntual</a></li>
+<li class="chapter" data-level="10.2" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#intervalos-de-confianza"><i class="fa fa-check"></i><b>10.2</b> Intervalos de confianza</a></li>
+<li class="chapter" data-level="10.3" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#estimación-de-la-media"><i class="fa fa-check"></i><b>10.3</b> Estimación de la media</a></li>
+<li class="chapter" data-level="10.4" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#estimación-de-la-proporción"><i class="fa fa-check"></i><b>10.4</b> Estimación de la proporción</a><ul>
+<li class="chapter" data-level="10.4.1" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#intervalo-de-clopper-pearson"><i class="fa fa-check"></i><b>10.4.1</b> Intervalo de Clopper-Pearson</a></li>
+<li class="chapter" data-level="10.4.2" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#intervalo-de-wald"><i class="fa fa-check"></i><b>10.4.2</b> Intervalo de Wald</a></li>
+<li class="chapter" data-level="10.4.3" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#intervalo-de-wilson"><i class="fa fa-check"></i><b>10.4.3</b> Intervalo de Wilson</a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#la-calidad-de-las-estimaciones-por-intervalo"><i class="fa fa-check"></i><b>10.5</b> La calidad de las estimaciones por intervalo</a><ul>
+<li class="chapter" data-level="10.5.1" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#el-error-de-estimación-en-la-media"><i class="fa fa-check"></i><b>10.5.1</b> El error de estimación en la media</a></li>
+<li class="chapter" data-level="10.5.2" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#el-error-de-estimación-en-la-proporción"><i class="fa fa-check"></i><b>10.5.2</b> El error de estimación en la proporción</a></li>
+</ul></li>
+<li class="chapter" data-level="10.6" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#probabilidad-de-cobertura"><i class="fa fa-check"></i><b>10.6</b> Probabilidad de cobertura</a></li>
+<li class="chapter" data-level="10.7" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#hacerlo-en-r-8"><i class="fa fa-check"></i><b>10.7</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="10.7.1" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#intervalo-para-la-media"><i class="fa fa-check"></i><b>10.7.1</b> Intervalo para la media</a></li>
+<li class="chapter" data-level="10.7.2" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#intervalo-para-la-proporción"><i class="fa fa-check"></i><b>10.7.2</b> Intervalo para la proporción</a></li>
+<li class="chapter" data-level="10.7.3" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#cobertura"><i class="fa fa-check"></i><b>10.7.3</b> Cobertura</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html"><i class="fa fa-check"></i><b>11</b> Prueba de hipótesis: la lógica</a><ul>
+<li class="chapter" data-level="11.1" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#el-razonamiento-de-la-prueba-de-hipótesis"><i class="fa fa-check"></i><b>11.1</b> El razonamiento de la prueba de hipótesis</a></li>
+<li class="chapter" data-level="11.2" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#prueba-sobre-la-media"><i class="fa fa-check"></i><b>11.2</b> Prueba sobre la media</a><ul>
+<li class="chapter" data-level="11.2.1" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#la-toma-de-decisión"><i class="fa fa-check"></i><b>11.2.1</b> La toma de decisión</a></li>
+<li class="chapter" data-level="11.2.2" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#los-puntos-críticos-en-términos-del-estimador"><i class="fa fa-check"></i><b>11.2.2</b> Los puntos críticos en términos del estimador</a></li>
+<li class="chapter" data-level="11.2.3" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#pruebas-unilaterales"><i class="fa fa-check"></i><b>11.2.3</b> Pruebas unilaterales</a></li>
+<li class="chapter" data-level="11.2.4" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#otros-ejemplos-de-prueba-de-hipótesis-sobre-la-media"><i class="fa fa-check"></i><b>11.2.4</b> Otros ejemplos de prueba de hipótesis sobre la media</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#prueba-sobre-la-proporción"><i class="fa fa-check"></i><b>11.3</b> Prueba sobre la proporción</a></li>
+<li class="chapter" data-level="11.4" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#tipos-de-error-en-las-pruebas-de-hipótesis"><i class="fa fa-check"></i><b>11.4</b> Tipos de error en las pruebas de hipótesis</a></li>
+<li class="chapter" data-level="11.5" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#etii-mu-alpha-y-n"><i class="fa fa-check"></i><b>11.5</b> <em>ETII:</em> <span class="math inline">\(\mu\)</span>, <span class="math inline">\(\alpha\)</span> y <span class="math inline">\(n\)</span></a><ul>
+<li class="chapter" data-level="11.5.1" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#curva-de-potencia"><i class="fa fa-check"></i><b>11.5.1</b> Curva de potencia</a></li>
+<li class="chapter" data-level="11.5.2" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#significación-estadística-y-valor-p"><i class="fa fa-check"></i><b>11.5.2</b> Significación estadística y valor <span class="math inline">\(p\)</span></a></li>
+</ul></li>
+<li class="chapter" data-level="11.6" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#muestras-pequeñas-y-pruebas-t"><i class="fa fa-check"></i><b>11.6</b> Muestras pequeñas y pruebas <span class="math inline">\(t\)</span></a></li>
+<li class="chapter" data-level="11.7" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#hacerlo-en-r-9"><i class="fa fa-check"></i><b>11.7</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="11.7.1" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#prueba-sobre-la-media-1"><i class="fa fa-check"></i><b>11.7.1</b> Prueba sobre la media</a></li>
+<li class="chapter" data-level="11.7.2" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#prueba-sobre-la-proporción-1"><i class="fa fa-check"></i><b>11.7.2</b> Prueba sobre la proporción</a></li>
+</ul></li>
+<li class="chapter" data-level="11.8" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#resumen-de-pruebas-sobre-una-muestra"><i class="fa fa-check"></i><b>11.8</b> Resumen de pruebas sobre una muestra</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html"><i class="fa fa-check"></i><b>12</b> Prueba de hipótesis: las aplicaciones</a><ul>
+<li class="chapter" data-level="12.1" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#muestras-independientes"><i class="fa fa-check"></i><b>12.1</b> Muestras independientes</a><ul>
+<li class="chapter" data-level="12.1.1" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#prueba-de-diferencia-de-medias"><i class="fa fa-check"></i><b>12.1.1</b> Prueba de diferencia de medias</a></li>
+<li class="chapter" data-level="12.1.2" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#muestras-apareadas"><i class="fa fa-check"></i><b>12.1.2</b> Muestras apareadas</a></li>
+<li class="chapter" data-level="12.1.3" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#coeficiente-r-de-pearson"><i class="fa fa-check"></i><b>12.1.3</b> Coeficiente r de Pearson</a></li>
+</ul></li>
+<li class="chapter" data-level="12.2" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#hacerlo-en-r-10"><i class="fa fa-check"></i><b>12.2</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="12.2.1" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#ejemplo-1."><i class="fa fa-check"></i><b>12.2.1</b> Ejemplo 1.</a></li>
+<li class="chapter" data-level="12.2.2" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#ejemplo-2."><i class="fa fa-check"></i><b>12.2.2</b> Ejemplo 2.</a></li>
+<li class="chapter" data-level="12.2.3" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#aplicación-a-los-datos-de-adultos-mayores"><i class="fa fa-check"></i><b>12.2.3</b> Aplicación a los datos de Adultos Mayores</a></li>
+<li class="chapter" data-level="12.2.4" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#prueba-apareada"><i class="fa fa-check"></i><b>12.2.4</b> Prueba apareada</a></li>
+<li class="chapter" data-level="12.2.5" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#coeficiente-de-correlación"><i class="fa fa-check"></i><b>12.2.5</b> Coeficiente de correlación</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html"><i class="fa fa-check"></i><b>13</b> Cuando los supuestos no se cumplen</a><ul>
+<li class="chapter" data-level="13.0.1" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#las-pruebas-ji-cuadrado-o-chi-cuadrado"><i class="fa fa-check"></i><b>13.0.1</b> Las pruebas ji cuadrado (o chi cuadrado)</a></li>
+<li class="chapter" data-level="13.0.2" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#coeficiente-r_s-de-spearman"><i class="fa fa-check"></i><b>13.0.2</b> Coeficiente <span class="math inline">\(r_s\)</span> de Spearman</a></li>
+<li class="chapter" data-level="13.0.3" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#alternativas-no-paramétricas-a-las-pruebas-t"><i class="fa fa-check"></i><b>13.0.3</b> Alternativas no paramétricas a las pruebas t</a></li>
+<li class="chapter" data-level="13.1" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#hacerlo-en-r-11"><i class="fa fa-check"></i><b>13.1</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="13.1.1" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#ejemplo-1"><i class="fa fa-check"></i><b>13.1.1</b> Ejemplo 1</a></li>
+<li class="chapter" data-level="13.1.2" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#ejemplo-2"><i class="fa fa-check"></i><b>13.1.2</b> Ejemplo 2</a></li>
+<li class="chapter" data-level="13.1.3" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#prueba-de-la-mediana-1"><i class="fa fa-check"></i><b>13.1.3</b> Prueba de la mediana</a></li>
+<li class="chapter" data-level="13.1.4" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#prueba-de-wilcoxon"><i class="fa fa-check"></i><b>13.1.4</b> Prueba de Wilcoxon</a></li>
+<li class="chapter" data-level="13.1.5" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#muestras-apareadas-1"><i class="fa fa-check"></i><b>13.1.5</b> Muestras apareadas</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html"><i class="fa fa-check"></i><b>14</b> Tamaño del efecto</a><ul>
+<li class="chapter" data-level="14.1" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#significación-estadística-y-significación-práctica"><i class="fa fa-check"></i><b>14.1</b> Significación estadística y significación práctica</a></li>
+<li class="chapter" data-level="14.2" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#medidas-de-tamaño-del-efecto"><i class="fa fa-check"></i><b>14.2</b> Medidas de tamaño del efecto</a><ul>
+<li class="chapter" data-level="14.2.1" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#prueba-t-para-diferencia-de-medias"><i class="fa fa-check"></i><b>14.2.1</b> Prueba t para diferencia de medias</a></li>
+<li class="chapter" data-level="14.2.2" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#análisis-de-la-varianza"><i class="fa fa-check"></i><b>14.2.2</b> Análisis de la varianza</a></li>
+<li class="chapter" data-level="14.2.3" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#correlaciones"><i class="fa fa-check"></i><b>14.2.3</b> Correlaciones</a></li>
+<li class="chapter" data-level="14.2.4" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#regresión-lineal"><i class="fa fa-check"></i><b>14.2.4</b> Regresión lineal</a></li>
+<li class="chapter" data-level="14.2.5" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#pruebas-ji-cuadrado"><i class="fa fa-check"></i><b>14.2.5</b> Pruebas ji cuadrado</a></li>
+</ul></li>
+<li class="chapter" data-level="14.3" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#análisis-de-la-potencia"><i class="fa fa-check"></i><b>14.3</b> Análisis de la potencia</a></li>
+<li class="chapter" data-level="14.4" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#hacerlo-en-r-12"><i class="fa fa-check"></i><b>14.4</b> Hacerlo en R</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Generado con bookdown</a></li>
@@ -409,7 +431,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Estadística para Ciencias Sociales con R</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Un Recorrido por los Métodos Cuantitativos en Ciencias Sociales a bordo de R</a>
           </h1>
         </div>
 
@@ -418,8 +440,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="cuando-los-supuestos-no-se-cumplen" class="section level1">
-<h1><span class="header-section-number">Capítulo 14</span> Cuando los supuestos no se cumplen</h1>
-<p>N.B. En este capítulo no nos detendremos en detalles de los procedimientos, solo las condiciones de aplicacaión de cada uno y, en el último apartado, el modo de reproducir los ejemplos en R.</p>
+<h1><span class="header-section-number">Capítulo 13</span> Cuando los supuestos no se cumplen</h1>
+<p>N.B. En este capítulo no nos detendremos en detalles de los procedimientos, solo las condiciones de aplicación de cada uno y, en el último apartado, el modo de reproducir los ejemplos en R.</p>
 <p>Las condiciones que se han pedido hasta este punto para los
 procedimientos vistos, son exigentes. Por ejemplo, en las <em>pruebas t</em>
 debemos suponer que la variable tiene distribución normal en la
@@ -480,11 +502,11 @@ población, entonces no hay alternativa y debe usarse una prueba no
 paramétrica.</p>
 <p>En este capítulo desarrollaremos tres pruebas no paramétricas basadas en
 el puntaje ji cuadrado y dos alternativas a las pruebas t para muestras
-independientes y apareadas. Puede consultarse el manual de Siegel (1956)
+independientes y apareadas. Puede consultarse el manual de <span class="citation">Siegel (<a href="#ref-siegel1957">1957</a>)</span>
 para una presentación muy completa, aunque no actualizada a
-procedimientos informáticos.</p>
+procedimientos informáticos, .</p>
 <div id="las-pruebas-ji-cuadrado-o-chi-cuadrado" class="section level3">
-<h3><span class="header-section-number">14.0.1</span> Las pruebas ji cuadrado (o chi cuadrado)</h3>
+<h3><span class="header-section-number">13.0.1</span> Las pruebas ji cuadrado (o chi cuadrado)</h3>
 <p>Ya hemos usado el puntaje <em>ji cuadrado</em> para derivar medidas de la asociación
 entre dos variables nominales (V de Cramer, C de Pearson) y luego como
 un modelo especial de probabilidades. Ahora relacionaremos esos dos usos
@@ -495,7 +517,7 @@ predicho (prueba de bondad de ajuste) y finalmente para comparar la
 tendencia central entre variables de nivel ordinal (prueba de la
 mediana).</p>
 <div id="prueba-de-independencia-de-atributos" class="section level4">
-<h4><span class="header-section-number">14.0.1.1</span> Prueba de independencia de atributos</h4>
+<h4><span class="header-section-number">13.0.1.1</span> Prueba de independencia de atributos</h4>
 <p>El puntaje <em>ji cuadrado</em> <span class="math inline">\((\chi^{2})\)</span> es una medida de la
 distancia que hay entre una distribución de frecuencias bivariada
 observada y la correspondiente distribución de frecuencias esperadas.
@@ -503,13 +525,13 @@ Estas frecuencias esperadas son las que se esperarían observar si las
 variables fueran independientes. Así, cuanto más alejadas se encuentren
 las frecuencias observadas de las esperadas, tanto más grande será el
 puntaje <span class="math inline">\(\chi^{2}\)</span> y más alejadas de la independencia estarán las
-variables que se analizan, el hecho de estar alejadas de la
+variables que se analizan. El hecho de estar alejadas de la
 independencia implica que existe alguna asociación entre ellas. El valor
 mínimo de este puntaje es cero, que solo podría alcanzarse si todas las
 frecuencias observadas coincidieran con las esperadas y sería el caso de
 una independencia perfecta; una situación muy improbable de hallar en la
-realidad. El puntaje <span class="math inline">\(\chi^{2}\)</span> carece de un valor máximo, puede ser
-indefinidamente grande, dependiendo no solo de lo alejadas que están las
+realidad. Pero el puntaje <span class="math inline">\(\chi^{2}\)</span> carece de un valor máximo, puede ser
+indefinidamente grande, dependiendo no solo de lo alejadas que estén las
 frecuencias observadas de las esperadas, sino también de la dimensión de
 la tabla y de la cantidad de casos.</p>
 <p>Como las frecuencias observadas que están en la tabla bivariada
@@ -529,15 +551,13 @@ hipótesis alternativa, <span class="math inline">\(H_1\)</span> presenta una di
 problema, como vamos a tratar acerca de relaciones entre variables, la
 <span class="math inline">\(H_0\)</span> indicará que no hay relación o, lo que es lo mismo, que las
 variables son independientes.</p>
-<p>Ejemplo 1 (datos ficticios) se trata analizar la posible relación entre el
-resultado del primer parcial de Psicoestadística (aprobado – no
-aprobado) y el turno en que los alumnos lo hicieron. Se construye una
-muestra con 180 alumnos seleccionados entre quienes hicieron el primer
-parcial en los últimos cinco años. La siguiente es la tabla de
+<p>Ejemplo 1 (datos ficticios) se trata analizar la posible relación entre el resultado del primer parcial de Psicoestadística (aprobado – no
+aprobado) y el turno en que fue realizado. Se construye una
+muestra con 180 estudiantes seleccionada entre quienes hicieron el primer parcial en los últimos cinco años. La siguiente es la tabla de
 distribución de frecuencias observadas.</p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:unnamed-chunk-553">Tabla 14.1: </span>Frecuencias conjuntas observadas del resultado del parcial y el turno en que se realizó.
+<span id="tab:unnamed-chunk-554">Tabla 13.1: </span>Frecuencias conjuntas observadas del resultado del parcial y el turno en que se realizó.
 </caption>
 <thead>
 <tr>
@@ -603,7 +623,7 @@ Total
 esperadas<a href="#fn93" class="footnote-ref" id="fnref93"><sup>93</sup></a>:</p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:unnamed-chunk-554">Tabla 14.2: </span>Frecuencias conjuntas esperadas del resultado del parcial y el turno en que se realizó.
+<span id="tab:unnamed-chunk-555">Tabla 13.2: </span>Frecuencias conjuntas esperadas del resultado del parcial y el turno en que se realizó.
 </caption>
 <thead>
 <tr>
@@ -676,9 +696,7 @@ casos de la muestra, dependen del azar.</p>
 puede explicarse por azar, o representa un distanciamiento
 suficientemente grande como para atribuirlo a una relación entre las
 variables en la población?</p>
-<p>Queremos entonces decidir si lo que hemos observado para estos alumnos
-(la muestra de quienes cursaron en los últimos cinco años, por ejemplo)
-es general, es decir, si vale para alumnos a los que no hemos observado.
+<p>Queremos entonces decidir si lo que hemos observado para este grupo de estudiantes (la muestra de quienes cursaron en los últimos cinco años, por ejemplo) es general; es decir, si vale para estudiantes que no participaron de la muestra.<br />
 Por eso, la hipótesis nula de la prueba será:</p>
 <p><span class="math inline">\(H_0\)</span>: El resultado del parcial es independiente del turno en que se
 realiza<a href="#fn95" class="footnote-ref" id="fnref95"><sup>95</sup></a></p>
@@ -726,7 +744,7 @@ y esos grados de libertad bajo la curva de la distribución <span class="math in
 representación gráfica de la zona de rechazo de <span class="math inline">\(H_0\)</span> es entonces:</p>
 <p>Gráfico 1: Ubicación del punto crítico que deja un 5% de área superior
 en una distribución <span class="math inline">\(\chi^{2}\)</span> con 2 grados de libertad.</p>
-<p><img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-556-1.svg" width="672" /></p>
+<p><img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-557-1.svg" width="672" /></p>
 <p>De acuerdo a este gráfico, la región de rechazo de <span class="math inline">\(H_0\)</span> es la que se
 encuentra a la derecha de 3.84, formada por todos los valores de
 <span class="math inline">\(\chi^{2}\)</span> que superen a 3.84. Los datos dieron un puntaje
@@ -754,10 +772,10 @@ de 0.3420. Dado que es una probabilidad alta (sea a un nivel de
 significación del 0.05 o de 0.10), consideramos a éste como un resultado
 altamente probable, de ser cierto que las variables son independientes, por lo que no constituye evidencia para rechazar <span class="math inline">\(H_0\)</span>.</p>
 <p>La representación gráfica de esta probabilidad es el área sombreada, a la derecha del valor <span class="math inline">\(\chi^2_{obs}=0.903\)</span>:</p>
-<p><img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-558-1.svg" width="672" /></p>
+<p><img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-559-1.svg" width="672" /></p>
 </div>
 <div id="pruebas-de-bondad-de-ajuste" class="section level4">
-<h4><span class="header-section-number">14.0.1.2</span> Pruebas de bondad de ajuste</h4>
+<h4><span class="header-section-number">13.0.1.2</span> Pruebas de bondad de ajuste</h4>
 <p>El cálculo del puntaje <span class="math inline">\(\chi^{2}\)</span> ofrece la posibilidad de hacer
 comparaciones entre frecuencias observadas (reales, provenientes de la
 recolección de datos) y frecuencias esperadas bajo diferentes hipótesis.
@@ -765,13 +783,8 @@ En la prueba anterior, las esperadas lo han sido bajo la hipótesis de
 independencia, pero la condición bajo la cual se esperan determinadas
 frecuencias puede ser otra y el puntaje <span class="math inline">\(\chi^{2}\)</span> también permite medir
 esas distancias.</p>
-<p>Ejemplo 2 (datos ficticios): la distribución de la condición que alcanzan
-los alumnos que cursan Psicoestadística ha sido, históricamente, 35% de
-promocionados, 35% de regulares y 30% de libres. Consideremos el
-subconjunto de alumnos que estudian otra carrera además de Psicología.
-Una muestra de 142 de estos alumnos se distribuye, según condición, del
-siguiente modo:</p>
-<p>Tabla 3: Distribución de frecuencias de los alumnos de Psicología que
+<p>Ejemplo 2 (datos ficticios): la distribución de la condición que alcanzan quienes cursan Psicoestadística ha sido, históricamente, que 35% alcanzan la promoción, 35% la regularidad y el 30% queda libre. Consideremos el subconjunto de quienes estudian otra carrera además de Psicología. Una muestra de 142 estudiantes de este grupo se distribuye, según condición, del siguiente modo:</p>
+<p>Tabla 3: Distribución de frecuencias de estudiantes de Psicología que
 también estudian otra carrera, según condición:</p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
@@ -780,14 +793,14 @@ también estudian otra carrera, según condición:</p>
 condición
 </th>
 <th style="text-align:center;">
-alumnos
+estudiantes
 </th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td style="text-align:left;">
-Promocionados
+Promoción
 </td>
 <td style="text-align:center;">
 53
@@ -795,7 +808,7 @@ Promocionados
 </tr>
 <tr>
 <td style="text-align:left;">
-Regulares
+Regularidad
 </td>
 <td style="text-align:center;">
 51
@@ -820,20 +833,19 @@ Total
 </tbody>
 </table>
 <p>La tabla anterior muestra las frecuencias observadas. Nos preguntamos si
-esta distribución se aleja significativamente de la tendencia general, o
+esta distribución se aleja significativamente de la tendencia general (del conjunto completo de quienes cursan la materia), o
 bien si está dentro de lo esperado. Esta pregunta puede reformularse en
 dirección a saber si los datos observados se “ajustan” a la distribución
 general o se apartan de ella. Expresado en términos de hipótesis, la
 <span class="math inline">\(H_0\)</span> afirmará que no hay diferencia:</p>
-<p><span class="math inline">\(H_0\)</span>: La distribución de promocionados, regulares y libres de los alumnos que estudian otra carrera se ajusta a la distribución del total de alumnos.</p>
+<p><span class="math inline">\(H_0\)</span>: La distribución de quienes alcanzan la promoción, la regularidad y quedan libres entre quienes estudian otra carrera se ajusta a la distribución del total de estudiantes.</p>
 <p>Mientras que la <span class="math inline">\(H_1\)</span>, afirmará lo contrario:</p>
-<p><span class="math inline">\(H_1\)</span>: La distribución de promocionados, regulares y libres de los alumnos que estudian otra carrera se aparta de la distribución del
-total de alumnos.</p>
+<p><span class="math inline">\(H_1\)</span>: La distribución de quienes alcanzan la promoción, la regularidad y quedan libres entre quienes estudian otra carrera se aparta de la distribución del total de estudiantes.</p>
 <p>Si la distribución se mantuviera igual (si <span class="math inline">\(H_0\)</span> fuera verdadera),
-esperaríamos que los 142 alumnos que estudian otra carrera se
+esperaríamos que el grupo de 142 que estudian otra carrera se
 distribuyeran en las tres categorías según estas proporciones: 0.35 -
 0.35 - 0.30. La frecuencia que esperaríamos encontrar en la categoría
-promocionados es <span class="math inline">\(0.35*142= 49.7\)</span> y del mismo modo con las demás
+promoción es <span class="math inline">\(0.35*142= 49.7\)</span> y del mismo modo con las demás
 categorías. Por lo que esperaríamos la siguiente distribución de
 frecuencias:</p>
 <p>Tabla 4: Frecuencias esperadas bajo la hipótesis de ajuste a la
@@ -845,14 +857,14 @@ distribución general:</p>
 condición
 </th>
 <th style="text-align:center;">
-alumnos
+estudiantes
 </th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td style="text-align:left;">
-Promocionados
+Promoción
 </td>
 <td style="text-align:center;">
 49,7
@@ -860,7 +872,7 @@ Promocionados
 </tr>
 <tr>
 <td style="text-align:left;">
-Regulares
+Regularidad
 </td>
 <td style="text-align:center;">
 49,7
@@ -895,13 +907,11 @@ grados de libertad y 5% de nivel de significación, el punto crítico es</p>
 <p>Por lo que la región de rechazo es el conjunto de
 valores que superan 5.99. El valor observado se encuentra fuera de la
 región de rechazo, por lo que corresponde no rechazar <span class="math inline">\(H_0\)</span> y concluir
-que los alumnos que estudian otra carrera además de Psicología no
-muestran, en Psicoestadística, una distribución entre promocionados,
-regulares y libres que difiera significativamente de la tendencia
-general de quienes cursan esa materia.</p>
+que quienes estudian otra carrera además de Psicología no
+muestran, en Psicoestadística, una distribución entre las condiciones de promoción, regularidad y quedar libre, que difiera significativamente de la tendencia general de quienes cursan esa materia.</p>
 </div>
 <div id="prueba-de-la-mediana" class="section level4">
-<h4><span class="header-section-number">14.0.1.3</span> Prueba de la mediana</h4>
+<h4><span class="header-section-number">13.0.1.3</span> Prueba de la mediana</h4>
 <p>Cuando es necesario comparar la tendencia central de dos distribuciones,
 se dispone de la <em>prueba t de diferencia de medias</em>. Sin embargo esa
 prueba no es válida cuando se trabaja con variables que tienen nivel
@@ -909,7 +919,7 @@ ordinal, ya que allí no tiene interpretación la media ni tampoco la
 varianza. Si se deben comprar dos muestras en una variable medida a
 nivel ordinal se puede plantear la hipótesis que afirma que las medianas
 son iguales, como una equivalencia a la que, en variables métricas,
-plantea que las medias de dos &lt;distribuciones son iguales:</p>
+plantea que las medias de dos distribuciones son iguales:</p>
 <p><span class="math display">\[H_0: M_{dn_1} - M_{dn_2} = 0\]</span></p>
 <p>Frente a una hipótesis alternativa que usualmente es bilateral:</p>
 <p><span class="math display">\[H_0: M_{dn_1} - M_{dn_2} \neq 0\]</span></p>
@@ -1010,14 +1020,14 @@ están, es decir que uno de los grupos cuenta la cantidad de casos que
 hay por encima de la <span class="math inline">\(M_{\text{dn}_{c}}\)</span> y el otro los que la igualan o
 están por debajo de ella.</p>
 <p>Ejemplo (datos ficticios): se comparan las calificaciones “de concepto”
-asignadas por docentes de escuelas primarias de dos grupos de alumnos.
+asignadas por docentes de escuelas primarias de dos grupos de estudiantes.
 Dichas calificaciones, presentan categorías: 1. Excelente, 2. Muy bueno,
 3. Bueno, 4. Satisfactorio, 5. No satisfactorio, por lo que son de nivel
 ordinal y no es posible realizar una prueba de diferencia de medias, en
 su reemplazo recurrimos a la prueba de la mediana. Se seleccionan 40
-alumnos de cada docente y se relevan las notas de concepto de cada uno.
-Calculamos la mediana de los 80 alumnos juntos y obtenemos 3. A
-continuación contamos cuántos alumnos de la primera docente están por
+estudiantes de cada docente y se relevan sus notas de concepto.
+Calculamos la mediana del grupo completo (80 casos) y obtenemos 3. A
+continuación contamos cuántos de los de la primera docente están por
 encima y por debajo de 3 y lo mismo para la segunda docente. La
 distribución queda del siguiente modo:</p>
 <!--tabla XXX-->
@@ -1094,9 +1104,7 @@ Total
 </tr>
 </tbody>
 </table>
-<p>Aunque originalmente se relevaron 40 alumnos de cada docente, quedaron
-36 de la primera y 32 de la segunda, porque cuatro casos de un grupo y
-ocho del otro coincidieron con la <span class="math inline">\(M_{\text{dn}_{c}}\)</span> y fueron
+<p>Aunque originalmente se relevaron 40 estudiantes de cada docente, quedaron 36 de la primera y 32 de la segunda, porque cuatro casos de un grupo y ocho del otro coincidieron con la <span class="math inline">\(M_{\text{dn}_{c}}\)</span> y fueron
 descartados, con lo que el total se redujo a 68 observaciones.</p>
 <p>La sola inspección de la tabla sugiere que debe descartarse la igualdad
 de las medianas de los grupos, ya que hay concentración de casos en las
@@ -1109,7 +1117,7 @@ rechaza la hipótesis de igualdad de medianas.</p>
 </div>
 </div>
 <div id="coeficiente-r_s-de-spearman" class="section level3">
-<h3><span class="header-section-number">14.0.2</span> Coeficiente <span class="math inline">\(r_s\)</span> de Spearman</h3>
+<h3><span class="header-section-number">13.0.2</span> Coeficiente <span class="math inline">\(r_s\)</span> de Spearman</h3>
 <p>El coeficiente <em>r de Pearson</em> solo puede interpretarse si proviene de
 variables medidas a nivel intervalar o proporcional, es decir, métricas.
 Cuando trabajamos con variables ordinales, disponemos de otra medida de
@@ -1122,21 +1130,12 @@ coeficiente de Spearman paramétrico y <span class="math inline">\(r_s\)</span> 
 estándar de este estimador tiene la misma forma que el de Pearson:</p>
 <p><span class="math display">\[\sigma_{r_{s}} = \sqrt{\frac{1 - r_{s}^{2}}{n - 2}}\]</span></p>
 <p>Y cuando la muestra tiene al menos 10 observaciones, se distribuye con
-una distribución t con n-2 grados de libertad<a href="#fn96" class="footnote-ref" id="fnref96"><sup>96</sup></a>. En consecuencia, el
+una distribución t con n-2 grados de libertad <span class="citation">Kendall (<a href="#ref-Kendall1948">1948</a>)</span>. En consecuencia, el
 estadístico de prueba será:</p>
 <p><span class="math display">\[t = \frac{r_{s} - \rho_{s}}{\sqrt{\frac{1 - r_{s}^{2}}{n - 2}}}\]</span></p>
-<p>Ejemplo (datos ficticios): se interroga a 20 alumnos de primer año de
-una carrera universitaria sobre las razones de su elección de carrera y
-a partir de las respuestas se construye un índice que clasifica el
-interés en 1. Muy fuerte, 2. Fuerte, 3. Débil, 4. Muy débil. Los
-resultados de este índice se ponen en correspondencia con el orden de
-mérito alcanzado en el ingreso a la carrera universitaria (1. Primero,
-2. Segundo, etc.). En el análisis de la relación entre estas dos
-variables ordinales obtenemos un coeficiente de correlación de Spearman
-de 0.82, que indica, en la muestra, una relación positiva e intensa
-entre el interés y el orden de mérito en el ingreso. Preguntamos si este
-resultado, obtenido sobre 20 casos, nos autoriza a afirmar que existe
-una asociación entre las dos variables más allá de la muestra observada.
+<p>Ejemplo (datos ficticios): se interroga a 20 votantes de un partido político sobre las razones de su voto y a partir de las respuestas se construye un índice que clasifica el compromiso con la ideología del partido en 1. Muy débil, 2. Débil, 3. Fuerte, 4. Muy fuerte. Los resultados de este índice se ponen en correspondencia con el nivel de educación de las personas encuestadas (1. Sin escolarización, 2. Primario incompleto, etc.). En el análisis de la relación entre estas dos variables ordinales obtenemos un coeficiente de correlación de Spearman de 0.32, que indica, en la muestra, una relación positiva y débil entre el compromiso ideológico y la educación. Preguntamos si este
+resultado, obtenido sobre 20 casos, autoriza a afirmar que existe
+alguna asociación no nula entre las dos variables más allá de la muestra observada.
 Formularemos las hipótesis correspondientes a una prueba bilateral,
 porque queremos probar si el coeficiente es significativamente diferente
 de cero.</p>
@@ -1148,19 +1147,17 @@ valores críticos correspondientes son:</p>
 <pre><code>## [1] -2.100922</code></pre>
 <pre><code>## [1] 2.100922</code></pre>
 <p>El estadístico de prueba es:</p>
-<p><span class="math display">\[t = \frac{r_{s} - \rho_{s}}{\sqrt{\frac{1 - r_{s}^{2}}{n - 2}}} = \frac{0.82}{\sqrt{\frac{1 - {0.82}^{2}}{20 - 2}}} = \frac{0.82}{0.135} = 6.08\]</span></p>
-<p>Este valor se ubica en la región de rechazo de <span class="math inline">\(H_0\)</span>, con lo que la
-decisión es la de rechazar <span class="math inline">\(H_0\)</span> y concluir que “hay evidencia para creer que la correlación a nivel poblacional no es nula”.<br />
+<p><span class="math display">\[t = \frac{r_{s} - \rho_{s}}{\sqrt{\frac{1 - r_{s}^{2}}{n - 2}}} = \frac{0.32}{\sqrt{\frac{1 - {0.32}^{2}}{20 - 2}}} = \frac{0.32}{0.223} = 1.43\]</span></p>
+<p>Este valor se ubica en la región de no rechazo de <span class="math inline">\(H_0\)</span>, con lo que la
+decisión es la de no rechazar <span class="math inline">\(H_0\)</span> y concluir que “no hay evidencia para creer que la correlación a nivel poblacional no sea nula”.<br />
 El valor <span class="math inline">\(p\)</span> asociado a esta observación es:</p>
-<pre><code>## [1] 9.570773e-06</code></pre>
-<p>El pequeño valor p es señal de lo escasamente probable que resulta que
-este resultado provenga del azar, es decir, es evidencia para creer que
-en la población, la asociación efectivamente existe.</p>
+<pre><code>## [1] 0.1698461</code></pre>
+<p>El valor <span class="math inline">\(p\)</span>, superior a los niveles de significación usuales es señal de lo probable que resulta que este resultado provenga del azar, es decir, no es evidencia para creer que en la población, la asociación efectivamente exista. Conclusión: no se rechaza la hipótesis nula y el coeficiente no resulta significativo.</p>
 </div>
 <div id="alternativas-no-paramétricas-a-las-pruebas-t" class="section level3">
-<h3><span class="header-section-number">14.0.3</span> Alternativas no paramétricas a las pruebas t</h3>
+<h3><span class="header-section-number">13.0.3</span> Alternativas no paramétricas a las pruebas t</h3>
 <div id="muestras-independientes-1" class="section level4">
-<h4><span class="header-section-number">14.0.3.1</span> Muestras independientes</h4>
+<h4><span class="header-section-number">13.0.3.1</span> Muestras independientes</h4>
 <p>La prueba U de Mann-Whitney es la versión no paramétrica de la prueba t
 de Student, es decir, sirve para comparar la tendencia central entre dos
 muestras independientes. Se usa cuando no se cumplen los supuestos de la
@@ -1177,7 +1174,7 @@ Mann-Whitney se construye a partir de la suma de rangos de una de las
 muestras, <span class="math inline">\(R_{i}\)</span>, elegida arbitrariamente.</p>
 </div>
 <div id="muestras-relacionadas" class="section level4">
-<h4><span class="header-section-number">14.0.3.2</span> Muestras relacionadas</h4>
+<h4><span class="header-section-number">13.0.3.2</span> Muestras relacionadas</h4>
 <p>La prueba de los rangos con signo de Wilcoxon es una prueba no
 paramétrica para comparar el rango medio de dos muestras relacionadas.
 Es una alternativa a la prueba t de Student para muestras relacionadas,
@@ -1190,68 +1187,158 @@ asociado, y considera tanto el signo, como la magnitud de la diferencia.</p>
 </div>
 </div>
 <div id="hacerlo-en-r-11" class="section level2">
-<h2><span class="header-section-number">14.1</span> Hacerlo en R</h2>
+<h2><span class="header-section-number">13.1</span> Hacerlo en R</h2>
 <div id="ejemplo-1" class="section level3">
-<h3><span class="header-section-number">14.1.1</span> Ejemplo 1</h3>
+<h3><span class="header-section-number">13.1.1</span> Ejemplo 1</h3>
 <p>Como se trata de datos ficticios, debemos primero generarlos.</p>
-<div class="sourceCode" id="cb496"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb496-1" data-line-number="1">resultado &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">rep</span>(<span class="st">&quot;aprobado&quot;</span>, <span class="dv">90</span>), <span class="kw">rep</span>(<span class="st">&quot;no aprobado&quot;</span>, <span class="dv">40</span>))</a>
-<a class="sourceLine" id="cb496-2" data-line-number="2">turno &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">rep</span>(<span class="st">&quot;mañana&quot;</span>, <span class="dv">60</span>), <span class="kw">rep</span>(<span class="st">&quot;tarde&quot;</span>, <span class="dv">30</span>), <span class="kw">rep</span>(<span class="st">&quot;mañana&quot;</span>, <span class="dv">30</span>), <span class="kw">rep</span>(<span class="st">&quot;tarde&quot;</span>, <span class="dv">10</span>))</a>
-<a class="sourceLine" id="cb496-3" data-line-number="3">datos_ejemplo_<span class="dv">1</span>_chi &lt;-<span class="st"> </span><span class="kw">data.frame</span>(resultado, turno)</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">resultado &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">rep</span>(<span class="st">&quot;aprobado&quot;</span>, <span class="dv">90</span>), <span class="kw">rep</span>(<span class="st">&quot;no aprobado&quot;</span>, <span class="dv">40</span>))
+turno &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">rep</span>(<span class="st">&quot;mañana&quot;</span>, <span class="dv">60</span>), <span class="kw">rep</span>(<span class="st">&quot;tarde&quot;</span>, <span class="dv">30</span>), <span class="kw">rep</span>(<span class="st">&quot;mañana&quot;</span>, <span class="dv">30</span>), <span class="kw">rep</span>(<span class="st">&quot;tarde&quot;</span>, <span class="dv">10</span>))
+datos_ejemplo_<span class="dv">1</span>_chi &lt;-<span class="st"> </span><span class="kw">data.frame</span>(resultado, turno)</code></pre>
 <p>Y construimos la tabla</p>
-<div class="sourceCode" id="cb497"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb497-1" data-line-number="1"><span class="kw">library</span>(kableExtra)</a>
-<a class="sourceLine" id="cb497-2" data-line-number="2">resultado_por_turno &lt;-<span class="st"> </span><span class="kw">table</span>(datos_ejemplo_<span class="dv">1</span>_chi<span class="op">$</span>resultado, datos_ejemplo_<span class="dv">1</span>_chi<span class="op">$</span>turno)</a>
-<a class="sourceLine" id="cb497-3" data-line-number="3">resultado_por_turno</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(kableExtra)
+resultado_por_turno &lt;-<span class="st"> </span><span class="kw">table</span>(datos_ejemplo_<span class="dv">1</span>_chi<span class="op">$</span>resultado, datos_ejemplo_<span class="dv">1</span>_chi<span class="op">$</span>turno)
+resultado_por_turno</code></pre>
 <pre><code>##              
 ##               mañana tarde
 ##   aprobado        60    30
 ##   no aprobado     30    10</code></pre>
 <p>Ahora solicitamos la prueba <span class="math inline">\(\chi^2\)</span>:</p>
-<div class="sourceCode" id="cb499"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb499-1" data-line-number="1">prueba &lt;-<span class="st"> </span><span class="kw">chisq.test</span>(resultado_por_turno, <span class="dt">correct =</span> <span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb499-2" data-line-number="2"><span class="kw">names</span>(prueba)</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">prueba &lt;-<span class="st"> </span><span class="kw">chisq.test</span>(resultado_por_turno, <span class="dt">correct =</span> <span class="ot">FALSE</span>)</code></pre>
+<p>El objeto “prueba” contiene los resultados, veamos cuáles son:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(prueba)</code></pre>
 <pre><code>## [1] &quot;statistic&quot; &quot;parameter&quot; &quot;p.value&quot;   &quot;method&quot;    &quot;data.name&quot; &quot;observed&quot; 
 ## [7] &quot;expected&quot;  &quot;residuals&quot; &quot;stdres&quot;</code></pre>
-<div class="sourceCode" id="cb501"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb501-1" data-line-number="1">prueba<span class="op">$</span>expected</a></code></pre></div>
+<p>Consultemos algunos de los valores:</p>
+<pre class="sourceCode r"><code class="sourceCode r">prueba<span class="op">$</span>statistic</code></pre>
+<pre><code>## X-squared 
+## 0.9027778</code></pre>
+<p>Es el valor del puntaje <span class="math inline">\(\chi_{obs}^2\)</span>.<br />
+La tabla de frecuencias esperadas es:</p>
+<pre class="sourceCode r"><code class="sourceCode r">prueba<span class="op">$</span>expected</code></pre>
 <pre><code>##              
 ##                 mañana    tarde
 ##   aprobado    62.30769 27.69231
 ##   no aprobado 27.69231 12.30769</code></pre>
-<div class="sourceCode" id="cb503"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb503-1" data-line-number="1">prueba</a></code></pre></div>
+<p>Se puede solicitar el resultado completo de la prueba:</p>
 <pre><code>## 
 ##  Pearson&#39;s Chi-squared test
 ## 
 ## data:  resultado_por_turno
 ## X-squared = 0.90278, df = 1, p-value = 0.342</code></pre>
+<p>Para ver el modo en que se llegó a ese valor <span class="math inline">\(p\)</span>, se calcula la probabilidad de superar el puntaje <span class="math inline">\(\chi_{obs}^2\)</span>. Se lo obtiene complementando la probabilidad acumulada.</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="dv">1</span><span class="op">-</span><span class="kw">pchisq</span>(.<span class="dv">9028</span>,<span class="dv">1</span>)</code></pre>
+<pre><code>## [1] 0.342032</code></pre>
+<p>El resultado conduce a no rechazar la hipótesis nula.</p>
 </div>
 <div id="ejemplo-2" class="section level3">
-<h3><span class="header-section-number">14.1.2</span> Ejemplo 2</h3>
+<h3><span class="header-section-number">13.1.2</span> Ejemplo 2</h3>
 <p>Nuevamente, hay que generar los datos</p>
-<div class="sourceCode" id="cb505"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb505-1" data-line-number="1">condicion &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">rep</span>(<span class="st">&quot;promocionados&quot;</span>, <span class="dv">53</span>), <span class="kw">rep</span>(<span class="st">&quot;regulares&quot;</span>, <span class="dv">51</span>), <span class="kw">rep</span>(<span class="st">&quot;libres&quot;</span>, <span class="dv">38</span>))</a>
-<a class="sourceLine" id="cb505-2" data-line-number="2">tabla_condicion &lt;-<span class="st"> </span><span class="kw">table</span>(condicion)</a></code></pre></div>
-<p>En la aplicación de la prueba, los argumentos son la tabla univariada y las proporciones esperadas en cada categoría (en el orden que aparecen; conviene observar la tabla antes):</p>
-<div class="sourceCode" id="cb506"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb506-1" data-line-number="1"><span class="kw">chisq.test</span>(tabla_condicion, <span class="dt">p =</span> <span class="kw">c</span>(.<span class="dv">30</span>, <span class="fl">.35</span>, <span class="fl">.35</span>))</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">condicion &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">rep</span>(<span class="st">&quot;promoción&quot;, 53), rep(&quot;</span>regularidad<span class="st">&quot;, 51), rep(&quot;</span>libres<span class="st">&quot;, 38))</span>
+<span class="st">tabla_condicion &lt;- table(condicion)</span>
+<span class="st">tabla_condicion</span></code></pre>
+<pre><code>## condicion
+##      libres   promoción regularidad 
+##          38          53          51</code></pre>
+<p>Y la de relativos, redondeada a tres decimales:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">round</span>(<span class="kw">prop.table</span>(tabla_condicion),<span class="dv">3</span>)</code></pre>
+<pre><code>## condicion
+##      libres   promoción regularidad 
+##       0.268       0.373       0.359</code></pre>
+<p>En la aplicación de la prueba, los argumentos son la tabla univariada y las proporciones esperadas (hipotéticas) en cada categoría (en el orden que aparecen):</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">chisq.test</span>(tabla_condicion, <span class="dt">p =</span> <span class="kw">c</span>(.<span class="dv">30</span>, <span class="fl">.35</span>, <span class="fl">.35</span>))</code></pre>
 <pre><code>## 
 ##  Chi-squared test for given probabilities
 ## 
 ## data:  tabla_condicion
 ## X-squared = 0.74983, df = 2, p-value = 0.6873</code></pre>
-<p>La salida muestra el puntaje <span class="math inline">\(\chi^2\)</span>, los grados de libertad y el valor p asociado. Por tratarse de un valor elevado, concluimos que no hay evidencia para rechazar la hipótesis según la cual los estudiantes de más de una carrera se ditribuyen entre regulares, promocionales y libres del mismo modo que lo hacen quienes solo estudian una carrera.</p>
+<p>La salida muestra el puntaje <span class="math inline">\(\chi^2\)</span>, los grados de libertad y el valor p asociado. Por tratarse de un valor elevado, concluimos que no hay evidencia para rechazar la hipótesis según la cual quienes estudian más de una carrera se ditribuyen entre regulares, promocionales y libres del mismo modo que lo hacen quienes solo estudian una carrera.</p>
 </div>
 <div id="prueba-de-la-mediana-1" class="section level3">
-<h3><span class="header-section-number">14.1.3</span> Prueba de la mediana</h3>
+<h3><span class="header-section-number">13.1.3</span> Prueba de la mediana</h3>
 <p>Construimos la matriz de datos, codificando del 1 al 5 los conceptos Excelente…. No satisfactorio.</p>
-<div class="sourceCode" id="cb508"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb508-1" data-line-number="1">docente_a &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">rep</span>(<span class="dv">1</span>, <span class="dv">15</span>), <span class="kw">rep</span>(<span class="dv">2</span>, <span class="dv">13</span>), <span class="kw">rep</span>(<span class="dv">3</span>, <span class="dv">4</span>), <span class="kw">rep</span>(<span class="dv">4</span>, <span class="dv">6</span>), <span class="kw">rep</span>(<span class="dv">5</span>, <span class="dv">2</span>))</a>
-<a class="sourceLine" id="cb508-2" data-line-number="2">docente_b &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">rep</span>(<span class="dv">1</span>, <span class="dv">3</span>), <span class="kw">rep</span>(<span class="dv">2</span>, <span class="dv">5</span>), <span class="kw">rep</span>(<span class="dv">3</span>, <span class="dv">8</span>), <span class="kw">rep</span>(<span class="dv">4</span>, <span class="dv">18</span>), <span class="kw">rep</span>(<span class="dv">5</span>, <span class="dv">6</span>))</a>
-<a class="sourceLine" id="cb508-3" data-line-number="3">concepto &lt;-<span class="st"> </span><span class="kw">c</span>(docente_a, docente_b)</a>
-<a class="sourceLine" id="cb508-4" data-line-number="4">docente &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">rep</span>(<span class="st">&quot;a&quot;</span>, <span class="dv">40</span>), <span class="kw">rep</span>(<span class="st">&quot;b&quot;</span>, <span class="dv">40</span>))</a>
-<a class="sourceLine" id="cb508-5" data-line-number="5">datos_prueba_mediana &lt;-<span class="st"> </span><span class="kw">data.frame</span>(concepto, docente)</a></code></pre></div>
-<p>La prueba de la mediana está en un paquete que no hemos usado aun, será necesario intalarlo y cargarlo en esta sesión:</p>
-<!--aca se traba, quito un pedazo que trea el problema, está en el script agricolae-->
+<pre class="sourceCode r"><code class="sourceCode r">docente_a &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">rep</span>(<span class="dv">1</span>, <span class="dv">15</span>), <span class="kw">rep</span>(<span class="dv">2</span>, <span class="dv">13</span>), <span class="kw">rep</span>(<span class="dv">3</span>, <span class="dv">4</span>), <span class="kw">rep</span>(<span class="dv">4</span>, <span class="dv">6</span>), <span class="kw">rep</span>(<span class="dv">5</span>, <span class="dv">2</span>))
+docente_b &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">rep</span>(<span class="dv">1</span>, <span class="dv">3</span>), <span class="kw">rep</span>(<span class="dv">2</span>, <span class="dv">5</span>), <span class="kw">rep</span>(<span class="dv">3</span>, <span class="dv">8</span>), <span class="kw">rep</span>(<span class="dv">4</span>, <span class="dv">18</span>), <span class="kw">rep</span>(<span class="dv">5</span>, <span class="dv">6</span>))
+concepto &lt;-<span class="st"> </span><span class="kw">c</span>(docente_a, docente_b)
+docente &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">rep</span>(<span class="st">&quot;a&quot;</span>, <span class="dv">40</span>), <span class="kw">rep</span>(<span class="st">&quot;b&quot;</span>, <span class="dv">40</span>))
+datos_prueba_mediana &lt;-<span class="st"> </span><span class="kw">data.frame</span>(concepto, docente)</code></pre>
+<p>La prueba de la mediana está en un paquete que no hemos usado aun, será necesario instalarlo y cargarlo en esta sesión:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;agricolae&quot;</span>)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(agricolae)</code></pre>
+<p>La prueba tiene como argumentos a las dos variables y se solicita que no haga una corrección interna:</p>
+<pre class="sourceCode r"><code class="sourceCode r">  prueba_mediana&lt;-<span class="kw">Median.test</span>(datos_prueba_mediana<span class="op">$</span>concepto,
+            datos_prueba_mediana<span class="op">$</span>docente,
+            <span class="dt">correct =</span> <span class="ot">FALSE</span>)</code></pre>
+<pre><code>## 
+## The Median Test for datos_prueba_mediana$concepto ~ datos_prueba_mediana$docente 
+## 
+## Chi Square = 13.33333   DF = 1   P.Value 0.0002607296
+## Median = 3 
+## 
+##   Median  r Min Max Q25 Q75
+## a      2 40   1   5   1   3
+## b      4 40   1   5   3   4
+## 
+## Post Hoc Analysis
+## 
+## Groups according to probability of treatment differences and alpha level.
+## 
+## Treatments with the same letter are not significantly different.
+## 
+##   datos_prueba_mediana$concepto groups
+## b                             4      a
+## a                             2      b</code></pre>
+<p>Los componentes de este objeto son:</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(prueba_mediana)</code></pre>
+<pre><code>## [1] &quot;statistics&quot; &quot;parameters&quot; &quot;medians&quot;    &quot;comparison&quot; &quot;groups&quot;</code></pre>
+<p>Que tienen los valores:</p>
+<pre class="sourceCode r"><code class="sourceCode r">prueba_mediana<span class="op">$</span>statistics</code></pre>
+<pre><code>##      Chisq Df      p.chisq Median
+##   13.33333  1 0.0002607296      3</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">prueba_mediana<span class="op">$</span>parameters</code></pre>
+<pre><code>##     test                       name.t ntr alpha
+##   Median datos_prueba_mediana$docente   2  0.05</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">prueba_mediana<span class="op">$</span>medians</code></pre>
+<pre><code>##   Median  r Min Max Q25 Q75
+## a      2 40   1   5   1   3
+## b      4 40   1   5   3   4</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">prueba_mediana<span class="op">$</span>comparison</code></pre>
+<pre><code>## NULL</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">prueba_mediana<span class="op">$</span>groups</code></pre>
+<pre><code>##   datos_prueba_mediana$concepto groups
+## b                             4      a
+## a                             2      b</code></pre>
+<p>Se puede pedir todo de una vez:</p>
+<pre class="sourceCode r"><code class="sourceCode r">prueba_mediana</code></pre>
+<pre><code>## $statistics
+##      Chisq Df      p.chisq Median
+##   13.33333  1 0.0002607296      3
+## 
+## $parameters
+##     test                       name.t ntr alpha
+##   Median datos_prueba_mediana$docente   2  0.05
+## 
+## $medians
+##   Median  r Min Max Q25 Q75
+## a      2 40   1   5   1   3
+## b      4 40   1   5   3   4
+## 
+## $comparison
+## NULL
+## 
+## $groups
+##   datos_prueba_mediana$concepto groups
+## b                             4      a
+## a                             2      b
+## 
+## attr(,&quot;class&quot;)
+## [1] &quot;group&quot;</code></pre>
+<p>El valor <span class="math inline">\(p\)</span> conduce a rechazar la hipótesis nula.</p>
 </div>
 <div id="prueba-de-wilcoxon" class="section level3">
-<h3><span class="header-section-number">14.1.4</span> Prueba de Wilcoxon</h3>
-<p>Sea el caso de la comparación entre los puntajes de un test estandarizado entre los grupos experimental y control, cada uno de los cuales tiene nueve casos. Los datos son lso siguientes:</p>
-<div class="sourceCode" id="cb509"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb509-1" data-line-number="1">puntajes_control &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">38.9</span>, <span class="fl">61.2</span>, <span class="fl">73.3</span>, <span class="fl">21.8</span>, <span class="fl">63.4</span>, <span class="fl">64.6</span>, <span class="fl">48.4</span>, <span class="fl">48.8</span>, <span class="fl">48.5</span>)</a>
-<a class="sourceLine" id="cb509-2" data-line-number="2">puntajes_experimental &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">67.8</span>, <span class="dv">60</span>, <span class="fl">63.4</span>, <span class="dv">76</span>, <span class="fl">89.4</span>, <span class="fl">73.3</span>, <span class="fl">67.3</span>, <span class="fl">61.3</span>, <span class="fl">62.4</span>)</a></code></pre></div>
+<h3><span class="header-section-number">13.1.4</span> Prueba de Wilcoxon</h3>
+<p>Sea como ejemplo, el caso de la comparación entre los puntajes de un test estandarizado entre los grupos experimental y control, cada uno de los cuales tiene nueve casos. Los datos ficticios son los siguientes:</p>
+<pre class="sourceCode r"><code class="sourceCode r">puntajes_control &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">38.9</span>, <span class="fl">61.2</span>, <span class="fl">73.3</span>, <span class="fl">21.8</span>, <span class="fl">63.4</span>, <span class="fl">64.6</span>, <span class="fl">48.4</span>, <span class="fl">48.8</span>, <span class="fl">48.5</span>)
+puntajes_experimental &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">67.8</span>, <span class="dv">60</span>, <span class="fl">63.4</span>, <span class="dv">76</span>, <span class="fl">89.4</span>, <span class="fl">73.3</span>, <span class="fl">67.3</span>, <span class="fl">61.3</span>, <span class="fl">62.4</span>)</code></pre>
 <p>Los argumentos de la prueba solicitan los dos conjuntos de datos, la lateralidad, el valor bajo la hipótesis nula, y debe indicarse que no es una prueba apareada</p>
 <pre><code>## 
 ##  Wilcoxon rank sum test with continuity correction
@@ -1261,11 +1348,11 @@ asociado, y considera tanto el signo, como la magnitud de la diferencia.</p>
 ## alternative hypothesis: true location shift is not equal to 0</code></pre>
 <p>El resultado, a partir del valor <span class="math inline">\(p\)</span> que ofrece, indica que se rechaza la hipótesis nula.<br />
 Si hubiésemos aplicado la prueba t, primero debe construirse la matriz de datos:</p>
-<div class="sourceCode" id="cb511"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb511-1" data-line-number="1">puntajes &lt;-<span class="st"> </span><span class="kw">c</span>(puntajes_control, puntajes_experimental)</a>
-<a class="sourceLine" id="cb511-2" data-line-number="2">grupo &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;control&quot;</span>, <span class="st">&quot;experimental&quot;</span>), <span class="dt">each =</span> <span class="dv">9</span>)</a>
-<a class="sourceLine" id="cb511-3" data-line-number="3">datos_prueba_wilcoxon &lt;-<span class="st"> </span><span class="kw">data.frame</span>(grupo, puntajes)</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r">puntajes &lt;-<span class="st"> </span><span class="kw">c</span>(puntajes_control, puntajes_experimental)
+grupo &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;control&quot;</span>, <span class="st">&quot;experimental&quot;</span>), <span class="dt">each =</span> <span class="dv">9</span>)
+datos_prueba_wilcoxon &lt;-<span class="st"> </span><span class="kw">data.frame</span>(grupo, puntajes)</code></pre>
 <p>Y luego aplicar la prueba</p>
-<div class="sourceCode" id="cb512"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb512-1" data-line-number="1"><span class="kw">t.test</span>(puntajes <span class="op">~</span><span class="st"> </span>grupo, <span class="dt">data =</span> datos_prueba_wilcoxon)</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">t.test</span>(puntajes <span class="op">~</span><span class="st"> </span>grupo, <span class="dt">data =</span> datos_prueba_wilcoxon)</code></pre>
 <pre><code>## 
 ##  Welch Two Sample t-test
 ## 
@@ -1277,36 +1364,67 @@ Si hubiésemos aplicado la prueba t, primero debe construirse la matriz de datos
 ## sample estimates:
 ##      mean in group control mean in group experimental 
 ##                   52.10000                   68.98889</code></pre>
-<p>El resultado conduce a la misma decisión, pero para interpretarlo debe cuidarse que los puntajes estén medidos a escala cuatitativa.</p>
+<p>El resultado conduce a la misma decisión, pero para interpretarlo debe cuidarse que los puntajes estén medidos a escala cuantitativa.</p>
 </div>
 <div id="muestras-apareadas-1" class="section level3">
-<h3><span class="header-section-number">14.1.5</span> Muestras apareadas</h3>
-<p>Se trata de evaluaciones antes y después de una intervención sobre las condiciones de trabajo en una organización, medidas en puntaje de una prueba de satisfacción. Se quiere saber si hay evidencia para creer que después los puntajes son mayores:</p>
-<!--a esto lo dejamos invisible-->
-<div class="sourceCode" id="cb514"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb514-1" data-line-number="1"><span class="kw">wilcox.test</span>(despues, antes, <span class="dt">alternative =</span> <span class="st">&quot;greater&quot;</span>, <span class="dt">mu =</span> <span class="dv">0</span>, <span class="dt">paired =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<h3><span class="header-section-number">13.1.5</span> Muestras apareadas</h3>
+<p>Se ilustra con un ejemplo sobre evaluaciones antes y después de una intervención sobre las condiciones de trabajo en una organización, medidas en puntaje de una prueba de satisfacción. Se quiere saber si hay evidencia para creer que después de la intervención los puntajes son mayores. En primer lugar se lee la base (datos ficticios):</p>
+<!--esto no se muestra-->
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">read.csv</span>(<span class="st">&quot;bases/archivostxt/datos_apareadas.csv&quot;</span>)</code></pre>
+<pre><code>##     X antes despues
+## 1   1   5.8     9.2
+## 2   2   5.5     8.1
+## 3   3   6.7     4.9
+## 4   4   3.7     4.2
+## 5   5   7.2     7.3
+## 6   6   5.4    10.2
+## 7   7   3.4     9.0
+## 8   8   4.1     4.6
+## 9   9   5.1     5.9
+## 10 10   5.0     5.8
+## 11 11   2.7     2.5
+## 12 12   5.8     6.8
+## 13 13   4.5     8.1
+## 14 14   5.2    10.7
+## 15 15   5.6    12.9
+## 16 16   6.5     8.2
+## 17 17   5.7    13.5
+## 18 18   6.1     8.2
+## 19 19   4.2    12.3
+## 20 20   4.6    12.4</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">wilcox.test</span>(despues, antes, <span class="dt">alternative =</span> <span class="st">&quot;greater&quot;</span>, <span class="dt">mu =</span> <span class="dv">0</span>, <span class="dt">paired =</span> <span class="ot">TRUE</span>)</code></pre>
 <pre><code>## 
-##  Wilcoxon signed rank test
+##  Wilcoxon signed rank test with continuity correction
 ## 
 ## data:  despues and antes
-## V = 199, p-value = 5.245e-05
+## V = 199, p-value = 0.0002407
 ## alternative hypothesis: true location shift is greater than 0</code></pre>
-<p>Leemos que, en una prueba unilateral derecha, el valor p es menor a los niveles usuales de significación, por lo que hay evidencia para afirmar que los puntajes son mayores luego de la intervención.</p>
+<p>Leemos que, en una prueba unilateral derecha, el valor <span class="math inline">\(p\)</span> es menor a los niveles usuales de significación, por lo que hay evidencia para afirmar que los puntajes son mayores luego de la intervención.</p>
 <p>La realización de esta prueba si la satisfacción esstuviese medida a nivel métrico y se pudiera suponer la normalidad de las distribuciones, sería por medio de una prueba t para muestras apareadas:</p>
-<div class="sourceCode" id="cb516"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb516-1" data-line-number="1"><span class="kw">t.test</span>(despues, antes, <span class="dt">paired =</span> <span class="ot">TRUE</span>, <span class="dt">alternative =</span> <span class="st">&quot;greater&quot;</span>)</a></code></pre></div>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">t.test</span>(despues, antes, <span class="dt">paired =</span> <span class="ot">TRUE</span>, <span class="dt">alternative =</span> <span class="st">&quot;greater&quot;</span>)</code></pre>
 <pre><code>## 
 ##  Paired t-test
 ## 
 ## data:  despues and antes
-## t = 4.5337, df = 19, p-value = 0.0001136
+## t = 4.5335, df = 19, p-value = 0.0001136
 ## alternative hypothesis: true difference in means is greater than 0
 ## 95 percent confidence interval:
-##  1.922063      Inf
+##  1.917623      Inf
 ## sample estimates:
 ## mean of the differences 
-##                3.107097</code></pre>
+##                     3.1</code></pre>
 <p>Que conduce al mismo resultado, pero que solo es válida si se cumplen los supuestos paramétricos.</p>
 
 </div>
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-siegel1957">
+<p>Siegel, Sidney. 1957. “Nonparametric Statistics.” <em>The American Statistician</em> 11 (3): 13–19. <a href="https://doi.org/10.1080/00031305.1957.10501091">https://doi.org/10.1080/00031305.1957.10501091</a>.</p>
+</div>
+<div id="ref-Kendall1948">
+<p>Kendall, M G. 1948. <em>Rank correlation methods.</em> Oxford, England: Griffin.</p>
 </div>
 </div>
 <div class="footnotes">
@@ -1316,7 +1434,6 @@ Si hubiésemos aplicado la prueba t, primero debe construirse la matriz de datos
 <li id="fn93"><p>Como <span class="math inline">\(f_{ij} = \frac{f_{i}*f_{j}}{n}\)</span><a href="cuando-los-supuestos-no-se-cumplen.html#fnref93" class="footnote-back">↩</a></p></li>
 <li id="fn94"><p>Haciendo: <span class="math inline">\(\chi^{2} = \sum_{}^{}\frac{( f_{o} - f_{o} )^{2}}{f_{e}}\)</span><a href="cuando-los-supuestos-no-se-cumplen.html#fnref94" class="footnote-back">↩</a></p></li>
 <li id="fn95"><p>De mismo modo que sucede con las pruebas paramétricas, las hipótesis se refieren a toda la población, aunque aquí no aparezca el nombre de un parámetro reconocible, como <span class="math inline">\(\mu\)</span> o <span class="math inline">\(P\)</span>.<a href="cuando-los-supuestos-no-se-cumplen.html#fnref95" class="footnote-back">↩</a></p></li>
-<li id="fn96"><p>Kendall (1948) citado por Siegel (1956)<a href="cuando-los-supuestos-no-se-cumplen.html#fnref96" class="footnote-back">↩</a></p></li>
 </ol>
 </div>
             </section>
@@ -1324,19 +1441,17 @@ Si hubiésemos aplicado la prueba t, primero debe construirse la matriz de datos
           </div>
         </div>
       </div>
-<a href="prueba-de-hipótesis-las-aplicaciones.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="apéndice-tamaño-del-efecto.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="prueba-de-hipÃ³tesis-las-aplicaciones.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="tamaño-del-efecto.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
-<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
-<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
@@ -1379,9 +1494,8 @@ gitbook.start({
     script.type = "text/javascript";
     var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:")
-      if (/^https?:/.test(src))
-        src = src.replace(/^https?:/, '');
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
