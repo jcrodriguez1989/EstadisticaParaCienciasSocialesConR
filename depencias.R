@@ -25,6 +25,7 @@ load_install("tibble")
 load_install("latex2exp")
 load_install("splitstackshape")
 load_install("summarytools")
+load_install("svglite")
 
 knitr::opts_chunk$set(
   echo = FALSE,
