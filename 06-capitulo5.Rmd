@@ -2,8 +2,6 @@
 
 ```{r message=FALSE, warning=FALSE, include=FALSE}
 source("depencias.R")
-knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
-kable_outp <- ifelse(knitr::is_latex_output(), "latex", "html")
 ```
 
 En el capítulo anterior hemos tratado la relación entre dos variables en
@@ -18,15 +16,12 @@ la hipotética relación entre dos variables de nivel nominal con más de
 dos categorías cada una y variables de nivel superior (ordinales y
 métricas).
 
-## Variables nominales con más de dos categorías cada una
+## Relaciones entre variables vs. comparación de grupos  
+Según el contexto en que se aplique y también según el modo en que se formulan las preguntas, los resultados de los procedimientos estadísticos que veremos a continuación pueden interpretarse de diferente manera. Tomemos como ejemplo el caso que interese observar la relación del tipo de violencia[^rel_violencia] con el lugar donde sucede, que se analizará más adelante. Aunque son estadísticamente equivalentes, no es lo mismo preguntar si "el lugar incide sobre el tipo de violencia", o si "el tipo de violencia difiere según el lugar". Aquí es más pertinente el planteo del problema como una comparación de grupos (que quedan definidos por los diferentes lugares) antes que como una relación entre variables. Lo mismo pasa cuando se comparan los resultados de un examen entre quienes cursan por la tarde o la mañana. Cuando hay control de variables, como en el diseño experimental o en la evaluación de impacto, el paralelismo entre las dos lecturas es más cercano. Así, preguntar si un grupo de deportistas que recibió un suplemento en su dieta, tiene mejor rendimiento que uno que no lo recibió (planteo en términos de comparación de grupos), equivale a preguntar si el suplemento dietario incide sobre el rendimiento (planteo en términos de relación entre variables). Las operaciones estadísticas que responden a las dos preguntas son las mismas, pero según el caso, una manera de formular el problema puede ser más adecuada que otra, así como la lectura del resultado.  
+Por ejemplo, cuando se busca evaluar el impacto de una política pública dirigida a reducir enfermedades parasitarias en memnores de edad, una estrategia consiste en comparar la prevalencia de esas enfermedades entre quienes han sido destinatarios de esa política, y quienes no lo fueron. Esta prevalencia es la "variable de salida" o "de respuesta" y es aquello sobre lo cual la política pretende impactar. La pregunta por la diferencia entre los dos grupos equivale a indagar sobre el efecto de la intervención.  
+La investigación social apela continuamente a las comparaciones: el pasado y el presente, mujeres y varones, sociedades industriales y agrarias (@Pescosolido1983), grupos minoritarios y población general, por eso es necesario contar con herramientas que permitan analizar la manera en que suceden estas diferencias y las relaciones entre variables que se asocian a ellas.  
 
-### Relaciones entre variables vs. comparación de grupos  
-Según el contexto en que se aplique y también según el modo en que se formulan las preguntas, los resultados de los procedimientos estadísticos que veremos a continuación pueden interpretarse de diferente manera. Tomemos como ejemplo el caso que interese observar la relación del tipo de violencia[^rel_violencia] con el lugar donde sucede, que se analizará más adelante. Aunque son estadísticamente equivalentes, no es lo mismo preguntar si "el lugar incide sobre el tipo de violencia", o si "el tipo de violencia difiere según el lugar". Aquí es más pertinente el planteo del problema como una comparación de grupos (que quedan definidos por los diferentes lugares) antes que como una relación entre variables. Lo mismo pasa cuando se comparan los resultados de un examen entre quienes cursan por la tarde o la mañana. Cuando hay control de variables, como en el diseño experimental o en la evaluación de impacto, el paralelismo entre las dos lecturas es más cercano. Así, preguntar si un grupo de niños que recibió un suplemento en su dieta, tiene mejor desarrollo que uno que no lo recibió (planteo en términos de comparación de grupos), equivale a preguntar si el suplemento dietario incide sobre el desarrollo (planteo en términos de relación entre variables). Las operaciones estadísticas que responden a las dos preguntas son las mismas, pero según el caso, una manera de formular el problema puede ser más adecuada que otra, así como la lectura del resultado.  
-Por ejemplo, cuando se busca evaluar el impacto de una política pública dirigida a reducir enfermedades parasitarias en niños, una estrategia consiste en comparar la prevalencia de esas enfermedades entre niños que han sido destinatarios de esa política, y niños que no lo fueron. Esta prevalencia es la "variable de salida" o "de respuesta" y es aquello sobre lo cual la política pretende impactar. La pregunta por la diferencia entre los dos grupos equivale a indagar sobre el efecto de la intervención.  
-La investigación social apela continuamente a las comparaciones: el pasado y el presente, mujeres y varones, sociedades industriales y agrarias (arrobaPescosolido1983), grupos minoritarios y población general, por eso es necesario contar con herramientas que permitan analizar la manera en que suceden estas diferencias y las relaciones entre variables que se asocian a ellas.  
-
-
-### La distancia entre frecuencias esperadas y observadas
+## Variables nominales
 
 Sobre el final del capítulo anterior presentamos el concepto de
 independencia estadística y vimos la manera de calcular las frecuencias
@@ -85,7 +80,7 @@ aux_table <- 100 * round(aux_table, 3)
 kableExtra::kable_styling(
   knitr::kable(aux_table,
     format = "pandoc", booktabs = TRUE, align = "cccc",
-    caption = "Frecuencia relativas por columnas de la clasificación de diferentes tipos de violencia según área donde se manifiesta"
+    caption = "Frecuencia relativas (en %) por columnas de la clasificación de diferentes tipos de violencia según área donde se manifiesta"
   ),
   latex_options = "striped"
 )
@@ -100,8 +95,7 @@ violencia autoinfligida, que es el 30% del total, sube al 41% en grandes
 ciudades y solo representa el 14% de las formas de violencia que se
 observan en áreas rurales. Así, parecería que hay diferencia en la
 distribución de los tipos de violencia según las áreas que están
-considerándose.
-
+considerándose.  
 Buscaremos ahora de cuantificar la intensidad de esa relación, para lo que nos preguntaremos cuáles serían las frecuencias de las celdas si el tipo de violencia fuera independiente del área donde sucede, es decir, si se observara la misma proporción de los distintos tipos de violencia en todas las áreas. Usemos el concepto de independencia estadística para calcular las frecuencias esperadas correspondientes a la tabla \@ref(tab:frecObs).
 
 ```{r}
@@ -124,14 +118,11 @@ anterior, haciendo:
 
 $$f_{ij}^{e} = \frac{f_{i}*f_{j}}{n}$$
 
-Por ejemplo, la frecuencia de la celda 1,2 resultó de $f_{1 2}^{e} = \frac{151*245}{500} = 73.99$ que redondeamos a 74.
-
-La tabla \@ref(tab:frecEsperada) muestra las frecuencias que esperaríamos encontrar si no hubiera relación entre las variables, es decir, si éstas fueran independientes. A ellas debemos compararlas con las que realmente hemos encontrado; las que se denominan frecuencias observadas.
-
+Por ejemplo, la frecuencia de la celda 1,2 resultó de $f_{1 2}^{e} = \frac{151*245}{500} = 73.99$ que redondeamos a 74.  
+La tabla \@ref(tab:frecEsperada) muestra las frecuencias que esperaríamos encontrar si no hubiera relación entre las variables, es decir, si éstas fueran independientes. A ellas debemos compararlas con las que realmente hemos encontrado; las que se denominan frecuencias observadas.  
 Si halláramos que nuestras frecuencias observadas son muy similares a
-las que se esperan bajo la hipótesis de independencia, diríamos que las variables "están cerca" de ser independientes, o lo que es equivalente, que habría escasa relación entre ellas, . Por el contrario, si las frecuencias observadas fueran muy diferentes de las esperadas, creeríamos que las variables "están lejos" de ser independientes, es decir, que habría alguna relación entre ellas. Para decidir, debemos comparar la tabla \@ref(tab:frecObs) con la \@ref(tab:frecEsperada).
-
-Una opción para medir la distancia entre los dos conjuntos de frecuencias es la de restar las correspondientes de cada celda; pero si hacemos eso nos encontraremos con un problema parecido al que tuvimos cuando intentamos observar la dispersión restando los valores de la media: la suma da cero. Por única vez realizaremos esta operación de manera manual:
+las que se esperan bajo la hipótesis de independencia, diríamos que las variables "están cerca" de ser independientes, o lo que es equivalente, que habría escasa relación entre ellas, . Por el contrario, si las frecuencias observadas fueran muy diferentes de las esperadas, creeríamos que las variables "están lejos" de ser independientes, es decir, que habría alguna relación entre ellas. Para decidir, debemos comparar la tabla \@ref(tab:frecObs) con la \@ref(tab:frecEsperada).  
+Una opción para medir la distancia entre los dos conjuntos de frecuencias es la de restar las correspondientes de cada celda; pero si hacemos eso nos encontraremos con un problema parecido al que tuvimos cuando intentamos observar la dispersión restando los valores de la media: la suma da cero. Por única vez realizaremos esta operación de manera manual para verificar el resultado:
 
 $$(15 - 33) + (100 - 74) + (35 - 44) + (5 - 11) + (35 - 24) + (10 - 14) + (90 - 66) +$$
 $$(110 - 147) + (100 - 87) = 0$$
@@ -143,16 +134,15 @@ $$\sum_{i=1; j=1}^{i=f; j=c}{\frac{(f_{ij}^o - f_{ij}^e)^2}{f_{ij}^e}}$$
 La expresión nos dice que deben restarse cada una de las frecuencias esperadas de cada observada correspondiente, elevar esa diferencia al cuadrado[^35] y dividir el resultado por cada una de las frecuencias esperadas. Los subíndices mantienen la notación del capítulo anterior: $i$ es el índice de filas, que va desde la primera ($i=1$) hasta la última ($f$ es el número total de filas); $j$ es el índice de las columnas, que también empieza en 1 ($j=1$) y termina en $c$, que es el número total de columnas[^36]. Vamos a aplicarla una vez, solo para ver su funcionamiento, luego la pediremos al programa:
 
 $$\frac{(15 - 33)^{2}}{33} +\frac{(100 - 74)^{2}}{74} + \frac{(35 - 44)^{2}}{44} + \frac{(5 - 11)^{2}}{11} + \frac{(35 - 24)^{2}}{24} + \frac{(10 - 14)^{2}}{14} +$$
-$$\frac{(90 - 66)^{2}}{66} +  \frac{(110 - 147)^{2}}{147} + \frac{(100 - 87)^{2}}{87}   = 50,18$$
+$$\frac{(90 - 66)^{2}}{66} +  \frac{(110 - 147)^{2}}{147} + \frac{(100 - 87)^{2}}{87}   = 50.18$$
 
 El número que resulta de esta operación se llama puntaje chi cuadrado (o también ji cuadrado), se indica con el símbolo $\chi^{2}$ y es una
 medida de la distancia a la que se encuentran las frecuencias observadas de las que se esperaría encontrar si las variables fueran
 independientes.  
 El puntaje $\chi^{2}$ no puede ser negativo, ya que proviene de la suma de números elevados al cuadrado. Solo puede ser cero si todos los términos de la suma son cero, es decir, si cada frecuencia observada es exactamente igual a la esperada correspondiente. En ese caso no habría duda en decir que las variables son independientes, cumplirían exactamente con la definición de independencia estadística.  
-El puntaje $\chi^{2}$ indica si las frecuencias observadas están cerca o lejos de las esperadas, pero ¿qué tan grande debe ser para que consideremos lejanas a las frecuencias?
-
+El puntaje $\chi^{2}$ indica si las frecuencias observadas están cerca o lejos de las esperadas, pero ¿qué tan grande debe ser para que consideremos lejanas a las frecuencias?  
 Dos problemas que tiene este puntaje son:  
-- puede ser indefinidamente grande
+- puede ser indefinidamente grande  
 - su valor depende del número de casos que se evalúan y de la dimensión de la tabla.
 
 Así, por ejemplo, si multiplicamos por 10 todas las frecuencias de la tabla \@ref(tab:frecObs), obtenemos:
@@ -181,16 +171,14 @@ Aunque los valores absolutos son diez veces más grandes, no hubo cambios en las
 Para medir la asociación, debe eliminarse el efecto de la cantidad de
 casos y también de la dimensión de la tabla. Calcularemos tres
 coeficientes que nos permitan evaluar el grado o intensidad de la
-relación y que tengan un límite superior de modo que podamos juzgarlos como elevados o bajos.
-
+relación y que tengan un límite superior de modo que podamos juzgarlos como elevados o bajos.  
 El primero de ellos es el **coeficiente $\varphi$**[^37], válido para medir la asociación entre dos variables dicotómicas (o binarias), se calcula como:
 
 $$\varphi = \sqrt{\frac{\chi^{2}}{n}}$$
 
-Vale cero si las variables son independientes e indica mayor asociación cuando está más cerca de uno.
-
+Vale cero si las variables son independientes e indica mayor asociación cuando está más cerca de uno.  
 Ejemplo (datos ficticios): en el análisis de la calidad de ítems de un examen, se observa las veces que una pregunta es correctamente
-respondida por los alumnos que aprobaron el examen y por quienes no lo aprobaron. Para el caso de una pregunta a la que se llama \#7745, que fue respondida por 100 alumnos (a quienes les tocó por azar), la
+respondida por quienes aprobaron el examen y por quienes no lo aprobaron. Para el caso de una pregunta a la que se llama \#7745, que fue respondida por 100 personas (a quienes les tocó por azar), la
 información se presenta en una tabla de $2 \times 2$:
 
 ```{r}
@@ -216,7 +204,7 @@ Para la que el puntaje $\chi^{2}$ vale `r round(chisq.test(tabla26)$statistic, 2
 $$\varphi = \sqrt{\frac{22.16}{100}} = 0.47$$
 
 Como el cálculo del puntaje $\chi^{2}$ es engorroso para hacer
-manualmente, existe una expresión alternativa para obtener el coeficiente $\varphi$, que solo usa las frecuencias observadas en la tabla. Si estas son:
+manualmente, existe una expresión alternativa para obtener el coeficiente $\varphi$ cuando las tablas son de dos por dos, que solo usa las frecuencias observadas en la tabla. Si estas son:
 
   a   b
   --- ---
@@ -234,40 +222,36 @@ Otra forma de medir la asociación entre dos variables, cuando alguna de ellas o
 
 $$C = \sqrt{\frac{\chi^{2}}{\chi^{2} + n}}$$
 
-Al igual que $\varphi$, este coeficiente no puede ser menor que cero (0) y solo toma ese valor si las variables son independientes (es decir cuando $\chi^{2} = 0$). Tampoco puede ser mayor que uno (1), pero su valor máximo depende de la dimensión de la tabla.
-
+Al igual que $\varphi$, este coeficiente no puede ser menor que cero (0) y solo toma ese valor si las variables son independientes (es decir cuando $\chi^{2} = 0$). Tampoco puede ser mayor que uno (1), pero su valor máximo depende de la dimensión de la tabla.  
 Solo en el caso particular en que la tabla sea cuadrada (misma cantidad de filas que de columnas), el valor máximo del coeficiente es: $C_{\max} = \sqrt{\frac{f - 1}{f}}$ , o lo que es lo mismo :
 $C_{\max} = \sqrt{\frac{c - 1}{c}}$
 
-Porque nos referimos a tablas cuadradas, en las que $f=c$.
-
-Si la tabla no es cuadrada, sino de dimansión $f X c$, el valor máximo es:
+Porque nos referimos a tablas cuadradas, en las que $f=c$.  
+Si la tabla no es cuadrada, sino de dimensión $f X c$, el valor máximo es:
 
 $$C_{\max} = \sqrt{\frac{\min(f,c) - 1}{min(f,c)}}$$
 
-En la que $min(f,c)$ es el más chico de los dos números $f$ o $c$.
-
+En la que $min(f,c)$ es el más chico de los dos números $f$ o $c$.  
 De este modo se obtiene un coeficiente que indica el grado de la
-asociación entre dos variables que es apto para tablas de cualquier dimensión, no solo para las de $2 \times 2$, por lo que mejora lo que mide el coeficiente Q de Kendall - Yule. Reemplacemos los valores para el ejemplo anterior:
+asociación entre dos variables que es apto para tablas de cualquier dimensión, no solo para las de $2 \times 2$, por lo que mejora lo que mide el coeficiente Q de Kendall - Yule. Reemplacemos los valores para el ejemplo de los tipos de violencia:
 
-$$C = \sqrt{\frac{\chi^{2}}{\chi^{2} + n}} = \sqrt{\frac{50,19}{50,19 + 500}} = 0,30$$
+$$C = \sqrt{\frac{\chi^{2}}{\chi^{2} + n}} = \sqrt{\frac{50.19}{50.19 + 500}} = 0.30$$
 
 Para decidir si este resultado es alto o bajo, es decir, si la relación es fuerte o débil, calculemos el máximo que podría haber alcanzado para una tabla de 3X3:
 
-$$C_{\max} = \sqrt{\frac{f - 1}{f}} = \sqrt{\frac{3 - 1}{3}} = \sqrt{\frac{2}{3}} = 0,82$$
+$$C_{\max} = \sqrt{\frac{f - 1}{f}} = \sqrt{\frac{3 - 1}{3}} = \sqrt{\frac{2}{3}} = 0.82$$
 
-Entonces el valor que hemos encontrado es moderado, y nos indica que la relación entre el tipo de violencia y el tamaño de las ciudades no es intensa.
-
+Entonces el valor que hemos encontrado es moderado, y nos indica que la relación entre el tipo de violencia y el tamaño de las ciudades no es intensa.  
 El tercer (y último) coeficiente que calcularemos para variables
 nominales está también basado en el puntaje $\chi^{2}$ y tiene un valor máximo de 1 (uno). Se llama **coeficiente V de Cramer** y se calcula así:
 
 $$V = \sqrt{\frac{\chi^{2}}{n*min(f - 1, c - 1)}}$$
 
 La expresión $min(f-1, c-1)$, tiene el mismo significado que en
-$C_{max}$, es mínimo entre el número de filas menos uno y el número de
-columnas menos uno. Para obtenerlo se resta 1 al número de filas, luego se resta 1 al número de columnas y se elige el menor de los dos. Si la tabla es de $3 \times 2$ se hace $3 - 1 = 2$ y $2 - 1 = 1$, entre 2 y 1 el mínimo es 1 y ése es el número que ubicamos en el denominador, multiplicando a $n$. En este ejemplo, las filas y las columnas son tres, por lo que se toma el mínimo entre $3-1$ y $3-1$, el resultado es 2, y el coeficiente V de Cramer resulta:
+$C_{max}$; es mínimo entre el número de filas menos uno y el número de
+columnas menos uno. Para obtenerlo, se resta 1 al número de filas, luego se resta 1 al número de columnas y se elige el menor de los dos. Si la tabla es de $3 \times 2$ se hace $3 - 1 = 2$ y $2 - 1 = 1$, entre 2 y 1 el mínimo es 1 y ése es el número que ubicamos en el denominador, multiplicando a $n$. En este ejemplo, las filas y las columnas son tres, por lo que se toma el mínimo entre $3-1$ y $3-1$, el resultado es 2, y el coeficiente V de Cramer resulta:
 
-$$V = \sqrt{\frac{\chi^{2}}{n*min(f - 1,c - 1)}} = \sqrt{\frac{50,19}{500*min(3 - 1,\ 3 - 1)}} = \sqrt{\frac{50,19}{500*2}} = 0,22$$
+$$V = \sqrt{\frac{\chi^{2}}{n*min(f - 1,c - 1)}} = \sqrt{\frac{50.19}{500*min(3 - 1,\ 3 - 1)}} = \sqrt{\frac{50.19}{500*2}} = 0.22$$
 
 Como el valor máximo que puede alcanzar este coeficiente es 1 (uno), en este caso se trata de una relación moderada entre las dos variables.
 
@@ -281,15 +265,14 @@ más elaborados y que, por esa razón, informen más acerca de la relación
 entre las variables que se analizan. Un punto a tener en cuenta es que
 cuando se trata con dos variables, la del menor nivel de medición es la
 que manda. Así, para relacionar una ordinal y una nominal, debe usarse
-un coeficiente V o C, como si fueran las dos nominales.
-
+un coeficiente $V$ o $C$, como si fueran las dos nominales.  
 Si las dos variables son ordinales o si una es ordinal y la otra
 intervalar o proporcional, es posible calcular un coeficiente que tiene
 en cuenta los "rangos" es decir la posición de cada categoría respecto
-de las demás, su carácter de primera, segunda, etc., es decir, el orden.
+de las demás, su carácter de primera, segunda, etc., es decir, el orden.  
 Sea el problema de indagar por la relación que podría haber entre el
-resultado que obtienen los alumnos al rendir un examen de ingreso a una
-carrera y el nivel de educación de sus madres, consideraremos como
+resultado que se obtiene al rendir un examen de ingreso a una
+carrera y el nivel de educación de las madres de quienes rinden, consideraremos como
 variables *el nivel máximo de educación de la madre* de cada uno y *el orden de mérito alcanzado en el ingreso* a esa carrera; ambas variables
 son ordinales. Tratemos solo la situación de pocos casos por ahora. Si
 para el orden de mérito codificamos como 1, 2, 3, ..., el primer lugar en el
@@ -322,8 +305,7 @@ kableExtra::kable_styling(
 )
 ```
 
-Esta tabla no es útil, ya que tiene tantas filas como la matriz de datos (porque cada orden de mérito corresponde a una sola persona), hay solo un caso en cada celda no vacía y hay muchas celdas vacías (con frecuencia cero). Por eso, cuando se trata de variables de este nivel de medición, no se usan tablas de doble entrada para representar los datos, solo se calcula un coeficiente que indique la intensidad de la relación. Este coeficiente se llama coeficiente de **correlación por rangos, de Spearman** y para calcularlo hay que transformar los valores de las variables en rangos, de mayor a menor, de manera que al máximo valor de cada variable corresponda el 1, al siguiente el 2 y así sucesivamente.
-
+Esta tabla no es útil, ya que tiene tantas filas como la matriz de datos (porque cada orden de mérito corresponde a una sola persona), hay solo un caso en cada celda no vacía y hay muchas celdas vacías (con frecuencia cero). Por eso, cuando se trata de variables de este nivel de medición, no se usan tablas de doble entrada para representar los datos, solo se calcula un coeficiente que indique la intensidad de la relación. Este coeficiente se llama coeficiente de **correlación por rangos, de Spearman** y para calcularlo hay que transformar los valores de las variables en rangos, de mayor a menor, de manera que al máximo valor de cada variable corresponda el 1, al siguiente el 2 y así sucesivamente.  
 En nuestro ejemplo, el orden de mérito ya está en rangos, uno para el
 primero, dos para el segundo y un rango para cada persona. No es así
 para el nivel de educación, ya que varias personas pueden tener el
@@ -338,8 +320,7 @@ casos, corresponderían los rangos 4, 5 y 6, nuevamente usamos el
 promedio de los tres rangos para asignar a los tres el mismo: 5. Sigue
 el nivel 4 (secundario incompleto), al que asignamos el rango siguiente:
 7, ya que hay solo un caso aquí; y lo mismo pasa con el nivel 5
-(primario completo) al que le toca rango 8.
-
+(primario completo) al que le toca rango 8.  
 Resumiendo entonces, la transformación de los valores de las variables
 en rangos resulta así:
 
@@ -364,8 +345,7 @@ kableExtra::kable_styling(
 )
 ```
 
-No ha sido necesario transformar los valores del orden de mérito, porque ya correspondían uno a cada sujeto.
-
+No ha sido necesario transformar los valores del orden de mérito, porque ya correspondían uno a cada persona.  
 Una vez construidos los rangos, se observa, para cada caso la diferencia
 entre el rango de una variable y de la otra, esas diferencias se
 llamarán $d$.
@@ -388,19 +368,15 @@ con el máximo del otro y así en todas las categorías), tendríamos una
 asociación perfecta entre las dos variables. Por el contrario si el
 orden estuviese exactamente invertido (si el rango máximo de una
 variable coincidiera con el rango mínimo de la otra y así en las demás)
-la relación también sería perfecta, pero inversa.
-
+la relación también sería perfecta, pero inversa.  
 La intensidad de la relación se mide entonces con el que hemos llamado
 coeficiente de Spearman, la expresión de su cálculo es la siguiente:
 
 $$r_{s} = 1 - \frac{6*\sum_{i = 1}^{n}d_{i}^{2}}{n^{3} - n}$$
 
-En la que:
-
-- $d_{i}$ son las diferencias de rangos (calculadas en la última columna de la tabla de arriba) que en la fórmula van elevadas al cuadrado.
-
-- La sumatoria indica que ésta va desde la primera de las diferencias ($i=1$) hasta la última ($n$).
-
+En la que:  
+- $d_{i}$ son las diferencias de rangos (calculadas en la última columna de la tabla de arriba) que en la fórmula van elevadas al cuadrado.  
+- La sumatoria indica que ésta va desde la primera de las diferencias ($i=1$) hasta la última ($n$).  
 - $n$ es el número total de observaciones.
 
 Este coeficiente puede ser positivo o negativo y tiene un campo de
@@ -412,10 +388,9 @@ Al igual que el coeficiente de Kendall - Yule, los valores próximos a 1 ó a $-
 los cercanos a 0 (cero), sean positivos o negativos, corresponden a
 asociaciones débiles. Si un coeficiente vale 1 ó $-1$ diremos que la
 asociación es perfecta, pero eso no es algo que suceda en la realidad,
-del mismo modo que si el coeficiente es exactamente 0 (cero), la
-asociación será nula y otra vez es muy poco común que eso suceda con
-datos reales.
-
+del mismo modo que si el coeficiente fuera exactamente 0 (cero), la
+asociación sería nula y otra vez es muy poco común que eso suceda con
+datos reales.  
 A diferencia de los coeficientes usados para variables nominales, ahora
 el signo importa: cuando es positivo da cuenta de una relación directa
 entre las dos variables, una relación en la que cuando una aumenta, la
@@ -424,17 +399,15 @@ inversa, el crecimiento de una variable se acompaña del decrecimiento de
 la otra. En este nivel de medición (ordinal) podemos hacer estos
 juicios, podemos decir "aumenta" o "disminuye", porque las categorías
 están ordenadas, por esa razón podemos analizar no solo la intensidad de
-la relación, sino también si se trata de una relación directa o inversa.
-
+la relación, sino también si se trata de una relación directa o inversa.  
 Se trata de dos características independientes de cada relación: puede
 ser fuerte y directa; o fuerte e inversa; o bien débil y directa; o
 débil e inversa. Un error muy frecuente es creer que si el coeficiente
 es negativo, la relación es débil, no es así. Es débil si el coeficiente
-es cercano a 0 (cero), es igualmente débil si $r_s=0,03$ como si
-$r_s=-0,03$, el signo del coeficiente no aporta para saber si es fuerte
-o débil. Del mismo modo es igual de fuerte una relación en la que
-$r_s=0,96$ como una en la que $r_s=-0,96$.
-
+es cercano a 0 (cero), es igualmente débil si $r_s=0.03$ como si
+$r_s=-0.03$, el signo del coeficiente no aporta para saber si es fuerte
+o débil. Del mismo modo, es igual de fuerte una relación en la que
+$r_s=0.96$ como una en la que $r_s=-0.96$.  
 Para obtener el valor del coeficiente en nuestro ejemplo, vamos primero
 a calcular las ${d_{i}}^{2}$:
 
@@ -449,22 +422,21 @@ kableExtra::kable_styling(
 Por lo que la suma de la última columna es 20. Al reemplazar los valores
 en la expresión de $r_s$, obtenemos:
 
-$$r_{s} = 1 - \frac{6*\sum_{i = 1}^{n}d_{i}^{2}}{n^{3} - n} = 1 - \frac{6*20}{8^{3} - 8} = 1 - \frac{120}{512 - 8} = 1 - \frac{120}{504} = 0,76$$
+$$r_{s} = 1 - \frac{6*\sum_{i = 1}^{n}d_{i}^{2}}{n^{3} - n} = 1 - \frac{6*20}{8^{3} - 8} = 1 - \frac{120}{512 - 8} = 1 - \frac{120}{504} = 0.76$$
 
-Este valor de $r_{s} = 0,76$, indica una asociación intensa y positiva
+Este valor de $r_{s} = 0.76$, indica una asociación intensa y positiva
 entre la educación de la madre y los resultados del ingreso a la
-universidad. Que sea positiva quiere decir que les estudiantes con madres de
+universidad. Que sea positiva quiere decir que estudiantes con madres de
 mayor educación obtienen mejores resultados en el ingreso a esa carrera.
 Como ya hemos señalado, esto no quiere decir causalidad, no significa
 que la causa del resultado en el ingreso sea la educación de la madre.
 El problema de la causalidad es teórico y depende del análisis que se
 hace de las relaciones entre los conceptos, en este ejemplo, la
 educación de la madre es uno de muchos de los factores
-interrelacionados, que inciden sobre el resultado que obtiene el alumno.
+interrelacionados, que inciden sobre el resultado que obtiene en el examen de ingreso.
 Este coeficiente (como sucede con todos los coeficientes de asociación)
-no revelan la causalidad sino lo frecuente que resulta que los cambios
-de una variable se vean acompañados de cambios en la otra.
-
+no revelan la causalidad sino cuán frecuente resulta que los cambios
+de una variable se vean acompañados de cambios en la otra.  
 Para ilustrar con otros ejemplos de relaciones entre variables
 ordinales, consideremos el caso de poner en correspondencia el ranking de temas
 musicales de una semana con la frecuencia con que cada tema es
@@ -474,8 +446,7 @@ más frecuentemente se pasan en la radio. Al revés, en la relación entre
 el rating de los programas de televisión y el contenido cultural que
 ofrecen esperamos una relación también fuerte, pero ahora inversa: los
 de mayor rating son habitualmente lo que menos contenido cultural
-tienen.
-
+tienen.  
 Este coeficiente es adecuado, no solo cuando las variables son ordinales, sino cuando son cuantitativas (intervalares o proporcionales) y existen casos atípicos, que afectarían el cálculo de otro coeficiente que se verá a continuación. Se dice que este coeficiente es "robusto", para indicar que se ve poco afectado cuando no se cumplen supuestos sobre las variables cuya relación se analiza. Para que la interpretación del coeficiente de Spearman sea correcta, es necesario de las variables guarden entre sí una relación directa o inversa, en todo su conjunto de valores, es decir, que la relación sea monótona creciente o decreciente.
 
 ## Nivel intervalar o proporcional
@@ -521,19 +492,19 @@ kableExtra::kable_styling(
 )
 ```
 
-Ahora la tabla se lee con más facilidad y podemos tratarla como hicimos antes, como si fueran dos variables nominales y calcular un puntaje chi cuadrado y coeficientes *C de Pearson* y *V de Cramer*, o bien, como los intervalos están ordenados, poner una ranking y calcular el coeficiente de Spearman. Sin embargo, al hacer esto, se trata como si se hubiesen unido a la misma edad todas las personas que están entre 18 y 23.7 años. Del mismo modo, se trata como iguales a quienes tienen escolariación entre 10 y 13 años, no se puede distinguir entre quienes estudiaron 11, 12, 13 años: al interior del intervalo todos son considerados iguales. Además de esto, se pierden las posibilidades de análisis que ofrecen las variables cuantitativas.
-
+Ahora la tabla se lee con más facilidad y podemos tratarla como hicimos antes, como si fueran dos variables nominales y calcular un puntaje chi cuadrado y coeficientes *C de Pearson* y *V de Cramer*, o bien, como los intervalos están ordenados, poner una ranking y calcular el coeficiente de Spearman. Sin embargo, al hacer esto, se trata como si se hubiesen unido a la misma edad todas las personas que están entre 18 y 23.7 años. Del mismo modo, se trata como iguales a quienes tienen escolariación entre 10 y 13 años, no se puede distinguir entre quienes estudiaron 11, 12, 13 años: al interior del intervalo todos son considerados iguales. Además de esto, se pierden las posibilidades de análisis que ofrecen las variables cuantitativas.  
 Para poder mantener las variables con sus verdaderos valores (sin
 agrupar) y tener al mismo tiempo una representación abreviada de los
-datos, existe un recurso muy valioso: una representación gráfica de los valores que se denomina **diagrama de dispersión**.  
+datos, existe un recurso muy valioso: una representación gráfica de los valores que se denomina **diagrama de dispersión** que se muestra en la figura siguiente (\@ref(fig:dispersion)).  
 
-```{r fig.cap="Diagrama de dispersión de los años de escolarización y la edad a la que se realizó la primera unión conyugal"}
+```{r dispersion, fig.cap="Diagrama de dispersión de los años de escolarización y la edad a la que se realizó la primera unión conyugal"}
 ggplot(edad.union.escolariz) +
   geom_point(aes(escolarizacion, edad.union)) +
   theme_tufte() +
   ylab("Edad a la primera unión") +
   xlab("Años de escolarización")
 ```
+
 Este gráfico usa los ejes cartesianos para indicar los valores de las
 dos variables que estamos analizando y representa con un punto cada
 concordancia de dos categorías que puede corresponder a un caso o a
@@ -542,15 +513,14 @@ Lo que eran filas y columnas en todas las tablas mostradas hasta aquí, son ahor
 separadas de cada variable sino con valores cuantitativos de las
 variables que ahora son intervalares o proporcionales. Estos ejes se
 llaman **ordenadas** el vertical y **abscisas** el horizontal. En el
-ejemplo están representados los valores de los años de escolarización en el eje de las abscisas (primer elemento de cada par ordenado) y la edad a la primera unión en el eje de las ordenadas (segundo elemento de cada par).
-
+ejemplo están representados los valores de los años de escolarización en el eje de las abscisas (primer elemento de cada par ordenado) y la edad a la primera unión en el eje de las ordenadas (segundo elemento de cada par).  
 La manera en que los puntos se distribuyen en el diagrama de dispersión nos da una primera aproximación a la relación entre las dos variables.
 Así, en el caso del ejemplo, hay una cierta tendencia creciente, en la
 que se vería que *globalmente*, las personas con más años de
 escolarización tenderían a unirse más tardíamente. Esta observación es
 equivalente a ver la concentración de casos en las celdas de la diagonal
 de una tabla bivariada.  
-Por el contrario, si los datos se dispersan de este otro modo:
+Por el contrario, si los datos se dispersan como lo muestra \@ref(fig:dispDebil).  
 
 ```{r dispDebil, fig.cap="Diagrama de dispersión de los años de escolarización y la edad a la que se realizó la primera unión conyugal (relación débil)"}
 edad.union.debil <- rnorm(20, 25, 2)
@@ -565,7 +535,7 @@ ggplot(edad.union.escolariz.deb) +
 
 No hay ninguna razón para creer que las variables estén relacionadas:
 los puntos no muestran una tendencia clara.  
-Una asociación más acentuada entre las mismas dos variables se observa en el siguiente diagrama de dispersión:
+Una asociación más acentuada entre las mismas dos variables se observa en el diagrama de dispersión de \@ref(fig:dispInt).
 
 ```{r dispInt, fig.cap="Diagrama de dispersión de los años de escolarización y la edad a la que se realizó la primera unión conyugal (relación intensa)"}
 escolarizac.fuerte <- rnorm(30, 12, 2)
@@ -585,15 +555,11 @@ ggplot(fuerte) +
 
 En el que la tendencia *lineal* es más clara, por lo que resulta más
 definido el efecto de la escolarización sobre la edad a la que se
-produce la primera unión. Aquí, la nube de puntos está más aplanada que en el ejemplo anterior; en efecto, en el gráfico \@ref(fig:dispDebil) la nube de puntos tiene forma más circular que en el \@ref(fig:dispInt), donde es más elíptica.
+produce la primera unión. Aquí, la nube de puntos está más aplanada que en el ejemplo anterior; en efecto, en el gráfico \@ref(fig:dispDebil) la nube de puntos tiene forma más circular que en el \@ref(fig:dispInt), donde es más elíptica.  
+El ejemplo que hemos mostrado hasta aquí corresponde a una relación directa: más años de escolarización parecen asociarse con edades más tardías para la primera unión. De manera equivalente pueden representarse relaciones inversas. Consideremos el caso de la ansiedad frente a los exámenes y la calificación que se obtiene. En un estudio realizado por el Laboratorio de Evaluación Psicológica y Educativa (LEPE, Facultad de Psicología UNC, @furlan2014) se observó que a mayor puntaje en una prueba de ansiedad ante los exámenes, menor rendimiento académico, por lo que la relación entre las variables es inversa.  
+Los esquemas de la figura \@ref(fig:comparanubes) muestran el achatamiento de la nube de puntos según la relación sea más fuerte o más débil y según sea directa o inversa.
 
-El ejemplo que hemos mostrado hasta aquí corresponde a una relación directa: más años de escolarización parecen asociarse con edades más tardías para la primera unión. De manera equivalente pueden representarse relaciones inversas. Consideremos el caso de la ansiedad frente a los exámenes y la calificación que se obtiene. En un estudio realizado por el Laboratorio de Evaluación Psicológica y Educativa (LEPE, Facultad de Psicología UNC) se observó que a mayor puntaje en una prueba de ansiedad ante los exámenes, menor rendimiento académico (arrobafurlán2014), por lo que la relación entre las variables es inversa. 
-
-Los esquemas siguientes muestran el achatamiento de la nube de puntos según la relación sea más fuerte o más débil y según sea directa o inversa.
-
-<!-- no puedo acomodar bien los rótulos-->
-
-```{r fig.cap="Comparación de la forma de las nubes de puntos según la intensidad de la relación"}
+```{r comparanubes, fig.cap="Comparación de la forma de las nubes de puntos según la intensidad de la relación"}
 p1 <- ggplot(fuerte) +
   geom_point(aes(escolarizac.fuerte, edad.fuerte)) +
   theme_tufte() +
@@ -639,15 +605,14 @@ La intensidad de la relación está vinculada al achatamiento de la elipse
 que rodea la nube de puntos y éste al grado de alineación que los puntos
 tengan. Luego volveremos sobre esta idea.
 
-Solo nos ocuparemos de relaciones como las que acabamos de ejemplificar:
-aquellas en las que la tendencia es creciente o decreciente, pero
+Solo nos ocuparemos de relaciones como las que acabamos de ejemplificar: aquellas en las que la tendencia es creciente o decreciente, pero
 siempre siguiendo un camino parecido a una línea recta. Son las que
 llamaremos *relaciones lineales*. No son la únicas que existen; para ilustrarlo, consideremos cómo se representa la relación entre la edad
 de las personas y la frecuencia con que consultan al médico. Estas dos
 variables son tales que, en términos muy generales y sin considerar
 situaciones específicas, para valores pequeños de la primera (en la
 infancia) las consultas son frecuentes, luego se reducen durante la
-adultez para volver a incrementarse en la vejez. Por eso el gráfico que las representa tiene la siguiente forma aproximada:
+adultez para volver a incrementarse en la vejez. Por eso el gráfico que las representa tiene una forma similar a la figura \@ref(fig:dispMedic).  
 
 ```{r dispMedic, fig.cap="Diagrama de dispersión del número medio de consultas médicas anuales y la edad."}
 edad <- c(1, 1, 1, 2, 2, 3, 3, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 12, 15, 16, 16, 18, 20, 22, 28, 30, 40, 45, 45, 45, 50, 50, 55, 62, 63, 63, 64, 66, 70, 75, 76, 77, 79)
@@ -675,21 +640,18 @@ Para analizar la intensidad de la relación lineal entre dos variables
 (ambas medidas a nivel intervalar o proporcional) calcularemos un
 coeficiente comparable a los que hemos visto hasta aquí, que tendrá una
 interpretación similar a la del coeficiente de correlación por rangos de
-Spearman. Este coeficiente se llama **coeficiente de correlación r de Pearson** y es uno de los de mayor utilización cuando las variables que
+Spearman. Este coeficiente se llama **coeficiente de correlación r de Pearson**, fue presentado por @pearson1895, pero antes ya había sido mencionado por @galton1877, es uno de los de mayor utilización cuando las variables que
 se analizan alcanzan el nivel de medición que autoriza su cálculo. Este
 coeficiente va a medir qué tan bien se puede aproximar el conjunto de
 puntos con una función lineal y va a depender de lo que antes llamamos
-el "achatamiento" de la elipse. Será grande (próximo a 1 ó a $-1$) si las
+el "achatamiento" de la elipse. Será grande (próximo a $1$ ó a $-1$) si las
 variables están muy relacionadas linealmente, es decir, si la nube de
 puntos se elonga hacia una línea; y será pequeño (próximo a cero) si las
 variables guardan poca relación lineal, es decir si la nube de puntos
 tiene forma redondeada. Será positivo y elevado (próximo a 1) si valores
 pequeños de una variable están acompañados de valores pequeños de la
 otra y valores grandes de una siguen a valores grandes de la otra, como
-sucedió en el ejemplo del gráfico \@ref(fig:dispInt). Será negativo y elevado (próximo a
-$-1$) si los valores grandes de una de las variables acompañan a los
-pequeños de la otra y viceversa, como en el gráfico ref(fig:cual). La correlación
-será perfecta positiva ($r = 1$) si todos los puntos se ubican sobre una recta creciente:
+sucedió en el ejemplo de la relación entre escolarización y edad a la primera unión, representada en el gráfico \@ref(fig:dispInt). Será negativo y elevado (próximo a $-1$) si los valores grandes de una de las variables acompañan a los pequeños de la otra y viceversa, como en el caso de la relación entre ansiedad y rendimiento académico. La correlación será perfecta positiva ($r = 1$) si todos los puntos se ubican sobre una recta creciente:
 
 ```{r rectaCrec, fig.cap="Ejemplo de situación ideal con todas las observaciones alineadas en una recta creciente, por lo que $r = 1$"}
 x.r.1 <- rnorm(20)
@@ -778,9 +740,9 @@ kableExtra::kable_styling(
 
 Una vez que se ha obtenido la media y desviación estándar de las medidas
 del puntaje en la escala de inteligencia lógico-matemática
-($\overline{x} = 47,7$ $s_{x} = 11,44$) y de cantidad de ejercicios
+($\overline{x} = 47.7$ $s_{x} = 11.44$) y de cantidad de ejercicios
 matemáticos correctamente realizados
-($\overline{y} = 5,3$ $s_{y} = 3,09$), se deben convertir las
+($\overline{y} = 5.3$ $s_{y} = 3.09$), se deben convertir las
 observaciones brutas en puntuaciones *z*. Para ello se calcula la
 diferencia entre la puntuación bruta original y la media del grupo, y el
 resultado de esta operación se divide por la desviación estándar del
@@ -796,9 +758,9 @@ $$z_{y} = \frac{y - \overline{y}}{s_{y}}$$
 
 Entonces, el puntaje *z* del sujeto 1 para cada escala se obtiene de la siguiente manera:
 
-$$z_{x_{1}} = \frac{46 - 47,7}{11,44} = - 0,15$$
+$$z_{x_{1}} = \frac{46 - 47.7}{11.44} = - 0.15$$
 
-$$z_{y_{1}} = \frac{7 - 5,3}{3,09} = 0,55$$
+$$z_{y_{1}} = \frac{7 - 5.3}{3.09} = 0.55$$
 
 Y del mismo modo para cada uno de los sujetos observados, para obtener la siguiente tabla:
 
@@ -824,15 +786,15 @@ kableExtra::kable_styling(
 
 El numerador del coeficiente r de Pearson se obtiene sumando la última columna:
 
-$$\sum_{}^{}{z_{x}*z_{y} = 7,63}$$
+$$\sum_{}^{}{z_{x}*z_{y} = 7.63}$$
 
-y solo queda dividir este número por $n-1=10-1=9$ para obtener $r = 0,85$.
+y solo queda dividir este número por $n-1=10-1=9$ para obtener $r = 0.85$.
 
 El coeficiente dio positivo, lo que indica que la relación es directa.
 Como se habría esperado: las personas con mayor puntaje en la escala de
 inteligencia lógico-matemática, son quienes tienen una mayor cantidad de
 ejercicios correctamente realizados.  
-Además, el valor $0,85$ es elevado, lo que indica que la relación entre
+Además, el valor $0.85$ es elevado, lo que indica que la relación entre
 las dos variables es intensa.
 
 La decisión acerca de considerar como grande o pequeño al valor de un
@@ -845,9 +807,9 @@ un fenómeno y formulamos hipótesis sobre varios factores, es útil saber
 cuáles de ellos se asocian más intensamente con ese fenómeno.
 
 Se han establecido algunos valores de referencia, según los cuales la
-correlación se considera nula si $r < 0,10$, pequeña si
-$0,10 \leq r < 0,30$, media si $0,30 \leq r \leq 0,50$ y grande si
-$r > 0,50$. Coincidimos con arrobaCohen(1988), en que estos criterios son un
+correlación se considera nula si $r < 0.10$, pequeña si
+$0.10 \leq r < 0.30$, media si $0.30 \leq r \leq 0.50$ y grande si
+$r > 0.50$. Coincidimos con @Cohen1988, en que estos criterios son un
 tanto arbitrarios y siempre debe considerarse al coeficiente de
 correlación en contexto.
 
@@ -871,7 +833,7 @@ la otra como consecuente, el coeficiente general de determinación mide
 la parte de la varianza de la variable consecuente que se explica por la
 antecedente. O bien la parte de la variabilidad de la variable
 dependiente que puede atribuirse a la variable independiente. Así, en
-nuestro ejemplo: $R^{2} = {0,85}^{2} = 0,72$, lo podemos indicar como
+nuestro ejemplo: $R^{2} = {0.85}^{2} = 0.72$, lo podemos indicar como
 72% y quiere decir que el 72% de la variabilidad total que aparece en el
 número de ejercicios correctamente realizados, se explica por el puntaje
 alcanzado en la escala de inteligencia lógico matemática. Así, con este
@@ -891,7 +853,7 @@ Cuando se trabaja con variables dicotómicas, estas pueden tener dos
 orígenes diferentes; hay dicotomías reales y las hay artificiales. Las primeras son variables que por su construcción, solo admiten dos
 categorías, como turno (mañana - tarde), sexo (varón - mujer), grupo
 (experimental - control). Las segundas, provienen de haber
-recategorizado una variable continua en dos grupos, como puntaje (alto - bajo), ingresos medidos según línea de pobreza (pobre - no pobre), resultado de un examen (aprobado - no aprobado), posición política (izquierda - derecha). Esta situación es especialmente interesante en la medición de rasgos latentes a los que se considera continuos, pero que se miden de manera dicotómica. Por ejemplo, la actitud hacia la política, puede ir desde el desinterés completo hasta la participación activa, pudiendo identificarse graduaciones entre esos extremos. Si se usa la afiliación a un partido como indicador de participación, se toma una medida dicotómica (está afiliado - no está afiliado); esta dicotomización se considera artificial, porque se supone que es un punto de corte que define dos categorías en un continuo. La distición entre alumnos que *promovieron* y que *no promovieron* es una dicotomizacion sobre una variable originalmente continua: el promedio de las notas. Clasificar a los países en *desarrollados* y *en vías de desarrollo*, implica cortar en dos (dicotomizar) un conjunto de indicadores de desarrollo, que son continuos (PIB per cápita, educación, etc.). Lo cual es diferente de distinguir países *con arsenal nuclear* y *sin arsenal nuclear*, porque aquí no hay graduación entre las categorías, esta última es una dicotomía real.
+recategorizado una variable continua en dos grupos, como puntaje (alto - bajo), ingresos medidos según línea de pobreza (pobre - no pobre), resultado de un examen (aprobado - no aprobado), posición política (izquierda - derecha). Esta situación es especialmente interesante en la medición de rasgos latentes a los que se considera continuos, pero que se miden de manera dicotómica. Por ejemplo, la actitud hacia la política, puede ir desde el desinterés completo hasta la participación activa, pudiendo identificarse graduaciones entre esos extremos. Si se usa la afiliación a un partido como indicador de participación, se toma una medida dicotómica (está afiliado - no está afiliado); esta dicotomización se considera artificial, porque se supone que es un punto de corte que define dos categorías en un continuo. La distición entre estudiantes que *promovieron* y que *no promovieron* es una dicotomizacion sobre una variable originalmente continua: el promedio de las notas. Clasificar a los países en *desarrollados* y *en vías de desarrollo*, implica cortar en dos (dicotomizar) un conjunto de indicadores de desarrollo, que son continuos (PIB per cápita, educación, etc.). Lo cual es diferente de distinguir países *con arsenal nuclear* y *sin arsenal nuclear*, porque aquí no hay graduación entre las categorías, esta última es una dicotomía real.
 
 Cuando se trata de dicotomías reales, el coeficiente $\varphi$ que ya se mencionó, es adecuado. Por el contrario, en los análisis de la intensidad de la asociación entre dos variables que han sido dicotomizadas de manera artificial a partir de una variable que se considera continua, se usa una estimación del coeficiente de Pearson que habría resultado si las variables no hubieran sido dicotomizadas y hubiese entre ellas una
 relación lineal. El coeficiente para este caso se denomina **coeficiente de correlación tetracórica**, su cálculo requiere procedimientos matemáticos complejos, por lo que hay que usar programas informáticos. También hay fórmulas aproximadas, como la siguiente
@@ -931,13 +893,13 @@ kableExtra::kable_styling(
 
 El cálculo del coeficiente de correlación tetracórico para esa tabla es:
 
-$$r_{tet} = \cos(\frac{\pi}{1 + \sqrt{\frac{139*200}{102*102}}}) = \cos{(\frac{\pi}{2.63}) = 0,37}$$
+$$r_{tet} = \cos(\frac{\pi}{1 + \sqrt{\frac{139*200}{102*102}}}) = \cos{(\frac{\pi}{2.63}) = 0.37}$$
 
 Que indica una correlación moderada entre las variables. Como en este
-caso sí se dispone de los valores originales y la dicotomización se hizo a fines de ilustración, es posible calcularlo, su valor es 0,35. Pero si solo se hubiese contado con la dicotomía, el tetracórico es el único que puede calcularse.
+caso sí se dispone de los valores originales y la dicotomización se hizo a fines de ilustración, es posible calcularlo, su valor es $0.35$. Pero si solo se hubiese contado con la dicotomía, el tetracórico es el único que puede calcularse.
 
 El coeficiente de Kendall - Yule es otra aproximación al coeficiente
-tetracórico. En este caso da $0,45$, que es de peor calidad que la que se obtiene con la expresión anterior.
+tetracórico. En este caso da $0.45$, que es de peor calidad que la que se obtiene con la expresión anterior.
 
 ## Niveles de medición combinados
 
@@ -967,7 +929,7 @@ Donde:
 - $s$ Es la desviación estándar de la variable continua
 
 El signo de este coeficiente indica el sentido de la diferencia; es positivo cuando el grupo codificado como uno tiene valores más altos y negativo en el caso contrario. Su valor absoluto mide la magnitud de la relación entre las dos variables.  
-Ejemplo (datos ficticios): se comparan los puntajes alcanzados en una prueba por los individuos pertenecientes a los grupos experimental y
+Ejemplo (datos ficticios): se comparan los puntajes alcanzados en una prueba por personas asignadas a los grupos experimental y
 control, y se obtienen estos valores:
 
 ```{r}
@@ -1019,7 +981,7 @@ experimental) tiene puntajes medios más altos. Su valor absoluto señala una co
 ### Una variable continua dicotomizada y una proporcional
 
 Si la variable dicotómica proviene de la recategorización de una
-continua que se dividió en dos categorías, es decir, si la dicotomía es artificial y se supone que hay una variable latente continua, entonces el coeficiente que corresponde calcular es el llamado **biserial** $r_{b}$. Como sucedió con el coeficiente de correlación tetracórico, se trata de una estimación del valor que tendría el coeficiente de Pearson si la variable no hubiese sido dicotomizada.
+continua que se dividió en dos categorías, es decir, si la dicotomía es artificial; y se supone que hay una variable latente continua, entonces el coeficiente que corresponde calcular es el llamado **biserial** $r_{b}$. Como sucedió con el coeficiente de correlación tetracórico, se trata de una estimación del valor que tendría el coeficiente de Pearson si la variable no hubiese sido dicotomizada.
 
 $$r_{b} = \frac{{\overline{x}}_{1} - {\overline{x}}_{0}}{s}*\frac{p*(1 - p)}{y}$$
 
@@ -1031,6 +993,7 @@ distribución normal, que se verá más adelante[^40].
 <!-- a este cuadro hay que arreglarlo, no está muy mal, pero las columnas están mal definidas-->
 
 ```{r}
+library(kableExtra)
 aux_table <- tibble::tribble(
   ~"Nivel de medición de las variables", ~"Coeficiente", ~"Rango de variación", ~"Lectura",
   "Ambas dicotómicas reales", "$\\varphi$ (phi) de Yule", "$[-1; 1]$", "No importa el signo, la relación es fuerte si es cercano a 1 ó a -1 y débil si está cerca de 0",
@@ -1043,9 +1006,8 @@ aux_table <- tibble::tribble(
   "Una dicotómica proveniente de una continua recategorizada y otra proporcional", "$r_b$ biserial", "$[-1; 1]$", "Más intensa si es próximo a 1 o a $-1$",
 )
 kableExtra::kable_styling(
-  knitr::kable(aux_table, format = "markdown", booktabs = TRUE, align = "llcl"),
-  latex_options = "striped"
-)
+  knitr::kable(aux_table, format = "markdown", booktabs = TRUE, align = "llcl"),bootstrap_options = c("striped", "hover")
+  )
 ```
 
 ## Matriz de correlaciones
@@ -1099,7 +1061,7 @@ Nótese que este es un patrón posible, pero no el único. por ejemplo podría h
 En segundo lugar, puede leerse que el valor más elevado, que es 0.57 corresponde a la asociación entre las Fuerzas Armadas y Policía. La intensidad, comparativamente elevada, de esta asociación indica que la confianza en ambas "va pareja", de manera gruesa, podríamos decir que quienes confían en una de las dos instituciones, tienden a confiar también en la otra e inversamente, quienes desconfían de una también lo hacen de la otra. De manera similar se pueden analizar los demás pares de variables.
 En el otro extremo, la más tenue de las relaciones, con coeficiente de 0.14 es la de La Iglesia y Los partidos políticos. En este caso hay poca relación entre la confianza que se tiene a una y a la otra de estas dos instituciones. Se podría decir que son "relativamente independientes".  
 
-La matriz de correlaciones informa acerca de la asociación (o varianción conjunta) entre las variables, no dice nada sobre los valores de cada una de ellas. Para conocer qué institución goza de más o menos confianza, hay que ver las distribuciones univariadas. Un modo rápido de tener una visión de conjunto es l ade hacer un gráfico de barras para cada una.
+La matriz de correlaciones informa acerca de la asociación (o varianción conjunta) entre las variables, no dice nada sobre los valores de cada una de ellas. Para conocer qué institución goza de más o menos confianza, hay que ver las distribuciones univariadas. Un modo rápido de tener una visión de conjunto es por medio de un gráfico de barras para cada una.
 
 ```{r}
 p10 <- ggplot(sublatinob) +
@@ -1156,6 +1118,8 @@ grid.arrange(p10, p11, p12, p13, p14, p15, p16, nrow = 4, ncol = 2)
 
 Aquí se ve que la única institución que concentra casos en "mucha confianza" es la iglesia. La comparación de los gráficos muestra que el patrón de respuestas de carabineros/policía es similar al de las fuerzas armadas, y eso es lo que se refleja en el coeficiente de correlación mayor ($0.57$).  
 
+La matriz de correlaciones es una herramienta útil en minería de datos, porque ofrece un primer pantallazo sobre el modo en que se asocian (de a pares) un conjunto de variables. Otra técnicas, como el análisis factorial y el clustering, que profundizan en la búsqueda de estructura en los datos, tienen su punto de partida en la matriz de correlaciones.  
+
 ## La forma de la relación
 
 En este apartado vamos a concentrarnos en relaciones asimétricas: aquellas en las que es posible identificar a una de las variables como antecedente y a la otra como consecuente (o como independiente y
@@ -1169,13 +1133,13 @@ visto, cuanto más intensa es la relación (coeficiente de correlación de Pears
 
 En este apartado avanzamos un paso más en el análisis de la relación
 entre variables: cuando los puntos del diagrama de dispersión tengan una
-disposición semejante a una recta (creciente, como en el gráfico \@ref(fig:dispInt) o
-decreciente, como en el ref(fig:cual)), podremos buscar la función lineal que mejor
+disposición semejante a una recta (creciente o
+decreciente), podremos buscar la función lineal que mejor
 aproxima esos puntos. Usaremos a partir de aquí una notación general:
 llamaremos *x* a la variable antecedente (o independiente) e *y* a la
 consecuente (o dependiente). Porque la relación se supone asimétrica,
 esperamos que *x* tenga efectos sobre *y* (la dosis de droga sobre la
-depresión, o la ansiedad sobre los resultados del examen, la cobertura de la campaña de vacunación sobre la prevalencia de gripe, la cantidad de armas y el riesgo de conflicto, en los ejemplos mencionados). Se trata de modelar la nube de puntos a través de una recta, como en el gráfico siguiente:
+depresión, o la ansiedad sobre los resultados del examen, la cobertura de la campaña de vacunación sobre la prevalencia de gripe, la cantidad de armas sobre el riesgo de conflicto, en los ejemplos mencionados). Se trata de modelar la nube de puntos a través de una recta, como en el gráfico siguiente:
 
 ```{r fig.cap="Ejemplo de función lineal que aproxima los puntos con una tendencia creciente"}
 x <- runif(100, 0, 5)
@@ -1195,8 +1159,8 @@ resulta suponer que las dos variables se relacionan de manera lineal.
 Antes de eso, haremos un pequeño repaso de los conceptos relacionados con esta función.
 
 La **función lineal** tiene una expresión matemática como la siguiente
-$y = b_{0} + b_{1}*x$ en la que *x* e *y* son las variables cuya
-relación analizamos y los números $b_{0}$ y $b_{1}$son valores fijos que
+$$y = b_{0} + b_{1}*x$$ en la que *x* e *y* son las variables cuya
+relación analizamos y los números $b_{0}$ y $b_{1}$ son valores fijos que
 determinan cuál es la recta de la que hablamos. Hallar la recta implica
 encontrar esos dos números $b_{0}$ y $b_{1}$. Una vez que están
 determinados, se conoce la recta y se la puede trazar.
@@ -1211,9 +1175,9 @@ $$y = b_{0} + b_{1}*x = b_{0} + b_{1}*0 = b_{0}$$
 Entonces, si $x = 0$, tendremos $y = b_0$. Como los ejes
 tienen el cero en el punto en que se cortan, gráficamente esta ordenada
 al origen se ubica sobre el eje *y* (por ser una ordenada), como indican
-las diferentes rectas en el gráfico siguiente.
+las diferentes rectas en el gráfico \@ref(fig:rectasvarias).
 
-```{r fig.cap="Ejemplos de funciones lineales con diferentes valores de la ordenada al origen"}
+```{r rectasvarias, fig.cap="Ejemplos de funciones lineales con diferentes valores de la ordenada al origen y de la pendiente"}
 ggplot() +
   scale_x_continuous(expand = c(0, 0), limits = c(0, 3)) +
   scale_y_continuous(expand = c(0, 0), limits = c(0, 2)) +
@@ -1229,9 +1193,7 @@ ggplot() +
   theme(axis.line = element_line())
 ```
 
-<!-- este gráfico necesita ajustar la posición de los ejes para que se corten en (0,0)-->
-
-Las rectas R1 y R3 tienen ordenada al origen positiva ($b_{0} > 0$). La ordenada al origen de R3 es mayor que la de R1, porque su $b_{0}$ está más arriba en el eje de ordenadas. A los efectos de la ordenada al origen, no hay ninguna diferencia en que R1 vaya subiendo y R3 baje. La recta R2 pasa exactamente por el origen de coordenadas, por lo que su ordenada al origen es cero, $b_{0} = 0$. La recta R4, si se prolona para llegar a cortar al eje de ordenadas, lo hace en un valor negativo ($b_{0} < 0$).
+Las rectas R1 y R3 tienen ordenada al origen positiva ($b_{0} > 0$). La ordenada al origen de R3 es mayor que la de R1, porque su $b_{0}$ está más arriba en el eje de ordenadas. A los efectos de la ordenada al origen, no hay ninguna diferencia en que R1 vaya subiendo y R3 baje. La recta R2 pasa exactamente por el origen de coordenadas, por lo que su ordenada al origen es cero, $b_{0} = 0$. La recta R4, si se prolonga para llegar a cortar al eje de ordenadas, lo hace en un valor negativo ($b_{0} < 0$).
 
 Según las variables con que se trabaje, a veces $b_{0}$ no tiene
 interés, porque no se consideran los valores negativos o bien porque no tiene sentido que la variable antecedente sea cero ($x=0$).
@@ -1274,7 +1236,7 @@ Por el contrario, si observamos la relación entre las *horas dedicadas al estud
 Para encontrar $b_{0}$ y $b_{1}$ y determinar así la función lineal que
 corresponde a nuestra recta de regresión, deben usarse los puntos del
 diagrama, es decir los pares ordenados correspondientes a cada caso.
-Para hacerlo usaremos las fórmulas que mostramos a continuación pero,
+Para hacerlo usaremos las fórmulas que mostramos a continuación pero
 solo será para ver el modo de usarlas, luego lo pediremos a R.
 
 Llamando $x_i$ e $y_i$ a cada valor de cada par ordenado y
@@ -1309,7 +1271,7 @@ aux_table <- tibble::tribble(
   "", 43, 1, 43, 1849,
   "", 64, 9, 576, 4096,
   "", 32, 3, 96, 1024,
-  "Sumas de las columnas", 477, 53, 2798, 23931,
+  "Sumas", 477, 53, 2798, 23931,
 )
 kableExtra::kable_styling(
   knitr::kable(aux_table, format = "pandoc", booktabs = TRUE, align = "lcccc"),
@@ -1326,7 +1288,9 @@ $$\sum_{i=1}^{10}x_i^{2}=23931$$
 
 Reemplazando, obtenemos la pendiente de la recta:
 
-$$b_1=\frac{n*\sum_{i=1}^{n}{x_i*y_i}-(\sum_{i=1}^{n}x_i)*(\sum_{i=1}^{n}y_i)}{n*\sum_{i=1}^{n}x_i^{2}-(\sum_{i=1}^{n}x_i )^{2}}= \frac{10*2798-477*53}{10*23931-477^{2}}=\frac{2699}{11781}=0.23$$
+$$b_1=\frac{n*\sum_{i=1}^{n}{x_i*y_i}-(\sum_{i=1}^{n}x_i)*(\sum_{i=1}^{n}y_i)}{n*\sum_{i=1}^{n}x_i^{2}-(\sum_{i=1}^{n}x_i )^{2}}=$$
+
+$$\frac{10*2798-477*53}{10*23931-477^{2}}=\frac{2699}{11781}=0.23$$
 
 Esta pendiente es positiva, como lo había sido $r$, y eso indica que la relación es directa. La pendiente además nos informa que por cada punto adicional en la variable antecedente (puntaje escala inteligencia lógico-matemática) se espera que se incremente en 0.23 el número de ejercicios bien resueltos. De manera más comprensible,puede decirse que se espera que cada cuatro unidades que aumente la puntuación de la inteligencia lógico-matemática, se espera un ejercicio bien resuelto más.
 
@@ -1346,7 +1310,7 @@ Hemos escrito a *y* con una indicación especial, un
 circunflejo: $\widehat{y}$, vamos a llamarla "*y* estimada" y es la que
 vamos a usar para trazar la recta:
 
-```{r fig.cap="Diagrama de dispersión de la relación entre el puntaje en la escala de inteligencia lógico-matemática y el número de ejercicios de matemática correctamente realizados y la recta de regresión que mejor ajusta los puntos"}
+```{r fig.cap="Diagrama de dispersión de la relación entre el puntaje en la escala de inteligencia lógico-matemática y el número de ejercicios de matemática correctamente realizados, y la recta de regresión que mejor ajusta los puntos"}
 ggplot(puntos.escala) +
   geom_point(aes(puntaje.escala, ejercic.corr)) +
   geom_smooth(aes(puntaje.escala, ejercic.corr), method = "lm", se = FALSE) +
@@ -1377,7 +1341,7 @@ matemática.
 Estas estimaciones son muy valiosas para hacer predicciones sobre
 valores que no han sido observados, por ejemplo hacia el futuro.
 Ejemplos muy útiles de esta aplicación son las proyecciones de
-población, y más específicamente las de proyección de matrícula escolar, que ofrecen estimaciones del volumen de alumnos que se prevé para años próximos. Si se conoce la relación entre el peso de la deuda como porcentaje del PBI y el riesgo de crisis económica, se puede predecir el riesgo de crisis conociendo el porcentaje del PBI que representa la deuda. Cundo se cuenta con un modelo que explica la relación entre el monto de una transferenbcia condicionada de renta (como la AUH, <!--otros ejemplos-->) sobre la propensión a buscar empleo por parte de jefes y jefas de hogar, se puede estimar el monto que permite cumplir con la condición del programa (controles de salud, escolarización), pero no desincentiva la búsqueda de empleo. En general, si se tiene un modelo que explica el comportamiento de una variable en base a las variaciones de otra, entonces se puede predecir qué sucederá con la primera para diferentes valores de la segunda.
+población, y más específicamente las de proyección de matrícula escolar, que ofrecen estimaciones del volumen de ingresantes que se prevé para años próximos. Si se conoce la relación entre el peso de la deuda como porcentaje del PBI y el riesgo de crisis económica, se puede predecir el riesgo de crisis conociendo el porcentaje del PBI que representa la deuda. Cundo se cuenta con un modelo que explica la relación entre el monto de una transferencia condicionada de renta (como la Asignación Universal por Hijo en Argentina o la Bolsa Familia en Brasil) sobre la propensión a buscar empleo por parte de jefes y jefas de hogar, se puede estimar el monto que permite cumplir con la condición del programa (controles de salud, escolarización), pero no desincentiva la búsqueda de empleo. En general, si se tiene un modelo que explica el comportamiento de una variable en base a las variaciones de otra, entonces se puede predecir qué sucederá con la primera para diferentes valores de la segunda.
 
 Los modelos que relacionan variables son diferentes según:
 
@@ -1385,7 +1349,8 @@ Los modelos que relacionan variables son diferentes según:
 
 - la cantidad de variables involucradas
 
-La primera puede provenir de una teoría, o de la observación del diagrama de dispersión. La segunda depende de las hipótesis; de cuántas y cuáles son las variables que participan en la explicación del fenómeno o proceso bajo análisis (que queda resumido en la variable consecuente).
+La primera puede provenir de una teoría, o de la observación del diagrama de dispersión. Es decir pueder haberse propuesto el modelo inicialmente a partir de deducciones teóricas, o bien puede buscarse a regularidad en los datos, de manera empírica.  
+La segunda depende de las hipótesis; de cuántas y cuáles son las variables que participan en la explicación del fenómeno o proceso bajo análisis (que queda resumido en la variable consecuente).
 
 Aquí nos ocuparemos por solo una de las formas posibles: el modelo lineal y solo del caso en que hay una sola variable explicativa (antecedente).
 
@@ -1425,9 +1390,7 @@ vemos, en este ejemplo hay algunas positivas, que corresponden a los
 puntos que están encima de la recta, y otras negativas, las de los
 puntos por debajo de la recta. Veamos en el gráfico siguiente la
 ubicación de uno de estos puntos, por ejemplo el que corresponde al par
-observado $(43; 1)$, al que la recta estima con el valor $\widehat{y} = 4,22$:
-
-<!--EB: los dos gráficos siguientes (13 y 14 del libro original) están en la carpeta, pero no los encuentra-->
+observado $(43; 1)$, al que la recta estima con el valor $\widehat{y} = 4.22$:
 
 ```{r fig.cap="Ubicación gráfica de la diferencia entre el valor de $y$ observado y su estimación $\\widehat{y}$", fig.asp = 0.1, fig.width = 3, fig.align='center'}
 knitr::include_graphics("imagenes/grafico13.png")
@@ -1502,15 +1465,11 @@ El coeficiente general de determinación mide la proporción de los
 cambios de *y* (expresados con la varianza) que se explican a través de
 la función lineal. Por eso es muy valioso, porque cuantifica el peso
 relativo de la variable *x* (a través de la función lineal) en la
-explicación de *y*.
-
+explicación de *y*.  
 Podemos así decir que, por ejemplo, el 30% de las diferencias en el
-rendimiento escolar de los alumnos de primaria se explica por la
-educación de sus padres, o que el 60% de la disminución del puntaje en
-una prueba que evalúa la depresión se puede atribuir a la administración
-de una determinada droga. Se aprecia con estos ejemplos la gran
-potencialidad explicativa de este coeficiente.
-
+rendimiento escolar en la escuela primaria se explica por la
+educación de los padres, o que el 60% de la disminución del puntaje en
+una prueba que evalúa la depresión se puede atribuir a la administración de una determinada droga. Se aprecia con estos ejemplos la gran potencialidad explicativa de este coeficiente.  
 Todo el análisis de regresión que hemos desarrollado hasta aquí puede
 hacerse de manera equivalente si la relación entre las variables no es
 lineal. En vez de obtener la ecuación de una recta, se obtendrá la de
@@ -1519,8 +1478,7 @@ adecuadamente los pares ordenados que se observan. La definición del
 coeficiente general de determinación que hemos dado:
 $R^{2} = \frac{s_{\widehat{y}}^{2}}{s_{y}^{2}}$ no cambia, pero los
 $\widehat{y}$ se calcularán con la función adecuada, no con la lineal
-que vimos.
-
+que vimos.  
 Sobre el coeficiente de correlación de Pearson, debe recordarse que solo
 es adecuado para evaluar la intensidad de la relación entre dos
 variables si ésta es lineal. En presencia de una relación de otro tipo,
@@ -1529,12 +1487,10 @@ pero eso no quiere decir que la relación sea débil o inexistente, sino
 que el modelo lineal no es adecuado para describirla. Por ello, si se
 encuentra un coeficiente de Pearson muy bajo, debe explorarse la
 existencia de una relación no lineal, esto puede hacerse fácilmente
-observando cómo se disponen los puntos en el diagrama de dispersión.
-
+observando cómo se disponen los puntos en el diagrama de dispersión.  
 Cuando la relación se modela con una función lineal -y solo en estos
 casos-, el coeficiente general de determinación ($R^2$) se calcula
-directamente elevando al cuadrado al coeficiente de Pearson.
-
+directamente elevando al cuadrado al coeficiente de Pearson.  
 Hemos señalado que el coeficiente de Spearman es adecuado cuando una
 variable o ambas están medidas a nivel ordinal. Pero también es adecuado
 cuando no se puede suponer que las variables tengan, en la población,
@@ -1543,8 +1499,7 @@ de Pearson. Una ventaja adicional del coeficiente de Spearman es que es
 poco sensible a valores extremos. La relación que hay entre estos dos coeficientes es similar a la que hay entre la media y la mediana.
 Cuando existen excepcionalmente altos o bajos, es conveniente calcular este coeficiente, aun cuando las variables sean ambas cuantitativas. Se
 dice que el coeficiente de Spearman es más "robusto" que es de Pearson,
-porque se afecta menos por valores atípicos de la variable. El siguiente ejemplo con datos ficticios ilustra la diferencia.
-
+porque se afecta menos por valores atípicos de la variable. El siguiente ejemplo con datos ficticios ilustra la diferencia.  
 Consideremos la siguiente relación
 
 ```{r}
@@ -1575,12 +1530,12 @@ repetir el análisis sin los valores extremos y comparar nuevamente los
 coeficientes; por el otro, observar qué hizo que esos casos tuvieran valores tan atípicos. La diferencia entre los dos coeficientes, da una
 señal para mirar más de cerca los datos.
 
-## La importancia de la visualización
+## La visualización de los datos
 
 La medidas descriptivas que se mencionaron en los capítulos anteriores ofrecen un resumen de las variables individualmente; en estos dos últimos capítulos hemos recorrido un amplio conjunto de formas en que pueden suceder las relaciones entre dos variables y mucho de lo que se ha dicho, puede extrapolarse a modelos más complejos, con más de dos variables bajo análisis simultáneo y con relaciones que no son lineales. La decisión sobre el modelo más adecuado es en parte teórica, pero está influida por la observación de los datos. En estudios exploratorios, en los que no se cuenta con hipótesis sobre la forma en que dos o más variables se relacionan, es muy necesario observar el conjunto de datos antes de proponer modelos.   
-Para mostrar la utilidad de las representaciones gráficas, existe un conjunto de datos producido por Francis Anscombe en la década de los setenta del siglo pasado (arrobaanscombe1973, arrobatufte1989). Su autor muestra por este medio, tanto la importancia de la visualización de los datos, como el impacto que pueden tener los casos atípicos sobre las medidas descriptivas. Más adelante se analiza en detalle ese conjunto de datos, lo importante es que muestra que el conocimiento de medidas resumen como los descriptivos univariados, los coeficientes de correlación y aun los coeficientes de un modelo que ajuste la relación, pueden dar una idea equivocada de la manera en que los datos se organizan, y que la visualización permite apreciarla mejor.
+Para mostrar la utilidad de las representaciones gráficas, existe un conjunto de datos producido por Francis Anscombe en la década de los setenta del siglo pasado (@Anscombe1973a, @Tufte1989). Su autor muestra por este medio, tanto la importancia de la visualización de los datos, como el impacto que pueden tener los casos atípicos sobre las medidas descriptivas. Más adelante se analiza en detalle ese conjunto de datos, lo importante es que muestra que el conocimiento de medidas resumen como los descriptivos univariados, los coeficientes de correlación y aun los coeficientes de un modelo que ajuste la relación, pueden dar una idea equivocada de la manera en que los datos se organizan, y que la visualización permite apreciarla mejor.
 
-En la misma dirección, Steph Locke (arrobadatasaurus2018, arrobalocke2018) generó una matriz de datos, llamada "Datasaurus", con 13 pares $x-y$, cada uno de los cuales tiene medidas descriptivas (media y desviación estándar de $x$ y de $y$), así como coeficientes de correlación entre $x$ e $y$, muy similares, pero los diagramas de dispersión muestran las grandes diferencias entre los pares de datos. La idea, en línea con la de Anscombe, es la de llamar la atención sobre la importancia de la visualización de los datos para tener una descripción completa y mostrar que las medidas descriptivas pueden engañar.
+En la misma dirección, Steph Locke (@Locke2018) generó una matriz de datos, llamada "Datasaurus", con 13 pares $x-y$, cada uno de los cuales tiene medidas descriptivas (media y desviación estándar de $x$ y de $y$), así como coeficientes de correlación entre $x$ e $y$, muy similares, pero los diagramas de dispersión muestran las grandes diferencias entre los pares de datos. La idea, en línea con la de Anscombe, es la de llamar la atención sobre la importancia de la visualización de los datos para tener una descripción completa y mostrar que las medidas descriptivas pueden engañar.
 
 ## Hacerlo en R
 
@@ -1590,8 +1545,8 @@ En el paquete base de R existe una función que realiza operaciones relacionadas
 
 La aplicación de la prueba a una tabla de contingencia da como resultado un objeto de clase "htest", de ello, nos van a interesar sus componentes. Para construir la tabla que cruza los tipos de violencia con el tamaño de las ciudades, primero debemos leer la base (datos ficticios), denominamos "violencia" a esa base: 
 ```{r, echo=TRUE}
-violencia <- read.table("bases/archivostxt/violencia.txt", sep = ",",
-                        header = TRUE)
+violencia <- read.table("bases/archivostxt/violencia.txt",
+                        sep = ",", header = TRUE)
 ```
 
 Los nombres de las variables son:
@@ -1661,8 +1616,13 @@ El número total de observaciones no es uno de los elementos que la prueba da di
 ```{r, echo=TRUE}
 n <- sum(jicu.viol$observed)
 ```
+Y es:
+```{r}
+n
+```
 
-Del mismo modo, rotulamos el número de filas y de columnas:
+
+Del mismo modo, rotulamos como  $f$ al número de filas y $c$ al de columnas:
 
 ```{r, echo=TRUE}
 f <- nrow(jicu.viol$observed)
@@ -1681,7 +1641,8 @@ Ahora d.ji.cuad es la distancia $\chi^{2}$
 
 #### $\varphi$
 
-Se calcula la raiz cuadrada de la distancia $\chi^{2}$ dividida en el número de casos:
+Se calcula la raiz cuadrada de la distancia $\chi^{2}$ dividida en el número de casos: $$\varphi=\sqrt{\frac{\chi^2}{n}}$$
+
 
 ```{r, echo=TRUE}
 sqrt(d.ji.cuad / n)
@@ -1689,14 +1650,17 @@ sqrt(d.ji.cuad / n)
 
 #### C de Pearson
 
-Como el anterior, sumando $\chi^{2}$ a $n$ en el denominador
+Como el anterior, sumando $\chi^{2}$ a $n$ en el denominador  
+$$C=\sqrt{\frac{\chi^2}{\chi^2+n}}$$
+
 ```{r, echo=TRUE}
 sqrt(d.ji.cuad / (d.ji.cuad + n))
 ```
 
-#### V de Cramer
+#### V de Cramer  
 
 Incluye al mínimo entre el número de filas menos uno y el número de columnas menos uno. `min` es una función de biblioteca de R base.
+$$V=\sqrt{\frac{\chi^2}{n*min(f-1,c-1)}}$$
 
 ```{r, echo=TRUE}
 sqrt(d.ji.cuad / (n * min(c - 1, f - 1)))
@@ -1711,14 +1675,21 @@ cor(merito.educa.mad$OM, merito.educa.mad$educamadre,
     method = "spearman")
 ```
 
+Redondeado a tres decimales
+```{r, echo=TRUE}
+round(cor(merito.educa.mad$OM, merito.educa.mad$educamadre, 
+    method = "spearman"), 3)
+```
+
+
 #### Pearson
 
 El comando `cor` devuelve, por defecto, el coeficiente de Pearson, por lo que no es necesario especificar el parámetro `method`.
 
-Para el ejemplo que correlaciona el puntaje en la escala de inteligencia lógico matemática y el puntaje en una prueba, el cálculo se pide así:
+Para el ejemplo que correlaciona el puntaje en la escala de inteligencia lógico matemática y el puntaje en una prueba, el cálculo se pide así (incluyendo el redondeo a tres decimales):
 
 ```{r, echo=TRUE}
-cor(puntaje.escala, ejercic.corr)
+round(cor(puntaje.escala, ejercic.corr), 3)
 ```
 
 #### Dicotomías artificiales
@@ -1744,13 +1715,13 @@ bayley$motor.dic.2 <- cut(bayley$baymotor, breaks = c(
 table(bayley$motor.dic.2)
 ```
 
-Ahora el corte está en 105 y quedan cantidades más similares de casos en cada grupo.
+Ahora el corte está en 105 y quedan cantidades similares de casos en los dos grupos.
 
 La decisión sobre el mejor modo de hacer el corte es teórica, y con ella presente, puede denominarse "grupo bajo" y "grupo alto" a los dos resultantes de la dicotomización.
 
 #### Tetracórico
 
-El paquete `psych` (arroba Revelle2018) cuenta con la función `tetrachoric`, cuyo argumento es la matriz de datos original y no la tabla de contingencia. Aquí se aplica al análisis de la relación entre los puntajes de las subescalas motora y mental de la prueba de Bayley, dicotomizadas. 
+El paquete `psych` (@Revelle2019) cuenta con la función `tetrachoric`, cuyo argumento es la matriz de datos original y no la tabla de contingencia. Aquí se aplica al análisis de la relación entre los puntajes de las subescalas motora y mental de la prueba de Bayley, dicotomizadas. 
 
 Primero se carga el paquete
 
@@ -1788,7 +1759,7 @@ $$X \rightarrow Y$$
 
 entonces el argumento de lm es
 
-$$Y \tilde{} X$$
+$$Y \: \tilde{} \: X$$
 
 El modelo se construye así:
 
@@ -1796,7 +1767,7 @@ El modelo se construye así:
 modelo.1 <- lm(ejercic.corr ~ puntaje.escala)
 ```
 
-El objeto que resulta tiene como atributos:
+El objeto que resulta tiene muchos resultados en su interior, los pedimos así:
 
 ```{r, echo=TRUE}
 attributes(modelo.1)
@@ -1858,13 +1829,19 @@ anscombe
 
 Para ver las medidas descriptivas, se solicita el resumen completo de la matriz de datos, ya que son pocas variables:
 
-<!-- ver si estos resutados se pueden compactar en tablas-->
-
 ```{r, echo=TRUE}
-# summary(anscombe)
+summary(anscombe)
+
+```
+
+Un modo de expresar el resultado de manera más compacta es usando el paquete `dplyr`:
+```{r, echo=TRUE}
+library(dplyr)
 apply(anscombe, 2, summary)
 ```
-<!-- ver qué comando, se supone que están entrando a R, creo que no se mencionó apply aun-->  
+
+
+
 Se observa la similitud de las medidas resumen de $x_1$, $x_2$, $x_3$, $x_4$ por un lado y de $y_1$, $y_2$, $y_3$, $y_4$ por otro.
 
 Además, las correlaciones entre los pares son casi idénticas:
@@ -1897,33 +1874,33 @@ lm(anscombe$y4 ~ anscombe$x4)$coefficients[2]
 Sin embargo, los diagramas de dispersión muestran que se trata de conjuntos muy diferentes entre sí. Usamos el paquete ggplot para hacer los cuatro gráficos a los que se llama $p_1, p_2, p_3, p_4$. En la primera capa de cada gráfico colocamos el origen de los datos, que es la matriz *anscombe*, luego sumamos una capa con puntos correspondientes a $x_1, y_1$ en el primer gráfico y así en los tres siguientes. La tercera capa es la función lineal que mejor ajusta los puntos. Finalmente el theme_tufte da a cada gráfico el formato que elegimos. Para mostrarlos, usamos el comando grid.arrange al que indicamos los cuatro objetos y la dimensión del arreglo, que son dos filas y dos columnas:
 
 ```{r, echo=TRUE}
-p1 <- ggplot(anscombe) + geom_point(aes(x1, y1)) + geom_abline()+ theme_tufte()
-p2 <- ggplot(anscombe) + geom_point(aes(x2, y2)) + geom_abline() + theme_tufte()
-p3 <- ggplot(anscombe) + geom_point(aes(x3, y3)) + geom_abline() + theme_tufte()
-p4 <- ggplot(anscombe) + geom_point(aes(x4, y4)) + geom_abline() + theme_tufte()
-grid.arrange(p1, p2, p3, p4, nrow = 2, ncol = 2)
+p1 <- ggplot(anscombe) + geom_point(aes(x1, y1)) + geom_abline()+
+  theme_tufte()
+p2 <- ggplot(anscombe) + geom_point(aes(x2, y2)) + geom_abline() +
+  theme_tufte()
+p3 <- ggplot(anscombe) + geom_point(aes(x3, y3)) + geom_abline() +
+  theme_tufte()
+p4 <- ggplot(anscombe) + geom_point(aes(x4, y4)) + geom_abline() +
+  theme_tufte()
+
+grid.arrange(p1, p2, p3, p4, nrow = 2, ncol = 2) #para ordenar los
+# cuatro gráficos en una grilla de 2 x 2
 ```
 
 ### Datasaurus  
 Para usar el Datasaurus, se debe primero instalar el paquete y cargarlo en la sesión, la matriz de datos se llama `datasaurus_dozen`:
 
-```{r warning=FALSE}
-# install.packages("datasauRus") # comando para instalar el paquete
+```{r echo=TRUE, warning=FALSE, message=FALSE}
+
 library("datasauRus")
 datasaurus_dozen
 ```
 
-Los datos están organizados en tres columnas; la primera, que se llama `dataset` es el nombre del subconjunto, son 13 subconjuntos en total.
+Los datos están organizados en tres columnas; la primera, que se llama `dataset` es el nombre del subconjunto, son 13 subconjuntos en total, que se llaman: "away", "bullseye", "circle", "dino", "dots", "h_lines", "high_lines", "slant_down", "slant_up", "star", "v_lines", "wide_lines" y "x_shape".
 
-Luego cargamos el paquete `dplyr`, que facilita hacer las operaciones por grupos con la función `group_by`
+Ahora vamos a usar el paquete `dplyr`, que facilita hacer las operaciones por grupos con la función `group_by`. Se solicita que, sobre la matriz `datasaurus_dozen` agrupe por `dataset` y resuma, calculando las medias y desviaciones estándar de $x$ y de $y$ y la correlación entre ellas. La aplicación secuencial de estas operaciones se logra por medio del operador `%>%` "pipe".
 
-```{r echo=TRUE, warning=FALSE}
-library("dplyr")
-```
-
-Y luego las aplicamos sucesivamente usando el operador `%>%` "pipe" (sobre la matriz `datasaurus_dozen`, agrupe por `dataset` y resuma, calculando las medidas indicadas).
-
-```{r, echo=TRUE}
+```{r, echo=TRUE, warning=FALSE, message=FALSE}
 datasaurus_dozen %>%
   group_by(dataset) %>%
   summarize(
@@ -1938,12 +1915,13 @@ datasaurus_dozen %>%
 Cada fila corresponde a un subconjunto de datos. En la tabla se observa la similitud de las $x$ y de las $y$ y también de las correlaciones entre ellas. Para completar la idea que se tiene de los subconjuntos de datos, construimos un diagrama de dispersión para cada uno de ellos:
 
 ```{r, echo=TRUE}
-ggplot(datasaurus_dozen) + # haremos un plot con los datos datasaurus_dozen
+ggplot(datasaurus_dozen) + # haremos un plot con los datos
+  #datasaurus_dozen
   geom_point(aes(x, y, col = dataset)) + # puntos x, y, con el color
   ## mapeado al nombre de cada conjunto de datos
   geom_abline() + # agregamos una linea recta
-  facet_wrap(~dataset, ncol = 3) + # separamos en subplots por data
-  theme_tufte() + # fondo blanco
+  facet_wrap(~dataset, ncol = 3) + # separamos en subplots por dataset
+  theme_tufte() + # plantilla estética
   theme(legend.position = "none") # eliminamos la leyenda
 ```
 

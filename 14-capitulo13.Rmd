@@ -5,13 +5,11 @@ output:
 
 ```{r message=FALSE, warning=FALSE, include=FALSE}
 source("depencias.R")
-knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
-kable_outp <- ifelse(knitr::is_latex_output(), "latex", "html")
 ```
 
 # Cuando los supuestos no se cumplen
 
-N.B. En este capítulo no nos detendremos en detalles de los procedimientos, solo las condiciones de aplicacaión de cada uno y, en el último apartado, el modo de reproducir los ejemplos en R.  
+N.B. En este capítulo no nos detendremos en detalles de los procedimientos, solo las condiciones de aplicación de cada uno y, en el último apartado, el modo de reproducir los ejemplos en R.  
 
 Las condiciones que se han pedido hasta este punto para los
 procedimientos vistos, son exigentes. Por ejemplo, en las *pruebas t*
@@ -73,9 +71,9 @@ paramétrica.
 
 En este capítulo desarrollaremos tres pruebas no paramétricas basadas en
 el puntaje ji cuadrado y dos alternativas a las pruebas t para muestras
-independientes y apareadas. Puede consultarse el manual de Siegel (1956)
+independientes y apareadas. Puede consultarse el manual de @siegel1957
 para una presentación muy completa, aunque no actualizada a
-procedimientos informáticos.
+procedimientos informáticos, .
 
 ### Las pruebas ji cuadrado (o chi cuadrado)
 
@@ -98,13 +96,13 @@ Estas frecuencias esperadas son las que se esperarían observar si las
 variables fueran independientes. Así, cuanto más alejadas se encuentren
 las frecuencias observadas de las esperadas, tanto más grande será el
 puntaje $\chi^{2}$ y más alejadas de la independencia estarán las
-variables que se analizan, el hecho de estar alejadas de la
+variables que se analizan.  El hecho de estar alejadas de la
 independencia implica que existe alguna asociación entre ellas. El valor
 mínimo de este puntaje es cero, que solo podría alcanzarse si todas las
 frecuencias observadas coincidieran con las esperadas y sería el caso de
 una independencia perfecta; una situación muy improbable de hallar en la
-realidad. El puntaje $\chi^{2}$ carece de un valor máximo, puede ser
-indefinidamente grande, dependiendo no solo de lo alejadas que están las
+realidad. Pero el puntaje $\chi^{2}$ carece de un valor máximo, puede ser
+indefinidamente grande, dependiendo no solo de lo alejadas que estén las
 frecuencias observadas de las esperadas, sino también de la dimensión de
 la tabla y de la cantidad de casos.  
 
@@ -126,11 +124,9 @@ problema, como vamos a tratar acerca de relaciones entre variables, la
 $H_0$ indicará que no hay relación o, lo que es lo mismo, que las
 variables son independientes.  
 
-Ejemplo 1 (datos ficticios) se trata analizar la posible relación entre el
-resultado del primer parcial de Psicoestadística (aprobado – no
-aprobado) y el turno en que los alumnos lo hicieron. Se construye una
-muestra con 180 alumnos seleccionados entre quienes hicieron el primer
-parcial en los últimos cinco años. La siguiente es la tabla de
+Ejemplo 1 (datos ficticios) se trata analizar la posible relación entre el resultado del primer parcial de Psicoestadística (aprobado – no
+aprobado) y el turno en que fue realizado. Se construye una
+muestra con 180 estudiantes seleccionada entre quienes hicieron el primer parcial en los últimos cinco años. La siguiente es la tabla de
 distribución de frecuencias observadas.
 
 ```{r}
@@ -145,7 +141,7 @@ knitr::kable(
   booktabs = TRUE, align = "lcc", escape = FALSE, caption = "Frecuencias conjuntas observadas del resultado del parcial y el turno en que se realizó.",
 ) %>%
   kableExtra::add_header_above(c("Resultado del parcial" = 1, "Turno" = 2)) %>%
-  kableExtra::kable_styling(latex_options = "striped")
+  kableExtra::kable_styling(latex_options = c("striped", "HOLD_position"))
 ```
 
 Para el análisis de la independencia se calculan las frecuencias
@@ -163,7 +159,7 @@ knitr::kable(
   booktabs = TRUE, align = "lcc", escape = FALSE, caption = "Frecuencias conjuntas esperadas del resultado del parcial y el turno en que se realizó.",
 ) %>%
   kableExtra::add_header_above(c("Resultado del parcial" = 1, "Turno" = 2)) %>%
-  kableExtra::kable_styling(latex_options = "striped")
+  kableExtra::kable_styling(latex_options = c("striped", "HOLD_position"))
 ```
 
 Las frecuencias esperadas conducen al puntaje[^110] $\chi^{2}$, que en
@@ -179,9 +175,7 @@ puede explicarse por azar, o representa un distanciamiento
 suficientemente grande como para atribuirlo a una relación entre las
 variables en la población?
 
-Queremos entonces decidir si lo que hemos observado para estos alumnos
-(la muestra de quienes cursaron en los últimos cinco años, por ejemplo)
-es general, es decir, si vale para alumnos a los que no hemos observado.
+Queremos entonces decidir si lo que hemos observado para este grupo de estudiantes (la muestra de quienes cursaron en los últimos cinco años, por ejemplo) es general; es decir, si vale para estudiantes que no participaron de la muestra.  
 Por eso, la hipótesis nula de la prueba será:
 
 $H_0$: El resultado del parcial es independiente del turno en que se
@@ -308,21 +302,16 @@ independencia, pero la condición bajo la cual se esperan determinadas
 frecuencias puede ser otra y el puntaje $\chi^{2}$ también permite medir
 esas distancias.
 
-Ejemplo 2 (datos ficticios): la distribución de la condición que alcanzan
-los alumnos que cursan Psicoestadística ha sido, históricamente, 35% de
-promocionados, 35% de regulares y 30% de libres. Consideremos el
-subconjunto de alumnos que estudian otra carrera además de Psicología.
-Una muestra de 142 de estos alumnos se distribuye, según condición, del
-siguiente modo:
+Ejemplo 2 (datos ficticios): la distribución de la condición que alcanzan quienes cursan Psicoestadística ha sido, históricamente, que 35% alcanzan la promoción, 35% la regularidad y el 30% queda libre. Consideremos el subconjunto de quienes estudian otra carrera además de Psicología. Una muestra de 142 estudiantes de este grupo se distribuye, según condición, del siguiente modo:
 
-Tabla 3: Distribución de frecuencias de los alumnos de Psicología que
+Tabla 3: Distribución de frecuencias de estudiantes de Psicología que
 también estudian otra carrera, según condición:
 
 ```{r}
 aux_table <- tibble::tribble(
-  ~"condición", ~"alumnos",
-  "Promocionados", "53",
-  "Regulares", "51",
+  ~"condición", ~"estudiantes",
+  "Promoción", "53",
+  "Regularidad", "51",
   "Libres", "38",
   "Total", "142",
 )
@@ -334,24 +323,23 @@ knitr::kable(
 ```
 
 La tabla anterior muestra las frecuencias observadas. Nos preguntamos si
-esta distribución se aleja significativamente de la tendencia general, o
+esta distribución se aleja significativamente de la tendencia general (del conjunto completo de quienes cursan la materia), o
 bien si está dentro de lo esperado. Esta pregunta puede reformularse en
 dirección a saber si los datos observados se "ajustan" a la distribución
 general o se apartan de ella. Expresado en términos de hipótesis, la
 $H_0$ afirmará que no hay diferencia:
 
-$H_0$: La distribución de promocionados, regulares y libres de los alumnos que estudian otra carrera se ajusta a la distribución del total de alumnos.
+$H_0$: La distribución de quienes alcanzan la promoción, la regularidad y quedan libres entre quienes estudian otra carrera se ajusta a la distribución del total de estudiantes.
 
 Mientras que la $H_1$, afirmará lo contrario:
 
-$H_1$: La distribución de promocionados, regulares y libres de los alumnos que estudian otra carrera se aparta de la distribución del
-total de alumnos.
+$H_1$: La distribución de quienes alcanzan la promoción, la regularidad y quedan libres entre quienes estudian otra carrera se aparta de la distribución del total de estudiantes.
 
 Si la distribución se mantuviera igual (si $H_0$ fuera verdadera),
-esperaríamos que los 142 alumnos que estudian otra carrera se
+esperaríamos que el grupo de 142 que estudian otra carrera se
 distribuyeran en las tres categorías según estas proporciones: 0.35 -
 0.35 - 0.30. La frecuencia que esperaríamos encontrar en la categoría
-promocionados es $0.35*142= 49.7$ y del mismo modo con las demás
+promoción es $0.35*142= 49.7$ y del mismo modo con las demás
 categorías. Por lo que esperaríamos la siguiente distribución de
 frecuencias:
 
@@ -360,9 +348,9 @@ distribución general:
 
 ```{r}
 aux_table <- tibble::tribble(
-  ~"condición", ~"alumnos",
-  "Promocionados", "49,7",
-  "Regulares", "49,7",
+  ~"condición", ~"estudiantes",
+  "Promoción", "49,7",
+  "Regularidad", "49,7",
   "Libres", "42,6",
 )
 knitr::kable(
@@ -400,10 +388,8 @@ qchisq(.95, 2)
 Por lo que la región de rechazo es el conjunto de
 valores que superan 5.99. El valor observado se encuentra fuera de la
 región de rechazo, por lo que corresponde no rechazar $H_0$ y concluir
-que los alumnos que estudian otra carrera además de Psicología no
-muestran, en Psicoestadística, una distribución entre promocionados,
-regulares y libres que difiera significativamente de la tendencia
-general de quienes cursan esa materia.
+que quienes estudian otra carrera además de Psicología no
+muestran, en Psicoestadística, una distribución entre las condiciones de promoción, regularidad y quedar libre, que difiera significativamente de la tendencia general de quienes cursan esa materia.
 
 #### Prueba de la mediana
 
@@ -414,7 +400,7 @@ ordinal, ya que allí no tiene interpretación la media ni tampoco la
 varianza. Si se deben comprar dos muestras en una variable medida a
 nivel ordinal se puede plantear la hipótesis que afirma que las medianas
 son iguales, como una equivalencia a la que, en variables métricas,
-plantea que las medias de dos <distribuciones son iguales:
+plantea que las medias de dos distribuciones son iguales:
 
 
 $$H_0: M_{dn_1} - M_{dn_2} = 0$$
@@ -475,14 +461,14 @@ hay por encima de la $M_{\text{dn}_{c}}$ y el otro los que la igualan o
 están por debajo de ella.
 
 Ejemplo (datos ficticios): se comparan las calificaciones "de concepto"
-asignadas por docentes de escuelas primarias de dos grupos de alumnos.
+asignadas por docentes de escuelas primarias de dos grupos de estudiantes.
 Dichas calificaciones, presentan categorías: 1. Excelente, 2. Muy bueno,
 3. Bueno, 4. Satisfactorio, 5. No satisfactorio, por lo que son de nivel
 ordinal y no es posible realizar una prueba de diferencia de medias, en
 su reemplazo recurrimos a la prueba de la mediana. Se seleccionan 40
-alumnos de cada docente y se relevan las notas de concepto de cada uno.
-Calculamos la mediana de los 80 alumnos juntos y obtenemos 3. A
-continuación contamos cuántos alumnos de la primera docente están por
+estudiantes de cada docente y se relevan sus notas de concepto.
+Calculamos la mediana del grupo completo (80 casos) y obtenemos 3. A
+continuación contamos cuántos de los de la primera docente están por
 encima y por debajo de 3 y lo mismo para la segunda docente. La
 distribución queda del siguiente modo:
 
@@ -502,9 +488,7 @@ knitr::kable(
   kableExtra::kable_styling(latex_options = "striped")
 ```
 
-Aunque originalmente se relevaron 40 alumnos de cada docente, quedaron
-36 de la primera y 32 de la segunda, porque cuatro casos de un grupo y
-ocho del otro coincidieron con la $M_{\text{dn}_{c}}$ y fueron
+Aunque originalmente se relevaron 40 estudiantes de cada docente, quedaron 36 de la primera y 32 de la segunda, porque cuatro casos de un grupo y ocho del otro coincidieron con la $M_{\text{dn}_{c}}$ y fueron
 descartados, con lo que el total se redujo a 68 observaciones.
 
 La sola inspección de la tabla sugiere que debe descartarse la igualdad
@@ -515,8 +499,6 @@ la $M_{\text{dn}_{c}}$ y el grupo 2 por debajo. En efecto, el puntaje
 $\chi_{\text{obs}}^{2} = 13.33$, con 1 grado de libertad, tiene una
 probabilidad asociada (*valor p*) de 0,00026, que quiere decir que se
 rechaza la hipótesis de igualdad de medianas.
-
-
 
 ### Coeficiente $r_s$ de Spearman
 
@@ -535,23 +517,14 @@ estándar de este estimador tiene la misma forma que el de Pearson:
 $$\sigma_{r_{s}} = \sqrt{\frac{1 - r_{s}^{2}}{n - 2}}$$
 
 Y cuando la muestra tiene al menos 10 observaciones, se distribuye con
-una distribución t con n-2 grados de libertad[^112]. En consecuencia, el
+una distribución t con n-2 grados de libertad @Kendall1948. En consecuencia, el
 estadístico de prueba será:
 
 $$t = \frac{r_{s} - \rho_{s}}{\sqrt{\frac{1 - r_{s}^{2}}{n - 2}}}$$
 
-Ejemplo (datos ficticios): se interroga a 20 alumnos de primer año de
-una carrera universitaria sobre las razones de su elección de carrera y
-a partir de las respuestas se construye un índice que clasifica el
-interés en 1. Muy fuerte, 2. Fuerte, 3. Débil, 4. Muy débil. Los
-resultados de este índice se ponen en correspondencia con el orden de
-mérito alcanzado en el ingreso a la carrera universitaria (1. Primero,
-2. Segundo, etc.). En el análisis de la relación entre estas dos
-variables ordinales obtenemos un coeficiente de correlación de Spearman
-de 0.82, que indica, en la muestra, una relación positiva e intensa
-entre el interés y el orden de mérito en el ingreso. Preguntamos si este
-resultado, obtenido sobre 20 casos, nos autoriza a afirmar que existe
-una asociación entre las dos variables más allá de la muestra observada.
+Ejemplo (datos ficticios): se interroga a 20 votantes de un partido político sobre las razones de su voto y a partir de las respuestas se construye un índice que clasifica el compromiso con la ideología del partido en 1. Muy débil, 2. Débil, 3. Fuerte, 4. Muy fuerte. Los resultados de este índice se ponen en correspondencia con el nivel de educación de las personas encuestadas (1. Sin escolarización, 2. Primario incompleto, etc.). En el análisis de la relación entre estas dos variables ordinales obtenemos un coeficiente de correlación de Spearman de 0.32, que indica, en la muestra, una relación positiva y débil entre el compromiso ideológico y la educación. Preguntamos si este
+resultado, obtenido sobre 20 casos, autoriza a afirmar que existe
+alguna asociación no nula entre las dos variables más allá de la muestra observada.
 Formularemos las hipótesis correspondientes a una prueba bilateral,
 porque queremos probar si el coeficiente es significativamente diferente
 de cero.
@@ -571,20 +544,18 @@ qt(.975, 18)
 
 El estadístico de prueba es:
 
-$$t = \frac{r_{s} - \rho_{s}}{\sqrt{\frac{1 - r_{s}^{2}}{n - 2}}} = \frac{0.82}{\sqrt{\frac{1 - {0.82}^{2}}{20 - 2}}} = \frac{0.82}{0.135} = 6.08$$
+$$t = \frac{r_{s} - \rho_{s}}{\sqrt{\frac{1 - r_{s}^{2}}{n - 2}}} = \frac{0.32}{\sqrt{\frac{1 - {0.32}^{2}}{20 - 2}}} = \frac{0.32}{0.223} = 1.43$$
 
-Este valor se ubica en la región de rechazo de $H_0$, con lo que la
-decisión es la de rechazar $H_0$ y concluir que "hay evidencia para creer que la correlación a nivel poblacional no es nula".  
+Este valor se ubica en la región de no rechazo de $H_0$, con lo que la
+decisión es la de no rechazar $H_0$ y concluir que "no hay evidencia para creer que la correlación a nivel poblacional no sea nula".  
 El valor $p$ asociado a esta observación es:
 
 ```{r}
-2 * (1 - pt(6.08, 18))
+2 * (1-pt(1.43, 18))
 ```
 
 
-El pequeño valor p es señal de lo escasamente probable que resulta que
-este resultado provenga del azar, es decir, es evidencia para creer que
-en la población, la asociación efectivamente existe.
+El valor $p$, superior a los niveles de significación usuales es señal de lo probable que resulta que este resultado provenga del azar, es decir, no es evidencia para creer que en la población, la asociación efectivamente exista. Conclusión: no se rechaza la hipótesis nula y el coeficiente no resulta significativo.  
 
 
 ### Alternativas no paramétricas a las pruebas t
@@ -649,27 +620,57 @@ Ahora  solicitamos la prueba $\chi^2$:
 
 ```{r echo=TRUE}
 prueba <- chisq.test(resultado_por_turno, correct = FALSE)
+```
+
+El objeto "prueba" contiene los resultados, veamos cuáles son:  
+```{r echo=TRUE}
 names(prueba)
+
+```
+ Consultemos algunos de los valores:
+```{r echo=TRUE}
+prueba$statistic
+```
+ 
+Es el valor del puntaje $\chi_{obs}^2$.  
+La tabla de frecuencias esperadas es:
+```{r echo=TRUE}
 prueba$expected
+```
+
+Se puede solicitar el resultado completo de la prueba:  
+```{r}
 prueba
 ```
+
+Para ver el modo en que se llegó a ese valor $p$, se calcula la probabilidad de superar el puntaje $\chi_{obs}^2$. Se lo obtiene complementando la probabilidad acumulada.  
+```{r echo=TRUE}
+1-pchisq(.9028,1)
+```
+
+El resultado conduce a no rechazar la hipótesis nula.  
 
 ### Ejemplo 2
 
 Nuevamente, hay que generar los datos
 
 ```{r echo=TRUE}
-condicion <- c(rep("promocionados", 53), rep("regulares", 51), rep("libres", 38))
+condicion <- c(rep("promoción", 53), rep("regularidad", 51), rep("libres", 38))
 tabla_condicion <- table(condicion)
+tabla_condicion
 ```
-  
-En la aplicación de la prueba, los argumentos son la tabla univariada y las proporciones esperadas en cada categoría (en el orden que aparecen; conviene observar la tabla antes):
+Y la de relativos, redondeada a tres decimales:  
+```{r echo=TRUE}
+round(prop.table(tabla_condicion),3)
+```
+
+En la aplicación de la prueba, los argumentos son la tabla univariada y las proporciones esperadas (hipotéticas) en cada categoría (en el orden que aparecen):
 
 ```{r echo=TRUE}
 chisq.test(tabla_condicion, p = c(.30, .35, .35))
 ```
 
-La salida muestra el puntaje $\chi^2$, los grados de libertad y el valor p asociado. Por tratarse de un valor elevado, concluimos que no hay evidencia para rechazar la hipótesis según la cual los estudiantes de más de una carrera se ditribuyen entre regulares, promocionales y libres del mismo modo que lo hacen quienes solo estudian una carrera.
+La salida muestra el puntaje $\chi^2$, los grados de libertad y el valor p asociado. Por tratarse de un valor elevado, concluimos que no hay evidencia para rechazar la hipótesis según la cual quienes estudian más de una carrera se ditribuyen entre regulares, promocionales y libres del mismo modo que lo hacen quienes solo estudian una carrera.
 
 
 ### Prueba de la mediana  
@@ -684,13 +685,48 @@ docente <- c(rep("a", 40), rep("b", 40))
 datos_prueba_mediana <- data.frame(concepto, docente)
 ```
 
-La prueba de la mediana está en un paquete que no hemos usado aun, será necesario intalarlo y cargarlo en esta sesión:
+La prueba de la mediana está en un paquete que no hemos usado aun, será necesario instalarlo y cargarlo en esta sesión:
 
-<!--aca se traba, quito un pedazo que trea el problema, está en el script agricolae-->
+```{r echo=TRUE, warning=FALSE, eval=FALSE}
+install.packages("agricolae")
+```
+
+```{r echo=TRUE, warning=FALSE, eval=FALSE}
+library(agricolae)
+```
+
+La prueba tiene como argumentos a las dos variables y se solicita que no haga una corrección interna:
+  
+```{r echo=TRUE, warning=FALSE}
+  prueba_mediana<-Median.test(datos_prueba_mediana$concepto,
+            datos_prueba_mediana$docente,
+            correct = FALSE)
+```
+Los componentes de este objeto son:  
+```{r echo=TRUE, warning=FALSE}
+names(prueba_mediana)
+```
+
+Que tienen los valores:
+```{r echo=TRUE, warning=FALSE}
+prueba_mediana$statistics
+prueba_mediana$parameters
+prueba_mediana$medians
+prueba_mediana$comparison
+prueba_mediana$groups
+```
+
+Se puede pedir todo de una vez:  
+```{r echo=TRUE, warning=FALSE}
+prueba_mediana
+```
+
+
+El valor $p$ conduce a rechazar la hipótesis nula.
 
 ### Prueba de Wilcoxon
 
-Sea el caso de la comparación entre los puntajes de un test estandarizado entre los grupos experimental y control, cada uno de los cuales tiene nueve casos. Los datos son lso siguientes:
+Sea como ejemplo, el caso de la comparación entre los puntajes de un test estandarizado entre los grupos experimental y control, cada uno de los cuales tiene nueve casos. Los datos ficticios son los siguientes:
 
 ```{r echo=TRUE}
 puntajes_control <- c(38.9, 61.2, 73.3, 21.8, 63.4, 64.6, 48.4, 48.8, 48.5)
@@ -718,26 +754,34 @@ Y luego aplicar la prueba
 t.test(puntajes ~ grupo, data = datos_prueba_wilcoxon)
 ```
 
-El resultado conduce a la misma decisión, pero para interpretarlo debe cuidarse que los puntajes estén medidos a escala cuatitativa.
+El resultado conduce a la misma decisión, pero para interpretarlo debe cuidarse que los puntajes estén medidos a escala cuantitativa.
 
 ### Muestras apareadas  
 
-Se trata de evaluaciones antes y después de una intervención sobre las condiciones de trabajo en una organización, medidas en puntaje de una prueba de satisfacción. Se quiere saber si hay evidencia para creer que después los puntajes son mayores:
+Se ilustra con un ejemplo sobre evaluaciones antes y después de una intervención sobre las condiciones de trabajo en una organización, medidas en puntaje de una prueba de satisfacción. Se quiere saber si hay evidencia para creer que después de la intervención los puntajes son mayores. En primer lugar se lee la base (datos ficticios):
 
-<!--a esto lo dejamos invisible-->
+
+<!--esto no se muestra-->
 ```{r}
 set.seed(21)
-antes <- rnorm(20, 5, 1)
-despues <- rnorm(20, 8, 3)
-momento <- rep(c("antes", "despues"), each = 20)
-datos_apareadas <- data.frame(momento, c(antes, despues))
+antes <- round(rnorm(20, 5, 1),1)
+despues <- round(rnorm(20, 8, 3),1)
+puntaje<-cbind(antes, despues)
+datos_apareadas <- data.frame(puntaje)
+write.csv(datos_apareadas, "bases/archivostxt/datos_apareadas.csv")
 ```
+
+
+```{r warning=FALSE, echo=TRUE}
+read.csv("bases/archivostxt/datos_apareadas.csv")
+```
+
 
 ```{r echo=TRUE}
 wilcox.test(despues, antes, alternative = "greater", mu = 0, paired = TRUE)
 ```
 
-Leemos que, en una prueba unilateral derecha, el valor p es menor a los niveles usuales de significación, por lo que hay evidencia para afirmar que los puntajes son mayores luego de la intervención.
+Leemos que, en una prueba unilateral derecha, el valor $p$ es menor a los niveles usuales de significación, por lo que hay evidencia para afirmar que los puntajes son mayores luego de la intervención.
 
 La realización de esta prueba si la satisfacción esstuviese medida a nivel métrico y se pudiera suponer la normalidad de las distribuciones, sería por medio de una prueba t para muestras apareadas:
 
@@ -755,4 +799,3 @@ Que conduce al mismo resultado, pero que solo es válida si se cumplen los supue
 
 [^111]: De mismo modo que sucede con las pruebas paramétricas, las hipótesis se refieren a toda la población, aunque aquí no aparezca el nombre de un parámetro reconocible, como $\mu$ o $P$.
 
-[^112]: Kendall (1948) citado por Siegel (1956)

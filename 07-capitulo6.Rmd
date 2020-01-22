@@ -1,15 +1,47 @@
 ```{r message=FALSE, warning=FALSE, include=FALSE}
 source("depencias.R")
-knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
-kable_outp <- ifelse(knitr::is_latex_output(), "latex", "html")
 ```
+
+# (PART) De la descripción a la inferencia {-}
+
+<!-- # De la descripción a la inferencia {.unnumbered} -->
+
+Hasta aquí hemos trabajado sobre datos que han sido observados; pudo haberse tratado de datos de una encuesta o un relevamiento que nosotros hayamos realizado o bien que nos haya provisto alguna fuente de buena calidad: conjunto de hogares encuestados por la EPH, lista de de personas afiliadas a un partido político, registros de una institución educativa, historias clínicas de un hospital, etc. Se trata de información realmente recopilada, que ha sido obtenida por observación a través de algún instrumento de recolección de datos o registrada oficialmente. Por el contrario, en los capítulos que siguen nos ocuparemos de lo que _no_ ha sido observado, haremos _inferencias_ para sacar conclusiones acerca de lo que no hemos visto. Partiremos de la información que provee una muestra y con ello generalizaremos a un conjunto mayor. Como resultado de ello buscaremos dar respuesta a preguntas como las siguientes:
+  
+  - Si en varias escuelas primarias se ven más dificultades en el aprendizaje de Matemática que de Lengua, ¿será esta observación válida para las  escuelas primarias?
+  
+  - Si un nuevo medicamento tiene efecto en un grupo de pacientes sobre quienes se experimenta, ¿bajo qué condiciones podemos saber si también tendrá efecto en la población general de pacientes?
+  
+  - Si en una muestra de 200 personas encuestadas el 42% dice que va a votar al partido A, ¿qué porcentaje se votos puede esperar obtener el partido A cuando sean las elecciones?
+  
+  - Si en un grupo conformado voluntariamente, que participa en un experimento se descubre una relación entre las expectativas de logro y el número de errores que se cometen en una prueba, ¿es suficiente con eso para afirmar que esa relación se mantiene entre quienes no participaron del experimento?, o dicho de otra manera ¿es esa una relación general entre esas variables ($expectativa\: de\: logro \rightarrow cantidad \:de \: errores$)?
+  
+  - Si en la muestra de la EPH se detecta un 8% de personas desocupadas, ¿Cuál es la tasa de desocupación de la población completa?
+  
+  - Si a una muestra de pacientes de sexo femenino con diagnóstico de psicosis se administra una droga y se encuentra que produce estabilización en los síntomas en el 90% de ellas, ¿corresponde recomendar que esa droga sea utilizada en las pacientes diagnosticadas como psicóticas?
+  
+  Como vemos, se trata de llevar los resultados más allá del ámbito en el que fueron obtenidos, se trata de generalizarlos. Para hacer esto será necesario usar conceptos nuevos, a los que nos dedicaremos en los capítulos de esta parte. Veremos cómo seleccionar casos para que lo que se observe en ellos tenga validez general (muestreo), luego cómo decidir en el terreno de la incertidumbre (probabilidad), y finalmente, lo que sucede con las medidas descriptivas que conocemos cuando se las pone en correspondencia con valores generales (distribuciones en el muestreo).
+
+Sobre la relación entre la probabilidad y la inferencia, @hacking_2006 cita un pasaje de un relato indio[^part_2_1] en el que uno de los personajes estima "el número de hojas y frutos que hay en dos grandes ramas de un árbol frondoso. Aparentemente lo hace en base a una sola rama más pequeña que observa. Hay, según afirma, 2095 frutos. [$\ldots$] y cuando le preguntan ¿cómo pudo saberlo?, responde: _Yo de los dados poseo su ciencia y así en los números diestro soy_" (@hacking_2006). De este modo aparecen relacionadas, en este antiguo texto, la capacidad para hacer una estimación de lo que no es observado con "la ciencia de los dados", desde tan temprano hay indicios de la relación entre estimación y probabilidad.
+
+Las respuestas a las preguntas que buscan generalidad no pueden ser certeras, como en el relato mítico, sino inciertas. A diferencia de las descripciones, que se limitan a mostrar información recopilada, las inferencias solo pueden ser afirmaciones tentativas, aproximativas, probabilísticas. La diferencia entre la certeza de una descripción y la incertidumbre de una inferencia se ve con claridad al comparar las siguientes expresiones:
+  
+  1. "El tiempo promedio que tardaron estas 100 personas en responder al cuestionario fue de 12 minutos"
+  
+  2. "Cuando este cuestionario sea aplicado, se espera que quienes lo respondan tarden entre 11 y 13 minutos para hacerlo, con una certeza del 95%".
+
+Hay dos diferencias en estos enunciados, que pertenecen a distintos niveles de proximidad a los datos. Una diferencia es que el primero ofrece un valor único: los 12 minutos que se obtuvieron al promediar los tiempos de los 100 personas que fueron observadas. Por el contrario, el segundo ofrece un intervalo: entre 11 y 13 minutos.
+
+La segunda diferencia es que el primer enunciado _afirma_ ese valor, mientras que el segundo expresa que _hay una certeza del 95%_. Esto quiere decir que no estamos seguros que el tiempo que tardarán en responder vaya a estar realmente entre 11 y 13 minutos; hay una confianza del 95% que sea así, pero no una certeza plena. Por eso, puede ser que el tiempo sea, o bien menor que 11 minutos, o bien mayor que 13; y esto puede suceder con una probabilidad de 5%. Los enunciados del segundo tipo transmiten incertidumbre porque se refieren a casos que no han sido observados, sino inferidos. Esta incertidumbre, para la que disponemos de procedimientos que permiten cuantificarla de manera probabilística, es inherente a todo proceso de inducción, donde se requiere formular generalizaciones.
+
+Los capítulos que vienen a continuación ofrecen las bases para ingresar a la _Estadística Inferencial_, son cuatro capítulos de articulación que fundamentan los procedimientos de inferencia.
 
 # Obtención de la muestra  
 
-La idea de conocer una totalidad a partir de un fragmento no es novedosa, cuando se prueba solo una cucharada de una sopa que se está preparando, se supone que lo que se concluya de ella (que está bien, que le falta sal…) será válido para toda la olla. Bethlehem (Bethlehem2009) señala que el procedimiento de usar una parte para evaluar una totalidad era usual en la industria desde muy antiguo. En alemán, la palabra "muestra" se compone de "cortar" y "probar" y es mencionada en la literatura ya en 1583 como un procedimiento usado en mimería que consistía en tomar una pequeña cantidad de material para observar cuánto metal contenía. También el autor cita referencias a estos procedimientos en la industria quesera holandesa en la edad media. Por aquellos tiempos no se hablaba de muestreo, sino de "razonamiento inductivo". El establecimiento del muestreo y de sus fundamentos se data en la publicación de Anders Kiaer _The Representative Method of Statistical Surveys_ (@kiaer1897) en 1897.  
+La idea de conocer una totalidad a partir de un fragmento no es novedosa, cuando se prueba solo una cucharada de una sopa que se está preparando, se supone que lo que se concluya de ella (que está bien, que le falta sal…) será válido para toda la olla. Bethlehem (Bethlehem2009) señala que el procedimiento de usar una parte para evaluar una totalidad era usual en la industria desde muy antiguo. En alemán, la palabra "muestra" se compone de "cortar" y "probar" y aparece en la literatura en 1583 como un procedimiento usado en minería que consistía en tomar una pequeña cantidad de material para observar cuánto metal contenía. También el autor cita referencias a estos procedimientos en la industria quesera holandesa en la edad media. Por aquellos tiempos no se hablaba de muestreo, sino de "razonamiento inductivo". El establecimiento del muestreo y de sus fundamentos se data en la publicación de Anders Kiaer _The Representative Method of Statistical Surveys_ (@kiaer1897) en 1897.  
 
 La estadística inferencial provee los procedimientos para estudiar un
-subconjunto de elementos y generalizar las conclusiones obtenidas un
+subconjunto de elementos y generalizar las conclusiones obtenidas a un
 total; esto se debe a que estudiar uno o varios atributos o variables en
 todos los elementos, como se hace en los censos, requiere mucha
 inversión, de tiempo y de dinero. Por ello es que se procede estudiando
@@ -18,12 +50,12 @@ de la población. Se reducen así los costos y se disminuye el tiempo
 necesario para llevar adelante las investigaciones, si se respetan los
 procedimientos de la estadística inferencial el error que proviene de
 trabajar sólo con una parte de la población puede ser conocido y
-controlado.
+controlado. Pero el ahorro de tiempo y dinero no es la única utilidad del muestreo, luego veremos que hay situaciones en las que el muestreo es la única opción para construir conocimiento.
 
 El muestreo es un conjunto de procedimientos mediante los cuales se
 selecciona, de un universo determinado, llamado **población**, un
 subconjunto que recibe el nombre de **muestra**, con el objetivo de llegar
-al conocimiento de determinadas características de los elementos de la
+al conocimiento de ciertas características de los elementos de la
 población a través de la observación y generalización de esas
 características presentes en los elementos de la muestra.
 
@@ -37,7 +69,7 @@ mentido una vez para caracterizarlo como poco confiable, ni que haya
 mentido varias veces sobre un mismo asunto. Por el contrario, debe ser
 una conducta que se haya apreciado en diversidad de situaciones, la que permita hacer un juicio sobre la persona. Por la complejidad de los procesos que involucran a personas, el conocimiento que tengamos de ellos siempre será fragmentario, solo está a nuestro alcance conocer una porción de la infinidad de situaciones humanas posibles. Esos fragmentos constituyen nuestra experiencia cotidiana y necesitamos generalizar intuitivamente para orientarnos en el mundo, para tomar decisiones de todos los días. Pero cuando queremos dar a ese conocimiento un carácter tan validado como sea posible, debemos poner bajo análisis crítico nuestras observaciones y el modo en que han sido seleccionadas. De eso se trata el muestreo; de elegir algunas observaciones que permitan generalizar parcialmente. No lograremos afirmaciones universales, pero sabremos cuáles son los límites de esas afirmaciones.
 
-En la generalización estadística hay dos subprocesos. El primero es la selección, que consiste en operaciones mediante las cuales se incluyen algunos elementos de la población en la muestra. El segundo es la estimación, donde, a partir de lo observado en la muestra, ofrecemos una aproximación a los valores poblacionales. A su vez, la selección de la muestra implica decidir cuáles y cuántos casos seleccionar, es decir, la calidad del proceso de selección por un lado, y la cantidad de casos a seleccionar por otro. En este capítulo nos ocupamos de la primera de estas preguntas: de qué modo seleccionar individuos para que lo que se observe de ellos pueda extrapolarse a otros individuos no observados. El número de casos que deben seleccionarse, será tema de los capítulos posteriores.
+En la inferencia estadística hay dos subprocesos. El primero es la selección, que consiste en operaciones mediante las cuales se incluyen algunos elementos de la población en la muestra. El segundo es la estimación, donde, a partir de lo observado en la muestra, ofrecemos una aproximación a los valores poblacionales. A su vez, la selección de la muestra implica decidir cuáles y cuántos casos seleccionar, es decir, la calidad del proceso de selección por un lado, y la cantidad de casos a seleccionar por otro. En este capítulo nos ocupamos de la primera de estas preguntas: de qué modo seleccionar individuos para que lo que se observe de ellos pueda extrapolarse a otros individuos no observados. El número de casos que deben seleccionarse, será tema de los capítulos posteriores.
 
 Destaquemos aquí un punto importante: la calidad de la muestra es un requisito de base. Si la muestra está correctamente elegida, los procedimientos de inferencia son válidos, de lo contrario no lo son, es una clasificación dicotómica, por sí o por no. Por el contrario, el tamaño de la muestra incide gradualmente, veremos que si las muestras son más grandes se detectan mejor las diferencias y se reduce el error de estimación. Pero esto es cierto siempre y cuando se cumpla la primera condición. Si la muestra no es adecuada, el aumento en el número de casos no mejora la estimación, e inclusive puede empeorarla.
 
@@ -48,11 +80,10 @@ para designar, de manera genérica, a un conjunto de unidades de análisis
 que son objeto de un estudio particular. Tal conjunto puede estar
 definido con precisión en el tiempo y el espacio o no, a él se referirán
 los resultados obtenidos en la investigación por muestreo. Ejemplos de
-estos son: los pacientes con trastornos alimenticios del hospital
-Misericordia de la ciudad de Córdoba en el año 2009, o los votantes en
-las elecciones para intendente de la ciudad de Río Cuarto en 2008, las
+estos son: pacientes con trastornos alimenticios que se atendieron en el hospital
+Misericordia de la ciudad de Córdoba en el año 2019, quienes votaron en las elecciones para intendente de la ciudad de Río Cuarto en 2008, las
 escuelas primarias de la provincia de Córdoba, las carreras que se
-dictan en universidades en Argentina en 2017, los países representados en la ONU.
+dictaban en universidades en Argentina en 2017, los países representados en la ONU.
 
 Las unidades de análisis antes mencionadas constituyen los elementos de la población, son entidades de diferente naturaleza: personas, hogares, instituciones, ciudades, países, etc.
 
@@ -60,16 +91,16 @@ El tamaño que tiene una población influye en el diseño de la muestra
 porque dependiendo de su tamaño, la población puede ser tratada como
 finita o infinita. Se dice que es finita si el número de elementos es
 limitado y se puede tener acceso a todos o casi todos los elementos,
-ejemplo de ello serían los alumnos de cuarto año del colegio Manuel
-Belgrano del ciclo lectivo 2020 o los pacientes admitidos en el Hospital
-de Clínicas en mayo de 2017, el conjunto de países representados en la ONU en 2015, o los senadores electos en un país en un año determinado.  Se habla de población infinita[^44] cuando
-el número de elementos que integra la misma es elevado, por ejemplo, los automovilistas que circulan por rutas nacionales en una provincia, o alumnos de nivel inicial de la República Argentina. En ciertas ocasiones no se especifica con precisión el tiempo por lo que se habla de población hipotética, tal caso sería el de alumnos de primer año de la carrera de Psicología en UNC (sin especificar ciclo lectivo), por lo que no sólo se incluyen los elementos existentes hoy y en años anteriores, sino también los que en el futuro lo hagan. En este caso, la población no puede siquiera enumerarse. Así sucede también con estudios que plantean probar los efectos de un tipo de psicoterapia sobre pacientes diagnosticados como esquizofrénicos. En ese caso la "población" es la de las personas diagnosticadas como esquizofrénicas en la actualidad y también aquellas que lo serán en el futuro. Cuando se ensaya en una muestra una droga para la hipertensión, la generalización se espera válida para una población que no puede enumerarse: la de "los hipertensos", tanto los ya diagnosticados como aquellos que lo serán en el futuro. En casos como estos no tenemos posibilidad de delimitar la población completa, decimos que se trata de **poblaciones hipotéticas**.
+ejemplo de ello serían quienes cursan cuarto año del colegio Manuel
+Belgrano del ciclo lectivo 2020, personas admitidas como pacientes en el Hospital
+de Clínicas en mayo de 2017, el conjunto de países representados en la ONU en 2015, integrantes del bloque parlamentario oficialista en un país en un año determinado.  Se habla de población infinita[^44] cuando
+el número de elementos que integra la misma es elevado, por ejemplo, los vehículos que circulan por rutas nacionales en una provincia, o estudiantes de nivel inicial de la República Argentina. En ciertas ocasiones no se especifica con precisión el tiempo por lo que se habla de población hipotética, tal caso sería el de quienes cursan primer año de una carrera universitaria (sin especificar ciclo lectivo), por lo que no sólo se incluyen los elementos existentes hoy y en años anteriores, sino también los que en el futuro lo hagan. En este caso, la población no puede siquiera enumerarse. Así sucede también con estudios que plantean probar los efectos de un tipo de psicoterapia sobre pacientes con diagnóstico de esquizofrenia. En ese caso la "población" es la de las personas diagnosticadas como esquizofrénicas en la actualidad y también aquellas que lo serán en el futuro. Cuando se ensaya en una muestra una droga para la hipertensión, la generalización se espera válida para una población que no puede enumerarse: la de "las personas hipertensas", tanto las ya diagnosticadas como las que lo serán en el futuro. En casos como estos no tenemos posibilidad de delimitar la población completa, decimos que se trata de **poblaciones hipotéticas**.
 
-Para analizar características de las unidades de análisis, puede creerse que lo mejor sería realizar un **relevamiento exhaustivo** de las mismas. Este relevamiento consistiría en observar dicha característica (una variable) en cada uno de los individuos de la población. Tal modo de recolectar la información se conoce con el nombre de **censo**.
+Para analizar características de las unidades de análisis, puede creerse que lo mejor sería realizar un **relevamiento exhaustivo** de las mismas. Este relevamiento consistiría en observar dicha característica (una variable) en cada uno de los elementos de la población. Tal modo de recolectar la información se conoce con el nombre de **censo**.
 
-La mayoría de los países realiza censos periódicamente (a menudo cada 10 años), que son operativos organizados desde el estado, que involucran a muchas personas, y tienen un alto presupuesto. En la práctica de la investigación social, es frecuente realizar relevamientos exhaustivos cuando las poblaciones son de pequeño tamaño y están bien delimitadas en el tiempo y en el espacio. Un ejemplo de este caso sería la situación en que se pretende conocer la opinión de los alumnos de un curso acerca de su docente, aquí lo más adecuado es indagar (vía encuesta) a todos.  
+La mayoría de los países realiza censos periódicamente (a menudo cada 10 años), que son operativos organizados desde el estado, que involucran a muchas personas, y tienen un alto presupuesto. En la práctica de la investigación social, es frecuente realizar relevamientos exhaustivos cuando las poblaciones son de pequeño tamaño y están bien delimitadas en el tiempo y en el espacio. Un ejemplo de este caso sería la situación en que se pretende conocer la opinión de quienes asistieron a un curso acerca de su docente, aquí lo más adecuado es indagar (vía encuesta) a todos.  
 Sin embargo, la mayoría de las poblaciones de interés para la
-investigación social tienen dimensiones considerables (todos los alumnos de primer grado del país) o son inaccesibles (los consumidores de una marca de gaseosa, los practicantes del budismo) o son hipotéticas (las personas diagnosticadas de depresión, los ciudadanos con ideología de derecha).
+investigación social tienen dimensiones considerables (asistentes a  primer grado de la escuela primaria en un país) o son inaccesibles (quienes consumen una marca de gaseosa, practicantes del budismo) o son hipotéticas (las personas diagnosticadas de depresión, votantes con ideología de derecha).
 
 Cuando se busca dar generalidad a los resultados alcanzados a través de experimentos, la población de referencia suele ser hipotética: los
 efectos de una droga sobre la depresión, la relación entre xenofobia y autoritarismo, la eficacia de una estrategia didáctica. Son casos que aspiran a generar
@@ -79,11 +110,11 @@ casos. El modo en que seleccionemos esos pocos casos es de máxima
 importancia para que los resultados también sean válidos para los casos
 que no son observados.
 
-Además de permitir economía de recursos, el muestreo permite profundizar
+Además de permitir economía de recursos y de ser a menudo la única opción, el muestreo permite profundizar
 los estudios que se realizan sobre los elementos de la muestra. En
 efecto, en los relevamientos exhaustivos de gran magnitud, como los
 censos nacionales o provinciales, no es posible profundizar con la
-indagación; por el contrario se deben hacer pocas preguntas a fin de
+indagación; se deben hacer pocas preguntas a fin de
 alcanzar a una gran población en un tiempo aceptable. Si se trabaja con
 una muestra, se puede indagar con más detalle y profundidad, y luego,
 con los procedimientos adecuados, extender los hallazgos a la población
@@ -99,18 +130,17 @@ población que no han sido seleccionados. Tal representatividad no
 implica una identidad en todos los aspectos, son solamente aquellas
 características que se encuentran bajo análisis las que deben ser
 compartidas por la muestra y la población.  
-Ejemplos:
 
+Ejemplos:  
 - Población de quienes votan en una ciudad --> muestra de votantes para consulta de opinión política.
-- Población de docentes universitaries -->  muestra de docentes para analizar la distribución de tiempo entre docencia, investigación y extensión.
-- Población de hogares existentes en una ciudad --> muestra de hogares para conocer sus condiciones de vida
+- Población de docentes de una universidad -->  muestra de docentes para analizar la distribución de tiempo entre docencia, investigación y extensión.
+- Población de hogares existentes en una ciudad --> muestra de hogares para conocer sus condiciones de vida.
 
 Cuando se planifica la extracción de una muestra, no se conoce en
 detalle a la población, por lo que no es posible saber a priori cómo
 debe ser la muestra que la represente. Si se conocen algunas características de la población que estén relacionadas con el aspecto que se estudia, entonces corresponde reproducirlas en la muestra. En el primero de los ejemplos anteriores, la muestra de votantes debe respetar las proporciones de varones y mujeres que hay en la población, así como de los diferentes grupos de edad; ya que se supone que sexo y edad pueden estar relacionados con la preferencia política. Si se extrajera una muestra que solo tenga mujeres de 18 a 25 años sería una muestra sesgada, porque solo tomaría en cuenta un grupo, cuyo comportamiento electoral podría ser diferente al resto de la población. Una muestra así, sirve para estudiar el comportamiento de ese grupo particular, se puede generalizar a la población de mujeres entre 18 y 25 años, pero no a la población de votantes.
 
-En el segundo ejemplo, si sabemos que en la población de docentes universitaries, hay 60% de mujeres, y se espera que las respuestas que den las mujeres sean diferentes a las de los varones, entonces debe respetarse ese porcentaje en la muestra. Pero si el 70% de les docentes va a trabajar en auto y esto no tiene ninguna relación con la distribución de tiempo en las diferentes actividades, entonces ese porcentaje es irrelevante para el muestreo. Por otro lado, si la dedicación (simple, semiexclusiva o exclusiva) incide en el tema de
-investigación, entonces, las diferentes categorías de dedicación deben estar representadas en la muestra.
+En el segundo ejemplo, si sabemos que en la población de docentes de esa universidad, hay 60% de mujeres, y se espera que las respuestas que den las mujeres sean diferentes a las de los varones, entonces debe respetarse ese porcentaje en la muestra. Pero si la proporción de quienes van a trabajar en auto es del 70%  y esto no tiene ninguna relación con la distribución de tiempo en las diferentes actividades, entonces ese porcentaje es irrelevante para el muestreo. Por otro lado, si la dedicación (simple, semiexclusiva o exclusiva) incide en el tema de investigación, entonces, las diferentes categorías de dedicación deben estar representadas en la muestra.
 
 La posibilidad de extrapolar los resultados muestrales a la población
 completa está ligada a la posibilidad de asignar probabilidades a
@@ -135,7 +165,7 @@ muestra sea heterogénea y que la inclusión de casos dependa lo menos
 posible de la voluntad de los participantes.
 
 Para que sea posible asignar probabilidades a cada una de los individuos
-de formar parte de la muestra, el método por el cual se seleccioann los individuos tiene que excluir la elección voluntaria. Esto implica que el
+de formar parte de la muestra, el método por el cual se seleccionan los individuos tiene que excluir la elección voluntaria. Esto implica que el
 proceso de elección debe quedar estrictamente librado al azar, sin dejar
 margen para que se filtre la intencionalidad, no se trata de elegir a
 "cualquiera". En consecuencia, caerán en la categoría de técnicas de
@@ -172,8 +202,8 @@ completo) y debe cuidarse que no existan duplicaciones. La tarea de
 depuración de un listado puede insumir bastante tiempo según el tamaño
 de la población y el tipo de marco muestral de que se trate. Es
 diferente el caso de un registro electoral, del total de historias
-clínicas de un gran hospital o del listado de todos los alumnos de una
-facultad, o los diputados de la cámara).
+clínicas de un gran hospital o del listado de estudiantes de una
+facultad, o de quienes componen la Cámara de Diputados de la nación).
 
 Su realización consiste en numerar los elementos del listado y elegir
 aleatoriamente una cantidad $n$ de ellos (el tamaño de la muestra). La
@@ -213,32 +243,12 @@ primer elemento de la muestra al que llamaremos "a". A continuación se
 selecciona el elemento que se encuentra $r$ unidades más adelante en la lista (el elemento que ocupa el lugar $a+r$) y así sucesivamente hasta recorrer la lista completa, lo cual ocurrirá cuando se haya alcanzado al
 enésimo y último elemento de la muestra.
 
-El gráfico siguiente ilustra este procedimiento, las flechas a la
-derecha señalan los primeros elementos que constituyen la muestra; el
+El gráfico \@ref(fig:estrat) ilustra este procedimiento, las flechas a la
+izquierda señalan los primeros elementos que constituyen la muestra; el
 procedimiento prosigue de idéntica manera hasta la última unidad de la
 muestra.
-
-```{r}
-aux_table <- tibble::tribble(
-  ~"", ~"",
-  "", "$1$",
-  "", "$\\ldots$",
-  "$\\rightarrow$", "$a$",
-  "", "$\\ldots$",
-  "", "$\\ldots$",
-  "$\\rightarrow$", "$a+r$",
-  "", "$\\ldots$",
-  "", "$\\ldots$",
-  "$\\rightarrow$", "$a+2r$",
-  "", "$\\ldots$",
-  "", "$\\ldots$",
-  "", "N",
-)
-knitr::kable(
-  aux_table, kable_outp,
-  booktabs = TRUE, align = "lc", escape = FALSE, caption = "Ilustración del procedimiento de muestreo sistemático.",
-) %>%
-  kableExtra::kable_styling(latex_options = "striped")
+```{r estrat, fig.cap="En el muestreo estratificado se eligen muestras diferentes de cada uno de los subconjuntos definidos en la población.", fig.asp = 0.1, fig.width = 3, fig.align='center'}
+knitr::include_graphics("imagenes/sistematico.png")
 ```
 
 Esta técnica tiene, en principio, los mismos requerimientos que el
@@ -283,7 +293,8 @@ a priori. Dicha característica se denomina criterio de estratificación.
 knitr::include_graphics("imagenes/image87.png")
 ```
 
-Supongamos que se va a estimar el consumo de bebidas alcohólicas de los jóvenes. Como es posible que esa variable está influida por el nivel socioeconómico, se lo puede usar como criterio para estratificar a la población, dividiéndola
+
+Supongamos que se va a estimar el consumo de bebidas alcohólicas de personas jóvenes (y supongamos también que se ha dado una definición precisa de quiénes son personas jóvenes). Como es posible que esa variable está influida por el nivel socioeconómico, se lo puede usar éste como criterio para estratificar a la población, dividiéndola
 en subconjuntos en los que el nivel socioeconómico sea homogéneo. La
 cantidad de estratos que puedan definirse de esta manera dependerá del
 grado de precisión con que pueda medirse el nivel socioeconómico. Si
@@ -304,7 +315,7 @@ la precisión sobre los estratos individuales. Se obtendrá tanto mayor
 ganancia en la estimación cuanto más homogéneos sean los estratos en su
 interior y más diferentes (heterogéneos) sean entre ellos. En el capítulo sobre estimación por intervalo se verá por qué es así.  
 
-Se llama afijación a la forma de distribuir la muestra sobre los estratos que se definieron. Según cuánta información se tenga a priori, se podrán hacer diferentes afijaciones. Hay tres posibilidades: igual o uniforme, proporcional y óptima. Tratamos solo las dos primeras.  
+Se llama afijación a la forma de distribuir la muestra sobre los estratos que se definieron, es decir, una vez decidido el tamaño de la muestra completa, la afijación indica cuántos casos seleccionar para la muestra de cada estrato. Según cuánta información se tenga a priori, se podrán hacer diferentes afijaciones. Hay tres posibilidades: igual o uniforme, proporcional y óptima. Tratamos solo las dos primeras.  
 
 #### Afijación igual o uniforme  
 
@@ -324,7 +335,7 @@ $n$ es el tamaño de la muestra total.
 $k$ representa el número de estratos en que fue dividida la población.
 
 En el ejemplo sobre el consumo de bebidas alcohólicas, si se trata de
-una muestra de 600 jóvenes, con este tipo de afijación, y como son tres
+una muestra de 600 personas jóvenes, con este tipo de afijación, y como son tres
 estratos, extraeremos 200 casos de cada estrato.
 
 #### Afijación proporcional  
@@ -356,12 +367,12 @@ $n_{i}$: es la cantidad de casos que se extraerán del estrato i-ésimo,
 $f$: es la fracción de muestreo que calculamos antes.
 
 Para usar este tipo de afijación en el ejemplo del consumo de bebidas
-alcohólicas necesitaríamos conocer la cantidad de jóvenes que hay en
+alcohólicas necesitaríamos conocer la cantidad de personas jóvenes que hay en
 cada estrato, es decir cuántos jóvenes de nivel socioeconómico alto,
 medio y bajo hay en la población. Este dato usualmente es desconocido.
 
-Veamos un ejemplo con datos reales: en el año 2008 en Psicología, la
-siguiente era la distribución de estudiantes según el año en que habían
+Veamos un ejemplo con datos reales: en el año 2008 en la carrera de Psicología de la Universidad Nacional de Córdoba, la siguiente
+era la distribución de estudiantes según el año en que habían
 ingresado a la carrera (considerando solo a los ingresados a partir del
 año 2000).
 
@@ -387,11 +398,12 @@ knitr::kable(aux_table, kable_outp, align = "c", booktabs = TRUE) %>%
   kableExtra::kable_styling(latex_options = "striped")
 ```
 
-Si queremos una muestra de 200 estudiantes de esa población, la fracción de
-muestreo será: $f = \frac{200}{7483} = 0,027$ que redondeamos a $0,03$.
-Aplicaremos esta fracción a cada estrato, es decir multiplicamos por esa
-fracción a la cantidad de casos que hay en cada estrato y redondeamos al
-entero más próximo.
+
+Si queremos una muestra de 200 estudiantes de esa población, la fracción de muestreo será: $f = \frac{200}{7483} = 0,027$ que redondeamos a $0,03$.  
+En la tabla siguiente se aplica esta fracción a cada estrato, es decir se multiplica por esa
+fracción a la cantidad de casos que hay en cada estrato y se redondea al
+entero más próximo. 
+
 
 ```{r}
 aux_table <- tibble::tribble(
@@ -411,19 +423,21 @@ knitr::kable(aux_table, format = kable_outp, booktabs = TRUE, align = "ccc") %>%
   kableExtra::kable_styling(latex_options = "striped")
 ```
 
+
+
 Entonces, para la muestra debemos elegir 41 estudiantes que hayan ingresado
 en 2008, luego 33 del 2007 y así sucesivamente. A esa selección la
 hacemos aleatoria, ya que es posible contar con el marco de la muestra
 que es el registro de estudiantes que tiene la facultad.
 
 #### Afijación óptima  
-Esta afijación tiene en cuenta la heterogeneidad de cada estrato para elegir la
-cantidad de casos que se extraen de cada uno, qu ese mide con la varianza al interior de cada estrato. Esto es porque cuando los elementos son muy homogéneos (poca varianza), alcanzan pocos casos para tener una imagen adecuada del conjunto completo; pero si son muy diferentes (heterogéneos, mucha varianza) van a ser necesarias más
-observaciones para hacer estimaciones de buena calidad. Por ejemplo si se sabe que que en una bolsa hay fichas de dos colores (poca dispersión) y, cuando se extraen cuatro, salen tres rojas y una verde, se conoce que esos son los dos colores de las fichas que hay en la bolsa. Pero si las fichas tienen 9 colores diferentes (heterogénea, con mucha variabilidad), con cuatro fichas no alcanza para saber cuáles son los colores de las que están en la bolsa.  
+Esta afijación tiene en cuenta la heterogeneidad de cada estrato para elegir la cantidad de casos que se extraen de cada uno, que se mide con la varianza al interior de cada estrato. Esto es porque cuando los elementos son muy homogéneos (poca varianza), pocos casos son suficientes para tener una imagen adecuada del conjunto completo; pero si son muy diferentes (heterogéneos, mucha varianza) van a ser necesarias más
+observaciones para hacer estimaciones de buena calidad. Para ilustrar esta idea, supongamos que en una bolsa hay fichas de dos colores (poca dispersión) y hay que adivinar cuáles son esos colores extrayendo cuatro fichas. Dada la poca dispersión, solo dos colores, es muy probable que con cuatro fichas podamos saber cuáles son. Pero si la bolsa contiene fichas de 9 colores diferentes (heterogénea, con mucha variabilidad), con cuatro fichas nunca puede alcanzar para saber cuáles son los colores de las que están en la bolsa, harían falta bastante más de nueve extracciones para lograrlo.  
+
 También, si se dispone de suficiente información, es posible incluir el
 costo de acceso a los casos pertenecientes a diferentes estratos y
 realizar una afijación que minimice el costo global del muestreo, para
-más detalles sugerimos arrobaMendenhall1971.
+más detalles sugerimos @Scheaffer2006.
 
 Dos puntos que hay que recordar para decidir el uso del muestreo
 estratificado:
@@ -438,28 +452,27 @@ estrato sean homogéneos entre sí y que los estratos sean diferentes unos de ot
 
 ### Muestreo por conglomerados
 
-Un conglomerado es una unidad de muestreo que contiene varios elementos de la población. Para un diseño por conglomerado deben definirse unidades primarias de muestreo (PSU por sus siglas en inglés) que contengan en su interior a las unidades elementales.
+Un conglomerado es una unidad de muestreo que contiene varios elementos de la población. Para un diseño por conglomerado deben definirse unidades primarias de muestreo que contengan en su interior a las unidades elementales.
 
 Un ejemplo clásico de este tipo de muestreo es el caso en que
 hay que extraer una muestra de hogares en una ciudad. Se trata de
 una situación en la que resulta imposible contar con un listado de las
 unidades primarias (los hogares). Un muestreo por conglomerados permite
-resolver este problema tomando como unidad de selección a los radios censales. Numerando estas unidades sobre un plano de la ciudad (o del
+resolver este problema tomando como unidad de selección a los radios censales, a los que se puede acceder por medio de las Direcciones Provinciales de Estadística, la figura \@ref(fig:radios) muestra un ejemplo. Numerando estas unidades sobre un plano de la ciudad (o del
 área que se vaya a relevar), se selecciona aleatoriamente un número $n$ de ellas. Una vez identificadas las unidades primarias que constituirán
 la muestra (los radios censales) se relevan todos los hogares (unidades elementales) que residen en cada una de ellos.
 
-```{r fig.cap="Radios censales 2010 de la ciudad de Río Cuarto, provincia de Córdoba, Argentina.", fig.asp = 0.1, fig.width = 3, fig.align='center'}
+```{r radios, fig.cap="Radios censales 2010 de la ciudad de Río Cuarto, provincia de Córdoba, Argentina.", fig.asp = 0.1, fig.width = 3, fig.align='center'}
 knitr::include_graphics("imagenes/radios-Rio-Cuarto.png")
 ```
 
-Otro ejemplo es en el que necesitamos una muestra de 100 alumnos
-de primer grado de escuelas municipales la ciudad de Córdoba. Tenemos dos problemas: el primero es que no hay una lista de estudiantes, no contamos con un marco muestral. El segundo es que, aunque la tuviéramos, tendríamos que ir a
-buscar a cada uno de los 100 alumnos muestreados al lugar donde viven, lo que tendría un costo muy elevado. En este caso, el
+Otro ejemplo es en el que necesitamos una muestra de 100 niñas y niños
+de primer grado de escuelas municipales la ciudad de Córdoba. Tenemos dos problemas: el primero es que no hay una lista, por lo que no se cuenta con un marco muestral. El segundo es que, aunque lo tuviéramos, tendríamos que ir a
+buscar a cada uno de los 100 estudiantes muestreados al lugar donde viven, lo que tendría un costo muy elevado. En este caso, el
 conglomerado (o unidad primaria) que se elige es la escuela: en lugar de
-elegir 100 alumnos al azar, se eligen, por ejemplo 10 escuelas al azar del listado de ellas, que sí existe. Luego, en cada escuela elegimos 10 alumnos, también al azar, a partir del listado de alumnos de primer grado, que sí está disponible en cada escuela.
+elegir 100 niños y niñas al azar, se eligen, por ejemplo 10 escuelas al azar del listado de ellas, que sí existe. Luego, en cada escuela se eligen 10 estudiantes, también al azar, a partir del listado de primer grado, que sí está disponible en cada escuela.
 
-Los requisitos para la efectividad de este tipo de muestreo pueden ser
-resumidos como sigue:
+Los requisitos para la efectividad de este tipo de muestreo son:
 
 - Las unidades primarias de muestreo deben ser homogéneas entre sí, de
 tal manera que cada unidad sea intercambiable con otra.
@@ -470,11 +483,11 @@ Volviendo al ejemplo anterior en que las unidades primarias son los radios censa
 variedad que sea propia del área en cuestión (en términos de su
 composición: proporción de hogares particulares, comercios, escuelas, etc.).
 
-Además del ejemplo de los radios censales como unidad primaria previa a los hogares, otros conglomerados utilizados son: establecimientos educativos, para muestrear a su interior docentes o estudiantes; empresas, identificando luego trabajadores; organizaciones religiosas, etc. En general, todo conjunto que contenga en su interior a las unidades elementales, puede elegirse como conglomerado.
+Además del ejemplo de los radios censales y las escuelas como unidades primarias de muestreo, otros conglomerados utilizados son: empresas, al interior de las cuales se releva a su personal; organizaciones religiosas, para entrevistar fieles, etc. En general, todo conjunto que contenga en su interior a las unidades elementales, puede elegirse como conglomerado.
 
 ### Método de Kish
 
-Es un procedimiento para seleccionar aleatoriamente un individuo entre los que residen en un hogar, que es independiente del método de muestreo utilizado para seleccionar los hogares. Solo depende de la composición del hogar y se usa para controlar el sesgo que se pueda producir si el encuestador elige quién encuestar o encuesta al que tiene más accesible.
+Es un procedimiento para seleccionar aleatoriamente un individuo entre los que residen en un hogar, que es independiente del método de muestreo utilizado para seleccionar los hogares. Solo depende de la composición del hogar y se usa para controlar el sesgo que se pueda producir si el encuestador elige quién encuestar o encuesta al que tiene más accesible, por ejemplo a quien atiende a la puerta.
 Se trata de ordenar a los integrantes del hogar, asignando un número a cada uno de acuerdo a su sexo y edad. El Centro de Control de Enfermedades de Estados Unidos sugiere asignar el número 1 a la persona de mayor edad y sucesivamente a los demás miembros. En el caso que hubiese dos personas de la misma edad, se puede usar la fecha de cumpleaños para decidir cuál va primero. Luego se consulta una planilla que el encuestador lleva consigo, donde tiene impresos números aleatorios entre 1 y el total de personas que habitan en el hogar.
 
 La planilla tiene cada fila para identificar el número de hogar al que se está encuestando, que es el número de cuestionario que se va a aplicar. Cada columna de la planilla tiene la cantidad de integrantes que hay en el hogar. Por ejemplo: si es el quinto hogar que el encuestador visita y en él viven seis personas adultas, luego de enumerarlas según edad, de acuerdo a la siguiente tabla, debe aplicar el cuestionario a la persona que tiene el número 3.
@@ -518,8 +531,8 @@ los encuestadores para que, recorriendo un circuito establecido de antemano, ent
 a un hogar cada una cantidad dada (uno cada diez por ejemplo para contar
 con una muestra del 10% de los hogares del radio).
 
-O bien, en el ejemplo de los alumnos de primer grado, se trataría de
-seleccionar a 10 de ellos en cada escuela de manera aleatoria.
+O bien, en el ejemplo de niñas y niños de primer grado, se trataría de
+seleccionar a 10 en cada escuela de manera aleatoria.
 
 ```{r fig.cap="Muestreo por conglomerados en dos etapas.", fig.asp = 0.1, fig.width = 3, fig.align='center'}
 knitr::include_graphics("imagenes/image90.png")
@@ -728,8 +741,7 @@ equilibrados respecto de algunas variables, cuya determinación depende
 del estudio particular. En este caso las cuotas indican qué proporción
 de casos se requieren en cada categoría de las variables de interés, la
 selección de los sujetos que constituirán el grupo experimental y el
-grupo control se hace aleatoriamente. Este tema se desarrolla con
-detalle en Metodología de la Investigación.
+grupo control se hace aleatoriamente.
 
 ### Muestreo accidental o según disponibilidad
 
@@ -890,5 +902,7 @@ addmargins(
 La cantidad de casos en cada categoría depende de cuántos casos había en la matriz original.
 
 <!-- todo: chequear que sea la nota 48 -->
+
+[^part_2_1]: Se trata de la epopeya Mahabarata, cuya versión actual habría sido concluida hacia el año 400d.c.
 
 [^44]: La idea de infinito no es la de la matemática, sino que se refiere a una relación pequeña entre la cantidad de casos de muestra y los de la de la población. Ver nota 48.

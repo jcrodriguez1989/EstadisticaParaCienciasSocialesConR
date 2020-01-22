@@ -5,19 +5,16 @@ output:
 
 ```{r message=FALSE, warning=FALSE, include=FALSE}
 source("depencias.R")
-knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
-kable_outp <- ifelse(knitr::is_latex_output(), "latex", "html")
 ```
 
-# Apéndice: Tamaño del efecto
+# Tamaño del efecto
 
 ## Significación estadística y significación práctica
 
 El procedimiento de prueba de hipótesis concluye con la aseveración
 acerca del rechazo o no de la hipótesis nula. Esto se hace observando
-qué tan probable es hallar los resultados muestrales bajo el supuesto de
-$H_0$ verdadera. El valor $p$ es una medida de esa probabilidad, por eso es
-que cuando es pequeño la decisión es rechazar $H_0$ y decimos que es
+cuán probable es hallar los resultados muestrales bajo el supuesto de
+$H_0$ verdadera. El valor $p$ es una medida de esa probabilidad, por eso es que cuando es pequeño, la decisión es rechazar $H_0$ y decimos que el
 resultado (la diferencia, el coeficiente, o lo que sea que se haya
 puesto a prueba) es significativo, o significativamente distinto de
 cero.
@@ -36,7 +33,7 @@ Por eso es necesario introducir otro concepto; el de **tamaño del efecto**. Se 
 diferencia o un coeficiente, luego de haber obtenido un resultado
 significativo en la prueba de hipótesis. Conocer el tamaño del efecto es
 absolutamente necesario para interpretar los resultados de una
-investigación. La APA (2010) destaca que "las pruebas de hipótesis no son sino el punto de partida y se requiere informar elementos adicionales tales como tamaños del efecto, intervalos de confianza y descripciones extensivas" (p. 33, traducción del autor).
+investigación. La @APA2010 destaca que "las pruebas de hipótesis no son sino el punto de partida y se requiere informar elementos adicionales tales como tamaños del efecto, intervalos de confianza y descripciones extensivas" (p. 33, traducción del autor).
 
 Las medidas de tamaño del efecto expresan de manera estandarizada cuán
 diferente de cero es una diferencia o un coeficiente. Que estén
@@ -44,17 +41,16 @@ estandarizadas permite dos cosas: evaluarlas en su magnitud, dados
 ciertos criterios; y comparar efectos entre experimentos diseñados de
 manera diferente, por ejemplo con distintos tamaños de muestra, lo cual
 permite el meta-análisis[^113]. Para decidir cuándo un efecto es grande
-mediano o pequeño, existen criterios, casi todos propuestos por Jacob
-Cohen (1962), quien es autor también de la mayoría de las medidas de
+mediano o pequeño, existen criterios, casi todos propuestos por @Cohen1988, quien es autor también de la mayoría de las medidas de
 tamaño del efecto.
 
 ## Medidas de tamaño del efecto
 
-Hay una gran diversidad de medidas del tamaño del efecto, Kirk (2003)
-las estima en más de setenta, y suelen clasificarse (Ellis, 2010) en dos
+Hay una gran diversidad de medidas del tamaño del efecto, @kirk1996 
+las estima en más de setenta, y @ellis2010 las clasifica en dos
 familias: las medidas de diferencias entre grupos y las medidas de
 asociación. Para esta presentación, elegiremos algunas medidas de uso
-difundido y sugerimos Ellis (2010), así como Cumming (2012) para una
+difundido y sugerimos @ellis2010, así como @cumming2012 para una
 descripción más detallada. Las siguientes son las medidas que más se
 usan para evaluar el tamaño del efecto, según cuál sea la prueba que se
 haya realizado.
@@ -66,7 +62,7 @@ Conocido como *d de Cohen*, se define como:
 $$\frac{{\overline{x}}_{1} - {\overline{x}}_{2}}{s_{\text{comb}}}$$
 
 Y mide la distancia entre las medias observadas, expresada en términos
-de la desviación estándar combinada de los dos grupos. Cohen (1962)
+de la desviación estándar combinada de los dos grupos. @Cohen1988
 sugiere que valores de $d$ de 0.20, 0.50, y 0.80 indican tamaños de
 efecto: pequeño, mediano y grande respectivamente. Medidas alternativas
 al d de Cohen son *delta de Glass* y *g de Hedge*, que difieren en el
@@ -84,7 +80,7 @@ En la que las $p_{i}$ de la fórmula representan la proporción de casos
 en cada grupo que se compara. Los valores sugeridos por Cohen son 0.10,
 0.25, y 0.40 para efectos de tamaño pequeño, mediano y grande
 respectivamente. Otras medidas usadas en ANOVA son $\eta^{2}$ (eta
-cuadrado) y $\varepsilon^{2}$ (épsilon cuadrado). La relación entre $\eta$ y $f$ es $$f=\sqrt(\frac{\eta^2}{1-\eta^2})$$
+cuadrado) y $\varepsilon^{2}$ (épsilon cuadrado). La relación entre $\eta$ y $f$ es $$f=\sqrt\frac{\eta^2}{1-\eta^2}$$
 
 ### Correlaciones
 
@@ -167,48 +163,242 @@ es posible establecer cuál es la potencia que deseamos para nuestro
 estudio o, al revés, qué probabilidad de cometer Error de Tipo II (no
 rechazar una $H_0$ que es falsa) estamos dispuestos a asumir.
 
-Los gráficos de la página siguiente ilustran, como se hizo en el
-capítulo XXXXX la relación entre estos elementos. Las áreas sombreadas más
-claro corresponden a la potencia, las oscuras al nivel de significación,
-y la distancia entre los centros de las campanas representa el tamaño
-del efecto.
+Los gráficos siguientes ilustran la relación entre estos elementos para diferentes combinaciones de tamaño del efecto, nivel de significación y tamaño de muestra. Las áreas sombreadas más claro corresponden a la probabilidad de cometer Error de Tipo II (el complemento de la potencia), las oscuras a la probabilidad de cometer Error de Tipo I (el nivel de significación), la distancia entre los centros de las campanas representa el tamaño del efecto, la diferente amplitud de las campanas indica la diferente varianza según el tamaño de la muestra.  
 
-<!--muy dificileste gráfico-->
-```{r fig.cap="Relación efecto, muestra, potencia y significación", fig.asp = 0.1, fig.width = 3, fig.align='center'}
-knitr::include_graphics("imagenes/image213.png")
+```{r warning=FALSE}
+library(ggplot2)
+library(ggthemes)
+library(gridExtra)
+
+s=1
+alpha=.05
+mu_1<-.5
+
+efecto_chico_alpha5_s1<-ggplot(data.frame(x = c(-3.5,7.5)), aes(x)) +
+  stat_function(fun = dnorm, args = list(mean = 0, sd = s), col="grey17") +
+  stat_function(fun = dnorm, args = list(mean = 0, sd = s), fill="grey17",
+                xlim = c(qnorm(1-alpha),4),
+                geom = "area")+
+  stat_function(fun = dnorm, args = list(mean = mu_1, sd = s), col="grey57")+
+  stat_function(fun = dnorm, args = list(mean = mu_1, sd = s), 
+                xlim = c(-4,qnorm(1-alpha)),fill="grey57", alpha=.5, geom = "area")+geom_vline(xintercept = 0, col="grey17")+
+  geom_vline(xintercept = mu_1,col="grey57")+
+  scale_y_continuous(breaks = NULL)+scale_x_continuous(breaks = NULL)+
+  theme_tufte()+xlab("")+ylab("")
+
+
+mu_1<-1
+efecto_mediano_alpha5_s1<-ggplot(data.frame(x = c(-3.5,7.5)), aes(x)) +
+  stat_function(fun = dnorm, args = list(mean = 0, sd = s), col="grey17") +
+  stat_function(fun = dnorm, args = list(mean = 0, sd = s), fill="grey17",
+                xlim = c(qnorm(1-alpha),4),
+                geom = "area")+
+  stat_function(fun = dnorm, args = list(mean = mu_1, sd = s), col="grey57")+
+  stat_function(fun = dnorm, args = list(mean = mu_1, sd = s), 
+                xlim = c(-4,qnorm(1-alpha)),fill="grey57", alpha=.5, geom = "area")+geom_vline(xintercept = 0, col="grey17")+
+  geom_vline(xintercept = mu_1,col="grey57")+
+  scale_y_continuous(breaks = NULL)+scale_x_continuous(breaks = NULL)+
+  theme_tufte()+xlab("")+ylab("")
+
+
+mu_1<-3
+efecto_grande_alpha5_s1<-ggplot(data.frame(x = c(-3.5,7.5)), aes(x)) +
+  stat_function(fun = dnorm, args = list(mean = 0, sd = s), col="grey17") +
+  stat_function(fun = dnorm, args = list(mean = 0, sd = s), fill="grey17", 
+                xlim = c(qnorm(1-alpha),4),
+                geom = "area")+
+  stat_function(fun = dnorm, args = list(mean = mu_1, sd = s), col="grey57")+
+  stat_function(fun = dnorm, args = list(mean = mu_1, sd = s), 
+                xlim = c(-4,qnorm(1-alpha)),fill="grey57", alpha=.5, geom = "area")+geom_vline(xintercept = 0, col="grey17")+
+  geom_vline(xintercept = mu_1,col="grey57")+
+  scale_y_continuous(breaks = NULL)+scale_x_continuous(breaks = NULL)+
+  theme_tufte()+xlab("")+ylab("")
+
+
+alpha=.01
+mu_1<-.5
+
+efecto_chico_alpha1_s1<-ggplot(data.frame(x = c(-3.5,7.5)), aes(x)) +
+  stat_function(fun = dnorm, args = list(mean = 0, sd = s), col="grey17") +
+  stat_function(fun = dnorm, args = list(mean = 0, sd = s), fill="grey17",
+                xlim = c(qnorm(1-alpha),4),
+                geom = "area")+
+  stat_function(fun = dnorm, args = list(mean = mu_1, sd = s), col="grey57")+
+  stat_function(fun = dnorm, args = list(mean = mu_1, sd = s), 
+                xlim = c(-4,qnorm(1-alpha)),fill="grey57", alpha=.5, geom = "area")+geom_vline(xintercept = 0, col="grey17")+
+  geom_vline(xintercept = mu_1,col="grey57")+
+  scale_y_continuous(breaks = NULL)+scale_x_continuous(breaks = NULL)+
+  theme_tufte()+xlab("")+ylab("")
+
+
+mu_1<-1
+efecto_mediano_alpha1_s1<-ggplot(data.frame(x = c(-3.5,7.5)), aes(x)) +
+  stat_function(fun = dnorm, args = list(mean = 0, sd = s), col="grey17") +
+  stat_function(fun = dnorm, args = list(mean = 0, sd = s), fill="grey17",
+                xlim = c(qnorm(1-alpha),4),
+                geom = "area")+
+  stat_function(fun = dnorm, args = list(mean = mu_1, sd = s), col="grey57")+
+  stat_function(fun = dnorm, args = list(mean = mu_1, sd = s), 
+                xlim = c(-4,qnorm(1-alpha)),fill="grey57", alpha=.5, geom = "area")+geom_vline(xintercept = 0, col="grey17")+
+  geom_vline(xintercept = mu_1,col="grey57")+
+  scale_y_continuous(breaks = NULL)+scale_x_continuous(breaks = NULL)+
+  theme_tufte()+xlab("")+ylab("")
+
+
+mu_1<-3
+efecto_grande_alpha1_s1<-ggplot(data.frame(x = c(-3.5,7.5)), aes(x)) +
+  stat_function(fun = dnorm, args = list(mean = 0, sd = s), col="grey17") +
+  stat_function(fun = dnorm, args = list(mean = 0, sd = s), fill="grey17", 
+                xlim = c(qnorm(1-alpha),4),
+                geom = "area")+
+  stat_function(fun = dnorm, args = list(mean = mu_1, sd = s), col="grey57")+
+  stat_function(fun = dnorm, args = list(mean = mu_1, sd = s), 
+                xlim = c(-4,qnorm(1-alpha)),fill="grey57", alpha=.5, geom = "area")+geom_vline(xintercept = 0, col="grey17")+
+  geom_vline(xintercept = mu_1,col="grey57")+
+  scale_y_continuous(breaks = NULL)+scale_x_continuous(breaks = NULL)+
+  theme_tufte()+xlab("")+ylab("")
+
+##
+
+s=.7
+alpha=.05
+mu_1<-.5
+
+efecto_chico_alpha5_s.5<-ggplot(data.frame(x = c(-3.5,7.5)), aes(x)) +
+  stat_function(fun = dnorm, args = list(mean = 0, sd = s), col="grey17") +
+  stat_function(fun = dnorm, args = list(mean = 0, sd = s), fill="grey17",
+                xlim = c(qnorm(1-alpha),4),
+                geom = "area")+
+  stat_function(fun = dnorm, args = list(mean = mu_1, sd = s), col="grey57")+
+  stat_function(fun = dnorm, args = list(mean = mu_1, sd = s), 
+                xlim = c(-4,qnorm(1-alpha)),fill="grey57", alpha=.5, geom = "area")+geom_vline(xintercept = 0, col="grey17")+
+  geom_vline(xintercept = mu_1,col="grey57")+
+  scale_y_continuous(breaks = NULL)+scale_x_continuous(breaks = NULL)+
+  theme_tufte()+xlab("")+ylab("")
+
+
+mu_1<-1
+efecto_mediano_alpha5_s.5<-ggplot(data.frame(x = c(-3.5,7.5)), aes(x)) +
+  stat_function(fun = dnorm, args = list(mean = 0, sd = s), col="grey17") +
+  stat_function(fun = dnorm, args = list(mean = 0, sd = s), fill="grey17",
+                xlim = c(qnorm(1-alpha),4),
+                geom = "area")+
+  stat_function(fun = dnorm, args = list(mean = mu_1, sd = s), col="grey57")+
+  stat_function(fun = dnorm, args = list(mean = mu_1, sd = s), 
+                xlim = c(-4,qnorm(1-alpha)),fill="grey57", alpha=.5, geom = "area")+geom_vline(xintercept = 0, col="grey17")+
+  geom_vline(xintercept = mu_1,col="grey57")+
+  scale_y_continuous(breaks = NULL)+scale_x_continuous(breaks = NULL)+
+  theme_tufte()+xlab("")+ylab("")
+
+
+mu_1<-3
+efecto_grande_alpha5_s.5<-ggplot(data.frame(x = c(-3.5,7.5)), aes(x)) +
+  stat_function(fun = dnorm, args = list(mean = 0, sd = s), col="grey17") +
+  stat_function(fun = dnorm, args = list(mean = 0, sd = s), fill="grey17", 
+                xlim = c(qnorm(1-alpha),4),
+                geom = "area")+
+  stat_function(fun = dnorm, args = list(mean = mu_1, sd = s), col="grey57")+
+  stat_function(fun = dnorm, args = list(mean = mu_1, sd = s), 
+                xlim = c(-4,qnorm(1-alpha)),fill="grey57", alpha=.5, geom = "area")+geom_vline(xintercept = 0, col="grey17")+
+  geom_vline(xintercept = mu_1,col="grey57")+
+  scale_y_continuous(breaks = NULL)+scale_x_continuous(breaks = NULL)+
+  theme_tufte()+xlab("")+ylab("")
+
+
+alpha=.01
+mu_1<-.5
+
+efecto_chico_alpha1_s.5<-ggplot(data.frame(x = c(-3.5,7.5)), aes(x)) +
+  stat_function(fun = dnorm, args = list(mean = 0, sd = s), col="grey17") +
+  stat_function(fun = dnorm, args = list(mean = 0, sd = s), fill="grey17",
+                xlim = c(qnorm(1-alpha),4),
+                geom = "area")+
+  stat_function(fun = dnorm, args = list(mean = mu_1, sd = s), col="grey57")+
+  stat_function(fun = dnorm, args = list(mean = mu_1, sd = s), 
+                xlim = c(-4,qnorm(1-alpha)),fill="grey57", alpha=.5, geom = "area")+geom_vline(xintercept = 0, col="grey17")+
+  geom_vline(xintercept = mu_1,col="grey57")+
+  scale_y_continuous(breaks = NULL)+scale_x_continuous(breaks = NULL)+
+  theme_tufte()+xlab("")+ylab("")
+
+
+mu_1<-1
+efecto_mediano_alpha1_s.5<-ggplot(data.frame(x = c(-3.5,7.5)), aes(x)) +
+  stat_function(fun = dnorm, args = list(mean = 0, sd = s), col="grey17") +
+  stat_function(fun = dnorm, args = list(mean = 0, sd = s), fill="grey17",
+                xlim = c(qnorm(1-alpha),4),
+                geom = "area")+
+  stat_function(fun = dnorm, args = list(mean = mu_1, sd = s), col="grey57")+
+  stat_function(fun = dnorm, args = list(mean = mu_1, sd = s), 
+                xlim = c(-4,qnorm(1-alpha)),fill="grey57", alpha=.5, geom = "area")+geom_vline(xintercept = 0, col="grey17")+
+  geom_vline(xintercept = mu_1,col="grey57")+
+  scale_y_continuous(breaks = NULL)+scale_x_continuous(breaks = NULL)+
+  theme_tufte()+xlab("")+ylab("")
+
+
+mu_1<-3
+efecto_grande_alpha1_s.5<-ggplot(data.frame(x = c(-3.5,7.5)), aes(x)) +
+  stat_function(fun = dnorm, args = list(mean = 0, sd = s), col="grey17") +
+  stat_function(fun = dnorm, args = list(mean = 0, sd = s), fill="grey17", 
+                xlim = c(qnorm(1-alpha),4),
+                geom = "area")+
+  stat_function(fun = dnorm, args = list(mean = mu_1, sd = s), col="grey57")+
+  stat_function(fun = dnorm, args = list(mean = mu_1, sd = s), 
+                xlim = c(-4,qnorm(1-alpha)),fill="grey57", alpha=.5, geom = "area")+geom_vline(xintercept = 0, col="grey17")+
+  geom_vline(xintercept = mu_1,col="grey57")+
+  scale_y_continuous(breaks = NULL)+scale_x_continuous(breaks = NULL)+
+  theme_tufte()+xlab("")+ylab("")
+
+grid.arrange(efecto_chico_alpha5_s1, efecto_mediano_alpha5_s1,
+             efecto_grande_alpha5_s1, efecto_chico_alpha1_s1,
+             efecto_mediano_alpha1_s1, efecto_grande_alpha1_s1,
+             efecto_chico_alpha5_s.5, efecto_mediano_alpha5_s.5,
+             efecto_grande_alpha5_s.5, efecto_chico_alpha1_s.5,
+             efecto_mediano_alpha1_s.5, efecto_grande_alpha1_s.5,
+             ncol = 3, nrow=4)
+
 ```
 
+
+## Hacerlo en R  
 Las relaciones entre el tamaño de muestra, la potencia, el tamaño del
 efecto y el nivel de significación dependen de cuál sea el tipo de
 estudio planteado y cuál la medida de tamaño del efecto elegida. Eso
 hace que las operaciones para calcular uno de ellos conociendo los otros
-tres, sean complejas. En el capítulo XXXX se construyeron las curvas de
+tres, sean complejas. En el capítulo 12 se construyeron las curvas de
 potencia para diferentes valores de la hipótesis alternativa (es decir
 del verdadero valor del parámetro) y diferentes tamaños de muestra. Sin
 embargo, esos cálculos dependen de los valores concretos de los
 parámetros (en particular, de las diferencias entre el valor paramétrico
-que sostiene $H_0$ y el que sostienen las diferentes alternativas $H_k$);
-ahora, con el tamaño del efecto estandarizado, solo hace falta saber qué
-prueba se realiza para obtener la curva de potencia.
+que sostiene $H_0$ y el que sostienen las diferentes alternativas $H_k$); ahora, con el tamaño del efecto estandarizado, solo hace falta saber qué prueba se realiza para obtener la curva de potencia.
 
 Si bien existen calculadoras on line[^114], es recomendable, por su
-flexibilidad, usar el paquete `pwr` (Champely, 2017) en R. Este conjunto
+flexibilidad, usar el paquete `pwr` (@champely2018) en R. Este conjunto
 de rutinas genera, para cada prueba estadística, uno de los cuatro
 valores a partir de los otros tres. Por ejemplo, una prueba t unilateral
 derecha, para comparar dos grupos a un nivel de significación del 5%,
 con una potencia de 80% requiere, para detectar un efecto grande
-(d=0.85), 18 casos.  
+(d=0.85), 18 casos en cada grupo.  
 Primero se instala el paquete y se carga en la sesión:
-<!--otra vez lo mismo con pwr, va a un sccript lo que falta acá-->
 
+```{r echo=TRUE, eval=FALSE}
+install.packages("pwr")
+```
 
+```{r echo=TRUE}
+library(pwr)
+```
+
+Luego se indica el tipo de prueba; `pwr.t.test` para una prueba t, y los valores de: significación, potencia, tamaño del efecto y lateralidad de la prueba.  
+```{r}
+pwr.t.test( sig.level = .05, power= .8, d=0.85, alternative = "greater")
+
+```
 
 El valor 31 para el tamaño de muestra se considera óptimo porque a
 partir de ahí la curva crece más lentamente y las ganancias de potencia
 son pequeñas, lo que no se justifica aumentar el número de casos.
 
-El vídeo *tamaño del efecto, muestra potencia y significación* describe
-el uso del paquete `pwr` en el entorno RStudio.
+El vídeo *tamaño del efecto*, en https://youtu.be/s2nGqz5Nh4A ofrece detalles adicionales sobre el uso del paquete `pwr` en el entorno RStudio.
 
 [^113]: Meta-análisis es una revisión sistemática que usa procedimientos estadísticos para comparar los resultados obtenidos en diferentes estudios sobre un determinado tema.
 

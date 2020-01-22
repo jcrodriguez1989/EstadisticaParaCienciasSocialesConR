@@ -5,20 +5,11 @@ output:
 
 ```{r message=FALSE, warning=FALSE, include=FALSE}
 source("depencias.R")
-knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
-kable_outp <- ifelse(knitr::is_latex_output(), "latex", "html")
 ```
 
 # Prueba de hipótesis: la lógica
 
-En este capítulo ingresamos a uno de los procedimientos de mayor
-difusión en las investigaciones en Psicología: la prueba de hipótesis.
-Se basa en los mismos principios de estimación de parámetros que se
-usaron para la construcción de intervalos de confianza. Aunque no está
-exento de críticas, este procedimiento es básico para hacer inferencias
-sobre la población, y las propuestas que existen como técnicas
-alternativas, requieren que se tenga dominio de las pruebas de
-hipótesis.
+En este capítulo ingresamos a uno de los procedimientos de mayor difusión en investigación cuantitativa: la prueba de hipótesis, que se en los mismos principios de estimación de parámetros que fundamentan la construcción de intervalos de confianza, por lo que su objetivo también es hacer uso de resultados muestrales para obtener conocimiento acerca de la población. Este procedimiento no está exento de críticas (@meehl1978,  @gelman2006, @vidgen2016,  @krueger2017,  @greenland2019); sin embargo es básico para hacer inferencias sobre la población y conserva amplia difusión tanto en ciencias sociales como naturales,  @Halsey2019. Las propuestas que existen como técnicas alternativas  que superan las falencias que acusan sus críticos (@Goedhart2018), requieren que se tenga dominio de las pruebas de hipótesis.
 
 ## El razonamiento de la prueba de hipótesis
 
@@ -36,36 +27,11 @@ poblacional. Es decir que podremos descartar una hipótesis por no ser
 compatible con lo que se observa, pero no a la inversa: no será posible
 "confirmar" una hipótesis, solo podremos concluir que la evidencia *no la contradice*, lo que también se expresa diciendo que *no hay evidencia para rechazarla*.
 
-Empezaremos con ejemplos no muy cercanos a la estadística, a fin de ver
-que esta forma de razonar no es ajena a lo cotidiano. Una prueba de
-hipótesis puede compararse con un juicio: el acusado no es condenado
-hasta que no hay evidencia suficiente para hacerlo. La evidencia (las
-pruebas, en el lenguaje de la justicia) rara vez son completas, se trata
-de información fragmentada, sujeta a interpretaciones diferentes. En el
-inicio del juicio, "el acusado es inocente", en nuestra notación
-llamaremos a esa afirmación, **hipótesis nula**, y la indicaremos
-$H_{0}$. Esta expresión indica que se trata de un estado inicial: todos
-son inocentes hasta que se prueba lo contrario, por lo que la hipótesis
-nula señala que esta persona en particular (el acusado), no es diferente
-de cualquier ciudadano que no ha cometido delito. Mientras no haya
-pruebas suficientes, la hipótesis nula se considerará aceptada. En el
-juicio, el fiscal aportará pruebas en dirección contraria a esta
-hipótesis. Buscará información para probar que debe rechazarse la
-hipótesis nula y condenar al acusado. Difícilmente estarán a la vista
+Empezaremos con ejemplos no muy cercanos a la investigación social cuantitativa, para mostrar que esta forma de razonar no es ajena a lo cotidiano. Una prueba de hipótesis puede compararse con un juicio penal: la persona acusada no es condenada hasta que no hay evidencia suficiente para hacerlo. La evidencia (las pruebas, en el lenguaje de la justicia) rara vez son completas, se trata de información fragmentada, sujeta a interpretaciones diferentes. En el inicio del juicio, "la persona acusada es inocente", en nuestra notación llamaremos a esa afirmación, **hipótesis nula**, y la indicaremos $H_{0}$. Esta expresión indica que se trata de un estado inicial: toda persona es inocente hasta que se prueba lo contrario, por lo que la hipótesis nula señala que esta persona en particular (la acusada), no es diferente de cualquiera que no ha cometido delito. Mientras no haya pruebas suficientes, la hipótesis nula se considerará aceptada. En el juicio, la fiscalía aportará pruebas en dirección contraria a esta hipótesis. Buscará información para probar que debe rechazarse la hipótesis nula y condenar a la persona acusada. Difícilmente estarán a la vista
 todos los datos necesarios para reconstruir la situación y dar una
-respuesta absolutamente inequívoca, pero si hay suficiente evidencia, se
-dará la hipótesis nula por rechazada. La decisión de condenar al acusado
-solo se tomará cuando haya muy poco riesgo de equivocarse, cuando la
-probabilidad de decidir de manera errada sea muy pequeña.
+respuesta absolutamente inequívoca, pero si hay suficiente evidencia, se dará la hipótesis nula por rechazada. La decisión de condenar a la persona acusada solo se tomará cuando haya muy poco riesgo de equivocarse, cuando la probabilidad de decidir de manera errada sea muy pequeña.
 
-En este ejemplo, la población es el conjunto completo de información
-necesaria para tomar la decisión de manera certera, sin error. Se
-trataría de un conjunto infinito de datos que permitiría la
-reconstrucción exacta de los hechos en los que participó el acusado. Por
-cierto, esa información nunca está disponible, por lo que la decisión
-debe tomarse a partir de un fragmento de información, que son las
-pruebas que han podido reunirse (la evidencia). En la analogía que
-hacemos con nuestros procedimientos, esta evidencia constituye la
+En este ejemplo, la población es el conjunto completo de información necesaria para tomar la decisión de manera certera, sin error. Se trataría de un conjunto infinito de datos que permitiría la reconstrucción exacta de los hechos en los que participó la persona acusada. Por cierto, esa información nunca está disponible, por lo que la decisión debe tomarse a partir de un fragmento de ella, que son las pruebas que han podido reunirse (la evidencia). En la analogía que hacemos con nuestros procedimientos, esta evidencia constituye la
 muestra a partir de la que se juzgará la hipótesis nula: aceptarla o
 rechazarla. La muestra constituye el fragmento de información
 disponible, solo que en el caso de la estimación, ésta es obtenida con
@@ -94,7 +60,7 @@ el procedimiento de prueba de hipótesis es ¿cuántas más o menos veces
 que 50 debería salir X para que consideremos que tenemos "suficiente
 evidencia", para creer que la moneda no está equilibrada?
 
-La lógica de la prueba de hipótesis consiste en plantear el escenario en el que $H_{0}$ es verdadera y observar qué tan probable es lo que hallamos en la muestra en ese caso. En el primer ejemplo el planteo es ¿qué tan probable sería haber hallado *estas pruebas* (las que lo involucran) contra el acusado, si éste fuera inocente? En el segundo preguntamos ¿qué tan probable habría sido hallar *esta cantidad de veces* que salió $X$, si la moneda estuviera equilibrada? De manera general la pregunta es ¿qué tan probable sería *éste resultado muestral* si la hipótesis nula fuera cierta?
+La lógica de la prueba de hipótesis consiste en plantear el escenario en el que $H_{0}$ es verdadera y observar cuán probable es lo que hallamos en la muestra en ese caso. En el primer ejemplo el planteo es ¿cuán probable sería haber hallado *estas pruebas* (la evidencia) contra la persona acusada, si ésta fuera inocente? En el segundo preguntamos ¿cuán probable habría sido hallar *esta cantidad de veces* que salió $X$, si la moneda estuviera equilibrada? De manera general la pregunta es ¿cuán probable sería *éste resultado muestral* si la hipótesis nula fuera cierta?
 
 Si la respuesta a esas preguntas es "muy probable", la decisión será la
 de no rechazar la hipótesis nula, porque los resultados muestrales
@@ -109,8 +75,7 @@ Algunos ejemplos de hipótesis nulas:
 
 - La técnica terapéutica A es igualmente eficaz que la B.
 
-- Los métodos A y B para enseñar a leer a los niños producen iguales
-resultados.
+- Los métodos A y B para enseñar a leer en la escuela primaria producen iguales resultados.
 
 - La proporción de votos que obtendrá un candidato no ha variado respecto de las últimas elecciones.
 
@@ -122,7 +87,7 @@ resultados.
 
 
 En casi todos los casos, la expectativa del investigador está en
-rechazar la $H_{0}$, porque eso significa que ha hallado algo de interés: que la droga produce efectos, que hay técnicas terapéuticas mejores que otras y por tanto recomendables, que se pueden elegir mejores métodos para enseñar a leer, que el favor del electorado hacia un político es más o menos extendido, que el programa de potabilización mejoró la salud infantil, que la edad es un factor explicativo de las diferencias ideológicas, que el plan de capacitación impactó (positivamente).
+rechazar la $H_{0}$, porque eso significa que ha hallado algo de interés: que la droga produce efectos, que hay técnicas terapéuticas mejores que otras y por tanto recomendables, que se pueden elegir mejores métodos para enseñar a leer, que el favor del electorado hacia un político es más o menos extendido, que el programa de potabilización mejoró la salud infantil, que la edad es un factor explicativo de las diferencias ideológicas, que el plan de capacitación impactó (positivamente).  
 
 ||
 |:--:|
@@ -135,7 +100,7 @@ casos la hipótesis nula afirma algo que puede expresarse como "no hay
 diferencia", o "no hay cambio" o "no hay relación".
 
 Hasta este punto se trata de la definición original de estas pruebas,
-desarrolladas inicialmente por Sir Ronald Fisher (1925) a las que llamó
+desarrolladas inicialmente por Sir Ronald Fisher (@Fisher) a las que llamó
 *pruebas de significación*. La idea básica es la de comparar los datos
 observados con la hipótesis que se pone a prueba. Fisher las ideó como
 manera de medir el grado de incompatibilidad de un conjunto de datos con la hipótesis nula, evaluando la probabilidad de hallar resultados como los observados o más extremos, si la hipótesis nula fuera cierta. Si esa probabilidad es muy pequeña, puede suceder que la muestra que se
@@ -144,7 +109,7 @@ sea falsa. Fisher argumentó que se trataba de un método objetivo para
 poner a prueba teorías y que puede ser usado en diferentes campos de
 conocimiento.
 
-Con posterioridad a Fisher, Neyman y Pearson (1933) introducen dos
+Con posterioridad a Fisher, @neyman1928 introducen dos
 cambios importantes en el procedimiento.
 
 - El primero consiste en tratar a las prueba no ya como métodos para
@@ -155,35 +120,26 @@ información necesaria.
 - El segundo cambio consiste en oponer a la hipótesis nula, otra hipótesis, llamada hipótesis alternativa, a la que se indica como $H_{1}$, que es hacia la que se suma evidencia cuando se rechaza $H_{0}$.
 
 Veamos la aplicación de este modelo, que es el que usaremos a partir de
-ahora. La afirmación "los niños cuyos padres tienen alto nivel de
-educación tienen rendimiento en la escuela superior al promedio general" es una hipótesis, porque pretende tener carácter general, hace
-referencia a la población de niños en la escuela, los que asisten ahora
-y los que asistirán en el futuro; no podemos observar a la población
-completa, por lo tanto la hipótesis no puede probarse de manera
-definitiva, solo puede hacerse a partir de una muestra. Para formalizar
-esa hipótesis, construiremos una $H_{0}$ que niegue cualquier diferencia: "el rendimiento de niños con padres de alto nivel de educación es el mismo que el del promedio". A esta hipótesis, opondremos otra, que afirme "los niños cuyos padres tienen alto nivel de educación tienen rendimiento superior al promedio". A esta última llamaremos hipótesis alternativa, $H_{1}$. Así formalizamos el planteo del problema.
+ahora. La afirmación "los niños y las niñas que provienen de hogares con alto nivel de educación tienen rendimiento en la escuela superior al promedio general" es una hipótesis, porque pretende tener carácter general, hace
+referencia a la población de quienes están en la escuela, quienes asisten ahora y quienes asistirán en el futuro; no podemos observar a la población completa, por lo tanto la hipótesis no puede probarse de manera definitiva, solo puede hacerse a partir de una muestra. Para formalizar
+esa hipótesis, construiremos una $H_{0}$ que niegue cualquier diferencia: "el rendimiento de los niños y las niñas que provienen de hogares de alto nivel educativo es el mismo que el del promedio". A esta hipótesis, opondremos otra, que afirme "los niños y las niñas que provienen de hogares de alto nivel educativo tienen rendimiento superior al promedio". A esta última llamaremos hipótesis alternativa, $H_{1}$. Así formalizamos el planteo del problema.
 
 Supongamos ahora que conocemos ese rendimiento promedio, medido por el
 puntaje en las pruebas y que vale 60 puntos para la población completa
-de alumnos. De modo que podemos formular las hipótesis ahora así:
+de estudiantes, de un nivel determinado al que se acota la investigación. De modo que podemos formular las hipótesis ahora así:
 
-$H_{0}$: "El rendimiento promedio de los niños con padres de alto nivel de educación es de 60 puntos"
+$H_{0}$: "El rendimiento promedio de los niños y las niñas que provienen de hogares de alto nivel educativo es de 60 puntos"
 
-$H_{1}$: "El rendimiento promedio de los niños con padres de alto nivel de educación es superior a 60 puntos"
+$H_{1}$: "El rendimiento promedio de los niños y las niñas que provienen de hogares de alto nivel educativo es superior a 60 puntos"
 
-Para poner a prueba la hipótesis tomaremos una muestra de niños con
-padres de mucha educación y veremos si su rendimiento es superior a 60
-puntos. Supongamos que en la muestra hallamos una media de 62 puntos,
+Para poner a prueba la hipótesis tomaremos una muestra de niños y niñas que provienen de hogares de alto nivel educativo y veremos si su rendimiento es superior a 60 puntos. Supongamos que en la muestra hallamos una media de 62 puntos,
 ¿estamos autorizados para rechazar la $H_{0}$? La respuesta no es inmediata,  porque, si bien 62 es mayor que 60, una diferencia de solo 2 puntos parece demasiado pequeña y podríamos atribuirla al azar. Aquí nos interesa evaluar la probabilidad de ocurrencia del resultado que se
-observa, si la hipótesis nula fuera cierta. En este caso será: "Si los
-hijos de padres con alto nivel de educación tuvieran el mismo
-rendimiento que el promedio ($H_{0}$ verdadera), entonces una diferencia de 2 puntos en el promedio muestral es probable, es esperable, puede deberse a la variabilidad propia de los datos muestrales. En consecuencia, esa diferencia no es suficiente para rechazar la $H_{0}$". En otros términos: "Si los hijos de padres con alto nivel de educación tuvieran un rendimiento promedio de 60 puntos, no sería de extrañar que una muestra arroje un resultado de 62 puntos". Dicho de otro modo: el resultado muestral no se aleja tanto de lo que esperaríamos si la $H_{0}$ fuera cierta, por lo tanto, no podemos rechazarla y concluimos que los hijos de padres con mucha educación no difieren del promedio.
+observa, si la hipótesis nula fuera cierta. En este caso será: "Si quienes provienen de familias con alto nivel de educación tuvieran el mismo rendimiento que el promedio ($H_{0}$ verdadera), entonces una diferencia de 2 puntos en el promedio muestral es probable, es esperable, puede deberse a la variabilidad propia de los datos muestrales. En consecuencia, esa diferencia no es suficiente para rechazar la $H_{0}$". En otros términos: "Si quienes vienen de familias con mucha educación tuvieran un rendimiento promedio de 60 puntos, no sería de extrañar que una muestra arroje un resultado de 62 puntos". Dicho de otro modo: el resultado muestral no se aleja tanto de lo que esperaríamos si la $H_{0}$ fuera cierta, por lo tanto, no podemos rechazarla y concluimos que los niños y las niñas que provienen de hogares de alto nivel educativo no difieren en su rendimiento escolar del promedio general.
 
 Un elemento de mucha importancia es recordar que la hipótesis hace
-referencia a la población, mientras que nuestra observación es muestral, y sabemos que los resultados muestrales difieren de los valores paramétricos porque los primeros son variables aleatorias.
+referencia a la población, mientras que la información disponible es muestral, y sabemos que los resultados muestrales difieren de los valores paramétricos porque son variables aleatorias.
 
-¿Qué habría sucedido si hubiésemos observado que el grupo de los hijos
-de padres con mucha educación tiene un rendimiento promedio de 95
+¿Qué habría sucedido si hubiésemos observado que el grupo de quienes vienen de familias muy educadas tiene un rendimiento promedio de 95
 puntos? Este resultado se aleja mucho de 60 que es el que sostiene $H_{0}$, es decir, si el hipotético fuera verdadero, sería muy poco probable hallar una muestra que promedie 95 puntos. En consecuencia seguramente rechazaríamos la $H_{0}$.
 
 Al realizar pruebas de hipótesis, en lugar de evaluar intuitivamente si
@@ -195,8 +151,7 @@ evidencia para rechazarla, cuando sea pequeña decidiremos rechazarla.
 
 Para realizar una prueba de hipótesis, necesitamos calcular la
 probabilidad del valor observado, si $H_{0}$ fuera cierta, es decir, si el
-parámetro tuviera ese valor (el que señala $H_{0}$). Es una probabilidad
-condicional que podemos por ahora escribir así:
+parámetro tuviera ese valor (el que señala $H_{0}$). Es una probabilidad condicional que podemos por ahora escribir así:
 
 $$P(observado/la\:hipotesis\:nula\:es\:verdadera)$$
 
@@ -205,21 +160,15 @@ Luego haremos más precisa esta expresión.
 Comenzaremos con el ejemplo de una prueba de hipótesis sobre la media de una variable cuantitativa y luego acerca de la proporción para una
 categoría de una variable nominal.
 
-### Prueba sobre la media
+## Prueba sobre la media
 
 Ejemplo (datos ficticios): para una determinada carrera universitaria,
-históricamente los alumnos han tardado para recibirse un promedio de
-7.30 años. Decimos históricamente para indicar que son datos acumulados
+el tiempo promedio para completarla ha sido, históricamente, de 7.30 años. Decimos históricamente para indicar que son datos acumulados
 por largo tiempo y que provienen de los registros de la facultad de años atrás. Se ha introducido un cambio en el plan de estudios de la carrera
-y puede creerse que con ese cambio los alumnos tardarán un tiempo
-distinto en recibirse. Tenemos entonces un promedio de la población de
-quienes se recibieron en las anteriores condiciones (una media
-poblacional histórica), y queremos hacer inferencia sobre la media
-poblacional de los alumnos que cursan con el nuevo plan. Estos últimos
-no están todos accesibles, porque hay alumnos que están cursando y otros
-que lo harán en el futuro, por lo que de esa población solo puede
-conocerse a una muestra de los que ya han egresado y ver cuánto tiempo
-han tardado ellos en recibirse.
+y puede creerse que con esa modificación, el tiempo para terminar la carrera haya cambiado. Tenemos entonces un promedio de la población de
+quienes se recibieron en las anteriores condiciones, es una media
+poblacional porque describe al conjunto completo de quienes se recibieron con ese plan, que ya caducó. El objetivo es hacer inferencia sobre la media
+poblacional de quienes cursan con el nuevo plan, que no están todos accesibles, porque hay quienes están cursando y quienes lo harán en el futuro (el nuevo plan sigue vigente), por lo que de esa población solo puede conocerse a una muestra de quienes ya han egresado y ver cuánto tiempo han tardado en terminar la carrera.
 
 La hipótesis nula es:
 
@@ -228,10 +177,9 @@ A la que oponemos una hipótesis altetrnativa:
 
 $$H_{1}:\mu \neq 7.30$$
 
-La hipótesis nula indica que la media poblacional de los alumnos que
+La hipótesis nula indica que la media poblacional de quienes
 cursan con el nuevo plan es la misma que antes, que no hay diferencia,
-que no hay cambios. La hipótesis alternativa afirma lo contrario: que el tiempo promedio que tardan los alumnos en terminar la carrera con el
-nuevo plan es diferente a los 7.30 años históricos. No anticipamos si aumentó o disminuyó el tiempo para recibirse, solo que no es el mismo que con el plan viejo.
+que no hay cambios. La hipótesis alternativa afirma lo contrario: que el tiempo promedio que tardan en terminar la carrera quienes la cursan con el nuevo plan es diferente a los 7.30 años históricos. No anticipamos si aumentó o disminuyó el tiempo para recibirse, solo que no es el mismo que con el plan viejo.
 
 Ambas son afirmaciones sobre la población (sobre el parámetro media poblacional), por eso son hipótesis.
 
@@ -244,12 +192,12 @@ ggplot(data = data.frame(z = c(-4, 4)), aes(z)) +
   ylab("") + xlab("") + scale_x_discrete(breaks = NULL) +
   geom_segment(x = -4, xend = 4, y = 0, yend = 0) +
   scale_y_continuous(breaks = NULL) + theme_tufte() +
-  geom_text(aes(label = "7.30"), x = 0, y = -.019) +
-  geom_text(aes(label = "medias muestrales"), x = 3.5, y = -.01) +
+  geom_text(aes(label = TeX("$\\mu =7.30$", output = "character")), x = 0, y = -.019, parse = TRUE) +
+  geom_text(aes(label = TeX("$\\bar{x}", output = "character")), x = 3.5, y = -.02, parse = TRUE) +
   annotate(geom = "rect", xmin = -.01, xmax = .01, ymin = -.01, ymax = .01, col = "red")
 ```
 
-La campana está centrada en la media hipotética, que es el escenario en el que $H_{0}$ es verdadera. La probabilidad que la curva asocia a las distintas $\overline{x}$, quiere decir que "lo más probable" sería hallar a la media muestral (la única que tendremos como dato) alrededor de 7.30. Hay poca probabilidad de encontrar valores muy
+La campana está centrada en la media hipotética, que es el escenario en el que $H_{0}$ es verdadera. La probabilidad que la curva asigna a los diferentes valores de $\overline{x}$, quiere decir que "lo más probable" sería hallar a la media muestral (la única que tendremos como dato) alrededor de 7.30. Hay poca probabilidad de encontrar valores muy
 lejanos a 7.30, como lo muestran las áreas decrecientes, a medida que
 nos alejamos de la media hipotética. Por esta razón, para decidir si un
 resultado muestral se aleja mucho o poco del valor paramétrico,
@@ -261,11 +209,9 @@ equivalente decir que un valor se aleja mucho de la media hipotética que decir 
 | Afirmar que un valor muestral **se aleja mucho del valor poblacional** equivale a decir que **sería muy poco probable si el valor poblacional fuera el hipotético**. |
 
 A fin de realizar la prueba de hipótesis debemos obtener una muestra.
-Supongamos que seleccionamos 100 egresados (usando un muestreo
-irrestricto aleatorio) y que encontramos un tiempo promedio para
-terminar la carrera de 7.50 años con una desviación estándar de 1.30
+Supongamos que seleccionamos 100 personas que han terminado la carrera (usando un muestreo irrestricto aleatorio) y que encontramos un tiempo promedio ha sido de 7.50 años con una desviación estándar de 1.30
 años ($\overline{x} = 7.50$ y $s = 1.30$). Debemos tener un criterio
-para decidir si este valor observado es compatible con la hipótesis nula ($\mu = 7.30$) o si constituye evidencia suficiente para rechazarla en favor de la hipótesis alternativa ($\mu \neq 7.30$). El criterio es el de ver cuán probable sería este valor observado si la hipótesis nula fuera cierta. En consecuencia, debemos calcular la probabilidad que tiene $\overline{x}$ de asumir el valor observado. Sin embargo, no es posible hallar probabilidades para valores únicos de una variable continua, por lo que buscaremos la probabilidad de hallar valores como el observado ($\overline{x}=7.50$) *o más extremos que él*. Esto significa que nos preguntamos por la probabilidad que tiene la variable $\overline{x}$ de asumir el valor 7.50 *o uno más extremo*, --es decir un valor que se aleje más de la media hipotética--, si $H_{0}$ es verdadera. Tengamos muy presente que:
+para decidir si este valor observado es compatible con la hipótesis nula ($\mu = 7.30$) o si constituye evidencia suficiente para rechazarla en favor de la hipótesis alternativa ($\mu \neq 7.30$). El criterio es el de ver cuán probable sería este valor observado si la hipótesis nula fuera cierta. En consecuencia, debemos calcular la probabilidad que tiene $\overline{x}$ de asumir el valor observado. Sin embargo, no es posible hallar probabilidades para valores únicos de una variable continua, por lo que buscaremos la probabilidad de hallar valores como el observado ($\overline{x}=7.50$) *o más extremos que él*. Esto significa que nos preguntamos por la probabilidad que tiene la variable $\overline{x}$ de asumir el valor 7.50 *o uno más extremo*, -es decir un valor que se aleje más de la media hipotética-, si $H_{0}$ es verdadera. Tengamos muy presente que:  
 
 **alejado $\rightarrow$ poco probable si $H_{0}$ fuera cierta**
 
@@ -279,12 +225,12 @@ encuentran los valores "alejados".
 
 **¿cuán alejado? $\rightarrow$ ¿cuán poco probable?**
 
-#### La toma de decisión
+### La toma de decisión
 
 La $H_{0}$ se rechaza si hay poca probabilidad de hallar un valor como el observado o uno más extremo que él. Lo que llamamos poca probabilidad,
 puede establecerse a priori, por ejemplo en 0.05. Eso indica que
 consideraremos a los resultados con probabilidad menor a 0.05 como muy
-improbables de hallar si $H_{0}$ fuera cierta y nos conducirán a
+improbables de hallar si $H_{0}$ fuera cierta y, cuando los hallemos, la decisión será
 rechazarla. Por el contrario, si encontramos valores cuya probabilidad
 de ocurrencia es superior a 0.05, los trataremos como valores esperables y nos conducirán a no rechazar la $H_{0}$.
 
@@ -324,7 +270,7 @@ media muestral. Se conoce con el nombre de **estadístico de prueba**.
 Este puntaje no está en la zona extrema, porque no va más allá de 1.96;
 por el contrario, está entre -1.96 y 1.96 que pertenece a la parte de
 valores centrales de la distribución, los más probables. En
-consecuencia, la decisión es la de no rechazar $H_{0}$ y concluir que no hay evidencia para creer que el tiempo que los alumnos tardan en completar la carrera haya cambiado respecto del valor histórico. Dicho de otra manera, el valor observado de
+consecuencia, la decisión es la de no rechazar $H_{0}$ y concluir que no hay evidencia para creer que el tiempo se tarda en completar la carrera haya cambiado respecto del valor histórico. Dicho de otra manera, el valor observado de
 ${\overline{x}}_{obs} = 7.50$ es un resultado esperable si la
 media poblacional fuera de $7.30$. Una media muestral de $7.50$ es compatible con una media problacional de $7.30$
 
@@ -397,15 +343,19 @@ $$P(z\leq -2.56 \cup z\geq 2.56 / H_{0} V)=0.01$$
 Al igual que en los casos anteriores, cuando se expresan en términos de
 puntajes *z*, estos valores son fijos; no dependen de los resultados
 muestrales que se encuentren, constituyen una regla de decisión
-establecida a priori. Cuanto más pequeño se elige $\alpha$, tanto más exigente
+establecida a priori.  
+Cuanto más pequeño se elige $\alpha$, tanto más exigente
 es la prueba, en el sentido de que solo rechaza la hipótesis de
-no-diferencia si se observan valores muy alejados del hipotético.
+no-diferencia si se observan valores muy alejados del hipotético. Por el contrario, un $\alpha=0.10$ se considera un nivel tolerante, porque demanda menos alejamiento para decidir rechazar la $H_0$.
 
 De manera general, si llamamos $z_{\alpha/2}$ al puntaje $z$ que corresponde a un área acumulada de $\alpha/2$ de la distribución normal estándar (el percentil $\alpha/2$) y $z_{(1-\alpha/2)}$ al percentil: $(1-\alpha/2)$, la expresión queda:
 
 $$P(z\leq z_{\alpha/2} \cup z\geq z_{(1-\alpha/2)} / H_{0} V)=\alpha $$
 
+Y las representaciones gráficas de las áreas de rechazo para los tres niveles de significación mencionados son:  
+
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Comparación de las zonas de rechazo de $H_{0}$ con niveles de significación del 10, del 5 y del 1%"}
+
 graf_prueb_hip_10 <- ggplot(data = data.frame(z = c(-4, 4)), aes(z)) +
   geom_area(stat = "function", fun = dnorm, fill = "green", xlim = c(-4, qnorm(.05)), col = "black") +
   geom_area(stat = "function", fun = dnorm, fill = "white", xlim = c(qnorm(.05), qnorm(.95)), col = "black") +
@@ -458,11 +408,9 @@ graf_prueb_hip_5
 graf_prueb_hip_1
 ```
 
-<!-- con grid.arrange queda peor o muy flacas o muy anchas-->
 
 Ejemplo (datos ficticios): para la misma carrera universitaria del
-ejemplo anterior, el promedio de calificación con que terminaban los
-estudios los alumnos era, según registros históricos, de 6.50. Nos
+ejemplo anterior, el promedio de calificaciones al egreso era, según registros históricos, de 6.50. Nos
 preguntamos si, luego del cambio en el plan de estudios, esta nota
 promedio ha cambiado o sigue siendo la misma. El planteo de las
 hipótesis será ahora:
@@ -473,16 +421,16 @@ $$H_{0}:\ \mu \neq 6.50$$
 
 Por la misma razón que antes, no podemos analizar a la población
 completa, usaremos los datos obtenidos en una muestra. En ella
-encontramos, por ejemplo, que el promedio de los 100 egresados es de
+encontramos, por ejemplo, que el promedio de 100 egresadas y egresados es de
 6.65 con desviación estándar de 0.60, es decir:
-$\overline{x} = 6,65$ y $s = 0.60$. A un nivel de significación del 5%,
+$\overline{x} = 6.65$ y $s = 0.60$. A un nivel de significación del 5%,
 los puntos críticos vuelven a ser $Z_{c}=\pm1.96$. Buscamos el
 estadístico de prueba transformando el valor observado de $\overline{x}$ a puntaje $z$ y encontramos:
 
 $$z_{obs} = \frac{{\overline{x}}_{obs} - \mu}{\frac{s}{\sqrt{n}}} = \frac{6.65 - 6.50}{\frac{0.6}{\sqrt{100}}} = 2.50$$
 
 El valor observado de $\overline{x}$ corresponde entonces a un $z$ que
-supera al punto crítico (que es $z_{c}=1.96$), por lo que está en la zona de rechazo de $H_{0}$. La decisión es rechazar $H_{0}$ y concluir que el promedio de los alumnos es actualmente diferente del promedio histórico.
+supera al punto crítico (que es $z_{c}=1.96$), por lo que está en la zona de rechazo de $H_{0}$. La decisión es rechazar $H_{0}$ y concluir que el promedio al egreso es actualmente diferente del promedio histórico.
 
 En los dos ejemplos vemos que la regla de decisión depende del nivel de
 significación. Cuando se fija en el 5% entonces se puede expresar como
@@ -498,7 +446,7 @@ decisión erróneamente. Mide la probabilidad de haber encontrado el
 promedio muestral de 6.65 por azar. Como esa probabilidad es pequeña,
 decidimos rechazar $H_{0}$.
 
-## Los puntos críticos en términos del estimador
+### Los puntos críticos en términos del estimador
 
 Hay una manera diferente de establecer las zonas de aceptación y
 rechazo, que consiste en fijar los puntos críticos en términos de
@@ -508,7 +456,7 @@ $\overline{x}$, a los que llamaremos ${\overline{x}}_{c}$:
 
 $${\overline{x}}_{c} = \mu \pm z_{c}*\frac{s}{\sqrt{n}}$$
 
-En el ejemplo sobre el tiempo que tardan los alumnos en terminar la
+En el ejemplo sobre el tiempo que se tarda en terminar una
 carrera y a un nivel de significación de 5%, los valores de
 ${\overline{x}}_{c}$ son:
 
@@ -529,20 +477,17 @@ Que afirma que la probabilidad de hallar a $\overline{x}$ por debajo de
 0.05.
 
 Al hacer la prueba, vemos que ${\overline{x}}_{obs} = 7.50$, que
-no va más allá de los puntos críticos, por lo que pertenece a la zona de no rechazo de $H_{0}$. Concluimos que no se rechaza $H_{0}$ y que los alumnos no han cambiado el tiempo que tardan en terminar la carrera.
+no va más allá de los puntos críticos, por lo que pertenece a la zona de no rechazo de $H_{0}$. Concluimos que no se rechaza $H_{0}$ y que no ha cambiado el tiempo que se tarda en terminar la carrera.
 
 La regla de decisión es la misma que antes, solo que ahora está expresada en el lenguaje de $\overline{x}$ y no de $z$ y la conclusión también es la misma.
 
-Volviendo ahora sobre el caso de los promedios con que egresan los
-estudiantes, para hallar los valores críticos de la media muestral
-hacemos:
+Volviendo ahora sobre el caso de los promedios al egreso, para hallar los valores críticos de la media muestral hacemos:
 
 $${\overline{x}}_{c} = \mu \pm z_{c}*\frac{s}{\sqrt{n}} = 6.50 \pm 1.96*\frac{0.60}{\sqrt{100}} = 6.50 \pm 0.12$$
 
 Y resultan: 6.38 y 6.62. El promedio observado fue de 6.65, que supera
 al punto crítico superior y se encuentra en la zona de rechazo.
-Concluimos que se rechaza la $H_{0}$ y que los alumnos egresan en la
-actualidad, con un promedio que difiere del histórico. Nuevamente, es la misma conclusión que si se trabaja sobre $z$.
+Concluimos que se rechaza la $H_{0}$ y que, con el nuevo plan, la calificación promedio al egreso difiere de la histórica. Nuevamente, es la misma conclusión que si se trabaja sobre $z$.
 
 Comparemos los dos procedimientos:
 
@@ -559,9 +504,11 @@ $$z_{\text{obs}} = \frac{{\overline{x}}_{\text{obs}} - \mu}{\frac{s}{\sqrt{n}}}$
 3.  Observar la posición de este valor transformado en la distribución
     de probabilidades z
 
-Para un nivel de significación de 0,05 (ó 5%), en el ejemplo:
+Para un nivel de significación de 0.05 (ó 5%), en el ejemplo:
 
 ```{r rechZ, echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Ubicación de la zona de rechazo de $H_{0}$ a un nivel de significación de 0.05, sobre puntajes estándar ($z$), y del valor observado"}
+library(ggplot2)
+library(ggthemes)
 ggplot(data = data.frame(z = c(-4, 4)), aes(z)) +
   geom_area(stat = "function", fun = dnorm, fill = "green", xlim = c(-4, qnorm(.025)), col = "black") +
   geom_area(stat = "function", fun = dnorm, fill = "white", xlim = c(qnorm(.025), qnorm(.975)), col = "black") +
@@ -572,9 +519,9 @@ ggplot(data = data.frame(z = c(-4, 4)), aes(z)) +
   geom_text(aes(label = "0"), x = 0, y = -.019) +
   geom_text(aes(label = "-1.96"), x = -1.96, y = -.019) +
   geom_text(aes(label = "1.96"), x = 1.96, y = -.019) +
-  geom_text(aes(label = "z"), x = 3.5, y = -.01) + geom_text(aes(label = "0.025"), x = 2.22, y = .011, size = 4) + geom_text(aes(label = "0.025"), x = -2.22, y = .011, size = 4) +
+  geom_text(aes(label = "z"), x = 3.5, y = -.01) + geom_text(aes(label = "0.025"), x = 2.25, y = .011, size = 4) + geom_text(aes(label = "0.025"), x = -2.25, y = .011, size = 4) +
   annotate(geom = "rect", xmin = -.01, xmax = .01, ymin = -.01, ymax = .01, col = "red") +
-  geom_text(aes(label = "zobs = 1.54"), x = 2, y = .22) +
+  geom_text(aes(label = TeX("$\\z_{obs} = 1.54$", output = "character")), x = 2, y = .22, parse = TRUE) +
   geom_point(aes(x = 1.54, y = 0), col = "green", size = 5) +
   geom_segment(x = 1.54, xend = 1.54, y = .2, yend = 0, arrow = arrow())
 ```
@@ -592,11 +539,10 @@ $${\overline{x}}_{c} = \mu \pm z_{c}*\frac{s}{\sqrt{n}}$$
 3. Ver la posición de ${\overline{x}}_{\text{obs}}$ en la distribución
 de probabilidades de $\overline{x}$.
 
-Para el nivel de significación de 0,05 y el mismo ejemplo, resulta:
-
-<!-- esta fierito, no entran los simbolos en las labels, punta de flecha, escala de x, no se por qué se comprimió...-->
+Para el nivel de significación de 0.05 y el mismo ejemplo, resulta:
 
 ```{r rechX, echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Ubicación de la zona de rechazo de $H_{0}$ a un nivel de significación de 0.05, sobre valores de la variable $\\overline{x}$, y del valor observado"}
+
 ggplot(data = data.frame(z = c(6.7, 7.9)), aes(z)) +
   geom_area(stat = "function", fun = dnorm, args = list(mean = 7.3, sd = .13), fill = "green", xlim = c(6.7, qnorm(.025, 7.3, .13)), col = "black") +
   geom_area(stat = "function", fun = dnorm, args = list(mean = 7.3, sd = .13), fill = "white", xlim = c(qnorm(.025, 7.3, .13), qnorm(.975, 7.3, .13)), col = "black") +
@@ -607,31 +553,31 @@ ggplot(data = data.frame(z = c(6.7, 7.9)), aes(z)) +
   geom_text(aes(label = "7.3"), x = 0, y = -.02) +
   geom_text(aes(label = "7.04"), x = 7.045, y = -.1) +
   geom_text(aes(label = "7.55"), x = 7.555, y = -.1) +
-  geom_text(aes(label = "medias muestrales"), x = 8, y = -.1) +
+  geom_text(aes(label = TeX("$\\bar{x}$", output = "character")), x = 8, y = -.1, parse = TRUE) +
   annotate(geom = "rect", xmin = 7.298, xmax = 7.302, ymin = -.05, ymax = .05, col = "red") +
-  geom_text(aes(label = "xmedobs = 7.5"), x = 7.7, y = 1.3) +
-  geom_text(aes(label = "mu = 7.3"), x = 7.3, y = .1) +
+  geom_text(aes(label=TeX("$\\bar{x}_{obs} = 7.5$", output="character")), x = 7.7, y = 1.3, parse = TRUE) +
+  geom_text(aes(label = TeX("$\\mu = 7.3", output = "character")), x = 7.3, y = .1, parse = TRUE) +
   geom_point(aes(x = 7.5, y = 0), col = "green", size = 5) +
   geom_segment(x = 7.6, xend = 7.5, y = 1.2, yend = 0, arrow = arrow())
 ```
 
+
 La diferencia entre las dos formas de establecer los puntos críticos es
-que con la primera se determinan los valores de $z-{c}$ a partir del
+que con la primera se determinan los valores de $z_{c}$ a partir del
 nivel de significación y luego se transforma a puntaje $z$ el valor
 muestral observado de ${\overline{x}}_{obs}$.
 
-En el segundo modo, los $z-{c}$ se transforman (al revés) en puntos críticos de ${\overline{x}}_{c}$ y luego se compara el ${\overline{x}}_{obs}$ directamente, sin transformarlo.
+En el segundo modo, los $z_{c}$ se transforman (al revés) en puntos críticos de ${\overline{x}}_{c}$ y luego se compara el ${\overline{x}}_{obs}$ directamente, sin transformarlo.
 
-Los gráficos \@ref(fig:rechZ) y \@ref(fig:rechX) expresan lo mismo, el primero en el lenguaje estandarizado de $z$, el segundo en el de $\overline{x}$. Los procedimientos son equivalentes y puede vérselos aplicados de manera indiferenciada.
+Los gráficos \@ref(fig:rechZ) y \@ref(fig:rechX) expresan lo mismo, el primero en el lenguaje estandarizado de $z$, el segundo en el de $\overline{x}$. Los procedimientos son equivalentes y puede vérselos aplicados de manera indiferenciada. La diferente amplitud de las campanas es porque se mantuvo la misma escala y la primera corresponde a una normal estándar, con $\sigma = 1$, mientras que la segunda es la distribución normal de las $\overline{x}$, con $\sigma_{\overline{x}} = \frac{\sigma}{\sqrt{n}} = 0.13$. En adelante ajusta la escala para dar claridad a los gráficos, pero no debe olvidarse que la variabilidad es diferente entre las dos distribuciones, la primera está estandarizada a uno y la segunda depende de la varianza poblacional y del tamaño de la muestra.  
 
 ### Pruebas unilaterales
 
 A menudo la hipótesis alternativa no expresa solo que la media difiera
 del valor hipotético, sino que indica en qué *dirección* se espera que
-difiera. Por ejemplo, puede esperarse, en el ejemplo anterior, que los
-alumnos egresen con promedio superior a 6.50, con lo que ahora la $H_{1}$ dirá que $\mu > 6.50$. Se trata en este caso de una prueba unilateral y solo rechazaremos la $H_{0}$ si encontramos valores sustancialmente *mayores* que 6.50. Para el mismo nivel de significación del 5%, el valor $z$ que nos interesa es el que delimita un área *superior* de 0.05.
+difiera. Por ejemplo, puede esperarse, en el ejemplo anterior, que la carrera es termine con promedio superior a 6.50, con lo que ahora la $H_{1}$ dirá que $\mu > 6.50$. Se trata en este caso de una prueba unilateral y solo rechazaremos la $H_{0}$ si encontramos valores sustancialmente *mayores* que 6.50. Para el mismo nivel de significación del 5%, el valor $z$ que nos interesa es el que delimita un área *superior* de 0.05.
 
-Notemos la diferencia con las pruebas que tratamos antes: al nivel de 5% buscábamos dos $z$ que dejaban en total 0.05 de área extrema (por encima y por debajo) o lo que es lo mismo, los dos $z$ que dejan el 95% del área central. Ahora, como la prueba es unilateral y solo nos interesan valores que se excedan, solo buscamos un $z$, el que deja al 5% por encima. Ese valor de $z$ es 1.64.[^83]
+Notemos la diferencia con las pruebas que tratamos antes: al nivel de 5% buscábamos dos $z$ que dejaban en total 0.05 de área extrema (por encima y por debajo) o lo que es lo mismo, los dos $z$ que dejan el 95% del área central. Ahora, como la prueba es unilateral y solo nos interesan valores que se excedan, solo buscamos un $z$ crítico, el que deja al 5% por encima. Ese valor de $z_c$ es 1.64.[^83]
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Ubicación de la zona de rechazo de Ho para una prueba unilateral derecha a un niel de significación del 5%"}
 ggplot(data = data.frame(z = c(-4.4)), aes(z)) +
@@ -641,7 +587,7 @@ ggplot(data = data.frame(z = c(-4.4)), aes(z)) +
   geom_segment(x = -4, xend = 4, y = 0, yend = 0) +
   scale_y_continuous(breaks = NULL) + theme_tufte() +
   geom_text(aes(label = "0"), x = 0, y = -.015) +
-  geom_text(aes(label = "1.64"), x = 1.64, y = -.015) +
+  geom_text(aes(label = TeX("$\\z_{c} = 1.64$", output="character")), x = 1.64, y = -.015, parse = TRUE) +
   geom_text(aes(label = "z"), x = 3.5, y = -.01) + annotate(geom = "rect", xmin = -.01, xmax = .01, ymin = -.01, ymax = .01, col = "red")
 ```
 
@@ -651,7 +597,7 @@ valores $z$ que conducen a rechazar $H_{0}$ se encuentran solo a la
 derecha.
 
 Ejemplo (datos ficticios): en la situación en que nuestro interés esté
-en analizar si el promedio con que egresan ahora los estudiantes es
+en analizar si el promedio al egreso es
 *superior* al valor histórico (y no solo diferente a él), las hipótesis
 de la prueba se expresan:
 
@@ -664,35 +610,31 @@ significación del 5% entonces:
 
 $${\overline{x}}_{c} = \mu + z_{c}*\frac{s}{\sqrt{n}} = 6.50 + 1.64*\frac{0.60}{\sqrt{100}} = 6.50 + 0.10$$
 
-Al sumar obtenemos 6.60 que es el único punto crítico que nos interesa
+Al sumar obtenemos 6.60, que es el único punto crítico que nos interesa
 por tratarse de una prueba unilateral y hemos sumado porque la prueba es derecha. Con lo que resulta la siguiente región de rechazo de $H_{0}$:
 
-<!--otra vez problema con la escala (la s es chica, debería adaptar la escala y no logro), con la ounta de al flecha y los simbolos para mu y equismedia.--> 
-
-```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Región de rechazo unilateral derecha de $H_{0}: \\mu = 6,50$ a un nivel de significación del 5%, con una muestra de 100 casos y desviación estándar 0,60, y ubicación del valor observado del estimador"}
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Región de rechazo unilateral derecha de $H_{0}: \\mu = 6.50$ a un nivel de significación del 5%, con una muestra de 100 casos y desviación estándar 0.60, y ubicación del valor observado del estimador"}
 ggplot(data = data.frame(z = c(6.26, 6.74)), aes(z)) +
   geom_area(stat = "function", fun = dnorm, args = list(mean = 6.5, sd = .06), fill = "white", xlim = c(6.26, qnorm(.95, 6.5, .06)), col = "black") +
   geom_area(stat = "function", fun = dnorm, args = list(mean = 6.5, sd = .06), fill = "green", xlim = c(qnorm(.95, 6.5, .06), 6.74), col = "black") +
   ylab("") + xlab("") + scale_x_discrete(breaks = NULL) +
   geom_segment(x = 6.26, xend = 6.74, y = 0, yend = 0) +
-  scale_y_continuous(breaks = NULL) + theme_tufte() +
-  geom_text(aes(label = "6.50"), x = 6.5, y = -.25) +
-  geom_text(aes(label = "6.60"), x = 6.6, y = -.15) +
-  geom_text(aes(label = "medias muestrales"), x = 7, y = -.1) +
+  scale_y_continuous(breaks = NULL) +
+  geom_text(aes(label = TeX("$\\mu = 6.50$", output="character")), x = 6.5, y = -.3, parse = TRUE) +
+  geom_text(aes(label = TeX("$\\bar{x}_c = 6.60$", output="character")), x = 6.6, y = -.25, parse = TRUE) +
+  geom_text(aes(label = TeX("$\\bar{x}$", output="character")), x = 6.7, y = -.3, parse=TRUE) +
   annotate(geom = "rect", xmin = 6.499, xmax = 6.501, ymin = -.1, ymax = .1, col = "red") +
-  geom_text(aes(label = "xmedobs = 6.65"), x = 6.8, y = 1.5) +
-  geom_segment(x = 6.8, xend = 6.65, y = 1.3, yend = 0, arrow = arrow())
+  geom_text(aes(label = TeX("$\\bar{x}_{obs} = 6.65$", output="character")), x = 6.7, y = 1.5, parse = TRUE) +
+  geom_segment(x = 6.7, xend = 6.65, y = 1.3, yend = 0, arrow = arrow())+xlim(6.2, 6.8)+theme_tufte()
 ```
 
-El valor observado de $\overline{x}$ había sido 6.65 que es mayor que el punto crítico, con lo que rechazamos la $H_{0}$ y concluimos que los
-alumnos egresan con un promedio significativamente mayor al histórico.
+El valor observado de $\overline{x}$ había sido 6.65 que es mayor que el punto crítico, con lo que rechazamos la $H_{0}$ y concluimos que el promedio al egreso es significativamente mayor al histórico.
 
-Si hubiésemos planteado la regla de decisión sobre los valores de$z$, a
-un nivel de significación del 5%, corresponde observar el gráfico <!--referencia al que era 7--> y obtener el puntaje $z$ correspondiente al valor observado de la media muestral:
+Si hubiésemos planteado la regla de decisión sobre los valores de $z$, a un nivel de significación del 5%, hay que calcular el puntaje $z$ correspondiente al valor observado de la media muestral:
 
 $$z_{\text{obs}} = \frac{{\overline{x}}_{\text{obs}} - \mu}{\frac{s}{\sqrt{n}}} = \frac{6.65 - 6.50}{\frac{0.60}{\sqrt{100}}} = 2.5$$
 
-Dado que este resultado supera al punto crítico del gráfico <!-- ref mimo que anes-->, concluimos nuevamente que los alumnos egresan con un promedio significativamente mayor al histórico.
+Dado que este resultado supera al punto crítico $z_c = 1.64$, concluimos nuevamente que el promedio al egreso es significativamente mayor al histórico.
 
 
 En los párrafos anteriores hemos introducido una expresión nueva, que
@@ -701,7 +643,7 @@ nos referimos al uso que suele darse en el lenguaje cotidiano, que es
 sinónimo de importante, de gran magnitud, grande, etc. Diremos que un
 valor es significativamente mayor o menor si se ha rechazado una prueba
 unilateral, o bien que es significativamente diferente o que la
-diferencia es significativa, si la $H-{0}$ que fue rechazada pertenece a una prueba bilateral. Además debe indicarse el nivel de significación de la prueba, por lo que diremos: según los datos observados y a un nivel del 5%, los alumnos egresan con un promedio significativamente superior al histórico.
+diferencia es significativa, si la $H_{0}$ que fue rechazada pertenece a una prueba bilateral. Además debe indicarse el nivel de significación de la prueba, por lo que diremos: según los datos observados y a un nivel del 5%, la calificación promedio al egreso de la carrera es significativamente superior a la histórica.
 
 ||
 |:--:|
@@ -711,7 +653,7 @@ Un resultado puede ser significativo a un nivel y no serlo a otro. Por
 ejemplo, si en una prueba bilateral y luego de transformar el valor
 observado a puntaje $z$, se obtiene $z=2.3$, este resultado conducirá a que se rechace $H_{0}$ al 5% (porque $2.3$ es mayor que $1.96$) pero que no se rechace al 1% (porque $2.3$ no es mayor que $2.56$). En ese caso diremos que se obtienen resultados significativos al 5% pero no al 1%. Luego veremos que esta clasificación puede hacerse más precisa.
 
-#### Otros ejemplos de prueba de hipótesis sobre la media
+### Otros ejemplos de prueba de hipótesis sobre la media
 
 La investigación con sujetos animales en Psicología se basa en que
 distintas especies comparten mecanismos básicos, y los animales no
@@ -723,7 +665,7 @@ siendo clave en el ámbito de la psicopatología y terapia psicológica.
 
 En este contexto, alumnas de Psicología interesadas en la vulnerabilidad
 adolescente hacia el uso y abuso de drogas, recurrieron a un modelo
-animal para estudiar los efectos del alcohol[^84]. Uno de los posibles
+animal para estudiar los efectos del alcohol @Dziula2005. Uno de los posibles
 factores que determinan las primeras aproximaciones a las drogas es la
 búsqueda de nuevas sensaciones, que se manifiesta en niveles elevados
 tanto en adolescentes humanos como no humanos, particularmente en
@@ -753,7 +695,7 @@ $$H_{0}:\mu = 150$$
 $$H_{1}:\mu \neq 150$$
 
 En la muestra utilizada, la latencia media de contacto con el objeto es
-de 138,42 seg. y la desviación estándar 42,98. Se establece un nivel de
+de 138.42 seg. y la desviación estándar 42.98. Se establece un nivel de
 significación del 5%, por lo que los puntos críticos en puntajes *z* son $z_{c}=\pm 1.96$
 
 Luego, se transforma el valor de $\overline{x}$ observado en puntaje $z$ a través de la siguiente fórmula:
@@ -767,7 +709,7 @@ Se obtiene la misma conclusión si se utilizan los valores críticos de
 $\overline{x}$. Revisemos el procedimiento: luego de haber establecido
 el nivel de significación al 5%, se obtienen los puntos críticos en
 puntajes originales (${\overline{x}}_{c}$) a partir de los puntos
-críticos en puntajes $z$( los $z_{c}$), a través de la siguiente
+críticos en puntajes $z$ (los $z_{c}$), a través de la siguiente
 fórmula[^87]:
 
 $${\overline{x}}_{c} = \mu \pm z_{c}*\frac{s}{\sqrt{n}} = 150 \pm 1.96*\frac{42.98}{\sqrt{32}} = 150 \pm 14.89$$
@@ -801,7 +743,7 @@ $z$:
 $$z_{\text{obs}} = \frac{{\overline{x}}_{\text{obs}} - \mu}{\frac{s}{\sqrt{n}}} = \frac{17.43 - 14}{\frac{4.25}{\sqrt{32}}} = \frac{3.43}{0.75} = 4.57$$
 
 Al valor de $\overline{x}$ observado le corresponde un valor $z=4.57$,
-que resulta superior al $z_c = 1,64$, por lo que se rechaza la $H_0$, es
+que resulta superior al $z_c = 1.64$, por lo que se rechaza la $H_0$, es
 decir que las ratas adolescentes muestran una duración mayor de contacto
 con un objeto novedoso que lo señalado por la literatura para roedores
 en general.
@@ -809,7 +751,7 @@ en general.
 Obtenemos la misma conclusión si usamos los valores críticos de
 $\overline{x}$. Una vez establecido el nivel de significación al 5%, se
 obtienen los puntos críticos en puntajes originales
-(${\overline{x}}_{c}$) a partir de los puntos críticos en puntajes *z*
+(${\overline{x}}_{c}$) a partir de los puntos críticos en puntajes $z$
 ($z_{c}$)[^89]:
 
 $${\overline{x}}_{c} = \mu + z_{c}*\frac{s}{\sqrt{n}} = 14 + 1.64*\frac{4.25}{\sqrt{32}} = 14 + 1.23 = 15.23$$
@@ -862,16 +804,16 @@ depende de la $H_{0}$ sino de la  $H_{1}$. En efecto, la  $H_{0}$ siempre indica
 ```{r}
 aux_table <- tibble::tribble(
   ~"", ~"Bilateral", ~"Unilateral derecha", ~"Unilateral izquierda",
-  "$0,10$", "$\\pm 1,64$", "$+1,28$", "$-1,28$",
-  "$0,05$", "$\\pm 1,96$", "$+1,64$", "$-1,64$",
-  "$0,01$", "$\\pm 2,57$", "$+2,33$", "$-2,33$",
+  "$0.10$", "$\\pm 1.64$", "$+1.28$", "$-1.28$",
+  "$0.05$", "$\\pm 1.96$", "$+1.64$", "$-1.64$",
+  "$0.01$", "$\\pm 2.57$", "$+2.33$", "$-2.33$",
 )
 knitr::kable(
   aux_table, kable_outp,
   booktabs = TRUE, align = "cccc", escape = FALSE, caption = "Valores críticos usuales de la distribución normal",
 ) %>%
   kableExtra::add_header_above(c("Significación" = 1, "Puntaje z para prueba:" = 3)) %>%
-  kableExtra::kable_styling(latex_options = "striped")
+  kableExtra::kable_styling(latex_options = c("striped", "HOLD_position"))
 ```
 
 ## Prueba sobre la proporción
@@ -895,9 +837,9 @@ distribución binomial, por lo que es necesario transformar la variable
 *proporción de éxitos* ($p$) al *número de éxitos* ($x$). Esta
 transformación vale para la proporción hipotética ($P$) y para la
 observada ($\widehat{p}$): $$P = \frac{X}{n}$$ es decir $$X = P*n$$
-
-$\widehat{p} = \frac{\widehat{x}}{n}$ es decir
-$\widehat{x} = \widehat{p}*n$
+Del mismo modo que: 
+$$\widehat{p} = \frac{\widehat{x}}{n}$$ equivale a 
+$$\widehat{x} = \widehat{p}*n$$
 
 Ejemplo (datos ficticios): un político tenía, haces tres meses una
 intención de voto equivalente al 30% del padrón. De acuerdo con algunas
@@ -919,16 +861,16 @@ candidato, por eso la $H_{1}$ indica una proporción mayor.
 Se fija un nivel de significación de 5% y, para determinar los puntos
 críticos bajo un modelo binomial, se transforma el valor hipotético de $P$ al correspondiente a X en la muestra dada:
 
-$$X = P*n = 0,30*50 = 15$$
+$$X = P*n = 0.30*50 = 15$$
 
 Con lo que el punto crítico es el valor de $\widehat{x}$ que deja por
 encima (porque es una prueba unilateral derecha) al 5% de los valores
 posibles. Buscamos el percentil 95 de la distribución binomial corespondiente a los parámetros:
 $n = 50$, $P = 0.30$ y $P( X > x) = 0.05$
 
-La probabilidad es la de la cola derecha de la distribuución, por ser una prueba unilateral derecha, y corresponde  auna probabilidad acumulada de 0.95, de modo que el percentil es 95, qu eequivale a $P( X \leq x) = 0.95$
+La probabilidad es la de la cola derecha de la distribución, por ser una prueba unilateral derecha, y corresponde a una probabilidad acumulada de 0.95, de modo que el percentil es 95, que equivale a $P( X \leq x) = 0.95$ es:
 
-```{r}
+```{r echo=TRUE}
 qbinom(.95, 50, .30)
 ```
 
@@ -954,8 +896,8 @@ ggplot(data = data.frame(x = c(0:50)), aes(x)) +
 Repasemos la interpretación de estas operaciones: si la proporción de
 votos que el candidato tiene en la población total fuera del 30% (esa es
 la hipótesis nula), entonces se esperaría que en una muestra de 50
-casos, haya 15 que lo voten (15 es el 30% de 50, es la media de la distribución binomial). Como la muestra es
-aleatoria, la cantidad de votos que se obtienen en la muestra es
+casos, haya 15 que lo voten (15 es el 30% de 50, es la media de la distribución binomial; su esperanza). Como la muestra es
+aleatoria, la cantidad de votos que se obtienen en ella es
 aleatoria, puede ir desde cero hasta cincuenta, con diferentes
 probabilidades, que muestra el gráfico anterior. El criterio del 5%,
 establece al valor 20 votos como punto crítico. Eso quiere decir que, si
@@ -971,14 +913,14 @@ considerar que no hay evidencia para creer que la proporción de votos
 que el candidato tiene, haya aumentado de su 30% anterior.
 
 El punto crítico situado en 20 éxitos equivale a
-${\widehat{p}}_{c} = 0,40$. La comparación de los 16 éxitos muestrales
+${\widehat{p}}_{c} = 0.40$. La comparación de los 16 éxitos muestrales
 con los 20 del punto crítico es la misma que la del 32% muestral frente
 al 40% crítico.
 
 Si se tratara de una muestra de mayor tamaño y tanto $n*P$ como
 $n*(1 - P)$ fueran mayores a 5, podríamos usar la aproximación normal de
 la distribución binomial. Para ello, establecemos un nivel de
-significación de 5%, y el valor crítico de $z$ (en prueba unilateral) es $1,64$. Ahora en términos de $z$, la zona de rechazo queda así:
+significación de 5%, y el valor crítico de $z$ (en prueba unilateral) es $1.64$. Ahora en términos de $z$, la zona de rechazo queda así:
 
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
@@ -989,12 +931,12 @@ ggplot(data = data.frame(z = c(-4.4)), aes(z)) +
   geom_segment(x = -4, xend = 4, y = 0, yend = 0) +
   scale_y_continuous(breaks = NULL) + theme_tufte() +
   geom_text(aes(label = "0"), x = 0, y = -.015) +
-  geom_text(aes(label = "1.64"), x = 1.64, y = -.015) +
+  geom_text(aes(label =TeX("$\\z_{c} = 1.64$", output = "character")), x = 1.64, y = -.015, parse = TRUE) +
   geom_text(aes(label = "z"), x = 3.5, y = -.01) + annotate(geom = "rect", xmin = -.01, xmax = .01, ymin = -.01, ymax = .01, col = "red")
 ```
 
 
-Una vez fijado el nivel de significación ($\alpha$) y la lateralidad de la prueba (derecha), quedan determinados los puntos críticos en términos de $z$, según el cuadro 1.
+Una vez fijado el nivel de significación ($\alpha$) y la lateralidad de la prueba (derecha), quedan determinados el o los puntos críticos en términos de $z$.
 
 La principal diferencia a tener en cuenta para la transformación a
 puntaje $z$ de la proporción es el cálculo de su error estándar que, en
@@ -1005,7 +947,7 @@ $$\sigma_{\widehat{p}} = \sqrt{\frac{P*(1 - P)}{n}}$$
 
 En la construcción de intervalos de confianza es necesario aproximar
 $P*(1 - P)$ a través de $\widehat{p}*(1 - \widehat{p})$, porque se
-ignora el valor de la proporción poblacional. En la prueba de hipótesis, la situación es diferente, porque se cuenta con una $P$ (poblacional) hipotética, y es esa la que se utiliza para el cálculo de
+ignora el valor de la proporción poblacional. Pero en la prueba de hipótesis, la situación es diferente, porque se cuenta con una $P$ (poblacional) hipotética, y es esa la que se utiliza para el cálculo de
 $\sigma_{\widehat{p}}$. Por lo tanto, la transformación del valor
 observado en la muestra a puntajes $z$ se hará según:
 
@@ -1013,15 +955,15 @@ $$z_{\text{obs}} = \frac{{\widehat{p}}_{\text{obs}} - P}{\sqrt{\frac{P*(1 - P)}{
 
 Que es el estadístico de prueba para la prueba de proporciones que debe
 usarse cuando sea válida la aproximación normal para la distribución
-binomial. De acuerdo a que la posición de este $z_{obs}$, sea en la zona de rechazo o no rechazo de $H_{0}$, se toma la decisión.
+binomial. De acuerdo a que la posición de este $z_{obs}$ sea en la zona de rechazo o no rechazo de $H_{0}$, se toma la decisión.
 
 Nuevamente sobre el ejemplo con las mismas hipótesis, nula y alternativa
 
-$$H_{0}:P = 0,30$$
+$$H_{0}:P = 0.30$$
 
-$$H_{1}:P > 0,30$$
+$$H_{1}:P > 0.30$$
 
-Sea ahora que se trató de una muestra de 200 ciudadanos, en la que se
+Sea ahora que se trató de una muestra de 200 personas habilitadas para votar, en la que se
 halla que 64 dicen que van a votar a ese candidato (de este modo la
 proporción muestral sigue siendo de 32%). En la muestra entonces:
 
@@ -1035,7 +977,7 @@ $z$ y hallamos el estadístico de prueba:
 
 $$z_{\text{obs}} = \frac{{\widehat{p}}_{\text{obs}} - P}{\sqrt{\frac{P*(1 - P)}{n}}} = \frac{0.32 - 0.30}{\sqrt{\frac{0.30*(1 - 0.30)}{200}}} = 0.617$$
 
-Este puntaje de $z_{obs}$ no supera al punto crítico ($z=1,64$) por lo
+Este puntaje de $z_{obs}$ no supera al punto crítico ($z=1.64$) por lo
 que se sitúa en la zona de no rechazo de $H_{0}$. Concluimos que la
 proporción no ha aumentado respecto del valor anterior.
 
@@ -1051,25 +993,24 @@ $$\widehat{p} = P + z_{c}*\sqrt{\frac{P*(1 - P)}{n}} = 0.30 + 1.64*\sqrt{\frac{0
 
 Representamos gráficamente la zona de rechazo como la cola derecha de la distribución de las $\widehat{p}$:
 
-<!-- acá el tema dela escala se volvió crítico, no hay manera...-->
-
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 ggplot(data = data.frame(z = c(.28, .32)), aes(z)) +
-  geom_area(stat = "function", fun = dnorm, args = list(mean = .3, sd = .0324), fill = "white", xlim = c(.28, qnorm(.95, .3, .0324)), col = "black") +
-  geom_area(stat = "function", fun = dnorm, args = list(mean = .3, sd = .0324), fill = "green", xlim = c(qnorm(.95, .3, .0324), .32), col = "black") +
+  geom_area(stat = "function", fun = dnorm, args = list(mean = .3, sd = .0324), fill = "white", xlim = c(.1, qnorm(.95, .3, .0324)), col = "black") +
+  geom_area(stat = "function", fun = dnorm, args = list(mean = .3, sd = .0324), fill = "green", xlim = c(qnorm(.95, .3, .0324), .9), col = "black") +
   ylab("") + xlab("") + scale_x_discrete(breaks = NULL) +
   geom_segment(x = .28, xend = .32, y = 0, yend = 0) +
   scale_y_continuous(breaks = NULL) +
-  geom_text(aes(label = "0.30"), x = .3, y = -.25) +
-  geom_text(aes(label = "0.353"), x = .353, y = -.15) +
-  geom_text(aes(label = "proporciones muestrales"), x = .31, y = -.1) +
+  geom_text(aes(label = TeX("$\\P = 0.30$", output="character")), x = .3, y = -.7, parse = TRUE) +
+  geom_text(aes(label = TeX("$\\widehat{p}_{c} = 0.353$", output="character")), x = .353, y = -.7, parse = TRUE) +
+  geom_text(aes(label = TeX("$\\widehat{p}$", output="character")), x = .41, y = -.7, parse=TRUE) +
   annotate(geom = "rect", xmin = .299, xmax = .301, ymin = -.1, ymax = .1, col = "red") +
-  geom_text(aes(label = "pobs = .32"), x = .32, y = 1.5) + theme_tufte()
+  geom_text(aes(label = TeX("$\\widehat{p}_{obs}=0.32$", output="character")), x = .32, y = 5, parse = TRUE)+ xlim(.15,.45)+ylim(-1,13) +
+  geom_segment(x = 0.32, xend = 0.32, y = 4.5, yend = 0, arrow = arrow())+theme_tufte()
 ```
 
 
-El valor hallado en la muestra (${\widehat{p}}_{\text{obs}} = 0,32$) es
-menor que el punto crítico, por lo que no está en la zona de rechazo, en consecuancia, no rechazamos la $H_{0}$ y concluimos que no hay evidencia para creer que el
+El valor hallado en la muestra (${\widehat{p}}_{\text{obs}} = 0.32$) es
+menor que el punto crítico, por lo que no está en la zona de rechazo, en consecuencia, no rechazamos la $H_{0}$ y concluimos que no hay evidencia para creer que el
 candidato haya aumentado su proporción de votos. Como había sucedido
 antes, la conclusión es la misma si trabajamos sobre los puntajes
 estandarizados o sobre valores del estimador. Sin embargo, el punto
@@ -1081,9 +1022,9 @@ las pruebas se realizan usando la aproximación normal.
 
 Ejemplo (datos reales): en el estudio Latinobarómetro[^92] se menciona
 la importancia de comprender la percepción de la gente sobre el cambio
-generacional, cómo vivían los padres en relación a ellos y cómo vivirán
-los hijos con respecto a ellos (expectativa futura). En el año 2004, el
-58,2% de los argentinos encuestados consideraba que los hijos vivirían
+generacional, cómo vivían los padres y madres en relación a ellos y cómo vivirán
+los hijos e hijas con respecto a ellos (expectativa futura). En el año 2004, el
+58.2% de los argentinos encuestados consideraba que los hijos e hijas vivirían
 mejor que ellos. En el año 2005, los investigadores indagan nuevamente
 la expectativa futura. Dado que habían observado fluctuaciones en años
 previos se preguntan si esa expectativa positiva habrá cambiado o no
@@ -1091,11 +1032,10 @@ respecto del año anterior. Las hipótesis que se formulan son:
 
 $$H_{0}:P = 0.582$$
 
-$$H_{1}:P \neq 0,582$$
+$$H_{1}:P \neq 0.582$$
 
-En el estudio del año 2005, observaron que 676 participantes de los 1200
-que componían la muestra consideraban que sus hijos vivirían mejor que
-ellos, siendo la proporción en la muestra:
+En el estudio del año 2005, observaron que 676 participantes de 1200
+que componían la muestra consideraban que sus hijos e hijas vivirían mejor que ellos, con lo que, la proporción en la muestra es:
 
 $$\widehat{p} = \frac{676}{1200} = 0.563$$
 
@@ -1109,15 +1049,15 @@ $$z_{\text{obs}} = \frac{{\widehat{p}}_{\text{obs}} - P}{\sqrt{\frac{P*(1 - P)}{
 
 El valor $z_{obs}=-1.36$ se encuentra entre los puntos críticos $\pm1.96$, es decir que se halla en la zona de no rechazo de la $H_{0}$, por lo cual
 se concluye que no hay evidencia que indique que la proporción de
-expectativas positivas haya cambiado, la proporción no es
+expectativas positivas haya cambiado; la proporción no es
 significativamente distinta de 0.582.
 
 Se alcanza la misma conclusión si se realizan los cálculos en función de
-los valores del estimador. Establecido el nivel de significación al 5%,
+los valores del estimador. Establecido el nivel de significación en el 5%,
 se obtienen los puntos críticos en puntajes originales ($\widehat{p}$) a
 partir de los puntos críticos en puntajes $z$ ($z_{c}$):
 
-$$\widehat{p} = P \pm z_{c}*\sqrt{\frac{P*(1 - P)}{n}} = 0.582 \pm 1.96*\sqrt{\frac{0.582*(1 - 0.582)}{1200}} = 0.582 \pm 0.027$$
+$$\widehat{p}_{c} = P \pm z_{c}*\sqrt{\frac{P*(1 - P)}{n}} = 0.582 \pm 1.96*\sqrt{\frac{0.582*(1 - 0.582)}{1200}} = 0.582 \pm 0.027$$
 
 De esta manera se obtienen los ${\widehat{p}}_{c}$ que delimitan las
 zonas de rechazo y no rechazo: 0.55 y 0.61. El valor
@@ -1126,8 +1066,7 @@ ellos, por lo que no se rechaza la $H_{0}$.
 
 Ejemplo (datos reales): otro de los aspectos indagados en el estudio
 Latinobarómetro se refiere a la opinión sobre progreso en la reducción de la corrupción
-en las instituciones del Estado. En el año 2004, el 3.33% de los
-encuestados argentinos consideraba que se había progresado mucho en ese
+en las instituciones del Estado. En el año 2004, en Argentina, el 3.33% de quienes respondieron consideraba que se había progresado mucho en ese
 aspecto. En el estudio del 2005, se espera que los resultados sean más
 favorables debido a la aplicación de una serie de medidas tendientes a
 controlar la corrupción institucional. Así, las hipótesis que se
@@ -1137,11 +1076,10 @@ $$H_{0}:P = 0.033$$
 
 $$H_{1}:P > 0.033$$
 
-De los 1200 argentinos encuestados en el año 2005, 51 señalan que se ha
-progresado mucho en reducir la corrupción institucional, es decir que la
-proporción en la muestra es
+De las 1200 respuestas recogidas en el año 2005, 51 indican que se ha
+progresado mucho en reducir la corrupción institucional, es decir que la proporción en la muestra es
 
-$$\widehat{p} = \frac{51}{1200} = 0.043$$
+$$\widehat{p}_{obs} = \frac{51}{1200} = 0.043$$
 
 El nivel de significación se establece en el 5%, dado que la prueba es
 unilateral derecha el único punto crítico en puntaje $z$ es $1.64$.
@@ -1153,15 +1091,16 @@ $$z_{obs} = \frac{{\widehat{p}}_{obs} - P}{\sqrt{\frac{P*(1 - P)}{n}}} = \frac{0
 
 El valor $z_{obs}=1.94$ resulta superior al $z_{c}=1.64$, por lo que
 se rechaza la $H_0$. Por eso concluimos que la proporción de personas que
-declaran que se ha progresado en la reducción de la corrupción
+declara que se ha progresado en la reducción de la corrupción
 institucional se incrementó de manera significativa.
 
 Se obtiene la misma conclusión a partir de los valores del estimador.
-Establecido el nivel de significación al 5%, se obtiene el punto crítico
+Establecido el nivel de significación en el 5%, se obtiene el punto crítico
 en puntaje original (${\widehat{p}}_{c}$) a partir del punto crítico en
-puntajes $z$ ($z_{c}$):
+puntaje $z$ ($z_{c}$):
 
-$$\widehat{p} = P + z_{c}*\sqrt{\frac{P*(1 - P)}{n}} = 0.033 + 1.64*\sqrt{\frac{0.033*(1 - 0.033)}{1200}} = 0.033 + 0.008 = 0.041$$
+$$\widehat{p}_{c} = P + z_{c}*\sqrt{\frac{P*(1 - P)}{n}} = $$
+$$0.033 + 1.64*\sqrt{\frac{0.033*(1 - 0.033)}{1200}} = 0.033 + 0.008 = 0.041$$
 
 El valor observado de ${\widehat{p}}_{\text{obs}} = 0.043$ resulta mayor
 a ${\widehat{p}}_{c} = 0.041$, por lo que se rechaza la $H_{0}$, y se
@@ -1170,22 +1109,16 @@ reducción de la corrupción institucional se ha incrementado de manera
 significativa de 2004 a 2005.
 
 Ejemplo (datos reales): otro tema que aborda Latinobarómetro es el
-interés por la política. En el estudio del año 2004, el 11% de los
-encuestados argentinos manifestó estar muy interesado en la política. Si
-bien no ha habido notables cambios en la última década con respecto al
-interés de los ciudadanos en la política, una serie de indicadores
-llevaron a los investigadores a considerar que el interés en esta
-cuestión podría haber disminuido. Las hipótesis planteadas son:
+interés por la política. En el estudio del año 2004, el 11% de las personas encuestadas en Argentina manifestó estar muy interesado en la política. Si bien no ha habido notables cambios en la última década con respecto al interés de la ciudadanía en la política, una serie de indicadores llevaron a los investigadores a considerar que el interés en esta cuestión podría haber disminuido. Las hipótesis planteadas son:
 
 $$H_{0}:P = 0.11$$
 
 $$H_{1}:P < 0.11$$
 
-De la muestra de 1200 argentinos encuestados en el año 2005, 111
-manifiestan un elevado interés en la política, la proporción en la
+De la muestra de Argentina de 1200 casos correspondiente el año 2005, 111 manifiestan un elevado interés en la política, la proporción en la
 muestra es:
 
-$$\widehat{p} = \frac{111}{1200} = 0.093$$
+$$\widehat{p}_{obs} = \frac{111}{1200} = 0.093$$
 
 El nivel de significación se establece en el 5%, dado que la prueba es
 unilateral izquierda el punto crítico en puntaje $z$ es $-1.64$ . Con el
@@ -1206,7 +1139,7 @@ $${\widehat{p}}_{c} = P - z_{c}*\sqrt{\frac{P*(1 - P)}{n}} = 0.11 - 1.64*\sqrt{\
 
 El valor observado de ${\widehat{p}}_{\text{obs}} = 0.093$ resulta menor
 a ${\widehat{p}}_{c} = 0.095$, por lo que se rechaza la $H_{0}$. Se
-concluye entonces que la proporción de ciudadanos argentinos con alto
+concluye entonces que, en Argentina, la proporción de personas con alto
 interés en la política en el año 2005 es significativamente menor a
 0.11.
 
@@ -1247,35 +1180,17 @@ debemos recordar que hay una probabilidad $\alpha$ de haber tomado una decisión
 incorrecta. Esta incertidumbre está siempre presente en evaluación humana en los campos psicológico y educativo, así como en la evaluación de efectos e impactos de programas de intervención social, o en la comparación de grupos para conocer diferencias entre varones y mujeres, medir los efectos del nivel de educación, etc. En general, está presente en la toma de decisión en contextos de incertidumbre, que son aquellos en que no se conocce a todos los elementos de una población, sino a una muestra de ellos.
 
 Ejemplo ilustrativo: las preguntas de un examen oral son una muestra de
-lo que el alumno sabe, si se usa un bolillero, la elección del tema que
-toca es aleatoria. Supongamos que un alumno ha estudiado muy poco, pero
-la unidad que le toca desarrollar es alguna de las (muy pocas) que sabe.
-En ese caso responderá correctamente y la decisión del docente será
-darle por aprobado el examen. Si supiéramos que el alumno ignora todos
+lo que quien está rindiendo sabe y, si se usa un bolillero, la elección del tema que debe desarrollarse es aleatoria. Supongamos que alguien va a un examen y ha estudiado muy poco, pero la unidad que le toca desarrollar es la única que sí estudió.  
+En ese caso responderá correctamente y la decisión del o la docente será darle por aprobado el examen. Si supiéramos que ignora todos
 los demás temas de la materia, la decisión correcta sería que no
 apruebe. La formalización de este problema es la siguiente: la
-hipótesis nula es la conservadora, esto es, que el alumno no sabe; será
-necesario sumar evidencia para que se tome la decisión de rechazar esa
-hipótesis y dar el examen por aprobado. La muestra de información que
-tiene el docente a su disposición (las bolillas que salieron por azar)
-es correctamente desarrollada por el alumno, lo que conduce a la
-decisión de rechazar la $H_{0}$ y dar el examen por aprobado. Para quien
-tiene toda la información (que el alumno solo sabe esas unidades del
-programa), se ha cometido un Error de Tipo I, pero el docente nunca lo
-sabrá. En investigación nunca tenemos "toda la información", trabajamos
-con muestras, por lo que nunca sabemos si, cuando rechazamos $H_{0}$ y concluimos que algo cambió o que hay un efecto,
-estamos cometiendo este error o no.
+hipótesis nula es la conservadora, esto es, que quien rinde no sabe; será necesario sumar evidencia para que se tome la decisión de rechazar esa hipótesis y dar el examen por aprobado. La muestra de información que tiene el o la docente a su disposición (las unidades que salieron por azar) es correctamente desarrollada, lo que conduce a la
+decisión de rechazar la $H_{0}$ y dar el examen por aprobado. Para quien tiene toda la información (que quien rindió solo sabía esa unidad del programa), se ha cometido un Error de Tipo I, pero el o la docente nunca lo sabrá. Si el programa tenía 20 unidades, la probabilidad de extraer la única bolilla que sabe es $\frac{1}{20} = 0.05$, si la saca, se trata de una de esas "muestras extremas" que llevan a tomar la decisión incorrecta a la que llamamos Error de Tipo I.  
 
-Esta es la razón por la que $\alpha$ se elige con valores pequeños, pero no se
+En investigación nunca tenemos "toda la información", trabajamos con muestras, por lo que nunca sabemos si, cuando rechazamos $H_{0}$ y concluimos que algo cambió o que hay un efecto, estamos cometiendo este error o no. Esta es la razón por la que $\alpha$ se elige con valores pequeños, pero no se
 puede reducir indefinidamente el valor de $\alpha$, porque también existe el riesgo de no rechazar $H_{0}$ siendo falsa.
 
-Éste es otro tipo de error, que se llama **Error de Tipo II** (ETII) que
-sucede cuando se no se rechaza una $H_{0}$, siendo ésta falsa. En el experimento
-anterior, cometer este error consiste en creer que la droga no es
-efectiva (no rechazar $H_{0}$) cuando en realidad sí tiene efectos ($H_{0}$ es
-falsa). En el ejemplo del examen, se trata de aplazar a un alumno
-(aceptar $H_{0}$) cuándo sí sabía, porque le tocó -a la inversa que en el
-caso anterior- una de las únicas bolillas que no sabía.
+Éste es otro tipo de error, que se llama **Error de Tipo II** (ETII) que sucede cuando no se rechaza una $H_{0}$, siendo ésta falsa. En el experimento anterior, cometer este error consiste en creer que la droga no es efectiva (no rechazar $H_{0}$) cuando en realidad sí tiene efectos ($H_{0}$ es falsa). En el ejemplo del examen, se trata de aplazar a alguien que rindió (aceptar $H_{0}$) cuándo sí sabía, porque le tocó -a la inversa que en el caso anterior- una de las únicas bolillas que no había estudiado.
 
 ||
 |:--:|
@@ -1295,13 +1210,12 @@ cada caso y no pertenece al terreno de la estadística.
 Esto se vincula a los errores a que están expuestas las pruebas
 diagnósticas.
 
-Cuando la prueba da un resultado positivo al ser aplicada a alguien
-sano, se llama *falso positivo*. De modo más general, esa expresión
+Cuando la prueba da un resultado positivo al ser aplicada a una persona sana, se llama *falso positivo*. De modo más general, esa expresión
 indica que el error consiste en creer que "sucedió algo" cuando no fue
 así y corresponde, en las pruebas de hipótesis, al ETI.
 
 De modo equivalente, el resultado negativo de una prueba diagnóstica
-aplicada a alguien que sí está enfermo se llama *falso negativo*. Se
+aplicada a una persona que sí está enferma se llama *falso negativo*. Se
 trata del error opuesto, porque cuando se comete se cree que "no sucedió nada" cuando en realidad sí sucedió. Es el ETII.
 
 Si insistimos sobre estos errores es para llamar la atención sobre dos
@@ -1310,6 +1224,8 @@ aspectos fundamentales de las pruebas de hipótesis:
 - Las conclusiones son probabilísticas, no son verdaderas ni falsas.
 
 - Toda conclusión proveniente de estos procedimientos está sujeta a error.
+
+Y estos no son problemas del procedimiento de prueba de hipótesis, sino que es reflejo de las posibilidades humanas de contruir conocimiento: no hay certezas, solo hay aproximaciones.  
 
 ## *ETII:* $\mu$, $\alpha$ y $n$
 
@@ -1325,7 +1241,7 @@ Llamaremos $\beta$ a la probabilidad de cometer el ETII y veremos cómo
 calcularla según las diferentes posibilidades del verdadero valor del
 parámetro sobre el cual se realiza la prueba.
 
-El gráfico \@ref(fig:hallarX) corresponde a una prueba de hipótesis unilateral derecha
+El gráfico \@ref(fig:etii5) corresponde a una prueba de hipótesis unilateral derecha
 sobre la media poblacional[^93], con la forma:
 
 $$H_{0}:\mu = \mu_{0}$$
@@ -1334,7 +1250,7 @@ $$H_{1}:\mu > \mu_{0}$$
 
 Donde $\mu_{0}$ es un valor determinado e hipotético para la media de la
 población. En el gráfico se ha ubicado ése valor hipotético y la zona de
-rechazo de $H_0$, estableciendo el nivel de significación ($\alpha$) en 0,05.
+rechazo de $H_0$, estableciendo el nivel de significación ($\alpha$) en 0.05.
 Además, hemos dibujado otra curva, centrada en otra media poblacional
 que podría ser verdadera[^94]. Así, la curva superior representa la
 distribución de probabilidad de $\overline{x}$ si $H_0$ fuera verdadera
@@ -1343,37 +1259,10 @@ probabilidades de $\overline{x}$ si $H_{0}$ fuera falsa ($\mu > \mu_{0}$) y
 la verdadera media poblacional fuera $\mu_{1}$ (que es una de las
 posibles entre las mayores que $\mu_{0}$).
 
-<!-- bastante feo y faltan los rótulos de arriba "no rechazar...rechazar"...-->
-```{r hallarX, fig.cap="Comparación de la probabilidad de hallar a $\\overline{x}$ en zona de aceptación o rechazo, según sea $H_{0}$ verdadera o falsa $(\\alpha = 0,05)$"}
-hov <- ggplot(data = data.frame(z = c(-4.5)), aes(z)) +
-  geom_area(stat = "function", fun = dnorm, fill = "white", xlim = c(-4, qnorm(.95)), col = "black") +
-  geom_area(stat = "function", fun = dnorm, fill = "green", xlim = c(qnorm(.95), 5), col = "black") +
-  ylab("") + xlab("") + scale_x_discrete(breaks = NULL) +
-  geom_segment(x = -4, xend = 4, y = 0, yend = 0) +
-  scale_y_continuous(breaks = NULL) + theme_tufte() +
-  geom_text(aes(label = "mu0"), x = 0, y = -.015) +
-  geom_text(aes(label = "xmcrit"), x = 1.64, y = -.015) +
-  geom_text(aes(label = "alpha"), x = 2.2, y = .04, size = 5) +
-  geom_text(aes(label = "1-alpha"), x = 0, y = .1, size = 5) +
-  geom_text(aes(label = "Ho verdadera"), x = -3, y = .2, size = 5) +
-  annotate(geom = "rect", xmin = -.01, xmax = .01, ymin = -.01, ymax = .01, col = "red")
-
-
-hof <- ggplot(data = data.frame(z = c(-4, 5)), aes(z)) +
-  geom_area(stat = "function", fun = dnorm, args = list(mean = 2.5, sd = 1), fill = "white", xlim = c(-4, qnorm(.95)), col = "black") +
-  geom_area(stat = "function", fun = dnorm, args = list(mean = 2.5, sd = 1), fill = "green", xlim = c(qnorm(.95), 5), col = "black") +
-  ylab("") + xlab("") + scale_x_discrete(breaks = NULL) +
-  geom_segment(x = -4, xend = 5, y = 0, yend = 0) +
-  scale_y_continuous(breaks = NULL) + theme_tufte() +
-  geom_text(aes(label = "mu1"), x = 1, y = -.015) +
-  geom_text(aes(label = "xmcrit"), x = 1.64, y = -.015) +
-  geom_text(aes(label = "1-beta"), x = 3.2, y = .04, size = 5) +
-  geom_text(aes(label = "beta"), x = 1, y = .1, size = 5) +
-  geom_text(aes(label = "Ho falsa"), x = -4, y = .2, size = 5) +
-  annotate(geom = "rect", xmin = .99, xmax = 1.01, ymin = -.01, ymax = .01, col = "red")
-
-grid.arrange(hov, hof, nrow = 2)
+```{r etii5, fig.cap="Comparación de la probabilidad de hallar a $\\overline{x}$ en zona de rechazo o no rechazo, según sea $H_{0}$ verdadera o falsa $(\\alpha = 0.05)$", fig.asp = 0.1, fig.width = 3, fig.align='center'}
+knitr::include_graphics("imagenes/etii5.png")
 ```
+
 
 La parte superior del gráfico muestra que, si $H_{0}$ es verdadera,
 $\overline{x}$ tiene una probabilidad $\alpha$ de estar en la zona de rechazo,
@@ -1381,7 +1270,7 @@ por lo que, si $H_{0}$ es verdadera y $\overline{x}$ está en esa zona,
 tomaremos la decisión errada de rechazarla. El complemento del nivel de
 significación ($1-\alpha$), es la probabilidad de tomar la decisión correcta de no rechazar $H_{0}$ cuando ésta es verdadera. Es la probabilidad de hallar a $\overline{x}$ en la zona de no rechazo de $H_{0}$.
 
-En el gráfico inferior vemos que, si $H_{0}$ es falsa, $\overline{x}$ tiene
+En la parte inferior del gráfico vemos que, si $H_{0}$ es falsa, $\overline{x}$ tiene
 probabilidad $1-\beta$ de estar en la zona de rechazo, lo que llevará a tomar
 la decisión correcta de rechazar una $H_{0}$ falsa. Bajo el mismo supuesto de $H_{0}$ falsa, $\beta$ es el área correspondiente a la zona de no rechazo de $H_{0}$, por lo que mide la probabilidad de errar aceptando una $H_{0}$ falsa.
 
@@ -1394,6 +1283,7 @@ Esquema 1: Posibles combinaciones de estados de realidad y decisión que
 se toma. (Entre paréntesis, la probabilidad de cada evento):
 
 ```{r}
+
 aux_table <- tibble::tribble(
   ~"", ~"No rechazar $H_0$", ~"Rechazar $H_0$",
   "$H_0$ Verdadera", "Decisión correcta ($1-\\alpha$)", "Error de tipo I ($\\alpha$)",
@@ -1416,60 +1306,31 @@ hipótesis nulas que son falsas y rechazarlas.
 | Se llama **potencia de una prueba** a la probabilidad de rechazar una $H_{0}$ cuando ésta es falsa. |
 
 Es una importante medida de la calidad de la prueba, luego volveremos
-sobre su cálculo, y en el apéndice ofrecemos más detalles.
+sobre su cálculo, y en el último capítulo ofrecemos más detalles.
 
 Así entonces, $\alpha$ es elegido por el investigador y mide el riesgo que está dispuesto a correr de rechazar una $H_{0}$ que es verdadera. Por el contrario, $\beta$ depende de varios elementos:
 
-En primer lugar, depende de $\alpha$ si se reduce el nivel de significación, aumenta el riesgo de cometer
+En primer lugar, depende de $\alpha$: si se reduce el nivel de significación, aumenta el riesgo de cometer
 ETII.
 
-Si se cambia el gráfico <!-- referencia al anterior-->, reduciendo el nivel de significación, ahora la posición relativa de las áreas de rechazo y no rechazo queda:
+Si se cambia el gráfico \@ref(fig:etii5), reduciendo el nivel de significación, ahora la posición relativa de las áreas de rechazo y no rechazo queda:
 
-```{r fig.cap="Comparación de la probabilidad de hallar a $\\overline{x}$ en zona de rechazo o no  rechazo, según sea $H_{0}$ verdadera o falsa $\\alpha = 0,01$"}
-hov_1 <- ggplot(data = data.frame(z = c(-4.5)), aes(z)) +
-  geom_area(stat = "function", fun = dnorm, fill = "white", xlim = c(-4, qnorm(.99)), col = "black") +
-  geom_area(stat = "function", fun = dnorm, fill = "green", xlim = c(qnorm(.99), 5), col = "black") +
-  ylab("") + xlab("") + scale_x_discrete(breaks = NULL) +
-  geom_segment(x = -4, xend = 4, y = 0, yend = 0) +
-  scale_y_continuous(breaks = NULL) + theme_tufte() +
-  geom_text(aes(label = "mu0"), x = 0, y = -.015) +
-  geom_text(aes(label = "xmcrit"), x = 2.326348, y = -.015) +
-  geom_text(aes(label = "alpha"), x = 3, y = .04, size = 5) +
-  geom_text(aes(label = "1-alpha"), x = 0, y = .1, size = 5) +
-  geom_text(aes(label = "Ho verdadera"), x = -3, y = .2, size = 5) +
-  annotate(geom = "rect", xmin = -.01, xmax = .01, ymin = -.01, ymax = .01, col = "red")
-
-
-hof_1 <- ggplot(data = data.frame(z = c(-4, 5)), aes(z)) +
-  geom_area(stat = "function", fun = dnorm, args = list(mean = 2.5, sd = 1), fill = "white", xlim = c(-4, qnorm(.99)), col = "black") +
-  geom_area(stat = "function", fun = dnorm, args = list(mean = 2.5, sd = 1), fill = "green", xlim = c(qnorm(.99), 5), col = "black") +
-  ylab("") + xlab("") + scale_x_discrete(breaks = NULL) +
-  geom_segment(x = -4, xend = 5, y = 0, yend = 0) +
-  scale_y_continuous(breaks = NULL) + theme_tufte() +
-  geom_text(aes(label = "mu1"), x = 1, y = -.015) +
-  geom_text(aes(label = "xmcrit"), x = 2.326348, y = -.015) +
-  geom_text(aes(label = "1-beta"), x = 3.4, y = .04, size = 5) +
-  geom_text(aes(label = "beta"), x = 1.4, y = .1, size = 5) +
-  geom_text(aes(label = "Ho falsa"), x = -4, y = .2, size = 5) +
-  annotate(geom = "rect", xmin = .99, xmax = 1.01, ymin = -.01, ymax = .01, col = "red")
-
-grid.arrange(hov_1, hof_1, nrow = 2)
+```{r etii1, fig.cap="Comparación de la probabilidad de hallar a $\\overline{x}$ en zona de rechazo o no rechazo, según sea $H_{0}$ verdadera o falsa $(\\alpha = 0.01)$", fig.asp = 0.1, fig.width = 3, fig.align='center'}
+knitr::include_graphics("imagenes/etii1.png")
 ```
 
 Como vemos, la reducción del nivel de significación del 5% al 1% hace
 que el punto crítico se desplace hacia la derecha y, en consecuencia,
 que aumente el área bajo la otra curva, que corresponde a $H_{0}$ falsa.
 Este cambio consiste en hacer a la prueba más exigente, al reducir las
-chances de rechazar $H_{0}$ por error del 5 al 1%. Su consecuencia es la de aumentar las chances de aceptar $H_{0}$ por error, aumentando $\beta$.
+chances de rechazar $H_{0}$ por error, del 5 al 1%. Su consecuencia es la de aumentar las chances de aceptar $H_{0}$ por error, aumentando el valor de $\beta$.
 
 El ETII depende también de cuál sea la verdadera media poblacional. En
-los gráficos <!-- referencia a los dos anteriores--> planteamos como "otra posibilidad" que la verdadera
-media fuera $\mu_{1}$, que es una de las formas en que puede ser $H_{0}$ falsa.
+los gráficos \@ref(fig:etii5) y \@ref(fig:etii1) planteamos como "otra posibilidad" que la verdadera media fuera $\mu_{1}$, que es una de las formas en que puede ser $H_{0}$ falsa.
 Siendo $H_{0}$ falsa, $\mu$ puede tener distintos valores y ellos incidirán en la probabilidad de cometer ETII. En el gráfico siguiente, además de $\mu_{1}$ agregamos otras dos medias poblacionales posibles $\mu_{2}$ y $\mu_{3}$.
 
-<!-- con la misma lógica que los anteriores, hay que agregar otras dos campanas con otras medias poblacionales, te lo dejo-->
 
-```{r compHallarX, fig.cap="Comparación de la probabilidad de hallar a $\\overline{x}$ en zona de aceptación o rechazo, según sea $H_0$ verdadera o falsa, de tres modos diferentes", fig.asp = 0.1, fig.width = 3, fig.align='center'}
+```{r compHallarX, fig.cap="Comparación de la probabilidad de hallar a $\\overline{x}$ en zona de rechazo o no rechazo, según sea $H_0$ verdadera o falsa, de tres modos diferentes", fig.asp = 0.1, fig.width = 3, fig.align='center'}
 knitr::include_graphics("imagenes/image188.png")
 ```
 
@@ -1478,25 +1339,20 @@ de la hipotética (como es el caso de $\mu_{3}$), es menor la probabilidad $\bet
 Más concreto aún: es más fácil aceptar por error un billete falso si se
 le parece mucho al verdadero que si es muy distinto, y cuanto más difiera, menor será la probabilidad de aceptarlo por error.
 
-El gráfico \@ref(fig:compHallarX) también muestra que, de manera complementaria, $1-\beta$ (la potencia de la prueba), va creciendo a medida que se consideran medias
-alternativas más alejadas de la hipotética.
+El gráfico \@ref(fig:compHallarX) también muestra que, de manera complementaria, $1-\beta$ (la potencia de la prueba), va creciendo a medida que se consideran medias alternativas más alejadas de la hipotética.
 
-Volvamos al ejemplo (ficticio) sobre el promedio con que egresan los
-estudiantes de Psicología en la prueba unilateral derecha, cuyas
+Volvamos al ejemplo (ficticio) sobre el promedio al egreso de una carrera universitaria en la prueba unilateral derecha, cuyas
 hipótesis son:
 
 $$H_{0}:\mu = 6.50$$
 
 $$H_{1}:\mu > 6.50$$
 
-Preguntamos: si la verdadera media de nota con que egresan los
-estudiantes fuera de 6.55, ¿cuál habría sido la probabilidad de haber
-aceptado $H_{0}$? Dicho de otra forma ¿qué probabilidad hay de creer que la media sigue siendo 6.50 si en realidad ha aumentado a 6.55? Se trata de calcular la probabilidad de cometer ETII, porque se trata de aceptar una $H_{0}$ que es falsa. A un nivel de significación del 5%, el punto crítico que habíamos encontrado es 6.60, por lo que:
+Preguntamos: si la verdadera media de nota al egreso fuera de 6.55, ¿cuál habría sido la probabilidad de haber
+aceptado $H_{0}$? Dicho de otra forma ¿qué probabilidad hay de creer que la media sigue siendo 6.50 si en realidad ha aumentado a 6.55? Se trata de calcular la probabilidad de cometer ETII, que consiste en aceptar una $H_{0}$ que es falsa. A un nivel de significación del 5%, el punto crítico que habíamos encontrado es 6.60, por lo que:
 
-Gráfico 12: Ubicación de los tipos de error de la prueba si $H_{0}$ es
-verdadera o si es falsa.
 
-```{r fig.cap="", fig.asp = 0.1, fig.width = 3, fig.align='center'}
+```{r etii, fig.cap="Ubicación de los tipos de error de la prueba si $H_{0}$ es verdadera o si es falsa", fig.asp = 0.1, fig.width = 2.7, fig.align='center'}
 knitr::include_graphics("imagenes/image189.png")
 ```
 
@@ -1509,16 +1365,14 @@ $$z = \frac{6.60 - 6.55}{\frac{0.60}{\sqrt{100}}} = \frac{0.05}{0.06} = 0.83$$
 
 Cuya área izquierda asociada es:
 
-```{r}
+```{r echo=TRUE}
 pnorm(.83)
 ```
 
 $P(z \leq 0.83)=0.7967$
 
 Éste es el valor de $\beta$ para esta prueba y esta media alternativa. Leemos
-el resultado diciendo que "si el verdadero promedio con que egresan los
-estudiantes de Psicología fuera de 6.55, habría una probabilidad de
-0.7967 de creer que sigue siendo igual al histórico, de 6.60.
+el resultado diciendo que: "si el verdadero promedio al egreso fuera de 6.55, habría una probabilidad de 0.7967 de creer que sigue siendo igual al histórico, de 6.60".
 
 Calculamos la potencia de esta prueba, como el complemento de $\beta$:
 
@@ -1531,9 +1385,7 @@ observaciones. Estos cuatro elementos: magnitud de la diferencia, tamaño de la 
 ### Curva de potencia
 
 Dado que no se conoce la verdadera media de la población, solo podemos
-conjeturar acerca de ella y calcular el ETII, así como la potencia para
-diferentes valores posibles, como hemos hecho para tres valores en el
-gráfico <!-- referencia al que era 10-->. En general, resulta más valioso calcular la potencia ($1-\beta$) porque nos informa sobre la calidad de la prueba. El cálculo es largo
+conjeturar acerca de ella y calcular el ETII ($\beta$) y la potencia ($1-\beta$) para diferentes valores posibles, como hemos hecho para tres valores en el gráfico \@ref(fig:compHallarX). En general, resulta más valioso calcular la potencia ($1-\beta$) porque nos informa sobre la calidad de la prueba. El cálculo es largo
 porque deben seguirse los mismos pasos que en el ejemplo anterior para
 cada una de las medias posibles, pero podemos automatizarlo en una hoja
 de cálculo. La tabla para calcular la potencia de la prueba anterior se
@@ -1544,26 +1396,26 @@ alternativas, a las que hemos llamado $\mu_{k}$. Así resulta:
 
 ```{r}
 aux_table <- tibble::tribble(
-  ~"Media alternativa $\\mu_{k}$", ~"$z = \\frac{6,60 - \\mu_{k}}{\\frac{0,60}{\\sqrt{100}}}$", ~"$\\beta$", ~"$1 - \\beta$",
-  "6,51", "1,50", "0,9332", "0,0668",
-  "6,53", "1,17", "0,8783", "0,1217",
-  "6,55", "0,83", "0,7977", "0,2023",
-  "6,57", "0,50", "0,6915", "0,3085",
-  "6,59", "0,17", "0,5662", "0,4338",
-  "6,61", "-0,17", "0,4338", "0,5662",
-  "6,63", "-0,50", "0,3085", "0,6915",
-  "6,65", "-0,83", "0,2023", "0,7977",
-  "6,67", "-1,17", "0,1217", "0,8783",
-  "6,69", "-1,50", "0,0668", "0,9332",
-  "6,71", "-1,83", "0,0334", "0,9666",
-  "6,73", "-2,17", "0,0151", "0,9849",
-  "6,75", "-2,50", "0,0062", "0,9938",
-  "6,77", "-2,83", "0,0023", "0,9977",
-  "6,79", "-3,17", "0,0008", "0,9992",
-  "6,81", "-3,50", "0,0002", "0,9998",
-  "6,83", "-3,83", "0,0001", "0,9999",
-  "6,85", "-4,17", "0,0000", "1,0000",
-  "6,87", "-4,50", "0,0000", "1,0000",
+  ~"Media alternativa $\\mu_{k}$", ~"$z = \\frac{6.60 - \\mu_{k}}{\\frac{0.60}{\\sqrt{100}}}$", ~"$\\beta$", ~"$1 - \\beta$",
+  "6.51", "1.50", "0.9332", "0.0668",
+  "6.53", "1.17", "0.8783", "0.1217",
+  "6.55", "0.83", "0.7977", "0.2023",
+  "6.57", "0.50", "0.6915", "0.3085",
+  "6.59", "0.17", "0.5662", "0.4338",
+  "6.61", "-0.17", "0.4338", "0.5662",
+  "6.63", "-0.50", "0.3085", "0.6915",
+  "6.65", "-0.83", "0.2023", "0.7977",
+  "6.67", "-1.17", "0.1217", "0.8783",
+  "6.69", "-1.50", "0.0668", "0.9332",
+  "6.71", "-1.83", "0.0334", "0.9666",
+  "6.73", "-2.17", "0.0151", "0.9849",
+  "6.75", "-2.50", "0.0062", "0.9938",
+  "6.77", "-2.83", "0.0023", "0.9977",
+  "6.79", "-3.17", "0.0008", "0.9992",
+  "6.81", "-3.50", "0.0002", "0.9998",
+  "6.83", "-3.83", "0.0001", "0.9999",
+  "6.85", "-4.17", "0.0000", "1.0000",
+  "6.87", "-4.50", "0.0000", "1.0000",
 )
 knitr::kable(
   aux_table, kable_outp,
@@ -1578,9 +1430,9 @@ aceptar $H_0$ a medida que la verdadera media es más lejana. Al mismo
 tiempo, aumenta la probabilidad de rechazar $H_0$ (aumenta la potencia).
 Esos resultados se representan gráficamente en lo que se denomina
 **curva de potencia**. Para el ejemplo anterior, la curva de potencia es
-la siguiente:
+la de la figura \@ref(fig:pot1).
 
-```{r fig.cap="Curva de potencia con $\\mu_{0} = 6.50$, $\\alpha = 0.05$ y $n = 100$"}
+```{r pot1, fig.cap="Curva de potencia con $\\mu_{0} = 6.50$, $\\alpha = 0.05$ y $n = 100$"}
 mues <- seq(6.51, 6.87, .01)
 z <- (6.6 - mues) / .06
 beta <- pnorm(z)
@@ -1606,16 +1458,13 @@ de rechazar una hipótesis nula si la verdadera media difiere -aunque sea
 poco-, de la hipotética.
 
 La forma de la curva de potencia depende de varios factores, de los que
-solo nos detendremos en el tamaño de la muestra: con muestras más
+solo nos detendremos en el tamaño de la muestra. Con muestras más
 grandes, si todo lo demás se mantiene sin cambios, la potencia de la
 prueba aumenta. Inversamente, muestras pequeñas reducen la potencia.
 
-Veamos esto gráficamente, si la muestra fuera de menor tamaño que la del ejemplo, como *n=50*, la curva de potencia toma la siguiente forma:
+Veamos esto gráficamente, si la muestra fuera de menor tamaño que la del ejemplo, como *n=50*, la curva de potencia es la de la figura \@ref(fig:pot2):
 
-Gráfico 14: Curva de potencia con
-$\mu_{0} = 6.50,\ \alpha = 0.05\ y\ n = 50$
-
-```{r}
+```{r pot2, fig.cap="Curva de potencia con $\\mu_{0} = 6.50$, $\\alpha = 0.05$ y $n = 50$"}
 z50 <- (6.6 - mues) / .0848
 beta50 <- pnorm(z50)
 potencia50 <- 1 - beta50
@@ -1631,9 +1480,9 @@ más en reaccionar", son necesarios alejamientos más grandes para que
 crezca la probabilidad de rechazo.
 
 Por el contrario, si se trata de una muestra de mayor tamaño, como 200
-casos, la curva tiene la forma:
+casos, la curva tiene la forma de la figura \@ref(fig:pot3):
 
-```{r fig.cap="Curva de potencia con $\\mu_{0} = 6.50$, $\\alpha = 0.05$ y $n = 200$"}
+```{r pot3, fig.cap="Curva de potencia con $\\mu_{0} = 6.50$, $\\alpha = 0.05$ y $n = 200$"}
 z200 <- (6.6 - mues) / .0424
 beta200 <- pnorm(z200)
 potencia200 <- 1 - beta200
@@ -1672,17 +1521,17 @@ la $H_{0}$ a un nivel del 5%". De modo que, como hemos dicho, se establece
 una regla de decisión y en base a ella se decide por sí o por no.
 
 En una prueba unilateral derecha al 5%, el puntaje $z$ que determina el
-punto de corte entre las zonas de rechazo y no rechazo es $z_{c}=1.64$, por lo que, si se obtiene un $z_{obs}= 1.67$, se rechaza
+punto de corte entre las zonas de rechazo y no rechazo es $z_{c}=1.64$, por lo que, si se obtiene un $z_{obs}= 2$, se rechaza
 $H_{0}$ y también se rechaza si se obtiene $z_{obs}= 3.20$, porque ambos son
 superiores al punto crítico. Sin embargo, encontrar $z_{obs}= 3.20$ indica que
 el valor observado se aleja en gran magnitud del hipotético, mientras
-que si $z_{obs}= 1.67$, se rechaza muy cerca del límite. Entre dos situaciones,
+que si $z_{obs}= 2$, se rechaza más cerca del límite. Entre dos situaciones,
 que ambas llevan a rechazar $H_{0}$, puede haber diferencias de
 importancia; por eso es necesaria una medida de la magnitud de la
-diferencia. Veamos esto gráficamente:
+diferencia. Para ver esto gráficamente, se denomina $z_{obs}^{(a)}$ y $z_{obs}^{(b)}$ a dos puntajes $z_{obs}$ obtenidos de la estandarización de los resultados de dos observaciones diferentes:
 
 
-```{r echo=FALSE, message=FALSE, warning=FALSE}
+```{r dosz, fig.cap="Ejemplo de dos valores posibles de $z_{obs}$ que conducen a rechazar $H_0$"}
 ggplot(data = data.frame(z = c(-4.4)), aes(z)) +
   geom_area(stat = "function", fun = dnorm, fill = "white", xlim = c(-4, qnorm(.95)), col = "black") +
   geom_area(stat = "function", fun = dnorm, fill = "green", xlim = c(qnorm(.95), 4), col = "black") +
@@ -1690,14 +1539,18 @@ ggplot(data = data.frame(z = c(-4.4)), aes(z)) +
   geom_segment(x = -4, xend = 4, y = 0, yend = 0) +
   scale_y_continuous(breaks = NULL) + theme_tufte() +
   geom_text(aes(label = "0"), x = 0, y = -.015) +
-  geom_text(aes(label = "1.64"), x = 1.64, y = -.015) +
-  geom_text(aes(label = "z"), x = 3.5, y = -.01) + annotate(geom = "rect", xmin = -.01, xmax = .01, ymin = -.01, ymax = .01, col = "red") + geom_point(aes(x = 1.67, y = 0), size = 2.5) + geom_point(aes(x = 3.2, y = 0), size = 2.5)
+  geom_text(aes(label = TeX("$\\z_c=1.64$", output = "character")), x = 1.64, y = -.015, parse=TRUE) +
+  geom_text(aes(label = "z"), x = 4, y = -.01) + annotate(geom = "rect", xmin = -.01, xmax = .01, ymin = -.01, ymax = .01, col = "red") + geom_point(aes(x = 2, y = 0), size = 2.5)  +
+  geom_text(aes(label = TeX("$\\z_{obs}^{(a)}=2$", output = "character")), x = 2, y = .17, parse=TRUE) +
+  geom_segment(x = 2, xend = 2, y = .15, yend = 0, arrow = arrow())+ geom_point(aes(x = 3.2, y = 0), size = 2.5)+
+  geom_text(aes(label = TeX("$\\z_{obs}^{(b)}=3.2$", output = "character")), x = 3.2, y = .1, parse=TRUE)+
+  geom_segment(x = 3.2, xend = 3.2, y = .08, yend = 0, arrow = arrow())+ geom_point(aes(x = 3.2, y = 0), size = 2.5) 
 ```
 
 
-Aunque los dos valores de $z$ llevan a concluir que se debe rechazar la
-$H_{0}$ (porque ambos están en la zona de rechazo), el valor 3,20 es
-sustancialmente menos probable que el 1,67, por lo que podríamos decir
+Aunque los dos valores de $z_{obs}$ llevan a concluir que se debe rechazar la
+$H_{0}$ (porque ambos están en la zona de rechazo), el valor $3.20$ es
+sustancialmente menos probable que el $2$, por lo que podríamos decir
 que en ese caso ($z_{obs}=3.20$) tenemos *más* evidencia para rechazar
 $H_{0}$, sin embargo, si solo informamos que "se rechaza $H_{0}$ a un nivel
 del 5%", quien lee no puede saber si se trató de una diferencia grande o
@@ -1716,7 +1569,7 @@ evidencia en contra de la hipótesis nula.
 El valor $p$ es una probabilidad condicional a la que escribimos
 formalmente como:
 
-$$valor p=P( |u| \geq u_{obs}/H_{0}  V )$$
+$$p=P( |u| \geq u_{obs}/H_{0}  V )$$
 
 Donde $u$ es el estimador del parámetro al que se refiere la $H_{0}$. La
 expresión $|u| \geq u_{obs}$ es la forma reducida de
@@ -1727,12 +1580,9 @@ Cuanto más pequeño es el valor $p$, tanta más evidencia hay para
 rechazar $H_{0}$. Por el contrario, un valor $p$ grande indica que el
 resultado observado es muy probable bajo el supuesto de hipótesis nula
 cierta, lo que no aporta evidencia en contra de la hipótesis nula y
-conduce a no rechazarla.
+conduce a no rechazarla. El uso del valor $p$ es más cercano al enfoque original de Fisher, el cual, a diferencia del de Neyman y Pearson, no establece un punto de corte para tomar una decisión dicotómica, sino que *mide* la "fuerza de la evidencia" en contra de $H_0$ por medio de una probabilidad. Pero esa probabilidad no está asociada a $H_0$, lo cual es un error de interpretación frecuente, sino a los valores muestrales.
 
-Esta manera de indicar cuán esperable sería lo que hemos observado si
-$H_{0}$ fuera cierta, puede vincularse con el razonamiento anterior,
-comparando el valor $p$ con el nivel de significación fijado de
-antemano. Así resultan dos posibilidades:
+Esta manera de indicar cuán esperable sería lo que hemos observado si $H_{0}$ fuera cierta, puede vincularse con el razonamiento anterior, comparando el valor $p$ con el nivel de significación fijado de antemano. Así resultan dos posibilidades:  
 
 - Si el valor $p$ es menor que el nivel de significación establecido
 ($p<\alpha$): se rechaza la hipótesis nula y se describe como "un
@@ -1747,24 +1597,23 @@ resultado no estadísticamente significativo". Lo que expresa que la
 probabilidad de haber hallado este resultado por azar es mayor que el
 máximo establecido, por lo que es razonable atribuirlo al azar, es decir a la variabilidad propia de los resultados muestrales.
 
-
+Es decir, se trata de dicotomizar el continuo del campo de variación de $p$, que es $0\geq p\geq1$ a que sea mayor o menor que $\alpha$.  
 Pero aun cuando esta modalidad de presentar el resultado puede hacerse
-equivalente al procedimiento anterior, constituye un aporte de
-información adicional de importancia porque pasa de la conclusión
+equivalente a la toma de decisión por sí o por no, constituye un aporte importante de información, porque pasa de la conclusión
 dicotómica (se rechaza o no se rechaza) a la probabilidad de hallar este resultado si la hipótesis nula fuera cierta.
 
 A continuación calculamos estas probabilidades en los ejemplos vistos,
 empezando por pruebas unilaterales:
 
-En el ejemplo sobre el promedio con que egresan los alumnos:
+En el ejemplo sobre el promedio al egreso de una carrera universitaria:
 
 $$H_{0}:\mu = 6.50$$
 
 $$H_{1}:\mu > 6.50$$
 
-En la muestra de 100 alumnos habíamos hallado
+En la muestra de 100 estudiantes habíamos hallado
 ${\overline{x}}_{\text{obs}} = 6.65$ y $s = 0.60$, con esos datos
-debemos calcular la probabilidad de hallar "un valor tan extremo como el
+debe calcularse la probabilidad de hallar "un valor tan extremo como el
 observado o más extremo que él, si $H_{0}$ es verdadera". Se trata de una
 probabilidad condicional, en la que la condición es que $H_{0}$ sea
 verdadera, lo escribimos así:
@@ -1781,8 +1630,8 @@ $$z = \frac{6.65 - 6.50}{\frac{0.60}{\sqrt{100}}} = \frac{0.15}{0.06} = 2.50$$
 Entonces debemos hallar $P( z \geq 2.50 )$ y ya no hace falta
 indicar la condición (si $\mu = 6.50$), porque está incluida en el
 cálculo de $z$. Para eso complementamos la probabilidad acumulada hasta $2.50$:
-```{r}
-1 - pnorm(2.5)
+```{r echo=TRUE}
+round(1 - pnorm(2.5),4)
 ```
 
 $$P( z \geq 2.50) = 0.0062$$
@@ -1817,27 +1666,26 @@ a puntaje $z$:
 $$z = \frac{\widehat{p} - P}{\sqrt{\frac{P*(1 - P)}{n}}} = \frac{0.32 - 0.30}{\sqrt{\frac{0.30*(1 - 0.30)}{200}}} = 0.617$$
 
 
-```{r}
-1 - pnorm(.617)
+```{r echo=TRUE}
+round(1 - pnorm(.617), 4)
 ```
 
 $$P( \widehat{p} \geq 0.32/P = 0.30)=0.2686$$
-Se trata
-de una probabilidad "grande", si se compara con los niveles de
+Se trata de una probabilidad "grande", si se compara con los niveles de
 significación que usamos, es superior a 0.05 y también superior a 0.10,
 por lo que la decisión será la de no rechazar $H_{0}$ y concluir que el
 candidato no mejoró su proporción de votos.
 
 En el mismo ejemplo, cuando se trabaja con la muestra pequeña, no es
 válida la aproximación normal, por lo que debe usarse la binomial. El
-cálculo del valor p es equivalente, solo que se realiza en términos de
+cálculo del valor $p$ es equivalente, solo que se realiza en términos de
 la variable *número de éxitos*. En el ejemplo, el número observado de
 éxitos era de 16, la probabilidad condicional que corresponde al valor $p$ es entonces la probabilidad de hallar en la muestra de 50 casos, 16
 personas o más que vayan a votar al candidato, si en la población la
-proporción de quienes lo votarán es de 30%. Se complementa la probabilildad acumulada hasta 15 (variable dicreta):
+proporción de quienes lo votarán fuera de 30% ($H_0$ verdadera). Se complementa la probabilildad acumulada hasta 15 (variable dicreta):
 
-```{r}
-1 - pbinom(15, 50, .3)
+```{r echo=TRUE}
+round(1 - pbinom(15, 50, .3),4)
 ```
 
 
@@ -1846,8 +1694,7 @@ $$P(\widehat{x} \geq 16/n = 50,\ P = 0.30) = 0.4308$$
 Nuevamente es un valor elevado para p, por lo que no se rechaza $H_{0}$.
 
 Los software de análisis de datos ofrecen, como resultado de las pruebas
-de hipótesis este valor, a veces llamado "p", "p-value", "valor p" o
-"significación"; y es en él que hay que basar la decisión.
+de hipótesis este valor, a veces llamado $p$, $p-value$, $valor \, p$ o $significacion$; y es en él que hay que basar la decisión.
 
 ## Muestras pequeñas y pruebas $t$
 
@@ -1876,32 +1723,19 @@ Muestras grandes: Por el teorema central del límite, estamos autorizados
 a usar distribución normal para la media muestral, sin importar cuál sea
 la distribución de la variable en la población.
 
-Muestras pequeñas: Si la variable tiene distribución normal en la
-población, usamos distribución *t de Student*, cuyos grados de libertad
-son $n-1$.
+Muestras pequeñas: Si la variable tiene distribución paramétrica normal (es decir si tiene esa distribución en la población), usamos distribución *t de Student*, con $n-1$ grados de libertad para modelar la distribución de las $\bar{x}$.
 
 De estas dos condiciones (tamaño de muestra y normalidad de la variable
 en la población) resultan cuatro combinaciones:
 
-<!-- ```{r} -->
-<!-- aux_table <- tibble::tribble( -->
-<!--   ~"", ~"Normal", ~"No normal", -->
-<!--   "grande ($n \\geq 30$)",   "distribución normal",                           "por TCL tiende a normal", -->
-<!--   "pequeña ($n < 30$)",      "distribución *t de Student*",                   "ninguna[^95]", -->
-<!-- ) -->
-<!-- knitr::kable( -->
-<!--   aux_table, kable_outp, -->
-<!--   booktabs = TRUE, align = "lll", escape = FALSE, -->
-<!-- ) %>% -->
-<!--   kableExtra::add_header_above(c("Tamaño de la muestra" = 1, "Distribución de la variable en la población" = 2)) %>% -->
-<!--   kableExtra::kable_styling(latex_options = "striped") -->
-<!-- ``` -->
 
-  Tamaño de la muestra   Distribución de la variable en la población
-  ---------------------- --------------------------------------------- -------------------------
-                         Normal                                        No normal
-  grande ($n \geq 30$)   distribución normal                           por TCL tiende a normal
-  pequeña ($n < 30$)     distribución *t de Student*                   ninguna[^95]
+Tamaño de muestra     |               Distribución paramétrica            |
+----------------------|---------------------------|-----------------------|
+           .          |  **Normal**               |**No normal**          |
+grande ($n \geq 30$)  |distribución normal        |Por TCL tiende a normal|
+pequeña ($n < 30$)    |distribución *t de Student*|Ninguna[^95]           |
+
+
 
 De modo que hay una situación que no podemos abordar con estos
 procedimientos: la de muestras pequeñas provenientes de poblaciones no
@@ -1924,27 +1758,36 @@ Además de operar internamente con la distribución *t de Student*, los
 programas de análisis de datos ofrecen los resultados de las pruebas de
 hipótesis siempre en términos del valor $p$. Eso permite que quien lee
 la salida pueda decidir si rechaza o no rechaza la $H_{0}$, de acuerdo al
-nivel de significación que haya fijado.
+nivel de significación que haya fijado. Para facilitar la interpretación, los programas de análisis de datos indican la "fuerza de la evidencia", que se espresa en cuán pequeño es el valor $p$, con asteriscos $*$ simples, dobles, etc. La interpretación es la siguiente: 
 
+| Símbolo  | Significado      |
+|----------|------------------|
+|   $ns$   | $p \geq 0.05$    |
+|   $*$    | $p \leq 0.05$    |
+|   $**$   | $p \leq 0.01$    |
+|   $***$  | $p \leq 0.001$   |
+|   $****$ | $p \leq 0.0001$  |
 
-## Hacerlo en R
+La recomendación de @APA2010 es hasta tres asteriscos, todos los valores $p$ menores a $0.001$ se codifican con $***$
 
-### Media
+## Hacerlo en R  
 
-Sea el caso de una prueba de hipótesis acerca del promedio del número de hijos por mujer en una comunidad dada. Se busca evidencia para decidir si, según los datos de una muestra de 150 casos, la población de la que esa muestra proviene tiene en promedio dos hijos por mujer o si ese promedio es mayor a 2. En la muestra de 150 observaciones se obtuvieron las siguientes medidas descriptivas:
+### Prueba sobre la media
 
-```{r echo=TRUE, message=FALSE, warning=FALSE, include=FALSE}
+Sea el caso de una prueba de hipótesis acerca del promedio del número de hijas e hijos por mujer en una comunidad dada. Se busca evidencia para decidir si, según los datos de una muestra de 150 casos, la población de la que esa muestra proviene tiene en promedio dos hijos e hijas por mujer o si ese promedio es mayor a 2. En la muestra de 150 observaciones se obtuvieron las siguientes medidas descriptivas (los datos son ficticios, por lo que se generan aleatoriamente a partir de una distribución normal, la variable se llama $x$):
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}
 set.seed(13)
 x <- rnorm(150, 2.15, 1)
 ```
 
 ```{r echo=TRUE}
-mean(x)
-sd(x)
+round(mean(x),2)
+round(sd(x),2)
 length(x)
 ```
 
-Con el valor muestral de 2.09, la pregunta es si se trata de evidencia suficiente como para afirmar que la media poblacional supera al valor de dos hijos por mujer.
+Con el valor muestral de 2.09, la pregunta es si se trata de evidencia suficiente como para afirmar que la media poblacional supera al valor de dos hijos e hijas por mujer.
 Las hipótesis entonces son:
 
 $$H_{0}:\ \mu = 2$$
@@ -1964,15 +1807,15 @@ Así, la prueba se pide:
 t.test(x, alternative = "greater", mu = 2)
 ```
 
-El resultado muestra el valor $t=1.15$, la cantidad de desviaciones estándar a que se encuentra el resultado muestral de la media hipotética. No es un número grande, según los criterios vistos y eso se confirma con el valor $p$, que es $0.12$. Esta es una probabilidad mayor a todos los niveles de significación usuales, es decir que lo observado es esperable bajo la hipótesis nula, lo que conduce a no rechazar $H_{0}$. Así, la conclusión es que no hay evidencia para creer que la población de la cual esta muetra proviene, tenga un promedio de más de dos hijos por mujer.
+El resultado muestra el valor $t=1.15$, la cantidad de desviaciones estándar a que se encuentra el resultado muestral alejado de la media hipotética. No es un número grande, según los criterios vistos y eso se confirma con el valor $p$, que es $0.12$. Esta es una probabilidad mayor a todos los niveles de significación usuales, es decir que lo observado es esperable bajo la hipótesis nula, lo que conduce a no rechazar $H_{0}$. Así, la conclusión es que no hay evidencia para creer que la población de la cual esta muestra proviene, tenga un promedio de más de dos hijas e hijos por mujer.
 
-Luego, la salida ofrece un intervalo que tiene un solo límite; el inferior. Es un intervalo unilateral derecho, porque así es como fue formulada la $H_{1}$, que indica que, con una confianza de 95%, el número medio de hijos por mujer supera el valor $1.96$. 
+Luego, la salida ofrece un intervalo que tiene un solo límite; el inferior. Es un intervalo unilateral derecho, porque así es como fue formulada la $H_{1}$, que indica que, con una confianza de 95%, el número medio de descendientes por mujer supera el valor $1.96$. Como este intervalo, que comienza en $1.96$ y sigue hacia la derecha, contiene al valor hipotético ($2$), es compatible con la decisión de no rechazar $H_0$.
 
-### Proporción
+### Prueba sobre la proporción
 
-Sea que interesa comparar la proporción de población adulta de Argentina que sufre de obesidad  con los valores mundiales de obesidad de personas adultas. Se define como obesas a las personas cuyo índice de masa corporal (peso en Kg dividido talla en metros al cuadrado) es mayor o igual a 30. Según la Organización Mundial de la Salud ( [https://www.who.int/news-room/fact-sheets/detail/obesity-and-overweight](https://www.who.int/news-room/fact-sheets/detail/obesity-and-overweight)), en 2016, un 13% de la población mundial sufría de obesidad.
+Sea que interesa comparar la proporción de población adulta de Argentina que sufre de obesidad  con los valores mundiales de obesidad de personas adultas. Se define como obesas a las personas cuyo índice de masa corporal (peso en Kg dividido talla en metros al cuadrado) es mayor o igual a 30. Según la Organización Mundial de la Salud (@WHO), en 2016, un 13% de la población mundial sufría de obesidad.
 
-Para el problema de interés, la hipótesis se plantea en dirección a que los argentinos probablemente tengan una prevalencia de obesidad superior a la media de todo el mundo. La hipótesis nula afirmará que la proporción de personas con sobrepeso en Argentina no es diferente del promedio mundial. Es decir: 
+Para el problema de interés, la hipótesis se plantea en dirección a que la población adulta de Argentina probablemente tengan una prevalencia de obesidad superior a la media de todo el mundo. La hipótesis nula afirmará que la proporción de personas con sobrepeso en Argentina no es diferente del promedio mundial. Es decir: 
 
 $$H_{0}:P = 0.13$$
 
@@ -1985,7 +1828,7 @@ La base de la Encuesta Nacional de Factores de Riego 2013 contiene la variable "
 - 3 Obesidad
 - 9 Ns/Nc peso y/o talla
 
-Cuya distribución es:
+Para obtener la distribución, primero se lee la base (que tiene separador de campos el signo "$|$"), se solicita la tabla con el total y luego la tabla de de frecuencias relativas se redondea a 3 decimales:
 
 ```{r echo=TRUE}
 ENFR2013 <- read.csv("bases/archivostxt/ENFR2013_baseusuario.txt", sep = "|")
@@ -1994,36 +1837,49 @@ addmargins(table(ENFR2013$IMC_AGRUPADO))
 round(addmargins(prop.table(table(ENFR2013$IMC_AGRUPADO))), 3) * 100
 ```
 
-Esta tabla está construida sobre los datos muestrales, una comparación correcta exige que se usen los factores de ponderación de la encuesta, que están calculados teniendo en cuenta el diseño de la muestra. Para tenerlos en cuenta, hace falta la función "wtd.table" (tabla ponderada), del paquete `questionr`, y cuyos argumentos son: la o las variables que se van a tabular y la variable que define las ponderaciones.
+Esta tabla está construida sobre los datos muestrales, una comparación correcta exige que se usen los factores de ponderación de la encuesta, que están calculados teniendo en cuenta el diseño de la muestra. Para tenerlos en cuenta, hace falta la función "wtd.table" (tabla ponderada), del paquete `questionr`, y cuyos argumentos son: la o las variables que se van a tabular y la variable que define las ponderaciones.  
+Se instala el paquete correspondiente:
+
+```{r echo=TRUE, eval=FALSE, message=FALSE, warning=FALSE}
+install.packages("questionr")
+```
+
+Y carga en sesión 
+```{r echo=TRUE}
+library("questionr")
+```
 
 Tomando en cuenta los ponderadores de la ENFR2013, la tabla tiene esta forma:
 
 ```{r echo=TRUE, warning=FALSE}
-library("questionr")
 addmargins(wtd.table(ENFR2013$IMC_AGRUPADO, weights = ENFR2013$PONDERACION))
 round(addmargins(prop.table(wtd.table(ENFR2013$IMC_AGRUPADO, weights = ENFR2013$PONDERACION))), 3) * 100
 ```
 
-Que expande los aproximadamente 35 mil casos relevados a casi 26 millones de la población a la que la ENFR2013 representa. Las frecuencias relativas de las dos tablas son similares. 
-A fines de esta presentación, y para poder hacer la inferencia en base a los casos efectivamente relevados, no tendremos en cuenta las ponderaciones.
+Que expande los aproximadamente 35 mil casos relevados a casi 26 millones de la población a la que la ENFR2013 representa. Las frecuencias relativas de las dos tablas son similares. Aplicar los ponderadores es útil para observar medidas descriptivas, pero no puede usarse para hacer inferencias, ya que se incrementaría de manera artificial el tamaño de la muestra. Esto debe cuidarse en algunos programas de análisis de datos, que permiten fijar poderadores y dejarlos activos para cualquier procedimiento. Una prueba de hipótesis o un intervalo de confianza realizado con los factores de ponderación están mal calculados, porque el tamaño de muestra es falso. Salvo en el caso que los ponderadores estén reescalados a $1$, porque así no se altera el tamaño de la muestra, solo se ajusta su composición.  
 
-Para estimar la proporción, se debe construir la categoría de referencia, que en este caso es la 3 de las tablas anteriores (obesidad). Se genera una nueva variable, que se llamará "obesidad" en la matriz de datos, de tal modo que: cuando "IMC:agrupado" valga 3 tengamos lo que llamamos "éxito"; cuando sea 9, sea un caso perdido (NA): y si vale 1 ó 2, que "obesidad" sea cero. Luego se verifica por medio de una tabla entre las variables original y la nueva y vemos la distribución de la variable "obesidad", que ya no tiene en cuenta los casos perdidos:
+Para realizar la prueba sobre la proporción, se debe construir la categoría de referencia, que en este caso es la 3 de las tablas anteriores (obesidad). Se genera una nueva variable, que se llamará "obesidad" en la matriz de datos, de tal modo que: cuando "IMC_agrupado" valga 3 tengamos lo que llamamos "éxito"; cuando sea 9, sea un caso perdido (NA): y si vale 1 ó 2, vale cero.  
+Luego se verifica que las nuevas categorías coincidan con las previstas, por medio de una tabla bivariada entre la variable original y la nueva. Una tabla univariada da los absolutos de "obesidad" y finalmente los relativos, donde se ve que en la muestra, la proporción de personas con obesidad es del $21\%$.
 
 ```{r echo=TRUE}
 ENFR2013$obesidad <- ifelse(ENFR2013$IMC_AGRUPADO == 3, 1, ifelse(ENFR2013$IMC_AGRUPADO == 9, NA, 0))
+
 table(ENFR2013$IMC_AGRUPADO, ENFR2013$obesidad)
+
 addmargins(table(ENFR2013$obesidad))
+
 round(addmargins(prop.table(table(ENFR2013$obesidad))), 3) * 100
 ```
 
-El resultado muestral es una proporción de $21.5\%$ de prevalencia de obesidad en los 30290 casos válidos de la muestra, $\widehat{p}=0.215$. Ahora puede realizarse una prueba $t$ idéntica a la de la media, porque se cuenta con una variable dicotómica con categorías 0 - 1:
+El resultado muestral es una prevalencia de obesidad de $21.5\%$ en los 30290 casos válidos de la muestra, $\widehat{p}=0.215$.  La diferencia con el $20.1\%$ de la primera tabla es porque ahora no se están contando los casos perdidos.  
+Ahora puede realizarse una prueba $t$ idéntica a la de la media, porque se cuenta con una variable dicotómica con categorías 0 - 1:
 
 ```{r echo=TRUE}
 t.test(ENFR2013$obesidad, mu = .13, alternative = "greater")
 ```
 
-El primer resultado es $t=35.9$ que indica un alejamiento de la media hipotética (que en este caso mide la proporción de 1s) de casi 36 desviaciones estándar. Es una valor muy grande y se corresponde con el de $p$ muy pequeño. Esto indica que si $H_{0}$ fuera verdadera (si la prevalencia de obesidad en Argentina fuera la misma que el promedio de todo el mundo), entonces habríamos encontrado un resultado tan poco probable como si, jugando a la ruleta, el número que elegimos hubiese salido nueve veces seguidas(dos en diez mil billonésimas). Por lo cual decidimos (con mucha evidencia a favor) que la proporción de personas con obesidad en Argentina supera a la media mundial.
-Luego tenemos un intervalo que es unilateral, como lo es la prueba que planteamos, que indica que, con una confianza del 95%, el intervalo que comienza en 21.09 contiene a la prevalencia de obesidad en Argentina.
+El primer resultado es $t=35.9$ que indica un alejamiento de la media hipotética (que en este caso mide la proporción de 1s) de casi 36 desviaciones estándar. Es una valor muy grande y se corresponde con el de $p$ muy pequeño. Esto indica que si $H_{0}$ fuera verdadera (si la prevalencia de obesidad en Argentina fuera la misma que el promedio de todo el mundo), entonces habríamos encontrado un resultado tan poco probable como si, jugando a la ruleta, el número que elegimos hubiese salido nueve veces seguidas(dos en diez mil billones). Por lo cual decidimos (con mucha evidencia a favor) que la proporción de personas con obesidad en Argentina supera a la media mundial.
+Luego tenemos un intervalo que es unilateral, como lo es la prueba que planteamos, que indica que, con una confianza del 95%, el intervalo que comienza en 21.09 contiene a la prevalencia de obesidad en Argentina. El hecho que este intervalo excluya al valor hipotético ($13\%$) coincide con el rechazo de $H_0$.  
 El último renglón de la salida es el valor muestral, que conocíamos de la tabla anterior.
 
 ## Resumen de pruebas sobre una muestra
@@ -2051,8 +1907,6 @@ hallar un valor como el observado o uno más extremo.
 
 [^83]: Este número es el mismo que usamos al nivel del 10% en pruebas bilaterales. Esto se debe a que en ese caso el 10% extremo se reparte en 5% en cada cola; ahora nos interesa una sola cola, del 5%.
 
-[^84]: Dziula y Reyna (2005)
-
 [^85]: Se trata de una línea albina de la rata parda. Fue desarrollada en el Wistar Institute en 1906 para fines de investigación biomédica, se trata de la primera rata empleada como organismo modelo (anteriormente se trabajaba con el ratón).
 
 [^86]: Algunos de los datos son ficticios debido a la falta de disponibilidad y a la necesidad de adaptar el ejemplo a nuestros fines. Se mantiene la temática del estudio de referencia, aunque los resultados mostrados no corresponden exactamente a él.
@@ -2065,12 +1919,12 @@ hallar un valor como el observado o uno más extremo.
 
 [^90]: Solo se resta para obtener el punto crítico izquierdo, porque es una prueba unilateral izquierda.
 
-[^91]: $\widehat{p} = \frac{16}{50} = 0,32$
+[^91]: $\widehat{p} = \frac{16}{50} = 0.32$
 
 [^92]: Latinobarómetro es un estudio de opinión pública que aplica anualmente alrededor de 19.000 entrevistas en 18 países de América Latina representando a más de 400 millones de habitantes. Corporación Latinobarómetro es una ONG sin fines de lucro con sede en Santiago de Chile, única responsable de la producción y publicación de los datos. [http://www.latinobarometro.org/](http://www.latinobarometro.org/).
 
 [^93]: Aunque ejemplificaremos solo para el caso de la media y para una prueba unilateral derecha, el concepto de errores de tipo I y II es general y vale del mismo modo para la proporción y para pruebas de hipótesis sobre otros parámetros, en pruebas unilaterales o bilaterales.
 
-[^94]: Lo que sigue tiene objetivos orientativos, si se necesita un tratamiento más detallado del tema -que requiere considerar que si $H_0$ es falsa entonces la distribución del estimador no es necesariamente simétrica-, puede consultarse Cumming (2012).
+[^94]: Lo que sigue tiene objetivos orientativos, si se necesita un tratamiento más detallado del tema -que requiere considerar que si $H_0$ es falsa entonces la distribución del estimador no es necesariamente simétrica-, puede consultarse @cumming2012.
 
-[^95]: Existe un procedimiento basado en un resultado importante de la estadística que se conoce como "desigualdad de Tchebycheff", que establece que la probabilidad de encontrar a una variable a una distancia de su media superior a $k$ desviaciones estándar es menor a $\frac{1}{k^{2}}$. Se expresa como $P\left( \left| x - E(x) \right| > k\sigma \right) < \frac{1}{k^{2}}$. También es posible recurrir a la distribución empírica, obtenida por remuestreo, InfoStat® lo hace en la opción *estimación por bootstrap* para construir intervalos de confianza. En el capítulo 13 se verán pruebas que permiten resolver situaciones en las que no se cumplen los supuestos, como pequeñas muestras, distribución no normal y/o nivel de medición no métrico.
+[^95]: Existe un procedimiento basado en un resultado importante de la estadística que se conoce como "desigualdad de Tchebycheff", que establece que la probabilidad de encontrar a una variable a una distancia de su media superior a $k$ desviaciones estándar es menor a $\frac{1}{k^{2}}$. Se expresa como $P\left( \left| x - E(x) \right| > k\sigma \right) < \frac{1}{k^{2}}$. También es posible recurrir a la distribución empírica, obtenida por remuestreo. Más adelante se verán pruebas que permiten resolver situaciones en las que no se cumplen los supuestos, como pequeñas muestras, distribución no normal y/o nivel de medición no métrico.

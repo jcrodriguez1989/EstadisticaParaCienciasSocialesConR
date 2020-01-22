@@ -10,6 +10,18 @@
 \ifxetex
 \usepackage{polyglossia}
 \setmainlanguage{spanish}
+\renewcommand{\linethickness}{0.05em} % to fix linethickness pandoc issue
+
+% para poner cover page en la version pdf
+\usepackage{pdfpages}
+\let\oldmaketitle\maketitle
+\renewcommand{\maketitle}{
+  \includepdf{imagenes/cover.pdf}
+}
+
+% para tener bibliografia en el index
+\usepackage[nottoc]{tocbibind}
+
 % Tabla en lugar de cuadro
 \gappto\captionsspanish{\renewcommand{\tablename}{Tabla}  
   \renewcommand{\listtablename}{Índice de tablas}}

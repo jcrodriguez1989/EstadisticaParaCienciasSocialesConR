@@ -5,8 +5,6 @@ output:
 
 ```{r message=FALSE, warning=FALSE, include=FALSE}
 source("depencias.R")
-knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE)
-kable_outp <- ifelse(knitr::is_latex_output(), "latex", "html")
 ```
 
 #  Prueba de hipótesis: las aplicaciones 
@@ -35,8 +33,7 @@ bajo análisis. Un modo alternativo de expresar el problema es considerar
 que lo que se pone a prueba es si las dos muestras provienen de la misma
 población o de dos poblaciones diferentes.
 
-En el diseño experimental -tema que se verá en detalle en Metodología de
-la Investigación-, a menudo interesa conocer, si un grupo sometido a
+En el diseño experimental, a menudo interesa conocer, si un grupo sometido a
 cierto tratamiento muestra cambios diferentes a los que experimenta otro
 grupo que no fue sometido a ese tratamiento. Los procedimientos que
 veremos se utilizan para determinar si las ganancias obtenidas en una
@@ -50,26 +47,26 @@ somete a los sujetos a un período de entrenamiento y a continuación son
 nuevamente evaluados (post-test). Necesitamos determinar si los cambios,
 medidos a través de la diferencia de los promedios, son de una magnitud
 tal que podamos atribuirlos al entrenamiento o bien si pueden explicarse
-por azar.
+por azar. La misma lógica, en condiciones menos controladas se usa en evaluación de impacto de intervenciones, para comparar a un grupo que se benefició de un programa con otro que no lo hizo, o también para comparar un grupo consigo mismo antes y después de una intervención @Gertler2017.
 
 Los procedimientos destinados a comparar grupos tienen gran difusión en
 investigación. Muchos de los problemas que interesa resolver usándolos
 se encuentran vinculados a distintos campos de las Ciencias Sociales, ya que se comparan grupos que han recibido una droga con
 quienes no la han recibido, que han pasado por un período de
 entrenamiento o no, que han participado en grupos terapéuticos o han
-desarrollado otra actividad; alumnos que aprenden con uno u otro método; comunidades, familias o personas que han sido o no beneficiadas por una política pública; países con diferentes regímenes políticos; personas con diferente ideología política, etc. En todos los casos se realiza una comparación en algún resultado,
+desarrollado otra actividad; estudiantes que usan una u otra estrategia de estudio; comunidades, familias o personas que han sido o no beneficiadas por una política pública; países con diferentes regímenes políticos; personas con diferente ideología política, etc. En todos los casos se realiza una comparación en algún resultado,
 que puede ser el puntaje en un test, la valoración de la democracia, el rendimiento escolar o cualquier otra variable sobre la
 que se busca intervenir. Por ejemplo, en una tesis de Maestría en
-Psicología Clínica, el autor separa a un grupo de niños deficientes
+Psicología Clínica, el autor separa a un grupo de personas menores de edad deficientes
 mentales en dos grupos. Uno de ellos participa de un taller con
 actividades de protección ambiental (se lo llama "grupo experimental"), mientras que
 el otro grupo no lo hace (es el denominado "grupo control"). A través de
 pruebas estandarizadas se mide la sociabilidad, esperando que las
 actividades en las que participaron pudieran estimularla. Se comparan
-los niveles de sociabilidad de los niños que participaron del taller con
+los niveles de sociabilidad de quienes participaron del taller con
 los de quienes no participaron, esta evaluación se hace antes y después
 de la realización de estas actividades, que se prolongaron por un mes.
-En este ejemplo hay dos comparaciones: la socialización de los niños que
+En este ejemplo hay dos comparaciones: la socialización de quienes
 participaron con la de los que no lo hicieron, y la de la sociabilidad
 de los que participaron antes del taller y luego de él. En ambos casos
 se utilizan las pruebas sobre las que trata este capítulo.  
@@ -82,7 +79,7 @@ bilateral (que las medias difieren) o unilateral (que una media es mayor que la 
 
 Estos procedimientos no sólo se utilizan en experimentos -que contruyen los grupos con criterios preestablecidos-, sino también en estudios que analizan datos de observación, que pueden provenir de encuestas o de observación directa. Así una variable independiente puede constituirse por
 grupos o muestras de sujetos que conforman categorías diferentes.
-Varones versus mujeres, población rural versus población urbana, niños
+Varones versus mujeres, población rural versus población urbana, estudiantes de escuela primaria
 que repiten o no repiten un grado. Pueden interesar entonces, ciertas
 diferencias en los promedios de alguna variable entre estos grupos.
 ¿Tienen los mismos ingresos promedio los varones jefes de hogar que las
@@ -141,12 +138,12 @@ apareadas o dependientes.
 
 La comparación de las medias de dos poblaciones independientes se
 realiza comparando los correspondientes estimadores de las medias
-poblacionales, veamos el siguiente esquema para recordar la notación:
+poblacionales. De modo equivalente a la relación media muestral - media poblacional, ahora parámetro a estimar es la diferencia de medias poblacionales: $\mu_1-\mu_2$, y el estimador es la diferencia de medias muestrales: $\bar{x}_1-\bar{x}_2)$. Esta última es la variable aleatoria que, bajo los supuestos mencionados antes, tiene distribución normal centrada en el parámetro. El siguiente esquema recuerda la notación:
 
-<!-- este grafico tiene que tener mu2-mu1 en el centro y $\bar{x_1}-\bar{x_2}$ como nombre del eje -->
-```{r}
-ggplot(data = data.frame(z = c(-4, 4)), aes(z)) +
-  stat_function(fun = dnorm) + xlab("") + ylab("") + scale_x_discrete(breaks = NULL) + scale_y_continuous(breaks = NULL) + theme_tufte()
+```{r warning=FALSE}
+ggplot(data = data.frame(z = c(-4,4)), aes(z)) +
+  stat_function(fun=dnorm)+ xlab((TeX('$\\mu_1 - \\mu_2$'))) +ylab("") + scale_x_discrete(breaks =NULL)+ scale_y_continuous(breaks = NULL)+annotate("text", x=4, y=-.03, label=TeX('$\\bar{x}_1 - \\bar{x}_2$'))+annotate(geom = "rect", xmin = -.01, xmax = .01, ymin = -.01, ymax = .01, col = "black")+ theme_tufte()
+
 ```
 
 Una vez que se dispone de los datos muestrales, el estadístico de prueba toma la forma;
@@ -163,7 +160,7 @@ estimador. En este caso el estimador es la diferencia de las medias
 muestrales y el parámetro es la diferencia de las medias poblacionales.
 
 
-Este estadístico de prueba tiene distribución normal si los tamaños de las muestras son suficientemente grandes (mayores a 30 casos) y tiene distribución $t de Student$ si se trata de muestras pequeñas y puede además suponerse que las variables que se analizan tienen distribución normal en la población. Debido a que la distribución $t$ tiende a la normal a medida que aumenta el tamaño de la muestra, y como lo hicimos antes para una sola muestra, escribiremos de manera general:
+Este estadístico de prueba tiene distribución normal si los tamaños de las muestras son suficientemente grandes (mayores a 30 casos) y tiene distribución *t de Student* si se trata de muestras pequeñas y puede además suponerse que las variables que se analizan tienen distribución normal en la población. Debido a que la distribución $t$ tiende a la normal a medida que aumenta el tamaño de la muestra, y como lo hicimos antes para una sola muestra, escribiremos de manera general:
 
 $$t = \frac{{(\overline{x}}_{1} - {\overline{x}}_{2}) - {(\mu}_{1} - \mu_{2})}{s_{{\overline{x}}_{1} - {\overline{x}}_{2}}}$$
 
@@ -173,7 +170,7 @@ grandes, las probabilidades asociadas al valor de $t$ coincidirán con
 las de la distribución normal.
 
 El denominador del estadístico de prueba puede
-ser calculado de dos manera diferentes y eso va a depender de que
+ser calculado de dos maneras diferentes y eso va a depender de que
 podamos suponer que las varianzas de las dos poblaciones de las que
 provienen las muestras son iguales o que no sea así.
 
@@ -210,7 +207,7 @@ $$t = \frac{{(\overline{x}}_{1} - {\overline{x}}_{2}) - {(\mu}_{1} - \mu_{2})}{\
 
 
 Esta expresión es más sencilla, porque mantiene las varianzas originales en lugar de combinarlas, pero el
-cálculo de los grados de libertad de la distribución $t de Student$ se
+cálculo de los grados de libertad de la distribución *t de Student* se
 vuelve más complejo. La fórmula para hacerlo es[^97]
 
 $$gl = \frac{\left( \frac{s_{1}^{2}}{n_{1}} + \frac{s_{2}^{2}}{n_{2}} \right)^{2}}{\frac{\left( \frac{s_{1}^{2}}{n_{1}} \right)^{2}}{n_{1} - 1} + \frac{\left( \frac{s_{2}^{2}}{n_{2}} \right)^{2}}{n_{2} - 1}}$$
@@ -218,8 +215,9 @@ $$gl = \frac{\left( \frac{s_{1}^{2}}{n_{1}} + \frac{s_{2}^{2}}{n_{2}} \right)^{2
 
 No vamos a usar esta expresión para calcular los grados de libertad,
 pero es la que usan los programas de análisis de datos cuando detectan
-que las varianzas poblacionales no son iguales.
+que las varianzas poblacionales no son iguales.  
 
+#### Comparación de las varianzas  
 De acuerdo a esto, cuando vamos a hacer una prueba $t$ para comparar las medias de dos grupos debemos antes saber si estamos ante el caso 1 ó el caso 2; lo que significa que deberemos antes decidir si las varianzas de las dos poblaciones pueden considerarse iguales o no. Dado que no conocemos estas varianzas poblacionales, la decisión se toma a partir de los datos muestrales, es decir, a partir de las varianzas halladas en las muestras ($s_{1}^{2}$ y $s_{2}^{2}$). Se realiza una prueba, cuya hipótesis nula afirma que las varianzas poblacionales son iguales y su resultado permitirá decidir, a un determinado nivel de significación, si puede tratarse a las varianzas poblacionales como iguales o si debe considerárselas diferentes, la prueba se llama prueba de homogeneidad de varianzas[^98] y tiene las siguientes hipótesis.
 
 $$H_{0}:\ \frac{\sigma_{1}^{2}}{\sigma_{2}^{2}} = 1$$
@@ -235,13 +233,9 @@ numerador y $n_{2} - 1$ grados de libertad en el denominador.
 
 
 Ejemplo 1. (datos ficticios): nos preguntamos si, para una carrera
-universitaria dada, el tiempo que tardan en completar sus estudios los
-estudiantes que trabajan y los que no trabajan es el mismo o si difiere.
-Para ello tomamos una muestra de 100 alumnos que trabajan y obtenemos
-una media de duración de la carrera de 6.7 años y una desviación
-estándar de 1.2 años. Extraemos otra muestra, de 150 casos de
-estudiantes que no trabajan, en la que obtenemos un promedio de los años de duración de 6.3 con una desviación estándar de 1.5 años. Todos estos datos provienen de la información descriptiva que proveen las muestras, son los que vamos a usar para hacer la inferencia acerca de las
-poblaciones, constituidas por el total de alumnos que trabajan y que no
+universitaria dada, el tiempo que tardan en completar sus estudios quienes trabajan es el mismo que el que les requiere a quines no lo hacen, o si difiere.
+Para ello tomamos una muestra de 100 estudiantes que trabajan y obtenemos una media de duración de la carrera de 6.7 años y una desviación estándar de 1.2 años. Extraemos otra muestra, de 150 casos que no trabajan, en la que obtenemos un promedio de los años de duración de 6.3 con una desviación estándar de 1.5 años. Todos estos datos provienen de la información descriptiva que proveen las muestras, son los que vamos a usar para hacer la inferencia acerca de las
+poblaciones, constituidas por el total de quienes trabajan y no
 trabajan.
 
 Como antes, la hipótesis nula es la del "no cambio", la que afirma que
@@ -268,8 +262,7 @@ ggplot(data = data.frame(z = c(-4, 4)), aes(z)) +
   ylab("") + xlab("") + scale_x_discrete(breaks = NULL) +
   geom_segment(x = -4, xend = 4, y = 0, yend = 0) +
   scale_y_continuous(breaks = NULL) + theme_tufte() +
-  geom_text(aes(label = "0"), x = 0, y = -.019) +
-  geom_text(aes(label = "diferencias de medias muestrales"), x = 2.7, y = -.01) +
+  geom_text(aes(label = "0"), x = 0, y = -.019) +annotate("text", x=2.7, y=-.03, label=TeX('$\\bar{x}_1 - \\bar{x}_2$'))+
   annotate(geom = "rect", xmin = -.01, xmax = .01, ymin = -.01, ymax = .01, col = "red")
 ```
 
@@ -278,7 +271,7 @@ medias muestrales, el centro de la distribución es el parámetro, que
 según la hipótesis nula es cero.
 
 Fijamos el nivel de significación de la prueba en el 5% y los puntos
-críticos resultan, sobre la distribución normal estándar ±1,96,
+críticos resultan, sobre la distribución normal estándar ±1.96,
 gráficamente:
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
@@ -317,7 +310,7 @@ $$H_{1}:\ \frac{\sigma_{1}^{2}}{\sigma_{2}^{2}} \neq 1$$
 
 El estadístico de prueba es
 
-$$\frac{s_{1}^{2}}{s_{2}^{2}} = \frac{{1,2}^{2}}{{1,5}^{2}} = 0,64$$
+$$\frac{s_{1}^{2}}{s_{2}^{2}} = \frac{{1.2}^{2}}{{1.5}^{2}} = 0.64$$
 
 Se busca la probabilidad asociada a un valor como el
 observado o mayor, bajo un modelo F con grados de libertad determinados por el tamaño de las muestras (de 100 y 150 observaciones)
@@ -361,25 +354,17 @@ $$z = \frac{\left( 6.7 - 6.3 \right) - 0}{1.38*\sqrt{\frac{1}{100} + \frac{1}{15
 
 Este es el estadístico de prueba correspondiente a la diferencia de
 medias para muestras independientes cuando las varianzas poblacionales
-pueden suponerse iguales. Este valor de $z$ (2,22) se encuentra en la zona de rechazo de $H_{0}$, por lo que la decisión será la de rechazar $H_{0}$ y concluir que el tiempo que tardan en terminar la carrera los alumnos que trabajan difiere significativamente del que tardan los que no trabajan. Dicho de otro modo: la diferencia observada en las medias de las muestras es significativa a un nivel del 5%.  
+pueden suponerse iguales. Este valor de $z$ (2.22) se encuentra en la zona de rechazo de $H_{0}$, por lo que la decisión será la de rechazar $H_{0}$ y concluir que el tiempo que tardan en terminar la carrera quienes trabajan difiere significativamente del que tardan los que no trabajan. Dicho de otro modo: la diferencia observada en las medias de las muestras es significativa a un nivel del 5%.  
 
 
-Ejemplo 2. Si los mismos resultados se hubiesen hallado en muestras más pequeñas,
-por ejemplo de 20 y 25 casos de estudiantes que trabajan y no trabajan
-respectivamente, y además hubiésemos podido suponer que las dos
-poblaciones son normales en la variable *duración de la carrera*;
-entonces habría correspondido usar una prueba $t$ [^100]. La prueba de
-homogeneidad de varianzas da, con esos nuevos tamaños de muestra,
-$p = 0,16$. Un valor que también es elevado, por lo que se puede tratar
-a las varianzas como iguales.
+Ejemplo 2. Si los mismos resultados se hubiesen hallado en muestras más pequeñas, por ejemplo de 20 casos que trabajan y 25 que no, y además hubiésemos podido suponer que las dos poblaciones son normales en la variable *duración de la carrera*; entonces habría correspondido usar una prueba $t$ [^100]. La prueba de homogeneidad de varianzas da, con esos nuevos tamaños de muestra, $p = 0.16$. Un valor que también es elevado, por lo que se puede tratar a las varianzas como iguales.
 
 Los grados de libertad de la distribución $t$ se calculan sumando los
 tamaños de muestra y restando dos:
 
 $$gl = n_{1} + n_{2} - 2 = 20 + 25 - 2 = 43$$
 
-Con 43 grados de libertad, los valores $t_{c}$ que delimitan un 5% extremo en la distribución de probabilidades son ±2,02, que gráficamente se
-representan así:
+Con 43 grados de libertad, los valores $t_{c}$ que delimitan un 5% extremo en la distribución de probabilidades son ±2.02, que gráficamente se representan así:
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 ggplot(data = data.frame(t = c(-4, 4)), aes(t)) +
@@ -428,8 +413,8 @@ ggplot(data = data.frame(t = c(-4, 4)), aes(t)) +
 ```
 
 La conclusión será en este caso que no hay evidencia para creer que el
-tiempo promedio que tardan en terminar la carrera los alumnos que
-trabajan sea diferente que el que tardan quienes no trabajan.
+tiempo promedio que tardan en terminar la carrera quienes
+trabajan sea diferente que el de quienes no trabajan.
 
 La comparación de las conclusiones de estos dos ejemplos muestra algo
 muy importante: una misma diferencia absoluta de 0.4 años en los
@@ -444,7 +429,7 @@ siempre distribución $t$ [^101]. Así, esta prueba se conoce como *prueba t de 
 
 
 Ejemplo 3 (datos reales): la salida que mostramos a continuación es una
-comparación de la edad promedio de los docentes varones y mujeres del
+comparación de la edad promedio de docentes varones y mujeres del
 nivel medio. Los datos provienen de una muestra aleatoria de 246
 docentes de la ciudad de Córdoba. La hipótesis nula de esa comparación
 es que no hay diferencia en la edad promedio de mujeres y varones
@@ -470,11 +455,11 @@ t.test(edad ~ sexo)
 ```
 
 El título es el de prueba t de dos muestras de Welch, que se refiere a la corrección de Welch-Satterthwaite. Se indican los datos, que es edad según sexo (la comparación de las edades según sexo).  
-Lugo se ofrece el valor $t_{obs}$, de -1.99, los grados de libertad y el valor $p$, de .048. Se indica cuál fue la hipotesis alternativa (que las medias difieres, es decir bilateral).  
+Lugo se ofrece el valor $t_{obs}$, de -1.99, los grados de libertad y el valor $p$, de 0.048. Se indica cuál fue la hipotesis alternativa (que las medias difieres, es decir bilateral).  
 Luego se lee un intervalo de confianza para estimar la diferencia de las media, construido, por defecto al 95% y, finalmente las medias muestrales.
 
 La lectura de esta salida es que, a un nivel de significación del 5%, hay evidencia para rechazar la hipótesis de igualdad de las medias poblacionales, dado que el valor $p$ hallado es menor a ese criterio. Pero si se reduce el riesgo de cometer error de tipo I y se baja el  nivel de sigificación al 1%, entonces el resultado ya no es significativo a este nivel. La lectura del resultado debe incluir esta interpretación, para que quede constancia que la $H_{0}$ ha sido rechazada con poca evidencia en su contra.  
-Un dato adicional que obtenemos en la salida es el intervalo de confianza que estima la diferencia poblacional. Leemos que, con una confianza del 95%, el intervalo que va de 2.280 a 0.007, contiene a la diferencia de edades que hay en la población. Para la lectura del intervalo no se tiene en cuenta el signo negativo, que proviene  de haber restado $edad.mujeres - edad.varones$ y que habría sido positivo de haber elegido restar en otro orden. Sí importa, por el contrario, que los signos de los límites sean iguales (ambos positivos o ambos negativos) porque eso quiere decir que, al nivel de confianza establecido, se excluye al cero del intervalo. Por eso este resultado es siempre compatible con la decisión de aceptar o rechazar $H_{0}$, al mismo nivel de significación.
+Un dato adicional que obtenemos en la salida es el intervalo de confianza que estima la diferencia poblacional. Leemos que, con una confianza del 95%, el intervalo que va de 0.007 a 2.280, contiene a la diferencia de edades que hay en la población. Para la lectura del intervalo no se tiene en cuenta el signo negativo, que proviene  de haber restado $edad.mujeres - edad.varones$ y que habría sido positivo de haber elegido restar en otro orden. Sí importa, por el contrario, que los signos de los límites sean iguales (ambos positivos o ambos negativos) porque eso quiere decir que, al nivel de confianza establecido, se excluye al cero del intervalo. Por eso este resultado es siempre compatible con la decisión de aceptar o rechazar $H_{0}$, al mismo nivel de significación.
 
 Cuando una prueba de hipótesis sobre diferencia de medias se rechaza a un nivel de significación $\alpha$, entones, un intervalo construido con una confianza del $1-\alpha$, excluye al cero entre sus límites. Dicho de otra manera, el límite inferior y el límite superior tienen el mismo signo.
 
@@ -484,14 +469,12 @@ La lateralidad de la prueba que analizamos en el capítulo anterior,
 sigue del mismo modo cuando trabajamos con diferencias de medias.  
 
 
-Ejemplo 4. Se espera que una droga que se está experimentando produzca efectos sobre la depresión, en dirección a
-reducir el puntaje que alcanzan los sujetos en un test que la evalúa.
+Ejemplo 4. Se espera que una droga que se está experimentando produzca efectos sobre la depresión, en dirección a reducir el puntaje que alcanzan las personas diagnosticadas, en un test que la evalúa.
 Para poner a prueba la droga será necesario diseñar un experimento, no
-avanzaremos en ese tema pero de manera muy simple, podemos pensar en dos
-grupos de pacientes depresivos a uno de los cuales se administra la
+avanzaremos en ese tema pero de manera muy simple, podemos pensar en dos grupos de personas depresivas a uno de los cuales se administra la
 droga (grupo 1) y al otro no (grupo 2)[^102]. Concluiremos que la droga
 tiene efectos si luego de un tiempo de su administración, el grupo de
-pacientes que la recibieron experimenta cambios positivos en mayor
+pacientes que la recibió experimentó cambios positivos en mayor
 magnitud que el otro. Dicho de otro modo, habrá efectos si la media de
 puntaje en el test que evalúa depresión es significativamente menor en
 el grupo que se sometió al tratamiento.  
@@ -524,14 +507,8 @@ Por el contrario, si se trata de muestras pequeñas, corresponde usar
 distribución *t*, y el punto crítico dependerá de los grados de
 libertad.  
 
-Un grupo de 15 sujetos que recibió un medicamento arroja un puntaje promedio en la prueba que evalúa la depresión de 5.7 puntos, con desviación estándar de 1.1 puntos. Los 10
-pacientes que no recibieron el medicamento alcanzan un puntaje promedio
-de 7.2 puntos, con desviación estándar de 1.6 puntos (datos ficticios). La prueba previa
-sobre la homogeneidad de las varianzas indica que no puede suponérselas
-iguales, por lo que estamos en el caso 2. Debe utilizarse la
-distribución t con grados de libertad que deben calcularse con la
-expresión de Welch-Satterthwaite, el resultado[^103] es 15. El punto
-crítico $t_{15, .05}$, es -1.75.
+Un grupo de 15 sujetos que recibió un medicamento arroja un puntaje promedio en la prueba que evalúa la depresión de 5.7 puntos, con desviación estándar de 1.1 puntos. Otro grupo, de 10 pacientes, que no recibieron el medicamento alcanza un puntaje promedio
+de 7.2 puntos, con desviación estándar de 1.6 (datos ficticios). La prueba previa sobre la homogeneidad de las varianzas indica que no puede suponérselas iguales, por lo que estamos en el caso 2. Debe utilizarse la distribución t con grados de libertad que deben calcularse con la expresión de Welch-Satterthwaite, el resultado[^103] es 15. El punto crítico $t_{15, .05}$, es -1.75.
 
 El estadístico de prueba vale:
 
@@ -544,21 +521,21 @@ un puntaje significativamente menor que el otro grupo.
 Ejemplo (datos reales): en un estudio realizado en el Centro de
 Promoción del Adulto Mayor, se seleccionaron aleatoriamente entre todos
 los asistentes, a 503 personas mayores de 50 años. Entre otras
-preguntas, se computó el número de hijos de cada uno de ellos.
+preguntas, se computó el número de hijas e hijos de cada persona.
 
 Se conformaron dos grupos con los sujetos estudiados, quienes tenían
 hasta 65 años en el momento del estudio y quienes tenían 66 o más años.
 En este ejemplo, estos dos grupos, si bien no fueron asignados de manera
 aleatoria, se comportarían como muestras independientes.
 
-Podríamos suponer que las personas de mayor edad tendrían más hijos,
+Podríamos suponer que las personas de mayor edad tendrían más descendencia,
 dadas ciertas razones históricas, religiosas y culturales que
 habitualmente inciden en el control de la natalidad. Esta hipótesis está
 basada también en el conocimiento demográfico; sabemos que las tasas de
 fecundidad en nuestro país han venido descendiendo desde hace varias
-décadas. Sostenemos así que los que conforman el grupo de 66 años y más
-tendrán más hijos que los de 65 años o menos, con lo que se trata de una
-prueba unilateral. Si llamamos 1 al grupo de los de hasta 65 años y 2 al
+décadas. Sostenemos así que quienes conforman el grupo de 66 años y más
+tendrán más hijos e hijas que los de 65 años o menos, con lo que se trata de una
+prueba unilateral. Si llamamos 1 al grupo de hasta 65 años y 2 al
 de quienes tienen 66 ó más, las hipótesis se expresan de la siguiente
 manera:
 
@@ -574,20 +551,20 @@ adultos_mayores <- read.csv("bases/archivostxt/Adultos.mayores.txt",
 )
 
 adultos_mayores$edad <- as.numeric(as.character(adultos_mayores$edad))
-adultos_mayores$hijos <- as.numeric(as.character(adultos_mayores$hijos))
+adultos_mayores$hijes <- as.numeric(as.character(adultos_mayores$hijos))
 
 adultos_mayores$grupo_edad <- ifelse(adultos_mayores$edad < 66, 1, 2)
 adultos_mayores$grupo_edad <- as.factor(adultos_mayores$grupo_edad)
-resumen_hijos <- summaryBy(
-  hijos ~ grupo_edad,
+resumen_hijes <- summaryBy(
+  hijes ~ grupo_edad,
   data = adultos_mayores[
-    !is.na(adultos_mayores$hijos) & !is.na(adultos_mayores$grupo_edad),
+    !is.na(adultos_mayores$hijes) & !is.na(adultos_mayores$grupo_edad),
   ],
   FUN = c(length, mean, median, sd)
 )
 # colnames(resumen_hijos) <- gsub("_", "\\.", colnames(resumen_hijos))
 knitr::kable(
-  resumen_hijos, kable_outp,
+  resumen_hijes, kable_outp,
   booktabs = TRUE, align = "ccccc", escape = TRUE,
 ) %>%
   kableExtra::kable_styling(latex_options = "striped")
@@ -596,25 +573,25 @@ knitr::kable(
 El nombre de la variable `grupo_edad`, corresponde a los grupos 1, hasta 65 años y 2, de 66 ó más. Los grupos tienen 243 y 260 personas
 respectivamente. La descripción muestra la media, mediana y desviación estándar.
 
-Vemos que hay diferencia en el número de hijos promedio de los dos
-grupos. Los del segundo grupo (66 o más) tienen en promedio 0.12 hijos
+Vemos que hay diferencia en la descendencia promedio de los dos
+grupos. Los del segundo grupo (66 o más) tienen en promedio 0.12 hijes
 más que los del otro grupo. Ahora bien, dadas estas diferencias entre
-las medias encontradas, nos interesa determinar si se deben al azar o
+las medias muestrales encontradas, nos interesa determinar si se deben al azar o
 bien si tienen una magnitud tal que representen una diferencia que pueda
 atribuirse a la diferencia de edad de los sujetos de los dos grupos.
 
-Para realizar una prueba de diferencia de medias entre muestras independientes, se puede usar la distribución normal como buena aproximación, debido a que las muestras son grandes. La prueba es unilateral izquierda, porque interesa saber si el grupo 1 tiene menos hijos que el grupo 2. El punto crítico de esa prueba es $z_{.05}=-1.64$. La región de rechazo está conformada por todos los valores de *z* que sean inferiores a -1,64. Para hacer la prueba manualmente, ahora se calcula el $z_{obs}$ y según sea menor o mayor que ese punto crítico, se rechaza o no se rechaza $H_0$. 
+Para realizar una prueba de diferencia de medias entre muestras independientes, se puede usar la distribución normal como buena aproximación, debido a que las muestras son grandes. La prueba es unilateral izquierda, porque interesa saber si el grupo 1 tiene menos hijas e hijos que el grupo 2. El punto crítico de esa prueba es $z_{.05}=-1.64$. La región de rechazo está conformada por todos los valores de *z* que sean inferiores a -1.64. Para hacer la prueba manualmente, ahora se calcula el $z_{obs}$ y según sea menor o mayor que ese punto crítico, se rechaza o no se rechaza $H_0$. 
 
 La salida R para esta prueba es:
 
 ```{r message=FALSE, warning=FALSE}
-t.test(hijos ~ grupo_edad, data = adultos_mayores, alternative = "less")
+t.test(hijes ~ grupo_edad, data = adultos_mayores, alternative = "less")
 ```
 
-Por cuestiones de economía de recursos, los software usan siempre distribución t. La salida muestra: la variable que se analiza (hijos), según la que clasifica los grupos (grupo_edad), el valor del estadístico de prueba (t=-0.94), los grados de libertad (495), el valor de probabilidad asociado a la
-prueba (0.17), el tipo de prueba, que es unilateral izquierda en este caso, un intervalo de confianza unilateral, como fue pedida la prueba y finalmente, las medias (2.49 y 2.61) de cantidades de hijos de cada grupo
+Por cuestiones de economía de recursos, los software usan siempre distribución t. La salida muestra: la variable que se analiza (hijes), según la que clasifica los grupos (grupo_edad), el valor del estadístico de prueba (t=-0.94), los grados de libertad (495), el valor de probabilidad asociado a la
+prueba (0.17), el tipo de prueba, que es unilateral izquierda en este caso, un intervalo de confianza unilateral, como fue pedida la prueba y finalmente, las medias (2.49 y 2.61) de cantidades de hijos e hijas de cada grupo
 
-El $t_{obs}$ de la prueba es -0.94, que se ubica en la zona de no rechazo. Con ese resultado ya estamos en condiciones de concluir sobre la prueba: no se rechaza $H_0$, las medias no difieren de manera significativa, no hay diferencia en el número de hijos entre los grupos conformados.
+El $t_{obs}$ de la prueba es -0.94, que se ubica en la zona de no rechazo. Con ese resultado ya estamos en condiciones de concluir sobre la prueba: no se rechaza $H_0$, las medias no difieren de manera significativa, no hay diferencia en el tamaño de la descendencia entre los grupos conformados.
 
 Si no hubiésemos calculado previamente el punto crítico, podemos llegar
 a esta conclusión a partir del valor *p*, que en este caso es 0.1751 y
@@ -624,7 +601,7 @@ comparación con el nivel de significación, por ser mayor a 0.05 que
 habíamos establecido, decidimos no rechazar la $H_0$. Cuanto más pequeña
 sea esta probabilidad, tanta más evidencia habrá para rechazar $H_0$, en
 este caso la consideramos grande y no rechazamos. La lectura del valor
-*p* es, en este caso "si el número promedio de hijos de los dos grupos
+*p* es, en este caso "si el número promedio de hijos e hijas de los dos grupos
 fuera el mismo, la probabilidad de haber encontrado entre dos muestras
 de tamaños 243 y 260, una diferencia de 0.12 ó superior, es de 0.1751".
 Brevemente:
@@ -683,10 +660,9 @@ $$H_{1}:P_{1} - P_{2} \neq 0$$
 
 Es decir que la hipótesis nula afirma que la diferencia en la proporción
 de aplazos entre varones y mujeres es cero en la población, y la
-hipótesis alternativa, dice que esa diferencia es diferente de cero.
+hipótesis alternativa, dice que esa diferencia es distinta de cero.
 
-Fijamos el nivel de significación en el 5% y, por tratarse de una prueba
-bilateral, los puntos críticos son $\pm 1.96$.
+Fijamos el nivel de significación en el 5% y, por tratarse de una prueba bilateral, los puntos críticos son $\pm 1.96$.
 
 A continuación calculamos el estadístico de prueba, que resulta:
 
@@ -714,16 +690,14 @@ del diseño experimental, la medición en el momento inicial se llama
 *pretest* y la posterior *postest*.
 
 Pero no es el único ámbito en que se usa, cuando se comparan los logros
-que los alumnos alcanzan luego de una determinada experiencia
-pedagógica, es valioso poder comparar el "estado inicial" (anterior a la
-intervención) con el "estado final" (posterior) de cada individuo, o
-cuánto aprendieron o si se modificó determinada conducta. Esta prueba
-pone el acento en los cambios sucedidos en cada sujeto y no en las
-diferencias entre sujetos. Cuando interesa conocer la diferencia de
+que alcanzan quienes recorren una determinada experiencia
+pedagógica, es valioso poder comparar el "estado inicial" (anterior a la experiencia) con el "estado final" (posterior) de cada participante, sea en términos de cuánto aprendieron o de los cambios que hubo en  determinada conducta. Esta prueba
+pone el acento en los cambios sucedidos en cada participante y no en las
+diferencias entre ellos. Cuando interesa conocer la diferencia de
 presión arterial a la mañana y al atardecer, corresponde medir la
 presión arterial de cada persona en los dos horarios y comparar uno a
 uno. Por cierto, luego los resultados se agregan, pero las diferencias
-se miden sujeto a sujeto.
+se miden caso por caso.
 
 No hay cambio conceptual en el planteo de las hipótesis: la $H_0$ afirma que no hay diferencia entre las dos mediciones (o entre las mediciones hechas en momentos distintos) y la $H_1$ podrá ser unilateral o bilateral. Sin embargo cambiamos levemente la notación, porque vamos a resumir la diferencia en la letra $\overline{D}$ (por media de diferencias) y equivale a $\mu_{1} - \mu_{2}$. El objetivo de este cambio es poner el acento en que no tratamos con dos poblaciones
 independientes (una representada por $\mu_{1}$ y la otra por $\mu_{2}$)
@@ -758,18 +732,14 @@ $s_{d}$ es la desviación estándar de la variable $d$, que mide las
 diferencias individuales.
 
 Ejemplo (parcial[^105]): se busca detectar el eventual efecto que
-tendría una intervención terapéutica sobre el bienestar de pacientes
-diagnosticados de depresión. Disponemos de un test que nos permite
-evaluar el bienestar de los pacientes con nivel cuantitativo, en una
+tendría una intervención terapéutica sobre el bienestar de personas
+diagnosticadas de depresión. Disponemos de un test que nos permite
+evaluar el bienestar con nivel cuantitativo, en una
 escala que va de 0 (mínimo bienestar) a 10 (máximo bienestar). Para
 evaluar la terapia, nos interesamos por los cambios que suceden en el
-bienestar de los pacientes entre el momento previo y el posterior a la
-misma. Hacemos esto por medio de la aplicación del test a una muestra de
-7 pacientes diagnosticados de depresión, en dos momentos: antes de la
-terapia y al cabo de ella.
+bienestar entre el momento previo y el posterior a la misma. Hacemos esto por medio de la aplicación del test a una muestra de 7 pacientes con depresión, en dos momentos: antes de la terapia y al cabo de ella.
 
-Esperamos que la terapia tenga por efecto el de aumentar el bienestar de
-los sujetos que la reciben, dicho de otro modo, esperamos cambios
+Esperamos que la terapia tenga por efecto el de aumentar el bienestar de quienes la reciben, dicho de otro modo, esperamos cambios
 positivos en el puntaje del test. Las hipótesis son entonces:
 
 $$H_{0}:\ \overline{D} = 0$$
@@ -785,7 +755,7 @@ Los siguientes son los datos recogidos:
 
 ```{r}
 aux_table <- tibble::tribble(
-  ~"sujeto", ~"antes $x_1$", ~"después $x_2$", ~"diferencia $d_i$",
+  ~"persona", ~"antes $x_1$", ~"después $x_2$", ~"diferencia $d_i$",
   "1", "5", "7", "2",
   "2", "4", "7", "3",
   "3", "6", "6", "0",
@@ -801,16 +771,15 @@ knitr::kable(
   kableExtra::kable_styling(latex_options = "striped")
 ```
 
-Esta tabla indica, para cada individuo, el puntaje que obtuvo en la
+Esta tabla indica, para cada persona, el puntaje que obtuvo en la
 prueba que mide bienestar tomada antes de la terapia ($x_1$) y en la
-tomada después ($x_2$). Además, las diferencias para cada sujeto, que
-es la resta de la segunda menos la primera, a esas diferencias las
-llamamos $d_i$, el subíndice $i$ se refiere a cada sujeto y va desde 1
+tomada después ($x_2$). Además, muestra la diferencia para cada caso, que es la resta de la segunda menos la primera, a esas diferencias las
+llamamos $d_i$, el subíndice $i$ se refiere a cada caso y va desde 1
 hasta 7.
 
 La hipótesis nula de la prueba es que no hay diferencia en las dos
 mediciones, es decir que no hay efectos de la terapia, que el bienestar
-de los sujetos luego del tratamiento es igual que antes de él. El cambio
+luego del tratamiento es igual que antes de él. El cambio
 respecto de las pruebas para muestras independientes es que ahora
 pasamos a trabajar con $d$ como variable, sus medidas descriptivas son;
 la media de las $d_i$, $\overline{d} = 1.286$, y desviación estándar,
@@ -822,7 +791,7 @@ $$t_{\text{obs}} = \frac{\overline{d}}{\frac{s_{d}}{\sqrt{n}}} = \frac{1.286}{\f
 
 Por ser mayor que el punto crítico ($t_{\text{obs}} > t_{c}$), está en
 la zona de rechazo de $H_0$, y se concluye que hay evidencia para
-considerar que los puntajes en el test de bienestar son mayores luego de la terapia. La siguiente es la representación gráfica de este resultado.
+considerar que los puntajes en el test de bienestar son mayores luego de la terapia.
 
 <!--falta-->
 
@@ -836,7 +805,7 @@ t.test(antes, despues, data = para_prueba_apareada, paired = TRUE, alternative =
 ```
 
 Que indica, las dos variables que se comparan (antes y después), el valor t, los grados de libertad y el valor $p$, que
-vale 0,01115. Es una probabilidad pequeña (menos del 0,05) que confirma
+vale 0.01115. Es una probabilidad pequeña (menos del 0.05) que confirma
 el rechazo de $H_0$.  
 
 
@@ -919,16 +888,7 @@ $$t = \frac{r_{\text{obs}} - \rho}{\sqrt{\frac{1 - r_{\text{obs}}^{2}}{n - 2}}} 
 
 La última igualdad se debe a que la hipótesis nula afirma que $\rho = 0$.
 
-Ejemplo (datos ficticios): se observa la relación entre el tiempo que los alumnos dedicaron a preparar el examen de una materia y la calificación obtenida en ese examen, a partir de una muestra de 27 estudiantes. Se obtiene un coeficiente de correlación lineal de Pearson de $r_{obs} = + 0.37$. El signo positivo de este coeficiente indica que la relación es directa, por lo que, en la muestra, los
-alumnos que dedican más tiempo a la preparación, tienden a tener notas
-más altas. El valor absoluto indica que se trata de una relación
-moderada entre las dos variables. Ahora nos interesa probar si este
-resultado es suficiente evidencia para creer que en la población, las
-dos variables están relacionadas, es decir, que en la población el
-coeficiente de correlación no es cero. La pregunta es si hemos
-encontrado $r=+0.37$ porque en la población las variables están
-correlacionadas o solo por las variaciones propias del procedimiento
-aleatorio de muestreo, es decir, solo por azar.
+Ejemplo (datos ficticios): se observa la relación entre el tiempo que se dedicó a preparar el examen de una materia y la calificación obtenida en ese examen, a partir de una muestra de 27 estudiantes. Se obtiene un coeficiente de correlación lineal de Pearson de $r_{obs} = + 0.37$. El signo positivo de este coeficiente indica que la relación es directa, por lo que, en la muestra, quienes dedican más tiempo a la preparación, tienden a tener notas más altas. El valor absoluto indica que se trata de una relación moderada entre las dos variables. Ahora nos interesa probar si este resultado es suficiente evidencia para creer que en la población, las dos variables están relacionadas, es decir, que en la población el coeficiente de correlación no es cero. La pregunta es si hemos encontrado $r=+0.37$ porque en la población las variables están correlacionadas o solo por las variaciones propias del procedimiento aleatorio de muestreo, es decir, solo por azar.
 
 Las hipótesis correspondientes a este problema son:
 
@@ -948,20 +908,20 @@ los valores críticos correspondientes son $±2.05$, gráficamente:
 knitr::include_graphics("imagenes/image209.png")
 ```
 
-El área sombreada constituye la probabilidad extrema de 0,05, repartida
+El área sombreada constituye la probabilidad extrema de 0.05, repartida
 en dos colas de 0.025 cada una. La zona de rechazo de $H_0$ se constituye
 por el conjunto de los valores $t$ mayores a 2.05 así como los menores a -2.05.
 
 Ahora transformamos el valor de $r$ obtenido a puntaje $t$, calculando
 el estadístico de prueba:
 
-$$t = \frac{r_{\text{obs}}}{\sqrt{\frac{1 - r_{\text{obs}}^{2}}{n - 2}}} = \frac{0,37}{\sqrt{\frac{1 - {0,37}^{2}}{27 - 2}}} = 1,99$$
+$$t = \frac{r_{\text{obs}}}{\sqrt{\frac{1 - r_{\text{obs}}^{2}}{n - 2}}} = \frac{0.37}{\sqrt{\frac{1 - {0.37}^{2}}{27 - 2}}} = 1.99$$
 
 Un valor que no se encuentra en la zona de rechazo, por lo que la
 decisión es la de aceptar $H_0$ y concluir que no hay suficiente
 evidencia para afirmar que haya una correlación lineal no nula entre el
-tiempo que los alumnos dedican a preparar una materia y la nota que
-obtienen en el examen. Diremos que el coeficiente de correlación hallado
+tiempo que se dedica a preparar una materia y la nota que se
+obtiene en el examen. Diremos que el coeficiente de correlación hallado
 en la muestra no difiere significativamente de cero o, más simplemente,
 que no es significativo.
 
@@ -974,7 +934,7 @@ fuera cierta. Como la prueba es bilateral debemos tratar a la expresión
 el observado o menor que su opuesto, por lo que la probabilidad que
 buscamos se escribe:
 
-$$P( r < -r_{obs} \cup r > r_{obs} / H_0 \; es \; verdadera) = P(r < -0,37 \cup r > 0,37/ \rho = 0)$$
+$$P( r < -r_{obs} \cup r > r_{obs} / H_0 \; es \; verdadera) = P(r < -0.37 \cup r > 0.37/ \rho = 0)$$
 
 Que se lee como "la probabilidad que $r$ sea menor que el opuesto al
 valor observado o mayor que el valor observado, dado que la hipótesis
@@ -984,12 +944,12 @@ Usando el estadístico de prueba, transformamos los dos valores de
 $r_{obs}$ en puntajes $t$ y entonces esa probabilidad, expresada en
 términos de $t$, nos queda:
 
-$$P(t < - 1,99 \cup t > 1,99)$$
+$$P(t < - 1.99 \cup t > 1.99)$$
 
 En la que no incluimos la condición que $H_0$ sea verdadera
 $(\rho = 0)$ porque está implícita en la distribución $t$
 de $r$. Esta probabilidad es `r round(2*pt(-1.99,25), 4)`. Debido a que es mayor a nuestro nivel de significación
-$(\alpha = 0,05)$, la decisión es la de no rechazar $H_0$.
+$(\alpha = 0.05)$, la decisión es la de no rechazar $H_0$.
 La lectura de este valor $p$ es "si en la población no existiera
 correlación entre las variables, la probabilidad de haber hallado un
 valor como el observado o más extremo que él sería de 0.0576.
@@ -1005,15 +965,12 @@ que este valor de $r$ hubiese representado una asociación significativa
 en la población, habría sido necesario que proviniese de una muestra de
 mayor tamaño.
 
-Segunda: el valor de $t_{obs}$ es cercano al punto crítico (1.99 frente a 2.05), de modo que es poco lo que le falta para que la hipótesis sea
-rechazada. En el procedimiento a través del valor $p$, eso equivale a
-que dicho valor de probabilidad apenas supera al nivel de significación
-establecido: 5.6% frente a 5%. Aun así, nuestro criterio fijado a priori indica que no debemos rechazar $H_0$. Pero esto debe informarse en el reporte, para que el lector pueda interpretar los resultados.
+Segunda: el valor de $t_{obs}$ es cercano al punto crítico (1.99 frente a 2.05), de modo que es "poco lo que le falta" para que la hipótesis sea rechazada. En el procedimiento a través del valor $p$, eso equivale a que dicho valor de probabilidad apenas supera al nivel de significación establecido: 5.6% frente a 5%. Aun así, nuestro criterio fijado a priori indica que no debemos rechazar $H_0$. Pero esto debe informarse en el reporte, para que el lector pueda interpretar los resultados.
 
 La salida R para esta operación es:
 
 ```{r}
-# tengo que generar datos que se adapten al ejemplo:
+# acá se generan datos que se adaptan al ejemplo:
 
 theta <- acos(.37195)
 x1 <- rnorm(27, 3, .5)
@@ -1058,7 +1015,7 @@ knitr::kable(
   aux_table, kable_outp,
   booktabs = TRUE, align = "cccc", escape = FALSE,
 ) %>%
-  kableExtra::kable_styling(latex_options = "striped")
+  kableExtra::kable_styling(latex_options = c("striped","scale_down"))
 ```
 
 ## Hacerlo en R  
@@ -1086,11 +1043,11 @@ La variable cuyas medias se comparan y la que define los grupos se separan con e
 t.test(duracion ~ trabaja, data = datos.ejemplo.1)
 ```
 
-La salida indica que es una prueba t de Welch, implica que introduce la corrección en el cálculo de la varianza combinada cuando las varianzas poblacionales se consideran diferentes a un nivel del 5%  <!-- tengo duda que sea así, quizás directamente corrige, sin hacer la prueba de las varianzas, verlo -->
-Los valores que interesan son:  
-- el puntaje $t$ que indica la cantidad de desviaciones estándar que la diferencia observada se aleja de cero. El signo depende del modo en que han sido elegidas para restar, no tiene interpretación en pruebas bilaterales.  
-- la lateralidad de la prueba, indicada en "alternative hypothesis: true difference in means is not equal to 0"  
-- el valor p que indica la probabilidad de encontrar una diferencia entre las medias muestrales com la observada o más extrema si en la población la diferencia fuera cero. Por ser un valor pequeño (<0.01), se decide rechazar $H_{0}$ y concluir que las media poblacionales difieren significativamente.  
+La salida indica que es una prueba t de Welch, implica que introduce la corrección en el cálculo de la varianza combinada cuando las varianzas poblacionales se consideran diferentes a un nivel del 5%.  
+Los valores que interesan son:   
+- el puntaje $t$ que indica la cantidad de desviaciones estándar que la diferencia observada se aleja de cero. El signo depende del modo en que han sido elegidas para restar, no tiene interpretación en pruebas bilaterales.   
+- la lateralidad de la prueba, indicada en "alternative hypothesis: true difference in means is not equal to 0"   
+- el valor p que indica la probabilidad de encontrar una diferencia entre las medias muestrales como la observada o más extrema si en la población la diferencia fuera cero. Por ser un valor pequeño (<0.01), se decide rechazar $H_{0}$ y concluir que las media poblacionales difieren significativamente.   
 - los valores de las medias muestrales
 
 Los valores numéricos no  son los mismos que se obtuvieron manualmente, porque la generación aleatoria produce las cantidades de casos que se piden (100 y 150) extraídos de distribuciones con los parámetros ($\mu$ y $\sigma$) indicados, pero los estadísticos muestrales  ($\bar{x}$ y $s$) no necesariamente coinciden con ellos, como sabemos desde que tratamos las distribuciones en el muestreo.  
@@ -1127,11 +1084,11 @@ adultos_mayores <- read.csv("bases/archivostxt/Adultos.mayores.txt",
 )
 ```
 
-Luego, se llevan a numéricas la edad y la cantidad de hijos, porque fueron leídas como factores:  
+Luego, se llevan a numéricas la edad y la cantidad de hijas e hijos, porque fueron leídas como factores:  
 
 ```{r echo=TRUE}
 adultos_mayores$edad <- as.numeric(as.character(adultos_mayores$edad))
-adultos_mayores$hijos <- as.numeric(as.character(adultos_mayores$hijos))
+adultos_mayores$hijes <- as.numeric(as.character(adultos_mayores$hijos))
 ```
 
 Se construye la variable que agrupa las edades:  
@@ -1140,15 +1097,15 @@ Se construye la variable que agrupa las edades:
 adultos_mayores$grupo_edad <- ifelse(adultos_mayores$edad < 66, 1, 2)
 ```
 
-Y se solicita la prueba de hijos según grupos de edad, unilateral izquierda:
+Y se solicita la prueba de hijes según grupos de edad, unilateral izquierda:
 
 ```{r echo=TRUE}
-t.test(hijos ~ grupo_edad, data = adultos_mayores, alternative = "less")
+t.test(hijes ~ grupo_edad, data = adultos_mayores, alternative = "less")
 ```
 
 ### Prueba apareada
 
-Se contruye la matriz de datos:  
+Se contruye la matriz de datos ficticios:  
 
 ```{r echo=TRUE}
 antes <- c(5, 4, 6, 3, 4, 5, 7)
@@ -1156,7 +1113,7 @@ despues <- c(7, 7, 6, 5, 5, 6, 7)
 para_prueba_apareada <- data.frame(antes, despues)
 ```
 
-Y es solicita la prueba $t$, indicando en el argumento que es apareada:
+Y se solicita la prueba $t$, indicando en el argumento que es apareada:
 
 ```{r echo=TRUE}
 t.test(antes, despues, data = para_prueba_apareada, paired = TRUE)
@@ -1176,22 +1133,22 @@ Como sucedió con el comando *cor* que ofrecía el coeficiente de correlación, 
 cor.test(tiempo_prep, calif, method = "spearman")
 ```
 
-[^96]: La fórmula de este promedio tiene en cuenta que las varianzas provienen de muestras de diferente tamaño y que los denominadores de las varianzas son $n-1$. Por eso no es simplemente la suma de ambas dividida dos. Solo en el caso que las muestras son se igual tamaño ($n_1=n_2$), se trata del promedio simple y $s_{comb}^{2} = \frac{s_{1}^{2} + s_{2}^{2}}{2}$
+[^96]: La fórmula de este promedio tiene en cuenta que las varianzas provienen de muestras de diferente tamaño y que los denominadores de las varianzas son $n-1$. Por eso no es simplemente la suma de ambas dividida dos. Solo en el caso que las muestras son de igual tamaño ($n_1=n_2$), se trata del promedio simple y $s_{comb}^{2} = \frac{s_{1}^{2} + s_{2}^{2}}{2}$
 
 [^97]: Esta expresión se conoce como la ecuación de Welch–Satterthwaite y fue desarrollada en el campo de la teoría de errores, los programas de análisis de datos la aplican de manera automática cuando las varianzas son diferentes a cierto nivel de significación.
 
 [^98]: Se llama homogeneidad aquello que coloquialmente podría expresarse como "suficientemente parecidas como para tratarlas como iguales".
 
-[^99]: Cuando se solicita a InfoStat®, automáticamente (a menos que pidamos lo contrario) se verifica si puede suponerse que las varianzas poblacionales son iguales o no y, en base al resultado de esa verificación, se calcula el error estándar de la diferencia con una fórmula o con otra.
+[^99]: Con algunos programas de análisis de datos se verifica si puede suponerse que las varianzas poblacionales son iguales o no y, en base al resultado de esa verificación, se calcula el error estándar de la diferencia con una fórmula o con otra. Otros programas ofrecen ambos resultados e incluyen la prueba de homogeneidad de varianzas, para que el usuario elija.
 
 [^100]: Recordemos que la distribución normal vale para muestras grandes, por el Teorema Central del Límite.
 
 [^101]: Recordemos que esta distribución tiende a la normal cuando las muestras son grandes.
 
-[^102]: Se trata de una versión muy simplificada, solo para ver el uso de esta prueba. El tema se desarrolla con detalles en la materia Metodología de la Investigación Psicológica.
+[^102]: Se trata de una versión muy simplificada, solo para ilustrar un uso de esta prueba.
 
 [^103]: Redondeado al entero.
 
-[^104]: Aunque la prueba se usa principalmente para comparar variables nominales, no hay inconveniente en usarla con variables métricas, definiendo con precisión qué se compara. Por ejemplo, si la variable es la edad, podemos comparar la proporción de personas mayores de 65 años en dos muestras. Todos los mayores de 65 constituyen una categoría y el resto la otra. En ese caso decimos que hemos "dicotomizado" una variable métrica, la hemos transformado en una variable con dos categorías: *mayores de 65* y *65 o menos*. De mismo modo que se definen como promocionados, los alumnos con notas 7 o mayores.
+[^104]: Aunque la prueba se usa principalmente para comparar variables nominales, no hay inconveniente en usarla con variables métricas, definiendo con precisión qué se compara. Por ejemplo, si la variable es la edad, podemos comparar la proporción de personas mayores de 65 años en dos muestras. Todos los mayores de 65 constituyen una categoría y el resto la otra. En ese caso decimos que hemos "dicotomizado" una variable métrica, la hemos transformado en una variable con dos categorías: *mayores de 65* y *65 o menos*. De mismo modo que se definen como promocionados, quienes tienen notas 7 o mayores. Se trata de dicotomías artificiales.
 
 [^105]: Es un ejemplo incompleto porque no hay grupo control, por lo que no es seguro que los cambios observados se deban a la intervención terapéutica o a otros factores.
