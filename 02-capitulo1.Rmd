@@ -38,6 +38,7 @@ preferencia <- tibble::tribble(
 kableExtra::kable_styling(
   knitr::kable(preferencia,
     format = "pandoc", booktabs = TRUE, align = "lr",
+    label = "preferida",
     caption = "Área de trabajo preferida."
   ),
   latex_options = "striped"
@@ -58,7 +59,7 @@ kableExtra::kable_styling(
 )
 ```
 
-Se lee que Clínica es un área preferida por cuatro estudiantes, Laboral y Educacional atrae a dos y a Social solo tiene una mención. Las personas desaparecieron, ya no hay nombres, hemos abstraído para referirnos al área preferida, no a las personas que las prefieren. En la tabla se ve que lo más frecuente es que se prefiera Clínica, y que Social es poco frecuente. Se pasó de la lista de personas reconocibles a la tabla de valores. Nos despegamos de los casos a fin de buscar la regularidad en el conjunto. Más adelante diremos que se ha pasado de la matriz de datos a la distribución de frecuencias, que constituye una reducción o un primer resumen de la información disponible. Esta operación es menos obvia de lo que puede parecer y es tardía en la historia de las idean, tiene origen en la publicación, de @gaunt1662 “Observaciones naturales y políticas hechas sobre los boletines de mortalidad”, quie tomó las listas de defunciones sucedidas en Londres durante veinte años en tiempos de la peste y las resumió en orden cronológico. Cambió la lista por la tabla, para observar al proceso (la mortalidad a lo largo del tiempo), en lugar de las muertes registradas individualmente.
+Se lee que Clínica es un área preferida por cuatro estudiantes, Laboral y Educacional atrae a dos y a Social solo tiene una mención. Las personas desaparecieron, ya no hay nombres, hemos abstraído para referirnos al área preferida, no a las personas que las prefieren. En la tabla se ve que lo más frecuente es que se prefiera Clínica, y que Social es poco frecuente. Se pasó de la lista de personas reconocibles a la tabla de valores. Nos despegamos de los casos a fin de buscar la regularidad en el conjunto. Más adelante diremos que se ha pasado de la matriz de datos a la distribución de frecuencias, que constituye una reducción o un primer resumen de la información disponible. Esta operación es menos obvia de lo que puede parecer y es tardía en la historia de las idean, tiene origen en la publicación, de @gaunt1662 “Observaciones naturales y políticas hechas sobre los boletines de mortalidad”, quien tomó las listas de defunciones sucedidas en Londres durante veinte años en tiempos de la peste y las resumió en orden cronológico. Su operación fue la de cambiar la lista por la tabla, para observar al proceso (la mortalidad a lo largo del tiempo), en lugar de las muertes registradas individualmente.
 
 Consideremos el siguiente cuestionario, que se aplicó en 2019 a personas con edades 18 y 35 años. 
 
@@ -68,7 +69,7 @@ knitr::include_graphics("imagenes/cuestionario2019_02.png")
 ```
 
 Este instrumento de producción de datos, se dirigió a una población definida: personas entre 18 y 35 años. En él se solicitó información sobre un conjunto seleccionado de características; los ítems numerados desde P1 hasta P16. Se trata de unos pocos aspectos de cada persona los que interesan para esta investigación; no se tiene en cuenta, por ejemplo la opinión política de quienes responden, ni su estatura o la región en que viven. Estas últimas y muchas más son características de estas personas, pero están fuera del alcance de la investigación. Esto muestra a qué nos referimos con que la información seleccionada constituye un recorte, es una parcialización de las entidades (no siempre son personas) que responden, en la que se eligen solo los aspectos que son de interés para una investigación particular.  
-El cuestionario tiene 16 ítems, cada persona que lo responde marca una sola de las opciones indicadas en cada ítem. Una vez completados los cuestionarios, la información está "en bruto" y es necesario ordenarla para poder tener una visión de conjunto. Eso se logra organizando los datos recogidos en la *matriz de datos* que es equivalente a la lista de la tabla \@ref(tab:preferencia), pero con más aspectos relevados que el área preferida. Para el cuestionario mostrado, el siguiente es un fragmento de esa lista:
+El cuestionario tiene 16 ítems, cada persona que lo responde marca una sola de las opciones indicadas en cada ítem. Una vez completados los cuestionarios, la información está "en bruto" y es necesario ordenarla para poder tener una visión de conjunto. Eso se logra organizando los datos recogidos en la *matriz de datos* que es equivalente a la lista de la tabla \@ref(tab:preferida), pero con más aspectos relevados que solo el área preferida. Para el cuestionario mostrado, el siguiente es un fragmento de esa lista:
 
 ```{r}
 base.2019 <- read.csv("bases/archivostxt/base2019.txt", header = TRUE, sep = " ", dec = ".", na.strings = 999)
@@ -295,7 +296,7 @@ Entonces, en este nivel de medición a cada categoría puede asignarse, de maner
 
 Para unidades de análisis medidas a través de una variable de nivel nominal, es posible saber si corresponden a la misma categoría o a una diferente, es decir si tienen la misma cualidad (o atributo) o una diferente.
 
-En la tabla \@ref(tab:nivelNomCod) si a alguien le corresponde el número "1" y a otro también, podemos decir que coinciden en esta variable, ambos estudian la misma carrera (Psicología), y si a uno le corresponde el "1" y a otro el "3", sabremos que el primero estudia Psicología y el otro Medicina. El hecho que el número "3" sea más grande que el "1", no tiene ninguna interpretación en este nivel de medición, no puede decirse que Psicología sea menos que Medicina. Como tampoco vale que "3" sea el triple de "1".
+En la tabla \@ref(tab:nivelNomCod) si a una persona le corresponde el número "1" y a otra también, podemos decir que coinciden en esta variable, ambas estudian la misma carrera (Psicología), y si a una le corresponde el "1" y a otra el "3", sabremos que la primera estudia Psicología y la otra Medicina. El hecho que el número "3" sea más grande que el "1", no tiene ninguna interpretación en este nivel de medición, no puede decirse que Psicología sea menos que Medicina. Como tampoco vale que "3" sea el triple de "1".
 
 Si "1" y "2" son dos categorías de una variable medida a nivel nominal, el único tipo de relación que puede establecerse entre ellas es $$1\neq2$$
 Es decir que 1 es diferente de 2.
@@ -367,7 +368,7 @@ Una forma de medir la inteligencia es la de observar cuántos problemas de una s
 
 Las escalas intervalares, mantienen las propiedades de las escalas ordinales y nominales, es decir, los números designan categorías y permiten ordenarlas; pero además permiten decir a qué distancia está una de otra, porque cada categoría se expresa también en sentido cuantitativo. La medición intervalar implica construir una escala en la que las categorías están proporcionalmente distanciadas entre sí. Esto permite especificar la distancia que separa a cada categoría de las demás. Este nivel de medición requiere que se establezca algún tipo de unidad de medida que pueda ser considerado como una norma común y que sea repetible, esto es, que se pueda aplicar reiteradamente a las mismas observaciones produciendo los mismos resultados.
 
-La medición de los rendimientos individuales por medio de pruebas suele expresarse en puntajes que provienen del tiempo requerido para realizar una determinada tarea o de la cantidad de trabajo realizado. En este tipo de prueba, es común que los puntajes partan de un mínimo establecido (por ejemplo el mínimo tiempo posible de ejecución o la mínima cantidad de tareas que una persona puede realizar en una prueba) y esto constituye el puntaje mínimo o la categoría más baja. Los puntajes de las pruebas mentales varían de acuerdo con el rendimiento y un mayor rendimiento siempre significará un mayor puntaje. Por ejemplo, el manual original del Inventario de Depresión de Beck-II (@Upton2013) establece niveles (ordinales) para los puntajes (intervalares) que resultan de la aplicación del instrumento:
+La medición de los rendimientos individuales por medio de pruebas suele expresarse en puntajes que provienen del tiempo requerido para realizar una determinada tarea o de la cantidad de trabajo realizado. En este tipo de prueba, es común que los puntajes partan de un mínimo establecido (por ejemplo el mínimo tiempo posible de ejecución o la mínima cantidad de tareas que una persona puede realizar en una prueba) y esto constituye el puntaje mínimo o la categoría más baja. Los puntajes de las pruebas mentales varían de acuerdo con el rendimiento y un mayor rendimiento siempre significará un mayor puntaje. Por ejemplo, el manual original del Inventario de Depresión de Beck-II [@Upton2013] establece niveles (ordinales) para los puntajes (intervalares) que resultan de la aplicación del instrumento:
 
 ```{r}
 aux_table <- tibble::tribble(
@@ -543,11 +544,11 @@ Ejemplos de diferentes niveles de medición
 
 - Nominales:
 
-Valores (supervivencia vs autoexpresión, tradicionales vs racionales) [@inglehart1989], [@inglehart2018]
+Valores (supervivencia vs autoexpresión, tradicionales vs racionales) [@inglehart1989, @inglehart2018]
 
 - Ordinales:
 
-Las escalas de compromiso politico, acuerdo partidario y consistencia ideológica [@gerber2011], [@gerber2016], la pobreza medida según Línea de pobreza [@Gomez2004], el grado de acuerdo en escalas de actitud @robinson1991
+Las escalas de compromiso politico, acuerdo partidario y consistencia ideológica [@gerber2011, @gerber2016], la pobreza medida según Línea de pobreza [@Gomez2004], el grado de acuerdo en escalas de actitud [@robinson1991]
 
 - Cuantitativas discretas:
 
@@ -571,7 +572,7 @@ Tiempo requerido para completar una tarea, ingreso per cápita familiar, gasto t
 
 [^medicion_de_tiempo]: El ejemplo de los calendarios judío y cristiano, aunque es una medición de tiempo, no es absoluta. Es diferente de la medición con un cronómetro, que establece un inicio de cuenta al momento en que se lo dispara y da lugar a una variable de nivel proporcional.
 
-[^precision]: La cantidad de valores depende de la precisión con que se mida. Si se mide con precisión de un centímetro, en un metro caben 100 valores, pero si se mide al milímetro en el mismo intervalo de un metro se ubican 1000 categorías. El concepto matemático de continuidad implica que entre dos valores hay infinitos cortes, pero en procesos observables, la medición tiene un límite que está dado por la mínima graduación que admita el instrumento.  
+[^precision]: La cantidad de valores depende de la precisión con que se mida. Si se mide con precisión de un centímetro, en un metro caben 100 valores, pero si se mide al milímetro en el mismo intervalo de un metro se ubican 1000 categorías. Una aproximación al concepto de continuidad es que entre dos valores hay infinitos cortes, sin embargo, en procesos observables, la medición tiene un límite que está dado por la mínima graduación que admita el instrumento. Esta es la concepción habitual de variables continuas en estadística, que las distingue de las discretas en que estas provienen de procesos de conteo, mientras que las primeras se generan a partir de mediciones, en alguna unidad de medida. Sin embargo, esta idea no se corresponde con la definición matemática de continuidad, sino con la de "densidad". El conjunto de números racionales es denso, porque entre dos cualesquiera de ellos pueden encontrarse otro ($\forall a\: \in \: \mathbb{Q},\: \forall b \in \: \mathbb{Q},\:\: / \: a\: <\: b,\:  \exists \: c\in \: \mathbb{Q},\:\: /\: a\: <\: c\: <b$). Pero este conjunto no es completo, debido a tiene discontinuidades en los números irracionales. En este curso, en los problemas prácticos que enfrentamos, las variables cuantitativas podrán tomar valores enteros o decimales y mantendremos la convención de llamar discretas a las primeras y continuas a las segundas.  
 
 \pagebreak
 

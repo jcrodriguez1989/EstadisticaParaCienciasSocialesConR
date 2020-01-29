@@ -406,6 +406,7 @@ grid.arrange(efecto_chico_alpha5_s1, efecto_mediano_alpha5_s1,
 )
 ```
 
+\pagebreak  
 
 ## Hacerlo en R  
 Las relaciones entre el tamaño de muestra, la potencia, el tamaño del
@@ -420,12 +421,9 @@ parámetros (en particular, de las diferencias entre el valor paramétrico
 que sostiene $H_0$ y el que sostienen las diferentes alternativas $H_k$); ahora, con el tamaño del efecto estandarizado, solo hace falta saber qué prueba se realiza para obtener la curva de potencia.
 
 Si bien existen calculadoras on line[^114], es recomendable, por su
-flexibilidad, usar el paquete `pwr` (@champely2018) en R. Este conjunto
+flexibilidad, usar el paquete `pwr` [@champely2018] en R. Este conjunto
 de rutinas genera, para cada prueba estadística, uno de los cuatro
-valores a partir de los otros tres. Por ejemplo, una prueba t unilateral
-derecha, para comparar dos grupos a un nivel de significación del 5%,
-con una potencia de 80% requiere, para detectar un efecto grande
-(d=0.85), 18 casos en cada grupo.  
+valores a partir de los otros tres. Para estimar a priori el tamaño de muestra, hay que establecer: el tipo de prueba, el nivel de significación, la potencia que se espera y el tamaño del efecto que se puede detectar. Por ejemplo, ¿Cuántos casos hacen falta en cada grupo si se va a realizar una prueba t unilateral derecha, a un nivel de significación del 5%, y se requiere una probabilidad 0.80 (potencia) de detectar un efecto grande (d=0.85)? Ese es el modo en que debe formularse la pregunta para encontrar uno de los cuatro valores que interjuegan.  
 Primero se instala el paquete y se carga en la sesión:
 
 ```{r echo=TRUE, eval=FALSE}
@@ -436,14 +434,60 @@ install.packages("pwr")
 library("pwr")
 ```
 
-Luego se indica el tipo de prueba; `pwr.t.test` para una prueba t, y los valores de: significación, potencia, tamaño del efecto y lateralidad de la prueba.  
-```{r}
-pwr.t.test(sig.level = .05, power = .8, d = 0.85, alternative = "greater")
+Las convenciones estándar propuestas por Cohen1988 se solicitan con el comando cohen.ES, al que debe indicarse qué prueba es (las opciones son: "p", "t", "r", "anov", "chisq", "f2") y la magnitud del efecto (con opciones: "small", "medium", "large"). Por ejemplo, un tamaño del efecto grande para una prueba t es:
+```{r echo=TRUE}
+cohen.ES(test = "t", size = "large")
 ```
 
-El valor 31 para el tamaño de muestra se considera óptimo porque a
-partir de ahí la curva crece más lentamente y las ganancias de potencia
-son pequeñas, lo que no se justifica aumentar el número de casos.
+0.80. 
+
+Para el cálculo del tamaño del efecto, de la potencia, del tamaño muestral o de la significación, primero se elige el tipo de prueba; para una prueba t el comando es `pwr.t.test`, y se indican, además de la lateralidad de la prueba, los valores de tres de los siguientes cuatro elementos:  
+- significación ($sig.level$)  
+- potencia ($power$)  
+- tamaño del efecto ($d$)  
+- tamaño de la muestra ($n$).  
+
+Uno de ellos debe quedar sin mención (o como "NULL"), y ese es el que se calcula como función de los demás.  
+Para conocer el tamaño de la muestra a partir del tamaño del efecto, la potencia y la significación en una prueba unilateral derecha (no se nombra $n$):  
+```{r echo=TRUE}
+pwr.t.test(sig.level = .05, power = .8, d = 0.85,
+           alternative = "greater")
+```
+
+Para lograr detectar el mismo tamaño de efecto con una  muestra de 25 casos:
+
+```{r echo=TRUE}
+pwr.t.test(sig.level = .05, n=25, d = 0.85,
+           alternative = "greater")
+```
+La probabilidad de detectarlo (la potencia) aumenta a 0.90.  
+
+El  comando `pwr.t.test` sirve para pruebas t de una muestra, de diferencia de medias independientes y apareadas, se debe indicar el tipo de prueba en el argumento `type`, con opciones "two.sample" (dos muestras independientes), "one.sample" (una muestra), "paired" (apareadas). Por ejemplo, para conocer la potencia que tiene una prueba de comparación de medias provenientes de muestras independientes para detectar un efecto de tamaño 0.3, si los grupos tienen 25 casos cada uno, se realiza una prueba bilateral, a un nivel de significación de 0.01. Se solicita:
+
+```{r echo=TRUE}
+pwr.t.test(n = 25, d=0.3, sig.level = 0.01, power = NULL,
+           type = "two.sample", alternative = "two.sided")
+```
+
+Si ahora se quisiera, para la misma prueba, elevar la potencia a 0.10, el número de casos requerido es:
+
+```{r echo=TRUE}
+pwr.t.test(d = 0.3, sig.level = 0.01, power = 0.10,
+           type = "two.sample", alternative = "two.sided")
+```
+Hacen falta casi 40 casos en cada grupo.
+
+Para el  Análisis de la Varianza, se agrega como dato requerido, el numero de grupos de comparación. Si se trata de cuatro grupos a un nivel de 5%, para tener una probabilidad de 0.50 (potencia) detectar un efecto de tamaño 0.2, se requieren:
+
+```{r echo=TRUE}
+pwr.anova.test(power=0.5, k=4, f=0.2, sig.level=0.05)
+```
+
+37 casos en cada uno de los grupos. Pero si solo se cuenta con 15 casos en cada grupo, entonces el tamaño del efecto que se puede detectar con probabilidad 0.50 es:  
+```{r echo=TRUE}
+pwr.anova.test(power=0.5, k=4, n=15, sig.level=0.05)
+```
+Es de 0.32.
 
 El vídeo *tamaño del efecto*, en https://youtu.be/s2nGqz5Nh4A ofrece detalles adicionales sobre el uso del paquete `pwr` en el entorno RStudio.
 

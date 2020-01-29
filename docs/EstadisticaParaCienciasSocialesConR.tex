@@ -2,43 +2,48 @@
 \PassOptionsToPackage{hyphens}{url}
 \PassOptionsToPackage{dvipsnames,svgnames*,x11names*}{xcolor}
 %
-\documentclass[]{book}
+\documentclass[
+]{book}
 \usepackage{lmodern}
 \usepackage{amssymb,amsmath}
 \usepackage{ifxetex,ifluatex}
-\usepackage{fixltx2e} % provides \textsubscript
 \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
   \usepackage{textcomp} % provides euro and other symbols
 \else % if luatex or xelatex
   \usepackage{unicode-math}
-  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
 \fi
 % use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
-% use microtype if available
-\IfFileExists{microtype.sty}{%
-\usepackage[]{microtype}
-\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
 }{}
-\IfFileExists{parskip.sty}{%
-\usepackage{parskip}
-}{% else
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{6pt plus 2pt minus 1pt}
-}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
 \usepackage{xcolor}
-\usepackage{hyperref}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
 \hypersetup{
-            pdftitle={Un Recorrido por los Métodos Cuantitativos en Ciencias Sociales a bordo de R},
-            pdfauthor={Eduardo Bologna},
-            colorlinks=true,
-            linkcolor=Maroon,
-            filecolor=Maroon,
-            citecolor=Blue,
-            urlcolor=Blue,
-            breaklinks=true}
+  pdftitle={Un Recorrido por los Métodos Cuantitativos en Ciencias Sociales a bordo de R (edición preliminar)},
+  pdfauthor={Eduardo Bologna},
+  colorlinks=true,
+  linkcolor=Maroon,
+  filecolor=Maroon,
+  citecolor=Blue,
+  urlcolor=Blue,
+  breaklinks=true}
 \urlstyle{same}  % don't use monospace font for urls
 \usepackage{color}
 \usepackage{fancyvrb}
@@ -81,8 +86,9 @@
 \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
 \usepackage{longtable,booktabs}
-% Fix footnotes in tables (requires footnote package)
-\IfFileExists{footnote.sty}{\usepackage{footnote}\makesavenoteenv{longtable}}{}
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
 \usepackage{graphicx,grffile}
 \makeatletter
 \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
@@ -98,12 +104,12 @@
 \setcounter{secnumdepth}{5}
 % Redefines (sub)paragraphs to behave more like sections
 \ifx\paragraph\undefined\else
-\let\oldparagraph\paragraph
-\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+  \let\oldparagraph\paragraph
+  \renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
 \fi
 \ifx\subparagraph\undefined\else
-\let\oldsubparagraph\subparagraph
-\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+  \let\oldsubparagraph\subparagraph
+  \renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
 \fi
 
 % set default figure placement to htbp
@@ -160,7 +166,7 @@
 \usepackage[]{natbib}
 \bibliographystyle{apalike}
 
-\title{Un Recorrido por los Métodos Cuantitativos en Ciencias Sociales a bordo de R}
+\title{Un Recorrido por los Métodos Cuantitativos en Ciencias Sociales a bordo de R (edición preliminar)}
 \author{Eduardo Bologna}
 \date{enero de 2020}
 
@@ -186,21 +192,31 @@
 
 \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
 
+Edición preliminar, en proceso de revisión por parte del:
+
 \hypertarget{comituxe9-editorial}{%
 \section*{Comité Editorial:}\label{comituxe9-editorial}}
 \addcontentsline{toc}{section}{Comité Editorial:}
 
-\hypertarget{uno}{%
-\subsubsection*{uno}\label{uno}}
-\addcontentsline{toc}{subsubsection}{uno}
+\hypertarget{patricia-caro}{%
+\subsubsection*{Patricia Caro}\label{patricia-caro}}
+\addcontentsline{toc}{subsubsection}{Patricia Caro}
 
-\hypertarget{dos}{%
-\subsubsection*{dos}\label{dos}}
-\addcontentsline{toc}{subsubsection}{dos}
+\hypertarget{adriana-damelio}{%
+\subsubsection*{Adriana D´Amelio}\label{adriana-damelio}}
+\addcontentsline{toc}{subsubsection}{Adriana D´Amelio}
 
-\hypertarget{tres}{%
-\subsubsection*{tres}\label{tres}}
-\addcontentsline{toc}{subsubsection}{tres}
+\hypertarget{maria-silvia-galibert}{%
+\subsubsection*{Maria Silvia Galibert}\label{maria-silvia-galibert}}
+\addcontentsline{toc}{subsubsection}{Maria Silvia Galibert}
+
+\hypertarget{jorge-lorenzo}{%
+\subsubsection*{Jorge Lorenzo}\label{jorge-lorenzo}}
+\addcontentsline{toc}{subsubsection}{Jorge Lorenzo}
+
+\hypertarget{maruxeda-marta-santillan}{%
+\subsubsection*{María Marta Santillan}\label{maruxeda-marta-santillan}}
+\addcontentsline{toc}{subsubsection}{María Marta Santillan}
 
 \hypertarget{presentaciuxf3n}{%
 \chapter*{Presentación}\label{presentaciuxf3n}}
@@ -364,8 +380,8 @@ Hay sitios web (como \url{https://rdrr.io/snippets/}, por ejemplo) que permiten 
 
 Por estas razones, R es uno de los lenguajes de programación que más uso tiene y se está convirtiendo en la lingua franca del análisis de datos.
 
-Como lenguaje, R tiene varias interfaces gráficas, que es el modo en que las personas puede interactuar con él. R es el motor y del mismo modo en que, para manejar un auto no hace falta saber cómo funciona el motor, también aquí será suficiente contar con un buen conjunto de comandos (volante, pedales\ldots{}) para hacer uso de la potencia de ese motor, la interface provee esos comandos. De las interfaces existentes, hemos elegido RStudio \citet{RStudioTeam2018} que es un entorno de desarrollo integrado (IDE) de R para facilitar la edición de código que ofrece diversas herramientas para hacer muy accesible el uso de R por parte de quienes no se dedican a la programación, sino que son usuarios de procedimientos estadísticos.\\
-Una línea de tiempo sobre el desarrollo de R puede encoontrar en \url{https://blog.revolutionanalytics.com/2017/10/updated-history-of-r.html}
+Como lenguaje, R tiene varias interfaces gráficas, que es el modo en que las personas puede interactuar con él. R es el motor y del mismo modo en que, para manejar un auto no hace falta saber cómo funciona el motor, también aquí será suficiente contar con un buen conjunto de comandos (volante, pedales\ldots{}) para hacer uso de la potencia de ese motor, la interface provee esos comandos. De las interfaces existentes, hemos elegido RStudio \citep{RStudioTeam2018} que es un entorno de desarrollo integrado (IDE) de R para facilitar la edición de código que ofrece diversas herramientas para hacer muy accesible el uso de R por parte de quienes no se dedican a la programación, sino que son usuarios de procedimientos estadísticos.\\
+Una línea de tiempo sobre el desarrollo de R puede encontrar en \url{https://blog.revolutionanalytics.com/2017/10/updated-history-of-r.html}
 
 \hypertarget{instalaciuxf3n-de-r-y-rstudio}{%
 \subsection*{Instalación de R y RStudio}\label{instalaciuxf3n-de-r-y-rstudio}}
@@ -1380,7 +1396,7 @@ Los registros son continuos, lo que quiere decir que captan información a medid
 Cualquiera sea la fuente de los datos, una vez que se decide cuál es la información pertinente, se la recaba de varias de las entidades definidas y se cambia la óptica desde el caso particular a la regularidad colectiva. Es un cambio desde la observación del caso hacia la mirada puesta en el grupo. La siguiente es una lista que indica el área en que les gustaría trabajar cuando se reciban, a nueve estudiantes de primer año de Psicología:
 
 \begin{longtable}[]{@{}lr@{}}
-\caption{\label{tab:unnamed-chunk-64}Área de trabajo preferida.}\tabularnewline
+\caption{\label{tab:preferida}Área de trabajo preferida.}\tabularnewline
 \toprule
 Estudiante & Área\tabularnewline
 \midrule
@@ -1420,7 +1436,7 @@ Social & 1\tabularnewline
 \bottomrule
 \end{longtable}
 
-Se lee que Clínica es un área preferida por cuatro estudiantes, Laboral y Educacional atrae a dos y a Social solo tiene una mención. Las personas desaparecieron, ya no hay nombres, hemos abstraído para referirnos al área preferida, no a las personas que las prefieren. En la tabla se ve que lo más frecuente es que se prefiera Clínica, y que Social es poco frecuente. Se pasó de la lista de personas reconocibles a la tabla de valores. Nos despegamos de los casos a fin de buscar la regularidad en el conjunto. Más adelante diremos que se ha pasado de la matriz de datos a la distribución de frecuencias, que constituye una reducción o un primer resumen de la información disponible. Esta operación es menos obvia de lo que puede parecer y es tardía en la historia de las idean, tiene origen en la publicación, de \citet{gaunt1662} ``Observaciones naturales y políticas hechas sobre los boletines de mortalidad'', quie tomó las listas de defunciones sucedidas en Londres durante veinte años en tiempos de la peste y las resumió en orden cronológico. Cambió la lista por la tabla, para observar al proceso (la mortalidad a lo largo del tiempo), en lugar de las muertes registradas individualmente.
+Se lee que Clínica es un área preferida por cuatro estudiantes, Laboral y Educacional atrae a dos y a Social solo tiene una mención. Las personas desaparecieron, ya no hay nombres, hemos abstraído para referirnos al área preferida, no a las personas que las prefieren. En la tabla se ve que lo más frecuente es que se prefiera Clínica, y que Social es poco frecuente. Se pasó de la lista de personas reconocibles a la tabla de valores. Nos despegamos de los casos a fin de buscar la regularidad en el conjunto. Más adelante diremos que se ha pasado de la matriz de datos a la distribución de frecuencias, que constituye una reducción o un primer resumen de la información disponible. Esta operación es menos obvia de lo que puede parecer y es tardía en la historia de las idean, tiene origen en la publicación, de \citet{gaunt1662} ``Observaciones naturales y políticas hechas sobre los boletines de mortalidad'', quien tomó las listas de defunciones sucedidas en Londres durante veinte años en tiempos de la peste y las resumió en orden cronológico. Su operación fue la de cambiar la lista por la tabla, para observar al proceso (la mortalidad a lo largo del tiempo), en lugar de las muertes registradas individualmente.
 
 Consideremos el siguiente cuestionario, que se aplicó en 2019 a personas con edades 18 y 35 años.
 
@@ -1442,7 +1458,7 @@ Consideremos el siguiente cuestionario, que se aplicó en 2019 a personas con ed
 \end{figure}
 
 Este instrumento de producción de datos, se dirigió a una población definida: personas entre 18 y 35 años. En él se solicitó información sobre un conjunto seleccionado de características; los ítems numerados desde P1 hasta P16. Se trata de unos pocos aspectos de cada persona los que interesan para esta investigación; no se tiene en cuenta, por ejemplo la opinión política de quienes responden, ni su estatura o la región en que viven. Estas últimas y muchas más son características de estas personas, pero están fuera del alcance de la investigación. Esto muestra a qué nos referimos con que la información seleccionada constituye un recorte, es una parcialización de las entidades (no siempre son personas) que responden, en la que se eligen solo los aspectos que son de interés para una investigación particular.\\
-El cuestionario tiene 16 ítems, cada persona que lo responde marca una sola de las opciones indicadas en cada ítem. Una vez completados los cuestionarios, la información está ``en bruto'' y es necesario ordenarla para poder tener una visión de conjunto. Eso se logra organizando los datos recogidos en la \emph{matriz de datos} que es equivalente a la lista de la tabla \ref{tab:preferencia}, pero con más aspectos relevados que el área preferida. Para el cuestionario mostrado, el siguiente es un fragmento de esa lista:
+El cuestionario tiene 16 ítems, cada persona que lo responde marca una sola de las opciones indicadas en cada ítem. Una vez completados los cuestionarios, la información está ``en bruto'' y es necesario ordenarla para poder tener una visión de conjunto. Eso se logra organizando los datos recogidos en la \emph{matriz de datos} que es equivalente a la lista de la tabla \ref{tab:preferida}, pero con más aspectos relevados que solo el área preferida. Para el cuestionario mostrado, el siguiente es un fragmento de esa lista:
 
 \begin{verbatim}
 ##    sexo edad acceso.redes red.usada red.otra tiempo.red
@@ -1690,7 +1706,7 @@ Una variable está medida a nivel \textbf{nominal} si los números que represent
 
 Para unidades de análisis medidas a través de una variable de nivel nominal, es posible saber si corresponden a la misma categoría o a una diferente, es decir si tienen la misma cualidad (o atributo) o una diferente.
 
-En la tabla \ref{tab:nivelNomCod} si a alguien le corresponde el número ``1'' y a otro también, podemos decir que coinciden en esta variable, ambos estudian la misma carrera (Psicología), y si a uno le corresponde el ``1'' y a otro el ``3'', sabremos que el primero estudia Psicología y el otro Medicina. El hecho que el número ``3'' sea más grande que el ``1'', no tiene ninguna interpretación en este nivel de medición, no puede decirse que Psicología sea menos que Medicina. Como tampoco vale que ``3'' sea el triple de ``1''.
+En la tabla \ref{tab:nivelNomCod} si a una persona le corresponde el número ``1'' y a otra también, podemos decir que coinciden en esta variable, ambas estudian la misma carrera (Psicología), y si a una le corresponde el ``1'' y a otra el ``3'', sabremos que la primera estudia Psicología y la otra Medicina. El hecho que el número ``3'' sea más grande que el ``1'', no tiene ninguna interpretación en este nivel de medición, no puede decirse que Psicología sea menos que Medicina. Como tampoco vale que ``3'' sea el triple de ``1''.
 
 Si ``1'' y ``2'' son dos categorías de una variable medida a nivel nominal, el único tipo de relación que puede establecerse entre ellas es \[1\neq2\]
 Es decir que 1 es diferente de 2.
@@ -1769,7 +1785,7 @@ Una forma de medir la inteligencia es la de observar cuántos problemas de una s
 
 Las escalas intervalares, mantienen las propiedades de las escalas ordinales y nominales, es decir, los números designan categorías y permiten ordenarlas; pero además permiten decir a qué distancia está una de otra, porque cada categoría se expresa también en sentido cuantitativo. La medición intervalar implica construir una escala en la que las categorías están proporcionalmente distanciadas entre sí. Esto permite especificar la distancia que separa a cada categoría de las demás. Este nivel de medición requiere que se establezca algún tipo de unidad de medida que pueda ser considerado como una norma común y que sea repetible, esto es, que se pueda aplicar reiteradamente a las mismas observaciones produciendo los mismos resultados.
 
-La medición de los rendimientos individuales por medio de pruebas suele expresarse en puntajes que provienen del tiempo requerido para realizar una determinada tarea o de la cantidad de trabajo realizado. En este tipo de prueba, es común que los puntajes partan de un mínimo establecido (por ejemplo el mínimo tiempo posible de ejecución o la mínima cantidad de tareas que una persona puede realizar en una prueba) y esto constituye el puntaje mínimo o la categoría más baja. Los puntajes de las pruebas mentales varían de acuerdo con el rendimiento y un mayor rendimiento siempre significará un mayor puntaje. Por ejemplo, el manual original del Inventario de Depresión de Beck-II (\citet{Upton2013}) establece niveles (ordinales) para los puntajes (intervalares) que resultan de la aplicación del instrumento:
+La medición de los rendimientos individuales por medio de pruebas suele expresarse en puntajes que provienen del tiempo requerido para realizar una determinada tarea o de la cantidad de trabajo realizado. En este tipo de prueba, es común que los puntajes partan de un mínimo establecido (por ejemplo el mínimo tiempo posible de ejecución o la mínima cantidad de tareas que una persona puede realizar en una prueba) y esto constituye el puntaje mínimo o la categoría más baja. Los puntajes de las pruebas mentales varían de acuerdo con el rendimiento y un mayor rendimiento siempre significará un mayor puntaje. Por ejemplo, el manual original del Inventario de Depresión de Beck-II \citep{Upton2013} establece niveles (ordinales) para los puntajes (intervalares) que resultan de la aplicación del instrumento:
 
 \begin{longtable}[]{@{}ll@{}}
 \caption{\label{tab:unnamed-chunk-73}Ejemplo de codificación de rangos de puntajes para una variable intervalar.}\tabularnewline
@@ -1909,7 +1925,7 @@ Número de materias aprobadas\tabularnewline
 \bottomrule
 \end{longtable}
 
-Cuando la variable admite números decimales se la llama \textbf{continua}, y allí el problema es mayor, porque el número de valores puede ser muy elevado\footnote{La cantidad de valores depende de la precisión con que se mida. Si se mide con precisión de un centímetro, en un metro caben 100 valores, pero si se mide al milímetro en el mismo intervalo de un metro se ubican 1000 categorías. El concepto matemático de continuidad implica que entre dos valores hay infinitos cortes, pero en procesos observables, la medición tiene un límite que está dado por la mínima graduación que admita el instrumento.} y la única opción es la de construir categorías.
+Cuando la variable admite números decimales se la llama \textbf{continua}, y allí el problema es mayor, porque el número de valores puede ser muy elevado\footnote{La cantidad de valores depende de la precisión con que se mida. Si se mide con precisión de un centímetro, en un metro caben 100 valores, pero si se mide al milímetro en el mismo intervalo de un metro se ubican 1000 categorías. Una aproximación al concepto de continuidad es que entre dos valores hay infinitos cortes, sin embargo, en procesos observables, la medición tiene un límite que está dado por la mínima graduación que admita el instrumento. Esta es la concepción habitual de variables continuas en estadística, que las distingue de las discretas en que estas provienen de procesos de conteo, mientras que las primeras se generan a partir de mediciones, en alguna unidad de medida. Sin embargo, esta idea no se corresponde con la definición matemática de continuidad, sino con la de ``densidad''. El conjunto de números racionales es denso, porque entre dos cualesquiera de ellos pueden encontrarse otro (\(\forall a\: \in \: \mathbb{Q},\: \forall b \in \: \mathbb{Q},\:\: / \: a\: <\: b,\: \exists \: c\in \: \mathbb{Q},\:\: /\: a\: <\: c\: <b\)). Pero este conjunto no es completo, debido a tiene discontinuidades en los números irracionales. En este curso, en los problemas prácticos que enfrentamos, las variables cuantitativas podrán tomar valores enteros o decimales y mantendremos la convención de llamar discretas a las primeras y continuas a las segundas.} y la única opción es la de construir categorías.
 
 \begin{longtable}[]{@{}c@{}}
 \caption{\label{tab:unnamed-chunk-76}Ejemplo de recategorización de una variable continua}\tabularnewline
@@ -1996,7 +2012,7 @@ Ejemplos de diferentes niveles de medición
   Nominales:
 \end{itemize}
 
-Valores (supervivencia vs autoexpresión, tradicionales vs racionales) \citep{inglehart1989}, \citep{inglehart2018}
+Valores (supervivencia vs autoexpresión, tradicionales vs racionales) \citep[\citet{inglehart2018}]{inglehart1989}
 
 \begin{itemize}
 \tightlist
@@ -2004,7 +2020,7 @@ Valores (supervivencia vs autoexpresión, tradicionales vs racionales) \citep{in
   Ordinales:
 \end{itemize}
 
-Las escalas de compromiso politico, acuerdo partidario y consistencia ideológica \citep{gerber2011}, \citep{gerber2016}, la pobreza medida según Línea de pobreza \citep{Gomez2004}, el grado de acuerdo en escalas de actitud \citet{robinson1991}
+Las escalas de compromiso politico, acuerdo partidario y consistencia ideológica \citep[\citet{gerber2016}]{gerber2011}, la pobreza medida según Línea de pobreza \citep{Gomez2004}, el grado de acuerdo en escalas de actitud \citep{robinson1991}
 
 \begin{itemize}
 \tightlist
@@ -2379,7 +2395,7 @@ Total & 56879\tabularnewline
 \bottomrule
 \end{longtable}
 
-A la cantidad de casos, que proviene del recuento del número de unos y doses en la columna de sexo, se llama \textbf{frecuencia absoluta simple} y se la indica como f. La tabla resulta entonces:
+A la cantidad de casos, que proviene del recuento del número de unos y doses en la columna de sexo, se llama \textbf{frecuencia absoluta simple} y se la indica como f.~La tabla resulta entonces:
 
 \begin{longtable}[]{@{}lc@{}}
 \caption{\label{tab:unnamed-chunk-101}Distribución por sexos: frecuencia absoluta.}\tabularnewline
@@ -2921,6 +2937,8 @@ Peso.nacCat & f\tabularnewline
 (3319.8,4268.5{]} & 114\tabularnewline
 \bottomrule
 \end{longtable}
+
+\pagebreak
 
 \hypertarget{hacerlo-en-r-1}{%
 \section{Hacerlo en R}\label{hacerlo-en-r-1}}
@@ -3563,7 +3581,7 @@ Se define habitualmente como \textbf{tasa} a la frecuencia relativa de un
 fenómeno en referencia a una población total, con la característica de tener en cuenta un período de tiempo. También es común el uso del
 término cuando se trata de hechos de poca incidencia, es decir que su
 frecuencia es pequeña. En esos casos se la suele expresar cada 1.000,
-cada 10.000, o inclusive cada 100.000 casos, en lugar de porciento. Por ejemplo, la tasa de desocupación en Argentina se define como la proporción de personas desocupadas, respecto del total de personas activas. Estas últimas son quienes tienen una ocupación o que sin tenerla la están buscando activamente. Está compuesta por la población ocupada más la población desocupada \citet{INDEC2011a}. Según INDEC, la tasa de desocupación en el segundo semestre de 2019 fue de 10.6\% (\url{https://www.indec.gob.ar/uploads/informesdeprensa/mercado_trabajo_eph_2trim19ED75D3E4D2.pdf}). Según la Organización Mundial de la Salud, en el año 2017, el cinco por mil de la población mundial vivía con VIH (\url{https://www.who.int/features/factfiles/hiv/es/})
+cada 10.000, o inclusive cada 100.000 casos, en lugar de porciento. Por ejemplo, la tasa de desocupación en Argentina se define como la proporción de personas desocupadas, respecto del total de personas activas. Estas últimas son quienes tienen una ocupación o que sin tenerla la están buscando activamente. Está compuesta por la población ocupada más la población desocupada \citep{INDEC2011a}. Según INDEC, la tasa de desocupación en el segundo semestre de 2019 fue de 10.6\% (\url{https://www.indec.gob.ar/uploads/informesdeprensa/mercado_trabajo_eph_2trim19ED75D3E4D2.pdf}). Según la Organización Mundial de la Salud, en el año 2017, el cinco por mil de la población mundial vivía con VIH (\url{https://www.who.int/features/factfiles/hiv/es/})
 
 Las tasas se usan especialmente para resumir procesos que suceden a lo largo del tiempo y se resumen en un momento dado. Esos procesos se captan mediante registros continuos, como los registros de nacimientos, defunciones, matrimoniales, de ingresos a hospitales, de declaración de residencia en municipios que lo solicitan. Por ejemplo, la tasa bruta de mortalidad se calcula dividiendo la cantidad de defunciones ocurridas en un período de tiempo (usualmente un año) y en un espacio geográfico (país, provincia, etc), por el total de la población que vivía en ese espacio geográfico a la mitad de ese año. La palabra ``bruta'' se refiere a que el cálculo de esta tasa no hace distinción por características de la población, como sexo o edad. Por el contrario, si se dividen las defunciones anuales de personas de una edad determinada por la cantidad de personas de esa edad que había a la mitad del año, se obtiene una tasa específica (por oposición a bruta) de mortalidad para esa edad.
 
@@ -3810,25 +3828,25 @@ A continuación veremos algunos medidas que se definen del mismo modo que los cu
 \hypertarget{la-mediana}{%
 \subsubsection{La mediana}\label{la-mediana}}
 
-La \textbf{mediana} es el cuantil \(0.50\) o bien el percentil \(50\), es decir que se define como el valor de la variable que deja por debajo la mitad del total de observaciones. Es importante tener en cuenta que se trata de la mitad de los casos y no la mitad de las categorías. La siguiente distribución presenta en serie simple ordenada el número de sesiones de psicoterapia que recibieron 9 pacientes en un hospital:
+La \textbf{mediana} es el cuantil \(0.50\) o bien el percentil \(50\). Se define como el valor que \emph{supera a} y \emph{es superado por} no más de la mitad de las observaciones. Es el valor que deja por debajo de sí y por encima de sí \emph{a lo sumo} la mitad de las observaciones. Es importante tener en cuenta que se trata de la mitad de los casos y no la mitad de las categorías. La siguiente distribución presenta en serie simple ordenada el número de sesiones de psicoterapia que recibieron 9 pacientes en un hospital:
 
 \[2,\: 2,\: 3,\: 5,\: 7,\: 10, \:15, \:19, \:50\]
 
-La mediana de estos datos es 7, porque es el valor que deja cuatro casos por debajo y también cuatro casos por encima. La serie simple tiene que estar ordenada para poder identificar a la mediana.
+La mediana de estos datos es 7, porque es el valor que deja cuatro casos por debajo y también cuatro casos por encima, que es menos de la mitad de los 9 casos. La serie simple tiene que estar ordenada para poder identificar a la mediana.
 
 Si la cantidad de observaciones fuera par como por ejemplo:
 
 \[2, \:2,\: 3,\: 5,\: 7,\: 10,\: 15, \:19\]
 
 El punto de corte correspondiente a la mitad de las observaciones se
-ubica entre 5 y 7, en este caso, por convención, la mediana se considera el promedio entre los dos valores centrales, que es 6.
+ubica entre 5 y 7, en este caso, por convención, la mediana se considera el promedio entre los dos valores centrales, que es 6. Y la mediana deja exactamente a la mitad de los casos por encima y por debajo de ella.
 
-Cuando hay valores repetidos en la parte central es necesario hacer una corrección en la interpretación, porque ningún valor deja exactamente la mitad por encima y por debajo. Por ejemplo si la serie fuera:
+Cuando hay valores repetidos en la parte central, ningún valor deja exactamente la mitad por encima y por debajo. Por ejemplo si la serie fuera:
 
 \[2,\: 3,\: 7,\: 7,\: 7,\: 10,\: 15,\: 19\]
 
-El valor 7 es la mediana, porque es \emph{superado o igualado} por seis
-valores (7, 7, 7, 10, 15 y 19), que es más de la mitad; y \emph{supera o iguala} a cinco (2,3,7,7,7), que es la mitad.
+El valor 7 es la mediana, porque es \emph{superado} por tres
+valores (10, 15 y 19), que es menos de la mitad; y \emph{supera} a dos (2,3), que es menos de la mitad.
 
 La mediana es una medida muy adecuada cuando se necesitan resumir datos que provienen de escalas ordinales o de nivel superior. Sin embargo, su cálculo no aporta nada en series simples con pocos casos (como los que acabamos de ver) ya que allí es más sencillo mostrar el conjunto completo de datos y no usar medidas resumen. Los ejemplos anteriores sirven para ilustrar el concepto, pero no se usa así en la práctica. Las operaciones de resumen se justifican cuando se tiene un conjunto grande de datos.
 
@@ -4667,7 +4685,7 @@ encuentre entre -0,5 y 0,5.
 Un gráfico que puede resumir de manera muy compacta la información sobre
 una distribución de frecuencias es el que se llama \textbf{diagrama de caja},
 o también \textbf{diagrama de caja y bigotes} o \textbf{box-plot}, que fue
-propuesto por John Tukey en 1970, pero no se hizo conocido hasta la publicación posterior (\citet{tukey77}).
+propuesto por John Tukey en 1970, pero no se hizo conocido hasta la publicación posterior \citep{tukey77}.
 Aplicado a las edades de quienes están cursando en la universidad según la EPH, genera:
 
 \begin{figure}[H]
@@ -5011,8 +5029,8 @@ operaciones que involucra. Se trata de seis casos clínicos diagnosticados de de
   todas o casi todas las actividades, la mayor parte del día, casi cada
   día (según refiere el propio sujeto u observan los demás)
 
-  3. Pérdida importante de peso sin hacer régimen o aumento de peso (
-  p.~ej., un cambio de más del 5\% del peso corporal en 1 mes), o pérdida o
+  3. Pérdida importante de peso sin hacer régimen o aumento de peso (p.
+  ej., un cambio de más del 5\% del peso corporal en 1 mes), o pérdida o
   aumento del apetito casi cada día. Nota: En niños hay que valorar el
   fracaso en lograr los aumentos de peso esperables
 
@@ -5308,9 +5326,9 @@ valor elevado, pero si la media hubiese sido de 85, entonces el caso que estamos
 \begin{itemize}
 \item
   Nos informan que un niño obtuvo un puntaje bruto de 85 en
-  la escala de desarrollo infantil de Bayley (\citet{Ballot2017}), no tenemos, en principio ningún criterio para decidir si ese puntaje es alto o bajo.
+  la escala de desarrollo infantil de Bayley \citep{Ballot2017}, no tenemos, en principio ningún criterio para decidir si ese puntaje es alto o bajo.
 \item
-  El Índice de Democracia (\citet{demindex2011}) de un país es 6.5. ¿Dónde se ubica este país en el conjunto de democracias del mundo? ¿Es alto, medio\ldots{}?
+  El Índice de Democracia \citep{demindex2011} de un país es 6.5. ¿Dónde se ubica este país en el conjunto de democracias del mundo? ¿Es alto, medio\ldots{}?
 \end{itemize}
 
 Para situaciones como éstas, muy frecuentes en evaluaciones
@@ -5615,6 +5633,8 @@ Basadas enla media & Varianza & Intervalar\tabularnewline
 De incertidumbre & Coeficiente de incertidumbre & Nominal\tabularnewline
 \bottomrule
 \end{longtable}
+
+\pagebreak
 
 \hypertarget{hacerlo-en-r-2}{%
 \section{Hacerlo en R}\label{hacerlo-en-r-2}}
@@ -5991,7 +6011,7 @@ Las elecciones de autoridades nacionales o provinciales, son resultados que prov
 Las hipótesis son respuestas tentativas a la pregunta formulada como
 problema de la investigación. Como tales, consisten en el planteamiento de una relación entre, al menos, dos variables. Recordemos que las hipótesis constituyen afirmaciones que se derivan del modelo de análisis que el equipo de investigación ha propuesto para explicar una situación dada. Las hipótesis son consecuencias deductivas de la teoría, cuya verificación no es suficiente para validar la teoría, aunque sí para ``aportar evidencia en su favor''. Además, las hipótesis como tales, rara vez pueden ponerse a prueba de manera directa, son sus consecuencias observables las que permiten la verificación empírica. En cualquier modelo explicativo hipotético participa un número de variables mayor a dos, sin embargo de las hipótesis pueden deducirse relaciones más simples, inicialmente solo de dos variables.
 
-El siguiente esquema muestra la relación entre varias variables que aportarían (hipotéticamente) a explicar las diferencias en el rendimiento escolar, desde la perspectiva de las condiciones familiares (\citet{Quivy1992}).
+El siguiente esquema muestra la relación entre varias variables que aportarían (hipotéticamente) a explicar las diferencias en el rendimiento escolar, desde la perspectiva de las condiciones familiares {[}Quivy1992{]}.
 
 \begin{figure}[H]
 
@@ -7080,6 +7100,8 @@ Total & 6238 & 14260 & 14272 & 13665 & 48435\tabularnewline
 
 Pero en el próximo capítulo veremos que para variables de estos niveles de medición se cuenta con procedimientos más simples y más eficaces que permiten analizar con más detalle sus relaciones.
 
+\pagebreak
+
 \hypertarget{hacerlo-en-r-3}{%
 \section{Hacerlo en R}\label{hacerlo-en-r-3}}
 
@@ -7330,12 +7352,12 @@ la hipotética relación entre dos variables de nivel nominal con más de
 dos categorías cada una y variables de nivel superior (ordinales y
 métricas).
 
-\hypertarget{relaciones-entre-variables-vs.comparaciuxf3n-de-grupos}{%
-\section{Relaciones entre variables vs.~comparación de grupos}\label{relaciones-entre-variables-vs.comparaciuxf3n-de-grupos}}
+\hypertarget{relaciones-entre-variables-vs.-comparaciuxf3n-de-grupos}{%
+\section{Relaciones entre variables vs.~comparación de grupos}\label{relaciones-entre-variables-vs.-comparaciuxf3n-de-grupos}}
 
 Según el contexto en que se aplique y también según el modo en que se formulan las preguntas, los resultados de los procedimientos estadísticos que veremos a continuación pueden interpretarse de diferente manera. Tomemos como ejemplo el caso que interese observar la relación del tipo de violencia\footnote{Según la clasificación sugerida por el Informe Mundial sobre la Violencia y la Salud, Organización Panamericana de la Salud, 2003.} con el lugar donde sucede, que se analizará más adelante. Aunque son estadísticamente equivalentes, no es lo mismo preguntar si ``el lugar incide sobre el tipo de violencia'', o si ``el tipo de violencia difiere según el lugar''. Aquí es más pertinente el planteo del problema como una comparación de grupos (que quedan definidos por los diferentes lugares) antes que como una relación entre variables. Lo mismo pasa cuando se comparan los resultados de un examen entre quienes cursan por la tarde o la mañana. Cuando hay control de variables, como en el diseño experimental o en la evaluación de impacto, el paralelismo entre las dos lecturas es más cercano. Así, preguntar si un grupo de deportistas que recibió un suplemento en su dieta, tiene mejor rendimiento que uno que no lo recibió (planteo en términos de comparación de grupos), equivale a preguntar si el suplemento dietario incide sobre el rendimiento (planteo en términos de relación entre variables). Las operaciones estadísticas que responden a las dos preguntas son las mismas, pero según el caso, una manera de formular el problema puede ser más adecuada que otra, así como la lectura del resultado.\\
 Por ejemplo, cuando se busca evaluar el impacto de una política pública dirigida a reducir enfermedades parasitarias en memnores de edad, una estrategia consiste en comparar la prevalencia de esas enfermedades entre quienes han sido destinatarios de esa política, y quienes no lo fueron. Esta prevalencia es la ``variable de salida'' o ``de respuesta'' y es aquello sobre lo cual la política pretende impactar. La pregunta por la diferencia entre los dos grupos equivale a indagar sobre el efecto de la intervención.\\
-La investigación social apela continuamente a las comparaciones: el pasado y el presente, mujeres y varones, sociedades industriales y agrarias (\citet{Pescosolido1983}), grupos minoritarios y población general, por eso es necesario contar con herramientas que permitan analizar la manera en que suceden estas diferencias y las relaciones entre variables que se asocian a ellas.
+La investigación social apela continuamente a las comparaciones: el pasado y el presente, mujeres y varones, sociedades industriales y agrarias \citep{Pescosolido1983}, grupos minoritarios y población general, por eso es necesario contar con herramientas que permitan analizar la manera en que suceden estas diferencias y las relaciones entre variables que se asocian a ellas.
 
 \hypertarget{variables-nominales}{%
 \section{Variables nominales}\label{variables-nominales}}
@@ -9025,9 +9047,11 @@ señal para mirar más de cerca los datos.
 \section{La visualización de los datos}\label{la-visualizaciuxf3n-de-los-datos}}
 
 La medidas descriptivas que se mencionaron en los capítulos anteriores ofrecen un resumen de las variables individualmente; en estos dos últimos capítulos hemos recorrido un amplio conjunto de formas en que pueden suceder las relaciones entre dos variables y mucho de lo que se ha dicho, puede extrapolarse a modelos más complejos, con más de dos variables bajo análisis simultáneo y con relaciones que no son lineales. La decisión sobre el modelo más adecuado es en parte teórica, pero está influida por la observación de los datos. En estudios exploratorios, en los que no se cuenta con hipótesis sobre la forma en que dos o más variables se relacionan, es muy necesario observar el conjunto de datos antes de proponer modelos.\\
-Para mostrar la utilidad de las representaciones gráficas, existe un conjunto de datos producido por Francis Anscombe en la década de los setenta del siglo pasado (\citet{Anscombe1973a}, \citet{Tufte1989}). Su autor muestra por este medio, tanto la importancia de la visualización de los datos, como el impacto que pueden tener los casos atípicos sobre las medidas descriptivas. Más adelante se analiza en detalle ese conjunto de datos, lo importante es que muestra que el conocimiento de medidas resumen como los descriptivos univariados, los coeficientes de correlación y aun los coeficientes de un modelo que ajuste la relación, pueden dar una idea equivocada de la manera en que los datos se organizan, y que la visualización permite apreciarla mejor.
+Para mostrar la utilidad de las representaciones gráficas, existe un conjunto de datos producido por Francis Anscombe en la década de los setenta del siglo pasado \citep[\citet{Tufte1989}]{Anscombe1973a}. Su autor muestra por este medio, tanto la importancia de la visualización de los datos, como el impacto que pueden tener los casos atípicos sobre las medidas descriptivas. Más adelante se analiza en detalle ese conjunto de datos, lo importante es que muestra que el conocimiento de medidas resumen como los descriptivos univariados, los coeficientes de correlación y aun los coeficientes de un modelo que ajuste la relación, pueden dar una idea equivocada de la manera en que los datos se organizan, y que la visualización permite apreciarla mejor.
 
-En la misma dirección, Steph Locke (\citet{Locke2018}) generó una matriz de datos, llamada ``Datasaurus'', con 13 pares \(x-y\), cada uno de los cuales tiene medidas descriptivas (media y desviación estándar de \(x\) y de \(y\)), así como coeficientes de correlación entre \(x\) e \(y\), muy similares, pero los diagramas de dispersión muestran las grandes diferencias entre los pares de datos. La idea, en línea con la de Anscombe, es la de llamar la atención sobre la importancia de la visualización de los datos para tener una descripción completa y mostrar que las medidas descriptivas pueden engañar.
+En la misma dirección, Steph \citet{Locke2018} generó una matriz de datos, llamada ``Datasaurus'', con 13 pares \(x-y\), cada uno de los cuales tiene medidas descriptivas (media y desviación estándar de \(x\) y de \(y\)), así como coeficientes de correlación entre \(x\) e \(y\), muy similares, pero los diagramas de dispersión muestran las grandes diferencias entre los pares de datos. La idea, en línea con la de Anscombe, es la de llamar la atención sobre la importancia de la visualización de los datos para tener una descripción completa y mostrar que las medidas descriptivas pueden engañar.
+
+\pagebreak
 
 \hypertarget{hacerlo-en-r-4}{%
 \section{Hacerlo en R}\label{hacerlo-en-r-4}}
@@ -9361,7 +9385,7 @@ La decisión sobre el mejor modo de hacer el corte es teórica, y con ella prese
 \hypertarget{tetracuxf3rico}{%
 \subsubsection{Tetracórico}\label{tetracuxf3rico}}
 
-El paquete \texttt{psych} (\citet{Revelle2019}) cuenta con la función \texttt{tetrachoric}, cuyo argumento es la matriz de datos original y no la tabla de contingencia. Aquí se aplica al análisis de la relación entre los puntajes de las subescalas motora y mental de la prueba de Bayley, dicotomizadas.
+El paquete \texttt{psych} \citep{Revelle2019} cuenta con la función \texttt{tetrachoric}, cuyo argumento es la matriz de datos original y no la tabla de contingencia. Aquí se aplica al análisis de la relación entre los puntajes de las subescalas motora y mental de la prueba de Bayley, dicotomizadas.
 
 Primero se carga el paquete
 
@@ -9885,7 +9909,7 @@ Hasta aquí hemos trabajado sobre datos que han sido observados; pudo haberse tr
 
 Como vemos, se trata de llevar los resultados más allá del ámbito en el que fueron obtenidos, se trata de generalizarlos. Para hacer esto será necesario usar conceptos nuevos, a los que nos dedicaremos en los capítulos de esta parte. Veremos cómo seleccionar casos para que lo que se observe en ellos tenga validez general (muestreo), luego cómo decidir en el terreno de la incertidumbre (probabilidad), y finalmente, lo que sucede con las medidas descriptivas que conocemos cuando se las pone en correspondencia con valores generales (distribuciones en el muestreo).
 
-Sobre la relación entre la probabilidad y la inferencia, \citet{hacking_2006} cita un pasaje de un relato indio\footnote{Se trata de la epopeya Mahabarata, cuya versión actual habría sido concluida hacia el año 400d.c.} en el que uno de los personajes estima ``el número de hojas y frutos que hay en dos grandes ramas de un árbol frondoso. Aparentemente lo hace en base a una sola rama más pequeña que observa. Hay, según afirma, 2095 frutos. {[}\(\ldots\){]} y cuando le preguntan ¿cómo pudo saberlo?, responde: \emph{Yo de los dados poseo su ciencia y así en los números diestro soy}'' (\citet{hacking_2006}). De este modo aparecen relacionadas, en este antiguo texto, la capacidad para hacer una estimación de lo que no es observado con ``la ciencia de los dados'', desde tan temprano hay indicios de la relación entre estimación y probabilidad.
+Sobre la relación entre la probabilidad y la inferencia, \citet{hacking_2006} cita un pasaje de un relato indio\footnote{Se trata de la epopeya Mahabarata, cuya versión actual habría sido concluida hacia el año 400d.c.} en el que uno de los personajes estima ``el número de hojas y frutos que hay en dos grandes ramas de un árbol frondoso. Aparentemente lo hace en base a una sola rama más pequeña que observa. Hay, según afirma, 2095 frutos. {[}\(\ldots\){]} y cuando le preguntan ¿cómo pudo saberlo?, responde: \emph{Yo de los dados poseo su ciencia y así en los números diestro soy}'' \citep{hacking_2006}. De este modo aparecen relacionadas, en este antiguo texto, la capacidad para hacer una estimación de lo que no es observado con ``la ciencia de los dados'', desde tan temprano hay indicios de la relación entre estimación y probabilidad.
 
 Las respuestas a las preguntas que buscan generalidad no pueden ser certeras, como en el relato mítico, sino inciertas. A diferencia de las descripciones, que se limitan a mostrar información recopilada, las inferencias solo pueden ser afirmaciones tentativas, aproximativas, probabilísticas. La diferencia entre la certeza de una descripción y la incertidumbre de una inferencia se ve con claridad al comparar las siguientes expresiones:
 
@@ -9906,7 +9930,7 @@ Los capítulos que vienen a continuación ofrecen las bases para ingresar a la \
 \hypertarget{obtenciuxf3n-de-la-muestra}{%
 \chapter{Obtención de la muestra}\label{obtenciuxf3n-de-la-muestra}}
 
-La idea de conocer una totalidad a partir de un fragmento no es novedosa, cuando se prueba solo una cucharada de una sopa que se está preparando, se supone que lo que se concluya de ella (que está bien, que le falta sal\ldots{}) será válido para toda la olla. Bethlehem (Bethlehem2009) señala que el procedimiento de usar una parte para evaluar una totalidad era usual en la industria desde muy antiguo. En alemán, la palabra ``muestra'' se compone de ``cortar'' y ``probar'' y aparece en la literatura en 1583 como un procedimiento usado en minería que consistía en tomar una pequeña cantidad de material para observar cuánto metal contenía. También el autor cita referencias a estos procedimientos en la industria quesera holandesa en la edad media. Por aquellos tiempos no se hablaba de muestreo, sino de ``razonamiento inductivo''. El establecimiento del muestreo y de sus fundamentos se data en la publicación de Anders Kiaer \emph{The Representative Method of Statistical Surveys} (\citet{kiaer1897}) en 1897.
+La idea de conocer una totalidad a partir de un fragmento no es novedosa, cuando se prueba solo una cucharada de una sopa que se está preparando, se supone que lo que se concluya de ella (que está bien, que le falta sal\ldots{}) será válido para toda la olla. Bethlehem (Bethlehem2009) señala que el procedimiento de usar una parte para evaluar una totalidad era usual en la industria desde muy antiguo. En alemán, la palabra ``muestra'' se compone de ``cortar'' y ``probar'' y aparece en la literatura en 1583 como un procedimiento usado en minería que consistía en tomar una pequeña cantidad de material para observar cuánto metal contenía. También el autor cita referencias a estos procedimientos en la industria quesera holandesa en la edad media. Por aquellos tiempos no se hablaba de muestreo, sino de ``razonamiento inductivo''. El establecimiento del muestreo y de sus fundamentos se data en la publicación de Anders Kiaer \emph{The Representative Method of Statistical Surveys} \citep{kiaer1897} en 1897.
 
 La estadística inferencial provee los procedimientos para estudiar un
 subconjunto de elementos y generalizar las conclusiones obtenidas a un
@@ -10499,7 +10523,7 @@ para asegurar que la muestra sea aleatoria y por tanto probabilística.
 \hypertarget{muestreo-de-panel}{%
 \subsection{Muestreo de panel}\label{muestreo-de-panel}}
 
-Consiste en seleccionar una muestra aleatoria por cualquiera de los métodos mencionados y posteriormente ``seguir'' al grupo muestreado a lo largo del tiempo. Se realizan las mismas preguntas a las mismas personas en diferentes momentos. Esto permite el seguimiento de algunas características, que pueden ser condiciones de salud, trayectorias laborales, opiniones políticas, gastos de hogares, etc. Fue desarrollado por Paul Lazarsfeld en 1938 (\citet{Lazarsfeld1938})
+Consiste en seleccionar una muestra aleatoria por cualquiera de los métodos mencionados y posteriormente ``seguir'' al grupo muestreado a lo largo del tiempo. Se realizan las mismas preguntas a las mismas personas en diferentes momentos. Esto permite el seguimiento de algunas características, que pueden ser condiciones de salud, trayectorias laborales, opiniones políticas, gastos de hogares, etc. Fue desarrollado por Paul Lazarsfeld \citep{Lazarsfeld1938}.
 
 \hypertarget{muestreos-no-probabiluxedsticos}{%
 \section{Muestreos no probabilísticos}\label{muestreos-no-probabiluxedsticos}}
@@ -10758,6 +10782,8 @@ sobre el modo de usarlo, puede consultarse
 \url{http://www.respondentdrivensampling.org/}, donde se encuentran abundantes
 ejemplos de aplicación.
 
+\pagebreak
+
 \hypertarget{hacerlo-en-r-5}{%
 \section{Hacerlo en R}\label{hacerlo-en-r-5}}
 
@@ -10821,8 +10847,8 @@ Para ver el resultado, se puede pedir cualquier tabla, con los márgenes a fin d
 \begin{verbatim}
 ##      
 ##         1   2   3   4   5   6   7 Sum
-##   1    55  46  53  37  39  44  55 329
-##   2    45  54  47  63  61  56  45 371
+##   1    57  48  59  53  42  38  54 351
+##   2    43  52  41  47  58  62  46 349
 ##   Sum 100 100 100 100 100 100 100 700
 \end{verbatim}
 
@@ -10864,8 +10890,8 @@ En lugar de especificar la cantidad de casos, se puede indicar la proporción de
 \begin{verbatim}
 ##      
 ##          1    2    3    4    5    6    7  Sum
-##   1    404  337  620  536  298  270  264 2729
-##   2    428  391  559  561  344  407  270 2960
+##   1    414  326  599  525  277  270  277 2688
+##   2    418  402  580  572  365  407  257 3001
 ##   Sum  832  728 1179 1097  642  677  534 5689
 \end{verbatim}
 
@@ -11051,7 +11077,7 @@ igualmente probable que resulte un varón o una mujer y no podemos
 asignar probabilidad \(1/2\) a cada resultado. Aunque el experimento tenga dos
 resultados posibles, éstos no son igualmente probables.
 
-En otro ejemplo, si a la persona aleatoriamente seleccionada (por ejemplo, quien ocupa el lugar 98 en la lista de inscriptos a un curso) se le pregunta
+En otro ejemplo, si a la persona aleatoriamente seleccionada (por ejemplo, quien ocupa el lugar 108 en la lista de inscriptos a un curso) se le pregunta
 por el tipo de colegio del que egresó, con los resultados posibles:
 ``público'', ``privado laico'', ``privado religioso'', el resultado que se
 obtenga también depende del azar, porque así fue elegida la persona, la
@@ -11934,7 +11960,7 @@ O bien
 \begin{itemize}
 \tightlist
 \item
-  \textbf{acumulada}: de un conjunto de valores por debajo de un valor dado: \(P(X\leq x)\)
+  \textbf{acumulada}: de un conjunto de valores menores o iguales a un valor dado: \(P(X\leq x)\)
 \end{itemize}
 
 Si se requiere la probabilidad de los valores mayores a uno dado \(P(X>x)\), se complementa (se resta de 1) la probabilidad acumulada.
@@ -12076,7 +12102,7 @@ debajo del promedio. De modo similar sucede con medidas como el puntaje en una e
 unimodal, simétrica, de forma acampanada es llamada ``campana de
 Gauss''\footnote{Este modelo tiene una expresión matemática más compleja que la primera que vimos, solo a título ilustrativo la mencionamos: \[P(z < x) = \frac{1}{\sqrt{2\pi}}\int_{- \infty}^{x}e^{- \frac{z^{2}}{2}} dz\] jamás la usaremos para calcular probabilidades.} en referencia a Johann Carl Friedrich Gauss\footnote{1777-1855, matemático, astrónomo y físico alemán. El primero en
   expresar la función y calcular áreas fue Abraham De Moivre
-  matemático francés que trabajó en Inglaterra junto a Newton y Halley \citet{Tankard1984}.}.
+  matemático francés que trabajó en Inglaterra junto a Newton y Halley \citep{Tankard1984}.}.
 
 \includegraphics{EstadisticaParaCienciasSocialesConR_files/figure-latex/unnamed-chunk-362-1.pdf}
 
@@ -12329,9 +12355,9 @@ haciendo:
 
 \[z = \frac{x - \overline{x}}{s} = \frac{1500 - 3300}{800} = - 2.25\]
 
-Ahora es equivalente solicitar la probabilidad de \(x\) menor que 1500 que la de \(z\) menor que -2.25, en símbolos:
+Ahora es equivalente solicitar la probabilidad de \(x\) menor o igual a 1500 que la de \(z\) menor o igual a -2.25, en símbolos:
 
-\[P(x < 1500) = P(z < - 2.25)\]
+\[P(x \leq 1500) = P(z \leq - 2.25)\]
 
 Y el gráfico anterior expresado en términos de \(z\) resulta:
 
@@ -12590,7 +12616,7 @@ El tercer modelo especial de probabilidades para variables continuas que nos int
   cervecería Guiness y allí desarrolló procedimientos adecuados para
   trabajar con pequeñas muestras. Una de las versiones acerca de por
   qué publicó con el seudónimo Student es que la empresa temía que se
-  revelaran secretos industriales.} (\citet{student1908a}, \citet{student1908b}).
+  revelaran secretos industriales.} \citep[\citet{student1908b}]{student1908a}.
 
 Se trata de una distribución que, como la normal es simétrica y como la
 \(\chi^{2}\) depende de los grados de libertad\footnote{La definición de la variable con distribución \(t\) con \(n\) grados de
@@ -12773,6 +12799,8 @@ efecto de reducir la probabilidad de los valores extremos.
 
 La distribución F es usada para comparar la dispersión de dos
 distribuciones, a través del cociente de las varianzas.
+
+\pagebreak
 
 \hypertarget{hacerlo-en-r-6}{%
 \section{Hacerlo en R}\label{hacerlo-en-r-6}}
@@ -13942,24 +13970,24 @@ Ahora extraemos 200 muestras de 80 casos cada una y producimos una nueva matriz 
 
 \begin{verbatim}
 ##      Media Varianza
-## 1 5.523077 4.253365
-## 2 5.728571 4.780331
-## 3 5.692308 3.747596
-## 4 5.967742 3.539926
-## 5 5.344262 4.229508
-## 6 5.666667 4.967742
+## 1 6.180328 3.716940
+## 2 5.984848 2.661305
+## 3 5.492308 3.972596
+## 4 5.850746 3.947083
+## 5 5.514286 4.572257
+## 6 5.802817 3.389135
 \end{verbatim}
 
 Cuando solicitamos un resumen de las medias muestrales obtenemos:
 
 \begin{verbatim}
 ##      Media          Varianza    
-##  Min.   :5.083   Min.   :2.578  
-##  1st Qu.:5.594   1st Qu.:3.685  
-##  Median :5.759   Median :4.179  
-##  Mean   :5.764   Mean   :4.136  
-##  3rd Qu.:5.952   3rd Qu.:4.531  
-##  Max.   :6.532   Max.   :6.554
+##  Min.   :5.161   Min.   :2.429  
+##  1st Qu.:5.613   1st Qu.:3.717  
+##  Median :5.773   Median :4.070  
+##  Mean   :5.782   Mean   :4.090  
+##  3rd Qu.:5.955   3rd Qu.:4.545  
+##  Max.   :6.532   Max.   :5.891
 \end{verbatim}
 
 Este resumen se refiere a las variables que están en la matriz de datos que contiene un resultado muestral en cada fila, por eso \(n=200\) es la cantidad de muestras que se extrajeron (y no el tamaño de cada muestra), ahora cada muestra
@@ -13978,7 +14006,7 @@ varianzas muestrales comparada con la varianza poblacional. estos números no so
 Además, puede calcularse la varianza de las medias muestrales, que da:
 
 \begin{verbatim}
-## [1] 0.07254758
+## [1] 0.05919378
 \end{verbatim}
 
 La relación teórica de esta varianza con la varianza poblacional es:
@@ -14525,6 +14553,8 @@ Cociente de varianzas: $\frac{\sigma_{1}^{2}}{\sigma_{2}^{2}}$ & $\frac{s_{1}^{2
 \bottomrule
 \end{tabular}}
 \end{table}
+
+\pagebreak
 
 \hypertarget{hacerlo-en-r-7}{%
 \section{Hacerlo en R}\label{hacerlo-en-r-7}}
@@ -15549,6 +15579,8 @@ expresa:
 \textbf{Hay una confianza \(1 - \alpha\) que el intervalo obtenido contenga al
 parámetro.}
 
+\pagebreak
+
 \hypertarget{hacerlo-en-r-8}{%
 \section{Hacerlo en R}\label{hacerlo-en-r-8}}
 
@@ -15841,12 +15873,12 @@ La matriz puede visualizarse, desde el panel superior derecho o verse sus primer
 
 \begin{verbatim}
 ##   Límite_inferior Límite_superior contiene_al_parametro
-## 1         13282.4         20990.9                    si
-## 2          9979.1         17119.6                    si
-## 3         11920.1         17833.3                    si
-## 4          8808.0         17592.0                    si
-## 5         14672.3         23047.7                    si
-## 6         16968.9         25897.7                    no
+## 1         10290.5         16329.5                    si
+## 2         12245.7         17807.6                    si
+## 3         13029.4         19330.6                    si
+## 4         10684.0         18754.6                    si
+## 5         10866.2         17420.5                    si
+## 6         14089.7         22306.3                    si
 \end{verbatim}
 
 Y resumirse en una distridición de frecuencias:
@@ -15872,7 +15904,7 @@ En este caso, la cobertura real es de 93.5\%. Cada vez que se ejecute esta sinta
 \hypertarget{prueba-de-hipuxf3tesis-la-luxf3gica}{%
 \chapter{Prueba de hipótesis: la lógica}\label{prueba-de-hipuxf3tesis-la-luxf3gica}}
 
-En este capítulo ingresamos a uno de los procedimientos de mayor difusión en investigación cuantitativa: la prueba de hipótesis, que se en los mismos principios de estimación de parámetros que fundamentan la construcción de intervalos de confianza, por lo que su objetivo también es hacer uso de resultados muestrales para obtener conocimiento acerca de la población. Este procedimiento no está exento de críticas (\citet{meehl1978}, \citet{gelman2006}, \citet{vidgen2016}, \citet{krueger2017}, \citet{greenland2019}); sin embargo es básico para hacer inferencias sobre la población y conserva amplia difusión tanto en ciencias sociales como naturales, \citet{Halsey2019}. Las propuestas que existen como técnicas alternativas que superan las falencias que acusan sus críticos (\citet{Goedhart2018}), requieren que se tenga dominio de las pruebas de hipótesis.
+En este capítulo ingresamos a uno de los procedimientos de mayor difusión en investigación cuantitativa: la prueba de hipótesis, que se en los mismos principios de estimación de parámetros que fundamentan la construcción de intervalos de confianza, por lo que su objetivo también es hacer uso de resultados muestrales para obtener conocimiento acerca de la población. Este procedimiento no está exento de críticas \citep[\citet{gelman2006}, \citet{vidgen2016}, \citet{krueger2017}, \citet{greenland2019}]{meehl1978}; sin embargo es básico para hacer inferencias sobre la población y conserva amplia difusión tanto en ciencias sociales como naturales, \citep{Halsey2019}. Las propuestas que existen como técnicas alternativas que superan las falencias que acusan sus críticos \citep{Goedhart2018}, requieren que se tenga dominio de las pruebas de hipótesis.
 
 \hypertarget{el-razonamiento-de-la-prueba-de-hipuxf3tesis}{%
 \section{El razonamiento de la prueba de hipótesis}\label{el-razonamiento-de-la-prueba-de-hipuxf3tesis}}
@@ -15971,7 +16003,7 @@ casos la hipótesis nula afirma algo que puede expresarse como ``no hay
 diferencia'', o ``no hay cambio'' o ``no hay relación''.
 
 Hasta este punto se trata de la definición original de estas pruebas,
-desarrolladas inicialmente por Sir Ronald Fisher (\citet{Fisher}) a las que llamó
+desarrolladas inicialmente por Sir Ronald \citet{Fisher} a las que llamó
 \emph{pruebas de significación}. La idea básica es la de comparar los datos
 observados con la hipótesis que se pone a prueba. Fisher las ideó como
 manera de medir el grado de incompatibilidad de un conjunto de datos con la hipótesis nula, evaluando la probabilidad de hallar resultados como los observados o más extremos, si la hipótesis nula fuera cierta. Si esa probabilidad es muy pequeña, puede suceder que la muestra que se
@@ -17589,6 +17621,8 @@ Símbolo & Significado\tabularnewline
 
 La recomendación de \citet{APA2010} es hasta tres asteriscos, todos los valores \(p\) menores a \(0.001\) se codifican con \(***\)
 
+\pagebreak
+
 \hypertarget{hacerlo-en-r-9}{%
 \section{Hacerlo en R}\label{hacerlo-en-r-9}}
 
@@ -17682,7 +17716,7 @@ Luego, la salida ofrece un intervalo que tiene un solo límite; el inferior. Es 
 \hypertarget{prueba-sobre-la-proporciuxf3n-1}{%
 \subsection{Prueba sobre la proporción}\label{prueba-sobre-la-proporciuxf3n-1}}
 
-Sea que interesa comparar la proporción de población adulta de Argentina que sufre de obesidad con los valores mundiales de obesidad de personas adultas. Se define como obesas a las personas cuyo índice de masa corporal (peso en Kg dividido talla en metros al cuadrado) es mayor o igual a 30. Según la Organización Mundial de la Salud (\citet{WHO}), en 2016, un 13\% de la población mundial sufría de obesidad.
+Sea que interesa comparar la proporción de población adulta de Argentina que sufre de obesidad con los valores mundiales de obesidad de personas adultas. Se define como obesas a las personas cuyo índice de masa corporal (peso en Kg dividido talla en metros al cuadrado) es mayor o igual a 30. Según la Organización Mundial de la Salud \citep{WHO}, en 2016, un 13\% de la población mundial sufría de obesidad.
 
 Para el problema de interés, la hipótesis se plantea en dirección a que la población adulta de Argentina probablemente tengan una prevalencia de obesidad superior a la media de todo el mundo. La hipótesis nula afirmará que la proporción de personas con sobrepeso en Argentina no es diferente del promedio mundial. Es decir:
 
@@ -17908,7 +17942,7 @@ somete a los sujetos a un período de entrenamiento y a continuación son
 nuevamente evaluados (post-test). Necesitamos determinar si los cambios,
 medidos a través de la diferencia de los promedios, son de una magnitud
 tal que podamos atribuirlos al entrenamiento o bien si pueden explicarse
-por azar. La misma lógica, en condiciones menos controladas se usa en evaluación de impacto de intervenciones, para comparar a un grupo que se benefició de un programa con otro que no lo hizo, o también para comparar un grupo consigo mismo antes y después de una intervención \citet{Gertler2017}.
+por azar. La misma lógica, en condiciones menos controladas se usa en evaluación de impacto de intervenciones, para comparar a un grupo que se benefició de un programa con otro que no lo hizo, o también para comparar un grupo consigo mismo antes y después de una intervención \citep{Gertler2017}.
 
 Los procedimientos destinados a comparar grupos tienen gran difusión en
 investigación. Muchos de los problemas que interesa resolver usándolos
@@ -18804,6 +18838,8 @@ $\overline{D}$ & $\overline{d}$ & $t = \frac{\overline{d}}{\frac{s_{d}}{\sqrt{n}
 \end{tabular}}
 \end{table}
 
+\pagebreak
+
 \hypertarget{hacerlo-en-r-10}{%
 \section{Hacerlo en R}\label{hacerlo-en-r-10}}
 
@@ -19541,7 +19577,7 @@ estándar de este estimador tiene la misma forma que el de Pearson:
 \[\sigma_{r_{s}} = \sqrt{\frac{1 - r_{s}^{2}}{n - 2}}\]
 
 Y cuando la muestra tiene al menos 10 observaciones, se distribuye con
-una distribución t con n-2 grados de libertad \citet{Kendall1948}. En consecuencia, el
+una distribución t con n-2 grados de libertad \citep{Kendall1948}. En consecuencia, el
 estadístico de prueba será:
 
 \[t = \frac{r_{s} - \rho_{s}}{\sqrt{\frac{1 - r_{s}^{2}}{n - 2}}}\]
@@ -19618,6 +19654,8 @@ La hipótesis nula dice que las muestras provienen de poblaciones con la
 misma distribución de probabilidad. La prueba tiene en cuenta las
 diferencias entre las puntuaciones de los elementos de cada par
 asociado, y considera tanto el signo, como la magnitud de la diferencia.
+
+\pagebreak
 
 \hypertarget{hacerlo-en-r-11}{%
 \section{Hacerlo en R}\label{hacerlo-en-r-11}}
@@ -20245,6 +20283,8 @@ Los gráficos siguientes ilustran la relación entre estos elementos para difere
 
 \includegraphics{EstadisticaParaCienciasSocialesConR_files/figure-latex/unnamed-chunk-594-1.pdf}
 
+\pagebreak
+
 \hypertarget{hacerlo-en-r-12}{%
 \section{Hacerlo en R}\label{hacerlo-en-r-12}}
 
@@ -20260,12 +20300,9 @@ parámetros (en particular, de las diferencias entre el valor paramétrico
 que sostiene \(H_0\) y el que sostienen las diferentes alternativas \(H_k\)); ahora, con el tamaño del efecto estandarizado, solo hace falta saber qué prueba se realiza para obtener la curva de potencia.
 
 Si bien existen calculadoras on line\footnote{Por ejemplo \url{http://www.socscistatistics.com/effectsize/Default3.aspx} o también \url{https://www.uccs.edu/~lbecker/}.}, es recomendable, por su
-flexibilidad, usar el paquete \texttt{pwr} (\citet{champely2018}) en R. Este conjunto
+flexibilidad, usar el paquete \texttt{pwr} \citep{champely2018} en R. Este conjunto
 de rutinas genera, para cada prueba estadística, uno de los cuatro
-valores a partir de los otros tres. Por ejemplo, una prueba t unilateral
-derecha, para comparar dos grupos a un nivel de significación del 5\%,
-con una potencia de 80\% requiere, para detectar un efecto grande
-(d=0.85), 18 casos en cada grupo.\\
+valores a partir de los otros tres. Para estimar a priori el tamaño de muestra, hay que establecer: el tipo de prueba, el nivel de significación, la potencia que se espera y el tamaño del efecto que se puede detectar. Por ejemplo, ¿Cuántos casos hacen falta en cada grupo si se va a realizar una prueba t unilateral derecha, a un nivel de significación del 5\%, y se requiere una probabilidad 0.80 (potencia) de detectar un efecto grande (d=0.85)? Ese es el modo en que debe formularse la pregunta para encontrar uno de los cuatro valores que interjuegan.\\
 Primero se instala el paquete y se carga en la sesión:
 
 \begin{Shaded}
@@ -20280,7 +20317,40 @@ Primero se instala el paquete y se carga en la sesión:
 \end{Highlighting}
 \end{Shaded}
 
-Luego se indica el tipo de prueba; \texttt{pwr.t.test} para una prueba t, y los valores de: significación, potencia, tamaño del efecto y lateralidad de la prueba.
+Las convenciones estándar propuestas por Cohen1988 se solicitan con el comando cohen.ES, al que debe indicarse qué prueba es (las opciones son: ``p'', ``t'', ``r'', ``anov'', ``chisq'', ``f2'') y la magnitud del efecto (con opciones: ``small'', ``medium'', ``large''). Por ejemplo, un tamaño del efecto grande para una prueba t es:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{cohen.ES}\NormalTok{(}\DataTypeTok{test =} \StringTok{"t"}\NormalTok{, }\DataTypeTok{size =} \StringTok{"large"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##      Conventional effect size from Cohen (1982) 
+## 
+##            test = t
+##            size = large
+##     effect.size = 0.8
+\end{verbatim}
+
+0.80.
+
+Para el cálculo del tamaño del efecto, de la potencia, del tamaño muestral o de la significación, primero se elige el tipo de prueba; para una prueba t el comando es \texttt{pwr.t.test}, y se indican, además de la lateralidad de la prueba, los valores de tres de los siguientes cuatro elementos:\\
+- significación (\(sig.level\))\\
+- potencia (\(power\))\\
+- tamaño del efecto (\(d\))\\
+- tamaño de la muestra (\(n\)).
+
+Uno de ellos debe quedar sin mención (o como ``NULL''), y ese es el que se calcula como función de los demás.\\
+Para conocer el tamaño de la muestra a partir del tamaño del efecto, la potencia y la significación en una prueba unilateral derecha (no se nombra \(n\)):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{pwr.t.test}\NormalTok{(}\DataTypeTok{sig.level =} \FloatTok{.05}\NormalTok{, }\DataTypeTok{power =} \FloatTok{.8}\NormalTok{, }\DataTypeTok{d =} \FloatTok{0.85}\NormalTok{,}
+           \DataTypeTok{alternative =} \StringTok{"greater"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
 
 \begin{verbatim}
 ## 
@@ -20295,12 +20365,122 @@ Luego se indica el tipo de prueba; \texttt{pwr.t.test} para una prueba t, y los 
 ## NOTE: n is number in *each* group
 \end{verbatim}
 
-El valor 31 para el tamaño de muestra se considera óptimo porque a
-partir de ahí la curva crece más lentamente y las ganancias de potencia
-son pequeñas, lo que no se justifica aumentar el número de casos.
+Para lograr detectar el mismo tamaño de efecto con una muestra de 25 casos:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{pwr.t.test}\NormalTok{(}\DataTypeTok{sig.level =} \FloatTok{.05}\NormalTok{, }\DataTypeTok{n=}\DecValTok{25}\NormalTok{, }\DataTypeTok{d =} \FloatTok{0.85}\NormalTok{,}
+           \DataTypeTok{alternative =} \StringTok{"greater"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##      Two-sample t test power calculation 
+## 
+##               n = 25
+##               d = 0.85
+##       sig.level = 0.05
+##           power = 0.9061755
+##     alternative = greater
+## 
+## NOTE: n is number in *each* group
+\end{verbatim}
+
+La probabilidad de detectarlo (la potencia) aumenta a 0.90.
+
+El comando \texttt{pwr.t.test} sirve para pruebas t de una muestra, de diferencia de medias independientes y apareadas, se debe indicar el tipo de prueba en el argumento \texttt{type}, con opciones ``two.sample'' (dos muestras independientes), ``one.sample'' (una muestra), ``paired'' (apareadas). Por ejemplo, para conocer la potencia que tiene una prueba de comparación de medias provenientes de muestras independientes para detectar un efecto de tamaño 0.3, si los grupos tienen 25 casos cada uno, se realiza una prueba bilateral, a un nivel de significación de 0.01. Se solicita:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{pwr.t.test}\NormalTok{(}\DataTypeTok{n =} \DecValTok{25}\NormalTok{, }\DataTypeTok{d=}\FloatTok{0.3}\NormalTok{, }\DataTypeTok{sig.level =} \FloatTok{0.01}\NormalTok{, }\DataTypeTok{power =} \OtherTok{NULL}\NormalTok{,}
+           \DataTypeTok{type =} \StringTok{"two.sample"}\NormalTok{, }\DataTypeTok{alternative =} \StringTok{"two.sided"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##      Two-sample t test power calculation 
+## 
+##               n = 25
+##               d = 0.3
+##       sig.level = 0.01
+##           power = 0.06057469
+##     alternative = two.sided
+## 
+## NOTE: n is number in *each* group
+\end{verbatim}
+
+Si ahora se quisiera, para la misma prueba, elevar la potencia a 0.10, el número de casos requerido es:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{pwr.t.test}\NormalTok{(}\DataTypeTok{d =} \FloatTok{0.3}\NormalTok{, }\DataTypeTok{sig.level =} \FloatTok{0.01}\NormalTok{, }\DataTypeTok{power =} \FloatTok{0.10}\NormalTok{,}
+           \DataTypeTok{type =} \StringTok{"two.sample"}\NormalTok{, }\DataTypeTok{alternative =} \StringTok{"two.sided"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##      Two-sample t test power calculation 
+## 
+##               n = 38.87894
+##               d = 0.3
+##       sig.level = 0.01
+##           power = 0.1
+##     alternative = two.sided
+## 
+## NOTE: n is number in *each* group
+\end{verbatim}
+
+Hacen falta casi 40 casos en cada grupo.
+
+Para el Análisis de la Varianza, se agrega como dato requerido, el numero de grupos de comparación. Si se trata de cuatro grupos a un nivel de 5\%, para tener una probabilidad de 0.50 (potencia) detectar un efecto de tamaño 0.2, se requieren:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{pwr.anova.test}\NormalTok{(}\DataTypeTok{power=}\FloatTok{0.5}\NormalTok{, }\DataTypeTok{k=}\DecValTok{4}\NormalTok{, }\DataTypeTok{f=}\FloatTok{0.2}\NormalTok{, }\DataTypeTok{sig.level=}\FloatTok{0.05}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##      Balanced one-way analysis of variance power calculation 
+## 
+##               k = 4
+##               n = 36.9917
+##               f = 0.2
+##       sig.level = 0.05
+##           power = 0.5
+## 
+## NOTE: n is number in each group
+\end{verbatim}
+
+37 casos en cada uno de los grupos. Pero si solo se cuenta con 15 casos en cada grupo, entonces el tamaño del efecto que se puede detectar con probabilidad 0.50 es:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{pwr.anova.test}\NormalTok{(}\DataTypeTok{power=}\FloatTok{0.5}\NormalTok{, }\DataTypeTok{k=}\DecValTok{4}\NormalTok{, }\DataTypeTok{n=}\DecValTok{15}\NormalTok{, }\DataTypeTok{sig.level=}\FloatTok{0.05}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##      Balanced one-way analysis of variance power calculation 
+## 
+##               k = 4
+##               n = 15
+##               f = 0.3208032
+##       sig.level = 0.05
+##           power = 0.5
+## 
+## NOTE: n is number in each group
+\end{verbatim}
+
+Es de 0.32.
 
 El vídeo \emph{tamaño del efecto}, en \url{https://youtu.be/s2nGqz5Nh4A} ofrece detalles adicionales sobre el uso del paquete \texttt{pwr} en el entorno RStudio.
 
-\bibliography{bibliografia.bib}
+  \bibliography{bibliografia.bib}
 
 \end{document}
