@@ -1,13 +1,12 @@
 <!DOCTYPE html>
-<html >
-
+<html lang="" xml:lang="">
 <head>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Capítulo 1 Los datos estadísticos | Un Recorrido por los Métodos Cuantitativos en Ciencias Sociales a bordo de R (edición preliminar)</title>
-  <meta name="description" content="Capítulo 1 Los datos estadísticos | Un Recorrido por los Métodos Cuantitativos en Ciencias Sociales a bordo de R (edición preliminar)">
-  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+  <meta name="description" content="Capítulo 1 Los datos estadísticos | Un Recorrido por los Métodos Cuantitativos en Ciencias Sociales a bordo de R (edición preliminar)" />
+  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Capítulo 1 Los datos estadísticos | Un Recorrido por los Métodos Cuantitativos en Ciencias Sociales a bordo de R (edición preliminar)" />
   <meta property="og:type" content="book" />
@@ -22,17 +21,17 @@
   
   <meta name="twitter:image" content="imagenes/cover.jpg" />
 
-<meta name="author" content="Eduardo Bologna">
+<meta name="author" content="Eduardo Bologna" />
 
 
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="materiales-y-herramientas.html">
-<link rel="next" href="distribuciones-de-frecuencia.html">
+<link rel="prev" href="materiales-y-herramientas.html"/>
+<link rel="next" href="distribuciones-de-frecuencia.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -40,6 +39,9 @@
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
 
 
 
@@ -56,7 +58,6 @@ a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
 a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
-div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
@@ -68,7 +69,7 @@ a.sourceLine { text-indent: -1em; padding-left: 1em; }
 pre.numberSource a.sourceLine
   { position: relative; left: -4em; }
 pre.numberSource a.sourceLine::before
-  { content: attr(title);
+  { content: attr(data-line-number);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
     border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
@@ -232,7 +233,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.8" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#hacerlo-en-r-3"><i class="fa fa-check"></i><b>4.8</b> Hacerlo en R</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html"><i class="fa fa-check"></i><b>5</b> Relación entre variables: el análisis</a><ul>
-<li class="chapter" data-level="5.1" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#relaciones-entre-variables-vs.-comparación-de-grupos"><i class="fa fa-check"></i><b>5.1</b> Relaciones entre variables vs. comparación de grupos</a></li>
+<li class="chapter" data-level="5.1" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#relaciones-entre-variables-vs.comparación-de-grupos"><i class="fa fa-check"></i><b>5.1</b> Relaciones entre variables vs. comparación de grupos</a></li>
 <li class="chapter" data-level="5.2" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#variables-nominales"><i class="fa fa-check"></i><b>5.2</b> Variables nominales</a><ul>
 <li class="chapter" data-level="5.2.1" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#coeficientes-de-asociación-para-variables-nominales"><i class="fa fa-check"></i><b>5.2.1</b> Coeficientes de asociación para variables nominales</a></li>
 </ul></li>
@@ -451,7 +452,7 @@ Podemos decir que una persona tiene más escolarización formal que otra, indica
 <h2><span class="header-section-number">1.1</span> La selección de la información pertinente</h2>
 <p>Cuando se ha decidido quienes son los entes de la observación; es decir, una vez que se sabe a quiénes se observará, deben elegirse ciertas características de ellos que serán observadas<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>. Cada unidad que resulta de interés para la investigación tiene un conjunto muy grande de características observables y siempre se realiza una selección de esas características. Se trata de un recorte que permite comprender mejor ciertos aspectos, dejando de lado otros. La información que seleccionamos para observar se denomina pertinente para la investigación. Esta información puede provenir de diferentes fuentes, de manera general se distinguen dos tipos de fuentes: relevamientos y registros.<br />
 Los relevamientos pueden ser censos, encuestas u observaciones experimentales, y recogen información en un momento dado, en un corte transversal; una especie de foto que toma nota de un conjunto de características de las entidades, en el instante que se realiza: un día, una semana, el momento antes y después, etc. Por ejemplo, un censo se hace en uno o dos días, una vez cada diez años y, casa por casa, se recoge información sobre sexo, edad, estudios, lugar de necimiento, etc. de todas las personas que viven en cada hogar de todo el país. Una encuesta de opinión selecciona a algunos hogares y en ellos selecciona una persona en condiciones de votar, para preguntarle a quién piensa votar, qué opina da los diferentes partidos políticos, etc. La observación puede ser directa, como cuando se anota lo que se ve en un evento (una ceremonia por ejemplo) o un espacio (el patio de una escuela), pero a la que nos referimos aquí es la que está estructurada, aquella en la se explicita qué se observa. Esta etapa de la investigación, que es de producción de los datos, se llama “trabajo de campo”, también puede ser telefónico o vía web, en todos los casos, dura un tiempo y se termina.<br />
-Los registros son continuos, lo que quiere decir que captan información a medida que esta se produce o bien a intervalos regulares. No empiezan y terminan, son estables, van captando los acontecimientos mientras suceden, o mejor dicho, miestras son informados. Ejemplos de estos registros son los registros civiles (de nacimientos, uniones, defunciones), de ingresos a hospitales, de inscripción a la universidad, de frontera, etc. En cualquier momento se pueden consultar y conocer lo relevado hasta el momento, por ejemplo, cuántos nacimientos se registraron en una ciudad en un año dado. O cuántos de esos nacimientos fueron de madre menor de 16 años.<br />
+Los registros son continuos, lo que quiere decir que captan información a medida que esta se produce o bien a intervalos regulares. No empiezan y terminan, son estables, van captando los acontecimientos mientras suceden, o mejor dicho, miestras son informados. Ejemplos de estos registros son los registros civiles (de nacimientos, uniones, defunciones), de ingresos a hospitales, de inscripción a la universidad, de frontera, etc. En cualquier momento se pueden consultar y conocer lo que está registrado hasta ese momento, por ejemplo, cuántos nacimientos se asentaron en una ciudad en un año dado. O cuántos de esos nacimientos fueron de madre menor de 16 años.<br />
 - Relevamientos producen datos de stock (instantáneo).<br />
 - Registros producen datos flujo (continuo).</p>
 <p>Cualquiera sea la fuente de los datos, una vez que se decide cuál es la información pertinente, se la recaba de varias de las entidades definidas y se cambia la óptica desde el caso particular a la regularidad colectiva. Es un cambio desde la observación del caso hacia la mirada puesta en el grupo. La siguiente es una lista que indica el área en que les gustaría trabajar cuando se reciban, a nueve estudiantes de primer año de Psicología:</p>
@@ -532,16 +533,16 @@ Los registros son continuos, lo que quiere decir que captan información a medid
 </table>
 <p>Se lee que Clínica es un área preferida por cuatro estudiantes, Laboral y Educacional atrae a dos y a Social solo tiene una mención. Las personas desaparecieron, ya no hay nombres, hemos abstraído para referirnos al área preferida, no a las personas que las prefieren. En la tabla se ve que lo más frecuente es que se prefiera Clínica, y que Social es poco frecuente. Se pasó de la lista de personas reconocibles a la tabla de valores. Nos despegamos de los casos a fin de buscar la regularidad en el conjunto. Más adelante diremos que se ha pasado de la matriz de datos a la distribución de frecuencias, que constituye una reducción o un primer resumen de la información disponible. Esta operación es menos obvia de lo que puede parecer y es tardía en la historia de las idean, tiene origen en la publicación, de <span class="citation">Gaunt (<a href="#ref-gaunt1662">1662</a>)</span> “Observaciones naturales y políticas hechas sobre los boletines de mortalidad”, quien tomó las listas de defunciones sucedidas en Londres durante veinte años en tiempos de la peste y las resumió en orden cronológico. Su operación fue la de cambiar la lista por la tabla, para observar al proceso (la mortalidad a lo largo del tiempo), en lugar de las muertes registradas individualmente.</p>
 <p>Consideremos el siguiente cuestionario, que se aplicó en 2019 a personas con edades 18 y 35 años.</p>
-<div class="figure" style="text-align: center"><span id="fig:cuestionario"></span>
+<div class="figure" style="text-align: center"><span id="fig:cuestionario1"></span>
 <img src="imagenes/cuestionario2019_01.png" alt="Cuestionario 2019" width="413" />
 <p class="caption">
 Figura 1.1: Cuestionario 2019
 </p>
 </div>
-<div class="figure" style="text-align: center"><span id="fig:cuestionario"></span>
+<div class="figure" style="text-align: center"><span id="fig:cuestionario2"></span>
 <img src="imagenes/cuestionario2019_02.png" alt="Cuestionario 2019" width="413" />
 <p class="caption">
-Figura 1.1: Cuestionario 2019
+Figura 1.2: Cuestionario 2019
 </p>
 </div>
 <p>Este instrumento de producción de datos, se dirigió a una población definida: personas entre 18 y 35 años. En él se solicitó información sobre un conjunto seleccionado de características; los ítems numerados desde P1 hasta P16. Se trata de unos pocos aspectos de cada persona los que interesan para esta investigación; no se tiene en cuenta, por ejemplo la opinión política de quienes responden, ni su estatura o la región en que viven. Estas últimas y muchas más son características de estas personas, pero están fuera del alcance de la investigación. Esto muestra a qué nos referimos con que la información seleccionada constituye un recorte, es una parcialización de las entidades (no siempre son personas) que responden, en la que se eligen solo los aspectos que son de interés para una investigación particular.<br />
@@ -836,8 +837,8 @@ De manera equivalente podemos codificar las categorías de otras variables:</p>
 <tr class="odd">
 <td align="center">Por comodi</td>
 <td align="left">dad, se empie</td>
-<td align="center">za en el "</td>
-<td align="left">1" y desde allí correlativamente, pero no hay ninguna prohibición para codificar con cualquier conjunto de números. Aun con esta amplia libertad para elegir los códigos numéricos, hay algo que no se puede hacer: no es válido usar el mismo número más de una vez. Si hiciéramos esto, confundiríamos las categorías que corresponden a cada individuo. Así, a un estudiante de Psicología, le asignamos el valor “1” en la variable <em>carrera</em>, ya no podría usarse ese mismo número en la misma variable también para alguien que estudia Medicina. Diremos que la condición que deben cumplir los números en este nivel de medición es que: a categorías diferentes correspondan números distintos.</td>
+<td align="center">za en el &quot;</td>
+<td align="left">1&quot; y desde allí correlativamente, pero no hay ninguna prohibición para codificar con cualquier conjunto de números. Aun con esta amplia libertad para elegir los códigos numéricos, hay algo que no se puede hacer: no es válido usar el mismo número más de una vez. Si hiciéramos esto, confundiríamos las categorías que corresponden a cada individuo. Así, a un estudiante de Psicología, le asignamos el valor “1” en la variable <em>carrera</em>, ya no podría usarse ese mismo número en la misma variable también para alguien que estudia Medicina. Diremos que la condición que deben cumplir los números en este nivel de medición es que: a categorías diferentes correspondan números distintos.</td>
 </tr>
 <tr class="even">
 <td align="center">Entonces,</td>
@@ -1179,11 +1180,11 @@ En el ejemplo de la medición del año según dos calendarios diferentes, si <sp
 <ul>
 <li>Nominales:</li>
 </ul>
-<p>Valores (supervivencia vs autoexpresión, tradicionales vs racionales) <span class="citation">(Inglehart and Appel <a href="#ref-inglehart1989">1989</a>, @inglehart2018)</span></p>
+<p>Valores (supervivencia vs autoexpresión, tradicionales vs racionales) <span class="citation">(Inglehart and Appel <a href="#ref-inglehart1989">1989</a>, <span class="citation">@inglehart2018</span>)</span></p>
 <ul>
 <li>Ordinales:</li>
 </ul>
-<p>Las escalas de compromiso politico, acuerdo partidario y consistencia ideológica <span class="citation">(Gerber et al. <a href="#ref-gerber2011">2011</a>, @gerber2016)</span>, la pobreza medida según Línea de pobreza <span class="citation">(Gómez, Álvarez, and Mario Fernanda <a href="#ref-Gomez2004">2004</a>)</span>, el grado de acuerdo en escalas de actitud <span class="citation">(Robinson et al. <a href="#ref-robinson1991">1991</a>)</span></p>
+<p>Las escalas de compromiso politico, acuerdo partidario y consistencia ideológica <span class="citation">(Gerber et al. <a href="#ref-gerber2011">2011</a>, <span class="citation">@gerber2016</span>)</span>, la pobreza medida según Línea de pobreza <span class="citation">(Gómez, Álvarez, and Mario Fernanda <a href="#ref-Gomez2004">2004</a>)</span>, el grado de acuerdo en escalas de actitud <span class="citation">(Robinson et al. <a href="#ref-robinson1991">1991</a>)</span></p>
 <ul>
 <li>Cuantitativas discretas:</li>
 </ul>
@@ -1211,28 +1212,28 @@ La lectura de los archivos .txt se puede realizar con varios comandos, que depen
 <li>Si a los casos perdidos se los ha codificado de algún modo particular, por ejemplo como 9999, debe indicarse <span class="math inline">\(na.strings=&quot;9999&quot;\)</span>.</li>
 </ul>
 <p>Conviene mirar la base original, desde el archivo .txt, que puede abrirse con bloc de notas, para asegurarse qué sepadores tiene.</p>
-<p>A continuación se usarán datos de la matriz de datos que proviene de la aplicación del cuestionario de la Figura <a href="los-datos-estadísticos.html#fig:cuestionario">1.1</a>. La matriz (o base) de datos que tiene los datos cargados está en formato txt, tiene los campos separados por espacios en blanco y se llama base2019.txt. Para leer esa base, primero se ubica la ruta del archivo:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">file.choose</span>()</code></pre>
+<p>A continuación se usarán datos de la matriz de datos que proviene de la aplicación del cuestionario de la Figura <a href="#fig:cuestionario"><strong>??</strong></a>. La matriz (o base) de datos que tiene los datos cargados está en formato txt, tiene los campos separados por espacios en blanco y se llama base2019.txt. Para leer esa base, primero se ubica la ruta del archivo:</p>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb200-1" data-line-number="1"><span class="kw">file.choose</span>()</a></code></pre></div>
 <p>Aquí se abre un explorador para llegar al archivo que se busca, cuando se lo selecciona, la respuesta es su ruta, que debe pegarse como argumento de <code>read.table</code>. Luego se pide su lectura, asignando el resultado al objeto base.ejemplo:</p>
-<pre class="sourceCode r"><code class="sourceCode r">base.ejemplo &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;bases/archivostxt/base2019.txt&quot;</span>,
-  <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">sep =</span> <span class="st">&quot; &quot;</span>, <span class="dt">na.strings =</span> <span class="st">&quot;999&quot;</span>
-)</code></pre>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb201-1" data-line-number="1">base.ejemplo &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;bases/archivostxt/base2019.txt&quot;</span>,</a>
+<a class="sourceLine" id="cb201-2" data-line-number="2">  <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">sep =</span> <span class="st">&quot; &quot;</span>, <span class="dt">na.strings =</span> <span class="st">&quot;999&quot;</span></a>
+<a class="sourceLine" id="cb201-3" data-line-number="3">)</a></code></pre></div>
 <p>Además del nombre y la ruta del archivo, en este caso indicamos que la primera fila contiene los nombres de las variables y que los casos perdidos están codificados como 999.</p>
 <p>En el panel superior derecho ha aparecido este primer objeto, del que se indica el tipo, su tamaño, y las cantidades de observaciones y de variables.<br />
 El tipo de objeto se solicita:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(base.ejemplo)</code></pre>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb202-1" data-line-number="1"><span class="kw">class</span>(base.ejemplo)</a></code></pre></div>
 <pre><code>## [1] &quot;data.frame&quot;</code></pre>
 <p>Es una matriz de datos, como se esperaba y se la puede ver pidiendo:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">View</span>(base.ejemplo)</code></pre>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb204-1" data-line-number="1"><span class="kw">View</span>(base.ejemplo)</a></code></pre></div>
 <p>En esta exploración inicial, se pueden listar los nombres de las columnas (las variables):</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(base.ejemplo)</code></pre>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb205-1" data-line-number="1"><span class="kw">names</span>(base.ejemplo)</a></code></pre></div>
 <pre><code>##  [1] &quot;caso&quot;         &quot;grupo&quot;        &quot;cuestionario&quot; &quot;nombre&quot;       &quot;P1&quot;          
 ##  [6] &quot;P2&quot;           &quot;P3&quot;           &quot;P4&quot;           &quot;P5&quot;           &quot;P5.otra&quot;     
 ## [11] &quot;P6&quot;           &quot;P7&quot;           &quot;P7.otra&quot;      &quot;P8&quot;           &quot;P9&quot;          
 ## [16] &quot;P10&quot;          &quot;P11&quot;          &quot;P11.otra&quot;     &quot;P12&quot;          &quot;P13&quot;         
 ## [21] &quot;P14&quot;          &quot;P15&quot;          &quot;P16&quot;          &quot;comision&quot;</code></pre>
 <p>Y pedir las primeras filas de la matriz. Para la presentación aquí y para que quede visible, elegimos solo las columnas de la quinta a la undécima; es lo que está indicado en el corchete que acompaña al nombre de la base. Cuando se aplica a una matriz de datos, ese corchete es para seleccionar algunas filas o algunas columnas y admite dos valores separados por una coma, el primero se refiere a la o las fila(s) y el segundo la o las columna(s). En este caso el primer elemento está en blanco, eso quiere decir que se usen todas las filas, el segundo elemento dice que se seleccionen solo las columnas de la 5 a la 11:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(base.ejemplo[, <span class="dv">5</span><span class="op">:</span><span class="dv">11</span>])</code></pre>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb207-1" data-line-number="1"><span class="kw">head</span>(base.ejemplo[, <span class="dv">5</span><span class="op">:</span><span class="dv">11</span>])</a></code></pre></div>
 <pre><code>##   P1        P2 P3 P4 P5 P5.otra  P6
 ## 1  2  femenino 19  1  1    &lt;NA&gt; 120
 ## 2  1 masculino 29  1  2    &lt;NA&gt;  90
@@ -1242,17 +1243,17 @@ El tipo de objeto se solicita:</p>
 ## 6  1         m 22  1  2    &lt;NA&gt; 240</code></pre>
 <p>Si no se hubiera hecho la selección de esas columnas, por defecto se muestran las seis primera filas, en todas las columnas. Los <NA> son casos sin respuesta.<br />
 Para tener más accesibles las variables, vamos a ponerle un nombre a cada columna:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(base.ejemplo) &lt;-<span class="st"> </span><span class="kw">c</span>(
-  <span class="st">&quot;caso&quot;</span>, <span class="st">&quot;grupo&quot;</span>, <span class="st">&quot;n.cuest&quot;</span>, <span class="st">&quot;nombre&quot;</span>, <span class="st">&quot;sexo&quot;</span>, <span class="st">&quot;genero&quot;</span>,
-  <span class="st">&quot;edad&quot;</span>, <span class="st">&quot;acceso.redes&quot;</span>, <span class="st">&quot;red.usada&quot;</span>, <span class="st">&quot;red.otra&quot;</span>,
-  <span class="st">&quot;tiempo.red&quot;</span>, <span class="st">&quot;con.q.vive&quot;</span>, <span class="st">&quot;relacion.otros&quot;</span>,
-  <span class="st">&quot;q.aporta&quot;</span>, <span class="st">&quot;q.aporta.amigos&quot;</span>, <span class="st">&quot;edad.partida&quot;</span>,
-  <span class="st">&quot;razon.partida&quot;</span>,
-  <span class="st">&quot;razon.partida.otra&quot;</span>, <span class="st">&quot;calidad.sueño&quot;</span>,
-  <span class="st">&quot;preocupacion&quot;</span>, <span class="st">&quot;golpeo&quot;</span>, <span class="st">&quot;robo&quot;</span>, <span class="st">&quot;cuanto.da&quot;</span>, <span class="st">&quot;comision&quot;</span>
-)</code></pre>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb209-1" data-line-number="1"><span class="kw">names</span>(base.ejemplo) &lt;-<span class="st"> </span><span class="kw">c</span>(</a>
+<a class="sourceLine" id="cb209-2" data-line-number="2">  <span class="st">&quot;caso&quot;</span>, <span class="st">&quot;grupo&quot;</span>, <span class="st">&quot;n.cuest&quot;</span>, <span class="st">&quot;nombre&quot;</span>, <span class="st">&quot;sexo&quot;</span>, <span class="st">&quot;genero&quot;</span>,</a>
+<a class="sourceLine" id="cb209-3" data-line-number="3">  <span class="st">&quot;edad&quot;</span>, <span class="st">&quot;acceso.redes&quot;</span>, <span class="st">&quot;red.usada&quot;</span>, <span class="st">&quot;red.otra&quot;</span>,</a>
+<a class="sourceLine" id="cb209-4" data-line-number="4">  <span class="st">&quot;tiempo.red&quot;</span>, <span class="st">&quot;con.q.vive&quot;</span>, <span class="st">&quot;relacion.otros&quot;</span>,</a>
+<a class="sourceLine" id="cb209-5" data-line-number="5">  <span class="st">&quot;q.aporta&quot;</span>, <span class="st">&quot;q.aporta.amigos&quot;</span>, <span class="st">&quot;edad.partida&quot;</span>,</a>
+<a class="sourceLine" id="cb209-6" data-line-number="6">  <span class="st">&quot;razon.partida&quot;</span>,</a>
+<a class="sourceLine" id="cb209-7" data-line-number="7">  <span class="st">&quot;razon.partida.otra&quot;</span>, <span class="st">&quot;calidad.sueño&quot;</span>,</a>
+<a class="sourceLine" id="cb209-8" data-line-number="8">  <span class="st">&quot;preocupacion&quot;</span>, <span class="st">&quot;golpeo&quot;</span>, <span class="st">&quot;robo&quot;</span>, <span class="st">&quot;cuanto.da&quot;</span>, <span class="st">&quot;comision&quot;</span></a>
+<a class="sourceLine" id="cb209-9" data-line-number="9">)</a></code></pre></div>
 <p>De este modo se sobreescriben los nombres originales y quedan los nuevos. Si pedimos nuevamente los nombres, tenemos:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(base.ejemplo)</code></pre>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb210-1" data-line-number="1"><span class="kw">names</span>(base.ejemplo)</a></code></pre></div>
 <pre><code>##  [1] &quot;caso&quot;               &quot;grupo&quot;              &quot;n.cuest&quot;           
 ##  [4] &quot;nombre&quot;             &quot;sexo&quot;               &quot;genero&quot;            
 ##  [7] &quot;edad&quot;               &quot;acceso.redes&quot;       &quot;red.usada&quot;         
@@ -1262,12 +1263,12 @@ Para tener más accesibles las variables, vamos a ponerle un nombre a cada colum
 ## [19] &quot;calidad.sueño&quot;      &quot;preocupacion&quot;       &quot;golpeo&quot;            
 ## [22] &quot;robo&quot;               &quot;cuanto.da&quot;          &quot;comision&quot;</code></pre>
 <p>Y puede verse la matriz por medio de:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">View</span>(base.ejemplo)</code></pre>
+<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb212-1" data-line-number="1"><span class="kw">View</span>(base.ejemplo)</a></code></pre></div>
 </div>
 <div id="las-variables-1" class="section level3">
 <h3><span class="header-section-number">1.8.2</span> Las variables</h3>
 <p>Cada variable es una columna de la matriz, que ahora tienen los nombres que acabamos de darles. Para acceder a cada una y operar con ellas, se usa el signo “pesos” <span class="math inline">\(\$\)</span> luego del nombre de la matriz. Por ejemplo, la codificación numérica de la variable sexo (1 y 2 para varones y mujeres respectivamente), fue útil para la recolección y la carga de los datos, pero ahora necesitamos tratarla como lo que es. En efecto:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">class</span>(base.ejemplo<span class="op">$</span>sexo)</code></pre>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb213-1" data-line-number="1"><span class="kw">class</span>(base.ejemplo<span class="op">$</span>sexo)</a></code></pre></div>
 <pre><code>## [1] &quot;integer&quot;</code></pre>
 <p>Esta almacenada como un número entero, pero es nominal, que en el lenguaje de R, se llama factor, y sus categorías, se llaman “niveles” (levels) o “niveles del factor” (factor levels). Para transformarla a ese tipo de variable hay dos opciones:</p>
 <ul>
@@ -1275,50 +1276,50 @@ Para tener más accesibles las variables, vamos a ponerle un nombre a cada colum
 <li>Crear una nueva variable en la matriz, a partir de sexo, con un nombre diferente.</li>
 </ul>
 <p>Elegimos la primera opción, es decir que operamos sobre la misma variable sexo, con lo que sobreescribimos la original. Primero la volvemos factor:</p>
-<pre class="sourceCode r"><code class="sourceCode r">base.ejemplo<span class="op">$</span>sexo &lt;-<span class="st"> </span><span class="kw">as.factor</span>(base.ejemplo<span class="op">$</span>sexo)</code></pre>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb215-1" data-line-number="1">base.ejemplo<span class="op">$</span>sexo &lt;-<span class="st"> </span><span class="kw">as.factor</span>(base.ejemplo<span class="op">$</span>sexo)</a></code></pre></div>
 <p>Si preguntamos por los niveles que tiene este factor, obtenemos:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">levels</span>(base.ejemplo<span class="op">$</span>sexo)</code></pre>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb216-1" data-line-number="1"><span class="kw">levels</span>(base.ejemplo<span class="op">$</span>sexo)</a></code></pre></div>
 <pre><code>## [1] &quot;1&quot; &quot;2&quot;</code></pre>
 <p>Mantiene los valores 1 y 2 pero entre comillas, lo que indica que no los trata como números sino como códigos de una variable nominal (categórica).<br />
 Ahora le damos nombres a las categorías (los niveles del factor):</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">levels</span>(base.ejemplo<span class="op">$</span>sexo) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;varones&quot;</span>, <span class="st">&quot;mujeres&quot;</span>)</code></pre>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb218-1" data-line-number="1"><span class="kw">levels</span>(base.ejemplo<span class="op">$</span>sexo) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;varones&quot;</span>, <span class="st">&quot;mujeres&quot;</span>)</a></code></pre></div>
 <p>Si se observa la matriz, aparecen ahora los nuevos nombres de las categorías.<br />
 Repetimos estas operaciones sobre las otras preguntas del cuestionario:</p>
-<pre class="sourceCode r"><code class="sourceCode r">base.ejemplo<span class="op">$</span>con.q.vive &lt;-<span class="st"> </span><span class="kw">as.factor</span>(base.ejemplo<span class="op">$</span>con.q.vive)
-<span class="kw">levels</span>(base.ejemplo<span class="op">$</span>con.q.vive) &lt;-<span class="st"> </span><span class="kw">c</span>(
-  <span class="st">&quot;flia.origen&quot;</span>, <span class="st">&quot;flia.nueva&quot;</span>,
-  <span class="st">&quot;hermanes.o.amigues&quot;</span>, <span class="st">&quot;solo&quot;</span>,
-  <span class="st">&quot;con.otres&quot;</span>
-)
-base.ejemplo<span class="op">$</span>q.aporta &lt;-<span class="st"> </span><span class="kw">as.factor</span>(base.ejemplo<span class="op">$</span>q.aporta)
-<span class="kw">levels</span>(base.ejemplo<span class="op">$</span>q.aporta) &lt;-<span class="st"> </span><span class="kw">c</span>(
-  <span class="st">&quot;el.mismo&quot;</span>, <span class="st">&quot;flia.origen&quot;</span>,
-  <span class="st">&quot;flia.nueva&quot;</span>, <span class="st">&quot;entre.amigos&quot;</span>
-)
-
-base.ejemplo<span class="op">$</span>acceso.redes &lt;-<span class="st"> </span><span class="kw">as.factor</span>(base.ejemplo<span class="op">$</span>acceso.redes)
-<span class="kw">levels</span>(base.ejemplo<span class="op">$</span>acceso.redes) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;si&quot;</span>, <span class="st">&quot;no&quot;</span>)
-
-base.ejemplo<span class="op">$</span>red.usada &lt;-<span class="st"> </span><span class="kw">as.factor</span>(base.ejemplo<span class="op">$</span>red.usada)
-<span class="kw">levels</span>(base.ejemplo<span class="op">$</span>red.usada) &lt;-<span class="st"> </span><span class="kw">c</span>(
-  <span class="st">&quot;Instagram&quot;</span>, <span class="st">&quot;Facebook&quot;</span>, <span class="st">&quot;Twitter&quot;</span>,
-  <span class="st">&quot;Linkedin&quot;</span>, <span class="st">&quot;Tinder/Grindr/happn&quot;</span>,
-  <span class="st">&quot;Snapchat&quot;</span>, <span class="st">&quot;Ninguna&quot;</span>, <span class="st">&quot;Otra&quot;</span>
-)
-
-base.ejemplo<span class="op">$</span>razon.partida &lt;-<span class="st"> </span><span class="kw">as.factor</span>(base.ejemplo<span class="op">$</span>razon.partida)
-<span class="kw">levels</span>(base.ejemplo<span class="op">$</span>razon.partida) &lt;-<span class="st"> </span><span class="kw">c</span>(
-  <span class="st">&quot;estudio&quot;</span>, <span class="st">&quot;nueva.flia&quot;</span>, <span class="st">&quot;ganas&quot;</span>, <span class="st">&quot;otras&quot;</span>
-)</code></pre>
+<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb219-1" data-line-number="1">base.ejemplo<span class="op">$</span>con.q.vive &lt;-<span class="st"> </span><span class="kw">as.factor</span>(base.ejemplo<span class="op">$</span>con.q.vive)</a>
+<a class="sourceLine" id="cb219-2" data-line-number="2"><span class="kw">levels</span>(base.ejemplo<span class="op">$</span>con.q.vive) &lt;-<span class="st"> </span><span class="kw">c</span>(</a>
+<a class="sourceLine" id="cb219-3" data-line-number="3">  <span class="st">&quot;flia.origen&quot;</span>, <span class="st">&quot;flia.nueva&quot;</span>,</a>
+<a class="sourceLine" id="cb219-4" data-line-number="4">  <span class="st">&quot;hermanes.o.amigues&quot;</span>, <span class="st">&quot;solo&quot;</span>,</a>
+<a class="sourceLine" id="cb219-5" data-line-number="5">  <span class="st">&quot;con.otres&quot;</span></a>
+<a class="sourceLine" id="cb219-6" data-line-number="6">)</a>
+<a class="sourceLine" id="cb219-7" data-line-number="7">base.ejemplo<span class="op">$</span>q.aporta &lt;-<span class="st"> </span><span class="kw">as.factor</span>(base.ejemplo<span class="op">$</span>q.aporta)</a>
+<a class="sourceLine" id="cb219-8" data-line-number="8"><span class="kw">levels</span>(base.ejemplo<span class="op">$</span>q.aporta) &lt;-<span class="st"> </span><span class="kw">c</span>(</a>
+<a class="sourceLine" id="cb219-9" data-line-number="9">  <span class="st">&quot;el.mismo&quot;</span>, <span class="st">&quot;flia.origen&quot;</span>,</a>
+<a class="sourceLine" id="cb219-10" data-line-number="10">  <span class="st">&quot;flia.nueva&quot;</span>, <span class="st">&quot;entre.amigos&quot;</span></a>
+<a class="sourceLine" id="cb219-11" data-line-number="11">)</a>
+<a class="sourceLine" id="cb219-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb219-13" data-line-number="13">base.ejemplo<span class="op">$</span>acceso.redes &lt;-<span class="st"> </span><span class="kw">as.factor</span>(base.ejemplo<span class="op">$</span>acceso.redes)</a>
+<a class="sourceLine" id="cb219-14" data-line-number="14"><span class="kw">levels</span>(base.ejemplo<span class="op">$</span>acceso.redes) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;si&quot;</span>, <span class="st">&quot;no&quot;</span>)</a>
+<a class="sourceLine" id="cb219-15" data-line-number="15"></a>
+<a class="sourceLine" id="cb219-16" data-line-number="16">base.ejemplo<span class="op">$</span>red.usada &lt;-<span class="st"> </span><span class="kw">as.factor</span>(base.ejemplo<span class="op">$</span>red.usada)</a>
+<a class="sourceLine" id="cb219-17" data-line-number="17"><span class="kw">levels</span>(base.ejemplo<span class="op">$</span>red.usada) &lt;-<span class="st"> </span><span class="kw">c</span>(</a>
+<a class="sourceLine" id="cb219-18" data-line-number="18">  <span class="st">&quot;Instagram&quot;</span>, <span class="st">&quot;Facebook&quot;</span>, <span class="st">&quot;Twitter&quot;</span>,</a>
+<a class="sourceLine" id="cb219-19" data-line-number="19">  <span class="st">&quot;Linkedin&quot;</span>, <span class="st">&quot;Tinder/Grindr/happn&quot;</span>,</a>
+<a class="sourceLine" id="cb219-20" data-line-number="20">  <span class="st">&quot;Snapchat&quot;</span>, <span class="st">&quot;Ninguna&quot;</span>, <span class="st">&quot;Otra&quot;</span></a>
+<a class="sourceLine" id="cb219-21" data-line-number="21">)</a>
+<a class="sourceLine" id="cb219-22" data-line-number="22"></a>
+<a class="sourceLine" id="cb219-23" data-line-number="23">base.ejemplo<span class="op">$</span>razon.partida &lt;-<span class="st"> </span><span class="kw">as.factor</span>(base.ejemplo<span class="op">$</span>razon.partida)</a>
+<a class="sourceLine" id="cb219-24" data-line-number="24"><span class="kw">levels</span>(base.ejemplo<span class="op">$</span>razon.partida) &lt;-<span class="st"> </span><span class="kw">c</span>(</a>
+<a class="sourceLine" id="cb219-25" data-line-number="25">  <span class="st">&quot;estudio&quot;</span>, <span class="st">&quot;nueva.flia&quot;</span>, <span class="st">&quot;ganas&quot;</span>, <span class="st">&quot;otras&quot;</span></a>
+<a class="sourceLine" id="cb219-26" data-line-number="26">)</a></code></pre></div>
 <p>La cantidad de casos es el número de filas de la matriz de datos. En el caso de una variable, es decir de una columna, la cantidad de observaciones es la longitud del vector que la representa. Para conocer cuántos casos tiene una variable en particular, el comando es length:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">length</span>(base.ejemplo<span class="op">$</span>sexo)</code></pre>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb220-1" data-line-number="1"><span class="kw">length</span>(base.ejemplo<span class="op">$</span>sexo)</a></code></pre></div>
 <pre><code>## [1] 5003</code></pre>
 <p>Cuando se aplica a una matriz de datos, su longitud en el número de variables:</p>
-<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">length</span>(base.ejemplo)</code></pre>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb222-1" data-line-number="1"><span class="kw">length</span>(base.ejemplo)</a></code></pre></div>
 <pre><code>## [1] 24</code></pre>
 <p>Los elementos de la matriz de datos pueden accederse por filas o por columnas. Unos corchetes puestos a continuación del nombre identifican filas (casos), columnas (variables) o elementos (categorías). El corchete tiene como argumento dos números separados por una coma; el primero se refiere a la fila, el segundo a la columna, ambos juntos determinan un valor.</p>
 <p>El valor que está en la fila 254, columna 7 de base.ejemplo es 30, que es la edad (columna 7) de la persona que está en la fila 254</p>
-<pre class="sourceCode r"><code class="sourceCode r">base.ejemplo[<span class="dv">254</span>, <span class="dv">7</span>]</code></pre>
+<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb224-1" data-line-number="1">base.ejemplo[<span class="dv">254</span>, <span class="dv">7</span>]</a></code></pre></div>
 <pre><code>## [1] 30</code></pre>
 <p>Si uno de los dos elementos del corchete se deja en blanco, toma todos los correspondientes de fila o de columna. No vamos a hacer el experimento, porque tendríamos, o bien los valores en cada una de las 24 variables de un sujeto, si pedimos una fila; o bien los 5003 valores de alguna variable, si pedimos una columna; pero es el recurso que se usó para seleccionar algunas columnas en la visualización de la matriz.</p>
 </div>
@@ -1343,26 +1344,26 @@ base.ejemplo<span class="op">$</span>razon.partida &lt;-<span class="st"> </span
 <div id="ref-gaunt1662">
 <p>Gaunt, John. 1662. <em>Natural and Political Observations Mentioned in the following INDEX and made upon the Bills of Mortality</em>. Edited by Royal Society. London: John Martin.</p>
 </div>
+<div id="ref-gerber2011">
+<p>Gerber, Alan S., Gregory A. Huber, David Doherty, Conor M. Dowling, Connor Raso, and Shang E. Ha. 2011. “Personality Traits and Participation in Political Processes.” <em>The Journal of Politics</em> 73 (3). [The University of Chicago Press, Southern Political Science Association]: 692–706. <a href="http://www.jstor.org/stable/10.1017/s0022381611000399">http://www.jstor.org/stable/10.1017/s0022381611000399</a>.</p>
+</div>
+<div id="ref-Gomez2004">
+<p>Gómez, Alicia, Gustavo Álvarez, and Silvia Mario Fernanda. 2004. “El estudio de la pobreza según el Censo Nacional de Población, Hogares y Viviendas 2001 Metodología de elaboración del Índice de Privación Material de los Hogares (IPMH).” <a href="https://www.indec.gob.ar/ftp/cuadros/sociedad/metodologia{\_}ipmh{\_}2016.pdf">https://www.indec.gob.ar/ftp/cuadros/sociedad/metodologia{\_}ipmh{\_}2016.pdf</a>.</p>
+</div>
+<div id="ref-inglehart1989">
+<p>Inglehart, Ronald, and David Appel. 1989. “The Rise of Postmaterialist Values and Changing Religious Orientations, Gender Roles and Sexual Norms.” <em>International Journal of Public Opinion Research</em> 1 (1): 45–75. <a href="https://doi.org/10.1093/ijpor/1.1.45">https://doi.org/10.1093/ijpor/1.1.45</a>.</p>
+</div>
+<div id="ref-moralesquiroga2010">
+<p>Morales Quiroga, Mauricio, and Rafael Pineiro Rodriguez. 2010. “Gasto en campana y exito electoral de los candidatos a diputados en chile 2005.” <em>Revista de ciencia politica (Santiago)</em> 30. scielocl: 645–67. <a href="https://scielo.conicyt.cl/scielo.php?script=sci_arttext&amp;pid=S0718-090X2010000300004&amp;nrm=iso">https://scielo.conicyt.cl/scielo.php?script=sci_arttext&amp;pid=S0718-090X2010000300004&amp;nrm=iso</a>.</p>
+</div>
+<div id="ref-robinson1991">
+<p>Robinson, John P., Phillip R. Shaver, Lawrence S. Wrightsman, and Frank M. Andrews. 1991. <em>Measures of personality and social psychological attitudes</em>. Academic Press.</p>
+</div>
 <div id="ref-Stevens1946">
 <p>Stevens, Stanley. 1946. “On the Theory of Scales of Measurement.” <em>Science, New Series</em> 103 (2684): 677–80. <a href="http://www.jstor.org/stable/1671815">http://www.jstor.org/stable/1671815</a>.</p>
 </div>
 <div id="ref-Upton2013">
 <p>Upton, Jane. 2013. “Beck Depression Inventory (Bdi).” In <em>Encyclopedia of Behavioral Medicine</em>, edited by Marc D. Gellman and J. Rick Turner, 178–79. New York, NY: Springer New York. <a href="https://doi.org/10.1007/978-1-4419-1005-9_441">https://doi.org/10.1007/978-1-4419-1005-9_441</a>.</p>
-</div>
-<div id="ref-inglehart1989">
-<p>Inglehart, Ronald, and David Appel. 1989. “The Rise of Postmaterialist Values and Changing Religious Orientations, Gender Roles and Sexual Norms.” <em>International Journal of Public Opinion Research</em> 1 (1): 45–75. <a href="https://doi.org/10.1093/ijpor/1.1.45">https://doi.org/10.1093/ijpor/1.1.45</a>.</p>
-</div>
-<div id="ref-gerber2011">
-<p>Gerber, Alan S., Gregory A. Huber, David Doherty, Conor M. Dowling, Connor Raso, and Shang E. Ha. 2011. “Personality Traits and Participation in Political Processes.” <em>The Journal of Politics</em> 73 (3): 692–706. <a href="http://www.jstor.org/stable/10.1017/s0022381611000399">http://www.jstor.org/stable/10.1017/s0022381611000399</a>.</p>
-</div>
-<div id="ref-Gomez2004">
-<p>Gómez, Alicia, Gustavo Álvarez, and Silvia Mario Fernanda. 2004. “El estudio de la pobreza según el Censo Nacional de Población, Hogares y Viviendas 2001 Metodología de elaboración del Índice de Privación Material de los Hogares (IPMH).” <a href="https://www.indec.gob.ar/ftp/cuadros/sociedad/metodologia{\_}ipmh{\_}2016.pdf">https://www.indec.gob.ar/ftp/cuadros/sociedad/metodologia{\_}ipmh{\_}2016.pdf</a>.</p>
-</div>
-<div id="ref-robinson1991">
-<p>Robinson, John P., Phillip R. Shaver, Lawrence S. Wrightsman, and Frank M. Andrews. 1991. <em>Measures of personality and social psychological attitudes</em>. Academic Press.</p>
-</div>
-<div id="ref-moralesquiroga2010">
-<p>Morales Quiroga, Mauricio, and Rafael Pineiro Rodriguez. 2010. “Gasto en campana y exito electoral de los candidatos a diputados en chile 2005.” <em>Revista de ciencia politica (Santiago)</em> 30: 645–67. <a href="https://scielo.conicyt.cl/scielo.php?script=sci_arttext&amp;pid=S0718-090X2010000300004&amp;nrm=iso">https://scielo.conicyt.cl/scielo.php?script=sci_arttext&amp;pid=S0718-090X2010000300004&amp;nrm=iso</a>.</p>
 </div>
 </div>
 <div class="footnotes">
@@ -1389,11 +1390,13 @@ base.ejemplo<span class="op">$</span>razon.partida &lt;-<span class="st"> </span
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
@@ -1401,12 +1404,11 @@ gitbook.start({
 "github": false,
 "facebook": true,
 "twitter": true,
-"google": false,
 "linkedin": false,
 "weibo": false,
 "instapaper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
 "theme": "white",
@@ -1418,6 +1420,10 @@ gitbook.start({
 "text": "Edit"
 },
 "history": {
+"link": null,
+"text": null
+},
+"view": {
 "link": null,
 "text": null
 },
@@ -1436,8 +1442,9 @@ gitbook.start({
     script.type = "text/javascript";
     var src = "true";
     if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(src))
-      src = src.replace(/^https?:/, '');
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
