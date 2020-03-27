@@ -6,7 +6,7 @@ source("depencias.R")
 
 <!-- # De la descripción a la inferencia {.unnumbered} -->
 
-Hasta aquí hemos trabajado sobre datos que han sido observados; pudo haberse tratado de datos de una encuesta o un relevamiento que nosotros hayamos realizado o bien que nos haya provisto alguna fuente de buena calidad: conjunto de hogares encuestados por la EPH, lista de de personas afiliadas a un partido político, registros de una institución educativa, historias clínicas de un hospital, etc. Se trata de información realmente recopilada, que ha sido obtenida por observación a través de algún instrumento de recolección de datos o registrada oficialmente. Por el contrario, en los capítulos que siguen nos ocuparemos de lo que _no_ ha sido observado, haremos _inferencias_ para sacar conclusiones acerca de lo que no hemos visto. Partiremos de la información que provee una muestra y con ello generalizaremos a un conjunto mayor. Como resultado de ello buscaremos dar respuesta a preguntas como las siguientes:
+Hasta aquí hemos trabajado sobre datos que han sido observados; pudo haberse tratado de datos de una encuesta o un relevamiento que hayamos realizado o bien que nos haya provisto alguna fuente de buena calidad: conjunto de hogares encuestados por la EPH, lista de de personas afiliadas a un partido político, registros de una institución educativa, historias clínicas de un hospital, etc. Se trata de información realmente recopilada, que ha sido obtenida por observación a través de algún instrumento de recolección de datos o registrada oficialmente. Por el contrario, en los capítulos que siguen nos ocuparemos de lo que _no_ ha sido observado, haremos _inferencias_ para sacar conclusiones acerca de lo que no hemos visto. Partiremos de la información que provee una muestra y con ello generalizaremos a un conjunto mayor. Como resultado de ello buscaremos dar respuesta a preguntas como las siguientes:
   
   - Si en varias escuelas primarias se ven más dificultades en el aprendizaje de Matemática que de Lengua, ¿será esta observación válida para las  escuelas primarias?
   
@@ -32,7 +32,7 @@ Las respuestas a las preguntas que buscan generalidad no pueden ser certeras, co
 
 Hay dos diferencias en estos enunciados, que pertenecen a distintos niveles de proximidad a los datos. Una diferencia es que el primero ofrece un valor único: los 12 minutos que se obtuvieron al promediar los tiempos de los 100 personas que fueron observadas. Por el contrario, el segundo ofrece un intervalo: entre 11 y 13 minutos.
 
-La segunda diferencia es que el primer enunciado _afirma_ ese valor, mientras que el segundo expresa que _hay una certeza del 95%_. Esto quiere decir que no estamos seguros que el tiempo que tardarán en responder vaya a estar realmente entre 11 y 13 minutos; hay una confianza del 95% que sea así, pero no una certeza plena. Por eso, puede ser que el tiempo sea, o bien menor que 11 minutos, o bien mayor que 13; y esto puede suceder con una probabilidad de 5%. Los enunciados del segundo tipo transmiten incertidumbre porque se refieren a casos que no han sido observados, sino inferidos. Esta incertidumbre, para la que disponemos de procedimientos que permiten cuantificarla de manera probabilística, es inherente a todo proceso de inducción, donde se requiere formular generalizaciones.
+La segunda diferencia es que el primer enunciado _afirma_ ese valor, mientras que el segundo expresa que _hay una certeza del 95%_. Esto quiere decir que no hay seguridad que el tiempo que tardarán en responder vaya a estar realmente entre 11 y 13 minutos; hay una confianza del 95% que sea así, pero no una certeza plena. Por eso, puede ser que el tiempo sea, o bien menor que 11 minutos, o bien mayor que 13; y esto puede suceder con una probabilidad de 5%. Los enunciados del segundo tipo transmiten incertidumbre porque se refieren a casos que no han sido observados, sino inferidos. Esta incertidumbre, para la que disponemos de procedimientos que permiten cuantificarla de manera probabilística, es inherente a todo proceso de inducción, donde se requiere formular generalizaciones.
 
 Los capítulos que vienen a continuación ofrecen las bases para ingresar a la _Estadística Inferencial_, son cuatro capítulos de articulación que fundamentan los procedimientos de inferencia.
 
@@ -373,7 +373,7 @@ medio y bajo hay en la población. Este dato usualmente es desconocido.
 
 Veamos un ejemplo con datos reales: en el año 2008 en la carrera de Psicología de la Universidad Nacional de Córdoba, la siguiente
 era la distribución de estudiantes según el año en que habían
-ingresado a la carrera (considerando solo a los ingresados a partir del
+ingresado a la carrera (considerando solo a quienes ingresaron a partir del
 año 2000).
 
 ```{r}
@@ -468,7 +468,7 @@ knitr::include_graphics("imagenes/radios-Rio-Cuarto.png")
 
 Otro ejemplo es en el que necesitamos una muestra de 100 niñas y niños
 de primer grado de escuelas municipales la ciudad de Córdoba. Tenemos dos problemas: el primero es que no hay una lista, por lo que no se cuenta con un marco muestral. El segundo es que, aunque lo tuviéramos, tendríamos que ir a
-buscar a cada uno de los 100 estudiantes muestreados al lugar donde viven, lo que tendría un costo muy elevado. En este caso, el
+buscar a cada estudiante que compone la muestra al lugar donde vive (lo que implica visitar 100 lugares), lo que tendría un costo muy elevado. En este caso, el
 conglomerado (o unidad primaria) que se elige es la escuela: en lugar de
 elegir 100 niños y niñas al azar, se eligen, por ejemplo 10 escuelas al azar del listado de ellas, que sí existe. Luego, en cada escuela se eligen 10 estudiantes, también al azar, a partir del listado de primer grado, que sí está disponible en cada escuela.
 
@@ -487,12 +487,11 @@ Además del ejemplo de los radios censales y las escuelas como unidades primaria
 
 ### Método de Kish
 
-Es un procedimiento para seleccionar aleatoriamente un individuo entre los que residen en un hogar, que es independiente del método de muestreo utilizado para seleccionar los hogares. Solo depende de la composición del hogar y se usa para controlar el sesgo que se pueda producir si el encuestador elige quién encuestar o encuesta al que tiene más accesible, por ejemplo a quien atiende a la puerta.
-Se trata de ordenar a los integrantes del hogar, asignando un número a cada uno de acuerdo a su sexo y edad. El Centro de Control de Enfermedades de Estados Unidos sugiere asignar el número 1 a la persona de mayor edad y sucesivamente a los demás miembros. En el caso que hubiese dos personas de la misma edad, se puede usar la fecha de cumpleaños para decidir cuál va primero. Luego se consulta una planilla que el encuestador lleva consigo, donde tiene impresos números aleatorios entre 1 y el total de personas que habitan en el hogar.
+Es un procedimiento para seleccionar aleatoriamente a una persona entre todas las que residen en un hogar; este procedimiento es independiente del método de muestreo que se haya utilizado para seleccionar los hogares. Solo depende de la composición del hogar y se usa para controlar el sesgo que se pueda producir si quien hace la encuesta elige a quién encuestar, o bien si encuesta al que tiene más accesible, por ejemplo a quien atiende a la puerta.
+Se trata de pedir el nombre y la edad de cada integrante del hogar, ordenar esos nombres de acuerdo a su sexo y edad, y asignarles un número correlativo a partir de 1. El Centro de Control de Enfermedades de Estados Unidos sugiere asignar el número 1 a la persona de mayor edad y sucesivamente al resto del hogar. En el caso que hubiese dos personas de la misma edad, se puede usar la fecha de cumpleaños para decidir cuál va primero. Luego se consulta una planilla que viene con los cuestionarios, donde están impresos números aleatorios entre 1 y el total de personas que habitan en el hogar.
 
-La planilla tiene cada fila para identificar el número de hogar al que se está encuestando, que es el número de cuestionario que se va a aplicar. Cada columna de la planilla tiene la cantidad de integrantes que hay en el hogar. Por ejemplo: si es el quinto hogar que el encuestador visita y en él viven seis personas adultas, luego de enumerarlas según edad, de acuerdo a la siguiente tabla, debe aplicar el cuestionario a la persona que tiene el número 3.
+La planilla tiene cada fila para identificar el número de hogar al que se está encuestando, que es el número de cuestionario que se va a aplicar. Cada columna de la planilla tiene la cantidad de integrantes que hay en el hogar. Por ejemplo: si es el quinto hogar que se visita y en él viven seis personas adultas, luego de enumerarlas según edad, de acuerdo a la siguiente tabla, debe aplicar el cuestionario a la persona que tiene el número 3.
 
-<!-- hay que darle formato a esta tabla-->
 
 ```{r}
 aux_table <- tibble::tribble(
@@ -526,10 +525,7 @@ aleatorio irrestricto o sistemático.
 
 Aplicando este concepto al ejemplo anterior, la situación consistirá en
 la elección de algunos hogares dentro de los radios seleccionadas (en
-lugar de relevarlos a todos). Para lograr esta muestra, se instruye a
-los encuestadores para que, recorriendo un circuito establecido de antemano, entrevisten
-a un hogar cada una cantidad dada (uno cada diez por ejemplo para contar
-con una muestra del 10% de los hogares del radio).
+lugar de relevarlos a todos). Para lograr esta muestra, se instruye al equipo de campo para que, recorriendo un circuito establecido de antemano, entrevisten a un hogar cada una cantidad dada (uno cada diez por ejemplo para contar con una muestra del 10% de los hogares del radio).
 
 O bien, en el ejemplo de niñas y niños de primer grado, se trataría de
 seleccionar a 10 en cada escuela de manera aleatoria.
@@ -540,8 +536,8 @@ knitr::include_graphics("imagenes/image90.png")
 
 La obtención de una muestra en una situación real implica la combinación de varios de estos procedimientos. Por ejemplo, para un sondeo de
 opinión sobre la población adulta de una ciudad, el primer paso es
-estratificar a la población (los adultos residentes en la ciudad), según nivel socioeconómico, porque esta es una variable que suele hacer diferencias marcadas en opinión política o en pautas de consumo. Un dato que puede tenerse sobre el nivel socioeconómico de los habitantes, es el
-provisto por el censo de población, que incluye preguntas que permiten
+estratificar a la población (población adulta residente en la ciudad), según nivel socioeconómico, porque ésta es una variable que suele hacer diferencias marcadas en opinión política o en pautas de consumo. Un dato que puede tenerse sobre el nivel socioeconómico de la población, es el
+provisto por el censo, que incluye preguntas que permiten
 hacer una caracterización de los hogares según esta variable. Sin
 embargo, el censo se hace cada diez años y se vuelve desactualizada al
 poco tiempo. Por eso suele usarse, como aproximación al nivel
@@ -561,18 +557,16 @@ domicilio seleccionado. Lo usual es volver dos veces luego de un rechazo y si se
 Para los sondeos de opinión, en una ciudad mediana, se estila usar 400
 casos en 20 conglomerados de 20 casos cada uno.
 
-Si se busca una muestra de pacientes internados en centros de salud de
+Si se busca una muestra de personas internadas en centros de salud de
 una determinada región, se empezará por el listado de esos centros, a
 los cuales es posible estratificar según su dependencia pública o
 privada, según su tamaño, o según otra característica de interés. Una
 vez establecida la estratificación, se seleccionan al azar una cierta
 cantidad de centros de salud de cada estrato y, en cada centro será
-necesario contar con el registro de pacientes internados, aquí se
+necesario contar con el registro de pacientes en internación, aquí se
 introducirán las restricciones propias de cada investigación, el período
 durante el cual nos interesan los datos, las patologías que fueron
-motivo de la internación, etc. La selección de casos (historias clínicas
-de los pacientes internados) puede realizarse de manera irrestricta
-aleatoria si se dispone del listado.  
+motivo de la internación, etc. La selección de casos (historias clínicas de cada persona) puede realizarse de manera irrestricta aleatoria si se dispone del listado.  
 
 Como se ve, lo que se busca es dejar el menor margen posible para
 improvisar, para evitar que la selección sea voluntaria. Esto se hace
@@ -602,7 +596,7 @@ conclusiones provenientes de este tipo de muestreo.
 Una clasificación útil para este tipo de muestreo toma en consideración
 su definición, esto es que la elección no depende del azar sino de la
 voluntad de alguien. De esta manera los muestreos no probabilísticos
-pueden clasificarse según quien sea el responsable de la elección en:
+pueden clasificarse según quien sea responsable de la elección en:
 muestreo por cuotas, de juicio o intencional, autoelegido y accidental.
 Una combinación de estos procedimientos es el muestro por bola de nieve.
 
@@ -620,37 +614,27 @@ suele agregarse otros, según los objetivos de la investigación, por
 ejemplo, en las encuestas políticas, es frecuente establecer cuotas de
 acuerdo al voto en las elecciones pasadas. Los ejemplos que indicamos
 antes, como reproducir la proporción de varones y mujeres entre los
-docentes primarios, o de las diferentes proporciones de niveles
+docentes de escuala primaria, o de las diferentes proporciones de niveles
 educativos de la población en la muestra, son casos de muestreo por
 cuotas.
 
-En la práctica, se encarga a los encuestadores una cantidad especificada
-de casos a relevar, sin indicar quiénes serán esos casos ni cómo
-hallarlos, esto le da el carácter de no probabilístico, pero respetando
-las cantidades de casos en cada cuota. El entrevistador elige a
-"cualquiera", según su comodidad o preferencias, es decir que no es
+En la práctica, se encarga a cada integrante del equipo de campo una cantidad especificada de casos a relevar, sin indicar quiénes serán esos casos ni cómo hallarlos, esto le da el carácter de no probabilístico, pero respetando las cantidades de casos en cada cuota. Quien realiza las entrevistas elige a "cualquiera", según su comodidad o preferencias, es decir que no es
 posible conocer a priori qué probabilidad tienen los elementos de la
 población de caer en la muestra, pero esa elección está limitada por la
 exigencia que los elementos reúnan ciertas características.
 
-Un ejemplo es en el que se indica a un encuestador que complete 10
+Un ejemplo es en el que se indica a una encuestadora que complete 10
 entrevistas a médicos que trabajen en relación de dependencia en la
-ciudad de Córdoba que tengan hasta diez años de egresados; a otro, que
+ciudad de Córdoba que tengan hasta diez años de egresados; a otra, que
 entreviste a 15 médicos también en relación de dependencia, pero que
-tengan más de diez años de egresados. Si bien en este caso los
-entrevistadores pueden elegir según su preferencia cuáles serán los
+tengan más de diez años de egresados. Si bien en este caso las
+entrevistadoras pueden elegir según su preferencia cuáles serán los
 médicos a los que entrevistará, sus posibilidades de elección están
 restringidas a cumplir la cuota asignada.
 
-En las encuestas políticas, el encuestador puede verse limitado a elegir
-personas de sexo femenino, de 45 años, que en las elecciones pasadas
-hayan votado por el partido X (mientras que a otros encuestadores se les
-encargarán otras cuotas). No hay azar, porque el encuestador elegirá a
-quienes prefiera o tenga más a su alcance, pero deberá respetar las
-cantidades que le fueron indicadas.
+En las encuestas políticas, quien aplica los cuestionarios puede, por ejemplo, verse limitado a elegir personas de sexo femenino, de 45 años, que en las elecciones pasadas hayan votado por el partido X (mientras que a otra parte del equipo de campo se encargará de otras cuotas). No hay azar, porque quien encuesta elegirá a quienes prefiera o tenga más a su alcance, pero deberá respetar las cantidades que le fueron indicadas.
 
-Atención: una muestra construida por cuotas, es evidentemente
-representativa de los criterios correspondientes de las cuotas con los
+Atención: una muestra construida por cuotas, es evidentemente representativa de los criterios correspondientes de las cuotas con los
 que fue elaborada (sexo, edad, ocupación, región, $\ldots$). Pero no hay ningún
 medio para saber si es representativa de aquello para lo cual fue
 construida, es decir, el tema de la investigación: la opinión, los
@@ -658,52 +642,37 @@ rendimientos académicos, las actitudes, etc.
 
 ### Muestreo de juicio o intencional
 
-En este tipo de muestreo, conocido también como "selección experta", es
-el investigador quien decide qué elementos son los más adecuados para
-realizar la investigación. La elección se basa en la apreciación
-subjetiva del investigador sobre la representatividad de los elementos
+En este tipo de muestreo, conocido también como "selección experta", en el proyecto mismo de investigación se establece qué elementos son los más adecuados para realizar la investigación. La elección se basa en la apreciación intersubjetiva del equipo de investigación sobre la representatividad de los elementos
 que muestrea. En algunos ámbitos de la investigación, suele solicitarse
-a expertos que seleccionen los elementos de la población que consideren
-más adecuados para construir la muestra, esta selección se apoya en la
-experiencia de los consultados.
+a personas expertas que seleccionen los elementos de la población a los que consideren más adecuados para construir la muestra, esta selección se apoya en la experiencia de las personas consultadas.
 
 Un primer uso de este tipo de muestreo es aquel en el que el interés no
 se centra en la representatividad sino en la riqueza de contenidos que
-pueden ofrecer algunos individuos a diferencia de otros.
+pueden ofrecer algunos casos a diferencia de otros.
 
 Si se pretende reconstruir la historia de un asentamiento urbano
 marginal, sería más adecuado elegir a personas que hayan residido en él
-por largo tiempo. Se espera que los pobladores más antiguos puedan dar
-mayor información acerca de la génesis y evolución que los que han
-arribado recientemente. En este caso, el investigador se preocupará
-primero por identificar a los residentes en el asentamiento y, a partir
-de ese conocimiento, decidirá a quiénes va a incluir en la muestra.
+por largo tiempo. Se espera que quienes viven allí desde hace más tiempo puedan dar
+mayor información acerca de la génesis y evolución que quienes han
+arribado recientemente. En este caso, en las etapas de la investigación,
+primero se identifica a los residentes en el asentamiento y, a partir
+de ese conocimiento, se decide a quiénes se va a incluir en la muestra.
 
 Aquí no se pretende la generalización de los resultados, ni se busca
 encontrar una historia típica en el sentido de que, en mayor o menor
-grado, la mayoría de los pobladores la comparta. Lo que se busca es
-profundizar el análisis a partir del testimonio de aquellos a los que
-consideramos como informantes más idóneos.
+grado, la mayoría de la población comparta. Lo que se busca es
+profundizar el análisis a partir del testimonio de quienes son considerados como informantes más idóneos.
 
 ### Muestreo autoelegido
 
-Usado principalmente en razón de la reducción de costos que implica,
-cuando se usa este tipo de muestreo no se selecciona a los sujetos del
-estudio, sino que se solicita a las personas que participen
+La principal razón para usar este tipo de muestreo es la reducción de costos que implica, este método selecciona a quienes van a participar del estudio, sino que solicita a las personas que participen
 voluntariamente. La decisión de formar parte o no de la muestra queda en
 manos de la persona invitada, por eso se llama autoelegido, es ella
 quien optará por participar o no hacerlo (por falta de interés, de
 tiempo, etc.).
 
 Supongamos que se pretende estudiar el gasto por familia en actividades
-de recreación y para reducir costos, en lugar de enviar encuestadores,
-se envían por correo formularios anónimos a los domicilios de los
-hogares seleccionados aleatoriamente. Podría suceder que aquellos
-hogares que tienen gastos en recreación muy bajos contesten en
-proporción menor que los que más gastan. De esta manera, las respuestas
-resultantes darían un valor promedio por encima del verdadero por el
-hecho que, inadvertidamente, la muestra estaría representando en mayor
-medida a los hogares que tienen los más altos gastos en recreación.
+de recreación y para reducir costos, en lugar de enviar un equipo de campo a encuestar, se envían por correo formularios anónimos a los domicilios de los hogares seleccionados aleatoriamente. Podría suceder que aquellos hogares que tienen gastos en recreación muy bajos contesten en proporción menor que los que más gastan. De esta manera, las respuestas resultantes darían un valor promedio por encima del verdadero por el hecho que, inadvertidamente, la muestra estaría representando en mayor medida a los hogares que tienen los más altos gastos en recreación.
 
 En el estudio acerca del comportamiento sexual de las mujeres en Estados
 Unidos, el Informe Hite (1976) basó sus conclusiones sobre el 4.5% de
@@ -721,11 +690,7 @@ internet, que visita esa página, que tiene tiempo e interés por
 responder a las preguntas que allí se hacen. No es posible saber qué
 recorte de la población es representado por esa muestra y es
 completamente inválido extender los resultados a toda la población, como
-lo es generalizar a los visitantes de esa página, ya que no todos tienen
-el tiempo ni el interés para responder. Se trata de un dato imposible de
-adjudicar a alguna población identificable, es simplemente "la opinión
-de los que opinaron". Sin embargo a veces se tratan equivocadamente esos
-resultados como si representaran una tendencia de opinión.
+lo es generalizar a quienes visitan esa página, ya que no siempre se dispone del tiempo ni del interés para responder. Se trata de un dato imposible de adjudicar a alguna población identificable, es simplemente "la opinión de quienes opinaron". Sin embargo a veces se tratan equivocadamente esos resultados como si representaran una tendencia de opinión.
 
 El muestreo autoelegido tiene una aplicación en el campo de experimental
 cuando se trabaja con sujetos humanos. Allí, la selección de quienes
@@ -746,17 +711,14 @@ grupo control se hace aleatoriamente.
 ### Muestreo accidental o según disponibilidad
 
 Esta modalidad cuenta con mucha difusión, sobre todo por los
-medios de comunicación, y consiste en entrevistar a los individuos que
+medios de comunicación, y consiste en entrevistar a las personas que
 se encuentran accidentalmente en determinado lugar. La expresión
 "accidental" se presta a equívocos ya que puede confundirse con
 "aleatorio". Si bien no resulta posible identificar a quien toma la
 decisión por la selección de la muestra, nos encontramos en una
 situación en que múltiples factores son los responsables de la misma.
-Algunos de estos factores son: la voluntad de los encuestados para
-prestarse o no a participar de la entrevista, la elección (consciente o
-no) que el entrevistador hace entre las personas que transitan, el lugar
-donde se hace la entrevista (ciertas personas difícilmente transitan por
-determinadas áreas de una ciudad), etc.
+Algunos de estos factores son: la voluntad de las personas solicitadas de responder, que pueden hacerlo o negarse, la elección (consciente o
+no) que el equipo de encuestas hace entre las personas que transitan, el lugar donde se hace la entrevista (ciertas personas difícilmente transitan por determinadas áreas de una ciudad), etc.
 
 El hecho que se trate de la confluencia de múltiples factores fortuitos
 lo que determina cuáles serán las personas que formarán parte de la
@@ -787,36 +749,32 @@ Esta técnica fue publicada por primera vez por Leo Goodman (1961), de la
 Universidad de Chicago. Es adecuada cuando se debe estudiar una
 población infrecuente, poco representada en el total general y no hay un
 marco disponible para el muestreo. Estas situaciones se presentan, por
-ejemplo, si se requiere entrevistar a consumidores de drogas ilegales,
-personas afectadas por alguna enfermedad rara, trabajadores inmigrantes.
+ejemplo, si se requiere entrevistar a personas que consumen drogas ilegales, personas afectadas por alguna enfermedad rara, inmigrantes en actividad laboral.
 
-Comienza con la selección de una muestra inicial o básica de individuos
-y en cada entrevista se pregunta a qué otras personas de la población el
-entrevistado conoce. Luego se visita a esos casos referenciados por los
+Comienza con la selección de una muestra inicial o básica de casos que el equipo de investigación conoce, y en cada entrevista se pregunta a qué otras personas de la población conoce. Luego se visita a esos casos referenciados por los
 primeros, repitiendo el procedimiento hasta que se completa la muestra.
 Así, al entrevistar a cada miembro de un grupo, se puede pedir que
 indique otros individuos en ese grupo que podrían dar información sobre
 el tema; o pedirle que mencione personas que compartan sus puntos de
 vista y a otras de opinión opuesta. De este modo se entrevistan nuevos
 individuos y se continúa del mismo modo hasta que no se encuentran
-nuevos puntos de vista. Cuando se llega a ese punto, se dice que se ha
+nuevos puntos de vista. Cuando se llega a ese límite, se dice que se ha
 saturado el tema. Este es un buen método para recoger los distintos
-puntos de vista existentes en un grupo, o para alcanzar a persona que no
-son visibles en una comunidad, pero no ofrece información sobre la
+puntos de vista existentes en un grupo, o para alcanzar a personas que no son visibles en una comunidad; pero no ofrece información sobre la
 distribución de los casos en la población.
 
 Si es posible, la primera selección se hace en forma probabilística, y
 los casos siguientes quedan determinados por las referencias que se van
 encontrando. Lo más frecuente es que se carezca de datos iniciales, por
 lo que la primera muestra deberá seleccionarse en forma intencional o
-estar constituida por voluntarios. En cualquier caso se trata de un
+estar constituida por gente que voluntariamente acepta participar. En cualquier caso se trata de un
 muestreo no probabilístico, cuya ventaja es que puede asegurar una
 amplia cobertura, porque permite llegar a través de contactos
 personales, a individuos que de otro modo permanecerían invisibles. El
 carácter no representativo viene dado porque la probabilidad de
 entrevistar a una determinada persona depende de sus conexiones:
 aquellas muy conectadas tendrán más probabilidad de ser entrevistadas
-que las que estén aisladas, o tengan pocos conocidos.
+que las que estén aisladas, o tengan pocas relaciones.
 
 Este método puede mejorarse para lograr que la muestra sea
 representativa de la población. Para eso se lo combina con un modelo
@@ -824,13 +782,8 @@ matemático que da peso diferente a los casos teniendo en cuenta que han
 sido seleccionados de manera no aleatoria. La técnica que así resulta se
 llama "Muestreo Dirigido por el Respondente" y fue desarrollado por
 Douglas Heckathorn en 1997, como parte de un proyecto de investigación
-sobre prevención de VIH dirigido a consumidores de drogas inyectables en
-varias ciudades de Connecticut. Aplicando este procedimiento se logran
-muestras no sesgadas (representativas) aun cuando se haya partido, como
-generalmente sucede, con una muestra no probabilística. Para detalles
-sobre el modo de usarlo, puede consultarse
-[http://www.respondentdrivensampling.org/](http://www.respondentdrivensampling.org/), donde se encuentran abundantes
-ejemplos de aplicación.
+sobre prevención de VIH dirigido a personas consumidoras de drogas inyectables en varias ciudades de Connecticut. Aplicando este procedimiento se logran muestras no sesgadas (representativas) aun cuando se haya partido, como generalmente sucede, con una muestra no probabilística. Para detalles sobre el modo de usarlo, puede consultarse
+[http://www.respondentdrivensampling.org/](http://www.respondentdrivensampling.org/), donde se encuentran abundantes ejemplos de aplicación.
 
 \pagebreak  
 
@@ -870,21 +823,26 @@ library("splitstackshape")
 Luego se define la nueva matriz muestra.estrat.eph, indicando la matriz de donde se extrae la muestra, el criterio de estratificación y la cantidad de casos. Pediremos 100 casos de cada nivel de educación:
 
 ```{r echo=TRUE}
-eph.3.18 <- read.csv("bases/archivostxt/usu_individual_T318.txt", sep = ";")
+eph.3.18 <- read.csv("bases/archivostxt/usu_individual_T318.txt",
+                     sep = ";")
 muestra.estrat.eph <- stratified(eph.3.18, "NIVEL_ED", 100)
 ```
 
 Para ver el resultado, se puede pedir cualquier tabla, con los márgenes a fin de ver el total de casos en cada categoría:
 ```{r echo=TRUE}
-addmargins(table(muestra.estrat.eph$CH04, muestra.estrat.eph$NIVEL_ED))
+addmargins(table(muestra.estrat.eph$CH04,
+                 muestra.estrat.eph$NIVEL_ED))
 ```
 
 La muestra tiene 700 casos que son 100 de cada nivel de educación. También se puede pedir más de un criterio de estratificación, por ejemplo, educación y sexo:
 
 ```{r echo=TRUE}
-muestra.estrat.eph <- stratified(eph.3.18, c("NIVEL_ED", "CH04"), 100)
+muestra.estrat.eph <- stratified(
+  eph.3.18, c(
+    "NIVEL_ED", "CH04"), 100)
 
-addmargins(table(muestra.estrat.eph$CH04, muestra.estrat.eph$NIVEL_ED))
+addmargins(table(muestra.estrat.eph$CH04,
+                 muestra.estrat.eph$NIVEL_ED))
 ```
 
 Ahora hay 1400 casos en total 100 en cada combinación de sexo y nivel de educación (2X7).
@@ -894,10 +852,12 @@ Ahora hay 1400 casos en total 100 en cada combinación de sexo y nivel de educac
 En lugar de especificar la cantidad de casos, se puede indicar la proporción de casos que se requieren de cada categoría, por ejemplo para el 10%:
 
 ```{r echo=TRUE}
-muestra.estrat.prop.eph <- stratified(eph.3.18, "NIVEL_ED", .1)
+muestra.estrat.prop.eph <- stratified(eph.3.18,
+                                      "NIVEL_ED", .1)
 
 addmargins(
-  table(muestra.estrat.prop.eph$CH04, muestra.estrat.prop.eph$NIVEL_ED)
+  table(muestra.estrat.prop.eph$CH04,
+        muestra.estrat.prop.eph$NIVEL_ED)
 )
 ```
 

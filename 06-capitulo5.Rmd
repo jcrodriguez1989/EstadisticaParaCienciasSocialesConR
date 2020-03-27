@@ -18,7 +18,7 @@ métricas).
 
 ## Relaciones entre variables vs. comparación de grupos  
 Según el contexto en que se aplique y también según el modo en que se formulan las preguntas, los resultados de los procedimientos estadísticos que veremos a continuación pueden interpretarse de diferente manera. Tomemos como ejemplo el caso que interese observar la relación del tipo de violencia[^rel_violencia] con el lugar donde sucede, que se analizará más adelante. Aunque son estadísticamente equivalentes, no es lo mismo preguntar si "el lugar incide sobre el tipo de violencia", o si "el tipo de violencia difiere según el lugar". Aquí es más pertinente el planteo del problema como una comparación de grupos (que quedan definidos por los diferentes lugares) antes que como una relación entre variables. Lo mismo pasa cuando se comparan los resultados de un examen entre quienes cursan por la tarde o la mañana. Cuando hay control de variables, como en el diseño experimental o en la evaluación de impacto, el paralelismo entre las dos lecturas es más cercano. Así, preguntar si un grupo de deportistas que recibió un suplemento en su dieta, tiene mejor rendimiento que uno que no lo recibió (planteo en términos de comparación de grupos), equivale a preguntar si el suplemento dietario incide sobre el rendimiento (planteo en términos de relación entre variables). Las operaciones estadísticas que responden a las dos preguntas son las mismas, pero según el caso, una manera de formular el problema puede ser más adecuada que otra, así como la lectura del resultado.  
-Por ejemplo, cuando se busca evaluar el impacto de una política pública dirigida a reducir enfermedades parasitarias en memnores de edad, una estrategia consiste en comparar la prevalencia de esas enfermedades entre quienes han sido destinatarios de esa política, y quienes no lo fueron. Esta prevalencia es la "variable de salida" o "de respuesta" y es aquello sobre lo cual la política pretende impactar. La pregunta por la diferencia entre los dos grupos equivale a indagar sobre el efecto de la intervención.  
+Por ejemplo, cuando se busca evaluar el impacto de una política pública dirigida a reducir enfermedades parasitarias en menores de edad, una estrategia consiste en comparar la prevalencia de esas enfermedades entre población que fue destinataria de esa política, y población que no lo fue. Esta prevalencia es la "variable de salida" o "de respuesta" y es aquello sobre lo cual la política pretende impactar. La pregunta por la diferencia entre los dos grupos equivale a indagar sobre el efecto de la intervención.  
 La investigación social apela continuamente a las comparaciones: el pasado y el presente, mujeres y varones, sociedades industriales y agrarias [@Pescosolido1983], grupos minoritarios y población general, por eso es necesario contar con herramientas que permitan analizar la manera en que suceden estas diferencias y las relaciones entre variables que se asocian a ellas.  
 
 ## Variables nominales
@@ -273,7 +273,7 @@ de las demás, su carácter de primera, segunda, etc., es decir, el orden.
 Sea el problema de indagar por la relación que podría haber entre el
 resultado que se obtiene al rendir un examen de ingreso a una
 carrera y el nivel de educación de las madres de quienes rinden, consideraremos como
-variables *el nivel máximo de educación de la madre* de cada uno y *el orden de mérito alcanzado en el ingreso* a esa carrera; ambas variables
+variables *el nivel máximo de educación de la madre* de cada estudiante y *el orden de mérito alcanzado en el ingreso* a esa carrera; ambas variables
 son ordinales. Tratemos solo la situación de pocos casos por ahora. Si
 para el orden de mérito codificamos como 1, 2, 3, ..., el primer lugar en el
 ingreso, el segundo, etc. y para la educación de la madre usamos 1 =
@@ -292,7 +292,7 @@ kableExtra::kable_styling(
 ```
 
 Que está ordenada según los valores de la primera variable (orden de
-mérito). A estos datos no conviene presentarlos en una tabla de doble entrada, porque cada orden de mérito corresponde a un único individuo, por lo que resultaría una tabla tan poco resumida como la siguiente:
+mérito). A estos datos no conviene presentarlos en una tabla de doble entrada, porque cada orden de mérito corresponde a un único caso, por lo que resultaría una tabla tan poco resumida como la siguiente:
 
 ```{r}
 tabla27 <- table(merito.educa.mad$OM, merito.educa.mad$educamadre)
@@ -1056,7 +1056,7 @@ El coeficiente que se pidió es el de Spearman, porque los números codifican ca
 
 Esta matriz no es explicativa, no se identifican variables antecedentes y consecuentes, por eso se trata de una descripción del modo en que las respuestas a estas preguntas varían conjuntamente.
 
-La lectura de la matriz puede empezar señalando que todos los coeficientes son positivos. Eso quiere decir que los encuestados tomaron posición similar respecto de las diferentes instituciones por las que se les consultó, es decir que dieron respuestas no opuestas a las diferentes preguntas. Quienes dijeron tener mucha confianza en algunas instituciones también la tienen por otras y a la inversa, quienes no confían en algunas, tampoco lo hacen en otras. Por ser relaciones descriptivas, nos informan que el conjunto de encuestados se caracteriza porque algunas personas tienden a confiar en estas instituciones y otras tienden a desconfiar de ellas.
+La lectura de la matriz puede empezar señalando que todos los coeficientes son positivos. Eso quiere decir que las personas que respondieron a la encuesta tomaron posición similar respecto de las diferentes instituciones por las que se les consultó, es decir que dieron respuestas no opuestas a las diferentes preguntas. Quienes dijeron tener mucha confianza en algunas instituciones también la tienen por otras y a la inversa, quienes no confían en algunas, tampoco lo hacen en otras. Por ser relaciones descriptivas, nos informan que el conjunto de encuestados se caracteriza porque algunas personas tienden a confiar en estas instituciones y otras tienden a desconfiar de ellas.
 
 Nótese que este es un patrón posible, pero no el único. por ejemplo podría haber coeficientes negativos que indicarían que algunos pares de  instituciones gozan de confianza inversa: quienes confían en unas, desconfían de otras. 
 
@@ -1470,7 +1470,7 @@ relativo de la variable *x* (a través de la función lineal) en la
 explicación de *y*.  
 Podemos así decir que, por ejemplo, el 30% de las diferencias en el
 rendimiento escolar en la escuela primaria se explica por la
-educación de los padres, o que el 60% de la disminución del puntaje en
+educación de la madre y el padre, o que el 60% de la disminución del puntaje en
 una prueba que evalúa la depresión se puede atribuir a la administración de una determinada droga. Se aprecia con estos ejemplos la gran potencialidad explicativa de este coeficiente.  
 Todo el análisis de regresión que hemos desarrollado hasta aquí puede
 hacerse de manera equivalente si la relación entre las variables no es

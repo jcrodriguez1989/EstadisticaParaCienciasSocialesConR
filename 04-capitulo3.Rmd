@@ -21,7 +21,7 @@ Como las operaciones que pueda hacerse entre las categorías dependen del nivel 
 
 Cuando se trabaja con una variable de nivel nominal, una manera
 sintética de presentar la información que ofrece la tabla de
-distribución de frecuencias es indicando la **proporción** de casos que se encuentran en una determinada categoría. Se trata de la frecuencia relativa simple ($f'$) de una categoría particular. La siguiente es la distribución de las respuestas a la pregunta "¿Con cuál de las siguientes frases está Ud. más de acuerdo?" (P8STGBS), proveniente de la base latinobarómetro (2017):
+distribución de frecuencias es indicando la **proporción** de casos que se encuentran en una determinada categoría. Se trata de la frecuencia relativa simple ($f'$) de una categoría particular. La siguiente es la distribución de las respuestas a la pregunta "¿Con cuál de las siguientes frases está Ud. más de acuerdo?" (P8STGBS), proveniente de la base latinobarómetro (2017, fraseo textual):
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 latinob <- read.csv("bases/archivostxt/latinobarometro2017.txt", encoding = "UTF-8")
@@ -45,7 +45,7 @@ kableExtra::kable_styling(
 )
 ```
 
-Podemos indicar la proporción de personas que respondió que se puede confiar en la mayoría de las personas, como `r tabla7[1]`, que puede también expresarse como `r tabla6[1]`%. La elección de cuál categoría se elige para indicar la proporción depende de los objetivos de la descripción. Al elegir una categoría se llama la atención sobre ella, se la destaca, ya que la proporción restante incluye a todas las demás categorías, los "otros". Esa proporción restante se obtiene restando de 1 (uno) la proporción indicada, o restando de 100 (cien) si ha expresado como porcentaje. En este ejemplo, diremos que `r tabla7[2]` (que proviene de hacer $1- $`r tabla7[1]`) es la proporción de quienes no creen que se pueda confiar, o bien que éstos representan el `r tabla6[2]`% (`r 100-tabla6[1]`).
+Podemos indicar la proporción de personas que respondió que se puede confiar en la mayoría de las personas, como `r tabla7[1]`, que puede también expresarse como `r tabla6[1]`%. La elección de cuál categoría se elige para indicar la proporción depende de los objetivos de la descripción. Al elegir una categoría se llama la atención sobre ella, se la destaca, ya que la proporción restante incluye a todas las demás categorías, las "otras posibilidades". Esa proporción restante se obtiene restando de 1 (uno) la proporción indicada, o restando de 100 (cien) si ha expresado como porcentaje. En este ejemplo, diremos que `r tabla7[2]` (que proviene de hacer $1- $`r tabla7[1]`) es la proporción de quienes no creen que se pueda confiar, o bien que estas personas representan el `r tabla6[2]`% (`r 100-tabla6[1]`).
 
 ||
 |:--:|
@@ -125,6 +125,8 @@ de acuerdo?" (P8STGBS), procedente de la base Latinobarómetro (2017), tiene la 
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 latinob$P8STGBS <- as.factor(latinob$P8STGBS)
+names(latinob)
+table(latinob$P8STGBS)
 levels(latinob$P8STGBS) <- c(NA, NA, "La democracia es preferible a cualquier otra forma de gobierno", "En algunas circunstancias, un gobierno autoritario puede ser preferible a uno democrático", "A la gente como uno, nos da lo mismo un régimen democrático que uno no democrático")
 tabla8 <- table(latinob$P8STGBS)
 kableExtra::kable_styling(
@@ -139,7 +141,7 @@ kableExtra::kable_styling(
 
 Allí, la categoría modal es la que privilegia a la democracia como sistema de gobierno. 
 
-Si se trata de una variable de mayor nivel de medición, no hay ninguna diferencia. La variable *concepto que los docentes asignan a sus estudiantes*, que es de nivel ordinal, tiene la distribución de frecuencias siguiente:  
+Si se trata de una variable de mayor nivel de medición, no hay ninguna diferencia. La variable *concepto asignado a estudiantes por parte de sus docentes*, que es de nivel ordinal, tiene la distribución de frecuencias siguiente:  
 
 ```{r}
 aux_table <- tibble::tribble(
@@ -334,7 +336,7 @@ kableExtra::kable_styling(
 
 El valor de la variable que acumula el 50% de los casos, es el que ocupa el lugar 220, que es mitad de los 440 casos del total. La serie ordenada de esta distribución, coloca a los 40 hogares de nivel socioeconómico "marginal" en los primeros 40 lugares, pero indistintamente, porque no hay orden entre los hogares al interior de la categoría. Según la tabla, hasta la categoría "medio-bajo" se acumulan 260 hogares y hasta la categoría anterior hay 140 acumulados. De manera que el hogar que ocupa el lugar 220 (de la serie ordenada) es uno de los que se encuentran en la categoría "medio-bajo". Diremos así que la mediana de esta distribución es "medio-bajo". Como puede verse, esta categoría no acumula exactamente la mitad de las observaciones, pero es la que contiene a la observación que supera a la mitad y es superada por la otra mitad. Por esa razón la leemos como la mediana, diciendo que la mitad de los hogares tiene un nivel socioeconómico medio-bajo o inferior a ese. Decir que el que acumula 220 casos es "uno de los hogares de la categoría  medio-bajo" se fundamenta en que todos los hogares son equivalentes en su nivel socioeconómico al interior de la categoría.
 
-Esta imprecisión también aparece si se trata de
+La misma interpretación corresponde si se trata de
 una variable cuantitativa discreta. Si la variable es el *número de síntomas* a partir de los cuales fue diagnosticado de esquizofrenia un conjunto de pacientes[^manual_dsm]:
 
 ```{r}
@@ -355,14 +357,9 @@ kableExtra::kable_styling(
 La mitad del número total de casos es de 125 ($250/2$ ó $(1/2)*250$), ¿cuál
 es el caso que ocupa ese lugar? Vemos que hasta 3 síntomas se acumulan
 90 pacientes y 160 hasta los 4. Quien ocupa el puesto 125 en
-la serie simple ordenada está entre quienes fueron diagnosticados a
+la serie simple ordenada está entre quienes recibieron su diagnóstico a
 partir de 4 síntomas. Por esa razón indicamos a la mediana con ese
-valor: 4, $M_{dn} = 4$. Nuevamente encontramos que no es exactamente el
-valor que acumula la mitad, sino uno de los que están en la categoría
-dentro de la cual se acumula la mitad de los casos. La primera categoría
-que tenga una frecuencia acumulada superior al 50% será la que contenga
-a la mediana. Es así porque la clase anterior no alcanza a acumular la
-mitad de las observaciones. La lectura del resultado es que la mitad de
+valor: 4, $M_{dn} = 4$ que es el que cumple con la definción de superar a y ser superado por, no más de la mitad de las observaciones. Así, la primera categoría que tenga una frecuencia acumulada superior al 50% será la que contenga a la mediana. Es así porque, tanto las categorías anteriores a 4 como las posteriores reúnen menos de la mitad de las observaciones. La lectura del resultado es que la mitad de
 los diagnósticos de esquizofrenia se realizó a partir de la presencia de cuatro síntomas o menos.
 
 Sea la variable *número de materias aprobadas por estudiantes de segundo año de una carrera universitaria*:
@@ -757,7 +754,7 @@ En el ejemplo anterior entonces, el número promedio de materias
 aprobadas es 3.10. Este número no es entero y no es un valor que se
 pueda observar; nadie tiene 3.10 materias aprobadas. Sin embargo, es
 valioso para caracterizar a la distribución completa y para hacer
-comparaciones. Por ejemplo, si entre quienes cursan por la mañana la media es de 3.10 materias aprobadas y entre los que lo hacen por la tarde es de 3.90; puede decirse que el segundo grupo tiene aprobadas, en promedio, más materias que el primero aunque ninguno de sus integrantes haya aprobado 3.10 ni 3.90 materias.
+comparaciones. Por ejemplo, si entre quienes cursan por la mañana la media es de 3.10 materias aprobadas y entre quienes lo hacen por la tarde es de 3.90; puede decirse que el segundo grupo tiene aprobadas, en promedio, más materias que el primero aunque nadie haya aprobado 3.10 ni 3.90 materias.
 
 Por el momento ofreceremos una definición operacional de la media, más
 adelante podrá darse una definición conceptual, basada en sus
@@ -1148,7 +1145,7 @@ ggplot(univ) +
   geom_boxplot(aes(ESTADO, CH06, group = ESTADO)) + theme_tufte() + ylab("edad")
 ```
 
-Se observa que, aunque en todos los grupos existen caso de estudiantes con edades altas, quienes no tienen actividad laboral (inactives) se concentran en las edades más bajas.
+Se observa que, aunque en todos los grupos existen casos de estudiantes con edades altas, quienes no tienen actividad laboral (inactives) se concentran en las edades más bajas.
 
 Además de la caja, se ven dos segmentos que se extienden por encima y por debajo de ella. La longitud de estos segmentos (llamados a veces "bigotes") depende de una caracteírística de la distribución que se trata en el apartado siguiente: la dispersión.  
 
@@ -1440,7 +1437,7 @@ $$CV = \frac{s}{\overline{x}}*100 = \frac{1.55}{7}*100 = 22.13\%$$
 La lectura de este resultado es que, para el conjunto de seis personas a las que se observa, el número promedio de síntomas a través de los
 cuales es diagnosticada la depresión es de siete. Sin embargo este
 número de síntomas es bastante variable según los casos y,
-seguramente también según los terapeutas.
+seguramente también entre terapeutas.
 
 
 ### Box-plots y dispersión
@@ -1512,7 +1509,7 @@ proporcional. Si la variable tiene nivel nominal u ordinal habrá que
 medir su variabilidad de otra forma. En estos casos cambia un poco el
 significado de la variabilidad, ya que estaremos en presencia de una
 variable más dispersa cuanto más *equitativamente* se distribuya el
-total de observaciones entre las distintas categorías. Por ejemplo, si cien participantes de un experimento son clasificados según cómo sea su rendimiento en una prueba dada, en: muy bueno, bueno, regular, insatisfactorio; la distribución tendrá más
+total de observaciones entre las distintas categorías. Por ejemplo, si cien participantes de un experimento se clasifican según cómo sea su rendimiento en una prueba dada, en: muy bueno, bueno, regular, insatisfactorio; la distribución tendrá más
 dispersión si 25 casos se encuentran en cada categoría que si la gran
 mayoría está en una sola. La distribución:  
 
@@ -1569,7 +1566,7 @@ completa. Por el contrario, si supiéramos que la distribución es la que
 muestra la segunda tabla, tenderíamos con justa razón a creer que hay
 más chances que la persona elegida al azar tenga rendimiento bueno, ya
 que es bastante más probable que pertenezca a esa categoría que a otra.
-Diremos que aquí tenemos menos incertidumbre. En el caso extremo que todos estuvieran en la categoría "bueno", ya no hay incertidumbre, cualquier persona elegida al azar tendrá ese rendimiento; la incertidumbre es cero, pero ya no es una variable, porque solo tiene una categoría con casos, es una constante y allí la dispersión siempre es cero.  
+Diremos que aquí tenemos menos incertidumbre. En el caso extremo que la totalidad de los casos estuviera en la categoría "bueno", ya no hay incertidumbre, cualquier persona elegida al azar tendrá ese rendimiento; la incertidumbre es cero, pero ya no es una variable, porque solo tiene una categoría con casos, es una constante y allí la dispersión siempre es cero.  
 
 La medida para expresar de manera sintética esta dispersión es:
 
@@ -1614,10 +1611,10 @@ ejemplo, el puntaje que una persona obtiene en una prueba, el ingreso de un hoga
 el problema puede parecer muy elemental, porque puede "verse" si un
 número está cerca o lejos de otro. Si sabemos que una persona tiene dos metros de estatura, no necesitamos hacer cuentas para saber que es alto, más alto que la mayoría de las personas. Sin embargo, en el caso de medidas menos familiares, a veces resulta difícil hacer juicios de distancia sobre valores absolutos. Si un país tiene PBI per cápita de U$S20000, hace falta conocer más datos para evaluarlo como alto o bajo.  
 Si sabemos que en una prueba de memoria con un puntaje máximo de 100
-puntos, una persona logró 80 puntos, ¿estamos autorizados para decir que obtuvo un puntaje alto? La respuesta es no, porque no sabemos qué
+puntos, una persona logró 80 puntos, ¿es evidencia para decir que obtuvo un puntaje alto? La respuesta es no, porque no sabemos qué
 puntajes obtuvieron las demás personas que hicieron la prueba. Si la
 media del grupo completo hubiese sido 60 puntos, entonces 80 sería un
-valor elevado, pero si la media hubiese sido de 85, entonces el caso que estamos considerando se encontraría por debajo del promedio. Más aún, si el promedio fuese 60 y la mayoría de los evaluados hubiese obtenido puntajes cercanos a 60 (poca variabilidad), entonces el valor 80 podría considerarse como muy elevado. Solo conocer su puntaje individual no nos dice nada acerca de la posición de un sujeto particular. Dos ejemplos:
+valor elevado, pero si la media hubiese sido de 85, entonces el caso que estamos considerando se encontraría por debajo del promedio. Más aún, si el promedio fuese 60 y la mayoría de las personas evaluadas hubiese obtenido puntajes cercanos a 60 (poca variabilidad), entonces el valor 80 podría considerarse como muy elevado. Solo conocer su puntaje individual no nos dice nada acerca de la posición de un sujeto particular. Dos ejemplos:
 
 - Nos informan que un niño obtuvo un puntaje bruto de 85 en
 la escala de desarrollo infantil de Bayley [@Ballot2017], no tenemos, en principio ningún criterio para decidir si ese puntaje es alto o bajo.
@@ -1630,7 +1627,7 @@ cuantitativas, será necesario conocer cuál es la posición *relativa* que un p
 Supongamos que se aplica una prueba de ortografía a una muestra de
 quienes están cursando tercer grado de la escuela primaria, que la media de errores de todo el grado es 10
 ($\overline{x} = 10$ errores) y que la desviación estándar es de 4
-($s = 4$ errores). Si un estudiante comete 6 errores ($x = 6$ errores),
+($s = 4$ errores). Si alguien comete 6 errores en una prueba ($x = 6$ errores),
 podemos decir que cometió menos errores que el promedio del grupo. El
 cálculo de la diferencia entre $x$ y $\overline{x}$ da $-4$ errores
 ($x - \overline{x} = 6 - 10 = - 4$), este resultado nos informa que ese caso se ubica a 4 errores por debajo del promedio (por debajo queda expresado en el signo menos el resultado). Ésta es una medida concreta, ya que expresa el número de errores que separan a esa persona del comportamiento resumido del grupo, Dicho de otra manera, se está midiendo la distancia a que se encuentra el caso particular de la media del conjunto completo: menos cuatro errores. Si ahora a esta diferencia la dividimos por la desviación estándar obtenemos $-1$ (procedente de $\frac{- 4\ }{\ \ 4\ }$), que ya no tiene unidades, es un número abstracto. Como la desviación estándar es de 4 errores y ese caso se encuentra a cuatro errores de la media, esto equivale a decir que esa persona se encuentra "a una desviación estándar por debajo del promedio".  
@@ -1737,7 +1734,7 @@ diremos que:
 Con esta información sabemos que si una persona obtuvo 50 puntos, tiene
 un puntaje muy bajo, porque supera a menos del 20% del grupo. O dicho de
 otra manera, más del 80% de las personas alcanzaron puntajes más altos
-que él. Por el contrario si alguien obtuvo 88 puntos, tiene un puntaje
+que aquella. Por el contrario si alguien obtuvo 88 puntos, tiene un puntaje
 muy alto, ya que supera al decil 9 (percentil 90), con lo que menos del 10% del
 grupo lo supera. O bien, él supera a más del 90%.  
 De este modo, la construcción de una tabla en la que se indica el valor
@@ -1898,7 +1895,7 @@ eph.3.18 <- read.table(
 )
 ```
 
-Ahora retendremos solo a los asalariados (CAT_OCUP = 3) que tienen ingreso mayor a cero (PP08D1>0 y que no son NA), la nueva base se llama "asalariados":
+Ahora retendremos solo a las personas que trabajan por un salario (CAT_OCUP = 3) que tienen ingreso mayor a cero (PP08D1>0 y que no son NA), la nueva base se llama "asalariades":
 ```{r echo=TRUE}
 asalariades <- subset(eph.3.18, eph.3.18$CAT_OCUP == 3 &
   eph.3.18$PP08D1 > 0 & is.na(eph.3.18$PP08D1) == FALSE)
@@ -1970,7 +1967,7 @@ edad_4_teo <- cut(eph.3.18$CH06, breaks = c(
 freq(edad_4_teo, report.nas = FALSE)
 ```
 
-La solicitud de algunas medidas de dispersión es directa en R, otras deben calcularse.  El Recorrido (R), la Amplitud Intercuartílica (AIQ), el Semirrecorrido Intercuartílico (SRIC) así como el Coeficiente de Variación (CV) deben computarse según su definición. Para los ingresos, de la base de asalaridos:
+La solicitud de algunas medidas de dispersión es directa en R, otras deben calcularse.  El Recorrido (R), la Amplitud Intercuartílica (AIQ), el Semirrecorrido Intercuartílico (SRIC) así como el Coeficiente de Variación (CV) deben computarse según su definición. Para los ingresos, de la base "asalarides":
 
 ```{r warning=FALSE, echo=TRUE}
 
@@ -1984,11 +1981,13 @@ AIQ <- quantile(asalariades$PP08D1, .75) -
 names(AIQ) <- "AIQ"
 round(AIQ, 2)
 
-SRIC <- (quantile(asalariades$PP08D1, .75) - quantile(asalariades$PP08D1, .25)) / 2
+SRIC <- (quantile(asalariades$PP08D1, .75) -
+           quantile(asalariades$PP08D1, .25)) / 2
 names(SRIC) <- "SRIC"
 round(SRIC, 2)
 
-var <- var(asalariades$PP08D1) # el cálculo de la varianza está en el paquete {base}
+var <- var(asalariades$PP08D1) # el cálculo de la varianza está en
+# el paquete {base}
 names(var) <- "s2"
 round(var, 2)
 
@@ -1996,7 +1995,9 @@ s <- sd(asalariades$PP08D1) # también la desviación estándar
 names(s) <- "s"
 round(s, 2)
 
-CV <- sd(asalariades$PP08D1) / mean(asalariades$PP08D1) * 100 # al CV hay que definirlo
+# al CV hay que definirlo
+CV <- sd(asalariades$PP08D1) / mean(asalariades$PP08D1) * 100 
+
 names(CV) <- "CV"
 round(CV, 2)
 ```
@@ -2006,17 +2007,20 @@ En el paquete {base}, hay una función que ofrece el cálculo de algunas medidas
 summary(asalariades$PP08D1)
 ```
 
-La medida relativa de la variabilidad (el $CV$) es adecuada para comparar variables que tienen diferentes unidades, por ejemplo, sobre la base que contiene los puntajes que la muestra de niñas y niños obtuvo en  una prueba de desarrollo de Bayley cabe preguntar ¿qué es más variable, el puntaje en la subescala motora o en la mental? Es decir, ¿en cuál de esas dos medidas se diferencian más los niños y las niñas evaluadas? Leemos la base
+La medida relativa de la variabilidad (el $CV$) es adecuada para comparar variables que tienen diferentes unidades, por ejemplo, sobre la base que contiene los puntajes que la muestra de niñas y niños obtuvo en  una prueba de desarrollo de Bayley cabe preguntar ¿qué es más variable, el puntaje en la subescala motora o en la mental? Es decir, ¿en cuál de esas dos medidas se diferencian más los niños y las niñas que se sometieron a evaluación? Leemos la base:  
 
-```{r message=FALSE, warning=FALSE, include=FALSE}
+```{r message=FALSE, warning=FALSE, include=FALSE, echo=TRUE}
 bayley <- read.csv("bases/archivostxt/bayley.txt", sep = ";", dec = ",")
 ```
 
 
 Calculamos los coeficientes de variación de los puntajes de las escalas motora y mental, por medio del cociente de la desviación estándar y la media de cada una, multiplicado por cien y redondeado a un decimal:
 ```{r warning= FALSE, echo=TRUE}
-cv_motora <- round(100 * sd(bayley$baymotor) / mean(bayley$baymotor), 1)
-cv_mental <- round(100 * sd(bayley$bayment) / mean(bayley$bayment), 1)
+cv_motora <- round(
+  100 * sd(bayley$baymotor) / mean(bayley$baymotor), 1)
+
+cv_mental <- round(
+  100 * sd(bayley$bayment) / mean(bayley$bayment), 1)
 ```
 
 Y los observamos:
@@ -2050,7 +2054,7 @@ paste(cv_mental, "%")
 
 [^media_const]: En este caso no hay variabilidad, y en consecuencia, no hay variable, porque el valor asumido es siempre el mismo. Se trata de una constante.
 
-[^sint_dsm]: Presencia de cinco (o más) de los siguientes síntomas durante un período de 2 semanas, que representan un cambio respecto a la actividad previa; uno de los síntomas debe ser:
+[^sint_dsm]: Presencia de cinco (o más) de los siguientes síntomas durante un período de 2 semanas, que representan un cambio respecto a la actividad previa; uno de los síntomas debe ser (textualmente):
 
     1\. Estado de ánimo depresivo la mayor parte del día, casi cada día según
     lo indica el propio sujeto (p. ej., se siente triste o vacío) o la

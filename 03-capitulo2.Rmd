@@ -341,7 +341,7 @@ Ahora la distribución está más equilibrada (hay alrededor de 1000 casos en ca
 
 #### Intervalos de amplitud teórica
 
-Aquí la decisión por el lugar donde establecer los puntos de corte para definir los intervalos es del investigador y debe estar fundamentada. Si se considera que, según el año  en que ingresaron a la carrera, la edad esperada de las personas observadas es entre 19 y 20 años, se pueden hacer cuatro intervalos con quienes tienen menos de esa edad, quienes tienen la edad esperada, quienes tienen más de esa edad y el grupo "más mayor" (superan los 40 años). Los intervalos resultan así:
+Aquí la decisión por el lugar donde establecer los puntos de corte para definir los intervalos ha sido decidida, por lo que está explícita y fundamentada en la investigación. Si se considera que, según el año  en que ingresaron a la carrera, la edad esperada de las personas observadas es entre 19 y 20 años, se pueden hacer cuatro intervalos con quienes tienen menos de esa edad, quienes tienen la edad esperada, quienes tienen más de esa edad y el grupo "más mayor" (superan los 40 años). Los intervalos resultan así:
 
 ```{r}
 universitarios$edad4.t <- factor(cut(
@@ -386,7 +386,7 @@ ggplot(eph.3.18) +
   theme_tufte(base_size = 9)
 ```
 
-La categoría NA (not available) reúne a quienes no respondieron al cuestionario y a los menores de 10 años, que no se les hace la pregunta. En el gráfico \@ref(fig:apiladasabs), se representa la misma información en barras apiladas.
+La categoría NA (not available) reúne a quienes no respondieron al cuestionario y a menores de 10 años, que no se les hace la pregunta. En el gráfico \@ref(fig:apiladasabs), se representa la misma información en barras apiladas.
 
 ```{r apiladasabs, fig.cap="Condición laboral: frecuencias absolutas (barras apiladas).", fig.asp = 0.7, fig.width = 3, fig.align = 'center'}
 estado.tabla <- as.data.frame(table(eph.3.18$ESTADO))
@@ -456,7 +456,7 @@ ggplot(eph.3.18) +
   geom_freqpoly(aes(CH06), binwidth = 5)
 ```
 
-Al polígono le fueron agregados agregaron dos intervalos, uno anterior al primero y uno posterior al último, cuyas frecuencias son cero, con el objetivo de "cerrar" el polígono sobre el eje horizontal.
+Al polígono le fueron agregados dos intervalos, uno anterior al primero y uno posterior al último, cuyas frecuencias son cero, con el objetivo de "cerrar" el polígono sobre el eje horizontal.
 El área que queda bajo este polígono es igual a la que encierran los rectángulos del histograma, y valdrá $n$ si se grafican frecuencias absolutas ó $1$ si son las relativas.  
 Cuando se muestra solo el polígono (gráfico \@ref(fig:solopoli)), se tiene una representacón simplificada de la distribución, que sirve para apreciar aspectos que se verán más adelante: forma, dispersión, simetría, etc. Además es preferible presentar en el eje vertical, frecuencias relativas antes que absolutas, para facilitar las comparaciones.
 
@@ -571,7 +571,7 @@ ggplot(bayley) +
   theme_tufte(base_size = 9)
 ```
 
-Los valores hallados corresponden a `r round(quantile(bayley$peso.nac, .25), 0)`, `r round(quantile(bayley$peso.nac, .5), 0)` y `r round(quantile(bayley$peso.nac, .75), 0)` gramos. Que quiere decir que un cuarto nació con pesos entre el mínimo y `r round(quantile(bayley$peso.nac, .25), 0)`, otro cuarto pesó entre `r round(quantile(bayley$peso.nac, .25), 0)` y `r round(quantile(bayley$peso.nac, .5), 0)` gramos, y así con los demás. La distribución de frecuencias de esta variable así categorizada resulta:
+Los valores hallados corresponden a `r round(quantile(bayley$peso.nac, .25), 0)`, `r round(quantile(bayley$peso.nac, .5), 0)` y `r round(quantile(bayley$peso.nac, .75), 0)` gramos. Que quiere decir que un cuarto nació con pesos entre el mínimo y `r round(quantile(bayley$peso.nac, .25), 0)`, otro cuarto pesó entre `r round(quantile(bayley$peso.nac, .25), 0)` y `r round(quantile(bayley$peso.nac, .5), 0)` gramos, y así con el resto. La distribución de frecuencias de esta variable así categorizada resulta:
 
 ```{r}
 peso.nac4 <- factor(cut(
@@ -616,8 +616,8 @@ Y repetimos las operaciones anteriores, de dar nombre a las variables, y de tran
 names(base.ejemplo) <- c(
   "caso", "grupo", "n.cuest", "nombre", "sexo", "genero",
   "edad", "acceso.redes", "red.usada", "red.otra",
-  "tiempo.red", "con.q.vive", "relacion.otros",
-  "q.aporta", "q.aporta.amigos", "edad.partida",
+  "tiempo.red", "con.q.vive", "relacion.otres",
+  "q.aporta", "q.aporta.amigues", "edad.partida",
   "razon.partida",
   "razon.partida.otra", "calidad.sueño",
   "preocupacion", "golpeo", "robo", "cuanto.da", "comision"
@@ -636,8 +636,8 @@ levels(base.ejemplo$con.q.vive) <- c(
 
 base.ejemplo$q.aporta <- as.factor(base.ejemplo$q.aporta)
 levels(base.ejemplo$q.aporta) <- c(
-  "el.mismo", "flia.origen",
-  "flia.nueva", "entre.amigos"
+  "si.misme", "flia.origen",
+  "flia.nueva", "entre.amigues"
 )
 
 base.ejemplo$acceso.redes <- as.factor(base.ejemplo$acceso.redes)

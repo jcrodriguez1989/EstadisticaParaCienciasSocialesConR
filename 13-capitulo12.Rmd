@@ -64,11 +64,11 @@ el otro grupo no lo hace (es el denominado "grupo control"). A través de
 pruebas estandarizadas se mide la sociabilidad, esperando que las
 actividades en las que participaron pudieran estimularla. Se comparan
 los niveles de sociabilidad de quienes participaron del taller con
-los de quienes no participaron, esta evaluación se hace antes y después
+los de quienes no lo hicieron, esta evaluación se hace antes y después
 de la realización de estas actividades, que se prolongaron por un mes.
 En este ejemplo hay dos comparaciones: la socialización de quienes
-participaron con la de los que no lo hicieron, y la de la sociabilidad
-de los que participaron antes del taller y luego de él. En ambos casos
+participaron con la de quienes no lo hicieron, y la de la sociabilidad
+de quienes participaron, antes del taller y luego de él. En ambos casos
 se utilizan las pruebas sobre las que trata este capítulo.  
 
 Siempre la hipótesis nula sostendrá que no hay diferencias entre las
@@ -91,10 +91,10 @@ mujeres y evaluar si hay diferencia entre el promedio de un grupo y otro en rela
 promedios que obtuvieran en pruebas de inteligencia fluida o
 cristalizada.  
 En estos ejemplos, jefes y jefas de hogar,
-NOA y Centro del país, jóvenes y adultos mayores, mujeres y varones, etc. son
+NOA y Centro del país, personas jóvenes y adultas mayores, mujeres y varones, etc. son
 grupos independientes, que se diferencian por los valores de una
 variable (región, edad, género) y nos interesa investigar si estos
-agrupamientos evidencian diferencias en otras variables de interés: como los ingresos, la proporción de analfabetos, la inteligencia, la
+agrupamientos evidencian diferencias en otras variables de interés: como los ingresos, el analfabetismo, la inteligencia, la
 introversión.
 
 Cuando apreciamos que las medias de dos grupos son diferentes, no
@@ -353,7 +353,7 @@ $$z = \frac{\left( 6.7 - 6.3 \right) - 0}{1.38*\sqrt{\frac{1}{100} + \frac{1}{15
 
 Este es el estadístico de prueba correspondiente a la diferencia de
 medias para muestras independientes cuando las varianzas poblacionales
-pueden suponerse iguales. Este valor de $z$ (2.22) se encuentra en la zona de rechazo de $H_{0}$, por lo que la decisión será la de rechazar $H_{0}$ y concluir que el tiempo que tardan en terminar la carrera quienes trabajan difiere significativamente del que tardan los que no trabajan. Dicho de otro modo: la diferencia observada en las medias de las muestras es significativa a un nivel del 5%.  
+pueden suponerse iguales. Este valor de $z$ (2.22) se encuentra en la zona de rechazo de $H_{0}$, por lo que la decisión será la de rechazar $H_{0}$ y concluir que el tiempo que tardan en terminar la carrera quienes trabajan difiere significativamente del que tardan quienes no trabajan. Dicho de otro modo: la diferencia observada en las medias de las muestras es significativa a un nivel del 5%.  
 
 
 Ejemplo 2. Si los mismos resultados se hubiesen hallado en muestras más pequeñas, por ejemplo de 20 casos que trabajan y 25 que no, y además hubiésemos podido suponer que las dos poblaciones son normales en la variable *duración de la carrera*; entonces habría correspondido usar una prueba $t$ [^100]. La prueba de homogeneidad de varianzas da, con esos nuevos tamaños de muestra, $p = 0.16$. Un valor que también es elevado, por lo que se puede tratar a las varianzas como iguales.
@@ -470,7 +470,7 @@ sigue del mismo modo cuando trabajamos con diferencias de medias.
 
 Ejemplo 4. Se espera que una droga que se está experimentando produzca efectos sobre la depresión, en dirección a reducir el puntaje que alcanzan las personas diagnosticadas, en un test que la evalúa.
 Para poner a prueba la droga será necesario diseñar un experimento, no
-avanzaremos en ese tema pero de manera muy simple, podemos pensar en dos grupos de personas depresivas a uno de los cuales se administra la
+avanzaremos en ese tema pero de manera muy simple, podemos pensar en dos grupos de personas que padecen depresión, a uno de los cuales se administra la
 droga (grupo 1) y al otro no (grupo 2)[^102]. Concluiremos que la droga
 tiene efectos si luego de un tiempo de su administración, el grupo de
 pacientes que la recibió experimentó cambios positivos en mayor
@@ -575,13 +575,12 @@ El nombre de la variable `grupo_edad`, corresponde a los grupos 1, hasta 65 año
 respectivamente. La descripción muestra la media, mediana y desviación estándar.
 
 Vemos que hay diferencia en la descendencia promedio de los dos
-grupos. Los del segundo grupo (66 o más) tienen en promedio 0.12 hijes
-más que los del otro grupo. Ahora bien, dadas estas diferencias entre
+grupos. Las personas del segundo grupo (66 o más) tienen en promedio 0.12 hijos o hijas más que las del otro grupo. Ahora bien, dadas estas diferencias entre
 las medias muestrales encontradas, nos interesa determinar si se deben al azar o
 bien si tienen una magnitud tal que representen una diferencia que pueda
-atribuirse a la diferencia de edad de los sujetos de los dos grupos.
+atribuirse a la diferencia de edad de quienes están en cada uno de los dos grupos.
 
-Para realizar una prueba de diferencia de medias entre muestras independientes, se puede usar la distribución normal como buena aproximación, debido a que las muestras son grandes. La prueba es unilateral izquierda, porque interesa saber si el grupo 1 tiene menos hijas e hijos que el grupo 2. El punto crítico de esa prueba es $z_{.05}=-1.64$. La región de rechazo está conformada por todos los valores de *z* que sean inferiores a -1.64. Para hacer la prueba manualmente, ahora se calcula el $z_{obs}$ y según sea menor o mayor que ese punto crítico, se rechaza o no se rechaza $H_0$. 
+Para realizar una prueba de diferencia de medias entre muestras independientes, se puede usar la distribución normal como buena aproximación, debido a que las muestras son grandes. La prueba es unilateral izquierda, porque interesa saber si el grupo 1 tiene menos hijas e hijos que el grupo 2. El punto crítico de esa prueba es $z_{.05}=-1.64$. La región de rechazo está conformada por todos los valores de *z* que sean inferiores a $-1.64$. Para hacer la prueba manualmente, ahora se calcula el $z_{obs}$ y según sea menor o mayor que ese punto crítico, se rechaza o no se rechaza $H_0$. 
 
 La salida R para esta prueba es:
 
@@ -589,22 +588,20 @@ La salida R para esta prueba es:
 t.test(hijes ~ grupo_edad, data = adultos_mayores, alternative = "less")
 ```
 
-Por cuestiones de economía de recursos, los software usan siempre distribución t. La salida muestra: la variable que se analiza (hijes), según la que clasifica los grupos (grupo_edad), el valor del estadístico de prueba (t=-0.94), los grados de libertad (495), el valor de probabilidad asociado a la
-prueba (0.17), el tipo de prueba, que es unilateral izquierda en este caso, un intervalo de confianza unilateral, como fue pedida la prueba y finalmente, las medias (2.49 y 2.61) de cantidades de hijos e hijas de cada grupo
+Por cuestiones de economía de recursos, los software usan siempre distribución $t$. La salida muestra: la variable que se analiza (`hijes`, por hijas o hijos), según (`by`) la que clasifica los grupos (`grupo_edad`), el valor del estadístico de prueba ($t=-0.94$), los grados de libertad ($495$), el valor de probabilidad asociado a la
+prueba ($0.17$), el tipo de prueba, que es unilateral izquierda en este caso, un intervalo de confianza unilateral, como fue pedida la prueba y finalmente, las medias ($2.49$ y $2.61$) de cantidades de hijos e hijas de cada grupo
 
-El $t_{obs}$ de la prueba es -0.94, que se ubica en la zona de no rechazo. Con ese resultado ya estamos en condiciones de concluir sobre la prueba: no se rechaza $H_0$, las medias no difieren de manera significativa, no hay diferencia en el tamaño de la descendencia entre los grupos conformados.
+El $t_{obs}$ de la prueba es $-0.94$, que se ubica en la zona de no rechazo. Con ese resultado ya estamos en condiciones de concluir sobre la prueba: no se rechaza $H_0$, las medias no difieren de manera significativa, no hay diferencia en el tamaño de la descendencia entre los grupos conformados.
 
 Si no hubiésemos calculado previamente el punto crítico, podemos llegar
-a esta conclusión a partir del valor *p*, que en este caso es 0.1751 y
+a esta conclusión a partir del valor *p*, que en este caso es $0.1751$ y
 representa la probabilidad de haber hallado esa diferencia o una mayor,
 por puro azar. Este es el valor que, como sabemos, se juzga en
-comparación con el nivel de significación, por ser mayor a 0.05 que
+comparación con el nivel de significación, por ser mayor a $0.05$ que
 habíamos establecido, decidimos no rechazar la $H_0$. Cuanto más pequeña
 sea esta probabilidad, tanta más evidencia habrá para rechazar $H_0$, en
 este caso la consideramos grande y no rechazamos. La lectura del valor
-*p* es, en este caso "si el número promedio de hijos e hijas de los dos grupos
-fuera el mismo, la probabilidad de haber encontrado entre dos muestras
-de tamaños 243 y 260, una diferencia de 0.12 ó superior, es de 0.1751".
+*p* es, en este caso "si el número promedio de hijos e hijas de los dos grupos fuera el mismo, la probabilidad de haber encontrado entre dos muestras de tamaños $243$ y $260$, una diferencia de $0.12$ ó superior, es de $0.1751$".
 Brevemente:
 
 $$P({(\overline{x}}_{1} - {\overline{x}}_{2} < - 0.12)/{(\mu}_{1} - \mu_{2} = 0)) = 0.1751$$
@@ -682,8 +679,7 @@ diferencias se consideran en pares o en parejas. En lugar de comparar
 muestras provenientes de dos poblaciones independientes, compararemos
 unidades de análisis consigo mismas, en dos momentos distintos. Ejemplo
 típico de este uso lo constituyen las pruebas en las que se compara una
-situación "antes y después". Así, cuando cierta característica de los
-sujetos experimentales se evalúa antes de un tratamiento y se vuelve a
+situación "antes y después". Así, cuando cierta característica de las personas que integran el grupo experimental se evalúa antes de un tratamiento y se vuelve a
 medir luego del tratamiento, interesa conocer en qué medida se han
 producido cambios *individuales*. Observamos a cada individuo en dos
 momentos y comparamos las dos observaciones (mediciones). En el contexto
@@ -989,7 +985,8 @@ Y <- Xc2 %*% diag(1 / sqrt(colSums(Xc2^2)))
 x <- Y[, 2] + (1 / tan(theta)) * Y[, 1]
 
 tiempo_prep <- x1
-calif <- x
+calif <- 3+x
+calif<-10*(calif-min(calif))/(max(calif)-min(calif))
 cor.test(tiempo_prep, calif)
 ```
 
@@ -1037,10 +1034,10 @@ datos.ejemplo.1 <- data.frame(trabaja, duracion)
 
 Y solicitamos la prueba $t$ a la que hay que indicar:  
 - qué variable se compara (la  duración de la carrera)  
-- entre quiénes se compara (los que trabajan y los que no)  
+- entre quiénes se compara (quienes trabajan y quienes no)  
 - de dónde provienen los datos (la matriz de datos)  
 
-La variable cuyas medias se comparan y la que define los grupos se separan con el signo ~ (alt+0126 en windows), los datos, luego de una coma.  
+La variable cuyas medias se comparan y la que define los grupos se separan con el signo `~` (alt+0126 en windows), los datos, luego de una coma.  
 
 ```{r echo=TRUE}
 t.test(duracion ~ trabaja, data = datos.ejemplo.1)
@@ -1077,12 +1074,12 @@ t.test(duracion.2 ~ trabaja.2, data = datos.ejemplo.2)
 
 Ahora la lectura es que el valor p es grande por lo que no se rechaza la $H_{0}$. No hay evidencia para considerar que las medias poblacionales difieran.  
 
-### Aplicación a los datos de Adultos Mayores
+### Aplicación a los datos de Población Adulta Mayor
 
-Se lee la base y se la nombra como `adultos_mayores`:
+Se lee la base y se la nombra como `adultes_mayores`:
 
 ```{r echo=TRUE}
-adultos_mayores <- read.csv("bases/archivostxt/Adultos.mayores.txt",
+adultes_mayores <- read.csv("bases/archivostxt/Adultos.mayores.txt",
   sep = ";", header = TRUE, fileEncoding = "latin1"
 )
 ```
@@ -1090,20 +1087,20 @@ adultos_mayores <- read.csv("bases/archivostxt/Adultos.mayores.txt",
 Luego, se llevan a numéricas la edad y la cantidad de hijas e hijos, porque fueron leídas como factores:  
 
 ```{r echo=TRUE}
-adultos_mayores$edad <- as.numeric(as.character(adultos_mayores$edad))
-adultos_mayores$hijes <- as.numeric(as.character(adultos_mayores$hijos))
+adultes_mayores$edad <- as.numeric(as.character(adultes_mayores$edad))
+adultes_mayores$hijes <- as.numeric(as.character(adultes_mayores$hijos))
 ```
 
-Se construye la variable que agrupa las edades:  
+Se construye la variable que agrupa las edades (1 para menores de 66, 2 para el resto):  
 
 ```{r echo=TRUE}
-adultos_mayores$grupo_edad <- ifelse(adultos_mayores$edad < 66, 1, 2)
+adultes_mayores$grupo_edad <- ifelse(adultes_mayores$edad < 66, 1, 2)
 ```
 
-Y se solicita la prueba de hijes según grupos de edad, unilateral izquierda:
+Y se solicita la prueba de `hijes` según `grupo_edad`, unilateral izquierda:
 
 ```{r echo=TRUE}
-t.test(hijes ~ grupo_edad, data = adultos_mayores, alternative = "less")
+t.test(hijes ~ grupo_edad, data = adultes_mayores, alternative = "less")
 ```
 
 ### Prueba apareada
@@ -1124,7 +1121,7 @@ t.test(antes, despues, data = para_prueba_apareada, paired = TRUE)
 
 ### Coeficiente de correlación
 
-Para solicitar la prueba de significación sobre el coeficiente r de Pearson, simplememente se solicita:
+Sea que se cuenta con datos de 27 estudiantes sobre el tiempo dedicado a preparar un parcial (`tiempo_prep`) y la calificación obtenida (`calif`). Para solicitar la prueba de significación sobre el coeficiente r de Pearson, simplememente se solicita:
 
 ```{r echo=TRUE}
 cor.test(tiempo_prep, calif)

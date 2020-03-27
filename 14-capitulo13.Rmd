@@ -605,16 +605,17 @@ Como se trata de datos ficticios, debemos primero generarlos.
 
 ```{r echo=TRUE}
 resultado <- c(rep("aprobado", 90), rep("no aprobado", 40))
-turno <- c(rep("mañana", 60), rep("tarde", 30), rep("mañana", 30), rep("tarde", 10))
+turno <- c(rep("mañana", 60), rep("tarde", 30),
+           rep("mañana", 30), rep("tarde", 10))
 datos_ejemplo_1_chi <- data.frame(resultado, turno)
 ```
 
 Y construimos la tabla
 
 ```{r echo=TRUE}
-library("kableExtra")
-
-resultado_por_turno <- table(datos_ejemplo_1_chi$resultado, datos_ejemplo_1_chi$turno)
+resultado_por_turno <- table(
+  datos_ejemplo_1_chi$resultado,
+                             datos_ejemplo_1_chi$turno)
 resultado_por_turno
 ```
 
@@ -657,7 +658,8 @@ El resultado conduce a no rechazar la hipótesis nula.
 Nuevamente, hay que generar los datos
 
 ```{r echo=TRUE}
-condicion <- c(rep("promoción", 53), rep("regularidad", 51), rep("libres", 38))
+condicion <- c(rep("promoción", 53),
+               rep("regularidad", 51), rep("libres", 38))
 tabla_condicion <- table(condicion)
 tabla_condicion
 ```
@@ -680,8 +682,12 @@ La salida muestra el puntaje $\chi^2$, los grados de libertad y el valor p asoci
 Construimos la matriz de datos, codificando del 1 al 5 los conceptos Excelente.... No satisfactorio. 
 
 ```{r echo=TRUE}
-docente_a <- c(rep(1, 15), rep(2, 13), rep(3, 4), rep(4, 6), rep(5, 2))
-docente_b <- c(rep(1, 3), rep(2, 5), rep(3, 8), rep(4, 18), rep(5, 6))
+docente_a <- c(
+  rep(1, 15), rep(2, 13), rep(3, 4), rep(4, 6), rep(5, 2))
+
+docente_b <- c(
+  rep(1, 3), rep(2, 5), rep(3, 8), rep(4, 18), rep(5, 6))
+
 concepto <- c(docente_a, docente_b)
 docente <- c(rep("a", 40), rep("b", 40))
 datos_prueba_mediana <- data.frame(concepto, docente)
@@ -732,8 +738,11 @@ El valor $p$ conduce a rechazar la hipótesis nula.
 Sea como ejemplo, el caso de la comparación entre los puntajes de un test estandarizado entre los grupos experimental y control, cada uno de los cuales tiene nueve casos. Los datos ficticios son los siguientes:
 
 ```{r echo=TRUE}
-puntajes_control <- c(38.9, 61.2, 73.3, 21.8, 63.4, 64.6, 48.4, 48.8, 48.5)
-puntajes_experimental <- c(67.8, 60, 63.4, 76, 89.4, 73.3, 67.3, 61.3, 62.4)
+puntajes_control <- c(
+  38.9, 61.2, 73.3, 21.8, 63.4, 64.6, 48.4, 48.8, 48.5)
+
+puntajes_experimental <- c(
+  67.8, 60, 63.4, 76, 89.4, 73.3, 67.3, 61.3, 62.4)
 ```
 
 Los argumentos de la prueba solicitan los dos conjuntos de datos, la lateralidad, el valor bajo la hipótesis nula, y debe indicarse que no es una prueba apareada 
