@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Capítulo 1 Los datos estadísticos | Un Recorrido por los Métodos Cuantitativos en Ciencias Sociales a bordo de R</title>
   <meta name="description" content="Capítulo 1 Los datos estadísticos | Un Recorrido por los Métodos Cuantitativos en Ciencias Sociales a bordo de R" />
-  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Capítulo 1 Los datos estadísticos | Un Recorrido por los Métodos Cuantitativos en Ciencias Sociales a bordo de R" />
   <meta property="og:type" content="book" />
@@ -49,13 +49,14 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -64,14 +65,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -80,9 +83,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -186,7 +189,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.2.3" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#formas-de-recategorizar"><i class="fa fa-check"></i><b>2.2.3</b> Formas de recategorizar</a></li>
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#la-presentación-gráfica-de-los-resultados"><i class="fa fa-check"></i><b>2.3</b> La presentación gráfica de los resultados</a></li>
-<li class="chapter" data-level="2.4" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#hacerlo-en-r-1"><i class="fa fa-check"></i><b>2.4</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="2.4" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>2.4</b> Hacerlo en R</a><ul>
 <li class="chapter" data-level="2.4.1" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#tablas-univariadas"><i class="fa fa-check"></i><b>2.4.1</b> Tablas univariadas</a></li>
 <li class="chapter" data-level="2.4.2" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#recategorización-1"><i class="fa fa-check"></i><b>2.4.2</b> Recategorización</a></li>
 <li class="chapter" data-level="2.4.3" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#representaciones-gráficas"><i class="fa fa-check"></i><b>2.4.3</b> Representaciones gráficas</a></li>
@@ -221,7 +224,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.5.1" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#medidas-de-posición-1"><i class="fa fa-check"></i><b>3.5.1</b> Medidas de posición</a></li>
 <li class="chapter" data-level="3.5.2" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#medidas-de-dispersión-1"><i class="fa fa-check"></i><b>3.5.2</b> Medidas de dispersión</a></li>
 </ul></li>
-<li class="chapter" data-level="3.6" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#hacerlo-en-r-2"><i class="fa fa-check"></i><b>3.6</b> Hacerlo en R</a></li>
+<li class="chapter" data-level="3.6" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>3.6</b> Hacerlo en R</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html"><i class="fa fa-check"></i><b>4</b> Relación entre variables: los fundamentos</a><ul>
 <li class="chapter" data-level="4.1" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#tablas-de-contingencia"><i class="fa fa-check"></i><b>4.1</b> Tablas de contingencia</a></li>
@@ -231,7 +234,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.5" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#concepto-de-riesgo-relativo"><i class="fa fa-check"></i><b>4.5</b> Concepto de riesgo relativo</a></li>
 <li class="chapter" data-level="4.6" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#la-intensidad"><i class="fa fa-check"></i><b>4.6</b> La intensidad</a></li>
 <li class="chapter" data-level="4.7" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#el-concepto-de-independencia-estadística"><i class="fa fa-check"></i><b>4.7</b> El concepto de independencia estadística</a></li>
-<li class="chapter" data-level="4.8" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#hacerlo-en-r-3"><i class="fa fa-check"></i><b>4.8</b> Hacerlo en R</a></li>
+<li class="chapter" data-level="4.8" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>4.8</b> Hacerlo en R</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html"><i class="fa fa-check"></i><b>5</b> Relación entre variables: el análisis</a><ul>
 <li class="chapter" data-level="5.1" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#relaciones-entre-variables-vs.-comparación-de-grupos"><i class="fa fa-check"></i><b>5.1</b> Relaciones entre variables vs. comparación de grupos</a></li>
@@ -253,7 +256,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.9.3" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#obtención-de-la-recta-de-regresión"><i class="fa fa-check"></i><b>5.9.3</b> Obtención de la recta de regresión</a></li>
 </ul></li>
 <li class="chapter" data-level="5.10" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#la-visualización-de-los-datos"><i class="fa fa-check"></i><b>5.10</b> La visualización de los datos</a></li>
-<li class="chapter" data-level="5.11" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#hacerlo-en-r-4"><i class="fa fa-check"></i><b>5.11</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="5.11" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>5.11</b> Hacerlo en R</a><ul>
 <li class="chapter" data-level="5.11.1" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#distancia-chi2"><i class="fa fa-check"></i><b>5.11.1</b> Distancia <span class="math inline">\(\chi^{2}\)</span></a></li>
 <li class="chapter" data-level="5.11.2" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#coeficientes"><i class="fa fa-check"></i><b>5.11.2</b> Coeficientes</a></li>
 <li class="chapter" data-level="5.11.3" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#modelo-lineal"><i class="fa fa-check"></i><b>5.11.3</b> Modelo lineal</a></li>
@@ -282,7 +285,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.3.4" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-accidental-o-según-disponibilidad"><i class="fa fa-check"></i><b>6.3.4</b> Muestreo accidental o según disponibilidad</a></li>
 <li class="chapter" data-level="6.3.5" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-bola-de-nieve"><i class="fa fa-check"></i><b>6.3.5</b> Muestreo bola de nieve</a></li>
 </ul></li>
-<li class="chapter" data-level="6.4" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#hacerlo-en-r-5"><i class="fa fa-check"></i><b>6.4</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="6.4" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>6.4</b> Hacerlo en R</a><ul>
 <li class="chapter" data-level="6.4.1" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#aleatorio-simple"><i class="fa fa-check"></i><b>6.4.1</b> Aleatorio simple</a></li>
 <li class="chapter" data-level="6.4.2" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#estratificado"><i class="fa fa-check"></i><b>6.4.2</b> Estratificado</a></li>
 </ul></li>
@@ -313,7 +316,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.6" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#la-distribución-t-de-student"><i class="fa fa-check"></i><b>8.6</b> La distribución t de Student</a><ul>
 <li class="chapter" data-level="8.6.1" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#la-distribución-f"><i class="fa fa-check"></i><b>8.6.1</b> La distribución F</a></li>
 </ul></li>
-<li class="chapter" data-level="8.7" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#hacerlo-en-r-6"><i class="fa fa-check"></i><b>8.7</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="8.7" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>8.7</b> Hacerlo en R</a><ul>
 <li class="chapter" data-level="8.7.1" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#probabilidades-exactas"><i class="fa fa-check"></i><b>8.7.1</b> Probabilidades exactas</a></li>
 <li class="chapter" data-level="8.7.2" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#probabilidades-acumuladas"><i class="fa fa-check"></i><b>8.7.2</b> Probabilidades acumuladas</a></li>
 <li class="chapter" data-level="8.7.3" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#cuantiles-1"><i class="fa fa-check"></i><b>8.7.3</b> Cuantiles</a></li>
@@ -339,7 +342,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.3.7" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#distribución-del-cociente-de-varianzas"><i class="fa fa-check"></i><b>9.3.7</b> Distribución del cociente de varianzas</a></li>
 </ul></li>
 <li class="chapter" data-level="9.4" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#resumen-de-la-relación-entre-estimadores-y-parámetros"><i class="fa fa-check"></i><b>9.4</b> Resumen de la relación entre estimadores y parámetros</a></li>
-<li class="chapter" data-level="9.5" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#hacerlo-en-r-7"><i class="fa fa-check"></i><b>9.5</b> Hacerlo en R</a></li>
+<li class="chapter" data-level="9.5" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>9.5</b> Hacerlo en R</a></li>
 </ul></li>
 <li class="part"><span><b>III Estadística inferencial</b></span></li>
 <li class="chapter" data-level="10" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html"><i class="fa fa-check"></i><b>10</b> Estimación por intervalo</a><ul>
@@ -356,7 +359,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.5.2" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#el-error-de-estimación-en-la-proporción"><i class="fa fa-check"></i><b>10.5.2</b> El error de estimación en la proporción</a></li>
 </ul></li>
 <li class="chapter" data-level="10.6" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#probabilidad-de-cobertura"><i class="fa fa-check"></i><b>10.6</b> Probabilidad de cobertura</a></li>
-<li class="chapter" data-level="10.7" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#hacerlo-en-r-8"><i class="fa fa-check"></i><b>10.7</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="10.7" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>10.7</b> Hacerlo en R</a><ul>
 <li class="chapter" data-level="10.7.1" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#intervalo-para-la-media"><i class="fa fa-check"></i><b>10.7.1</b> Intervalo para la media</a></li>
 <li class="chapter" data-level="10.7.2" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#intervalo-para-la-proporción"><i class="fa fa-check"></i><b>10.7.2</b> Intervalo para la proporción</a></li>
 <li class="chapter" data-level="10.7.3" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#cobertura"><i class="fa fa-check"></i><b>10.7.3</b> Cobertura</a></li>
@@ -377,7 +380,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.5.2" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#significación-estadística-y-valor-p"><i class="fa fa-check"></i><b>11.5.2</b> Significación estadística y valor <span class="math inline">\(p\)</span></a></li>
 </ul></li>
 <li class="chapter" data-level="11.6" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#muestras-pequeñas-y-pruebas-t"><i class="fa fa-check"></i><b>11.6</b> Muestras pequeñas y pruebas <span class="math inline">\(t\)</span></a></li>
-<li class="chapter" data-level="11.7" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#hacerlo-en-r-9"><i class="fa fa-check"></i><b>11.7</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="11.7" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>11.7</b> Hacerlo en R</a><ul>
 <li class="chapter" data-level="11.7.1" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#prueba-sobre-la-media-1"><i class="fa fa-check"></i><b>11.7.1</b> Prueba sobre la media</a></li>
 <li class="chapter" data-level="11.7.2" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#prueba-sobre-la-proporción-1"><i class="fa fa-check"></i><b>11.7.2</b> Prueba sobre la proporción</a></li>
 </ul></li>
@@ -389,7 +392,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="12.1.2" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#muestras-apareadas"><i class="fa fa-check"></i><b>12.1.2</b> Muestras apareadas</a></li>
 <li class="chapter" data-level="12.1.3" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#coeficiente-r-de-pearson"><i class="fa fa-check"></i><b>12.1.3</b> Coeficiente r de Pearson</a></li>
 </ul></li>
-<li class="chapter" data-level="12.2" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#hacerlo-en-r-10"><i class="fa fa-check"></i><b>12.2</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="12.2" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>12.2</b> Hacerlo en R</a><ul>
 <li class="chapter" data-level="12.2.1" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#ejemplo-1."><i class="fa fa-check"></i><b>12.2.1</b> Ejemplo 1.</a></li>
 <li class="chapter" data-level="12.2.2" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#ejemplo-2."><i class="fa fa-check"></i><b>12.2.2</b> Ejemplo 2.</a></li>
 <li class="chapter" data-level="12.2.3" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#aplicación-a-los-datos-de-población-adulta-mayor"><i class="fa fa-check"></i><b>12.2.3</b> Aplicación a los datos de Población Adulta Mayor</a></li>
@@ -401,12 +404,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13.0.1" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#las-pruebas-ji-cuadrado-o-chi-cuadrado"><i class="fa fa-check"></i><b>13.0.1</b> Las pruebas ji cuadrado (o chi cuadrado)</a></li>
 <li class="chapter" data-level="13.0.2" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#coeficiente-r_s-de-spearman"><i class="fa fa-check"></i><b>13.0.2</b> Coeficiente <span class="math inline">\(r_s\)</span> de Spearman</a></li>
 <li class="chapter" data-level="13.0.3" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#alternativas-no-paramétricas-a-las-pruebas-t"><i class="fa fa-check"></i><b>13.0.3</b> Alternativas no paramétricas a las pruebas t</a></li>
-<li class="chapter" data-level="13.1" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#hacerlo-en-r-11"><i class="fa fa-check"></i><b>13.1</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="13.1" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>13.1</b> Hacerlo en R</a><ul>
 <li class="chapter" data-level="13.1.1" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#ejemplo-1"><i class="fa fa-check"></i><b>13.1.1</b> Ejemplo 1</a></li>
 <li class="chapter" data-level="13.1.2" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#ejemplo-2"><i class="fa fa-check"></i><b>13.1.2</b> Ejemplo 2</a></li>
 <li class="chapter" data-level="13.1.3" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#prueba-de-la-mediana-1"><i class="fa fa-check"></i><b>13.1.3</b> Prueba de la mediana</a></li>
 <li class="chapter" data-level="13.1.4" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#prueba-de-wilcoxon"><i class="fa fa-check"></i><b>13.1.4</b> Prueba de Wilcoxon</a></li>
-<li class="chapter" data-level="13.1.5" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#muestras-apareadas-1"><i class="fa fa-check"></i><b>13.1.5</b> Muestras apareadas</a></li>
+<li class="chapter" data-level="13.1.5" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#muestras-apareadas"><i class="fa fa-check"></i><b>13.1.5</b> Muestras apareadas</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="14" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html"><i class="fa fa-check"></i><b>14</b> Tamaño del efecto</a><ul>
@@ -419,7 +422,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="14.2.5" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#pruebas-ji-cuadrado"><i class="fa fa-check"></i><b>14.2.5</b> Pruebas ji cuadrado</a></li>
 </ul></li>
 <li class="chapter" data-level="14.3" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#análisis-de-la-potencia"><i class="fa fa-check"></i><b>14.3</b> Análisis de la potencia</a></li>
-<li class="chapter" data-level="14.4" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#hacerlo-en-r-12"><i class="fa fa-check"></i><b>14.4</b> Hacerlo en R</a></li>
+<li class="chapter" data-level="14.4" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>14.4</b> Hacerlo en R</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Generado con bookdown</a></li>
@@ -532,18 +535,18 @@ Los registros son continuos, lo que quiere decir que captan información a medid
 </tr>
 </tbody>
 </table>
-<p>Se lee que Clínica es un área preferida por cuatro estudiantes, Laboral y Educacional atrae a dos y a Social solo tiene una mención. Las personas desaparecieron, ya no hay nombres, hemos abstraído para referirnos al área preferida, no a las personas que las prefieren. En la tabla se ve que lo más frecuente es que se prefiera Clínica, y que Social es poco frecuente. Se pasó de la lista de personas reconocibles a la tabla de valores. Nos despegamos de los casos a fin de buscar la regularidad en el conjunto. Más adelante diremos que se ha pasado de la matriz de datos a la distribución de frecuencias, que constituye una reducción o un primer resumen de la información disponible. Esta operación es menos obvia de lo que puede parecer y es tardía en la historia de las idean, tiene origen en la publicación, de <span class="citation">Gaunt (<a href="#ref-gaunt1662">1662</a>)</span> “Observaciones naturales y políticas hechas sobre los boletines de mortalidad”, quien tomó las listas de defunciones sucedidas en Londres durante veinte años en tiempos de la peste y las resumió en orden cronológico. Su operación fue la de cambiar la lista por la tabla, para observar al proceso (la mortalidad a lo largo del tiempo), en lugar de las muertes registradas individualmente.</p>
+<p>Se lee que Clínica es un área preferida por cuatro estudiantes, Laboral y Educacional atrae a dos y a Social solo tiene una mención. Las personas desaparecieron, ya no hay nombres, hemos abstraído para referirnos al área preferida, no a las personas que las prefieren. En la tabla se ve que lo más frecuente es que se prefiera Clínica, y que Social es poco frecuente. Se pasó de la lista de personas reconocibles a la tabla de valores. Nos despegamos de los casos a fin de buscar la regularidad en el conjunto. Más adelante diremos que se ha pasado de la matriz de datos a la distribución de frecuencias, que constituye una reducción o un primer resumen de la información disponible. Esta operación es menos obvia de lo que puede parecer y es tardía en la historia de las idean, tiene origen en la publicación, de <span class="citation">Gaunt (<a href="#ref-gaunt1662" role="doc-biblioref">1662</a>)</span> “Observaciones naturales y políticas hechas sobre los boletines de mortalidad”, quien tomó las listas de defunciones sucedidas en Londres durante veinte años en tiempos de la peste y las resumió en orden cronológico. Su operación fue la de cambiar la lista por la tabla, para observar al proceso (la mortalidad a lo largo del tiempo), en lugar de las muertes registradas individualmente.</p>
 <p>Consideremos el siguiente cuestionario, que se aplicó en 2019 a personas con edades 18 y 35 años.</p>
-<div class="figure" style="text-align: center"><span id="fig:cuestionario"></span>
-<img src="imagenes/cuestionario2019_01.png" alt="Cuestionario 2019" width="413" />
+<div class="figure" style="text-align: center"><span id="fig:cuestionario-1"></span>
+<img src="imagenes/cuestionario2019_01.png" alt="Cuestionario 2019"  />
 <p class="caption">
 Figura 1.1: Cuestionario 2019
 </p>
 </div>
-<div class="figure" style="text-align: center"><span id="fig:cuestionario"></span>
-<img src="imagenes/cuestionario2019_02.png" alt="Cuestionario 2019" width="413" />
+<div class="figure" style="text-align: center"><span id="fig:cuestionario-2"></span>
+<img src="imagenes/cuestionario2019_02.png" alt="Cuestionario 2019"  />
 <p class="caption">
-Figura 1.1: Cuestionario 2019
+Figura 1.2: Cuestionario 2019
 </p>
 </div>
 <p>Este instrumento de producción de datos, se dirigió a una población definida: personas entre 18 y 35 años. En él se solicitó información sobre un conjunto seleccionado de características; los ítems numerados desde P1 hasta P16. Se trata de unos pocos aspectos de cada persona los que interesan para esta investigación; no se tiene en cuenta, por ejemplo la opinión política de quienes responden, ni su estatura o la región en que viven. Estas últimas y muchas más son características de estas personas, pero están fuera del alcance de la investigación. Esto muestra a qué nos referimos con que la información seleccionada constituye un recorte, es una parcialización de las entidades (no siempre son personas) que responden, en la que se eligen solo los aspectos que son de interés para una investigación particular.<br />
@@ -745,7 +748,7 @@ De manera equivalente podemos codificar las categorías de otras variables:</p>
 </div>
 <div id="la-medición" class="section level2">
 <h2><span class="header-section-number">1.6</span> La medición</h2>
-<p>En Ciencias Sociales tiene plena vigencia el debate acerca de las posibilidades de medición de los fenómenos que se estudian. Buena parte de la discusión gira en torno a una definición de medición, ya que según qué sea lo que se considere como tal, se tratará de una medición o no. La posición más tradicional corresponde a lo que el sentido común trata como medición: la estatura, las distancias, el peso, etc. Esta definición demanda que los números que codifican a las categorías tengan algunas propiedades para considerarlos como mediciones. Se conoce como teoría clásica de la medición, y desde ese punto de vista sería muy difícil realizar mediciones sobre las variables que manejamos en Ciencias Sociales. Una definición menos restrictiva es la que propuso <span class="citation">Stevens (<a href="#ref-Stevens1946">1946</a>)</span>, según la cual:</p>
+<p>En Ciencias Sociales tiene plena vigencia el debate acerca de las posibilidades de medición de los fenómenos que se estudian. Buena parte de la discusión gira en torno a una definición de medición, ya que según qué sea lo que se considere como tal, se tratará de una medición o no. La posición más tradicional corresponde a lo que el sentido común trata como medición: la estatura, las distancias, el peso, etc. Esta definición demanda que los números que codifican a las categorías tengan algunas propiedades para considerarlos como mediciones. Se conoce como teoría clásica de la medición, y desde ese punto de vista sería muy difícil realizar mediciones sobre las variables que manejamos en Ciencias Sociales. Una definición menos restrictiva es la que propuso <span class="citation">Stevens (<a href="#ref-Stevens1946" role="doc-biblioref">1946</a>)</span>, según la cual:</p>
 <table>
 <colgroup>
 <col width="100%" />
@@ -938,7 +941,7 @@ Si “1” y “2” son dos categorías de una variable medida a nivel ordinal,
 <p>Veamos un ejemplo antes de definir este nivel. Cuando decimos que estamos en el año 2020, hacemos implícitamente una afirmación que supone una medición del tiempo transcurrido desde un determinado evento, cuya elección no es única. En cierto modo decimos “han transcurrido 2020 años desde el momento que se acordó usar como inicio de este calendario”. En culturas no cristianas, el origen en la medición de los tiempos puede ubicarse en otro momento y, en consecuencia, el año actual es otro. En el calendario judío, por ejemplo, el presente es el año 5780. Hay entonces libertad para decidir la ubicación del punto desde donde empezar a contar los años. Lo que podría llamarse el “año cero”, no es necesariamente el mismo. Sin embargo, el tiempo transcurrido entre la Toma de la Bastilla en Paris y la Toma del Palacio de Invierno en Petrogrado es de 128 años, que es el período entre 1789 y 1917 en el calendario gregoriano y entre 5549 y 5677 según el calendario judío. Es decir que la transformación que lleva los años de un calendario al otro, conserva las distancias. Independientemente de la escala con que hayamos medido el año, la diferencia entre dos años, se mantiene constante. Eso sucede porque las dos escalas (en este ejemplo, la medición del tiempo según las tradiciones cristiana y judía) se distinguen solo en la elección del origen (la posición del cero) pero no en la definición de lo que es un año. Para ambas escalas un año corresponde a una vuelta de la tierra al sol, por lo que la unidad de medición es la misma<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a>. Si alguien tiene 30 años en el calendario gregoriano, también tiene 30 años con el calendario judío; porque, aunque tanto el año de nacimiento como el actual sean diferentes en los dos calendarios, la diferencia (el tiempo transcurrido) entre las dos fechas es la misma. Ubicar el cero en un momento (en un determinado hecho histórico) o en otro es una elección; ese cero no indica la “ausencia de tiempo”. En este caso, cero no quiere decir “nada”, sino “origen elegido”.</p>
 <p>Una forma de medir la inteligencia es la de observar cuántos problemas de una serie de dificultad creciente se es capaz de resolver correctamente. Pero, ¿podría decirse que quien no resuelve ninguno de ellos tiene inteligencia cero?, esto es claramente incorrecto, porque la ubicación del cero no implica la ausencia de lo que estamos midiendo (ausencia de inteligencia en este caso).</p>
 <p>Las escalas intervalares, mantienen las propiedades de las escalas ordinales y nominales, es decir, los números designan categorías y permiten ordenarlas; pero además permiten decir a qué distancia está una de otra, porque cada categoría se expresa también en sentido cuantitativo. La medición intervalar implica construir una escala en la que las categorías están proporcionalmente distanciadas entre sí. Esto permite especificar la distancia que separa a cada categoría de las demás. Este nivel de medición requiere que se establezca algún tipo de unidad de medida que pueda ser considerado como una norma común y que sea repetible, esto es, que se pueda aplicar reiteradamente a las mismas observaciones produciendo los mismos resultados.</p>
-<p>La medición de los rendimientos individuales por medio de pruebas suele expresarse en puntajes que provienen del tiempo requerido para realizar una determinada tarea o de la cantidad de trabajo realizado. En este tipo de prueba, es común que los puntajes partan de un mínimo establecido (por ejemplo el mínimo tiempo posible de ejecución o la mínima cantidad de tareas que una persona puede realizar en una prueba) y esto constituye el puntaje mínimo o la categoría más baja. Los puntajes de las pruebas mentales varían de acuerdo con el rendimiento y un mayor rendimiento siempre significará un mayor puntaje. Por ejemplo, el manual original del Inventario de Depresión de Beck-II <span class="citation">(Upton <a href="#ref-Upton2013">2013</a>)</span> establece niveles (ordinales) para los puntajes (intervalares) que resultan de la aplicación del instrumento:</p>
+<p>La medición de los rendimientos individuales por medio de pruebas suele expresarse en puntajes que provienen del tiempo requerido para realizar una determinada tarea o de la cantidad de trabajo realizado. En este tipo de prueba, es común que los puntajes partan de un mínimo establecido (por ejemplo el mínimo tiempo posible de ejecución o la mínima cantidad de tareas que una persona puede realizar en una prueba) y esto constituye el puntaje mínimo o la categoría más baja. Los puntajes de las pruebas mentales varían de acuerdo con el rendimiento y un mayor rendimiento siempre significará un mayor puntaje. Por ejemplo, el manual original del Inventario de Depresión de Beck-II <span class="citation">(Upton <a href="#ref-Upton2013" role="doc-biblioref">2013</a>)</span> establece niveles (ordinales) para los puntajes (intervalares) que resultan de la aplicación del instrumento:</p>
 <table>
 <caption><span id="tab:unnamed-chunk-74">Tabla 1.9: </span>Ejemplo de codificación de rangos de puntajes para una variable intervalar.</caption>
 <thead>
@@ -1171,11 +1174,11 @@ En el ejemplo de la medición del año según dos calendarios diferentes, si <sp
 <ul>
 <li>Nominales:</li>
 </ul>
-<p>Valores (supervivencia vs autoexpresión, tradicionales vs racionales) <span class="citation">(Inglehart and Appel <a href="#ref-inglehart1989">1989</a>, @inglehart2018)</span></p>
+<p>Valores (supervivencia vs autoexpresión, tradicionales vs racionales) <span class="citation">(Inglehart and Appel <a href="#ref-inglehart1989" role="doc-biblioref">1989</a>, @inglehart2018)</span></p>
 <ul>
 <li>Ordinales:</li>
 </ul>
-<p>Las escalas de compromiso politico, acuerdo partidario y consistencia ideológica <span class="citation">(Gerber et al. <a href="#ref-gerber2011">2011</a>, @gerber2016)</span>, la pobreza medida según Línea de pobreza <span class="citation">(Gómez, Álvarez, and Mario Fernanda <a href="#ref-Gomez2004">2004</a>)</span>, el grado de acuerdo en escalas de actitud <span class="citation">(Robinson et al. <a href="#ref-robinson1991">1991</a>)</span></p>
+<p>Las escalas de compromiso politico, acuerdo partidario y consistencia ideológica <span class="citation">(Gerber et al. <a href="#ref-gerber2011" role="doc-biblioref">2011</a>, @gerber2016)</span>, la pobreza medida según Línea de pobreza <span class="citation">(Gómez, Álvarez, and Mario Fernanda <a href="#ref-Gomez2004" role="doc-biblioref">2004</a>)</span>, el grado de acuerdo en escalas de actitud <span class="citation">(Robinson et al. <a href="#ref-robinson1991" role="doc-biblioref">1991</a>)</span></p>
 <ul>
 <li>Cuantitativas discretas:</li>
 </ul>
@@ -1183,7 +1186,7 @@ En el ejemplo de la medición del año según dos calendarios diferentes, si <sp
 <ul>
 <li>Cuantitativas continuas:</li>
 </ul>
-<p>Tiempo requerido para completar una tarea, ingreso per cápita familiar, gasto total en campaña electoral <span class="citation">(Morales Quiroga and Pineiro Rodriguez <a href="#ref-moralesquiroga2010">2010</a>)</span></p>
+<p>Tiempo requerido para completar una tarea, ingreso per cápita familiar, gasto total en campaña electoral <span class="citation">(Morales Quiroga and Pineiro Rodriguez <a href="#ref-moralesquiroga2010" role="doc-biblioref">2010</a>)</span></p>
 <div style="page-break-after: always;"></div>
 </div>
 <div id="hacerlo-en-r" class="section level2">
@@ -1203,28 +1206,28 @@ La lectura de los archivos .txt se puede realizar con varios comandos, que depen
 <li>Si a los casos perdidos se los ha codificado de algún modo particular, por ejemplo como 9999, debe indicarse <span class="math inline">\(na.strings=&quot;9999&quot;\)</span>.</li>
 </ul>
 <p>Conviene mirar la base original, desde el archivo .txt, que puede abrirse con bloc de notas, para asegurarse qué sepadores tiene.</p>
-<p>A continuación se usarán datos de la matriz de datos que proviene de la aplicación del cuestionario de la Figura <a href="los-datos-estadísticos.html#fig:cuestionario">1.1</a>. La matriz (o base) de datos que tiene los datos cargados está en formato txt, tiene los campos separados por espacios en blanco y se llama base2019.txt. Para leer esa base, primero se ubica la ruta del archivo:</p>
-<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb184-1" title="1"><span class="kw">file.choose</span>()</a></code></pre></div>
+<p>A continuación se usarán datos de la matriz de datos que proviene de la aplicación del cuestionario de la Figura <a href="#fig:cuestionario"><strong>??</strong></a>. La matriz (o base) de datos que tiene los datos cargados está en formato txt, tiene los campos separados por espacios en blanco y se llama base2019.txt. Para leer esa base, primero se ubica la ruta del archivo:</p>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="los-datos-estadísticos.html#cb174-1"></a><span class="kw">file.choose</span>()</span></code></pre></div>
 <p>Aquí se abre un explorador para llegar al archivo que se busca, cuando se lo selecciona, la respuesta es su ruta, que debe pegarse como argumento de <code>read.table</code>. Luego se pide su lectura, asignando el resultado al objeto base.ejemplo:</p>
-<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb185-1" title="1">base.ejemplo &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;bases/archivostxt/base2019.txt&quot;</span>,</a>
-<a class="sourceLine" id="cb185-2" title="2">  <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">sep =</span> <span class="st">&quot; &quot;</span>, <span class="dt">na.strings =</span> <span class="st">&quot;999&quot;</span></a>
-<a class="sourceLine" id="cb185-3" title="3">)</a></code></pre></div>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="los-datos-estadísticos.html#cb175-1"></a>base.ejemplo &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;bases/archivostxt/base2019.txt&quot;</span>,</span>
+<span id="cb175-2"><a href="los-datos-estadísticos.html#cb175-2"></a>  <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">sep =</span> <span class="st">&quot; &quot;</span>, <span class="dt">na.strings =</span> <span class="st">&quot;999&quot;</span></span>
+<span id="cb175-3"><a href="los-datos-estadísticos.html#cb175-3"></a>)</span></code></pre></div>
 <p>Además del nombre y la ruta del archivo, en este caso indicamos que la primera fila contiene los nombres de las variables y que los casos perdidos están codificados como 999.</p>
 <p>En el panel superior derecho ha aparecido este primer objeto, del que se indica el tipo, su tamaño, y las cantidades de observaciones y de variables.<br />
 El tipo de objeto se solicita:</p>
-<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb186-1" title="1"><span class="kw">class</span>(base.ejemplo)</a></code></pre></div>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="los-datos-estadísticos.html#cb176-1"></a><span class="kw">class</span>(base.ejemplo)</span></code></pre></div>
 <pre><code>## [1] &quot;data.frame&quot;</code></pre>
 <p>Es una matriz de datos, como se esperaba y se la puede ver pidiendo:</p>
-<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb188-1" title="1"><span class="kw">View</span>(base.ejemplo)</a></code></pre></div>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="los-datos-estadísticos.html#cb178-1"></a><span class="kw">View</span>(base.ejemplo)</span></code></pre></div>
 <p>En esta exploración inicial, se pueden listar los nombres de las columnas (las variables):</p>
-<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb189-1" title="1"><span class="kw">names</span>(base.ejemplo)</a></code></pre></div>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="los-datos-estadísticos.html#cb179-1"></a><span class="kw">names</span>(base.ejemplo)</span></code></pre></div>
 <pre><code>##  [1] &quot;caso&quot;         &quot;grupo&quot;        &quot;cuestionario&quot; &quot;nombre&quot;       &quot;P1&quot;          
 ##  [6] &quot;P2&quot;           &quot;P3&quot;           &quot;P4&quot;           &quot;P5&quot;           &quot;P5.otra&quot;     
 ## [11] &quot;P6&quot;           &quot;P7&quot;           &quot;P7.otra&quot;      &quot;P8&quot;           &quot;P9&quot;          
 ## [16] &quot;P10&quot;          &quot;P11&quot;          &quot;P11.otra&quot;     &quot;P12&quot;          &quot;P13&quot;         
 ## [21] &quot;P14&quot;          &quot;P15&quot;          &quot;P16&quot;          &quot;comision&quot;</code></pre>
 <p>Y pedir las primeras filas de la matriz. Para la presentación aquí y para que quede visible, elegimos solo las columnas de la quinta a la undécima; es lo que está indicado en el corchete que acompaña al nombre de la base. Cuando se aplica a una matriz de datos, ese corchete es para seleccionar algunas filas o algunas columnas y admite dos valores separados por una coma, el primero se refiere a la o las fila(s) y el segundo la o las columna(s). En este caso el primer elemento está en blanco, eso quiere decir que se usen todas las filas, el segundo elemento dice que se seleccionen solo las columnas de la 5 a la 11:</p>
-<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb191-1" title="1"><span class="kw">head</span>(base.ejemplo[, <span class="dv">5</span><span class="op">:</span><span class="dv">11</span>])</a></code></pre></div>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb181-1"><a href="los-datos-estadísticos.html#cb181-1"></a><span class="kw">head</span>(base.ejemplo[, <span class="dv">5</span><span class="op">:</span><span class="dv">11</span>])</span></code></pre></div>
 <pre><code>##   P1        P2 P3 P4 P5 P5.otra  P6
 ## 1  2  femenino 19  1  1    &lt;NA&gt; 120
 ## 2  1 masculino 29  1  2    &lt;NA&gt;  90
@@ -1234,17 +1237,17 @@ El tipo de objeto se solicita:</p>
 ## 6  1         m 22  1  2    &lt;NA&gt; 240</code></pre>
 <p>Si no se hubiera hecho la selección de esas columnas, por defecto se muestran las seis primera filas, en todas las columnas. Los <NA> son casos sin respuesta.<br />
 Para tener más accesibles las variables, vamos a ponerle un nombre a cada columna:</p>
-<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb193-1" title="1"><span class="kw">names</span>(base.ejemplo) &lt;-<span class="st"> </span><span class="kw">c</span>(</a>
-<a class="sourceLine" id="cb193-2" title="2">  <span class="st">&quot;caso&quot;</span>, <span class="st">&quot;grupo&quot;</span>, <span class="st">&quot;n.cuest&quot;</span>, <span class="st">&quot;nombre&quot;</span>, <span class="st">&quot;sexo&quot;</span>, <span class="st">&quot;genero&quot;</span>,</a>
-<a class="sourceLine" id="cb193-3" title="3">  <span class="st">&quot;edad&quot;</span>, <span class="st">&quot;acceso.redes&quot;</span>, <span class="st">&quot;red.usada&quot;</span>, <span class="st">&quot;red.otra&quot;</span>,</a>
-<a class="sourceLine" id="cb193-4" title="4">  <span class="st">&quot;tiempo.red&quot;</span>, <span class="st">&quot;con.q.vive&quot;</span>, <span class="st">&quot;relacion.otros&quot;</span>,</a>
-<a class="sourceLine" id="cb193-5" title="5">  <span class="st">&quot;q.aporta&quot;</span>, <span class="st">&quot;q.aporta.amigos&quot;</span>, <span class="st">&quot;edad.partida&quot;</span>,</a>
-<a class="sourceLine" id="cb193-6" title="6">  <span class="st">&quot;razon.partida&quot;</span>,</a>
-<a class="sourceLine" id="cb193-7" title="7">  <span class="st">&quot;razon.partida.otra&quot;</span>, <span class="st">&quot;calidad.sueño&quot;</span>,</a>
-<a class="sourceLine" id="cb193-8" title="8">  <span class="st">&quot;preocupacion&quot;</span>, <span class="st">&quot;golpeo&quot;</span>, <span class="st">&quot;robo&quot;</span>, <span class="st">&quot;cuanto.da&quot;</span>, <span class="st">&quot;comision&quot;</span></a>
-<a class="sourceLine" id="cb193-9" title="9">)</a></code></pre></div>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="los-datos-estadísticos.html#cb183-1"></a><span class="kw">names</span>(base.ejemplo) &lt;-<span class="st"> </span><span class="kw">c</span>(</span>
+<span id="cb183-2"><a href="los-datos-estadísticos.html#cb183-2"></a>  <span class="st">&quot;caso&quot;</span>, <span class="st">&quot;grupo&quot;</span>, <span class="st">&quot;n.cuest&quot;</span>, <span class="st">&quot;nombre&quot;</span>, <span class="st">&quot;sexo&quot;</span>, <span class="st">&quot;genero&quot;</span>,</span>
+<span id="cb183-3"><a href="los-datos-estadísticos.html#cb183-3"></a>  <span class="st">&quot;edad&quot;</span>, <span class="st">&quot;acceso.redes&quot;</span>, <span class="st">&quot;red.usada&quot;</span>, <span class="st">&quot;red.otra&quot;</span>,</span>
+<span id="cb183-4"><a href="los-datos-estadísticos.html#cb183-4"></a>  <span class="st">&quot;tiempo.red&quot;</span>, <span class="st">&quot;con.q.vive&quot;</span>, <span class="st">&quot;relacion.otros&quot;</span>,</span>
+<span id="cb183-5"><a href="los-datos-estadísticos.html#cb183-5"></a>  <span class="st">&quot;q.aporta&quot;</span>, <span class="st">&quot;q.aporta.amigos&quot;</span>, <span class="st">&quot;edad.partida&quot;</span>,</span>
+<span id="cb183-6"><a href="los-datos-estadísticos.html#cb183-6"></a>  <span class="st">&quot;razon.partida&quot;</span>,</span>
+<span id="cb183-7"><a href="los-datos-estadísticos.html#cb183-7"></a>  <span class="st">&quot;razon.partida.otra&quot;</span>, <span class="st">&quot;calidad.sueño&quot;</span>,</span>
+<span id="cb183-8"><a href="los-datos-estadísticos.html#cb183-8"></a>  <span class="st">&quot;preocupacion&quot;</span>, <span class="st">&quot;golpeo&quot;</span>, <span class="st">&quot;robo&quot;</span>, <span class="st">&quot;cuanto.da&quot;</span>, <span class="st">&quot;comision&quot;</span></span>
+<span id="cb183-9"><a href="los-datos-estadísticos.html#cb183-9"></a>)</span></code></pre></div>
 <p>De este modo se sobreescriben los nombres originales y quedan los nuevos. Si pedimos nuevamente los nombres, tenemos:</p>
-<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb194-1" title="1"><span class="kw">names</span>(base.ejemplo)</a></code></pre></div>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="los-datos-estadísticos.html#cb184-1"></a><span class="kw">names</span>(base.ejemplo)</span></code></pre></div>
 <pre><code>##  [1] &quot;caso&quot;               &quot;grupo&quot;              &quot;n.cuest&quot;           
 ##  [4] &quot;nombre&quot;             &quot;sexo&quot;               &quot;genero&quot;            
 ##  [7] &quot;edad&quot;               &quot;acceso.redes&quot;       &quot;red.usada&quot;         
@@ -1254,12 +1257,12 @@ Para tener más accesibles las variables, vamos a ponerle un nombre a cada colum
 ## [19] &quot;calidad.sueño&quot;      &quot;preocupacion&quot;       &quot;golpeo&quot;            
 ## [22] &quot;robo&quot;               &quot;cuanto.da&quot;          &quot;comision&quot;</code></pre>
 <p>Y puede verse la matriz por medio de:</p>
-<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb196-1" title="1"><span class="kw">View</span>(base.ejemplo)</a></code></pre></div>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="los-datos-estadísticos.html#cb186-1"></a><span class="kw">View</span>(base.ejemplo)</span></code></pre></div>
 </div>
 <div id="las-variables-1" class="section level3">
 <h3><span class="header-section-number">1.8.2</span> Las variables</h3>
 <p>Cada variable es una columna de la matriz, que ahora tienen los nombres que acabamos de darles. Para acceder a cada una y operar con ellas, se usa el signo “pesos” <span class="math inline">\(\$\)</span> luego del nombre de la matriz. Por ejemplo, la codificación numérica de la variable sexo (1 y 2 para varones y mujeres respectivamente), fue útil para la recolección y la carga de los datos, pero ahora necesitamos tratarla como lo que es. En efecto:</p>
-<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb197-1" title="1"><span class="kw">class</span>(base.ejemplo<span class="op">$</span>sexo)</a></code></pre></div>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="los-datos-estadísticos.html#cb187-1"></a><span class="kw">class</span>(base.ejemplo<span class="op">$</span>sexo)</span></code></pre></div>
 <pre><code>## [1] &quot;integer&quot;</code></pre>
 <p>Esta almacenada como un número entero, pero es nominal, que en el lenguaje de R, se llama factor, y sus categorías, se llaman “niveles” (levels) o “niveles del factor” (factor levels). Para transformarla a ese tipo de variable hay dos opciones:</p>
 <ul>
@@ -1267,50 +1270,50 @@ Para tener más accesibles las variables, vamos a ponerle un nombre a cada colum
 <li>Crear una nueva variable en la matriz, a partir de sexo, con un nombre diferente.</li>
 </ul>
 <p>Elegimos la primera opción, es decir que operamos sobre la misma variable sexo, con lo que sobreescribimos la original. Primero la volvemos factor:</p>
-<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb199-1" title="1">base.ejemplo<span class="op">$</span>sexo &lt;-<span class="st"> </span><span class="kw">as.factor</span>(base.ejemplo<span class="op">$</span>sexo)</a></code></pre></div>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="los-datos-estadísticos.html#cb189-1"></a>base.ejemplo<span class="op">$</span>sexo &lt;-<span class="st"> </span><span class="kw">as.factor</span>(base.ejemplo<span class="op">$</span>sexo)</span></code></pre></div>
 <p>Si preguntamos por los niveles que tiene este factor, obtenemos:</p>
-<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb200-1" title="1"><span class="kw">levels</span>(base.ejemplo<span class="op">$</span>sexo)</a></code></pre></div>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="los-datos-estadísticos.html#cb190-1"></a><span class="kw">levels</span>(base.ejemplo<span class="op">$</span>sexo)</span></code></pre></div>
 <pre><code>## [1] &quot;1&quot; &quot;2&quot;</code></pre>
 <p>Mantiene los valores 1 y 2 pero entre comillas, lo que indica que no los trata como números sino como códigos de una variable nominal (categórica).<br />
 Ahora le damos nombres a las categorías (los niveles del factor):</p>
-<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb202-1" title="1"><span class="kw">levels</span>(base.ejemplo<span class="op">$</span>sexo) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;varones&quot;</span>, <span class="st">&quot;mujeres&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="los-datos-estadísticos.html#cb192-1"></a><span class="kw">levels</span>(base.ejemplo<span class="op">$</span>sexo) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;varones&quot;</span>, <span class="st">&quot;mujeres&quot;</span>)</span></code></pre></div>
 <p>Si se observa la matriz, aparecen ahora los nuevos nombres de las categorías.<br />
 Repetimos estas operaciones sobre las otras preguntas del cuestionario:</p>
-<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb203-1" title="1">base.ejemplo<span class="op">$</span>con.q.vive &lt;-<span class="st"> </span><span class="kw">as.factor</span>(base.ejemplo<span class="op">$</span>con.q.vive)</a>
-<a class="sourceLine" id="cb203-2" title="2"><span class="kw">levels</span>(base.ejemplo<span class="op">$</span>con.q.vive) &lt;-<span class="st"> </span><span class="kw">c</span>(</a>
-<a class="sourceLine" id="cb203-3" title="3">  <span class="st">&quot;flia.origen&quot;</span>, <span class="st">&quot;flia.nueva&quot;</span>,</a>
-<a class="sourceLine" id="cb203-4" title="4">  <span class="st">&quot;hermanes.o.amigues&quot;</span>, <span class="st">&quot;sole&quot;</span>,</a>
-<a class="sourceLine" id="cb203-5" title="5">  <span class="st">&quot;con.otres&quot;</span></a>
-<a class="sourceLine" id="cb203-6" title="6">)</a>
-<a class="sourceLine" id="cb203-7" title="7">base.ejemplo<span class="op">$</span>q.aporta &lt;-<span class="st"> </span><span class="kw">as.factor</span>(base.ejemplo<span class="op">$</span>q.aporta)</a>
-<a class="sourceLine" id="cb203-8" title="8"><span class="kw">levels</span>(base.ejemplo<span class="op">$</span>q.aporta) &lt;-<span class="st"> </span><span class="kw">c</span>(</a>
-<a class="sourceLine" id="cb203-9" title="9">  <span class="st">&quot;el.mismo&quot;</span>, <span class="st">&quot;flia.origen&quot;</span>,</a>
-<a class="sourceLine" id="cb203-10" title="10">  <span class="st">&quot;flia.nueva&quot;</span>, <span class="st">&quot;entre.amigos&quot;</span></a>
-<a class="sourceLine" id="cb203-11" title="11">)</a>
-<a class="sourceLine" id="cb203-12" title="12"></a>
-<a class="sourceLine" id="cb203-13" title="13">base.ejemplo<span class="op">$</span>acceso.redes &lt;-<span class="st"> </span><span class="kw">as.factor</span>(base.ejemplo<span class="op">$</span>acceso.redes)</a>
-<a class="sourceLine" id="cb203-14" title="14"><span class="kw">levels</span>(base.ejemplo<span class="op">$</span>acceso.redes) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;si&quot;</span>, <span class="st">&quot;no&quot;</span>)</a>
-<a class="sourceLine" id="cb203-15" title="15"></a>
-<a class="sourceLine" id="cb203-16" title="16">base.ejemplo<span class="op">$</span>red.usada &lt;-<span class="st"> </span><span class="kw">as.factor</span>(base.ejemplo<span class="op">$</span>red.usada)</a>
-<a class="sourceLine" id="cb203-17" title="17"><span class="kw">levels</span>(base.ejemplo<span class="op">$</span>red.usada) &lt;-<span class="st"> </span><span class="kw">c</span>(</a>
-<a class="sourceLine" id="cb203-18" title="18">  <span class="st">&quot;Instagram&quot;</span>, <span class="st">&quot;Facebook&quot;</span>, <span class="st">&quot;Twitter&quot;</span>,</a>
-<a class="sourceLine" id="cb203-19" title="19">  <span class="st">&quot;Linkedin&quot;</span>, <span class="st">&quot;Tinder/Grindr/happn&quot;</span>,</a>
-<a class="sourceLine" id="cb203-20" title="20">  <span class="st">&quot;Snapchat&quot;</span>, <span class="st">&quot;Ninguna&quot;</span>, <span class="st">&quot;Otra&quot;</span></a>
-<a class="sourceLine" id="cb203-21" title="21">)</a>
-<a class="sourceLine" id="cb203-22" title="22"></a>
-<a class="sourceLine" id="cb203-23" title="23">base.ejemplo<span class="op">$</span>razon.partida &lt;-<span class="st"> </span><span class="kw">as.factor</span>(base.ejemplo<span class="op">$</span>razon.partida)</a>
-<a class="sourceLine" id="cb203-24" title="24"><span class="kw">levels</span>(base.ejemplo<span class="op">$</span>razon.partida) &lt;-<span class="st"> </span><span class="kw">c</span>(</a>
-<a class="sourceLine" id="cb203-25" title="25">  <span class="st">&quot;estudio&quot;</span>, <span class="st">&quot;nueva.flia&quot;</span>, <span class="st">&quot;ganas&quot;</span>, <span class="st">&quot;otras&quot;</span></a>
-<a class="sourceLine" id="cb203-26" title="26">)</a></code></pre></div>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="los-datos-estadísticos.html#cb193-1"></a>base.ejemplo<span class="op">$</span>con.q.vive &lt;-<span class="st"> </span><span class="kw">as.factor</span>(base.ejemplo<span class="op">$</span>con.q.vive)</span>
+<span id="cb193-2"><a href="los-datos-estadísticos.html#cb193-2"></a><span class="kw">levels</span>(base.ejemplo<span class="op">$</span>con.q.vive) &lt;-<span class="st"> </span><span class="kw">c</span>(</span>
+<span id="cb193-3"><a href="los-datos-estadísticos.html#cb193-3"></a>  <span class="st">&quot;flia.origen&quot;</span>, <span class="st">&quot;flia.nueva&quot;</span>,</span>
+<span id="cb193-4"><a href="los-datos-estadísticos.html#cb193-4"></a>  <span class="st">&quot;hermanes.o.amigues&quot;</span>, <span class="st">&quot;sole&quot;</span>,</span>
+<span id="cb193-5"><a href="los-datos-estadísticos.html#cb193-5"></a>  <span class="st">&quot;con.otres&quot;</span></span>
+<span id="cb193-6"><a href="los-datos-estadísticos.html#cb193-6"></a>)</span>
+<span id="cb193-7"><a href="los-datos-estadísticos.html#cb193-7"></a>base.ejemplo<span class="op">$</span>q.aporta &lt;-<span class="st"> </span><span class="kw">as.factor</span>(base.ejemplo<span class="op">$</span>q.aporta)</span>
+<span id="cb193-8"><a href="los-datos-estadísticos.html#cb193-8"></a><span class="kw">levels</span>(base.ejemplo<span class="op">$</span>q.aporta) &lt;-<span class="st"> </span><span class="kw">c</span>(</span>
+<span id="cb193-9"><a href="los-datos-estadísticos.html#cb193-9"></a>  <span class="st">&quot;el.mismo&quot;</span>, <span class="st">&quot;flia.origen&quot;</span>,</span>
+<span id="cb193-10"><a href="los-datos-estadísticos.html#cb193-10"></a>  <span class="st">&quot;flia.nueva&quot;</span>, <span class="st">&quot;entre.amigos&quot;</span></span>
+<span id="cb193-11"><a href="los-datos-estadísticos.html#cb193-11"></a>)</span>
+<span id="cb193-12"><a href="los-datos-estadísticos.html#cb193-12"></a></span>
+<span id="cb193-13"><a href="los-datos-estadísticos.html#cb193-13"></a>base.ejemplo<span class="op">$</span>acceso.redes &lt;-<span class="st"> </span><span class="kw">as.factor</span>(base.ejemplo<span class="op">$</span>acceso.redes)</span>
+<span id="cb193-14"><a href="los-datos-estadísticos.html#cb193-14"></a><span class="kw">levels</span>(base.ejemplo<span class="op">$</span>acceso.redes) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;si&quot;</span>, <span class="st">&quot;no&quot;</span>)</span>
+<span id="cb193-15"><a href="los-datos-estadísticos.html#cb193-15"></a></span>
+<span id="cb193-16"><a href="los-datos-estadísticos.html#cb193-16"></a>base.ejemplo<span class="op">$</span>red.usada &lt;-<span class="st"> </span><span class="kw">as.factor</span>(base.ejemplo<span class="op">$</span>red.usada)</span>
+<span id="cb193-17"><a href="los-datos-estadísticos.html#cb193-17"></a><span class="kw">levels</span>(base.ejemplo<span class="op">$</span>red.usada) &lt;-<span class="st"> </span><span class="kw">c</span>(</span>
+<span id="cb193-18"><a href="los-datos-estadísticos.html#cb193-18"></a>  <span class="st">&quot;Instagram&quot;</span>, <span class="st">&quot;Facebook&quot;</span>, <span class="st">&quot;Twitter&quot;</span>,</span>
+<span id="cb193-19"><a href="los-datos-estadísticos.html#cb193-19"></a>  <span class="st">&quot;Linkedin&quot;</span>, <span class="st">&quot;Tinder/Grindr/happn&quot;</span>,</span>
+<span id="cb193-20"><a href="los-datos-estadísticos.html#cb193-20"></a>  <span class="st">&quot;Snapchat&quot;</span>, <span class="st">&quot;Ninguna&quot;</span>, <span class="st">&quot;Otra&quot;</span></span>
+<span id="cb193-21"><a href="los-datos-estadísticos.html#cb193-21"></a>)</span>
+<span id="cb193-22"><a href="los-datos-estadísticos.html#cb193-22"></a></span>
+<span id="cb193-23"><a href="los-datos-estadísticos.html#cb193-23"></a>base.ejemplo<span class="op">$</span>razon.partida &lt;-<span class="st"> </span><span class="kw">as.factor</span>(base.ejemplo<span class="op">$</span>razon.partida)</span>
+<span id="cb193-24"><a href="los-datos-estadísticos.html#cb193-24"></a><span class="kw">levels</span>(base.ejemplo<span class="op">$</span>razon.partida) &lt;-<span class="st"> </span><span class="kw">c</span>(</span>
+<span id="cb193-25"><a href="los-datos-estadísticos.html#cb193-25"></a>  <span class="st">&quot;estudio&quot;</span>, <span class="st">&quot;nueva.flia&quot;</span>, <span class="st">&quot;ganas&quot;</span>, <span class="st">&quot;otras&quot;</span></span>
+<span id="cb193-26"><a href="los-datos-estadísticos.html#cb193-26"></a>)</span></code></pre></div>
 <p>La cantidad de casos es el número de filas de la matriz de datos. En el caso de una variable, es decir de una columna, la cantidad de observaciones es la longitud del vector que la representa. Para conocer cuántos casos tiene una variable en particular, el comando es length:</p>
-<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb204-1" title="1"><span class="kw">length</span>(base.ejemplo<span class="op">$</span>sexo)</a></code></pre></div>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="los-datos-estadísticos.html#cb194-1"></a><span class="kw">length</span>(base.ejemplo<span class="op">$</span>sexo)</span></code></pre></div>
 <pre><code>## [1] 5003</code></pre>
 <p>Cuando se aplica a una matriz de datos, su longitud en el número de variables:</p>
-<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb206-1" title="1"><span class="kw">length</span>(base.ejemplo)</a></code></pre></div>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="los-datos-estadísticos.html#cb196-1"></a><span class="kw">length</span>(base.ejemplo)</span></code></pre></div>
 <pre><code>## [1] 24</code></pre>
 <p>Los elementos de la matriz de datos pueden accederse por filas o por columnas. Unos corchetes puestos a continuación del nombre identifican filas (casos), columnas (variables) o elementos (categorías). El corchete tiene como argumento dos números separados por una coma; el primero se refiere a la fila, el segundo a la columna, ambos juntos determinan un valor.</p>
 <p>El valor que está en la fila 254, columna 7 de base.ejemplo es 30, que es la edad (columna 7) de la persona que está en la fila 254</p>
-<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb208-1" title="1">base.ejemplo[<span class="dv">254</span>, <span class="dv">7</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="los-datos-estadísticos.html#cb198-1"></a>base.ejemplo[<span class="dv">254</span>, <span class="dv">7</span>]</span></code></pre></div>
 <pre><code>## [1] 30</code></pre>
 <p>Si uno de los dos elementos del corchete se deja en blanco, toma todos los correspondientes de fila o de columna. No vamos a hacer el experimento, porque tendríamos, o bien los valores en cada una de las 24 variables de un sujeto, si pedimos una fila; o bien los 5003 valores de alguna variable, si pedimos una columna; pero es el recurso que se usó para seleccionar algunas columnas en la visualización de la matriz.</p>
 </div>
@@ -1339,7 +1342,7 @@ Repetimos estas operaciones sobre las otras preguntas del cuestionario:</p>
 <p>Gerber, Alan S., Gregory A. Huber, David Doherty, Conor M. Dowling, Connor Raso, and Shang E. Ha. 2011. “Personality Traits and Participation in Political Processes.” <em>The Journal of Politics</em> 73 (3): 692–706. <a href="http://www.jstor.org/stable/10.1017/s0022381611000399">http://www.jstor.org/stable/10.1017/s0022381611000399</a>.</p>
 </div>
 <div id="ref-Gomez2004">
-<p>Gómez, Alicia, Gustavo Álvarez, and Silvia Mario Fernanda. 2004. “El estudio de la pobreza según el Censo Nacional de Población, Hogares y Viviendas 2001 Metodología de elaboración del Índice de Privación Material de los Hogares (IPMH).” <a href="https://www.indec.gob.ar/ftp/cuadros/sociedad/metodologia{\_}ipmh{\_}2016.pdf">https://www.indec.gob.ar/ftp/cuadros/sociedad/metodologia{\_}ipmh{\_}2016.pdf</a>.</p>
+<p>Gómez, Alicia, Gustavo Álvarez, and Silvia Mario Fernanda. 2004. “El estudio de la pobreza según el Censo Nacional de Población, Hogares y Viviendas 2001 Metodología de elaboración del Índice de Privación Material de los Hogares (IPMH).” <a href="https://www.indec.gob.ar/ftp/cuadros/sociedad/metodologia%7B\_%7Dipmh%7B\_%7D2016.pdf">https://www.indec.gob.ar/ftp/cuadros/sociedad/metodologia{\_}ipmh{\_}2016.pdf</a>.</p>
 </div>
 <div id="ref-inglehart1989">
 <p>Inglehart, Ronald, and David Appel. 1989. “The Rise of Postmaterialist Values and Changing Religious Orientations, Gender Roles and Sexual Norms.” <em>International Journal of Public Opinion Research</em> 1 (1): 45–75. <a href="https://doi.org/10.1093/ijpor/1.1.45">https://doi.org/10.1093/ijpor/1.1.45</a>.</p>
@@ -1360,14 +1363,14 @@ Repetimos estas operaciones sobre las otras preguntas del cuestionario:</p>
 <div class="footnotes">
 <hr />
 <ol start="1">
-<li id="fn1"><p>La palabra observar aquí se utiliza en un sentido general, puede tratarse de una observación directa como la que se realiza al mirar (o filmar) un comportamiento, o bien de la presentación de preguntas que alguien debe responder.<a href="los-datos-estadísticos.html#fnref1" class="footnote-back">↩</a></p></li>
-<li id="fn2"><p>A quien se llama “Jefe o jefa de Hogar”.<a href="los-datos-estadísticos.html#fnref2" class="footnote-back">↩</a></p></li>
-<li id="fn3"><p>A menudo que, en Estadística, es necesario llegar a puntos de equilibrio entre el grado de detalle de la información que se ofrece y la claridad con que esa información puede presentarse.<a href="los-datos-estadísticos.html#fnref3" class="footnote-back">↩</a></p></li>
-<li id="fn4"><p>Si bien la corrección que se introduce cada año no es idéntica, por lo que el momento de cambio de año no es el mismo en las dos escalas.<a href="los-datos-estadísticos.html#fnref4" class="footnote-back">↩</a></p></li>
-<li id="fn5"><p>Con la salvedad indicada antes sobre la no coincidencia del momento de cambio de año.<a href="los-datos-estadísticos.html#fnref5" class="footnote-back">↩</a></p></li>
-<li id="fn6"><p>Este nivel de medición aparece mencionado en alguna bibliografía como “escalas de razón” se pueden tratar como sinónimos, ya que la razón se refiere al cociente de números, que permanece constante en el caso de valores proporcionales.<a href="los-datos-estadísticos.html#fnref6" class="footnote-back">↩</a></p></li>
-<li id="fn7"><p>El ejemplo de los calendarios judío y cristiano, aunque es una medición de tiempo, no es absoluta. Es diferente de la medición con un cronómetro, que establece un inicio de cuenta al momento en que se lo dispara y da lugar a una variable de nivel proporcional.<a href="los-datos-estadísticos.html#fnref7" class="footnote-back">↩</a></p></li>
-<li id="fn8"><p>La cantidad de valores depende de la precisión con que se mida. Si se mide con precisión de un centímetro, en un metro caben 100 valores, pero si se mide al milímetro en el mismo intervalo de un metro se ubican 1000 categorías. Una aproximación al concepto de continuidad es que entre dos valores hay infinitos cortes, sin embargo, en procesos observables, la medición tiene un límite que está dado por la mínima graduación que admita el instrumento. Esta es la concepción habitual de variables continuas en estadística, que las distingue de las discretas en que estas provienen de procesos de conteo, mientras que las primeras se generan a partir de mediciones, en alguna unidad de medida. Sin embargo, esta idea no se corresponde con la definición matemática de continuidad, sino con la de “densidad”. El conjunto de números racionales es denso, porque entre dos cualesquiera de ellos pueden encontrarse otro (<span class="math inline">\(\forall a\: \in \: \mathbb{Q},\: \forall b \in \: \mathbb{Q},\:\: / \: a\: &lt;\: b,\: \exists \: c\in \: \mathbb{Q},\:\: /\: a\: &lt;\: c\: &lt;b\)</span>). Pero este conjunto no es completo, debido a tiene discontinuidades en los números irracionales. En este curso, en los problemas prácticos que enfrentamos, las variables cuantitativas podrán tomar valores enteros o decimales y mantendremos la convención de llamar discretas a las primeras y continuas a las segundas.<a href="los-datos-estadísticos.html#fnref8" class="footnote-back">↩</a></p></li>
+<li id="fn1"><p>La palabra observar aquí se utiliza en un sentido general, puede tratarse de una observación directa como la que se realiza al mirar (o filmar) un comportamiento, o bien de la presentación de preguntas que alguien debe responder.<a href="los-datos-estadísticos.html#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p>A quien se llama “Jefe o jefa de Hogar”.<a href="los-datos-estadísticos.html#fnref2" class="footnote-back">↩︎</a></p></li>
+<li id="fn3"><p>A menudo que, en Estadística, es necesario llegar a puntos de equilibrio entre el grado de detalle de la información que se ofrece y la claridad con que esa información puede presentarse.<a href="los-datos-estadísticos.html#fnref3" class="footnote-back">↩︎</a></p></li>
+<li id="fn4"><p>Si bien la corrección que se introduce cada año no es idéntica, por lo que el momento de cambio de año no es el mismo en las dos escalas.<a href="los-datos-estadísticos.html#fnref4" class="footnote-back">↩︎</a></p></li>
+<li id="fn5"><p>Con la salvedad indicada antes sobre la no coincidencia del momento de cambio de año.<a href="los-datos-estadísticos.html#fnref5" class="footnote-back">↩︎</a></p></li>
+<li id="fn6"><p>Este nivel de medición aparece mencionado en alguna bibliografía como “escalas de razón” se pueden tratar como sinónimos, ya que la razón se refiere al cociente de números, que permanece constante en el caso de valores proporcionales.<a href="los-datos-estadísticos.html#fnref6" class="footnote-back">↩︎</a></p></li>
+<li id="fn7"><p>El ejemplo de los calendarios judío y cristiano, aunque es una medición de tiempo, no es absoluta. Es diferente de la medición con un cronómetro, que establece un inicio de cuenta al momento en que se lo dispara y da lugar a una variable de nivel proporcional.<a href="los-datos-estadísticos.html#fnref7" class="footnote-back">↩︎</a></p></li>
+<li id="fn8"><p>La cantidad de valores depende de la precisión con que se mida. Si se mide con precisión de un centímetro, en un metro caben 100 valores, pero si se mide al milímetro en el mismo intervalo de un metro se ubican 1000 categorías. Una aproximación al concepto de continuidad es que entre dos valores hay infinitos cortes, sin embargo, en procesos observables, la medición tiene un límite que está dado por la mínima graduación que admita el instrumento. Esta es la concepción habitual de variables continuas en estadística, que las distingue de las discretas en que estas provienen de procesos de conteo, mientras que las primeras se generan a partir de mediciones, en alguna unidad de medida. Sin embargo, esta idea no se corresponde con la definición matemática de continuidad, sino con la de “densidad”. El conjunto de números racionales es denso, porque entre dos cualesquiera de ellos pueden encontrarse otro (<span class="math inline">\(\forall a\: \in \: \mathbb{Q},\: \forall b \in \: \mathbb{Q},\:\: / \: a\: &lt;\: b,\: \exists \: c\in \: \mathbb{Q},\:\: /\: a\: &lt;\: c\: &lt;b\)</span>). Pero este conjunto no es completo, debido a tiene discontinuidades en los números irracionales. En este curso, en los problemas prácticos que enfrentamos, las variables cuantitativas podrán tomar valores enteros o decimales y mantendremos la convención de llamar discretas a las primeras y continuas a las segundas.<a href="los-datos-estadísticos.html#fnref8" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>

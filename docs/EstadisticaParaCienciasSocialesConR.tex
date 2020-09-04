@@ -1,4 +1,5 @@
-\PassOptionsToPackage{unicode=true}{hyperref} % options for packages loaded elsewhere
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
 \PassOptionsToPackage{hyphens}{url}
 \PassOptionsToPackage{dvipsnames,svgnames*,x11names*}{xcolor}
 %
@@ -10,13 +11,13 @@
 \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
   \usepackage[T1]{fontenc}
   \usepackage[utf8]{inputenc}
-  \usepackage{textcomp} % provides euro and other symbols
-\else % if luatex or xelatex
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
   \usepackage{unicode-math}
   \defaultfontfeatures{Scale=MatchLowercase}
   \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
 \fi
-% use upquote if available, for straight quotes in verbatim environments
+% Use upquote if available, for straight quotes in verbatim environments
 \IfFileExists{upquote.sty}{\usepackage{upquote}}{}
 \IfFileExists{microtype.sty}{% use microtype if available
   \usepackage[]{microtype}
@@ -43,8 +44,8 @@
   filecolor=Maroon,
   citecolor=Blue,
   urlcolor=Blue,
-  breaklinks=true}
-\urlstyle{same}  % don't use monospace font for urls
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
 \usepackage{color}
 \usepackage{fancyvrb}
 \newcommand{\VerbBar}{|}
@@ -86,6 +87,11 @@
 \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
 \usepackage{longtable,booktabs}
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
 % Allow footnotes in longtable head/foot
 \IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
 \makesavenoteenv{longtable}
@@ -98,25 +104,14 @@
 % margins by default, and it is still possible to overwrite the defaults
 % using explicit options in \includegraphics[width, height, ...]{}
 \setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
-\setlength{\emergencystretch}{3em}  % prevent overfull lines
-\providecommand{\tightlist}{%
-  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
-\setcounter{secnumdepth}{5}
-% Redefines (sub)paragraphs to behave more like sections
-\ifx\paragraph\undefined\else
-  \let\oldparagraph\paragraph
-  \renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
-\fi
-\ifx\subparagraph\undefined\else
-  \let\oldsubparagraph\subparagraph
-  \renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
-\fi
-
-% set default figure placement to htbp
+% Set default figure placement to htbp
 \makeatletter
 \def\fps@figure{htbp}
 \makeatother
-
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
 \usepackage{booktabs}
 \usepackage{amsthm}
 \makeatletter
@@ -168,7 +163,7 @@
 
 \title{Un Recorrido por los Métodos Cuantitativos en Ciencias Sociales a bordo de R}
 \author{Eduardo Bologna}
-\date{15 abril, 2020}
+\date{04 septiembre, 2020}
 
 \begin{document}
 \maketitle
@@ -178,7 +173,7 @@
 \setcounter{tocdepth}{1}
 \tableofcontents
 }
-\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
 \hypertarget{colaboradores}{%
 \chapter*{Colaboradores}\label{colaboradores}}
@@ -192,7 +187,7 @@
 \subsection*{\texorpdfstring{\href{https://jcrodriguez.rbind.io/}{Juan Cruz Rodriguez}}{Juan Cruz Rodriguez}}\label{juan-cruz-rodriguez}}
 \addcontentsline{toc}{subsection}{\href{https://jcrodriguez.rbind.io/}{Juan Cruz Rodriguez}}
 
-\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
 Edición preliminar, en proceso de revisión por parte del:
 
@@ -224,7 +219,7 @@ Edición preliminar, en proceso de revisión por parte del:
 \subsubsection*{María Marta Santillan}\label{maruxeda-marta-santillan}}
 \addcontentsline{toc}{subsubsection}{María Marta Santillan}
 
-\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
 \hypertarget{revisiuxf3n-de-lenguaje-incluyente}{%
 \section*{Revisión de lenguaje incluyente:}\label{revisiuxf3n-de-lenguaje-incluyente}}
@@ -399,7 +394,7 @@ Si no se cuenta con R instalado, es posible crear una cuenta en RStudio cloud (\
 
 Por estas razones, R es uno de los lenguajes de programación que más uso tiene y se está convirtiendo en la lingua franca del análisis de datos.
 
-Como lenguaje, R tiene varias interfaces gráficas, que es el modo en que las personas puede interactuar con él. R es el motor y del mismo modo en que, para manejar un auto no hace falta saber cómo funciona el motor, también aquí será suficiente contar con un buen conjunto de comandos (volante, pedales\ldots{}) para hacer uso de la potencia de ese motor, la interface provee esos comandos. De las interfaces existentes, hemos elegido RStudio \citep{RStudioTeam2018} que es un entorno de desarrollo integrado (IDE) de R para facilitar la edición de código que ofrece diversas herramientas para hacer muy accesible el uso de R por parte de quienes no se dedican a la programación, sino que aplican procedimientos estadísticos para sus trabajos de investigación.\\
+Como lenguaje, R tiene varias interfaces gráficas, que es el modo en que las personas puede interactuar con él. R es el motor y del mismo modo en que, para manejar un auto no hace falta saber cómo funciona el motor, también aquí será suficiente contar con un buen conjunto de comandos (volante, pedales\ldots) para hacer uso de la potencia de ese motor, la interface provee esos comandos. De las interfaces existentes, hemos elegido RStudio \citep{RStudioTeam2018} que es un entorno de desarrollo integrado (IDE) de R para facilitar la edición de código que ofrece diversas herramientas para hacer muy accesible el uso de R por parte de quienes no se dedican a la programación, sino que aplican procedimientos estadísticos para sus trabajos de investigación.\\
 Una línea de tiempo sobre el desarrollo de R puede encontrar en \url{https://blog.revolutionanalytics.com/2017/10/updated-history-of-r.html}
 
 \hypertarget{instalaciuxf3n-de-r-y-rstudio}{%
@@ -454,7 +449,7 @@ Un objeto numérico puede tener un valor fijo, si definimos a \textbf{x} como el
 \end{Highlighting}
 \end{Shaded}
 
-En el panel superior derecho aparece este objeto. El signo \textless{}- que define el objeto es equivalente a = que da la idea de asignar a \textbf{x} el valor 3.
+En el panel superior derecho aparece este objeto. El signo \textless- que define el objeto es equivalente a = que da la idea de asignar a \textbf{x} el valor 3.
 
 Si se lo invoca (se lo llama es decir, se escribe su nombre), muestra su valor.
 
@@ -1476,19 +1471,19 @@ Consideremos el siguiente cuestionario, que se aplicó en 2019 a personas con ed
 
 \begin{figure}[H]
 
-{\centering \includegraphics[width=11.47in]{imagenes/cuestionario2019_01} 
+{\centering \includegraphics{imagenes/cuestionario2019_01} 
 
 }
 
-\caption{Cuestionario 2019}\label{fig:cuestionario}
+\caption{Cuestionario 2019}\label{fig:cuestionario-1}
 \end{figure}
 \begin{figure}[H]
 
-{\centering \includegraphics[width=11.47in]{imagenes/cuestionario2019_02} 
+{\centering \includegraphics{imagenes/cuestionario2019_02} 
 
 }
 
-\caption{Cuestionario 2019}\label{fig:cuestionario}
+\caption{Cuestionario 2019}\label{fig:cuestionario-2}
 \end{figure}
 
 Este instrumento de producción de datos, se dirigió a una población definida: personas entre 18 y 35 años. En él se solicitó información sobre un conjunto seleccionado de características; los ítems numerados desde P1 hasta P16. Se trata de unos pocos aspectos de cada persona los que interesan para esta investigación; no se tiene en cuenta, por ejemplo la opinión política de quienes responden, ni su estatura o la región en que viven. Estas últimas y muchas más son características de estas personas, pero están fuera del alcance de la investigación. Esto muestra a qué nos referimos con que la información seleccionada constituye un recorte, es una parcialización de las entidades (no siempre son personas) que responden, en la que se eligen solo los aspectos que son de interés para una investigación particular.\\
@@ -2975,8 +2970,8 @@ Peso.nacCat & f\tabularnewline
 
 \pagebreak
 
-\hypertarget{hacerlo-en-r-1}{%
-\section{Hacerlo en R}\label{hacerlo-en-r-1}}
+\hypertarget{hacerlo-en-r}{%
+\section{Hacerlo en R}\label{hacerlo-en-r}}
 
 Volvemos a leer la base que se trabajó en el capítulo anterior:
 
@@ -3981,7 +3976,7 @@ Marginal & 40 & 40 & 0.09\tabularnewline
 Bajo & 100 & 140 & 0.32\tabularnewline
 Medio-bajo & 120 & 260 & 0.59\tabularnewline
 Medio & 150 & 410 & 0.93\tabularnewline
-Alto & 30 & 440 & 1\tabularnewline
+Alto & 30 & 440 & 1.00\tabularnewline
 Total & 440 & &\tabularnewline
 \bottomrule
 \end{longtable}
@@ -4613,7 +4608,7 @@ Los siguientes histogramas, son ejemplos de formas posibles en cuanto a simetrí
 
 }
 
-\caption{Histogramas de variables con diferente asimetría}\label{fig:unnamed-chunk-1791}
+\caption{Histogramas de variables con diferente asimetría}\label{fig:unnamed-chunk-179-1}
 \end{figure}
 \begin{figure}[H]
 
@@ -4621,7 +4616,7 @@ Los siguientes histogramas, son ejemplos de formas posibles en cuanto a simetrí
 
 }
 
-\caption{Histogramas de variables con diferente asimetría}\label{fig:unnamed-chunk-1792}
+\caption{Histogramas de variables con diferente asimetría}\label{fig:unnamed-chunk-179-2}
 \end{figure}
 \begin{figure}[H]
 
@@ -4629,7 +4624,7 @@ Los siguientes histogramas, son ejemplos de formas posibles en cuanto a simetrí
 
 }
 
-\caption{Histogramas de variables con diferente asimetría}\label{fig:unnamed-chunk-1793}
+\caption{Histogramas de variables con diferente asimetría}\label{fig:unnamed-chunk-179-3}
 \end{figure}
 
 La asimetría puede evaluarse directamente a partir de las medidas de
@@ -4680,7 +4675,7 @@ Las siguientes ojivas de Galton corresponden a las tres distribuciones anteriore
 
 }
 
-\caption{Ojivas de Galton correspondientes a variables con diferente asimetría}\label{fig:unnamed-chunk-1801}
+\caption{Ojivas de Galton correspondientes a variables con diferente asimetría}\label{fig:unnamed-chunk-180-1}
 \end{figure}
 \begin{figure}[H]
 
@@ -4688,7 +4683,7 @@ Las siguientes ojivas de Galton corresponden a las tres distribuciones anteriore
 
 }
 
-\caption{Ojivas de Galton correspondientes a variables con diferente asimetría}\label{fig:unnamed-chunk-1802}
+\caption{Ojivas de Galton correspondientes a variables con diferente asimetría}\label{fig:unnamed-chunk-180-2}
 \end{figure}
 \begin{figure}[H]
 
@@ -4696,7 +4691,7 @@ Las siguientes ojivas de Galton corresponden a las tres distribuciones anteriore
 
 }
 
-\caption{Ojivas de Galton correspondientes a variables con diferente asimetría}\label{fig:unnamed-chunk-1803}
+\caption{Ojivas de Galton correspondientes a variables con diferente asimetría}\label{fig:unnamed-chunk-180-3}
 \end{figure}
 
 La evaluación cuantitativa de la asimetría de una distribución permite la comparación entre distribuciones en cuanto al grado de asimetría, para indicar cuándo una distribución es más asimétrica que otra. Para hacerlo se usan los \textbf{coeficientes de asimetría}. Estos coeficientes miden dos aspectos
@@ -4740,7 +4735,7 @@ tienen forma amplia y baja. Como en los siguientes gráficos:
 
 }
 
-\caption{Histogramas de variables con diferente curtosis}\label{fig:unnamed-chunk-1811}
+\caption{Histogramas de variables con diferente curtosis}\label{fig:unnamed-chunk-181-1}
 \end{figure}
 \begin{figure}[H]
 
@@ -4748,7 +4743,7 @@ tienen forma amplia y baja. Como en los siguientes gráficos:
 
 }
 
-\caption{Histogramas de variables con diferente curtosis}\label{fig:unnamed-chunk-1812}
+\caption{Histogramas de variables con diferente curtosis}\label{fig:unnamed-chunk-181-2}
 \end{figure}
 \begin{figure}[H]
 
@@ -4756,7 +4751,7 @@ tienen forma amplia y baja. Como en los siguientes gráficos:
 
 }
 
-\caption{Histogramas de variables con diferente curtosis}\label{fig:unnamed-chunk-1813}
+\caption{Histogramas de variables con diferente curtosis}\label{fig:unnamed-chunk-181-3}
 \end{figure}
 
 Estos tres ejemplos corresponden a distribuciones simétricas, pero
@@ -4826,7 +4821,7 @@ El box plot puede aparecer presentado de manera vertical u horizontal. Los sigui
 
 }
 
-\caption{Box plots correspondientes a variables de diferente asimetría}\label{fig:unnamed-chunk-1841}
+\caption{Box plots correspondientes a variables de diferente asimetría}\label{fig:unnamed-chunk-184-1}
 \end{figure}
 \begin{figure}[H]
 
@@ -4834,7 +4829,7 @@ El box plot puede aparecer presentado de manera vertical u horizontal. Los sigui
 
 }
 
-\caption{Box plots correspondientes a variables de diferente asimetría}\label{fig:unnamed-chunk-1842}
+\caption{Box plots correspondientes a variables de diferente asimetría}\label{fig:unnamed-chunk-184-2}
 \end{figure}
 \begin{figure}[H]
 
@@ -4842,7 +4837,7 @@ El box plot puede aparecer presentado de manera vertical u horizontal. Los sigui
 
 }
 
-\caption{Box plots correspondientes a variables de diferente asimetría}\label{fig:unnamed-chunk-1843}
+\caption{Box plots correspondientes a variables de diferente asimetría}\label{fig:unnamed-chunk-184-3}
 \end{figure}
 
 \hypertarget{medidas-de-dispersiuxf3n}{%
@@ -5432,7 +5427,7 @@ valor elevado, pero si la media hubiese sido de 85, entonces el caso que estamos
   Nos informan que un niño obtuvo un puntaje bruto de 85 en
   la escala de desarrollo infantil de Bayley \citep{Ballot2017}, no tenemos, en principio ningún criterio para decidir si ese puntaje es alto o bajo.
 \item
-  El Índice de Democracia \citep{demindex2011} de un país es 6.5. ¿Dónde se ubica este país en el conjunto de democracias del mundo? ¿Es alto, medio\ldots{}?
+  El Índice de Democracia \citep{demindex2011} de un país es 6.5. ¿Dónde se ubica este país en el conjunto de democracias del mundo? ¿Es alto, medio\ldots?
 \end{itemize}
 
 Para situaciones como éstas, muy frecuentes en evaluaciones
@@ -5558,7 +5553,7 @@ psicológica administrada a una muestra de \(310\) personas:
 x & f & F & F'\tabularnewline
 \midrule
 \endhead
-20-29 & 0 & 0 & 0\tabularnewline
+20-29 & 0 & 0 & 0.00\tabularnewline
 30-39 & 10 & 10 & 0.03\tabularnewline
 40-49 & 30 & 40 & 0.13\tabularnewline
 50-59 & 50 & 90 & 0.29\tabularnewline
@@ -5567,7 +5562,7 @@ x & f & F & F'\tabularnewline
 80-89 & 40 & 290 & 0.94\tabularnewline
 90-99 & 10 & 300 & 0.97\tabularnewline
 100-109 & 5 & 305 & 0.98\tabularnewline
-110-119 & 5 & 310 & 1\tabularnewline
+110-119 & 5 & 310 & 1.00\tabularnewline
 Total & 310 & &\tabularnewline
 \bottomrule
 \end{longtable}
@@ -5740,8 +5735,8 @@ De incertidumbre & Coeficiente de incertidumbre & Nominal\tabularnewline
 
 \pagebreak
 
-\hypertarget{hacerlo-en-r-2}{%
-\section{Hacerlo en R}\label{hacerlo-en-r-2}}
+\hypertarget{hacerlo-en-r}{%
+\section{Hacerlo en R}\label{hacerlo-en-r}}
 
 Para los ejemplos de este apartado vamos a trabajar sobre los datos de la Encuesta Permanente de Hogares, tercer trimestre de 2018. Leemos la base, indicando que la primera fila son los nombres de las variables y que el separador de campos es ``;'', y la llamamos eph.3.18:
 
@@ -5754,7 +5749,7 @@ Para los ejemplos de este apartado vamos a trabajar sobre los datos de la Encues
 \end{Highlighting}
 \end{Shaded}
 
-Ahora retendremos solo a las personas que trabajan por un salario (CAT\_OCUP = 3) que tienen ingreso mayor a cero (PP08D1\textgreater{}0 y que no son NA), la nueva base se llama ``asalariades'':
+Ahora retendremos solo a las personas que trabajan por un salario (CAT\_OCUP = 3) que tienen ingreso mayor a cero (PP08D1\textgreater0 y que no son NA), la nueva base se llama ``asalariades'':
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6097,7 +6092,7 @@ Esquemáticamente la relación se plantea de la siguiente manera:
 
 \begin{figure}[H]
 
-{\centering \includegraphics[width=5.42in]{imagenes/resultadotratamiento} 
+{\centering \includegraphics{imagenes/resultadotratamiento} 
 
 }
 
@@ -6126,7 +6121,7 @@ El siguiente esquema muestra la relación entre varias variables que aportarían
 
 \begin{figure}[H]
 
-{\centering \includegraphics[width=4.99in]{imagenes/resultadoescolar} 
+{\centering \includegraphics{imagenes/resultadoescolar} 
 
 }
 
@@ -6341,7 +6336,7 @@ Monoparental materno & 0.08 & 0.11 & 0.19 & \textbf{0.38}\tabularnewline
 Monoparental paterno & 0.04 & \textbf{0.15} & 0.06 & 0.25\tabularnewline
 Nuclear & 0.02 & 0.04 & 0.09 & 0.15\tabularnewline
 Extendido & 0.11 & 0.08 & 0.04 & 0.23\tabularnewline
-Total & \textbf{0.25} & 0.38 & 0.38 & 1\tabularnewline
+Total & \textbf{0.25} & 0.38 & 0.38 & 1.00\tabularnewline
 \bottomrule
 \end{longtable}
 
@@ -6497,7 +6492,7 @@ será:
 
 \begin{figure}[H]
 
-{\centering \includegraphics[width=5.29in]{imagenes/ayudapadres} 
+{\centering \includegraphics{imagenes/ayudapadres} 
 
 }
 
@@ -6613,6 +6608,19 @@ El resultado es el mismo si se dividen los porcentajes. Este cociente mide cuán
 Ejemplo (datos reales): usamos una pregunta del cuestionario del Operativo Nacional de Evaluación Argentina 2000, que se aplicó en el último año del secundario, que dice: ``Durante los últimos dos meses ¿Leíste o estás leyendo algún libro, además de los que te pidieron en la escuela?'' Con posibilidades de respuesta si - no. Llamamos \(lectura \: extraescolar\) a esta variable, con categorías \(si\) \(no\) y plantemos su relación con el resultado que se obtiene en la prueba de lengua (tomada en el mismo operativo de evaluación). Para eso, cortamos los puntajes de esta prueba en dos categorías: altos (50 puntos o más) y bajos (menos de 50 puntos). Para la provincia de Córdoba, en el año 2000 resulta la siguiente tabla:
 
 \begin{longtable}[]{@{}lccc@{}}
+\caption{\label{tab:unnamed-chunk-226}Distribución conjunta de la lectura extraescolar y el resultado en la prueba de lengua}\tabularnewline
+\toprule
+\begin{minipage}[b]{0.68\columnwidth}\raggedright
+Durante los últimos dos meses ¿Leíste o estás leyendo algún libro, además de los que te pidieron en la escuela?\strut
+\end{minipage} & \begin{minipage}[b]{0.10\columnwidth}\centering
+Puntaje prueba\strut
+\end{minipage} & \begin{minipage}[b]{0.04\columnwidth}\centering
+de de\strut
+\end{minipage} & \begin{minipage}[b]{0.07\columnwidth}\centering
+la Lengua\strut
+\end{minipage}\tabularnewline
+\midrule
+\endfirsthead
 \toprule
 \begin{minipage}[b]{0.68\columnwidth}\raggedright
 Durante los últimos dos meses ¿Leíste o estás leyendo algún libro, además de los que te pidieron en la escuela?\strut
@@ -6738,9 +6746,8 @@ otra, y es un resultado descriptivo, no explicativo.
 \toprule
 \endhead
 \begin{minipage}[t]{0.97\columnwidth}\centering
-La \textbf{intensidad de una relación}\footnotemark{} es una medida de la fuerza con que los cambios en una variable afectan los cambios en la otra (si es una relación asimétrica) o bien, de la frecuencia con que los cambios de una variable acompañan a los de la otra (si se trata de una relación simétrica).\strut
-\end{minipage}
-\footnotetext{No es posible ofrecer una definición más precisa porque según el modo en que se mida la intensidad, es decir, según el coeficiente que se use, es diferente el aspecto de la relación que se tiene en cuenta.}\tabularnewline
+La \textbf{intensidad de una relación}\footnote{No es posible ofrecer una definición más precisa porque según el modo en que se mida la intensidad, es decir, según el coeficiente que se use, es diferente el aspecto de la relación que se tiene en cuenta.} es una medida de la fuerza con que los cambios en una variable afectan los cambios en la otra (si es una relación asimétrica) o bien, de la frecuencia con que los cambios de una variable acompañan a los de la otra (si se trata de una relación simétrica).\strut
+\end{minipage}\tabularnewline
 \bottomrule
 \end{longtable}
 
@@ -6783,7 +6790,7 @@ concreta de ir a vivir a otro país?
   No
 \end{enumerate}
 
-P2ST. ¿Diría Ud. que este país\ldots{}?
+P2ST. ¿Diría Ud. que este país\ldots?
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -7192,8 +7199,8 @@ Pero en el próximo capítulo veremos que para variables de estos niveles de med
 
 \pagebreak
 
-\hypertarget{hacerlo-en-r-3}{%
-\section{Hacerlo en R}\label{hacerlo-en-r-3}}
+\hypertarget{hacerlo-en-r}{%
+\section{Hacerlo en R}\label{hacerlo-en-r}}
 
 Para ver el modo de construir las tablas bivariadas de este capítulo, usaremos la base de la Encuesta Permanente de Hogares del tercer trimestre de 2018. El primer paso es leerla desde el lugar donde esté guardada y darle un nombre:
 
@@ -7700,7 +7707,7 @@ resultado que se obtiene al rendir un examen de ingreso a una
 carrera y el nivel de educación de las madres de quienes rinden, consideraremos como
 variables \emph{el nivel máximo de educación de la madre} de cada estudiante y \emph{el orden de mérito alcanzado en el ingreso} a esa carrera; ambas variables
 son ordinales. Tratemos solo la situación de pocos casos por ahora. Si
-para el orden de mérito codificamos como 1, 2, 3, \ldots{}, el primer lugar en el
+para el orden de mérito codificamos como 1, 2, 3, \ldots, el primer lugar en el
 ingreso, el segundo, etc. y para la educación de la madre usamos 1 =
 universitario completo, 2 = universitario incompleto, etc., entonces el
 fragmento de la matriz de datos para 8 observaciones tendría una forma
@@ -7766,6 +7773,19 @@ Resumiendo entonces, la transformación de los valores de las variables
 en rangos resulta así:
 
 \begin{longtable}[]{@{}cccc@{}}
+\caption{\label{tab:unnamed-chunk-269}Transformación de las categorías de la variable a rangos}\tabularnewline
+\toprule
+\begin{minipage}[b]{0.24\columnwidth}\centering
+Orden de mérito en el ingreso\strut
+\end{minipage} & \begin{minipage}[b]{0.21\columnwidth}\centering
+Rango del orden de mérito\strut
+\end{minipage} & \begin{minipage}[b]{0.18\columnwidth}\centering
+Educación de la madre\strut
+\end{minipage} & \begin{minipage}[b]{0.27\columnwidth}\centering
+Rango de la educación de la madre\strut
+\end{minipage}\tabularnewline
+\midrule
+\endfirsthead
 \toprule
 \begin{minipage}[b]{0.24\columnwidth}\centering
 Orden de mérito en el ingreso\strut
@@ -8679,7 +8699,7 @@ La matriz permite advertir patrones de asociación entre variables, es decir cu�
 
 Ejemplo (datos reales): el cuestionaro de Latinobarómetro (2017) pregunta por la confianza que se tiene en diferentes instituciones, con los siguientes ítems:
 
-Para cada uno de los grupos, instituciones o personas de la lista ¿cuánta confianza tiene usted en ellas: mucha (1), algo (2), poca (3), ninguna (4) confianza en\ldots{}?
+Para cada uno de los grupos, instituciones o personas de la lista ¿cuánta confianza tiene usted en ellas: mucha (1), algo (2), poca (3), ninguna (4) confianza en\ldots?
 
 \begin{itemize}
 \tightlist
@@ -8996,7 +9016,7 @@ observado \((43; 1)\), al que la recta estima con el valor \(\widehat{y} = 4.22\
 
 \begin{figure}[H]
 
-{\centering \includegraphics[width=4.86in]{imagenes/grafico13} 
+{\centering \includegraphics{imagenes/grafico13} 
 
 }
 
@@ -9037,7 +9057,7 @@ estos desvíos pueden verse gráficamente así:
 
 \begin{figure}[H]
 
-{\centering \includegraphics[width=4.78in]{imagenes/grafico14} 
+{\centering \includegraphics{imagenes/grafico14} 
 
 }
 
@@ -9143,11 +9163,11 @@ En la misma dirección, Steph \citet{Locke2018} generó una matriz de datos, lla
 
 \pagebreak
 
-\hypertarget{hacerlo-en-r-4}{%
-\section{Hacerlo en R}\label{hacerlo-en-r-4}}
+\hypertarget{hacerlo-en-r}{%
+\section{Hacerlo en R}\label{hacerlo-en-r}}
 
 \hypertarget{distancia-chi2}{%
-\subsection{\texorpdfstring{Distancia \(\chi^{2}\)}{Distancia \textbackslash{}chi\^{}\{2\}}}\label{distancia-chi2}}
+\subsection{\texorpdfstring{Distancia \(\chi^{2}\)}{Distancia \textbackslash chi\^{}\{2\}}}\label{distancia-chi2}}
 
 En el paquete base de R existe una función que realiza operaciones relacionadas con el puntaje \(\chi^{2}\); el comando es chi.test y se aplica sobre una tabla de contingencia. Estas operaciones contituyen lo que se denomina ``prueba \(\chi^{2}\)'', sobre la que trabajaremos más adelante. Por ahora, solo se usará una parte de los resultados de esta prueba.
 
@@ -9331,7 +9351,7 @@ Ahora d.ji.cuad es la distancia \(\chi^{2}\)
 \subsection{Coeficientes}\label{coeficientes}}
 
 \hypertarget{varphi}{%
-\subsubsection{\texorpdfstring{\(\varphi\)}{\textbackslash{}varphi}}\label{varphi}}
+\subsubsection{\texorpdfstring{\(\varphi\)}{\textbackslash varphi}}\label{varphi}}
 
 Se calcula la raiz cuadrada de la distancia \(\chi^{2}\) dividida en el número de casos: \[\varphi=\sqrt{\frac{\chi^2}{n}}\]
 
@@ -10020,7 +10040,7 @@ Los capítulos que vienen a continuación ofrecen las bases para ingresar a la \
 \hypertarget{obtenciuxf3n-de-la-muestra}{%
 \chapter{Obtención de la muestra}\label{obtenciuxf3n-de-la-muestra}}
 
-La idea de conocer una totalidad a partir de un fragmento no es novedosa, cuando se prueba solo una cucharada de una sopa que se está preparando, se supone que lo que se concluya de ella (que está bien, que le falta sal\ldots{}) será válido para toda la olla. Bethlehem (Bethlehem2009) señala que el procedimiento de usar una parte para evaluar una totalidad era usual en la industria desde muy antiguo. En alemán, la palabra ``muestra'' se compone de ``cortar'' y ``probar'' y aparece en la literatura en 1583 como un procedimiento usado en minería que consistía en tomar una pequeña cantidad de material para observar cuánto metal contenía. También el autor cita referencias a estos procedimientos en la industria quesera holandesa en la edad media. Por aquellos tiempos no se hablaba de muestreo, sino de ``razonamiento inductivo''. El establecimiento del muestreo y de sus fundamentos se data en la publicación de Anders Kiaer \emph{The Representative Method of Statistical Surveys} \citep{kiaer1897} en 1897.
+La idea de conocer una totalidad a partir de un fragmento no es novedosa, cuando se prueba solo una cucharada de una sopa que se está preparando, se supone que lo que se concluya de ella (que está bien, que le falta sal\ldots) será válido para toda la olla. \citet{Bethlehem2009} señala que el procedimiento de usar una parte para evaluar una totalidad era usual en la industria desde muy antiguo. En alemán, la palabra ``muestra'' se compone de ``cortar'' y ``probar'' y aparece en la literatura en 1583 como un procedimiento usado en minería que consistía en tomar una pequeña cantidad de material para observar cuánto metal contenía. También el autor cita referencias a estos procedimientos en la industria quesera holandesa en la edad media. Por aquellos tiempos no se hablaba de muestreo, sino de ``razonamiento inductivo''. El establecimiento del muestreo y de sus fundamentos se data en la publicación de Anders Kiaer \emph{The Representative Method of Statistical Surveys} \citep{kiaer1897} en 1897.
 
 La estadística inferencial provee los procedimientos para estudiar un
 subconjunto de elementos y generalizar las conclusiones obtenidas a un
@@ -10247,7 +10267,7 @@ muestra.
 
 \begin{figure}[H]
 
-{\centering \includegraphics[width=1.69in]{imagenes/sistematico} 
+{\centering \includegraphics{imagenes/sistematico} 
 
 }
 
@@ -10295,7 +10315,7 @@ a priori. Dicha característica se denomina criterio de estratificación.
 
 \begin{figure}[H]
 
-{\centering \includegraphics[width=3.5in]{imagenes/image87} 
+{\centering \includegraphics{imagenes/image87} 
 
 }
 
@@ -10415,21 +10435,21 @@ entero más próximo.
 
 \begin{table}[H]
 \centering
-\begin{tabular}{ccc}
+\begin{tabular}{cc}
 \toprule
-Año de ingreso a la carrera & Cantidad de estudiantes & Casos a seleccionar\\
+Año de ingreso a la carrera & Cantidad de estudiantes\\
 \midrule
-\rowcolor{gray!6}  2008 & 1357 & 41\\
-2007 & 1113 & 33\\
-\rowcolor{gray!6}  2006 & 1001 & 30\\
-2005 & 807 & 24\\
-\rowcolor{gray!6}  2004 & 859 & 26\\
+\rowcolor{gray!6}  2008 & 1357\\
+2007 & 1113\\
+\rowcolor{gray!6}  2006 & 1001\\
+2005 & 807\\
+\rowcolor{gray!6}  2004 & 859\\
 \addlinespace
-2003 & 764 & 23\\
-\rowcolor{gray!6}  2002 & 700 & 21\\
-2001 & 483 & 14\\
-\rowcolor{gray!6}  2000 & 399 & 12\\
-total & 7483 & \\
+2003 & 764\\
+\rowcolor{gray!6}  2002 & 700\\
+2001 & 483\\
+\rowcolor{gray!6}  2000 & 399\\
+total & 7483\\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -10479,7 +10499,7 @@ la muestra (los radios censales) se relevan todos los hogares (unidades elementa
 
 \begin{figure}[H]
 
-{\centering \includegraphics[width=11.49in]{imagenes/radios-Rio-Cuarto} 
+{\centering \includegraphics{imagenes/radios-Rio-Cuarto} 
 
 }
 
@@ -10560,7 +10580,7 @@ seleccionar a 10 en cada escuela de manera aleatoria.
 
 \begin{figure}[H]
 
-{\centering \includegraphics[width=2.62in]{imagenes/image90} 
+{\centering \includegraphics{imagenes/image90} 
 
 }
 
@@ -10828,8 +10848,8 @@ sobre prevención de VIH dirigido a personas consumidoras de drogas inyectables 
 
 \pagebreak
 
-\hypertarget{hacerlo-en-r-5}{%
-\section{Hacerlo en R}\label{hacerlo-en-r-5}}
+\hypertarget{hacerlo-en-r}{%
+\section{Hacerlo en R}\label{hacerlo-en-r}}
 
 \hypertarget{aleatorio-simple}{%
 \subsection{Aleatorio simple}\label{aleatorio-simple}}
@@ -10893,8 +10913,8 @@ Para ver el resultado, se puede pedir cualquier tabla, con los márgenes a fin d
 \begin{verbatim}
 ##      
 ##         1   2   3   4   5   6   7 Sum
-##   1    57  48  59  53  42  38  54 351
-##   2    43  52  41  47  58  62  46 349
+##   1    55  46  53  37  39  44  55 329
+##   2    45  54  47  63  61  56  45 371
 ##   Sum 100 100 100 100 100 100 100 700
 \end{verbatim}
 
@@ -10941,8 +10961,8 @@ En lugar de especificar la cantidad de casos, se puede indicar la proporción de
 \begin{verbatim}
 ##      
 ##          1    2    3    4    5    6    7  Sum
-##   1    414  326  599  525  277  270  277 2688
-##   2    418  402  580  572  365  407  257 3001
+##   1    404  337  620  536  298  270  264 2729
+##   2    428  391  559  561  344  407  270 2960
 ##   Sum  832  728 1179 1097  642  677  534 5689
 \end{verbatim}
 
@@ -11128,7 +11148,7 @@ igualmente probable que resulte un varón o una mujer y no podemos
 asignar probabilidad \(1/2\) a cada resultado. Aunque el experimento tenga dos
 resultados posibles, éstos no son igualmente probables.
 
-En otro ejemplo, si a la persona aleatoriamente seleccionada (por ejemplo, quien ocupa el lugar 108 en la lista de asistentes a un curso) se le pregunta
+En otro ejemplo, si a la persona aleatoriamente seleccionada (por ejemplo, quien ocupa el lugar 98 en la lista de asistentes a un curso) se le pregunta
 por el tipo de colegio del que egresó, con los resultados posibles:
 ``público'', ``privado laico'', ``privado religioso'', el resultado que se
 obtenga también depende del azar, porque así fue elegida la persona, la
@@ -11540,7 +11560,7 @@ Lo cual, dicho en lenguaje cotidiano nos indica que, para la ocurrencia del even
 
 \begin{figure}[H]
 
-{\centering \includegraphics[width=9.14in]{imagenes/image92} 
+{\centering \includegraphics{imagenes/image92} 
 
 }
 
@@ -11577,7 +11597,7 @@ De manera general: sean \(B_{1}, B_{2}, \ldots, B_{k}\) eventos mutuamente exclu
 
 \begin{figure}[H]
 
-{\centering \includegraphics[width=9.86in]{imagenes/image93} 
+{\centering \includegraphics{imagenes/image93} 
 
 }
 
@@ -11601,7 +11621,7 @@ Otro ejemplo es que los eventos \(B\) sean solo dos:
 
 \begin{figure}[H]
 
-{\centering \includegraphics[width=6.86in]{imagenes/image94} 
+{\centering \includegraphics{imagenes/image94} 
 
 }
 
@@ -11612,7 +11632,7 @@ Si el evento \(A\) es ``una prueba diagnóstica dio positiva'', aparecen interse
 
 \begin{figure}[H]
 
-{\centering \includegraphics[width=6.47in]{imagenes/image95} 
+{\centering \includegraphics{imagenes/image95} 
 
 }
 
@@ -12218,7 +12238,7 @@ Si solicitamos las probabilidades acumuladas por debajo de diferentes valores de
 
 \begin{figure}[H]
 
-{\centering \includegraphics[width=7.62in]{imagenes/ubicaciones_z} 
+{\centering \includegraphics{imagenes/ubicaciones_z} 
 
 }
 
@@ -12573,7 +12593,7 @@ profundo exigiría algunos conocimientos de álgebra lineal, que no
 necesitamos desarrollar aquí.
 
 \hypertarget{la-distribuciuxf3n-ji-cuadrado-chi2}{%
-\section{\texorpdfstring{La distribución ji cuadrado (\(\chi^{2}\))}{La distribución ji cuadrado (\textbackslash{}chi\^{}\{2\})}}\label{la-distribuciuxf3n-ji-cuadrado-chi2}}
+\section{\texorpdfstring{La distribución ji cuadrado (\(\chi^{2}\))}{La distribución ji cuadrado (\textbackslash chi\^{}\{2\})}}\label{la-distribuciuxf3n-ji-cuadrado-chi2}}
 
 Esta distribución es el primer modelo que veremos con forma
 asimétrica\footnote{La definición de la variable \(\chi^{2}\) con \(n\) grados de
@@ -12847,8 +12867,8 @@ distribuciones, a través del cociente de las varianzas.
 
 \pagebreak
 
-\hypertarget{hacerlo-en-r-6}{%
-\section{Hacerlo en R}\label{hacerlo-en-r-6}}
+\hypertarget{hacerlo-en-r}{%
+\section{Hacerlo en R}\label{hacerlo-en-r}}
 
 \hypertarget{probabilidades-exactas}{%
 \subsection{Probabilidades exactas}\label{probabilidades-exactas}}
@@ -14015,24 +14035,24 @@ Ahora extraemos 200 muestras de 80 casos cada una y producimos una nueva matriz 
 
 \begin{verbatim}
 ##      Media Varianza
-## 1 6.180328 3.716940
-## 2 5.984848 2.661305
-## 3 5.492308 3.972596
-## 4 5.850746 3.947083
-## 5 5.514286 4.572257
-## 6 5.802817 3.389135
+## 1 5.523077 4.253365
+## 2 5.728571 4.780331
+## 3 5.692308 3.747596
+## 4 5.967742 3.539926
+## 5 5.344262 4.229508
+## 6 5.666667 4.967742
 \end{verbatim}
 
 Cuando solicitamos un resumen de las medias muestrales obtenemos:
 
 \begin{verbatim}
 ##      Media          Varianza    
-##  Min.   :5.161   Min.   :2.429  
-##  1st Qu.:5.613   1st Qu.:3.717  
-##  Median :5.773   Median :4.070  
-##  Mean   :5.782   Mean   :4.090  
-##  3rd Qu.:5.955   3rd Qu.:4.545  
-##  Max.   :6.532   Max.   :5.891
+##  Min.   :5.083   Min.   :2.578  
+##  1st Qu.:5.594   1st Qu.:3.685  
+##  Median :5.759   Median :4.179  
+##  Mean   :5.764   Mean   :4.136  
+##  3rd Qu.:5.952   3rd Qu.:4.531  
+##  Max.   :6.532   Max.   :6.554
 \end{verbatim}
 
 Este resumen se refiere a las variables que están en la matriz de datos que contiene un resultado muestral en cada fila, por eso \(n=200\) es la cantidad de muestras que se extrajeron (y no el tamaño de cada muestra), ahora cada muestra
@@ -14051,7 +14071,7 @@ varianzas muestrales comparada con la varianza poblacional. estos números no so
 Además, puede calcularse la varianza de las medias muestrales, que da:
 
 \begin{verbatim}
-## [1] 0.05919378
+## [1] 0.07254758
 \end{verbatim}
 
 La relación teórica de esta varianza con la varianza poblacional es:
@@ -14601,8 +14621,8 @@ Cociente de varianzas: $\frac{\sigma_{1}^{2}}{\sigma_{2}^{2}}$ & $\frac{s_{1}^{2
 
 \pagebreak
 
-\hypertarget{hacerlo-en-r-7}{%
-\section{Hacerlo en R}\label{hacerlo-en-r-7}}
+\hypertarget{hacerlo-en-r}{%
+\section{Hacerlo en R}\label{hacerlo-en-r}}
 
 En este capítulo se ha recurrido a R solo para el cálculo de probabilidades, por lo que no hay nada nuevo.
 Agregamos solamente que la varianza que R calcula cuando se solicita \texttt{var(x)} es la varianza muestral, es decir, con denominador \(n-1\). Si se necesita calcular una varianza poblacional, se puede corregir esta varianza por medio de:
@@ -14924,8 +14944,10 @@ población, pero como nuestros datos son muestrales, y no la conocemos. A cambio
 
 Que puede representarse gráficamente como en la figura \ref{fig:intervalo1}:
 
-\begin{figure}[H]
-\includegraphics[width=4.11in]{imagenes/intervalo1} \caption{Estructura del intervalo de confianza}\label{fig:intervalo1}
+\begin{figure}
+\centering
+\includegraphics{imagenes/intervalo1.png}
+\caption{\label{fig:intervalo1}Estructura del intervalo de confianza}
 \end{figure}
 
 En este gráfico solo podemos dibujar el segmento que representa al
@@ -15596,7 +15618,7 @@ En el sitio \url{https://istats.shinyapps.io/ExploreCoverage/} se pueden hacer s
 
 \begin{figure}[H]
 
-{\centering \includegraphics[width=8.75in]{imagenes/100intervaloscobertura} 
+{\centering \includegraphics{imagenes/100intervaloscobertura} 
 
 }
 
@@ -15626,8 +15648,8 @@ parámetro.}
 
 \pagebreak
 
-\hypertarget{hacerlo-en-r-8}{%
-\section{Hacerlo en R}\label{hacerlo-en-r-8}}
+\hypertarget{hacerlo-en-r}{%
+\section{Hacerlo en R}\label{hacerlo-en-r}}
 
 La construcción de intervalos puede realizarse aplicando los procedimientos descriptos en el capítulo y dependiendo de cuál sea el origen de los datos.
 
@@ -15926,12 +15948,12 @@ La matriz puede visualizarse, desde el panel superior derecho o verse sus primer
 
 \begin{verbatim}
 ##   Límite_inferior Límite_superior contiene_al_parametro
-## 1         10290.5         16329.5                    si
-## 2         12245.7         17807.6                    si
-## 3         13029.4         19330.6                    si
-## 4         10684.0         18754.6                    si
-## 5         10866.2         17420.5                    si
-## 6         14089.7         22306.3                    si
+## 1         13282.4         20990.9                    si
+## 2          9979.1         17119.6                    si
+## 3         11920.1         17833.3                    si
+## 4          8808.0         17592.0                    si
+## 5         14672.3         23047.7                    si
+## 6         16968.9         25897.7                    no
 \end{verbatim}
 
 Y resumirse en una distridición de frecuencias:
@@ -17075,7 +17097,7 @@ aspectos fundamentales de las pruebas de hipótesis:
 Y estos no son problemas del procedimiento de prueba de hipótesis, sino que es reflejo de las posibilidades humanas de contruir conocimiento: no hay certezas, solo hay aproximaciones.
 
 \hypertarget{etii-mu-alpha-y-n}{%
-\section{\texorpdfstring{\emph{ETII:} \(\mu\), \(\alpha\) y \(n\)}{ETII: \textbackslash{}mu, \textbackslash{}alpha y n}}\label{etii-mu-alpha-y-n}}
+\section{\texorpdfstring{\emph{ETII:} \(\mu\), \(\alpha\) y \(n\)}{ETII: \textbackslash mu, \textbackslash alpha y n}}\label{etii-mu-alpha-y-n}}
 
 A diferencia del ETI, la probabilidad de cometer un ETII no es fijada de
 antemano, al contrario, el riesgo de creer que \(H_{0}\) es verdadera cuando
@@ -17109,7 +17131,7 @@ posibles entre las mayores que \(\mu_{0}\)).
 
 \begin{figure}[H]
 
-{\centering \includegraphics[width=11.01in]{imagenes/etii5} 
+{\centering \includegraphics{imagenes/etii5} 
 
 }
 
@@ -17173,7 +17195,7 @@ Si se cambia el gráfico \ref{fig:etii5}, reduciendo el nivel de significación,
 
 \begin{figure}[H]
 
-{\centering \includegraphics[width=11.01in]{imagenes/etii1} 
+{\centering \includegraphics{imagenes/etii1} 
 
 }
 
@@ -17192,7 +17214,7 @@ Siendo \(H_{0}\) falsa, \(\mu\) puede tener distintos valores y ellos incidirán
 
 \begin{figure}[H]
 
-{\centering \includegraphics[width=16.35in]{imagenes/image188} 
+{\centering \includegraphics{imagenes/image188} 
 
 }
 
@@ -17218,7 +17240,7 @@ aceptado \(H_{0}\)? Dicho de otra forma ¿qué probabilidad hay de creer que la 
 
 \begin{figure}[H]
 
-{\centering \includegraphics[width=14.08in]{imagenes/image189} 
+{\centering \includegraphics{imagenes/image189} 
 
 }
 
@@ -17659,8 +17681,8 @@ La recomendación de \citet{APA2010} es hasta tres asteriscos, todos los valores
 
 \pagebreak
 
-\hypertarget{hacerlo-en-r-9}{%
-\section{Hacerlo en R}\label{hacerlo-en-r-9}}
+\hypertarget{hacerlo-en-r}{%
+\section{Hacerlo en R}\label{hacerlo-en-r}}
 
 \hypertarget{prueba-sobre-la-media-1}{%
 \subsection{Prueba sobre la media}\label{prueba-sobre-la-media-1}}
@@ -17733,7 +17755,7 @@ Así, la prueba se pide:
 
 \begin{verbatim}
 ## 
-##  One Sample t-test
+## 	One Sample t-test
 ## 
 ## data:  x
 ## t = 1.1554, df = 149, p-value = 0.1249
@@ -17907,7 +17929,7 @@ Ahora puede realizarse una prueba \(t\) idéntica a la de la media, porque se cu
 
 \begin{verbatim}
 ## 
-##  One Sample t-test
+## 	One Sample t-test
 ## 
 ## data:  ENFR2013$obesidad
 ## t = 35.921, df = 30289, p-value < 2.2e-16
@@ -18317,7 +18339,7 @@ docentes mujeres y varones respectivamente. Al final del capítulo se verá como
 
 \begin{verbatim}
 ## 
-##  Welch Two Sample t-test
+## 	Welch Two Sample t-test
 ## 
 ## data:  edad by sexo
 ## t = -1.9924, df = 116.54, p-value = 0.04867
@@ -18437,7 +18459,7 @@ La salida R para esta prueba es:
 
 \begin{verbatim}
 ## 
-##  Welch Two Sample t-test
+## 	Welch Two Sample t-test
 ## 
 ## data:  hijes by grupo_edad
 ## t = -0.93523, df = 495.19, p-value = 0.1751
@@ -18657,7 +18679,7 @@ La salida R para esta prueba es:
 
 \begin{verbatim}
 ## 
-##  Paired t-test
+## 	Paired t-test
 ## 
 ## data:  antes and despues
 ## t = -3.0571, df = 6, p-value = 0.01115
@@ -18769,7 +18791,7 @@ los valores críticos correspondientes son \(±2.05\), gráficamente:
 
 \begin{figure}[H]
 
-{\centering \includegraphics[width=9in]{imagenes/image209} 
+{\centering \includegraphics{imagenes/image209} 
 
 }
 
@@ -18838,7 +18860,7 @@ La salida R para esta operación es:
 
 \begin{verbatim}
 ## 
-##  Pearson's product-moment correlation
+## 	Pearson's product-moment correlation
 ## 
 ## data:  tiempo_prep and calif
 ## t = 2.0035, df = 25, p-value = 0.05608
@@ -18879,8 +18901,8 @@ $\overline{D}$ & $\overline{d}$ & $t = \frac{\overline{d}}{\frac{s_{d}}{\sqrt{n}
 
 \pagebreak
 
-\hypertarget{hacerlo-en-r-10}{%
-\section{Hacerlo en R}\label{hacerlo-en-r-10}}
+\hypertarget{hacerlo-en-r}{%
+\section{Hacerlo en R}\label{hacerlo-en-r}}
 
 \hypertarget{ejemplo-1.}{%
 \subsection{Ejemplo 1.}\label{ejemplo-1.}}
@@ -18913,7 +18935,7 @@ La variable cuyas medias se comparan y la que define los grupos se separan con e
 
 \begin{verbatim}
 ## 
-##  Welch Two Sample t-test
+## 	Welch Two Sample t-test
 ## 
 ## data:  duracion by trabaja
 ## t = -3.5765, df = 246.64, p-value = 0.000419
@@ -18929,7 +18951,7 @@ La salida indica que es una prueba t de Welch, implica que introduce la correcci
 Los valores que interesan son:\\
 - el puntaje \(t\) que indica la cantidad de desviaciones estándar que la diferencia observada se aleja de cero. El signo depende del modo en que han sido elegidas para restar, no tiene interpretación en pruebas bilaterales.\\
 - la lateralidad de la prueba, indicada en ``alternative hypothesis: true difference in means is not equal to 0''\\
-- el valor p que indica la probabilidad de encontrar una diferencia entre las medias muestrales como la observada o más extrema si en la población la diferencia fuera cero. Por ser un valor pequeño (\textless{}0.01), se decide rechazar \(H_{0}\) y concluir que las media poblacionales difieren significativamente.\\
+- el valor p que indica la probabilidad de encontrar una diferencia entre las medias muestrales como la observada o más extrema si en la población la diferencia fuera cero. Por ser un valor pequeño (\textless0.01), se decide rechazar \(H_{0}\) y concluir que las media poblacionales difieren significativamente.\\
 - los valores de las medias muestrales
 
 Los valores numéricos no son los mismos que se obtuvieron manualmente, porque la generación aleatoria produce las cantidades de casos que se piden (100 y 150) extraídos de distribuciones con los parámetros (\(\mu\) y \(\sigma\)) indicados, pero los estadísticos muestrales (\(\bar{x}\) y \(s\)) no necesariamente coinciden con ellos, como sabemos desde que tratamos las distribuciones en el muestreo.\\
@@ -18961,7 +18983,7 @@ Solicitamos la prueba como antes:
 
 \begin{verbatim}
 ## 
-##  Welch Two Sample t-test
+## 	Welch Two Sample t-test
 ## 
 ## data:  duracion.2 by trabaja.2
 ## t = -1.8173, df = 42.347, p-value = 0.07625
@@ -19015,7 +19037,7 @@ Y se solicita la prueba de \texttt{hijes} según \texttt{grupo\_edad}, unilatera
 
 \begin{verbatim}
 ## 
-##  Welch Two Sample t-test
+## 	Welch Two Sample t-test
 ## 
 ## data:  hijes by grupo_edad
 ## t = -0.93523, df = 495.19, p-value = 0.1751
@@ -19050,7 +19072,7 @@ Y se solicita la prueba \(t\), indicando en el argumento que es apareada:
 
 \begin{verbatim}
 ## 
-##  Paired t-test
+## 	Paired t-test
 ## 
 ## data:  antes and despues
 ## t = -3.0571, df = 6, p-value = 0.02231
@@ -19075,7 +19097,7 @@ Sea que se cuenta con datos de 27 estudiantes sobre el tiempo dedicado a prepara
 
 \begin{verbatim}
 ## 
-##  Pearson's product-moment correlation
+## 	Pearson's product-moment correlation
 ## 
 ## data:  tiempo_prep and calif
 ## t = 2.0035, df = 25, p-value = 0.05608
@@ -19097,7 +19119,7 @@ Como sucedió con el comando \emph{cor} que ofrecía el coeficiente de correlaci
 
 \begin{verbatim}
 ## 
-##  Spearman's rank correlation rho
+## 	Spearman's rank correlation rho
 ## 
 ## data:  tiempo_prep and calif
 ## S = 1956, p-value = 0.03811
@@ -19661,8 +19683,8 @@ El valor \(p\), superior a los niveles de significación usuales es señal de lo
 \hypertarget{alternativas-no-paramuxe9tricas-a-las-pruebas-t}{%
 \subsection{Alternativas no paramétricas a las pruebas t}\label{alternativas-no-paramuxe9tricas-a-las-pruebas-t}}
 
-\hypertarget{muestras-independientes-1}{%
-\subsubsection{Muestras independientes}\label{muestras-independientes-1}}
+\hypertarget{muestras-independientes}{%
+\subsubsection{Muestras independientes}\label{muestras-independientes}}
 
 La prueba U de Mann-Whitney es la versión no paramétrica de la prueba t
 de Student, es decir, sirve para comparar la tendencia central entre dos
@@ -19696,8 +19718,8 @@ asociado, y considera tanto el signo, como la magnitud de la diferencia.
 
 \pagebreak
 
-\hypertarget{hacerlo-en-r-11}{%
-\section{Hacerlo en R}\label{hacerlo-en-r-11}}
+\hypertarget{hacerlo-en-r}{%
+\section{Hacerlo en R}\label{hacerlo-en-r}}
 
 \hypertarget{ejemplo-1}{%
 \subsection{Ejemplo 1}\label{ejemplo-1}}
@@ -19785,7 +19807,7 @@ Se puede solicitar el resultado completo de la prueba:
 
 \begin{verbatim}
 ## 
-##  Pearson's Chi-squared test
+## 	Pearson's Chi-squared test
 ## 
 ## data:  resultado_por_turno
 ## X-squared = 0.90278, df = 1, p-value = 0.342
@@ -19849,7 +19871,7 @@ En la aplicación de la prueba, los argumentos son la tabla univariada y las pro
 
 \begin{verbatim}
 ## 
-##  Chi-squared test for given probabilities
+## 	Chi-squared test for given probabilities
 ## 
 ## data:  tabla_condicion
 ## X-squared = 0.74983, df = 2, p-value = 0.6873
@@ -19860,7 +19882,7 @@ La salida muestra el puntaje \(\chi^2\), los grados de libertad y el valor p aso
 \hypertarget{prueba-de-la-mediana-1}{%
 \subsection{Prueba de la mediana}\label{prueba-de-la-mediana-1}}
 
-Construimos la matriz de datos, codificando del 1 al 5 los conceptos Excelente\ldots{}. No satisfactorio.
+Construimos la matriz de datos, codificando del 1 al 5 los conceptos Excelente\ldots. No satisfactorio.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -20048,7 +20070,7 @@ Los argumentos de la prueba solicitan los dos conjuntos de datos, la lateralidad
 
 \begin{verbatim}
 ## 
-##  Wilcoxon rank sum test with continuity correction
+## 	Wilcoxon rank sum test with continuity correction
 ## 
 ## data:  puntajes_control and puntajes_experimental
 ## W = 15, p-value = 0.02712
@@ -20076,7 +20098,7 @@ Y luego aplicar la prueba
 
 \begin{verbatim}
 ## 
-##  Welch Two Sample t-test
+## 	Welch Two Sample t-test
 ## 
 ## data:  puntajes by grupo
 ## t = -2.7842, df = 13.114, p-value = 0.01538
@@ -20090,8 +20112,8 @@ Y luego aplicar la prueba
 
 El resultado conduce a la misma decisión, pero para interpretarlo debe cuidarse que los puntajes estén medidos a escala cuantitativa.
 
-\hypertarget{muestras-apareadas-1}{%
-\subsection{Muestras apareadas}\label{muestras-apareadas-1}}
+\hypertarget{muestras-apareadas}{%
+\subsection{Muestras apareadas}\label{muestras-apareadas}}
 
 Se ilustra con un ejemplo sobre evaluaciones antes y después de una intervención sobre las condiciones de trabajo en una organización, medidas en puntaje de una prueba de satisfacción. Se quiere saber si hay evidencia para creer que después de la intervención los puntajes son mayores. En primer lugar se lee la base (datos ficticios):
 
@@ -20133,7 +20155,7 @@ Se ilustra con un ejemplo sobre evaluaciones antes y después de una intervenci�
 
 \begin{verbatim}
 ## 
-##  Wilcoxon signed rank test with continuity correction
+## 	Wilcoxon signed rank test with continuity correction
 ## 
 ## data:  despues and antes
 ## V = 199, p-value = 0.0002407
@@ -20152,7 +20174,7 @@ La realización de esta prueba si la satisfacción esstuviese medida a nivel mé
 
 \begin{verbatim}
 ## 
-##  Paired t-test
+## 	Paired t-test
 ## 
 ## data:  despues and antes
 ## t = 4.5335, df = 19, p-value = 0.0001136
@@ -20333,8 +20355,8 @@ Los gráficos siguientes ilustran la relación entre estos elementos para difere
 
 \pagebreak
 
-\hypertarget{hacerlo-en-r-12}{%
-\section{Hacerlo en R}\label{hacerlo-en-r-12}}
+\hypertarget{hacerlo-en-r}{%
+\section{Hacerlo en R}\label{hacerlo-en-r}}
 
 Las relaciones entre el tamaño de muestra, la potencia, el tamaño del
 efecto y el nivel de significación dependen de cuál sea el tipo de

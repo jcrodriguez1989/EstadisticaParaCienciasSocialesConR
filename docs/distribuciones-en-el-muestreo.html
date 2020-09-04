@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Capítulo 9 Distribuciones en el muestreo | Un Recorrido por los Métodos Cuantitativos en Ciencias Sociales a bordo de R</title>
   <meta name="description" content="Capítulo 9 Distribuciones en el muestreo | Un Recorrido por los Métodos Cuantitativos en Ciencias Sociales a bordo de R" />
-  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Capítulo 9 Distribuciones en el muestreo | Un Recorrido por los Métodos Cuantitativos en Ciencias Sociales a bordo de R" />
   <meta property="og:type" content="book" />
@@ -49,13 +49,14 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -64,14 +65,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -80,9 +83,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -186,7 +189,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.2.3" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#formas-de-recategorizar"><i class="fa fa-check"></i><b>2.2.3</b> Formas de recategorizar</a></li>
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#la-presentación-gráfica-de-los-resultados"><i class="fa fa-check"></i><b>2.3</b> La presentación gráfica de los resultados</a></li>
-<li class="chapter" data-level="2.4" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#hacerlo-en-r-1"><i class="fa fa-check"></i><b>2.4</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="2.4" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>2.4</b> Hacerlo en R</a><ul>
 <li class="chapter" data-level="2.4.1" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#tablas-univariadas"><i class="fa fa-check"></i><b>2.4.1</b> Tablas univariadas</a></li>
 <li class="chapter" data-level="2.4.2" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#recategorización-1"><i class="fa fa-check"></i><b>2.4.2</b> Recategorización</a></li>
 <li class="chapter" data-level="2.4.3" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#representaciones-gráficas"><i class="fa fa-check"></i><b>2.4.3</b> Representaciones gráficas</a></li>
@@ -221,7 +224,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.5.1" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#medidas-de-posición-1"><i class="fa fa-check"></i><b>3.5.1</b> Medidas de posición</a></li>
 <li class="chapter" data-level="3.5.2" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#medidas-de-dispersión-1"><i class="fa fa-check"></i><b>3.5.2</b> Medidas de dispersión</a></li>
 </ul></li>
-<li class="chapter" data-level="3.6" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#hacerlo-en-r-2"><i class="fa fa-check"></i><b>3.6</b> Hacerlo en R</a></li>
+<li class="chapter" data-level="3.6" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>3.6</b> Hacerlo en R</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html"><i class="fa fa-check"></i><b>4</b> Relación entre variables: los fundamentos</a><ul>
 <li class="chapter" data-level="4.1" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#tablas-de-contingencia"><i class="fa fa-check"></i><b>4.1</b> Tablas de contingencia</a></li>
@@ -231,7 +234,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.5" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#concepto-de-riesgo-relativo"><i class="fa fa-check"></i><b>4.5</b> Concepto de riesgo relativo</a></li>
 <li class="chapter" data-level="4.6" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#la-intensidad"><i class="fa fa-check"></i><b>4.6</b> La intensidad</a></li>
 <li class="chapter" data-level="4.7" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#el-concepto-de-independencia-estadística"><i class="fa fa-check"></i><b>4.7</b> El concepto de independencia estadística</a></li>
-<li class="chapter" data-level="4.8" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#hacerlo-en-r-3"><i class="fa fa-check"></i><b>4.8</b> Hacerlo en R</a></li>
+<li class="chapter" data-level="4.8" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>4.8</b> Hacerlo en R</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html"><i class="fa fa-check"></i><b>5</b> Relación entre variables: el análisis</a><ul>
 <li class="chapter" data-level="5.1" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#relaciones-entre-variables-vs.-comparación-de-grupos"><i class="fa fa-check"></i><b>5.1</b> Relaciones entre variables vs. comparación de grupos</a></li>
@@ -253,7 +256,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.9.3" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#obtención-de-la-recta-de-regresión"><i class="fa fa-check"></i><b>5.9.3</b> Obtención de la recta de regresión</a></li>
 </ul></li>
 <li class="chapter" data-level="5.10" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#la-visualización-de-los-datos"><i class="fa fa-check"></i><b>5.10</b> La visualización de los datos</a></li>
-<li class="chapter" data-level="5.11" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#hacerlo-en-r-4"><i class="fa fa-check"></i><b>5.11</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="5.11" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>5.11</b> Hacerlo en R</a><ul>
 <li class="chapter" data-level="5.11.1" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#distancia-chi2"><i class="fa fa-check"></i><b>5.11.1</b> Distancia <span class="math inline">\(\chi^{2}\)</span></a></li>
 <li class="chapter" data-level="5.11.2" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#coeficientes"><i class="fa fa-check"></i><b>5.11.2</b> Coeficientes</a></li>
 <li class="chapter" data-level="5.11.3" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#modelo-lineal"><i class="fa fa-check"></i><b>5.11.3</b> Modelo lineal</a></li>
@@ -282,7 +285,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.3.4" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-accidental-o-según-disponibilidad"><i class="fa fa-check"></i><b>6.3.4</b> Muestreo accidental o según disponibilidad</a></li>
 <li class="chapter" data-level="6.3.5" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-bola-de-nieve"><i class="fa fa-check"></i><b>6.3.5</b> Muestreo bola de nieve</a></li>
 </ul></li>
-<li class="chapter" data-level="6.4" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#hacerlo-en-r-5"><i class="fa fa-check"></i><b>6.4</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="6.4" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>6.4</b> Hacerlo en R</a><ul>
 <li class="chapter" data-level="6.4.1" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#aleatorio-simple"><i class="fa fa-check"></i><b>6.4.1</b> Aleatorio simple</a></li>
 <li class="chapter" data-level="6.4.2" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#estratificado"><i class="fa fa-check"></i><b>6.4.2</b> Estratificado</a></li>
 </ul></li>
@@ -313,7 +316,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.6" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#la-distribución-t-de-student"><i class="fa fa-check"></i><b>8.6</b> La distribución t de Student</a><ul>
 <li class="chapter" data-level="8.6.1" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#la-distribución-f"><i class="fa fa-check"></i><b>8.6.1</b> La distribución F</a></li>
 </ul></li>
-<li class="chapter" data-level="8.7" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#hacerlo-en-r-6"><i class="fa fa-check"></i><b>8.7</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="8.7" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>8.7</b> Hacerlo en R</a><ul>
 <li class="chapter" data-level="8.7.1" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#probabilidades-exactas"><i class="fa fa-check"></i><b>8.7.1</b> Probabilidades exactas</a></li>
 <li class="chapter" data-level="8.7.2" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#probabilidades-acumuladas"><i class="fa fa-check"></i><b>8.7.2</b> Probabilidades acumuladas</a></li>
 <li class="chapter" data-level="8.7.3" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#cuantiles-1"><i class="fa fa-check"></i><b>8.7.3</b> Cuantiles</a></li>
@@ -339,7 +342,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.3.7" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#distribución-del-cociente-de-varianzas"><i class="fa fa-check"></i><b>9.3.7</b> Distribución del cociente de varianzas</a></li>
 </ul></li>
 <li class="chapter" data-level="9.4" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#resumen-de-la-relación-entre-estimadores-y-parámetros"><i class="fa fa-check"></i><b>9.4</b> Resumen de la relación entre estimadores y parámetros</a></li>
-<li class="chapter" data-level="9.5" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#hacerlo-en-r-7"><i class="fa fa-check"></i><b>9.5</b> Hacerlo en R</a></li>
+<li class="chapter" data-level="9.5" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>9.5</b> Hacerlo en R</a></li>
 </ul></li>
 <li class="part"><span><b>III Estadística inferencial</b></span></li>
 <li class="chapter" data-level="10" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html"><i class="fa fa-check"></i><b>10</b> Estimación por intervalo</a><ul>
@@ -356,7 +359,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.5.2" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#el-error-de-estimación-en-la-proporción"><i class="fa fa-check"></i><b>10.5.2</b> El error de estimación en la proporción</a></li>
 </ul></li>
 <li class="chapter" data-level="10.6" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#probabilidad-de-cobertura"><i class="fa fa-check"></i><b>10.6</b> Probabilidad de cobertura</a></li>
-<li class="chapter" data-level="10.7" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#hacerlo-en-r-8"><i class="fa fa-check"></i><b>10.7</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="10.7" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>10.7</b> Hacerlo en R</a><ul>
 <li class="chapter" data-level="10.7.1" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#intervalo-para-la-media"><i class="fa fa-check"></i><b>10.7.1</b> Intervalo para la media</a></li>
 <li class="chapter" data-level="10.7.2" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#intervalo-para-la-proporción"><i class="fa fa-check"></i><b>10.7.2</b> Intervalo para la proporción</a></li>
 <li class="chapter" data-level="10.7.3" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#cobertura"><i class="fa fa-check"></i><b>10.7.3</b> Cobertura</a></li>
@@ -377,7 +380,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.5.2" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#significación-estadística-y-valor-p"><i class="fa fa-check"></i><b>11.5.2</b> Significación estadística y valor <span class="math inline">\(p\)</span></a></li>
 </ul></li>
 <li class="chapter" data-level="11.6" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#muestras-pequeñas-y-pruebas-t"><i class="fa fa-check"></i><b>11.6</b> Muestras pequeñas y pruebas <span class="math inline">\(t\)</span></a></li>
-<li class="chapter" data-level="11.7" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#hacerlo-en-r-9"><i class="fa fa-check"></i><b>11.7</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="11.7" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>11.7</b> Hacerlo en R</a><ul>
 <li class="chapter" data-level="11.7.1" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#prueba-sobre-la-media-1"><i class="fa fa-check"></i><b>11.7.1</b> Prueba sobre la media</a></li>
 <li class="chapter" data-level="11.7.2" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#prueba-sobre-la-proporción-1"><i class="fa fa-check"></i><b>11.7.2</b> Prueba sobre la proporción</a></li>
 </ul></li>
@@ -389,7 +392,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="12.1.2" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#muestras-apareadas"><i class="fa fa-check"></i><b>12.1.2</b> Muestras apareadas</a></li>
 <li class="chapter" data-level="12.1.3" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#coeficiente-r-de-pearson"><i class="fa fa-check"></i><b>12.1.3</b> Coeficiente r de Pearson</a></li>
 </ul></li>
-<li class="chapter" data-level="12.2" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#hacerlo-en-r-10"><i class="fa fa-check"></i><b>12.2</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="12.2" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>12.2</b> Hacerlo en R</a><ul>
 <li class="chapter" data-level="12.2.1" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#ejemplo-1."><i class="fa fa-check"></i><b>12.2.1</b> Ejemplo 1.</a></li>
 <li class="chapter" data-level="12.2.2" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#ejemplo-2."><i class="fa fa-check"></i><b>12.2.2</b> Ejemplo 2.</a></li>
 <li class="chapter" data-level="12.2.3" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#aplicación-a-los-datos-de-población-adulta-mayor"><i class="fa fa-check"></i><b>12.2.3</b> Aplicación a los datos de Población Adulta Mayor</a></li>
@@ -401,12 +404,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13.0.1" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#las-pruebas-ji-cuadrado-o-chi-cuadrado"><i class="fa fa-check"></i><b>13.0.1</b> Las pruebas ji cuadrado (o chi cuadrado)</a></li>
 <li class="chapter" data-level="13.0.2" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#coeficiente-r_s-de-spearman"><i class="fa fa-check"></i><b>13.0.2</b> Coeficiente <span class="math inline">\(r_s\)</span> de Spearman</a></li>
 <li class="chapter" data-level="13.0.3" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#alternativas-no-paramétricas-a-las-pruebas-t"><i class="fa fa-check"></i><b>13.0.3</b> Alternativas no paramétricas a las pruebas t</a></li>
-<li class="chapter" data-level="13.1" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#hacerlo-en-r-11"><i class="fa fa-check"></i><b>13.1</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="13.1" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>13.1</b> Hacerlo en R</a><ul>
 <li class="chapter" data-level="13.1.1" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#ejemplo-1"><i class="fa fa-check"></i><b>13.1.1</b> Ejemplo 1</a></li>
 <li class="chapter" data-level="13.1.2" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#ejemplo-2"><i class="fa fa-check"></i><b>13.1.2</b> Ejemplo 2</a></li>
 <li class="chapter" data-level="13.1.3" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#prueba-de-la-mediana-1"><i class="fa fa-check"></i><b>13.1.3</b> Prueba de la mediana</a></li>
 <li class="chapter" data-level="13.1.4" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#prueba-de-wilcoxon"><i class="fa fa-check"></i><b>13.1.4</b> Prueba de Wilcoxon</a></li>
-<li class="chapter" data-level="13.1.5" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#muestras-apareadas-1"><i class="fa fa-check"></i><b>13.1.5</b> Muestras apareadas</a></li>
+<li class="chapter" data-level="13.1.5" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#muestras-apareadas"><i class="fa fa-check"></i><b>13.1.5</b> Muestras apareadas</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="14" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html"><i class="fa fa-check"></i><b>14</b> Tamaño del efecto</a><ul>
@@ -419,7 +422,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="14.2.5" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#pruebas-ji-cuadrado"><i class="fa fa-check"></i><b>14.2.5</b> Pruebas ji cuadrado</a></li>
 </ul></li>
 <li class="chapter" data-level="14.3" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#análisis-de-la-potencia"><i class="fa fa-check"></i><b>14.3</b> Análisis de la potencia</a></li>
-<li class="chapter" data-level="14.4" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#hacerlo-en-r-12"><i class="fa fa-check"></i><b>14.4</b> Hacerlo en R</a></li>
+<li class="chapter" data-level="14.4" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>14.4</b> Hacerlo en R</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Generado con bookdown</a></li>
@@ -452,7 +455,7 @@ probabilístico. En consecuencia, las medidas que se calculen a partir de esos d
 <div id="variabilidad-muestral" class="section level2">
 <h2><span class="header-section-number">9.1</span> Variabilidad muestral</h2>
 <p>El concepto que desarrollamos en este capítulo es el de <em>variabilidad muestral</em>. La idea central es que cuando se extraen muestras aleatorias de una población, los resultados que se obtienen en esas muestras, son aleatorios. Dos ejemplos de ello:<br />
-- Según el <span class="citation">Estadísticas Universitarias (<a href="#ref-anuariounc2014">2015</a>)</span>, el conjunto completo de estudiantes de Psicología en 2014 tenía una edad promedio de 26.8 años. Si ese año se hubiese extraído una muestra aleatoria de tamaño 20, la edad promedio podría haber sido un número muy diferente de 26.8 años. Una posible muestra es la que tiene a 20 estudiantes muy jóvenes, por lo que la edad promedio de esa muestra va a ser menos de 26.8. Otra muestra podría tener estudiantes de más edad, por lo que promedio de esa muestra sería superior al de la población completa.<br />
+- Según el <span class="citation">Estadísticas Universitarias (<a href="#ref-anuariounc2014" role="doc-biblioref">2015</a>)</span>, el conjunto completo de estudiantes de Psicología en 2014 tenía una edad promedio de 26.8 años. Si ese año se hubiese extraído una muestra aleatoria de tamaño 20, la edad promedio podría haber sido un número muy diferente de 26.8 años. Una posible muestra es la que tiene a 20 estudiantes muy jóvenes, por lo que la edad promedio de esa muestra va a ser menos de 26.8. Otra muestra podría tener estudiantes de más edad, por lo que promedio de esa muestra sería superior al de la población completa.<br />
 - En las elecciones a gobernador de 2019 en la provincia de Córdoba, el partido que ganó, obtuvo 57% de los votos. Si se selecciona aleatoriamente una muestra de 50 personas que hayan votado ese año, el porcentaje de quienes optaron por ese partido pordría ser diferente a 57%. Alguna muestra podría dar cero, es decir no contener a ningún votante de ese partido; y otra dar 100%, que todos lo hayan votado.</p>
 <p>Recordemos que los casos que “cayeron” en la muestra provienen de un proceso de selección aleatoria, no podemos asegurar que la variable que estamos estudiando se asemeje en la muestra al valor que tiene en la población. Por eso, el resultado que obtengamos en la muestra depende del azar: se trata de una variable aleatoria. Tanto la media muestral, en el ejemplo de las edades de estudiantes, como la proporción muestral, en el ejemplo de las elecciones, son medidas calculadas sobre los valores obtenidos en muestras aleatorias, son variables aleatorias, sus valores dependen de cuáles sean los casos que constituyen la muestra y esto depende del azar, que es lo que hemos pedido como requisito al procedimiento de muestreo.</p>
 <p>Estamos entonces refiriéndonos a entidades diferentes cuando hablamos de la media poblacional y la media muestral, o cuando se distingue a la proporción muestral o poblacional. Aunque el procedimiento de cálculo sea el mismo, el valor poblacional es un valor que puede ser conocido, si hemos observado a toda la población por medio de un censo o si ya han sucedido las elecciones, o bien desconocido. Cuando hacemos estimaciones no sabemos cuánto vale la media o la proporción poblacionales, pero sí sabemos que es un número estable, fijo<a href="#fn53" class="footnote-ref" id="fnref53"><sup>53</sup></a>.
@@ -1504,7 +1507,7 @@ desviaciones estándar se encuentra de la media, es decir, calculando el
 puntaje <span class="math inline">\(z\)</span> correspondiente a la media de 7 horas:</p>
 <p><span class="math display">\[z = \frac{7 - 6.5}{\frac{3}{\sqrt{200}}} = \frac{0.5}{0.21} = 2.38\]</span></p>
 <p>Calculamos la probabilidad de superar este valor como el complemento de la acumulada<a href="#fn60" class="footnote-ref" id="fnref60"><sup>60</sup></a>: <span class="math inline">\(1-P(z\leq 2.38)\)</span></p>
-<div class="sourceCode" id="cb527"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb527-1" title="1"><span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(<span class="fl">2.38</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb517"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb517-1"><a href="distribuciones-en-el-muestreo.html#cb517-1"></a><span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(<span class="fl">2.38</span>)</span></code></pre></div>
 <pre><code>## [1] 0.008656319</code></pre>
 <p>La lectura de este resultado es que solo el 0.9% de las muestras de tamaño 200 darán media muestral mayor a 7 horas.</p>
 <p>Para ver el efecto del tamaño de la muestra repitamos el cálculo con
@@ -1514,7 +1517,7 @@ En el que se observa la mayor varianza de las <span class="math inline">\(\overl
 <p>El puntaje <span class="math inline">\(z\)</span> es ahora:</p>
 <p><span class="math display">\[z = \frac{7 - 6.5}{\frac{3}{\sqrt{30}}} = \frac{0.5}{0.55} = 0.91\]</span>
 Y la probabilidad de superarlo:</p>
-<div class="sourceCode" id="cb529"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb529-1" title="1"><span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(.<span class="dv">91</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb519"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb519-1"><a href="distribuciones-en-el-muestreo.html#cb519-1"></a><span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(.<span class="dv">91</span>)</span></code></pre></div>
 <pre><code>## [1] 0.1814113</code></pre>
 <p>Es decir que el 18% de las muestras de tamaño 30 darán media que supere a 7 hs. Esto indica que cuando las muestras son de mayor tamaño es menor la probabilidad de encontrar valores en los extremos de la distribución.</p>
 <p>Para aclarar la relación entre valores poblacionales y muestrales, supongamos que la variable <em>horas de sueño</em> tiene distribución normal en la población y calculemos la probabilidad de encontrar personas que
@@ -1527,7 +1530,7 @@ probabilidad de encontrar <em>personas individuales</em> que tengan más horas d
 <p>La fórmula cambia porque la pregunta no es por medias muestrales sino
 por valores individuales, por eso no hay <span class="math inline">\(n\)</span><a href="#fn62" class="footnote-ref" id="fnref62"><sup>62</sup></a>. La probabilidad es
 ahora:</p>
-<div class="sourceCode" id="cb531"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb531-1" title="1"><span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(.<span class="dv">17</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb521"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb521-1"><a href="distribuciones-en-el-muestreo.html#cb521-1"></a><span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(.<span class="dv">17</span>)</span></code></pre></div>
 <pre><code>## [1] 0.4325051</code></pre>
 <p><span class="math display">\[P(z &gt; 0.17) = 0.432\]</span></p>
 <p>Que leemos diciendo que el 43% de los individuos duerme 7 horas o más.
@@ -1554,20 +1557,20 @@ Por ser la población completa, se trata de parámetros, así:</p>
 <p><img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-435-1.svg" width="672" /></p>
 <p>Ahora extraemos 200 muestras de 80 casos cada una y producimos una nueva matriz de datos que tiene 80 filas y 200 columnas. Cada columna corresponde a una muestra, por lo que podemos solicitar la media y la varianza en cada una. No son “todas las muestras posibles de tamaño 80”, sino solo 200 por lo que tendremos una <em>aproximación</em> a la relación entre estimadores y parámetros. Con las medias y varianzas de cada muestra, resulta una nueva matriz de datos, que contiene una media muestral y una varianza muestral para cada una de las 200 muestras calculadas, y cuyas primeras seis filas son:</p>
 <pre><code>##      Media Varianza
-## 1 6.180328 3.716940
-## 2 5.984848 2.661305
-## 3 5.492308 3.972596
-## 4 5.850746 3.947083
-## 5 5.514286 4.572257
-## 6 5.802817 3.389135</code></pre>
+## 1 5.523077 4.253365
+## 2 5.728571 4.780331
+## 3 5.692308 3.747596
+## 4 5.967742 3.539926
+## 5 5.344262 4.229508
+## 6 5.666667 4.967742</code></pre>
 <p>Cuando solicitamos un resumen de las medias muestrales obtenemos:</p>
 <pre><code>##      Media          Varianza    
-##  Min.   :5.161   Min.   :2.429  
-##  1st Qu.:5.613   1st Qu.:3.717  
-##  Median :5.773   Median :4.070  
-##  Mean   :5.782   Mean   :4.090  
-##  3rd Qu.:5.955   3rd Qu.:4.545  
-##  Max.   :6.532   Max.   :5.891</code></pre>
+##  Min.   :5.083   Min.   :2.578  
+##  1st Qu.:5.594   1st Qu.:3.685  
+##  Median :5.759   Median :4.179  
+##  Mean   :5.764   Mean   :4.136  
+##  3rd Qu.:5.952   3rd Qu.:4.531  
+##  Max.   :6.532   Max.   :6.554</code></pre>
 <p>Este resumen se refiere a las variables que están en la matriz de datos que contiene un resultado muestral en cada fila, por eso <span class="math inline">\(n=200\)</span> es la cantidad de muestras que se extrajeron (y no el tamaño de cada muestra), ahora cada muestra
 representa un caso y las variables que se consideran son la media y la
 varianza de la nota de los 80 casos seleccionados en cada muestra. Se
@@ -1580,7 +1583,7 @@ variabilidad.</p>
 es muy cercana a la media poblacional, como lo es la media de todas las
 varianzas muestrales comparada con la varianza poblacional. estos números no son idénticos, porque no se extrajeron todas las muestras, sino solo 200, pero la aproximación en adecuada. Eso quiere decir que la media y la varianza muestrales, son estimadores insesgados de la media y la varianza poblacionales.</p>
 <p>Además, puede calcularse la varianza de las medias muestrales, que da:</p>
-<pre><code>## [1] 0.05919378</code></pre>
+<pre><code>## [1] 0.07254758</code></pre>
 <p>La relación teórica de esta varianza con la varianza poblacional es:
 <span class="math inline">\(\sigma_{\overline{x}}^{2} = \frac{\sigma^{2}}{n}\)</span>, en la que <span class="math inline">\(n\)</span>
 representa el tamaño de las muestras y no la cantidad de muestras
@@ -1878,7 +1881,7 @@ distribución binomial, en la que cambiamos la variable <span class="math inline
 <p><span class="math display">\[\widehat{x} = n*\widehat{p} = 15*1 = 15\]</span></p>
 <p>Esto quiere decir que pedir que la proporción muestral (<span class="math inline">\(\widehat{p}\)</span>) sea 1 (100%) equivale a pedir 15 éxitos (mujeres) en la muestra, por lo que la probabilidad es:</p>
 <p><span class="math display">\[P(\widehat{p} = 1) = B( 15;15;0.70)\]</span></p>
-<div class="sourceCode" id="cb537"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb537-1" title="1"><span class="kw">round</span>(<span class="kw">dbinom</span>(<span class="dv">15</span>, <span class="dv">15</span>, <span class="fl">.7</span>), <span class="dv">4</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb527"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb527-1"><a href="distribuciones-en-el-muestreo.html#cb527-1"></a><span class="kw">round</span>(<span class="kw">dbinom</span>(<span class="dv">15</span>, <span class="dv">15</span>, <span class="fl">.7</span>), <span class="dv">4</span>)</span></code></pre></div>
 <pre><code>## [1] 0.0047</code></pre>
 <p>Es el mismo resultado obtenido antes, ahora ubicado en el contexto del
 muestreo.</p>
@@ -1922,7 +1925,7 @@ de:</p>
 <p>Entonces:</p>
 <p><span class="math display">\[P(\widehat{p} \geq 0.25) = P(\widehat{x} \geq 25) = B(\widehat{x} \geq 25;\ 100;0.20)\]</span></p>
 <p>Al que solicitamos como complemento de la probabilidad acumulada de 24:</p>
-<div class="sourceCode" id="cb540"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb540-1" title="1"><span class="kw">round</span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pbinom</span>(<span class="dv">24</span>, <span class="dv">100</span>, <span class="fl">.2</span>), <span class="dv">4</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb530"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb530-1"><a href="distribuciones-en-el-muestreo.html#cb530-1"></a><span class="kw">round</span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pbinom</span>(<span class="dv">24</span>, <span class="dv">100</span>, <span class="fl">.2</span>), <span class="dv">4</span>)</span></code></pre></div>
 <pre><code>## [1] 0.1314</code></pre>
 <p><span class="math display">\[P(\widehat{x} \geq 25;100;0.20) = 0.1314\]</span></p>
 <p>Interpretamos este resultado diciendo que, si en la población completa,
@@ -1953,7 +1956,7 @@ expresión toma la forma:</p>
 <p>Con lo que:<br />
 <span class="math display">\[P(\widehat{p} \geq 0.25) = P(z \geq 1.125)\]</span></p>
 <p>Que es el complemento de la probabilidad acumulada:</p>
-<div class="sourceCode" id="cb542"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb542-1" title="1"><span class="kw">round</span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(<span class="fl">1.125</span>), <span class="dv">4</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb532"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb532-1"><a href="distribuciones-en-el-muestreo.html#cb532-1"></a><span class="kw">round</span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(<span class="fl">1.125</span>), <span class="dv">4</span>)</span></code></pre></div>
 <pre><code>## [1] 0.1303</code></pre>
 <p><span class="math display">\[P(\widehat{p} \geq 0.25) = 0.1303\]</span></p>
 <p>Cuando anteriormente se usó la distribución binomial encontramos una probabilidad de 0.1314; por lo que ésta última es una buena aproximación.</p>
@@ -1991,7 +1994,7 @@ asintóticamente modeladas por la distribución normal. Esto quiere decir
 que, a medida que el tamaño de las muestras crece, la distribución de
 estos estimadores va siendo más cercana a la curva del modelo normal.
 Sin embargo, cuando las muestras son pequeñas, se debe usar un modelo
-diferente. William Gosset (<span class="citation">Student (<a href="#ref-student1908a">1908</a><a href="#ref-student1908a">b</a>)</span>, <span class="citation">Student (<a href="#ref-student1908b">1908</a><a href="#ref-student1908b">a</a>)</span>) desarrolló la distribución conocida
+diferente. William Gosset (<span class="citation">Student (<a href="#ref-student1908a" role="doc-biblioref">1908</a><a href="#ref-student1908a" role="doc-biblioref">b</a>)</span>, <span class="citation">Student (<a href="#ref-student1908b" role="doc-biblioref">1908</a><a href="#ref-student1908b" role="doc-biblioref">a</a>)</span>) desarrolló la distribución conocida
 como t de Student, que se adecua a describir la distribución de las
 medias muestrales cuando éstas provienen de muestras pequeñas. Expresado
 formalmente, si las muestras son pequeñas y la variable tiene distribución normal en la población, entonces:</p>
@@ -1999,7 +2002,7 @@ formalmente, si las muestras son pequeñas y la variable tiene distribución nor
 <p>Tiene distribución <span class="math inline">\(t\)</span> con <span class="math inline">\(n - 1\)</span> grados de libertad. En el ejemplo
 de las horas de sueño <!--referencia a ese ejemplo-->, si las muestras fueran de tamaño 15 en lugar de 200, se debe usar la distribución t. Así, la pregunta ¿cuál es la probabilidad que en muestras de tamaño 15, la media de horas de sueño supere las 7 horas?, se responde usando la distribución t con 14 grados de libertad.</p>
 <p><span class="math display">\[P(\overline{x} &gt; 7) = P(t_{14} &gt; \frac{7 - 6.5}{\frac{3}{\sqrt{15}}}) = P(t_{14} &gt; 3.87)\]</span></p>
-<div class="sourceCode" id="cb544"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb544-1" title="1"><span class="kw">round</span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pt</span>(<span class="fl">3.87</span>, <span class="dv">14</span>), <span class="dv">5</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb534"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb534-1"><a href="distribuciones-en-el-muestreo.html#cb534-1"></a><span class="kw">round</span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pt</span>(<span class="fl">3.87</span>, <span class="dv">14</span>), <span class="dv">5</span>)</span></code></pre></div>
 <pre><code>## [1] 0.00085</code></pre>
 <p>Cuando la muestra crece, la diferencia entre los modelos normal y t, se
 reduce. Si se repite la operación del ejemplo de las horas de sueño, con muestras de tamaño 200, usando la distribución <span class="math inline">\(t\)</span>, resulta que:</p>
@@ -2014,25 +2017,25 @@ reduce. Si se repite la operación del ejemplo de las horas de sueño, con muest
 manera asimétrica, lo que puede ilustrarse con el ejemplo de las notas del tercer parcial. Si se
 solicitan 10000 muestras de tamaño 10, el siguiente es el histograma de ellas, con una curva normal superpuesta, para
 mostrar la calidad del ajuste:</p>
-<div class="sourceCode" id="cb547"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb547-1" title="1"><span class="kw">ggplot</span>(muestra_tercer_parcial) <span class="op">+</span><span class="st"> </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(</a>
-<a class="sourceLine" id="cb547-2" title="2">  <span class="dt">x =</span> Media,</a>
-<a class="sourceLine" id="cb547-3" title="3">  <span class="dt">y =</span> ..density..</a>
-<a class="sourceLine" id="cb547-4" title="4">), <span class="dt">fill =</span> <span class="st">&quot;green&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">stat_function</span>(</a>
-<a class="sourceLine" id="cb547-5" title="5">  <span class="dt">fun =</span> dnorm, <span class="dt">args =</span> <span class="kw">list</span>(</a>
-<a class="sourceLine" id="cb547-6" title="6">    <span class="dt">mean =</span> <span class="kw">mean</span>(muestra_tercer_parcial<span class="op">$</span>Media),</a>
-<a class="sourceLine" id="cb547-7" title="7">    <span class="dt">sd =</span> <span class="kw">sd</span>(muestra_tercer_parcial<span class="op">$</span>Media)</a>
-<a class="sourceLine" id="cb547-8" title="8">  )</a>
-<a class="sourceLine" id="cb547-9" title="9">) <span class="op">+</span></a>
-<a class="sourceLine" id="cb547-10" title="10"><span class="st">  </span><span class="kw">theme_tufte</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb537"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb537-1"><a href="distribuciones-en-el-muestreo.html#cb537-1"></a><span class="kw">ggplot</span>(muestra_tercer_parcial) <span class="op">+</span><span class="st"> </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(</span>
+<span id="cb537-2"><a href="distribuciones-en-el-muestreo.html#cb537-2"></a>  <span class="dt">x =</span> Media,</span>
+<span id="cb537-3"><a href="distribuciones-en-el-muestreo.html#cb537-3"></a>  <span class="dt">y =</span> ..density..</span>
+<span id="cb537-4"><a href="distribuciones-en-el-muestreo.html#cb537-4"></a>), <span class="dt">fill =</span> <span class="st">&quot;green&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="kw">stat_function</span>(</span>
+<span id="cb537-5"><a href="distribuciones-en-el-muestreo.html#cb537-5"></a>  <span class="dt">fun =</span> dnorm, <span class="dt">args =</span> <span class="kw">list</span>(</span>
+<span id="cb537-6"><a href="distribuciones-en-el-muestreo.html#cb537-6"></a>    <span class="dt">mean =</span> <span class="kw">mean</span>(muestra_tercer_parcial<span class="op">$</span>Media),</span>
+<span id="cb537-7"><a href="distribuciones-en-el-muestreo.html#cb537-7"></a>    <span class="dt">sd =</span> <span class="kw">sd</span>(muestra_tercer_parcial<span class="op">$</span>Media)</span>
+<span id="cb537-8"><a href="distribuciones-en-el-muestreo.html#cb537-8"></a>  )</span>
+<span id="cb537-9"><a href="distribuciones-en-el-muestreo.html#cb537-9"></a>) <span class="op">+</span></span>
+<span id="cb537-10"><a href="distribuciones-en-el-muestreo.html#cb537-10"></a><span class="st">  </span><span class="kw">theme_tufte</span>()</span></code></pre></div>
 <p><img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-454-1.svg" width="672" /></p>
 <p>Puede verse que el modelo normal “copia” razonablemente bien la
 distribución real de las medias muestrales, considerando que no se han extraído todas, sino “solo” 10000. Pero si se hace lo mismo con las
 varianzas muestrales, se obtiene:</p>
-<div class="sourceCode" id="cb548"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb548-1" title="1"><span class="kw">ggplot</span>(muestra_tercer_parcial) <span class="op">+</span><span class="st"> </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(</a>
-<a class="sourceLine" id="cb548-2" title="2">  <span class="dt">x =</span> Varianza,</a>
-<a class="sourceLine" id="cb548-3" title="3">  <span class="dt">y =</span> ..density..</a>
-<a class="sourceLine" id="cb548-4" title="4">), <span class="dt">fill =</span> <span class="st">&quot;green&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb548-5" title="5"><span class="st">  </span><span class="kw">theme_tufte</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb538"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb538-1"><a href="distribuciones-en-el-muestreo.html#cb538-1"></a><span class="kw">ggplot</span>(muestra_tercer_parcial) <span class="op">+</span><span class="st"> </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(</span>
+<span id="cb538-2"><a href="distribuciones-en-el-muestreo.html#cb538-2"></a>  <span class="dt">x =</span> Varianza,</span>
+<span id="cb538-3"><a href="distribuciones-en-el-muestreo.html#cb538-3"></a>  <span class="dt">y =</span> ..density..</span>
+<span id="cb538-4"><a href="distribuciones-en-el-muestreo.html#cb538-4"></a>), <span class="dt">fill =</span> <span class="st">&quot;green&quot;</span>) <span class="op">+</span></span>
+<span id="cb538-5"><a href="distribuciones-en-el-muestreo.html#cb538-5"></a><span class="st">  </span><span class="kw">theme_tufte</span>()</span></code></pre></div>
 <p><img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-455-1.svg" width="672" /></p>
 <p>Que muestra la asimetría de la distribución de las varianzas, la distribución normal no modela bien esta variable. Para las varianzas muestrales, el modelo adecuado es <span class="math inline">\(\chi^{2}\)</span>. La relación entre la varianza muestral y la poblacional es:</p>
 <p><span class="math display">\[\frac{(n - 1)*s^{2}}{\sigma^{2}} \sim \chi_{n - 1}^{2}\]</span></p>
@@ -2171,18 +2174,18 @@ Cociente de varianzas: <span class="math inline">\(\frac{\sigma_{1}^{2}}{\sigma_
 </table>
 <div style="page-break-after: always;"></div>
 </div>
-<div id="hacerlo-en-r-7" class="section level2">
+<div id="hacerlo-en-r" class="section level2">
 <h2><span class="header-section-number">9.5</span> Hacerlo en R</h2>
 <p>En este capítulo se ha recurrido a R solo para el cálculo de probabilidades, por lo que no hay nada nuevo.
 Agregamos solamente que la varianza que R calcula cuando se solicita <code>var(x)</code> es la varianza muestral, es decir, con denominador <span class="math inline">\(n-1\)</span>. Si se necesita calcular una varianza poblacional, se puede corregir esta varianza por medio de:</p>
-<div class="sourceCode" id="cb549"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb549-1" title="1">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">8</span>, <span class="dv">5</span>, <span class="dv">4</span>, <span class="dv">7</span>, <span class="dv">5</span>, <span class="dv">8</span>, <span class="dv">4</span>, <span class="dv">7</span>, <span class="dv">3</span>)</a>
-<a class="sourceLine" id="cb549-2" title="2"><span class="kw">var</span>(x) <span class="op">*</span><span class="st"> </span>(<span class="kw">length</span>(x) <span class="op">-</span><span class="st"> </span><span class="dv">1</span>) <span class="op">/</span><span class="st"> </span><span class="kw">length</span>(x)</a></code></pre></div>
+<div class="sourceCode" id="cb539"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb539-1"><a href="distribuciones-en-el-muestreo.html#cb539-1"></a>x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">8</span>, <span class="dv">5</span>, <span class="dv">4</span>, <span class="dv">7</span>, <span class="dv">5</span>, <span class="dv">8</span>, <span class="dv">4</span>, <span class="dv">7</span>, <span class="dv">3</span>)</span>
+<span id="cb539-2"><a href="distribuciones-en-el-muestreo.html#cb539-2"></a><span class="kw">var</span>(x) <span class="op">*</span><span class="st"> </span>(<span class="kw">length</span>(x) <span class="op">-</span><span class="st"> </span><span class="dv">1</span>) <span class="op">/</span><span class="st"> </span><span class="kw">length</span>(x)</span></code></pre></div>
 <pre><code>## [1] 3.388889</code></pre>
 <p>Así se elimina el denominador <span class="math inline">\(n-1\)</span> de la varianza muestral y se reemplaza por <span class="math inline">\(n\)</span>.</p>
 <p>También puede definirse una función para que la calcule directamente:</p>
-<div class="sourceCode" id="cb551"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb551-1" title="1">var.p &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</a>
-<a class="sourceLine" id="cb551-2" title="2">  <span class="kw">var</span>(x) <span class="op">*</span><span class="st"> </span>(<span class="kw">length</span>(x) <span class="op">-</span><span class="st"> </span><span class="dv">1</span>) <span class="op">/</span><span class="st"> </span><span class="kw">length</span>(x)</a>
-<a class="sourceLine" id="cb551-3" title="3">}</a></code></pre></div>
+<div class="sourceCode" id="cb541"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb541-1"><a href="distribuciones-en-el-muestreo.html#cb541-1"></a>var.p &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</span>
+<span id="cb541-2"><a href="distribuciones-en-el-muestreo.html#cb541-2"></a>  <span class="kw">var</span>(x) <span class="op">*</span><span class="st"> </span>(<span class="kw">length</span>(x) <span class="op">-</span><span class="st"> </span><span class="dv">1</span>) <span class="op">/</span><span class="st"> </span><span class="kw">length</span>(x)</span>
+<span id="cb541-3"><a href="distribuciones-en-el-muestreo.html#cb541-3"></a>}</span></code></pre></div>
 
 </div>
 </div>
@@ -2212,19 +2215,19 @@ Agregamos solamente que la varianza que R calcula cuando se solicita <code>var(x
 <div class="footnotes">
 <hr />
 <ol start="52">
-<li id="fn52"><p>Las fórmulas para hacer inferencias que aparecen en este capítulo y los siguientes, son correctas si el muestreo es irrestricto aleatorio, cuando se usen otros diseños de muestra (siempre probabilísticos), será necesario introducir ajustes; el texto de <span class="citation">Scheaffer, Mendenhall, and Ott (<a href="#ref-Scheaffer2006">2006</a>)</span> es una adecuada referencia para esas correcciones.<a href="distribuciones-en-el-muestreo.html#fnref52" class="footnote-back">↩</a></p></li>
-<li id="fn53"><p>Considerar al valor poblacional como fijo o aleatorio depende de la concepción de azar que se adopte. El enfoque frecuencial, los toma como fijos, mientras que el enfoque bayesiano los toma como variables aleatorias, ya que trata como azaroso un proceso cuyo resultado no puede anticiparse con certeza. En lo que sigue, adoptaremos el enfoque frecuencial.<a href="distribuciones-en-el-muestreo.html#fnref53" class="footnote-back">↩</a></p></li>
-<li id="fn54"><p>Dado que puede haber confusión al escribir p o P, se usa <span class="math inline">\(\widehat{p}\)</span> para indicar la proporción muestral, con la misma notación que se usó en regresión para indica el valor estimado de la variable dependiente.<a href="distribuciones-en-el-muestreo.html#fnref54" class="footnote-back">↩</a></p></li>
-<li id="fn55"><p>Lo que se consigue con esa corrección es que, si se calculan las varianzas de todas las muestras que se saquen de una población dada, éstas promedien la varianza de la población, lo cual no sucede si se usa el denominador <span class="math inline">\(n\)</span>. Se denomina insesgabilidad del estimador, por lo que podemos decir que el denominador de la varianza muestral se transforma en <span class="math inline">\(n-1\)</span> para lograr que sea un estimador insesgado de la varianza poblacional.<a href="distribuciones-en-el-muestreo.html#fnref55" class="footnote-back">↩</a></p></li>
-<li id="fn56"><p>Suponer que en el hospital solo hay tres personas internadas es una gran simplificación, por cierto ficticia. Se usa con fines expositivos, para poder hacer intuitiva la comparación entre la población y las muestras.<a href="distribuciones-en-el-muestreo.html#fnref56" class="footnote-back">↩</a></p></li>
-<li id="fn57"><p>Esta categoría se eligió arbitrariamente, podría haber sido la otra y calcular la proporción de varones.<a href="distribuciones-en-el-muestreo.html#fnref57" class="footnote-back">↩</a></p></li>
-<li id="fn58"><p>Nuevamente se trata de una simplificación expositiva. Esta forma de extraer una muestra no es la que se aplica en la práctica, porque no se permite elegir dos veces al mismo individuo. Sin embargo, este muestreo con reposición en una buena aproximación a los muestreos verdaderos (sin reposición) cuando se trabaja con poblaciones grandes. Es así porque la extracción de unos pocos casos, aunque sean sin reposición, altera poco la probabilidad de ser extraídos de los otros casos.<a href="distribuciones-en-el-muestreo.html#fnref58" class="footnote-back">↩</a></p></li>
-<li id="fn59"><p>De modo equivalente, la desviación estándar de la media es la desviación estándar de la población dividida en la raíz cuadrada del tamaño de la muestra. Es conocida también como error estándar de la media.<a href="distribuciones-en-el-muestreo.html#fnref59" class="footnote-back">↩</a></p></li>
-<li id="fn60"><p>Alternativamente podemos solicitar a R la probabilidad acumulada de 7 con parámetros <span class="math inline">\(\mu=6.5\)</span> y <span class="math inline">\(\sigma=0.14\)</span> y obtener el mismo resultado sin pasar por <span class="math inline">\(z\)</span>. Hacemos este recorrido porque necesitamos estar familiarizados con el puntaje <span class="math inline">\(z\)</span> para los contenidos que veremos más adelante.<a href="distribuciones-en-el-muestreo.html#fnref60" class="footnote-back">↩</a></p></li>
-<li id="fn61"><p>Es el mínimo tamaño que podemos usar para que sea válida la aplicación de la distribución normal<a href="distribuciones-en-el-muestreo.html#fnref61" class="footnote-back">↩</a></p></li>
-<li id="fn62"><p>Aunque puede interpretarse como si los individuos constituyeran muestras de tamaño 1.<a href="distribuciones-en-el-muestreo.html#fnref62" class="footnote-back">↩</a></p></li>
-<li id="fn63"><p><span class="citation">Alvarado and Batanero (<a href="#ref-Alvarado2007">2007</a>)</span>, indican que “Respecto al valor de <span class="math inline">\(n\)</span> requerido para una correcta aproximación de la distribución binomial, los textos no siempre están de acuerdo.” En algunos textos se solicita que <span class="math inline">\(n&gt;30\)</span>, pero la calidad de la aproximación depende también de <span class="math inline">\(P\)</span>.<a href="distribuciones-en-el-muestreo.html#fnref63" class="footnote-back">↩</a></p></li>
-<li id="fn64"><p>La distribución binomial tiene como variable discreta a <span class="math inline">\(\widehat{x}\)</span>, la cantidad de éxitos en la muestra, si nos interesa la probabilidad de los valores mayores o iguales a un <span class="math inline">\(\widehat{x}\)</span> dado, debemos tener en cuenta que al pasar a la normal, como es continua, no se pueden calcular probabilidades de valores exactos. Así, el conjunto <span class="math inline">\(\widehat{x} \geq 3\)</span>, debe transformarse en <span class="math inline">\(\widehat{x} &gt; 2.5\)</span>; dado que la probabilidad de <span class="math inline">\(\widehat{x} = 3\)</span> es cero cuando la tratamos como variable continua. De manera análoga, si buscáramos <span class="math inline">\(P(\widehat{x} \leq 3)\)</span>, deberemos tratarlo como <span class="math inline">\(P(\widehat{x} &lt; 3.5)\)</span>. La corrección consiste entonces en tomar media unidad menos cuando calculamos probabilidades de valores mayores o iguales a uno dado, y media unidad más si se trata de la probabilidad de un valor menor o igual. Veamos el efecto que tiene esta corrección sobre <span class="math inline">\(\widehat{p}\)</span>. Dado que <span class="math inline">\(\widehat{p} = \frac{\widehat{x}}{n}\)</span>, cuando corregimos el número de éxitos en media unidad por debajo, nos queda <span class="math inline">\(\frac{\widehat{x} - 0.5}{n} = \frac{\widehat{x}}{n} - \frac{0.5}{n} = \widehat{p} - \frac{1}{2*n}\)</span>. Cuando la corrección exija que se tome media unidad más, la corrección será <span class="math inline">\(\widehat{p} + \frac{1}{2*n}\)</span>.<a href="distribuciones-en-el-muestreo.html#fnref64" class="footnote-back">↩</a></p></li>
+<li id="fn52"><p>Las fórmulas para hacer inferencias que aparecen en este capítulo y los siguientes, son correctas si el muestreo es irrestricto aleatorio, cuando se usen otros diseños de muestra (siempre probabilísticos), será necesario introducir ajustes; el texto de <span class="citation">Scheaffer, Mendenhall, and Ott (<a href="#ref-Scheaffer2006" role="doc-biblioref">2006</a>)</span> es una adecuada referencia para esas correcciones.<a href="distribuciones-en-el-muestreo.html#fnref52" class="footnote-back">↩︎</a></p></li>
+<li id="fn53"><p>Considerar al valor poblacional como fijo o aleatorio depende de la concepción de azar que se adopte. El enfoque frecuencial, los toma como fijos, mientras que el enfoque bayesiano los toma como variables aleatorias, ya que trata como azaroso un proceso cuyo resultado no puede anticiparse con certeza. En lo que sigue, adoptaremos el enfoque frecuencial.<a href="distribuciones-en-el-muestreo.html#fnref53" class="footnote-back">↩︎</a></p></li>
+<li id="fn54"><p>Dado que puede haber confusión al escribir p o P, se usa <span class="math inline">\(\widehat{p}\)</span> para indicar la proporción muestral, con la misma notación que se usó en regresión para indica el valor estimado de la variable dependiente.<a href="distribuciones-en-el-muestreo.html#fnref54" class="footnote-back">↩︎</a></p></li>
+<li id="fn55"><p>Lo que se consigue con esa corrección es que, si se calculan las varianzas de todas las muestras que se saquen de una población dada, éstas promedien la varianza de la población, lo cual no sucede si se usa el denominador <span class="math inline">\(n\)</span>. Se denomina insesgabilidad del estimador, por lo que podemos decir que el denominador de la varianza muestral se transforma en <span class="math inline">\(n-1\)</span> para lograr que sea un estimador insesgado de la varianza poblacional.<a href="distribuciones-en-el-muestreo.html#fnref55" class="footnote-back">↩︎</a></p></li>
+<li id="fn56"><p>Suponer que en el hospital solo hay tres personas internadas es una gran simplificación, por cierto ficticia. Se usa con fines expositivos, para poder hacer intuitiva la comparación entre la población y las muestras.<a href="distribuciones-en-el-muestreo.html#fnref56" class="footnote-back">↩︎</a></p></li>
+<li id="fn57"><p>Esta categoría se eligió arbitrariamente, podría haber sido la otra y calcular la proporción de varones.<a href="distribuciones-en-el-muestreo.html#fnref57" class="footnote-back">↩︎</a></p></li>
+<li id="fn58"><p>Nuevamente se trata de una simplificación expositiva. Esta forma de extraer una muestra no es la que se aplica en la práctica, porque no se permite elegir dos veces al mismo individuo. Sin embargo, este muestreo con reposición en una buena aproximación a los muestreos verdaderos (sin reposición) cuando se trabaja con poblaciones grandes. Es así porque la extracción de unos pocos casos, aunque sean sin reposición, altera poco la probabilidad de ser extraídos de los otros casos.<a href="distribuciones-en-el-muestreo.html#fnref58" class="footnote-back">↩︎</a></p></li>
+<li id="fn59"><p>De modo equivalente, la desviación estándar de la media es la desviación estándar de la población dividida en la raíz cuadrada del tamaño de la muestra. Es conocida también como error estándar de la media.<a href="distribuciones-en-el-muestreo.html#fnref59" class="footnote-back">↩︎</a></p></li>
+<li id="fn60"><p>Alternativamente podemos solicitar a R la probabilidad acumulada de 7 con parámetros <span class="math inline">\(\mu=6.5\)</span> y <span class="math inline">\(\sigma=0.14\)</span> y obtener el mismo resultado sin pasar por <span class="math inline">\(z\)</span>. Hacemos este recorrido porque necesitamos estar familiarizados con el puntaje <span class="math inline">\(z\)</span> para los contenidos que veremos más adelante.<a href="distribuciones-en-el-muestreo.html#fnref60" class="footnote-back">↩︎</a></p></li>
+<li id="fn61"><p>Es el mínimo tamaño que podemos usar para que sea válida la aplicación de la distribución normal<a href="distribuciones-en-el-muestreo.html#fnref61" class="footnote-back">↩︎</a></p></li>
+<li id="fn62"><p>Aunque puede interpretarse como si los individuos constituyeran muestras de tamaño 1.<a href="distribuciones-en-el-muestreo.html#fnref62" class="footnote-back">↩︎</a></p></li>
+<li id="fn63"><p><span class="citation">Alvarado and Batanero (<a href="#ref-Alvarado2007" role="doc-biblioref">2007</a>)</span>, indican que “Respecto al valor de <span class="math inline">\(n\)</span> requerido para una correcta aproximación de la distribución binomial, los textos no siempre están de acuerdo.” En algunos textos se solicita que <span class="math inline">\(n&gt;30\)</span>, pero la calidad de la aproximación depende también de <span class="math inline">\(P\)</span>.<a href="distribuciones-en-el-muestreo.html#fnref63" class="footnote-back">↩︎</a></p></li>
+<li id="fn64"><p>La distribución binomial tiene como variable discreta a <span class="math inline">\(\widehat{x}\)</span>, la cantidad de éxitos en la muestra, si nos interesa la probabilidad de los valores mayores o iguales a un <span class="math inline">\(\widehat{x}\)</span> dado, debemos tener en cuenta que al pasar a la normal, como es continua, no se pueden calcular probabilidades de valores exactos. Así, el conjunto <span class="math inline">\(\widehat{x} \geq 3\)</span>, debe transformarse en <span class="math inline">\(\widehat{x} &gt; 2.5\)</span>; dado que la probabilidad de <span class="math inline">\(\widehat{x} = 3\)</span> es cero cuando la tratamos como variable continua. De manera análoga, si buscáramos <span class="math inline">\(P(\widehat{x} \leq 3)\)</span>, deberemos tratarlo como <span class="math inline">\(P(\widehat{x} &lt; 3.5)\)</span>. La corrección consiste entonces en tomar media unidad menos cuando calculamos probabilidades de valores mayores o iguales a uno dado, y media unidad más si se trata de la probabilidad de un valor menor o igual. Veamos el efecto que tiene esta corrección sobre <span class="math inline">\(\widehat{p}\)</span>. Dado que <span class="math inline">\(\widehat{p} = \frac{\widehat{x}}{n}\)</span>, cuando corregimos el número de éxitos en media unidad por debajo, nos queda <span class="math inline">\(\frac{\widehat{x} - 0.5}{n} = \frac{\widehat{x}}{n} - \frac{0.5}{n} = \widehat{p} - \frac{1}{2*n}\)</span>. Cuando la corrección exija que se tome media unidad más, la corrección será <span class="math inline">\(\widehat{p} + \frac{1}{2*n}\)</span>.<a href="distribuciones-en-el-muestreo.html#fnref64" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>
@@ -2233,7 +2236,7 @@ Agregamos solamente que la varianza que R calcula cuando se solicita <code>var(x
         </div>
       </div>
 <a href="probabilidad-los-modelos.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="estimaciÃ³n-por-intervalo.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="estimación-por-intervalo.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

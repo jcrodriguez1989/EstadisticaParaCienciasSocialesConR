@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Capítulo 10 Estimación por intervalo | Un Recorrido por los Métodos Cuantitativos en Ciencias Sociales a bordo de R</title>
   <meta name="description" content="Capítulo 10 Estimación por intervalo | Un Recorrido por los Métodos Cuantitativos en Ciencias Sociales a bordo de R" />
-  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Capítulo 10 Estimación por intervalo | Un Recorrido por los Métodos Cuantitativos en Ciencias Sociales a bordo de R" />
   <meta property="og:type" content="book" />
@@ -49,13 +49,14 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -64,14 +65,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -80,9 +83,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -186,7 +189,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.2.3" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#formas-de-recategorizar"><i class="fa fa-check"></i><b>2.2.3</b> Formas de recategorizar</a></li>
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#la-presentación-gráfica-de-los-resultados"><i class="fa fa-check"></i><b>2.3</b> La presentación gráfica de los resultados</a></li>
-<li class="chapter" data-level="2.4" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#hacerlo-en-r-1"><i class="fa fa-check"></i><b>2.4</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="2.4" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>2.4</b> Hacerlo en R</a><ul>
 <li class="chapter" data-level="2.4.1" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#tablas-univariadas"><i class="fa fa-check"></i><b>2.4.1</b> Tablas univariadas</a></li>
 <li class="chapter" data-level="2.4.2" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#recategorización-1"><i class="fa fa-check"></i><b>2.4.2</b> Recategorización</a></li>
 <li class="chapter" data-level="2.4.3" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#representaciones-gráficas"><i class="fa fa-check"></i><b>2.4.3</b> Representaciones gráficas</a></li>
@@ -221,7 +224,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.5.1" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#medidas-de-posición-1"><i class="fa fa-check"></i><b>3.5.1</b> Medidas de posición</a></li>
 <li class="chapter" data-level="3.5.2" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#medidas-de-dispersión-1"><i class="fa fa-check"></i><b>3.5.2</b> Medidas de dispersión</a></li>
 </ul></li>
-<li class="chapter" data-level="3.6" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#hacerlo-en-r-2"><i class="fa fa-check"></i><b>3.6</b> Hacerlo en R</a></li>
+<li class="chapter" data-level="3.6" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>3.6</b> Hacerlo en R</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html"><i class="fa fa-check"></i><b>4</b> Relación entre variables: los fundamentos</a><ul>
 <li class="chapter" data-level="4.1" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#tablas-de-contingencia"><i class="fa fa-check"></i><b>4.1</b> Tablas de contingencia</a></li>
@@ -231,7 +234,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.5" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#concepto-de-riesgo-relativo"><i class="fa fa-check"></i><b>4.5</b> Concepto de riesgo relativo</a></li>
 <li class="chapter" data-level="4.6" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#la-intensidad"><i class="fa fa-check"></i><b>4.6</b> La intensidad</a></li>
 <li class="chapter" data-level="4.7" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#el-concepto-de-independencia-estadística"><i class="fa fa-check"></i><b>4.7</b> El concepto de independencia estadística</a></li>
-<li class="chapter" data-level="4.8" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#hacerlo-en-r-3"><i class="fa fa-check"></i><b>4.8</b> Hacerlo en R</a></li>
+<li class="chapter" data-level="4.8" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>4.8</b> Hacerlo en R</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html"><i class="fa fa-check"></i><b>5</b> Relación entre variables: el análisis</a><ul>
 <li class="chapter" data-level="5.1" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#relaciones-entre-variables-vs.-comparación-de-grupos"><i class="fa fa-check"></i><b>5.1</b> Relaciones entre variables vs. comparación de grupos</a></li>
@@ -253,7 +256,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.9.3" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#obtención-de-la-recta-de-regresión"><i class="fa fa-check"></i><b>5.9.3</b> Obtención de la recta de regresión</a></li>
 </ul></li>
 <li class="chapter" data-level="5.10" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#la-visualización-de-los-datos"><i class="fa fa-check"></i><b>5.10</b> La visualización de los datos</a></li>
-<li class="chapter" data-level="5.11" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#hacerlo-en-r-4"><i class="fa fa-check"></i><b>5.11</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="5.11" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>5.11</b> Hacerlo en R</a><ul>
 <li class="chapter" data-level="5.11.1" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#distancia-chi2"><i class="fa fa-check"></i><b>5.11.1</b> Distancia <span class="math inline">\(\chi^{2}\)</span></a></li>
 <li class="chapter" data-level="5.11.2" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#coeficientes"><i class="fa fa-check"></i><b>5.11.2</b> Coeficientes</a></li>
 <li class="chapter" data-level="5.11.3" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#modelo-lineal"><i class="fa fa-check"></i><b>5.11.3</b> Modelo lineal</a></li>
@@ -282,7 +285,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.3.4" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-accidental-o-según-disponibilidad"><i class="fa fa-check"></i><b>6.3.4</b> Muestreo accidental o según disponibilidad</a></li>
 <li class="chapter" data-level="6.3.5" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-bola-de-nieve"><i class="fa fa-check"></i><b>6.3.5</b> Muestreo bola de nieve</a></li>
 </ul></li>
-<li class="chapter" data-level="6.4" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#hacerlo-en-r-5"><i class="fa fa-check"></i><b>6.4</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="6.4" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>6.4</b> Hacerlo en R</a><ul>
 <li class="chapter" data-level="6.4.1" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#aleatorio-simple"><i class="fa fa-check"></i><b>6.4.1</b> Aleatorio simple</a></li>
 <li class="chapter" data-level="6.4.2" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#estratificado"><i class="fa fa-check"></i><b>6.4.2</b> Estratificado</a></li>
 </ul></li>
@@ -313,7 +316,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.6" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#la-distribución-t-de-student"><i class="fa fa-check"></i><b>8.6</b> La distribución t de Student</a><ul>
 <li class="chapter" data-level="8.6.1" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#la-distribución-f"><i class="fa fa-check"></i><b>8.6.1</b> La distribución F</a></li>
 </ul></li>
-<li class="chapter" data-level="8.7" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#hacerlo-en-r-6"><i class="fa fa-check"></i><b>8.7</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="8.7" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>8.7</b> Hacerlo en R</a><ul>
 <li class="chapter" data-level="8.7.1" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#probabilidades-exactas"><i class="fa fa-check"></i><b>8.7.1</b> Probabilidades exactas</a></li>
 <li class="chapter" data-level="8.7.2" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#probabilidades-acumuladas"><i class="fa fa-check"></i><b>8.7.2</b> Probabilidades acumuladas</a></li>
 <li class="chapter" data-level="8.7.3" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#cuantiles-1"><i class="fa fa-check"></i><b>8.7.3</b> Cuantiles</a></li>
@@ -339,7 +342,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.3.7" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#distribución-del-cociente-de-varianzas"><i class="fa fa-check"></i><b>9.3.7</b> Distribución del cociente de varianzas</a></li>
 </ul></li>
 <li class="chapter" data-level="9.4" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#resumen-de-la-relación-entre-estimadores-y-parámetros"><i class="fa fa-check"></i><b>9.4</b> Resumen de la relación entre estimadores y parámetros</a></li>
-<li class="chapter" data-level="9.5" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#hacerlo-en-r-7"><i class="fa fa-check"></i><b>9.5</b> Hacerlo en R</a></li>
+<li class="chapter" data-level="9.5" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>9.5</b> Hacerlo en R</a></li>
 </ul></li>
 <li class="part"><span><b>III Estadística inferencial</b></span></li>
 <li class="chapter" data-level="10" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html"><i class="fa fa-check"></i><b>10</b> Estimación por intervalo</a><ul>
@@ -356,7 +359,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.5.2" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#el-error-de-estimación-en-la-proporción"><i class="fa fa-check"></i><b>10.5.2</b> El error de estimación en la proporción</a></li>
 </ul></li>
 <li class="chapter" data-level="10.6" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#probabilidad-de-cobertura"><i class="fa fa-check"></i><b>10.6</b> Probabilidad de cobertura</a></li>
-<li class="chapter" data-level="10.7" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#hacerlo-en-r-8"><i class="fa fa-check"></i><b>10.7</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="10.7" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>10.7</b> Hacerlo en R</a><ul>
 <li class="chapter" data-level="10.7.1" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#intervalo-para-la-media"><i class="fa fa-check"></i><b>10.7.1</b> Intervalo para la media</a></li>
 <li class="chapter" data-level="10.7.2" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#intervalo-para-la-proporción"><i class="fa fa-check"></i><b>10.7.2</b> Intervalo para la proporción</a></li>
 <li class="chapter" data-level="10.7.3" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#cobertura"><i class="fa fa-check"></i><b>10.7.3</b> Cobertura</a></li>
@@ -377,7 +380,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.5.2" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#significación-estadística-y-valor-p"><i class="fa fa-check"></i><b>11.5.2</b> Significación estadística y valor <span class="math inline">\(p\)</span></a></li>
 </ul></li>
 <li class="chapter" data-level="11.6" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#muestras-pequeñas-y-pruebas-t"><i class="fa fa-check"></i><b>11.6</b> Muestras pequeñas y pruebas <span class="math inline">\(t\)</span></a></li>
-<li class="chapter" data-level="11.7" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#hacerlo-en-r-9"><i class="fa fa-check"></i><b>11.7</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="11.7" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>11.7</b> Hacerlo en R</a><ul>
 <li class="chapter" data-level="11.7.1" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#prueba-sobre-la-media-1"><i class="fa fa-check"></i><b>11.7.1</b> Prueba sobre la media</a></li>
 <li class="chapter" data-level="11.7.2" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#prueba-sobre-la-proporción-1"><i class="fa fa-check"></i><b>11.7.2</b> Prueba sobre la proporción</a></li>
 </ul></li>
@@ -389,7 +392,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="12.1.2" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#muestras-apareadas"><i class="fa fa-check"></i><b>12.1.2</b> Muestras apareadas</a></li>
 <li class="chapter" data-level="12.1.3" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#coeficiente-r-de-pearson"><i class="fa fa-check"></i><b>12.1.3</b> Coeficiente r de Pearson</a></li>
 </ul></li>
-<li class="chapter" data-level="12.2" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#hacerlo-en-r-10"><i class="fa fa-check"></i><b>12.2</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="12.2" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>12.2</b> Hacerlo en R</a><ul>
 <li class="chapter" data-level="12.2.1" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#ejemplo-1."><i class="fa fa-check"></i><b>12.2.1</b> Ejemplo 1.</a></li>
 <li class="chapter" data-level="12.2.2" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#ejemplo-2."><i class="fa fa-check"></i><b>12.2.2</b> Ejemplo 2.</a></li>
 <li class="chapter" data-level="12.2.3" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#aplicación-a-los-datos-de-población-adulta-mayor"><i class="fa fa-check"></i><b>12.2.3</b> Aplicación a los datos de Población Adulta Mayor</a></li>
@@ -401,12 +404,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13.0.1" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#las-pruebas-ji-cuadrado-o-chi-cuadrado"><i class="fa fa-check"></i><b>13.0.1</b> Las pruebas ji cuadrado (o chi cuadrado)</a></li>
 <li class="chapter" data-level="13.0.2" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#coeficiente-r_s-de-spearman"><i class="fa fa-check"></i><b>13.0.2</b> Coeficiente <span class="math inline">\(r_s\)</span> de Spearman</a></li>
 <li class="chapter" data-level="13.0.3" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#alternativas-no-paramétricas-a-las-pruebas-t"><i class="fa fa-check"></i><b>13.0.3</b> Alternativas no paramétricas a las pruebas t</a></li>
-<li class="chapter" data-level="13.1" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#hacerlo-en-r-11"><i class="fa fa-check"></i><b>13.1</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="13.1" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>13.1</b> Hacerlo en R</a><ul>
 <li class="chapter" data-level="13.1.1" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#ejemplo-1"><i class="fa fa-check"></i><b>13.1.1</b> Ejemplo 1</a></li>
 <li class="chapter" data-level="13.1.2" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#ejemplo-2"><i class="fa fa-check"></i><b>13.1.2</b> Ejemplo 2</a></li>
 <li class="chapter" data-level="13.1.3" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#prueba-de-la-mediana-1"><i class="fa fa-check"></i><b>13.1.3</b> Prueba de la mediana</a></li>
 <li class="chapter" data-level="13.1.4" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#prueba-de-wilcoxon"><i class="fa fa-check"></i><b>13.1.4</b> Prueba de Wilcoxon</a></li>
-<li class="chapter" data-level="13.1.5" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#muestras-apareadas-1"><i class="fa fa-check"></i><b>13.1.5</b> Muestras apareadas</a></li>
+<li class="chapter" data-level="13.1.5" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#muestras-apareadas"><i class="fa fa-check"></i><b>13.1.5</b> Muestras apareadas</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="14" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html"><i class="fa fa-check"></i><b>14</b> Tamaño del efecto</a><ul>
@@ -419,7 +422,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="14.2.5" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#pruebas-ji-cuadrado"><i class="fa fa-check"></i><b>14.2.5</b> Pruebas ji cuadrado</a></li>
 </ul></li>
 <li class="chapter" data-level="14.3" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#análisis-de-la-potencia"><i class="fa fa-check"></i><b>14.3</b> Análisis de la potencia</a></li>
-<li class="chapter" data-level="14.4" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#hacerlo-en-r-12"><i class="fa fa-check"></i><b>14.4</b> Hacerlo en R</a></li>
+<li class="chapter" data-level="14.4" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>14.4</b> Hacerlo en R</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Generado con bookdown</a></li>
@@ -684,7 +687,7 @@ población, pero como nuestros datos son muestrales, y no la conocemos. A cambio
 <p><span class="math display">\[\overline{x}_{obs} \pm z*\frac{s}{\sqrt{n}}\]</span></p>
 <p>Que puede representarse gráficamente como en la figura <a href="estimación-por-intervalo.html#fig:intervalo1">10.8</a>:</p>
 <div class="figure"><span id="fig:intervalo1"></span>
-<img src="imagenes/intervalo1.png" alt="Estructura del intervalo de confianza" width="148" />
+<img src="imagenes/intervalo1.png" alt="Estructura del intervalo de confianza"  />
 <p class="caption">
 Figura 10.8: Estructura del intervalo de confianza
 </p>
@@ -704,7 +707,7 @@ rindieron el primer parcial de una asignatura, conocemos sus notas y queremos us
 <p>Así, hay una confianza de 95% que el intervalo <span class="math inline">\([14304.2, 15653.8]\)</span> contenga al promedio de ingreso salarial de toda la población que trabaja en relación de dependencia y reside en el aglomerado Gran Córdoba, en el tercer trimestre de 2018.</p>
 <p>Una representación gráfica de esta estimación es la siguiente:</p>
 <div class="figure">
-<img src="imagenes/intervalosalarios.png" alt="Estimación de la media de ingresos. 95%" />
+<img src="imagenes/intervalosalarios.png" alt="" />
 <p class="caption">Estimación de la media de ingresos. 95%</p>
 </div>
 <p>Para construir en intervalo con un nivel de confianza de 99%, reemplazamos el valor de <span class="math inline">\(z\)</span> anterior de <span class="math inline">\(1.96\)</span> por el de <span class="math inline">\(2.57\)</span></p>
@@ -712,7 +715,7 @@ rindieron el primer parcial de una asignatura, conocemos sus notas y queremos us
 <span class="math display">\[14979.02 \pm 2.57*344.29 = 14979.02 \pm 884.8\]</span></p>
 <p>Ahora hay una confianza de 99% que el intervalo <span class="math inline">\([14094.2, 15863.8]\)</span> contenga al parámetro que se está estimando. Comparada con la salida anterior, solo han cambiado los límites del intervalo, ya que son los mismos datos muestrales. El cambio en la confianza se realiza por un cambio en el valor de <span class="math inline">\(z\)</span>, los percentiles de la distribución normal y eso hace que cambien los límites. El gráfico tiene ahora la forma siguiente:</p>
 <div class="figure">
-<img src="imagenes/intervalosalarios99.png" alt="Estimación de la media de ingresos. 99%" />
+<img src="imagenes/intervalosalarios99.png" alt="" />
 <p class="caption">Estimación de la media de ingresos. 99%</p>
 </div>
 <p>Se observa que un aumento en la confianza incide en la amplitud del
@@ -754,11 +757,11 @@ categoría de referencia, se llama <strong>éxito</strong>, su frecuencia absolu
 por los casos que son de nuestro interés y el otro por los demás casos.</p>
 <p>Existen varios procedimientos para construir intervalos de confianza
 para la proporción, aquí mencionaremos el de Clopper-Pearson, el de Wald
-y el de Wilson. Puede encontrarse una revisión más amplia en <span class="citation">Newcombe (<a href="#ref-newcombe1998">1998</a>)</span>.</p>
+y el de Wilson. Puede encontrarse una revisión más amplia en <span class="citation">Newcombe (<a href="#ref-newcombe1998" role="doc-biblioref">1998</a>)</span>.</p>
 <div id="intervalo-de-clopper-pearson" class="section level3">
 <h3><span class="header-section-number">10.4.1</span> Intervalo de Clopper-Pearson</h3>
 <p>El primer modo para construir un intervalo para estimar la proporción,
-es usar la distribución binomial (<span class="citation">Clopper and Pearson (<a href="#ref-clopper1934">1934</a>)</span>). Para ello, partimos del estimador
+es usar la distribución binomial (<span class="citation">Clopper and Pearson (<a href="#ref-clopper1934" role="doc-biblioref">1934</a>)</span>). Para ello, partimos del estimador
 puntual y buscamos los dos valores de <span class="math inline">\(\widehat{p}\)</span> que delimiten el 95%
 central de la distribución.</p>
 <p>Ejemplo (datos reales): a partir de la muestra de estudiantes que rindieron
@@ -769,21 +772,21 @@ consecuencia la proporción muestral de parciales aprobados es<a href="#fn66" cl
 <span class="math inline">\(\widehat{p} = \frac{255}{277} = 0.920.\)</span> Este es nuestro estimador
 puntual de la proporción de estudiantes que aprobaron para todo el curso. <span class="math display">\[\widehat{p}_{obs}=0.92\]</span> La variable aleatoria “número de éxitos que se obtiene en cada muestra”, que es <span class="math inline">\(\widehat{x}\)</span>, tiene una distribución binomial con <span class="math inline">\(n=277\)</span> y <span class="math inline">\(p=255/277\)</span>, por lo tanto, los valores de <span class="math inline">\(\widehat{p}\)</span> resultan <span class="math inline">\(\widehat{p}=\frac{\widehat{x}}{n}=\frac{\widehat{x}}{277}\)</span>.<br />
 Para determinar los límites, primero se buscan los valores de <span class="math inline">\(\widehat{x}\)</span> que acumulan 2.5% (el percentil 2.5 o cuantil 0.025) y el 97.5% (percentil 97.5 o cuantil .975) de la distribución binomial (en lugar de 0.920, usamos el cociente de 255/277, así se evita la pérdida de decimales):</p>
-<div class="sourceCode" id="cb553"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb553-1" title="1">(P<span class="fl">.025</span> &lt;-<span class="st"> </span><span class="kw">qbinom</span>(.<span class="dv">025</span>, <span class="dv">277</span>, <span class="dv">255</span> <span class="op">/</span><span class="st"> </span><span class="dv">277</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb543"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb543-1"><a href="estimación-por-intervalo.html#cb543-1"></a>(P<span class="fl">.025</span> &lt;-<span class="st"> </span><span class="kw">qbinom</span>(.<span class="dv">025</span>, <span class="dv">277</span>, <span class="dv">255</span> <span class="op">/</span><span class="st"> </span><span class="dv">277</span>))</span></code></pre></div>
 <pre><code>## [1] 246</code></pre>
-<div class="sourceCode" id="cb555"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb555-1" title="1">(P<span class="fl">.975</span> &lt;-<span class="st"> </span><span class="kw">qbinom</span>(.<span class="dv">975</span>, <span class="dv">277</span>, <span class="dv">255</span> <span class="op">/</span><span class="st"> </span><span class="dv">277</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb545"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb545-1"><a href="estimación-por-intervalo.html#cb545-1"></a>(P<span class="fl">.975</span> &lt;-<span class="st"> </span><span class="kw">qbinom</span>(.<span class="dv">975</span>, <span class="dv">277</span>, <span class="dv">255</span> <span class="op">/</span><span class="st"> </span><span class="dv">277</span>))</span></code></pre></div>
 <pre><code>## [1] 263</code></pre>
 <p>Y luego se los lleva a <span class="math inline">\(\widehat{p}\)</span>, dividiendo por 277. Con lo que los límites del intervalo para estimar <span class="math inline">\(P\)</span> al 95% son estas cantidades de éxitos (<span class="math inline">\(\widehat{x}\)</span>) divididas el tamaño de la muestra:</p>
-<div class="sourceCode" id="cb557"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb557-1" title="1">(Li &lt;-<span class="st"> </span><span class="kw">round</span>(P<span class="fl">.025</span> <span class="op">/</span><span class="st"> </span><span class="dv">277</span>, <span class="dv">4</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb547"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb547-1"><a href="estimación-por-intervalo.html#cb547-1"></a>(Li &lt;-<span class="st"> </span><span class="kw">round</span>(P<span class="fl">.025</span> <span class="op">/</span><span class="st"> </span><span class="dv">277</span>, <span class="dv">4</span>))</span></code></pre></div>
 <pre><code>## [1] 0.8881</code></pre>
-<div class="sourceCode" id="cb559"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb559-1" title="1">(Ls &lt;-<span class="st"> </span><span class="kw">round</span>(P<span class="fl">.975</span> <span class="op">/</span><span class="st"> </span><span class="dv">277</span>, <span class="dv">4</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb549"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb549-1"><a href="estimación-por-intervalo.html#cb549-1"></a>(Ls &lt;-<span class="st"> </span><span class="kw">round</span>(P<span class="fl">.975</span> <span class="op">/</span><span class="st"> </span><span class="dv">277</span>, <span class="dv">4</span>))</span></code></pre></div>
 <pre><code>## [1] 0.9495</code></pre>
 <p>Diremos entonces que, con una confianza del 95%, el intervalo <span class="math inline">\([88.81; 94.95]\)</span>% contiene a la proporción de estudiantes que aprobaron, en toda la
 población.</p>
 <p>Se puede solicitar de un solo paso, por medio de:</p>
-<div class="sourceCode" id="cb561"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb561-1" title="1">Li &lt;-<span class="st"> </span><span class="kw">qbinom</span>(.<span class="dv">025</span>, <span class="dv">277</span>, <span class="dv">255</span> <span class="op">/</span><span class="st"> </span><span class="dv">277</span>) <span class="op">/</span><span class="st"> </span><span class="dv">277</span></a>
-<a class="sourceLine" id="cb561-2" title="2">Ls &lt;-<span class="st"> </span><span class="kw">qbinom</span>(.<span class="dv">975</span>, <span class="dv">277</span>, <span class="dv">255</span> <span class="op">/</span><span class="st"> </span><span class="dv">277</span>) <span class="op">/</span><span class="st"> </span><span class="dv">277</span></a>
-<a class="sourceLine" id="cb561-3" title="3"><span class="dv">100</span> <span class="op">*</span><span class="st"> </span><span class="kw">round</span>(<span class="kw">c</span>(Li, Ls), <span class="dv">4</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb551"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb551-1"><a href="estimación-por-intervalo.html#cb551-1"></a>Li &lt;-<span class="st"> </span><span class="kw">qbinom</span>(.<span class="dv">025</span>, <span class="dv">277</span>, <span class="dv">255</span> <span class="op">/</span><span class="st"> </span><span class="dv">277</span>) <span class="op">/</span><span class="st"> </span><span class="dv">277</span></span>
+<span id="cb551-2"><a href="estimación-por-intervalo.html#cb551-2"></a>Ls &lt;-<span class="st"> </span><span class="kw">qbinom</span>(.<span class="dv">975</span>, <span class="dv">277</span>, <span class="dv">255</span> <span class="op">/</span><span class="st"> </span><span class="dv">277</span>) <span class="op">/</span><span class="st"> </span><span class="dv">277</span></span>
+<span id="cb551-3"><a href="estimación-por-intervalo.html#cb551-3"></a><span class="dv">100</span> <span class="op">*</span><span class="st"> </span><span class="kw">round</span>(<span class="kw">c</span>(Li, Ls), <span class="dv">4</span>)</span></code></pre></div>
 <pre><code>## [1] 88.81 94.95</code></pre>
 <p>Para el problema de la confianza en los demás, con los datos de Latinobarómetro, la tabla muestra que de 19748 personas que respondieron, 2833 creen que se puede confiar en la mayoría de las personas; es decir que, en la muestra, el 14.3% acuerda con esa afirmación. Para extrapolar ese resultado a la población a la que representa la encuesta procedemos como recién. Sea ahora la confianza del 99% (cuantiles 0.005 y 0.995)</p>
 <pre><code>## [1] 13.71 14.84</code></pre>
@@ -794,7 +797,7 @@ población.</p>
 <h3><span class="header-section-number">10.4.2</span> Intervalo de Wald</h3>
 <p>Si se cumplen las condiciones para realizar una aproximación normal de
 la distribución binomial, el razonamiento que seguimos para la
-estimación de <span class="math inline">\(P\)</span> será análogo al que seguimos para estimar <span class="math inline">\(\mu\)</span>. La aproximación normal aplicada a la construcción de intervalos para la proporción se conoce con este nombre en referencia a <span class="citation">Wald (<a href="#ref-wald1939">1939</a>)</span>, pero la primera presentación data de <span class="citation">Laplace (<a href="#ref-laplace1812">1812</a>)</span>.<br />
+estimación de <span class="math inline">\(P\)</span> será análogo al que seguimos para estimar <span class="math inline">\(\mu\)</span>. La aproximación normal aplicada a la construcción de intervalos para la proporción se conoce con este nombre en referencia a <span class="citation">Wald (<a href="#ref-wald1939" role="doc-biblioref">1939</a>)</span>, pero la primera presentación data de <span class="citation">Laplace (<a href="#ref-laplace1812" role="doc-biblioref">1812</a>)</span>.<br />
 La
 estructura de los límites del intervalo de confianza es ahora:</p>
 <p><span class="math display">\[L_{i} = \widehat{p}_{obs} - z*\sigma_{\widehat{p}}\]</span></p>
@@ -829,13 +832,13 @@ puntual de <span class="math inline">\(P\)</span>.</p>
 <p>Que casi no difiere de la aplicación del método exacto</p>
 <p>Esta forma de construir el intervalo de confianza para P resulta de
 calidad aceptable si el producto <span class="math inline">\(n*\widehat{p}_{obs}*(1 - \widehat{p}_{obs})\)</span> es
-mayor a 5, y mejor aun si ese resultado es mayor a 10. Sin embargo, <span class="citation">Cepeda-Cuervo et al. (<a href="#ref-Cepeda-Cuervo2008">2008</a>)</span> señalan evidencia sobre la
+mayor a 5, y mejor aun si ese resultado es mayor a 10. Sin embargo, <span class="citation">Cepeda-Cuervo et al. (<a href="#ref-Cepeda-Cuervo2008" role="doc-biblioref">2008</a>)</span> señalan evidencia sobre la
 inadecuación de esta estimación aun cuando la condición se cumple. Por
 esta razón se limita el uso de este modo de calcular el intervalo cuando el número de observaciones en mayor a cien<a href="#fn68" class="footnote-ref" id="fnref68"><sup>68</sup></a>.</p>
 </div>
 <div id="intervalo-de-wilson" class="section level3">
 <h3><span class="header-section-number">10.4.3</span> Intervalo de Wilson</h3>
-<p>Una mejora para la calidad de la estimación es propuesta por <span class="citation">Newcombe and Merino Soto (<a href="#ref-newcombemerino2006">2006</a>)</span>, con un intervalo llamado de <em>score</em> o de <span class="citation">Wilson (<a href="#ref-wilson1927">1927</a>)</span>, cuyos límites son:</p>
+<p>Una mejora para la calidad de la estimación es propuesta por <span class="citation">Newcombe and Merino Soto (<a href="#ref-newcombemerino2006" role="doc-biblioref">2006</a>)</span>, con un intervalo llamado de <em>score</em> o de <span class="citation">Wilson (<a href="#ref-wilson1927" role="doc-biblioref">1927</a>)</span>, cuyos límites son:</p>
 <p><span class="math display">\[\widehat{p} \pm \frac{z}{n}*\sqrt{\frac{\left( \widehat{p}*\left( 1 - \widehat{p} \right) + \frac{z}{4*n} \right)}{n}}\]</span></p>
 <p>Este intervalo no colapsa para <span class="math inline">\(\widehat{p} = 0\)</span> ó <span class="math inline">\(\widehat{p} = 1\)</span> y
 tiene mejor calidad que el de Wald, es conveniente optar por esta
@@ -966,46 +969,46 @@ n
 <div id="efecto-de-la-confianza-sobre-el-error" class="section level4">
 <h4><span class="header-section-number">10.5.1.1</span> Efecto de la confianza sobre el error</h4>
 <p>Para el cálculo de los límites del intervalo, usamos media, desviación, tamaño de muestra y, para una confianza de 90% usamos los cuantiles 0.05 y 0.95 de la distribución <span class="math inline">\(t\)</span> con 24948 grados de libertad (que no difiere de la normal)</p>
-<div class="sourceCode" id="cb565"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb565-1" title="1">Li_<span class="dv">90</span> &lt;-<span class="st"> </span><span class="kw">mean</span>(enprecosp<span class="op">$</span>BIBA03) <span class="op">+</span></a>
-<a class="sourceLine" id="cb565-2" title="2"><span class="st">  </span><span class="kw">qt</span>(.<span class="dv">05</span>, <span class="dv">24948</span>) <span class="op">*</span><span class="st"> </span><span class="kw">sd</span>(enprecosp<span class="op">$</span>BIBA03) <span class="op">/</span></a>
-<a class="sourceLine" id="cb565-3" title="3"><span class="st">    </span><span class="kw">sqrt</span>(<span class="kw">length</span>(enprecosp<span class="op">$</span>BIBA03))</a>
-<a class="sourceLine" id="cb565-4" title="4"></a>
-<a class="sourceLine" id="cb565-5" title="5">Ls_<span class="dv">90</span> &lt;-<span class="st"> </span><span class="kw">mean</span>(enprecosp<span class="op">$</span>BIBA03) <span class="op">+</span></a>
-<a class="sourceLine" id="cb565-6" title="6"><span class="st">  </span><span class="kw">qt</span>(.<span class="dv">95</span>, <span class="dv">24948</span>) <span class="op">*</span><span class="st"> </span><span class="kw">sd</span>(enprecosp<span class="op">$</span>BIBA03) <span class="op">/</span></a>
-<a class="sourceLine" id="cb565-7" title="7"><span class="st">    </span><span class="kw">sqrt</span>(<span class="kw">length</span>(enprecosp<span class="op">$</span>BIBA03))</a>
-<a class="sourceLine" id="cb565-8" title="8"></a>
-<a class="sourceLine" id="cb565-9" title="9"><span class="kw">round</span>(<span class="kw">c</span>(Li_<span class="dv">90</span>, Ls_<span class="dv">90</span>), <span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb555"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb555-1"><a href="estimación-por-intervalo.html#cb555-1"></a>Li_<span class="dv">90</span> &lt;-<span class="st"> </span><span class="kw">mean</span>(enprecosp<span class="op">$</span>BIBA03) <span class="op">+</span></span>
+<span id="cb555-2"><a href="estimación-por-intervalo.html#cb555-2"></a><span class="st">  </span><span class="kw">qt</span>(.<span class="dv">05</span>, <span class="dv">24948</span>) <span class="op">*</span><span class="st"> </span><span class="kw">sd</span>(enprecosp<span class="op">$</span>BIBA03) <span class="op">/</span></span>
+<span id="cb555-3"><a href="estimación-por-intervalo.html#cb555-3"></a><span class="st">    </span><span class="kw">sqrt</span>(<span class="kw">length</span>(enprecosp<span class="op">$</span>BIBA03))</span>
+<span id="cb555-4"><a href="estimación-por-intervalo.html#cb555-4"></a></span>
+<span id="cb555-5"><a href="estimación-por-intervalo.html#cb555-5"></a>Ls_<span class="dv">90</span> &lt;-<span class="st"> </span><span class="kw">mean</span>(enprecosp<span class="op">$</span>BIBA03) <span class="op">+</span></span>
+<span id="cb555-6"><a href="estimación-por-intervalo.html#cb555-6"></a><span class="st">  </span><span class="kw">qt</span>(.<span class="dv">95</span>, <span class="dv">24948</span>) <span class="op">*</span><span class="st"> </span><span class="kw">sd</span>(enprecosp<span class="op">$</span>BIBA03) <span class="op">/</span></span>
+<span id="cb555-7"><a href="estimación-por-intervalo.html#cb555-7"></a><span class="st">    </span><span class="kw">sqrt</span>(<span class="kw">length</span>(enprecosp<span class="op">$</span>BIBA03))</span>
+<span id="cb555-8"><a href="estimación-por-intervalo.html#cb555-8"></a></span>
+<span id="cb555-9"><a href="estimación-por-intervalo.html#cb555-9"></a><span class="kw">round</span>(<span class="kw">c</span>(Li_<span class="dv">90</span>, Ls_<span class="dv">90</span>), <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## [1] 18.02 18.12</code></pre>
 <p>El error es de:</p>
-<div class="sourceCode" id="cb567"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb567-1" title="1"><span class="kw">round</span>((Ls_<span class="dv">90</span> <span class="op">-</span><span class="st"> </span>Li_<span class="dv">90</span>) <span class="op">/</span><span class="st"> </span><span class="dv">2</span>, <span class="dv">3</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb557"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb557-1"><a href="estimación-por-intervalo.html#cb557-1"></a><span class="kw">round</span>((Ls_<span class="dv">90</span> <span class="op">-</span><span class="st"> </span>Li_<span class="dv">90</span>) <span class="op">/</span><span class="st"> </span><span class="dv">2</span>, <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## [1] 0.049</code></pre>
 <p>Variamos el nivel de confianza, primero al 95%:</p>
-<div class="sourceCode" id="cb569"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb569-1" title="1">Li_<span class="dv">95</span> &lt;-<span class="st"> </span><span class="kw">mean</span>(enprecosp<span class="op">$</span>BIBA03) <span class="op">+</span></a>
-<a class="sourceLine" id="cb569-2" title="2"><span class="st">  </span><span class="kw">qt</span>(.<span class="dv">025</span>, <span class="dv">24948</span>) <span class="op">*</span><span class="st"> </span><span class="kw">sd</span>(enprecosp<span class="op">$</span>BIBA03) <span class="op">/</span></a>
-<a class="sourceLine" id="cb569-3" title="3"><span class="st">    </span><span class="kw">sqrt</span>(<span class="kw">length</span>(enprecosp<span class="op">$</span>BIBA03))</a>
-<a class="sourceLine" id="cb569-4" title="4"></a>
-<a class="sourceLine" id="cb569-5" title="5">Ls_<span class="dv">95</span> &lt;-<span class="st"> </span><span class="kw">mean</span>(enprecosp<span class="op">$</span>BIBA03) <span class="op">+</span></a>
-<a class="sourceLine" id="cb569-6" title="6"><span class="st">  </span><span class="kw">qt</span>(.<span class="dv">975</span>, <span class="dv">24948</span>) <span class="op">*</span><span class="st"> </span><span class="kw">sd</span>(enprecosp<span class="op">$</span>BIBA03) <span class="op">/</span></a>
-<a class="sourceLine" id="cb569-7" title="7"><span class="st">    </span><span class="kw">sqrt</span>(<span class="kw">length</span>(enprecosp<span class="op">$</span>BIBA03))</a>
-<a class="sourceLine" id="cb569-8" title="8"></a>
-<a class="sourceLine" id="cb569-9" title="9"><span class="kw">round</span>(<span class="kw">c</span>(Li_<span class="dv">95</span>, Ls_<span class="dv">95</span>), <span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb559"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb559-1"><a href="estimación-por-intervalo.html#cb559-1"></a>Li_<span class="dv">95</span> &lt;-<span class="st"> </span><span class="kw">mean</span>(enprecosp<span class="op">$</span>BIBA03) <span class="op">+</span></span>
+<span id="cb559-2"><a href="estimación-por-intervalo.html#cb559-2"></a><span class="st">  </span><span class="kw">qt</span>(.<span class="dv">025</span>, <span class="dv">24948</span>) <span class="op">*</span><span class="st"> </span><span class="kw">sd</span>(enprecosp<span class="op">$</span>BIBA03) <span class="op">/</span></span>
+<span id="cb559-3"><a href="estimación-por-intervalo.html#cb559-3"></a><span class="st">    </span><span class="kw">sqrt</span>(<span class="kw">length</span>(enprecosp<span class="op">$</span>BIBA03))</span>
+<span id="cb559-4"><a href="estimación-por-intervalo.html#cb559-4"></a></span>
+<span id="cb559-5"><a href="estimación-por-intervalo.html#cb559-5"></a>Ls_<span class="dv">95</span> &lt;-<span class="st"> </span><span class="kw">mean</span>(enprecosp<span class="op">$</span>BIBA03) <span class="op">+</span></span>
+<span id="cb559-6"><a href="estimación-por-intervalo.html#cb559-6"></a><span class="st">  </span><span class="kw">qt</span>(.<span class="dv">975</span>, <span class="dv">24948</span>) <span class="op">*</span><span class="st"> </span><span class="kw">sd</span>(enprecosp<span class="op">$</span>BIBA03) <span class="op">/</span></span>
+<span id="cb559-7"><a href="estimación-por-intervalo.html#cb559-7"></a><span class="st">    </span><span class="kw">sqrt</span>(<span class="kw">length</span>(enprecosp<span class="op">$</span>BIBA03))</span>
+<span id="cb559-8"><a href="estimación-por-intervalo.html#cb559-8"></a></span>
+<span id="cb559-9"><a href="estimación-por-intervalo.html#cb559-9"></a><span class="kw">round</span>(<span class="kw">c</span>(Li_<span class="dv">95</span>, Ls_<span class="dv">95</span>), <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## [1] 18.01 18.13</code></pre>
 <p>Con un error de estimación:</p>
-<div class="sourceCode" id="cb571"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb571-1" title="1"><span class="kw">round</span>((Ls_<span class="dv">95</span> <span class="op">-</span><span class="st"> </span>Li_<span class="dv">95</span>) <span class="op">/</span><span class="st"> </span><span class="dv">2</span>, <span class="dv">3</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb561"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb561-1"><a href="estimación-por-intervalo.html#cb561-1"></a><span class="kw">round</span>((Ls_<span class="dv">95</span> <span class="op">-</span><span class="st"> </span>Li_<span class="dv">95</span>) <span class="op">/</span><span class="st"> </span><span class="dv">2</span>, <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## [1] 0.058</code></pre>
 <p>Y luego al 99%</p>
-<div class="sourceCode" id="cb573"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb573-1" title="1">Li_<span class="dv">99</span> &lt;-<span class="st"> </span><span class="kw">mean</span>(enprecosp<span class="op">$</span>BIBA03) <span class="op">+</span></a>
-<a class="sourceLine" id="cb573-2" title="2"><span class="st">  </span><span class="kw">qt</span>(.<span class="dv">005</span>, <span class="dv">24948</span>) <span class="op">*</span><span class="st"> </span><span class="kw">sd</span>(enprecosp<span class="op">$</span>BIBA03) <span class="op">/</span></a>
-<a class="sourceLine" id="cb573-3" title="3"><span class="st">    </span><span class="kw">sqrt</span>(<span class="kw">length</span>(enprecosp<span class="op">$</span>BIBA03))</a>
-<a class="sourceLine" id="cb573-4" title="4"></a>
-<a class="sourceLine" id="cb573-5" title="5">Ls_<span class="dv">99</span> &lt;-<span class="st"> </span><span class="kw">mean</span>(enprecosp<span class="op">$</span>BIBA03) <span class="op">+</span></a>
-<a class="sourceLine" id="cb573-6" title="6"><span class="st">  </span><span class="kw">qt</span>(.<span class="dv">995</span>, <span class="dv">24948</span>) <span class="op">*</span><span class="st"> </span><span class="kw">sd</span>(enprecosp<span class="op">$</span>BIBA03) <span class="op">/</span></a>
-<a class="sourceLine" id="cb573-7" title="7"><span class="st">    </span><span class="kw">sqrt</span>(<span class="kw">length</span>(enprecosp<span class="op">$</span>BIBA03))</a>
-<a class="sourceLine" id="cb573-8" title="8"></a>
-<a class="sourceLine" id="cb573-9" title="9"><span class="kw">round</span>(<span class="kw">c</span>(Li_<span class="dv">99</span>, Ls_<span class="dv">99</span>), <span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb563"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb563-1"><a href="estimación-por-intervalo.html#cb563-1"></a>Li_<span class="dv">99</span> &lt;-<span class="st"> </span><span class="kw">mean</span>(enprecosp<span class="op">$</span>BIBA03) <span class="op">+</span></span>
+<span id="cb563-2"><a href="estimación-por-intervalo.html#cb563-2"></a><span class="st">  </span><span class="kw">qt</span>(.<span class="dv">005</span>, <span class="dv">24948</span>) <span class="op">*</span><span class="st"> </span><span class="kw">sd</span>(enprecosp<span class="op">$</span>BIBA03) <span class="op">/</span></span>
+<span id="cb563-3"><a href="estimación-por-intervalo.html#cb563-3"></a><span class="st">    </span><span class="kw">sqrt</span>(<span class="kw">length</span>(enprecosp<span class="op">$</span>BIBA03))</span>
+<span id="cb563-4"><a href="estimación-por-intervalo.html#cb563-4"></a></span>
+<span id="cb563-5"><a href="estimación-por-intervalo.html#cb563-5"></a>Ls_<span class="dv">99</span> &lt;-<span class="st"> </span><span class="kw">mean</span>(enprecosp<span class="op">$</span>BIBA03) <span class="op">+</span></span>
+<span id="cb563-6"><a href="estimación-por-intervalo.html#cb563-6"></a><span class="st">  </span><span class="kw">qt</span>(.<span class="dv">995</span>, <span class="dv">24948</span>) <span class="op">*</span><span class="st"> </span><span class="kw">sd</span>(enprecosp<span class="op">$</span>BIBA03) <span class="op">/</span></span>
+<span id="cb563-7"><a href="estimación-por-intervalo.html#cb563-7"></a><span class="st">    </span><span class="kw">sqrt</span>(<span class="kw">length</span>(enprecosp<span class="op">$</span>BIBA03))</span>
+<span id="cb563-8"><a href="estimación-por-intervalo.html#cb563-8"></a></span>
+<span id="cb563-9"><a href="estimación-por-intervalo.html#cb563-9"></a><span class="kw">round</span>(<span class="kw">c</span>(Li_<span class="dv">99</span>, Ls_<span class="dv">99</span>), <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## [1] 17.99 18.15</code></pre>
 <p>que lleva el error de estimación a:</p>
-<div class="sourceCode" id="cb575"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb575-1" title="1"><span class="kw">round</span>((Ls_<span class="dv">99</span> <span class="op">-</span><span class="st"> </span>Li_<span class="dv">99</span>) <span class="op">/</span><span class="st"> </span><span class="dv">2</span>, <span class="dv">3</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb565"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb565-1"><a href="estimación-por-intervalo.html#cb565-1"></a><span class="kw">round</span>((Ls_<span class="dv">99</span> <span class="op">-</span><span class="st"> </span>Li_<span class="dv">99</span>) <span class="op">/</span><span class="st"> </span><span class="dv">2</span>, <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## [1] 0.077</code></pre>
 <p>Estas tres primeras estimaciones muestran cómo, sin cambiar el tamaño de la muestra ni la dispersión, el error aumenta (los intervalos se vuelven más amplios) cuando crece la confianza.</p>
 </div>
@@ -1221,14 +1224,14 @@ Sum
 </tbody>
 </table>
 <p>A nivel de la muestra, quienes contestan que han bebido alguna vez son el <span class="math inline">\(74.9\)</span>% (<span class="math inline">\(25709/34330\)</span>). Extendemos ese resultado a la población construyendo un intervalo de Clopper-Pearson al 95% y expresando el resultado en porcentajes:</p>
-<div class="sourceCode" id="cb579"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb579-1" title="1">Li_prop_biba1_<span class="dv">95</span> &lt;-<span class="st"> </span><span class="kw">qbinom</span>(.<span class="dv">025</span>, <span class="dv">34330</span>, <span class="dv">25709</span> <span class="op">/</span><span class="st"> </span><span class="dv">34330</span>) <span class="op">/</span><span class="st"> </span><span class="dv">34330</span></a>
-<a class="sourceLine" id="cb579-2" title="2">Ls_prop_biba1_<span class="dv">95</span> &lt;-<span class="st"> </span><span class="kw">qbinom</span>(.<span class="dv">975</span>, <span class="dv">34330</span>, <span class="dv">25709</span> <span class="op">/</span><span class="st"> </span><span class="dv">34330</span>) <span class="op">/</span><span class="st"> </span><span class="dv">34330</span></a>
-<a class="sourceLine" id="cb579-3" title="3"><span class="dv">100</span> <span class="op">*</span><span class="st"> </span><span class="kw">round</span>(<span class="kw">c</span>(Li_prop_biba1_<span class="dv">95</span>, Ls_prop_biba1_<span class="dv">95</span>), <span class="dv">4</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb569"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb569-1"><a href="estimación-por-intervalo.html#cb569-1"></a>Li_prop_biba1_<span class="dv">95</span> &lt;-<span class="st"> </span><span class="kw">qbinom</span>(.<span class="dv">025</span>, <span class="dv">34330</span>, <span class="dv">25709</span> <span class="op">/</span><span class="st"> </span><span class="dv">34330</span>) <span class="op">/</span><span class="st"> </span><span class="dv">34330</span></span>
+<span id="cb569-2"><a href="estimación-por-intervalo.html#cb569-2"></a>Ls_prop_biba1_<span class="dv">95</span> &lt;-<span class="st"> </span><span class="kw">qbinom</span>(.<span class="dv">975</span>, <span class="dv">34330</span>, <span class="dv">25709</span> <span class="op">/</span><span class="st"> </span><span class="dv">34330</span>) <span class="op">/</span><span class="st"> </span><span class="dv">34330</span></span>
+<span id="cb569-3"><a href="estimación-por-intervalo.html#cb569-3"></a><span class="dv">100</span> <span class="op">*</span><span class="st"> </span><span class="kw">round</span>(<span class="kw">c</span>(Li_prop_biba1_<span class="dv">95</span>, Ls_prop_biba1_<span class="dv">95</span>), <span class="dv">4</span>)</span></code></pre></div>
 <pre><code>## [1] 74.43 75.35</code></pre>
 <p>El error de estimación es 0.92% y, si aumenta la confianza al 99%:</p>
-<div class="sourceCode" id="cb581"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb581-1" title="1">Li_prop_biba1_<span class="dv">99</span> &lt;-<span class="st"> </span><span class="kw">qbinom</span>(.<span class="dv">005</span>, <span class="dv">34330</span>, <span class="dv">25709</span> <span class="op">/</span><span class="st"> </span><span class="dv">34330</span>) <span class="op">/</span><span class="st"> </span><span class="dv">34330</span></a>
-<a class="sourceLine" id="cb581-2" title="2">Ls_prop_biba1_<span class="dv">99</span> &lt;-<span class="st"> </span><span class="kw">qbinom</span>(.<span class="dv">995</span>, <span class="dv">34330</span>, <span class="dv">25709</span> <span class="op">/</span><span class="st"> </span><span class="dv">34330</span>) <span class="op">/</span><span class="st"> </span><span class="dv">34330</span></a>
-<a class="sourceLine" id="cb581-3" title="3"><span class="dv">100</span> <span class="op">*</span><span class="st"> </span><span class="kw">round</span>(<span class="kw">c</span>(Li_prop_biba1_<span class="dv">99</span>, Ls_prop_biba1_<span class="dv">99</span>), <span class="dv">4</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb571"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb571-1"><a href="estimación-por-intervalo.html#cb571-1"></a>Li_prop_biba1_<span class="dv">99</span> &lt;-<span class="st"> </span><span class="kw">qbinom</span>(.<span class="dv">005</span>, <span class="dv">34330</span>, <span class="dv">25709</span> <span class="op">/</span><span class="st"> </span><span class="dv">34330</span>) <span class="op">/</span><span class="st"> </span><span class="dv">34330</span></span>
+<span id="cb571-2"><a href="estimación-por-intervalo.html#cb571-2"></a>Ls_prop_biba1_<span class="dv">99</span> &lt;-<span class="st"> </span><span class="kw">qbinom</span>(.<span class="dv">995</span>, <span class="dv">34330</span>, <span class="dv">25709</span> <span class="op">/</span><span class="st"> </span><span class="dv">34330</span>) <span class="op">/</span><span class="st"> </span><span class="dv">34330</span></span>
+<span id="cb571-3"><a href="estimación-por-intervalo.html#cb571-3"></a><span class="dv">100</span> <span class="op">*</span><span class="st"> </span><span class="kw">round</span>(<span class="kw">c</span>(Li_prop_biba1_<span class="dv">99</span>, Ls_prop_biba1_<span class="dv">99</span>), <span class="dv">4</span>)</span></code></pre></div>
 <pre><code>## [1] 74.28 75.49</code></pre>
 <p>Con un error de 1.2</p>
 <p>Vemos que al aumentar el nivel de confianza se reduce la precisión, ya
@@ -1238,12 +1241,12 @@ que los límites se distancian, volviendo más amplio al intervalo, aumentando e
 <div id="probabilidad-de-cobertura" class="section level2">
 <h2><span class="header-section-number">10.6</span> Probabilidad de cobertura</h2>
 <p>Un elemento adicional a considerar para la correcta interpretación de las estimaciones por intervalo, es la <strong>probabilidad de cobertura</strong>, que indica la probabilidad que tienen los límites de contener efectivamente al parámetro. En el caso de la media, se escribe <span class="math inline">\(P(L_{i}\leq \mu \leq L_{s})\)</span> y para la proporción, se escribe como <span class="math inline">\(P(L_{i} \leq P \leq L_{s})\)</span> en la que <span class="math inline">\(L_i\)</span> y <span class="math inline">\(L_s\)</span> son variables aleatorias que corresponden a los límites del intervalo. Esta probabilidad de cobertura puede ser igual, menor o mayor que la confianza, que es una cobertura nominal, es decir, la que predice la teoría. La probabilidad de cobertura es práctica, se calcula de manera empírica, por simulación.</p>
-<p>Para el caso de la estimación de la proporción, <span class="citation">Cepeda-Cuervo et al. (<a href="#ref-Cepeda-Cuervo2008">2008</a>)</span> muestran que el intervalo de Clopper-Pearson tiene una probabilidad de cobertura que supera a la nominal para todos los tamaños de muestra, por eso se lo considera conservador; ya que ofrece más certidumbre que la que se declara en la confianza. Al contrario, el intervalo de Wald muestra probabilidad de cobertura inferior a la nominal aun cuando se usen muestras grandes. El
+<p>Para el caso de la estimación de la proporción, <span class="citation">Cepeda-Cuervo et al. (<a href="#ref-Cepeda-Cuervo2008" role="doc-biblioref">2008</a>)</span> muestran que el intervalo de Clopper-Pearson tiene una probabilidad de cobertura que supera a la nominal para todos los tamaños de muestra, por eso se lo considera conservador; ya que ofrece más certidumbre que la que se declara en la confianza. Al contrario, el intervalo de Wald muestra probabilidad de cobertura inferior a la nominal aun cuando se usen muestras grandes. El
 intervalo de Wilson ofrece una probabilidad de cobertura más cercana a
 la nominal que el de Wald y que el exacto.</p>
 <p>En el sitio <a href="https://istats.shinyapps.io/ExploreCoverage/">https://istats.shinyapps.io/ExploreCoverage/</a> se pueden hacer simulaciones para diferentes valores de proporción poblacional, confianza, tamaño de muestra y cantidad de muestras. Cada muestra aleatoria genera un intervalo de confianza y se observa si éste incluye o no al valor poblacional. La figura <a href="estimación-por-intervalo.html#fig:100intervaloscobertura">10.9</a> muestra una simulación que consiste en extraer 100 muestras de tamaño 50 de una población en la que la proporción vale <span class="math inline">\(0.30\)</span> y construir un intervalo de confianza al <span class="math inline">\(95\%\)</span> de confianza para cada una de ellas. La teoría predice que el <span class="math inline">\(95\%\)</span> de los intervalos incluirá al valor <span class="math inline">\(P=0.30\)</span>, pero de los 100, 93 lo hacen (los verdes aciertan, los rojos no). Así, la probabilidad de cobertura es de 93%, que es menor que la nominal.</p>
 <div class="figure" style="text-align: center"><span id="fig:100intervaloscobertura"></span>
-<img src="imagenes/100intervaloscobertura.png" alt="Simulación para el cálculo de la probabilidad de cobertura" width="315" />
+<img src="imagenes/100intervaloscobertura.png" alt="Simulación para el cálculo de la probabilidad de cobertura"  />
 <p class="caption">
 Figura 10.9: Simulación para el cálculo de la probabilidad de cobertura
 </p>
@@ -1265,56 +1268,56 @@ expresa:</p>
 parámetro.</strong></p>
 <div style="page-break-after: always;"></div>
 </div>
-<div id="hacerlo-en-r-8" class="section level2">
+<div id="hacerlo-en-r" class="section level2">
 <h2><span class="header-section-number">10.7</span> Hacerlo en R</h2>
 <p>La construcción de intervalos puede realizarse aplicando los procedimientos descriptos en el capítulo y dependiendo de cuál sea el origen de los datos.</p>
 <div id="intervalo-para-la-media" class="section level3">
 <h3><span class="header-section-number">10.7.1</span> Intervalo para la media</h3>
 <p>Para el ejemplo de los ingresos salariales (PP08D1), tomamos un subconjunto de la base eph.3.18 que contiene solo personas que declaran ingresos salariales no nulos.</p>
-<div class="sourceCode" id="cb583"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb583-1" title="1">asalariades_cba &lt;-<span class="st"> </span><span class="kw">subset</span>(eph.<span class="fl">3.18</span>, eph.<span class="fl">3.18</span><span class="op">$</span>PP08D1 <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span> <span class="op">&amp;</span><span class="st"> </span>eph.<span class="fl">3.18</span><span class="op">$</span>AGLOMERADO <span class="op">==</span><span class="st"> </span><span class="dv">13</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb573"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb573-1"><a href="estimación-por-intervalo.html#cb573-1"></a>asalariades_cba &lt;-<span class="st"> </span><span class="kw">subset</span>(eph.<span class="fl">3.18</span>, eph.<span class="fl">3.18</span><span class="op">$</span>PP08D1 <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span> <span class="op">&amp;</span><span class="st"> </span>eph.<span class="fl">3.18</span><span class="op">$</span>AGLOMERADO <span class="op">==</span><span class="st"> </span><span class="dv">13</span>)</span></code></pre></div>
 <p>Recordemos que <span class="math inline">\(n\)</span>, el tamaño de la muestra, es la longitud (<code>length</code>) del vector que corresponde a esa variable. Sobre PP08D1, se construye el intervalo de manera directa, teniendo en cuenta que los valores -1.96 y 1.96 provienen de las probabillidades acumuladas de 0.025 y 0.975, que son las que delimitan la probabilidad 0.95 central. De modo que esos dos valores que estamos escribiendo “de memoria”, pueden pedirse al momento de construir los límites del intervalo. Además, por la razón que mencionamos antes, usamos la distribución <span class="math inline">\(t\)</span> con <span class="math inline">\(n-1\)</span> grados de libertad en todos los casos, ya que cuando la muestra es grande su valor coincide con el de la normal. Llamamos Li95 y Ls95 a esos límites y resulta:</p>
-<div class="sourceCode" id="cb584"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb584-1" title="1">Li95 &lt;-<span class="st"> </span><span class="kw">mean</span>(asalariades_cba<span class="op">$</span>PP08D1) <span class="op">+</span></a>
-<a class="sourceLine" id="cb584-2" title="2"><span class="st">  </span><span class="kw">qt</span>(.<span class="dv">025</span>, <span class="dv">753</span>) <span class="op">*</span><span class="st"> </span><span class="kw">sd</span>(asalariades_cba<span class="op">$</span>PP08D1) <span class="op">/</span></a>
-<a class="sourceLine" id="cb584-3" title="3"><span class="st">    </span><span class="kw">sqrt</span>(<span class="kw">length</span>(asalariades_cba<span class="op">$</span>PP08D1))</a>
-<a class="sourceLine" id="cb584-4" title="4">Li95</a></code></pre></div>
+<div class="sourceCode" id="cb574"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb574-1"><a href="estimación-por-intervalo.html#cb574-1"></a>Li95 &lt;-<span class="st"> </span><span class="kw">mean</span>(asalariades_cba<span class="op">$</span>PP08D1) <span class="op">+</span></span>
+<span id="cb574-2"><a href="estimación-por-intervalo.html#cb574-2"></a><span class="st">  </span><span class="kw">qt</span>(.<span class="dv">025</span>, <span class="dv">753</span>) <span class="op">*</span><span class="st"> </span><span class="kw">sd</span>(asalariades_cba<span class="op">$</span>PP08D1) <span class="op">/</span></span>
+<span id="cb574-3"><a href="estimación-por-intervalo.html#cb574-3"></a><span class="st">    </span><span class="kw">sqrt</span>(<span class="kw">length</span>(asalariades_cba<span class="op">$</span>PP08D1))</span>
+<span id="cb574-4"><a href="estimación-por-intervalo.html#cb574-4"></a>Li95</span></code></pre></div>
 <pre><code>## [1] 14303.13</code></pre>
-<div class="sourceCode" id="cb586"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb586-1" title="1">Ls95 &lt;-<span class="st"> </span><span class="kw">mean</span>(asalariades_cba<span class="op">$</span>PP08D1) <span class="op">+</span></a>
-<a class="sourceLine" id="cb586-2" title="2"><span class="st">  </span><span class="kw">qt</span>(.<span class="dv">975</span>, <span class="dv">753</span>) <span class="op">*</span><span class="st"> </span><span class="kw">sd</span>(asalariades_cba<span class="op">$</span>PP08D1) <span class="op">/</span></a>
-<a class="sourceLine" id="cb586-3" title="3"><span class="st">    </span><span class="kw">sqrt</span>(<span class="kw">length</span>(asalariades_cba<span class="op">$</span>PP08D1))</a>
-<a class="sourceLine" id="cb586-4" title="4">Ls95</a></code></pre></div>
+<div class="sourceCode" id="cb576"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb576-1"><a href="estimación-por-intervalo.html#cb576-1"></a>Ls95 &lt;-<span class="st"> </span><span class="kw">mean</span>(asalariades_cba<span class="op">$</span>PP08D1) <span class="op">+</span></span>
+<span id="cb576-2"><a href="estimación-por-intervalo.html#cb576-2"></a><span class="st">  </span><span class="kw">qt</span>(.<span class="dv">975</span>, <span class="dv">753</span>) <span class="op">*</span><span class="st"> </span><span class="kw">sd</span>(asalariades_cba<span class="op">$</span>PP08D1) <span class="op">/</span></span>
+<span id="cb576-3"><a href="estimación-por-intervalo.html#cb576-3"></a><span class="st">    </span><span class="kw">sqrt</span>(<span class="kw">length</span>(asalariades_cba<span class="op">$</span>PP08D1))</span>
+<span id="cb576-4"><a href="estimación-por-intervalo.html#cb576-4"></a>Ls95</span></code></pre></div>
 <pre><code>## [1] 15654.9</code></pre>
 <ul>
 <li>Límite inferior= 1.4303110^{4}</li>
 <li>Límite superior= 1.5654910^{4}</li>
 </ul>
 <p>Observemos que las dos veces sumamos, el signo viene automático, porque el percentil 2.5 de <span class="math inline">\(z\)</span> es negativo y el 97.5 positivo. Para escribirlo más compacto calculamos la media por un lado y el error de estimación, por otro:</p>
-<div class="sourceCode" id="cb588"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb588-1" title="1"><span class="kw">mean</span>(asalariades_cba<span class="op">$</span>PP08D1)</a></code></pre></div>
+<div class="sourceCode" id="cb578"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb578-1"><a href="estimación-por-intervalo.html#cb578-1"></a><span class="kw">mean</span>(asalariades_cba<span class="op">$</span>PP08D1)</span></code></pre></div>
 <pre><code>## [1] 14979.02</code></pre>
-<div class="sourceCode" id="cb590"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb590-1" title="1"><span class="kw">qt</span>(.<span class="dv">025</span>, <span class="dv">753</span>) <span class="op">*</span><span class="st"> </span><span class="kw">sd</span>(asalariades_cba<span class="op">$</span>PP08D1) <span class="op">/</span></a>
-<a class="sourceLine" id="cb590-2" title="2"><span class="st">  </span><span class="kw">sqrt</span>(<span class="kw">length</span>(asalariades_cba<span class="op">$</span>PP08D1))</a></code></pre></div>
+<div class="sourceCode" id="cb580"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb580-1"><a href="estimación-por-intervalo.html#cb580-1"></a><span class="kw">qt</span>(.<span class="dv">025</span>, <span class="dv">753</span>) <span class="op">*</span><span class="st"> </span><span class="kw">sd</span>(asalariades_cba<span class="op">$</span>PP08D1) <span class="op">/</span></span>
+<span id="cb580-2"><a href="estimación-por-intervalo.html#cb580-2"></a><span class="st">  </span><span class="kw">sqrt</span>(<span class="kw">length</span>(asalariades_cba<span class="op">$</span>PP08D1))</span></code></pre></div>
 <pre><code>## [1] -675.8864</code></pre>
-<div class="sourceCode" id="cb592"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb592-1" title="1"><span class="kw">qt</span>(.<span class="dv">975</span>, <span class="dv">753</span>) <span class="op">*</span><span class="st"> </span><span class="kw">sd</span>(asalariades_cba<span class="op">$</span>PP08D1) <span class="op">/</span></a>
-<a class="sourceLine" id="cb592-2" title="2"><span class="st">  </span><span class="kw">sqrt</span>(<span class="kw">length</span>(asalariades_cba<span class="op">$</span>PP08D1))</a></code></pre></div>
+<div class="sourceCode" id="cb582"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb582-1"><a href="estimación-por-intervalo.html#cb582-1"></a><span class="kw">qt</span>(.<span class="dv">975</span>, <span class="dv">753</span>) <span class="op">*</span><span class="st"> </span><span class="kw">sd</span>(asalariades_cba<span class="op">$</span>PP08D1) <span class="op">/</span></span>
+<span id="cb582-2"><a href="estimación-por-intervalo.html#cb582-2"></a><span class="st">  </span><span class="kw">sqrt</span>(<span class="kw">length</span>(asalariades_cba<span class="op">$</span>PP08D1))</span></code></pre></div>
 <pre><code>## [1] 675.8864</code></pre>
 <p>Las dos operaciones dan el mismo valor absoluto, con el signo opuesto, entonces el resultado de la estimación se escribe: <span class="math display">\[14979 \pm 675\]</span></p>
 <p>Para construir en intervalo con un nivel de confianza de 99%, usamos los cuantiles 0.005 y 0.995 de la distribución <span class="math inline">\(t\)</span> con 753 grados de libertad y llamamos Li99 y Ls99 a los límites:</p>
-<div class="sourceCode" id="cb594"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb594-1" title="1">Li99 &lt;-<span class="st"> </span><span class="kw">mean</span>(asalariades_cba<span class="op">$</span>PP08D1) <span class="op">+</span></a>
-<a class="sourceLine" id="cb594-2" title="2"><span class="st">  </span><span class="kw">qt</span>(.<span class="dv">005</span>, <span class="dv">753</span>) <span class="op">*</span><span class="st"> </span><span class="kw">sd</span>(asalariades_cba<span class="op">$</span>PP08D1) <span class="op">/</span></a>
-<a class="sourceLine" id="cb594-3" title="3"><span class="st">    </span><span class="kw">sqrt</span>(<span class="kw">length</span>(asalariades_cba<span class="op">$</span>PP08D1))</a>
-<a class="sourceLine" id="cb594-4" title="4">Li99</a></code></pre></div>
+<div class="sourceCode" id="cb584"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb584-1"><a href="estimación-por-intervalo.html#cb584-1"></a>Li99 &lt;-<span class="st"> </span><span class="kw">mean</span>(asalariades_cba<span class="op">$</span>PP08D1) <span class="op">+</span></span>
+<span id="cb584-2"><a href="estimación-por-intervalo.html#cb584-2"></a><span class="st">  </span><span class="kw">qt</span>(.<span class="dv">005</span>, <span class="dv">753</span>) <span class="op">*</span><span class="st"> </span><span class="kw">sd</span>(asalariades_cba<span class="op">$</span>PP08D1) <span class="op">/</span></span>
+<span id="cb584-3"><a href="estimación-por-intervalo.html#cb584-3"></a><span class="st">    </span><span class="kw">sqrt</span>(<span class="kw">length</span>(asalariades_cba<span class="op">$</span>PP08D1))</span>
+<span id="cb584-4"><a href="estimación-por-intervalo.html#cb584-4"></a>Li99</span></code></pre></div>
 <pre><code>## [1] 14089.93</code></pre>
-<div class="sourceCode" id="cb596"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb596-1" title="1">Ls99 &lt;-<span class="st"> </span><span class="kw">mean</span>(asalariades_cba<span class="op">$</span>PP08D1) <span class="op">+</span></a>
-<a class="sourceLine" id="cb596-2" title="2"><span class="st">  </span><span class="kw">qt</span>(.<span class="dv">995</span>, <span class="dv">753</span>) <span class="op">*</span><span class="st"> </span><span class="kw">sd</span>(asalariades_cba<span class="op">$</span>PP08D1) <span class="op">/</span></a>
-<a class="sourceLine" id="cb596-3" title="3"><span class="st">    </span><span class="kw">sqrt</span>(<span class="kw">length</span>(asalariades_cba<span class="op">$</span>PP08D1))</a>
-<a class="sourceLine" id="cb596-4" title="4">Ls99</a></code></pre></div>
+<div class="sourceCode" id="cb586"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb586-1"><a href="estimación-por-intervalo.html#cb586-1"></a>Ls99 &lt;-<span class="st"> </span><span class="kw">mean</span>(asalariades_cba<span class="op">$</span>PP08D1) <span class="op">+</span></span>
+<span id="cb586-2"><a href="estimación-por-intervalo.html#cb586-2"></a><span class="st">  </span><span class="kw">qt</span>(.<span class="dv">995</span>, <span class="dv">753</span>) <span class="op">*</span><span class="st"> </span><span class="kw">sd</span>(asalariades_cba<span class="op">$</span>PP08D1) <span class="op">/</span></span>
+<span id="cb586-3"><a href="estimación-por-intervalo.html#cb586-3"></a><span class="st">    </span><span class="kw">sqrt</span>(<span class="kw">length</span>(asalariades_cba<span class="op">$</span>PP08D1))</span>
+<span id="cb586-4"><a href="estimación-por-intervalo.html#cb586-4"></a>Ls99</span></code></pre></div>
 <pre><code>## [1] 15868.11</code></pre>
 <ul>
 <li>Límite inferior= 1.4089910^{4}</li>
 <li>Límite superior= 1.5868110^{4}</li>
 </ul>
 <p>Nuevamente para la notación abreviada, como la media es la misma y sabemos que lo que se suma es lo mismo que lo que se resta, solo calculamos:</p>
-<div class="sourceCode" id="cb598"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb598-1" title="1"><span class="kw">qt</span>(.<span class="dv">995</span>, <span class="dv">753</span>) <span class="op">*</span><span class="st"> </span><span class="kw">sd</span>(asalariades_cba<span class="op">$</span>PP08D1) <span class="op">/</span></a>
-<a class="sourceLine" id="cb598-2" title="2"><span class="st">  </span><span class="kw">sqrt</span>(<span class="kw">length</span>(asalariades_cba<span class="op">$</span>PP08D1))</a></code></pre></div>
+<div class="sourceCode" id="cb588"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb588-1"><a href="estimación-por-intervalo.html#cb588-1"></a><span class="kw">qt</span>(.<span class="dv">995</span>, <span class="dv">753</span>) <span class="op">*</span><span class="st"> </span><span class="kw">sd</span>(asalariades_cba<span class="op">$</span>PP08D1) <span class="op">/</span></span>
+<span id="cb588-2"><a href="estimación-por-intervalo.html#cb588-2"></a><span class="st">  </span><span class="kw">sqrt</span>(<span class="kw">length</span>(asalariades_cba<span class="op">$</span>PP08D1))</span></code></pre></div>
 <pre><code>## [1] 889.0909</code></pre>
 <p>Y la estimación se escribe:<span class="math display">\[14979 \pm 889\]</span></p>
 </div>
@@ -1326,13 +1329,13 @@ parámetro.</strong></p>
 <li>0 o 4, “inactives” no se cuenta, porque son entrevistas no realizadas, o menores de 10 años, corresponde NA</li>
 <li>1 o 2 “inactives” vale cero</li>
 </ul>
-<div class="sourceCode" id="cb600"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb600-1" title="1">eph.<span class="fl">3.18</span><span class="op">$</span>inactives &lt;-<span class="st"> </span><span class="kw">ifelse</span>(</a>
-<a class="sourceLine" id="cb600-2" title="2">  eph.<span class="fl">3.18</span><span class="op">$</span>ESTADO <span class="op">==</span><span class="st"> </span><span class="dv">3</span>, <span class="dv">1</span>, <span class="kw">ifelse</span>(</a>
-<a class="sourceLine" id="cb600-3" title="3">    eph.<span class="fl">3.18</span><span class="op">$</span>ESTADO <span class="op">==</span><span class="st"> </span><span class="dv">0</span> <span class="op">|</span><span class="st"> </span>eph.<span class="fl">3.18</span><span class="op">$</span>ESTADO <span class="op">==</span><span class="st"> </span><span class="dv">4</span>, <span class="ot">NA</span>, <span class="dv">0</span></a>
-<a class="sourceLine" id="cb600-4" title="4">  )</a>
-<a class="sourceLine" id="cb600-5" title="5">)</a></code></pre></div>
+<div class="sourceCode" id="cb590"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb590-1"><a href="estimación-por-intervalo.html#cb590-1"></a>eph.<span class="fl">3.18</span><span class="op">$</span>inactives &lt;-<span class="st"> </span><span class="kw">ifelse</span>(</span>
+<span id="cb590-2"><a href="estimación-por-intervalo.html#cb590-2"></a>  eph.<span class="fl">3.18</span><span class="op">$</span>ESTADO <span class="op">==</span><span class="st"> </span><span class="dv">3</span>, <span class="dv">1</span>, <span class="kw">ifelse</span>(</span>
+<span id="cb590-3"><a href="estimación-por-intervalo.html#cb590-3"></a>    eph.<span class="fl">3.18</span><span class="op">$</span>ESTADO <span class="op">==</span><span class="st"> </span><span class="dv">0</span> <span class="op">|</span><span class="st"> </span>eph.<span class="fl">3.18</span><span class="op">$</span>ESTADO <span class="op">==</span><span class="st"> </span><span class="dv">4</span>, <span class="ot">NA</span>, <span class="dv">0</span></span>
+<span id="cb590-4"><a href="estimación-por-intervalo.html#cb590-4"></a>  )</span>
+<span id="cb590-5"><a href="estimación-por-intervalo.html#cb590-5"></a>)</span></code></pre></div>
 <p>Y con una tabla verificamos que el 1 de la nueva variable corresponda al 3 de “ESTADO” y que todos los demás valores de “ESTADO” tengan asociado un cero en “activos”.</p>
-<div class="sourceCode" id="cb601"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb601-1" title="1"><span class="kw">addmargins</span>(<span class="kw">table</span>(eph.<span class="fl">3.18</span><span class="op">$</span>ESTADO, eph.<span class="fl">3.18</span><span class="op">$</span>inactives))</a></code></pre></div>
+<div class="sourceCode" id="cb591"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb591-1"><a href="estimación-por-intervalo.html#cb591-1"></a><span class="kw">addmargins</span>(<span class="kw">table</span>(eph.<span class="fl">3.18</span><span class="op">$</span>ESTADO, eph.<span class="fl">3.18</span><span class="op">$</span>inactives))</span></code></pre></div>
 <pre><code>##      
 ##           0     1   Sum
 ##   0       0     0     0
@@ -1343,16 +1346,16 @@ parámetro.</strong></p>
 ##   Sum 25268 23167 48435</code></pre>
 <p>La nueva variable (inactives) tiene 25268 casos en el valor cero, que corresponden a 23398 a ESTADO = 1 (ocupados) más 1870 de ESTADO = 2 (desocupado) y 23167 casos en el valos uno, que son los 23167 de ESTADO = 3 (inactivo). El total de casos es ahora 48435, porque se quitaron los ceros y los cuatros.<br />
 Ahora la estimación al 95% de la proporción poblacional de personas inactivas, por método de Clopper-Pearson requiere que calculemos los cuantiles .025 y .975 de la distribución binomial con <span class="math inline">\(n=48435\)</span> y <span class="math inline">\(p=23167/48435=0.478=47.8\%\)</span> y que los dividamos por el tamaño de la muestra.</p>
-<div class="sourceCode" id="cb603"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb603-1" title="1">Li &lt;-<span class="st"> </span><span class="kw">qbinom</span>(.<span class="dv">025</span>, <span class="dv">48435</span>, <span class="fl">.478</span>) <span class="op">/</span><span class="st"> </span><span class="dv">48435</span></a>
-<a class="sourceLine" id="cb603-2" title="2">Ls &lt;-<span class="st"> </span><span class="kw">qbinom</span>(.<span class="dv">975</span>, <span class="dv">48435</span>, <span class="fl">.478</span>) <span class="op">/</span><span class="st"> </span><span class="dv">48435</span></a>
-<a class="sourceLine" id="cb603-3" title="3"><span class="kw">round</span>(<span class="kw">c</span>(Li, Ls), <span class="dv">4</span>) <span class="op">*</span><span class="st"> </span><span class="dv">100</span></a></code></pre></div>
+<div class="sourceCode" id="cb593"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb593-1"><a href="estimación-por-intervalo.html#cb593-1"></a>Li &lt;-<span class="st"> </span><span class="kw">qbinom</span>(.<span class="dv">025</span>, <span class="dv">48435</span>, <span class="fl">.478</span>) <span class="op">/</span><span class="st"> </span><span class="dv">48435</span></span>
+<span id="cb593-2"><a href="estimación-por-intervalo.html#cb593-2"></a>Ls &lt;-<span class="st"> </span><span class="kw">qbinom</span>(.<span class="dv">975</span>, <span class="dv">48435</span>, <span class="fl">.478</span>) <span class="op">/</span><span class="st"> </span><span class="dv">48435</span></span>
+<span id="cb593-3"><a href="estimación-por-intervalo.html#cb593-3"></a><span class="kw">round</span>(<span class="kw">c</span>(Li, Ls), <span class="dv">4</span>) <span class="op">*</span><span class="st"> </span><span class="dv">100</span></span></code></pre></div>
 <pre><code>## [1] 47.35 48.24</code></pre>
 <p>Si tenemos en cuenta que es una muestra grande, puede usarse el método de Wald, con <span class="math inline">\(\widehat{p}=0.478\)</span> con el que los límites resultan:</p>
-<div class="sourceCode" id="cb605"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb605-1" title="1">Li &lt;-<span class="st"> </span><span class="fl">.478</span> <span class="op">+</span><span class="st"> </span><span class="kw">qnorm</span>(.<span class="dv">025</span>) <span class="op">*</span><span class="st"> </span><span class="kw">sqrt</span>(.<span class="dv">478</span> <span class="op">*</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="fl">.478</span>) <span class="op">/</span></a>
-<a class="sourceLine" id="cb605-2" title="2"><span class="st">  </span><span class="dv">48435</span>)</a>
-<a class="sourceLine" id="cb605-3" title="3">Ls &lt;-<span class="st"> </span><span class="fl">.478</span> <span class="op">+</span><span class="st"> </span><span class="kw">qnorm</span>(.<span class="dv">975</span>) <span class="op">*</span><span class="st"> </span><span class="kw">sqrt</span>(.<span class="dv">478</span> <span class="op">*</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="fl">.478</span>) <span class="op">/</span></a>
-<a class="sourceLine" id="cb605-4" title="4"><span class="st">  </span><span class="dv">48435</span>)</a>
-<a class="sourceLine" id="cb605-5" title="5"><span class="kw">round</span>(<span class="kw">c</span>(Li, Ls), <span class="dv">4</span>) <span class="op">*</span><span class="st"> </span><span class="dv">100</span></a></code></pre></div>
+<div class="sourceCode" id="cb595"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb595-1"><a href="estimación-por-intervalo.html#cb595-1"></a>Li &lt;-<span class="st"> </span><span class="fl">.478</span> <span class="op">+</span><span class="st"> </span><span class="kw">qnorm</span>(.<span class="dv">025</span>) <span class="op">*</span><span class="st"> </span><span class="kw">sqrt</span>(.<span class="dv">478</span> <span class="op">*</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="fl">.478</span>) <span class="op">/</span></span>
+<span id="cb595-2"><a href="estimación-por-intervalo.html#cb595-2"></a><span class="st">  </span><span class="dv">48435</span>)</span>
+<span id="cb595-3"><a href="estimación-por-intervalo.html#cb595-3"></a>Ls &lt;-<span class="st"> </span><span class="fl">.478</span> <span class="op">+</span><span class="st"> </span><span class="kw">qnorm</span>(.<span class="dv">975</span>) <span class="op">*</span><span class="st"> </span><span class="kw">sqrt</span>(.<span class="dv">478</span> <span class="op">*</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="fl">.478</span>) <span class="op">/</span></span>
+<span id="cb595-4"><a href="estimación-por-intervalo.html#cb595-4"></a><span class="st">  </span><span class="dv">48435</span>)</span>
+<span id="cb595-5"><a href="estimación-por-intervalo.html#cb595-5"></a><span class="kw">round</span>(<span class="kw">c</span>(Li, Ls), <span class="dv">4</span>) <span class="op">*</span><span class="st"> </span><span class="dv">100</span></span></code></pre></div>
 <pre><code>## [1] 47.36 48.24</code></pre>
 <p>Efectivamente, con un tamaño de muestra grande, el método de Wald, que usa la distribución normal como aproximación a la binomial da un resultado casi idéntico.</p>
 </div>
@@ -1368,10 +1371,10 @@ Ahora la estimación al 95% de la proporción poblacional de personas inactivas,
 <li><strong>n</strong>: tamaño de las muestras</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb607"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb607-1" title="1">resultado &lt;-<span class="st"> </span><span class="kw">data.frame</span>()</a>
-<a class="sourceLine" id="cb607-2" title="2">mu &lt;-<span class="st"> </span><span class="kw">mean</span>(asalariados_cba<span class="op">$</span>PP08D1, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb607-3" title="3">N &lt;-<span class="st"> </span><span class="kw">length</span>(asalariados_cba<span class="op">$</span>PP08D1)</a>
-<a class="sourceLine" id="cb607-4" title="4">n &lt;-<span class="st"> </span><span class="dv">30</span></a></code></pre></div>
+<div class="sourceCode" id="cb597"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb597-1"><a href="estimación-por-intervalo.html#cb597-1"></a>resultado &lt;-<span class="st"> </span><span class="kw">data.frame</span>()</span>
+<span id="cb597-2"><a href="estimación-por-intervalo.html#cb597-2"></a>mu &lt;-<span class="st"> </span><span class="kw">mean</span>(asalariados_cba<span class="op">$</span>PP08D1, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb597-3"><a href="estimación-por-intervalo.html#cb597-3"></a>N &lt;-<span class="st"> </span><span class="kw">length</span>(asalariados_cba<span class="op">$</span>PP08D1)</span>
+<span id="cb597-4"><a href="estimación-por-intervalo.html#cb597-4"></a>n &lt;-<span class="st"> </span><span class="dv">30</span></span></code></pre></div>
 <ul>
 <li>Se repite 200 veces (cantidad de muestras, cada repetición produce una diferente)</li>
 <li>Se llama <em>x</em> el vector que contiene <em>n</em> números aleatorios (tamaño de cada muestra) provenientes de una distribución uniforme, entre 1 y N (que es el total de casos válidos), redondeado, sin decimales (0)</li>
@@ -1384,29 +1387,29 @@ Ahora la estimación al 95% de la proporción poblacional de personas inactivas,
 <li>Y vale <em>no</em> en caso contrario</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb608"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb608-1" title="1"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">200</span>) {</a>
-<a class="sourceLine" id="cb608-2" title="2">  x &lt;-<span class="st"> </span><span class="kw">round</span>(<span class="kw">runif</span>(n, <span class="dv">1</span>, N), <span class="dv">0</span>)</a>
-<a class="sourceLine" id="cb608-3" title="3">  muestra &lt;-<span class="st"> </span>asalariados_cba[x, <span class="dv">95</span>]</a>
-<a class="sourceLine" id="cb608-4" title="4">  resultado[i, <span class="dv">1</span>] &lt;-<span class="st"> </span><span class="kw">round</span>(<span class="kw">mean</span>(muestra, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb608-5" title="5"><span class="st">    </span><span class="kw">qt</span>(.<span class="dv">025</span>, <span class="dv">29</span>) <span class="op">*</span><span class="st"> </span><span class="kw">sd</span>(muestra, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>) <span class="op">/</span><span class="st"> </span><span class="kw">sqrt</span>(<span class="kw">length</span>(muestra)), <span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb608-6" title="6">  resultado[i, <span class="dv">2</span>] &lt;-<span class="st"> </span><span class="kw">round</span>(<span class="kw">mean</span>(muestra, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb608-7" title="7"><span class="st">    </span><span class="kw">qt</span>(.<span class="dv">975</span>, <span class="dv">29</span>) <span class="op">*</span><span class="st"> </span><span class="kw">sd</span>(muestra, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>) <span class="op">/</span><span class="st"> </span><span class="kw">sqrt</span>(<span class="kw">length</span>(muestra)), <span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb608-8" title="8">  resultado[i, <span class="dv">3</span>] &lt;-<span class="st"> </span><span class="kw">ifelse</span>(</a>
-<a class="sourceLine" id="cb608-9" title="9">    resultado[i, <span class="dv">1</span>] <span class="op">&lt;=</span><span class="st"> </span>mu <span class="op">&amp;</span><span class="st"> </span>resultado[i, <span class="dv">2</span>] <span class="op">&gt;=</span><span class="st"> </span>mu, <span class="st">&quot;si&quot;</span>, <span class="st">&quot;no&quot;</span></a>
-<a class="sourceLine" id="cb608-10" title="10">  )</a>
-<a class="sourceLine" id="cb608-11" title="11">}</a></code></pre></div>
+<div class="sourceCode" id="cb598"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb598-1"><a href="estimación-por-intervalo.html#cb598-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">200</span>) {</span>
+<span id="cb598-2"><a href="estimación-por-intervalo.html#cb598-2"></a>  x &lt;-<span class="st"> </span><span class="kw">round</span>(<span class="kw">runif</span>(n, <span class="dv">1</span>, N), <span class="dv">0</span>)</span>
+<span id="cb598-3"><a href="estimación-por-intervalo.html#cb598-3"></a>  muestra &lt;-<span class="st"> </span>asalariados_cba[x, <span class="dv">95</span>]</span>
+<span id="cb598-4"><a href="estimación-por-intervalo.html#cb598-4"></a>  resultado[i, <span class="dv">1</span>] &lt;-<span class="st"> </span><span class="kw">round</span>(<span class="kw">mean</span>(muestra, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>) <span class="op">+</span></span>
+<span id="cb598-5"><a href="estimación-por-intervalo.html#cb598-5"></a><span class="st">    </span><span class="kw">qt</span>(.<span class="dv">025</span>, <span class="dv">29</span>) <span class="op">*</span><span class="st"> </span><span class="kw">sd</span>(muestra, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>) <span class="op">/</span><span class="st"> </span><span class="kw">sqrt</span>(<span class="kw">length</span>(muestra)), <span class="dv">1</span>)</span>
+<span id="cb598-6"><a href="estimación-por-intervalo.html#cb598-6"></a>  resultado[i, <span class="dv">2</span>] &lt;-<span class="st"> </span><span class="kw">round</span>(<span class="kw">mean</span>(muestra, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>) <span class="op">+</span></span>
+<span id="cb598-7"><a href="estimación-por-intervalo.html#cb598-7"></a><span class="st">    </span><span class="kw">qt</span>(.<span class="dv">975</span>, <span class="dv">29</span>) <span class="op">*</span><span class="st"> </span><span class="kw">sd</span>(muestra, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>) <span class="op">/</span><span class="st"> </span><span class="kw">sqrt</span>(<span class="kw">length</span>(muestra)), <span class="dv">1</span>)</span>
+<span id="cb598-8"><a href="estimación-por-intervalo.html#cb598-8"></a>  resultado[i, <span class="dv">3</span>] &lt;-<span class="st"> </span><span class="kw">ifelse</span>(</span>
+<span id="cb598-9"><a href="estimación-por-intervalo.html#cb598-9"></a>    resultado[i, <span class="dv">1</span>] <span class="op">&lt;=</span><span class="st"> </span>mu <span class="op">&amp;</span><span class="st"> </span>resultado[i, <span class="dv">2</span>] <span class="op">&gt;=</span><span class="st"> </span>mu, <span class="st">&quot;si&quot;</span>, <span class="st">&quot;no&quot;</span></span>
+<span id="cb598-10"><a href="estimación-por-intervalo.html#cb598-10"></a>  )</span>
+<span id="cb598-11"><a href="estimación-por-intervalo.html#cb598-11"></a>}</span></code></pre></div>
 <p>Finalmente se pone nombre a las columnas de <strong>resultado</strong>:</p>
-<div class="sourceCode" id="cb609"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb609-1" title="1"><span class="kw">names</span>(resultado) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Límite_inferior&quot;</span>, <span class="st">&quot;Límite_superior&quot;</span>, <span class="st">&quot;contiene_al_parametro&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb599"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb599-1"><a href="estimación-por-intervalo.html#cb599-1"></a><span class="kw">names</span>(resultado) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Límite_inferior&quot;</span>, <span class="st">&quot;Límite_superior&quot;</span>, <span class="st">&quot;contiene_al_parametro&quot;</span>)</span></code></pre></div>
 <p>La matriz puede visualizarse, desde el panel superior derecho o verse sus primeras filas:</p>
 <pre><code>##   Límite_inferior Límite_superior contiene_al_parametro
-## 1         10290.5         16329.5                    si
-## 2         12245.7         17807.6                    si
-## 3         13029.4         19330.6                    si
-## 4         10684.0         18754.6                    si
-## 5         10866.2         17420.5                    si
-## 6         14089.7         22306.3                    si</code></pre>
+## 1         13282.4         20990.9                    si
+## 2          9979.1         17119.6                    si
+## 3         11920.1         17833.3                    si
+## 4          8808.0         17592.0                    si
+## 5         14672.3         23047.7                    si
+## 6         16968.9         25897.7                    no</code></pre>
 <p>Y resumirse en una distridición de frecuencias:</p>
-<div class="sourceCode" id="cb611"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb611-1" title="1">(tabla_cobertura &lt;-<span class="st"> </span><span class="kw">freq</span>(resultado<span class="op">$</span>contiene_al_parametro, <span class="dt">report.nas =</span> <span class="ot">FALSE</span>, <span class="dt">cumul =</span> <span class="ot">FALSE</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb601"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb601-1"><a href="estimación-por-intervalo.html#cb601-1"></a>(tabla_cobertura &lt;-<span class="st"> </span><span class="kw">freq</span>(resultado<span class="op">$</span>contiene_al_parametro, <span class="dt">report.nas =</span> <span class="ot">FALSE</span>, <span class="dt">cumul =</span> <span class="ot">FALSE</span>))</span></code></pre></div>
 <pre><code>## Frequencies  
 ## 
 ##               Freq        %
@@ -1431,7 +1434,7 @@ Ahora la estimación al 95% de la proporción poblacional de personas inactivas,
 <p>Laplace, Pierre Simon Compte de. 1812. <em>Théorie analytique des probabilités</em>.</p>
 </div>
 <div id="ref-newcombe1998">
-<p>Newcombe, Robert G. 1998. “Two-Sided Confidence Intervals for the Single Proportion: Comparison of Seven Methods.” <em>Statistics in Medicine</em> 17 (8): 857–72. <a href="https://doi.org/10.1002/(SICI)1097-0258(19980430)17:8&lt;857::AID-SIM777&gt;3.0.CO;2-E">https://doi.org/10.1002/(SICI)1097-0258(19980430)17:8&lt;857::AID-SIM777&gt;3.0.CO;2-E</a>.</p>
+<p>Newcombe, Robert G. 1998. “Two-Sided Confidence Intervals for the Single Proportion: Comparison of Seven Methods.” <em>Statistics in Medicine</em> 17 (8): 857–72. <a href="https://doi.org/10.1002/(SICI)1097-0258(19980430)17:8%3C857::AID-SIM777%3E3.0.CO;2-E">https://doi.org/10.1002/(SICI)1097-0258(19980430)17:8&lt;857::AID-SIM777&gt;3.0.CO;2-E</a>.</p>
 </div>
 <div id="ref-newcombemerino2006">
 <p>Newcombe, Robert, and Cesar Merino Soto. 2006. “Intervalos de confianza para las estimaciones de proporciones y las diferencias entre ellas.” <em>INTERDISCIPLINARIA</em> 23 (2): 141–54.</p>
@@ -1446,9 +1449,9 @@ Ahora la estimación al 95% de la proporción poblacional de personas inactivas,
 <div class="footnotes">
 <hr />
 <ol start="65">
-<li id="fn65"><p>Esto es válido en la medida que se trate de muestras grandes (<span class="math inline">\(n &gt; 30\)</span>), en caso contrario, la distribución que debemos usar es la <em>t</em> de Student. Cuando fijemos la confianza, ya no serán <em>z</em> los valores que multiplicarán a <span class="math inline">\(\frac{\sigma}{\sqrt{n}}\)</span> sino puntajes <em>t</em>, cuyos grados de libertad se calculan como <span class="math inline">\(n-1\)</span>. Pero, para poder usar la distribución <em>t</em>, los valores de la muestra deben provenir de una distribución normal en la población. Si esto no se cumple, la estimación puede realizarse buscando los límites a partir de una reconstrucción de la distribución empírica, por un método de remuestreo llamado “bootstrap”.<a href="estimación-por-intervalo.html#fnref65" class="footnote-back">↩</a></p></li>
-<li id="fn67"><p>Como antes hicimos reemplazando a <span class="math inline">\(\sigma\)</span> por <span class="math inline">\(s\)</span>.<a href="estimación-por-intervalo.html#fnref67" class="footnote-back">↩</a></p></li>
-<li id="fn68"><p>Pero si <span class="math inline">\(\widehat{p}\)</span> es muy pequeño, el límite inferior es negativo y si <span class="math inline">\(\widehat{p}\)</span> es muy cercano a uno, el límite superior puede superar a 1, decimos que en estos casos el intervalo colapsa.<a href="estimación-por-intervalo.html#fnref68" class="footnote-back">↩</a></p></li>
+<li id="fn65"><p>Esto es válido en la medida que se trate de muestras grandes (<span class="math inline">\(n &gt; 30\)</span>), en caso contrario, la distribución que debemos usar es la <em>t</em> de Student. Cuando fijemos la confianza, ya no serán <em>z</em> los valores que multiplicarán a <span class="math inline">\(\frac{\sigma}{\sqrt{n}}\)</span> sino puntajes <em>t</em>, cuyos grados de libertad se calculan como <span class="math inline">\(n-1\)</span>. Pero, para poder usar la distribución <em>t</em>, los valores de la muestra deben provenir de una distribución normal en la población. Si esto no se cumple, la estimación puede realizarse buscando los límites a partir de una reconstrucción de la distribución empírica, por un método de remuestreo llamado “bootstrap”.<a href="estimación-por-intervalo.html#fnref65" class="footnote-back">↩︎</a></p></li>
+<li id="fn67"><p>Como antes hicimos reemplazando a <span class="math inline">\(\sigma\)</span> por <span class="math inline">\(s\)</span>.<a href="estimación-por-intervalo.html#fnref67" class="footnote-back">↩︎</a></p></li>
+<li id="fn68"><p>Pero si <span class="math inline">\(\widehat{p}\)</span> es muy pequeño, el límite inferior es negativo y si <span class="math inline">\(\widehat{p}\)</span> es muy cercano a uno, el límite superior puede superar a 1, decimos que en estos casos el intervalo colapsa.<a href="estimación-por-intervalo.html#fnref68" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>
@@ -1457,7 +1460,7 @@ Ahora la estimación al 95% de la proporción poblacional de personas inactivas,
         </div>
       </div>
 <a href="distribuciones-en-el-muestreo.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="prueba-de-hipÃ³tesis-la-lÃ³gica.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="prueba-de-hipótesis-la-lógica.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

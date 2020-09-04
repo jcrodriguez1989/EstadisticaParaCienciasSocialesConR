@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Capítulo 5 Relación entre variables: el análisis | Un Recorrido por los Métodos Cuantitativos en Ciencias Sociales a bordo de R</title>
   <meta name="description" content="Capítulo 5 Relación entre variables: el análisis | Un Recorrido por los Métodos Cuantitativos en Ciencias Sociales a bordo de R" />
-  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Capítulo 5 Relación entre variables: el análisis | Un Recorrido por los Métodos Cuantitativos en Ciencias Sociales a bordo de R" />
   <meta property="og:type" content="book" />
@@ -49,13 +49,14 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -64,14 +65,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -80,9 +83,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -186,7 +189,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.2.3" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#formas-de-recategorizar"><i class="fa fa-check"></i><b>2.2.3</b> Formas de recategorizar</a></li>
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#la-presentación-gráfica-de-los-resultados"><i class="fa fa-check"></i><b>2.3</b> La presentación gráfica de los resultados</a></li>
-<li class="chapter" data-level="2.4" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#hacerlo-en-r-1"><i class="fa fa-check"></i><b>2.4</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="2.4" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>2.4</b> Hacerlo en R</a><ul>
 <li class="chapter" data-level="2.4.1" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#tablas-univariadas"><i class="fa fa-check"></i><b>2.4.1</b> Tablas univariadas</a></li>
 <li class="chapter" data-level="2.4.2" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#recategorización-1"><i class="fa fa-check"></i><b>2.4.2</b> Recategorización</a></li>
 <li class="chapter" data-level="2.4.3" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#representaciones-gráficas"><i class="fa fa-check"></i><b>2.4.3</b> Representaciones gráficas</a></li>
@@ -221,7 +224,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.5.1" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#medidas-de-posición-1"><i class="fa fa-check"></i><b>3.5.1</b> Medidas de posición</a></li>
 <li class="chapter" data-level="3.5.2" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#medidas-de-dispersión-1"><i class="fa fa-check"></i><b>3.5.2</b> Medidas de dispersión</a></li>
 </ul></li>
-<li class="chapter" data-level="3.6" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#hacerlo-en-r-2"><i class="fa fa-check"></i><b>3.6</b> Hacerlo en R</a></li>
+<li class="chapter" data-level="3.6" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>3.6</b> Hacerlo en R</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html"><i class="fa fa-check"></i><b>4</b> Relación entre variables: los fundamentos</a><ul>
 <li class="chapter" data-level="4.1" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#tablas-de-contingencia"><i class="fa fa-check"></i><b>4.1</b> Tablas de contingencia</a></li>
@@ -231,7 +234,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.5" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#concepto-de-riesgo-relativo"><i class="fa fa-check"></i><b>4.5</b> Concepto de riesgo relativo</a></li>
 <li class="chapter" data-level="4.6" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#la-intensidad"><i class="fa fa-check"></i><b>4.6</b> La intensidad</a></li>
 <li class="chapter" data-level="4.7" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#el-concepto-de-independencia-estadística"><i class="fa fa-check"></i><b>4.7</b> El concepto de independencia estadística</a></li>
-<li class="chapter" data-level="4.8" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#hacerlo-en-r-3"><i class="fa fa-check"></i><b>4.8</b> Hacerlo en R</a></li>
+<li class="chapter" data-level="4.8" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>4.8</b> Hacerlo en R</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html"><i class="fa fa-check"></i><b>5</b> Relación entre variables: el análisis</a><ul>
 <li class="chapter" data-level="5.1" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#relaciones-entre-variables-vs.-comparación-de-grupos"><i class="fa fa-check"></i><b>5.1</b> Relaciones entre variables vs. comparación de grupos</a></li>
@@ -253,7 +256,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.9.3" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#obtención-de-la-recta-de-regresión"><i class="fa fa-check"></i><b>5.9.3</b> Obtención de la recta de regresión</a></li>
 </ul></li>
 <li class="chapter" data-level="5.10" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#la-visualización-de-los-datos"><i class="fa fa-check"></i><b>5.10</b> La visualización de los datos</a></li>
-<li class="chapter" data-level="5.11" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#hacerlo-en-r-4"><i class="fa fa-check"></i><b>5.11</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="5.11" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>5.11</b> Hacerlo en R</a><ul>
 <li class="chapter" data-level="5.11.1" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#distancia-chi2"><i class="fa fa-check"></i><b>5.11.1</b> Distancia <span class="math inline">\(\chi^{2}\)</span></a></li>
 <li class="chapter" data-level="5.11.2" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#coeficientes"><i class="fa fa-check"></i><b>5.11.2</b> Coeficientes</a></li>
 <li class="chapter" data-level="5.11.3" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#modelo-lineal"><i class="fa fa-check"></i><b>5.11.3</b> Modelo lineal</a></li>
@@ -282,7 +285,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.3.4" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-accidental-o-según-disponibilidad"><i class="fa fa-check"></i><b>6.3.4</b> Muestreo accidental o según disponibilidad</a></li>
 <li class="chapter" data-level="6.3.5" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-bola-de-nieve"><i class="fa fa-check"></i><b>6.3.5</b> Muestreo bola de nieve</a></li>
 </ul></li>
-<li class="chapter" data-level="6.4" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#hacerlo-en-r-5"><i class="fa fa-check"></i><b>6.4</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="6.4" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>6.4</b> Hacerlo en R</a><ul>
 <li class="chapter" data-level="6.4.1" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#aleatorio-simple"><i class="fa fa-check"></i><b>6.4.1</b> Aleatorio simple</a></li>
 <li class="chapter" data-level="6.4.2" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#estratificado"><i class="fa fa-check"></i><b>6.4.2</b> Estratificado</a></li>
 </ul></li>
@@ -313,7 +316,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.6" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#la-distribución-t-de-student"><i class="fa fa-check"></i><b>8.6</b> La distribución t de Student</a><ul>
 <li class="chapter" data-level="8.6.1" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#la-distribución-f"><i class="fa fa-check"></i><b>8.6.1</b> La distribución F</a></li>
 </ul></li>
-<li class="chapter" data-level="8.7" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#hacerlo-en-r-6"><i class="fa fa-check"></i><b>8.7</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="8.7" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>8.7</b> Hacerlo en R</a><ul>
 <li class="chapter" data-level="8.7.1" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#probabilidades-exactas"><i class="fa fa-check"></i><b>8.7.1</b> Probabilidades exactas</a></li>
 <li class="chapter" data-level="8.7.2" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#probabilidades-acumuladas"><i class="fa fa-check"></i><b>8.7.2</b> Probabilidades acumuladas</a></li>
 <li class="chapter" data-level="8.7.3" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#cuantiles-1"><i class="fa fa-check"></i><b>8.7.3</b> Cuantiles</a></li>
@@ -339,7 +342,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.3.7" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#distribución-del-cociente-de-varianzas"><i class="fa fa-check"></i><b>9.3.7</b> Distribución del cociente de varianzas</a></li>
 </ul></li>
 <li class="chapter" data-level="9.4" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#resumen-de-la-relación-entre-estimadores-y-parámetros"><i class="fa fa-check"></i><b>9.4</b> Resumen de la relación entre estimadores y parámetros</a></li>
-<li class="chapter" data-level="9.5" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#hacerlo-en-r-7"><i class="fa fa-check"></i><b>9.5</b> Hacerlo en R</a></li>
+<li class="chapter" data-level="9.5" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>9.5</b> Hacerlo en R</a></li>
 </ul></li>
 <li class="part"><span><b>III Estadística inferencial</b></span></li>
 <li class="chapter" data-level="10" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html"><i class="fa fa-check"></i><b>10</b> Estimación por intervalo</a><ul>
@@ -356,7 +359,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.5.2" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#el-error-de-estimación-en-la-proporción"><i class="fa fa-check"></i><b>10.5.2</b> El error de estimación en la proporción</a></li>
 </ul></li>
 <li class="chapter" data-level="10.6" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#probabilidad-de-cobertura"><i class="fa fa-check"></i><b>10.6</b> Probabilidad de cobertura</a></li>
-<li class="chapter" data-level="10.7" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#hacerlo-en-r-8"><i class="fa fa-check"></i><b>10.7</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="10.7" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>10.7</b> Hacerlo en R</a><ul>
 <li class="chapter" data-level="10.7.1" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#intervalo-para-la-media"><i class="fa fa-check"></i><b>10.7.1</b> Intervalo para la media</a></li>
 <li class="chapter" data-level="10.7.2" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#intervalo-para-la-proporción"><i class="fa fa-check"></i><b>10.7.2</b> Intervalo para la proporción</a></li>
 <li class="chapter" data-level="10.7.3" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#cobertura"><i class="fa fa-check"></i><b>10.7.3</b> Cobertura</a></li>
@@ -377,7 +380,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.5.2" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#significación-estadística-y-valor-p"><i class="fa fa-check"></i><b>11.5.2</b> Significación estadística y valor <span class="math inline">\(p\)</span></a></li>
 </ul></li>
 <li class="chapter" data-level="11.6" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#muestras-pequeñas-y-pruebas-t"><i class="fa fa-check"></i><b>11.6</b> Muestras pequeñas y pruebas <span class="math inline">\(t\)</span></a></li>
-<li class="chapter" data-level="11.7" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#hacerlo-en-r-9"><i class="fa fa-check"></i><b>11.7</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="11.7" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>11.7</b> Hacerlo en R</a><ul>
 <li class="chapter" data-level="11.7.1" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#prueba-sobre-la-media-1"><i class="fa fa-check"></i><b>11.7.1</b> Prueba sobre la media</a></li>
 <li class="chapter" data-level="11.7.2" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#prueba-sobre-la-proporción-1"><i class="fa fa-check"></i><b>11.7.2</b> Prueba sobre la proporción</a></li>
 </ul></li>
@@ -389,7 +392,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="12.1.2" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#muestras-apareadas"><i class="fa fa-check"></i><b>12.1.2</b> Muestras apareadas</a></li>
 <li class="chapter" data-level="12.1.3" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#coeficiente-r-de-pearson"><i class="fa fa-check"></i><b>12.1.3</b> Coeficiente r de Pearson</a></li>
 </ul></li>
-<li class="chapter" data-level="12.2" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#hacerlo-en-r-10"><i class="fa fa-check"></i><b>12.2</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="12.2" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>12.2</b> Hacerlo en R</a><ul>
 <li class="chapter" data-level="12.2.1" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#ejemplo-1."><i class="fa fa-check"></i><b>12.2.1</b> Ejemplo 1.</a></li>
 <li class="chapter" data-level="12.2.2" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#ejemplo-2."><i class="fa fa-check"></i><b>12.2.2</b> Ejemplo 2.</a></li>
 <li class="chapter" data-level="12.2.3" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#aplicación-a-los-datos-de-población-adulta-mayor"><i class="fa fa-check"></i><b>12.2.3</b> Aplicación a los datos de Población Adulta Mayor</a></li>
@@ -401,12 +404,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13.0.1" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#las-pruebas-ji-cuadrado-o-chi-cuadrado"><i class="fa fa-check"></i><b>13.0.1</b> Las pruebas ji cuadrado (o chi cuadrado)</a></li>
 <li class="chapter" data-level="13.0.2" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#coeficiente-r_s-de-spearman"><i class="fa fa-check"></i><b>13.0.2</b> Coeficiente <span class="math inline">\(r_s\)</span> de Spearman</a></li>
 <li class="chapter" data-level="13.0.3" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#alternativas-no-paramétricas-a-las-pruebas-t"><i class="fa fa-check"></i><b>13.0.3</b> Alternativas no paramétricas a las pruebas t</a></li>
-<li class="chapter" data-level="13.1" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#hacerlo-en-r-11"><i class="fa fa-check"></i><b>13.1</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="13.1" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>13.1</b> Hacerlo en R</a><ul>
 <li class="chapter" data-level="13.1.1" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#ejemplo-1"><i class="fa fa-check"></i><b>13.1.1</b> Ejemplo 1</a></li>
 <li class="chapter" data-level="13.1.2" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#ejemplo-2"><i class="fa fa-check"></i><b>13.1.2</b> Ejemplo 2</a></li>
 <li class="chapter" data-level="13.1.3" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#prueba-de-la-mediana-1"><i class="fa fa-check"></i><b>13.1.3</b> Prueba de la mediana</a></li>
 <li class="chapter" data-level="13.1.4" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#prueba-de-wilcoxon"><i class="fa fa-check"></i><b>13.1.4</b> Prueba de Wilcoxon</a></li>
-<li class="chapter" data-level="13.1.5" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#muestras-apareadas-1"><i class="fa fa-check"></i><b>13.1.5</b> Muestras apareadas</a></li>
+<li class="chapter" data-level="13.1.5" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#muestras-apareadas"><i class="fa fa-check"></i><b>13.1.5</b> Muestras apareadas</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="14" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html"><i class="fa fa-check"></i><b>14</b> Tamaño del efecto</a><ul>
@@ -419,7 +422,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="14.2.5" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#pruebas-ji-cuadrado"><i class="fa fa-check"></i><b>14.2.5</b> Pruebas ji cuadrado</a></li>
 </ul></li>
 <li class="chapter" data-level="14.3" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#análisis-de-la-potencia"><i class="fa fa-check"></i><b>14.3</b> Análisis de la potencia</a></li>
-<li class="chapter" data-level="14.4" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#hacerlo-en-r-12"><i class="fa fa-check"></i><b>14.4</b> Hacerlo en R</a></li>
+<li class="chapter" data-level="14.4" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>14.4</b> Hacerlo en R</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Generado con bookdown</a></li>
@@ -458,7 +461,7 @@ métricas).</p>
 <h2><span class="header-section-number">5.1</span> Relaciones entre variables vs. comparación de grupos</h2>
 <p>Según el contexto en que se aplique y también según el modo en que se formulan las preguntas, los resultados de los procedimientos estadísticos que veremos a continuación pueden interpretarse de diferente manera. Tomemos como ejemplo el caso que interese observar la relación del tipo de violencia<a href="#fn26" class="footnote-ref" id="fnref26"><sup>26</sup></a> con el lugar donde sucede, que se analizará más adelante. Aunque son estadísticamente equivalentes, no es lo mismo preguntar si “el lugar incide sobre el tipo de violencia”, o si “el tipo de violencia difiere según el lugar”. Aquí es más pertinente el planteo del problema como una comparación de grupos (que quedan definidos por los diferentes lugares) antes que como una relación entre variables. Lo mismo pasa cuando se comparan los resultados de un examen entre quienes cursan por la tarde o la mañana. Cuando hay control de variables, como en el diseño experimental o en la evaluación de impacto, el paralelismo entre las dos lecturas es más cercano. Así, preguntar si un grupo de deportistas que recibió un suplemento en su dieta, tiene mejor rendimiento que uno que no lo recibió (planteo en términos de comparación de grupos), equivale a preguntar si el suplemento dietario incide sobre el rendimiento (planteo en términos de relación entre variables). Las operaciones estadísticas que responden a las dos preguntas son las mismas, pero según el caso, una manera de formular el problema puede ser más adecuada que otra, así como la lectura del resultado.<br />
 Por ejemplo, cuando se busca evaluar el impacto de una política pública dirigida a reducir enfermedades parasitarias en menores de edad, una estrategia consiste en comparar la prevalencia de esas enfermedades entre población que fue destinataria de esa política, y población que no lo fue. Esta prevalencia es la “variable de salida” o “de respuesta” y es aquello sobre lo cual la política pretende impactar. La pregunta por la diferencia entre los dos grupos equivale a indagar sobre el efecto de la intervención.<br />
-La investigación social apela continuamente a las comparaciones: el pasado y el presente, mujeres y varones, sociedades industriales y agrarias <span class="citation">(Pescosolido and Kelley <a href="#ref-Pescosolido1983">1983</a>)</span>, grupos minoritarios y población general, por eso es necesario contar con herramientas que permitan analizar la manera en que suceden estas diferencias y las relaciones entre variables que se asocian a ellas.</p>
+La investigación social apela continuamente a las comparaciones: el pasado y el presente, mujeres y varones, sociedades industriales y agrarias <span class="citation">(Pescosolido and Kelley <a href="#ref-Pescosolido1983" role="doc-biblioref">1983</a>)</span>, grupos minoritarios y población general, por eso es necesario contar con herramientas que permitan analizar la manera en que suceden estas diferencias y las relaciones entre variables que se asocian a ellas.</p>
 </div>
 <div id="variables-nominales" class="section level2">
 <h2><span class="header-section-number">5.2</span> Variables nominales</h2>
@@ -926,6 +929,7 @@ el nivel 4 (secundario incompleto), al que asignamos el rango siguiente:
 Resumiendo entonces, la transformación de los valores de las variables
 en rangos resulta así:</p>
 <table>
+<caption><span id="tab:unnamed-chunk-269">Tabla 5.6: </span>Transformación de las categorías de la variable a rangos</caption>
 <colgroup>
 <col width="26%" />
 <col width="23%" />
@@ -996,7 +1000,7 @@ Una vez construidos los rangos, se observa, para cada caso la diferencia
 entre el rango de una variable y de la otra, esas diferencias se
 llamarán <span class="math inline">\(d\)</span>.</p>
 <table>
-<caption><span id="tab:unnamed-chunk-270">Tabla 5.6: </span>Cálculo de las diferencias entre los rangos de dos variables ordinales</caption>
+<caption><span id="tab:unnamed-chunk-270">Tabla 5.7: </span>Cálculo de las diferencias entre los rangos de dos variables ordinales</caption>
 <thead>
 <tr class="header">
 <th align="center">Rango del orden de mérito</th>
@@ -1273,7 +1277,7 @@ Este coeficiente es adecuado, no solo cuando las variables son ordinales, sino c
 </table>
 <p>Si se intenta construir una tabla de doble entrada para las dos variables originales (las dos primeras columnas de la matriz de datos anterior), el problema es aún mayor que con las ordinales, dado que habría un gran número de filas y de columnas, y resultaría casi imposible de leer. Además, muchas celdas estarían vacías y habría muy pocos casos en cada una de las restantes. Los trece datos de la matriz anterior quedarán, en una tabla de doble entrada, así:</p>
 <table>
-<caption><span id="tab:distrConj">Tabla 5.7: </span>Distribución conjunta de los años de escolarización y la edad a la que se realizó la primera unión conyugal</caption>
+<caption><span id="tab:distrConj">Tabla 5.8: </span>Distribución conjunta de los años de escolarización y la edad a la que se realizó la primera unión conyugal</caption>
 <thead>
 <tr class="header">
 <th></th>
@@ -1435,7 +1439,7 @@ Este coeficiente es adecuado, no solo cuando las variables son ordinales, sino c
 </table>
 <p>Tal como sucedió con las variables ordinales, esta no es una tabla adecuada para representar estos datos y sería más legible con las categorías agrupadas (usando las columnas tres y cuatro de la matriz):</p>
 <table>
-<caption><span id="tab:unnamed-chunk-274">Tabla 5.8: </span>Distribución conjunta de los años de escolarización y la edad a la que se realizó la primera unión conyugal (categorías agrupadas)</caption>
+<caption><span id="tab:unnamed-chunk-274">Tabla 5.9: </span>Distribución conjunta de los años de escolarización y la edad a la que se realizó la primera unión conyugal (categorías agrupadas)</caption>
 <thead>
 <tr class="header">
 <th></th>
@@ -1478,7 +1482,7 @@ Figura 5.1: Diagrama de dispersión de los años de escolarización y la edad a 
 <p>Este gráfico usa los ejes cartesianos para indicar los valores de las
 dos variables que estamos analizando y representa con un punto cada
 concordancia de dos categorías que puede corresponder a un caso o a
-varios. Cada punto es un par ordenado: el primer número son los años de escolarización y el segundo la edad a la que se unió por primera vez. Los ceros de la tabla <a href="relación-entre-variables-el-análisis.html#tab:distrConj">5.7</a> ya no aparecen en este diagrama. El primer punto de la izquierda corresponde a alguien que alcanzó 10 años de escolarización y se unió a los 18 años de edad.<br />
+varios. Cada punto es un par ordenado: el primer número son los años de escolarización y el segundo la edad a la que se unió por primera vez. Los ceros de la tabla <a href="relación-entre-variables-el-análisis.html#tab:distrConj">5.8</a> ya no aparecen en este diagrama. El primer punto de la izquierda corresponde a alguien que alcanzó 10 años de escolarización y se unió a los 18 años de edad.<br />
 Lo que eran filas y columnas en todas las tablas mostradas hasta aquí, son ahora ejes coordenados, porque ya no se trata con categorías
 separadas de cada variable sino con valores cuantitativos de las
 variables que ahora son intervalares o proporcionales. Estos ejes se
@@ -1509,7 +1513,7 @@ Figura 5.3: Diagrama de dispersión de los años de escolarización y la edad a 
 <p>En el que la tendencia <em>lineal</em> es más clara, por lo que resulta más
 definido el efecto de la escolarización sobre la edad a la que se
 produce la primera unión. Aquí, la nube de puntos está más aplanada que en el ejemplo anterior; en efecto, en el gráfico <a href="relación-entre-variables-el-análisis.html#fig:dispDebil">5.2</a> la nube de puntos tiene forma más circular que en el <a href="relación-entre-variables-el-análisis.html#fig:dispInt">5.3</a>, donde es más elíptica.<br />
-El ejemplo que hemos mostrado hasta aquí corresponde a una relación directa: más años de escolarización parecen asociarse con edades más tardías para la primera unión. De manera equivalente pueden representarse relaciones inversas. Consideremos el caso de la ansiedad frente a los exámenes y la calificación que se obtiene. En un estudio realizado por el Laboratorio de Evaluación Psicológica y Educativa (LEPE, Facultad de Psicología UNC, <span class="citation">Furlan, Ferrero, and Gallart (<a href="#ref-furlan2014">2014</a>)</span>) se observó que a mayor puntaje en una prueba de ansiedad ante los exámenes, menor rendimiento académico, por lo que la relación entre las variables es inversa.<br />
+El ejemplo que hemos mostrado hasta aquí corresponde a una relación directa: más años de escolarización parecen asociarse con edades más tardías para la primera unión. De manera equivalente pueden representarse relaciones inversas. Consideremos el caso de la ansiedad frente a los exámenes y la calificación que se obtiene. En un estudio realizado por el Laboratorio de Evaluación Psicológica y Educativa (LEPE, Facultad de Psicología UNC, <span class="citation">Furlan, Ferrero, and Gallart (<a href="#ref-furlan2014" role="doc-biblioref">2014</a>)</span>) se observó que a mayor puntaje en una prueba de ansiedad ante los exámenes, menor rendimiento académico, por lo que la relación entre las variables es inversa.<br />
 Los esquemas de la figura <a href="relación-entre-variables-el-análisis.html#fig:comparanubes">5.4</a> muestran el achatamiento de la nube de puntos según la relación sea más fuerte o más débil y según sea directa o inversa.</p>
 <div class="figure"><span id="fig:comparanubes"></span>
 <img src="EstadisticaParaCienciasSocialesConR_files/figure-html/comparanubes-1.svg" alt="Comparación de la forma de las nubes de puntos según la intensidad de la relación" width="672" />
@@ -1548,7 +1552,7 @@ lograr relaciones lineales.</p>
 (ambas medidas a nivel intervalar o proporcional) calcularemos un
 coeficiente comparable a los que hemos visto hasta aquí, que tendrá una
 interpretación similar a la del coeficiente de correlación por rangos de
-Spearman. Este coeficiente se llama <strong>coeficiente de correlación r de Pearson</strong>, fue presentado por <span class="citation">Pearson and Galton (<a href="#ref-pearson1895">1895</a>)</span>, pero antes ya había sido mencionado por <span class="citation">Galton (<a href="#ref-galton1877">1877</a>)</span>, es uno de los de mayor utilización cuando las variables que
+Spearman. Este coeficiente se llama <strong>coeficiente de correlación r de Pearson</strong>, fue presentado por <span class="citation">Pearson and Galton (<a href="#ref-pearson1895" role="doc-biblioref">1895</a>)</span>, pero antes ya había sido mencionado por <span class="citation">Galton (<a href="#ref-galton1877" role="doc-biblioref">1877</a>)</span>, es uno de los de mayor utilización cuando las variables que
 se analizan alcanzan el nivel de medición que autoriza su cálculo. Este
 coeficiente va a medir qué tan bien se puede aproximar el conjunto de
 puntos con una función lineal y va a depender de lo que antes llamamos
@@ -1777,7 +1781,7 @@ cuáles de ellos se asocian más intensamente con ese fenómeno.</p>
 <p>Se han establecido algunos valores de referencia, según los cuales la
 correlación se considera nula si <span class="math inline">\(r &lt; 0.10\)</span>, pequeña si
 <span class="math inline">\(0.10 \leq r &lt; 0.30\)</span>, media si <span class="math inline">\(0.30 \leq r \leq 0.50\)</span> y grande si
-<span class="math inline">\(r &gt; 0.50\)</span>. Coincidimos con <span class="citation">Cohen (<a href="#ref-Cohen1988">1988</a>)</span>, en que estos criterios son un
+<span class="math inline">\(r &gt; 0.50\)</span>. Coincidimos con <span class="citation">Cohen (<a href="#ref-Cohen1988" role="doc-biblioref">1988</a>)</span>, en que estos criterios son un
 tanto arbitrarios y siempre debe considerarse al coeficiente de
 correlación en contexto.</p>
 <p>Para poder interpretar el coeficiente de Pearson, se requiere que las
@@ -2522,7 +2526,7 @@ puntos por debajo de la recta. Veamos en el gráfico siguiente la
 ubicación de uno de estos puntos, por ejemplo el que corresponde al par
 observado <span class="math inline">\((43; 1)\)</span>, al que la recta estima con el valor <span class="math inline">\(\widehat{y} = 4.22\)</span>:</p>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-286"></span>
-<img src="imagenes/grafico13.png" alt="Ubicación gráfica de la diferencia entre el valor de $y$ observado y su estimación $\widehat{y}$" width="175" />
+<img src="imagenes/grafico13.png" alt="Ubicación gráfica de la diferencia entre el valor de $y$ observado y su estimación $\widehat{y}$"  />
 <p class="caption">
 Figura 5.11: Ubicación gráfica de la diferencia entre el valor de <span class="math inline">\(y\)</span> observado y su estimación <span class="math inline">\(\widehat{y}\)</span>
 </p>
@@ -2557,7 +2561,7 @@ valores de <em>y</em> son los que están en los puntos realmente observados,
 mientras que los de <span class="math inline">\(\widehat{y}\)</span> están sobre la recta de regresión,
 estos desvíos pueden verse gráficamente así:</p>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-287"></span>
-<img src="imagenes/grafico14.png" alt="Ubicación gráfica de los alejamientos (desvíos) de $y$ observada y de $\widehat{y}$ estimada, hasta la media de $y$ ($\overline{y}$)" width="172" />
+<img src="imagenes/grafico14.png" alt="Ubicación gráfica de los alejamientos (desvíos) de $y$ observada y de $\widehat{y}$ estimada, hasta la media de $y$ ($\overline{y}$)"  />
 <p class="caption">
 Figura 5.12: Ubicación gráfica de los alejamientos (desvíos) de <span class="math inline">\(y\)</span> observada y de <span class="math inline">\(\widehat{y}\)</span> estimada, hasta la media de <span class="math inline">\(y\)</span> (<span class="math inline">\(\overline{y}\)</span>)
 </p>
@@ -2641,35 +2645,35 @@ señal para mirar más de cerca los datos.</p>
 <div id="la-visualización-de-los-datos" class="section level2">
 <h2><span class="header-section-number">5.10</span> La visualización de los datos</h2>
 <p>La medidas descriptivas que se mencionaron en los capítulos anteriores ofrecen un resumen de las variables individualmente; en estos dos últimos capítulos hemos recorrido un amplio conjunto de formas en que pueden suceder las relaciones entre dos variables y mucho de lo que se ha dicho, puede extrapolarse a modelos más complejos, con más de dos variables bajo análisis simultáneo y con relaciones que no son lineales. La decisión sobre el modelo más adecuado es en parte teórica, pero está influida por la observación de los datos. En estudios exploratorios, en los que no se cuenta con hipótesis sobre la forma en que dos o más variables se relacionan, es muy necesario observar el conjunto de datos antes de proponer modelos.<br />
-Para mostrar la utilidad de las representaciones gráficas, existe un conjunto de datos producido por Francis Anscombe en la década de los setenta del siglo pasado <span class="citation">(Anscombe <a href="#ref-Anscombe1973a">1973</a>, @Tufte1989)</span>. Su autor muestra por este medio, tanto la importancia de la visualización de los datos, como el impacto que pueden tener los casos atípicos sobre las medidas descriptivas. Más adelante se analiza en detalle ese conjunto de datos, lo importante es que muestra que el conocimiento de medidas resumen como los descriptivos univariados, los coeficientes de correlación y aun los coeficientes de un modelo que ajuste la relación, pueden dar una idea equivocada de la manera en que los datos se organizan, y que la visualización permite apreciarla mejor.</p>
-<p>En la misma dirección, Steph <span class="citation">Locke (<a href="#ref-Locke2018">2018</a>)</span> generó una matriz de datos, llamada “Datasaurus”, con 13 pares <span class="math inline">\(x-y\)</span>, cada uno de los cuales tiene medidas descriptivas (media y desviación estándar de <span class="math inline">\(x\)</span> y de <span class="math inline">\(y\)</span>), así como coeficientes de correlación entre <span class="math inline">\(x\)</span> e <span class="math inline">\(y\)</span>, muy similares, pero los diagramas de dispersión muestran las grandes diferencias entre los pares de datos. La idea, en línea con la de Anscombe, es la de llamar la atención sobre la importancia de la visualización de los datos para tener una descripción completa y mostrar que las medidas descriptivas pueden engañar.</p>
+Para mostrar la utilidad de las representaciones gráficas, existe un conjunto de datos producido por Francis Anscombe en la década de los setenta del siglo pasado <span class="citation">(Anscombe <a href="#ref-Anscombe1973a" role="doc-biblioref">1973</a>, @Tufte1989)</span>. Su autor muestra por este medio, tanto la importancia de la visualización de los datos, como el impacto que pueden tener los casos atípicos sobre las medidas descriptivas. Más adelante se analiza en detalle ese conjunto de datos, lo importante es que muestra que el conocimiento de medidas resumen como los descriptivos univariados, los coeficientes de correlación y aun los coeficientes de un modelo que ajuste la relación, pueden dar una idea equivocada de la manera en que los datos se organizan, y que la visualización permite apreciarla mejor.</p>
+<p>En la misma dirección, Steph <span class="citation">Locke (<a href="#ref-Locke2018" role="doc-biblioref">2018</a>)</span> generó una matriz de datos, llamada “Datasaurus”, con 13 pares <span class="math inline">\(x-y\)</span>, cada uno de los cuales tiene medidas descriptivas (media y desviación estándar de <span class="math inline">\(x\)</span> y de <span class="math inline">\(y\)</span>), así como coeficientes de correlación entre <span class="math inline">\(x\)</span> e <span class="math inline">\(y\)</span>, muy similares, pero los diagramas de dispersión muestran las grandes diferencias entre los pares de datos. La idea, en línea con la de Anscombe, es la de llamar la atención sobre la importancia de la visualización de los datos para tener una descripción completa y mostrar que las medidas descriptivas pueden engañar.</p>
 <div style="page-break-after: always;"></div>
 </div>
-<div id="hacerlo-en-r-4" class="section level2">
+<div id="hacerlo-en-r" class="section level2">
 <h2><span class="header-section-number">5.11</span> Hacerlo en R</h2>
 <div id="distancia-chi2" class="section level3">
 <h3><span class="header-section-number">5.11.1</span> Distancia <span class="math inline">\(\chi^{2}\)</span></h3>
 <p>En el paquete base de R existe una función que realiza operaciones relacionadas con el puntaje <span class="math inline">\(\chi^{2}\)</span>; el comando es chi.test y se aplica sobre una tabla de contingencia. Estas operaciones contituyen lo que se denomina “prueba <span class="math inline">\(\chi^{2}\)</span>”, sobre la que trabajaremos más adelante. Por ahora, solo se usará una parte de los resultados de esta prueba.</p>
 <p>La aplicación de la prueba a una tabla de contingencia da como resultado un objeto de clase “htest”, de ello, nos van a interesar sus componentes. Para construir la tabla que cruza los tipos de violencia con el tamaño de las ciudades, primero debemos leer la base (datos ficticios), denominamos “violencia” a esa base:</p>
-<div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb332-1" title="1">violencia &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;bases/archivostxt/violencia.txt&quot;</span>,</a>
-<a class="sourceLine" id="cb332-2" title="2">  <span class="dt">sep =</span> <span class="st">&quot;,&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span></a>
-<a class="sourceLine" id="cb332-3" title="3">)</a></code></pre></div>
+<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb322-1"><a href="relación-entre-variables-el-análisis.html#cb322-1"></a>violencia &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;bases/archivostxt/violencia.txt&quot;</span>,</span>
+<span id="cb322-2"><a href="relación-entre-variables-el-análisis.html#cb322-2"></a>  <span class="dt">sep =</span> <span class="st">&quot;,&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span></span>
+<span id="cb322-3"><a href="relación-entre-variables-el-análisis.html#cb322-3"></a>)</span></code></pre></div>
 <p>Los nombres de las variables son:</p>
-<div class="sourceCode" id="cb333"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb333-1" title="1"><span class="kw">names</span>(violencia)</a></code></pre></div>
+<div class="sourceCode" id="cb323"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb323-1"><a href="relación-entre-variables-el-análisis.html#cb323-1"></a><span class="kw">names</span>(violencia)</span></code></pre></div>
 <pre><code>## [1] &quot;tipo&quot;     &quot;ciudades&quot;</code></pre>
 <p>A continuación llamamos “tabla.viol” al cruce de las dos variables:</p>
-<div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb335-1" title="1">tabla.viol &lt;-<span class="st"> </span><span class="kw">table</span>(violencia<span class="op">$</span>tipo, violencia<span class="op">$</span>ciudades)</a></code></pre></div>
+<div class="sourceCode" id="cb325"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb325-1"><a href="relación-entre-variables-el-análisis.html#cb325-1"></a>tabla.viol &lt;-<span class="st"> </span><span class="kw">table</span>(violencia<span class="op">$</span>tipo, violencia<span class="op">$</span>ciudades)</span></code></pre></div>
 <p>Y vemos su aspecto:</p>
-<div class="sourceCode" id="cb336"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb336-1" title="1">tabla.viol</a></code></pre></div>
+<div class="sourceCode" id="cb326"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb326-1"><a href="relación-entre-variables-el-análisis.html#cb326-1"></a>tabla.viol</span></code></pre></div>
 <pre><code>##                
 ##                 áreas rurales ciudades grandes ciudades pequeñas
 ##   autoinfligida            15              100                35
 ##   colectiva                 5               35                10
 ##   interpersonal            90              110               100</code></pre>
 <p>Ahora aplicamos la prueba a esa tabla, y se guarda el resultado de la prueba con el nombre “jicu.viol”.</p>
-<div class="sourceCode" id="cb338"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb338-1" title="1">jicu.viol &lt;-<span class="st"> </span><span class="kw">chisq.test</span>(tabla.viol)</a></code></pre></div>
+<div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb328-1"><a href="relación-entre-variables-el-análisis.html#cb328-1"></a>jicu.viol &lt;-<span class="st"> </span><span class="kw">chisq.test</span>(tabla.viol)</span></code></pre></div>
 <p>Preguntamos cuáles son los atributos de este objeto:</p>
-<div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb339-1" title="1"><span class="kw">attributes</span>(jicu.viol)</a></code></pre></div>
+<div class="sourceCode" id="cb329"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb329-1"><a href="relación-entre-variables-el-análisis.html#cb329-1"></a><span class="kw">attributes</span>(jicu.viol)</span></code></pre></div>
 <pre><code>## $names
 ## [1] &quot;statistic&quot; &quot;parameter&quot; &quot;p.value&quot;   &quot;method&quot;    &quot;data.name&quot; &quot;observed&quot; 
 ## [7] &quot;expected&quot;  &quot;residuals&quot; &quot;stdres&quot;   
@@ -2683,39 +2687,39 @@ Para mostrar la utilidad de las representaciones gráficas, existe un conjunto d
 <li><p><code>expected</code> es la tabla de frecuencias esperadas bajo la hipótesis de independencia</p></li>
 </ul>
 <p>Para llegar a ellos, se usa el mismo procedimiento que para referirse a las variables de una matriz de datos. Así, la distancia <span class="math inline">\(\chi^{2}\)</span> es:</p>
-<div class="sourceCode" id="cb341"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb341-1" title="1">jicu.viol<span class="op">$</span>statistic</a></code></pre></div>
+<div class="sourceCode" id="cb331"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb331-1"><a href="relación-entre-variables-el-análisis.html#cb331-1"></a>jicu.viol<span class="op">$</span>statistic</span></code></pre></div>
 <pre><code>## X-squared 
 ##  50.18553</code></pre>
 <p>La tabla de frecuencias observadas (que son los datos originales):</p>
-<div class="sourceCode" id="cb343"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb343-1" title="1">jicu.viol<span class="op">$</span>observed</a></code></pre></div>
+<div class="sourceCode" id="cb333"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb333-1"><a href="relación-entre-variables-el-análisis.html#cb333-1"></a>jicu.viol<span class="op">$</span>observed</span></code></pre></div>
 <pre><code>##                
 ##                 áreas rurales ciudades grandes ciudades pequeñas
 ##   autoinfligida            15              100                35
 ##   colectiva                 5               35                10
 ##   interpersonal            90              110               100</code></pre>
 <p>Y la de esperadas:</p>
-<div class="sourceCode" id="cb345"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb345-1" title="1">jicu.viol<span class="op">$</span>expected</a></code></pre></div>
+<div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb335-1"><a href="relación-entre-variables-el-análisis.html#cb335-1"></a>jicu.viol<span class="op">$</span>expected</span></code></pre></div>
 <pre><code>##                
 ##                 áreas rurales ciudades grandes ciudades pequeñas
 ##   autoinfligida            33             73.5              43.5
 ##   colectiva                11             24.5              14.5
 ##   interpersonal            66            147.0              87.0</code></pre>
 <p>Los decimales de la última pueden quitarse redondeando:</p>
-<div class="sourceCode" id="cb347"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb347-1" title="1"><span class="kw">round</span>(jicu.viol<span class="op">$</span>expected, <span class="dv">0</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb337"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb337-1"><a href="relación-entre-variables-el-análisis.html#cb337-1"></a><span class="kw">round</span>(jicu.viol<span class="op">$</span>expected, <span class="dv">0</span>)</span></code></pre></div>
 <pre><code>##                
 ##                 áreas rurales ciudades grandes ciudades pequeñas
 ##   autoinfligida            33               74                44
 ##   colectiva                11               24                14
 ##   interpersonal            66              147                87</code></pre>
 <p>El número total de observaciones no es uno de los elementos que la prueba da directamente. Hay que pedirlo a partir de la suma de las frecuencias de la tabla de observadas (o de esperadas, que totaliza lo mismo). Definimos como “n” al ese valor, porque lo vamos a necesitar para calcular los coeficientes:</p>
-<div class="sourceCode" id="cb349"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb349-1" title="1">n &lt;-<span class="st"> </span><span class="kw">sum</span>(jicu.viol<span class="op">$</span>observed)</a></code></pre></div>
+<div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb339-1"><a href="relación-entre-variables-el-análisis.html#cb339-1"></a>n &lt;-<span class="st"> </span><span class="kw">sum</span>(jicu.viol<span class="op">$</span>observed)</span></code></pre></div>
 <p>Y es:</p>
 <pre><code>## [1] 500</code></pre>
 <p>Del mismo modo, rotulamos como <span class="math inline">\(f\)</span> al número de filas y <span class="math inline">\(c\)</span> al de columnas:</p>
-<div class="sourceCode" id="cb351"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb351-1" title="1">f &lt;-<span class="st"> </span><span class="kw">nrow</span>(jicu.viol<span class="op">$</span>observed)</a>
-<a class="sourceLine" id="cb351-2" title="2">c &lt;-<span class="st"> </span><span class="kw">ncol</span>(jicu.viol<span class="op">$</span>observed)</a></code></pre></div>
+<div class="sourceCode" id="cb341"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb341-1"><a href="relación-entre-variables-el-análisis.html#cb341-1"></a>f &lt;-<span class="st"> </span><span class="kw">nrow</span>(jicu.viol<span class="op">$</span>observed)</span>
+<span id="cb341-2"><a href="relación-entre-variables-el-análisis.html#cb341-2"></a>c &lt;-<span class="st"> </span><span class="kw">ncol</span>(jicu.viol<span class="op">$</span>observed)</span></code></pre></div>
 <p>Una vez que se cuenta con el puntaje <span class="math inline">\(\chi^{2}\)</span>, se pueden calcular los coeficientes. Para tenerlo disponible más fácilmente, le vamos a asignar un nombre:</p>
-<div class="sourceCode" id="cb352"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb352-1" title="1">d.ji.cuad &lt;-<span class="st"> </span>jicu.viol<span class="op">$</span>statistic</a></code></pre></div>
+<div class="sourceCode" id="cb342"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb342-1"><a href="relación-entre-variables-el-análisis.html#cb342-1"></a>d.ji.cuad &lt;-<span class="st"> </span>jicu.viol<span class="op">$</span>statistic</span></code></pre></div>
 <p>Ahora d.ji.cuad es la distancia <span class="math inline">\(\chi^{2}\)</span></p>
 </div>
 <div id="coeficientes" class="section level3">
@@ -2723,7 +2727,7 @@ Para mostrar la utilidad de las representaciones gráficas, existe un conjunto d
 <div id="varphi" class="section level4">
 <h4><span class="header-section-number">5.11.2.1</span> <span class="math inline">\(\varphi\)</span></h4>
 <p>Se calcula la raiz cuadrada de la distancia <span class="math inline">\(\chi^{2}\)</span> dividida en el número de casos: <span class="math display">\[\varphi=\sqrt{\frac{\chi^2}{n}}\]</span></p>
-<div class="sourceCode" id="cb353"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb353-1" title="1"><span class="kw">sqrt</span>(d.ji.cuad <span class="op">/</span><span class="st"> </span>n)</a></code></pre></div>
+<div class="sourceCode" id="cb343"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb343-1"><a href="relación-entre-variables-el-análisis.html#cb343-1"></a><span class="kw">sqrt</span>(d.ji.cuad <span class="op">/</span><span class="st"> </span>n)</span></code></pre></div>
 <pre><code>## X-squared 
 ## 0.3168139</code></pre>
 </div>
@@ -2731,7 +2735,7 @@ Para mostrar la utilidad de las representaciones gráficas, existe un conjunto d
 <h4><span class="header-section-number">5.11.2.2</span> C de Pearson</h4>
 <p>Como el anterior, sumando <span class="math inline">\(\chi^{2}\)</span> a <span class="math inline">\(n\)</span> en el denominador<br />
 <span class="math display">\[C=\sqrt{\frac{\chi^2}{\chi^2+n}}\]</span></p>
-<div class="sourceCode" id="cb355"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb355-1" title="1"><span class="kw">sqrt</span>(d.ji.cuad <span class="op">/</span><span class="st"> </span>(d.ji.cuad <span class="op">+</span><span class="st"> </span>n))</a></code></pre></div>
+<div class="sourceCode" id="cb345"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb345-1"><a href="relación-entre-variables-el-análisis.html#cb345-1"></a><span class="kw">sqrt</span>(d.ji.cuad <span class="op">/</span><span class="st"> </span>(d.ji.cuad <span class="op">+</span><span class="st"> </span>n))</span></code></pre></div>
 <pre><code>## X-squared 
 ## 0.3020193</code></pre>
 </div>
@@ -2739,47 +2743,47 @@ Para mostrar la utilidad de las representaciones gráficas, existe un conjunto d
 <h4><span class="header-section-number">5.11.2.3</span> V de Cramer</h4>
 <p>Incluye al mínimo entre el número de filas menos uno y el número de columnas menos uno. <code>min</code> es una función de biblioteca de R base.
 <span class="math display">\[V=\sqrt{\frac{\chi^2}{n*min(f-1,c-1)}}\]</span></p>
-<div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb357-1" title="1"><span class="kw">sqrt</span>(d.ji.cuad <span class="op">/</span><span class="st"> </span>(n <span class="op">*</span><span class="st"> </span><span class="kw">min</span>(c <span class="op">-</span><span class="st"> </span><span class="dv">1</span>, f <span class="op">-</span><span class="st"> </span><span class="dv">1</span>)))</a></code></pre></div>
+<div class="sourceCode" id="cb347"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb347-1"><a href="relación-entre-variables-el-análisis.html#cb347-1"></a><span class="kw">sqrt</span>(d.ji.cuad <span class="op">/</span><span class="st"> </span>(n <span class="op">*</span><span class="st"> </span><span class="kw">min</span>(c <span class="op">-</span><span class="st"> </span><span class="dv">1</span>, f <span class="op">-</span><span class="st"> </span><span class="dv">1</span>)))</span></code></pre></div>
 <pre><code>## X-squared 
 ## 0.2240213</code></pre>
 </div>
 <div id="spearman" class="section level4">
 <h4><span class="header-section-number">5.11.2.4</span> Spearman</h4>
 <p>El comando para calcular coeficientes de correlación en R es <code>cor</code>, al cual en este caso deberá indicársele que estamos trabajando con variables ordinales, por lo que queremos el coeficiente de Spearman; de lo contrario, por defecto calcula el coeficiente de Pearson. La matriz de datos del ejemplo mostrado antes se llama merito.educa.mad y las variables son OM (orden de mérito) y educamadre. Así definidas, el pedido del coeficiente se hace indicando cuáles son las dos variables que se correlacionan y qué método debe usarse, en base a su nivel de medición:</p>
-<div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb359-1" title="1"><span class="kw">cor</span>(merito.educa.mad<span class="op">$</span>OM, merito.educa.mad<span class="op">$</span>educamadre,</a>
-<a class="sourceLine" id="cb359-2" title="2">  <span class="dt">method =</span> <span class="st">&quot;spearman&quot;</span></a>
-<a class="sourceLine" id="cb359-3" title="3">)</a></code></pre></div>
+<div class="sourceCode" id="cb349"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb349-1"><a href="relación-entre-variables-el-análisis.html#cb349-1"></a><span class="kw">cor</span>(merito.educa.mad<span class="op">$</span>OM, merito.educa.mad<span class="op">$</span>educamadre,</span>
+<span id="cb349-2"><a href="relación-entre-variables-el-análisis.html#cb349-2"></a>  <span class="dt">method =</span> <span class="st">&quot;spearman&quot;</span></span>
+<span id="cb349-3"><a href="relación-entre-variables-el-análisis.html#cb349-3"></a>)</span></code></pre></div>
 <pre><code>## [1] 0.7509393</code></pre>
 <p>Redondeado a tres decimales</p>
-<div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb361-1" title="1"><span class="kw">round</span>(<span class="kw">cor</span>(merito.educa.mad<span class="op">$</span>OM, merito.educa.mad<span class="op">$</span>educamadre,</a>
-<a class="sourceLine" id="cb361-2" title="2">  <span class="dt">method =</span> <span class="st">&quot;spearman&quot;</span></a>
-<a class="sourceLine" id="cb361-3" title="3">), <span class="dv">3</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb351"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb351-1"><a href="relación-entre-variables-el-análisis.html#cb351-1"></a><span class="kw">round</span>(<span class="kw">cor</span>(merito.educa.mad<span class="op">$</span>OM, merito.educa.mad<span class="op">$</span>educamadre,</span>
+<span id="cb351-2"><a href="relación-entre-variables-el-análisis.html#cb351-2"></a>  <span class="dt">method =</span> <span class="st">&quot;spearman&quot;</span></span>
+<span id="cb351-3"><a href="relación-entre-variables-el-análisis.html#cb351-3"></a>), <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## [1] 0.751</code></pre>
 </div>
 <div id="pearson" class="section level4">
 <h4><span class="header-section-number">5.11.2.5</span> Pearson</h4>
 <p>El comando <code>cor</code> devuelve, por defecto, el coeficiente de Pearson, por lo que no es necesario especificar el parámetro <code>method</code>.</p>
 <p>Para el ejemplo que correlaciona el puntaje en la escala de inteligencia lógico matemática y el puntaje en una prueba, el cálculo se pide así (incluyendo el redondeo a tres decimales):</p>
-<div class="sourceCode" id="cb363"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb363-1" title="1"><span class="kw">round</span>(<span class="kw">cor</span>(puntaje.escala, ejercic.corr), <span class="dv">3</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb353"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb353-1"><a href="relación-entre-variables-el-análisis.html#cb353-1"></a><span class="kw">round</span>(<span class="kw">cor</span>(puntaje.escala, ejercic.corr), <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## [1] 0.847</code></pre>
 </div>
 <div id="dicotomías-artificiales" class="section level4">
 <h4><span class="header-section-number">5.11.2.6</span> Dicotomías artificiales</h4>
 <p>Las dicotomías sobre variables continuas pueden hacerse con la función <code>cut</code> que se usó antes para construir categorías de variables cuantitativas, solo que ahora el corte se da solo en dos grupos. Para el caso de los puntajes de la subescala motora de la prueba de Bayley, si se quieren dos categorías que tengan la misma amplitud en los valores de la variable, se indican dos cortes. En este ejemplo, primero leemos la base “bayley”, luego introducimos la variable dicotomizada como una columna más de la matriz de datos y visualizamos el resultado pidiendo una tabla:</p>
-<div class="sourceCode" id="cb365"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb365-1" title="1">bayley &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;bases/archivostxt/bayley.txt&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;;&quot;</span>)</a>
-<a class="sourceLine" id="cb365-2" title="2">bayley<span class="op">$</span>motor.dic &lt;-<span class="st"> </span><span class="kw">cut</span>(bayley<span class="op">$</span>baymotor, <span class="dt">breaks =</span> <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb365-3" title="3"><span class="kw">table</span>(bayley<span class="op">$</span>motor.dic)</a></code></pre></div>
+<div class="sourceCode" id="cb355"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb355-1"><a href="relación-entre-variables-el-análisis.html#cb355-1"></a>bayley &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;bases/archivostxt/bayley.txt&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;;&quot;</span>)</span>
+<span id="cb355-2"><a href="relación-entre-variables-el-análisis.html#cb355-2"></a>bayley<span class="op">$</span>motor.dic &lt;-<span class="st"> </span><span class="kw">cut</span>(bayley<span class="op">$</span>baymotor, <span class="dt">breaks =</span> <span class="dv">2</span>)</span>
+<span id="cb355-3"><a href="relación-entre-variables-el-análisis.html#cb355-3"></a><span class="kw">table</span>(bayley<span class="op">$</span>motor.dic)</span></code></pre></div>
 <pre><code>## 
 ## (63.9,107]  (107,150] 
 ##        257        197</code></pre>
 <p>El corte se realizó en 107 que es el centro de los valores de la variable (promedio entre el mínimo y el máximo).</p>
 <p>Otra opción es cortar en la mediana, de modo que la cantidad de casos en las dos categorías sea similar. Para ello, hay que especificar todos los cortes que determinan los intervalos; el mínimo, la mediana y el máximo:</p>
-<div class="sourceCode" id="cb367"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb367-1" title="1">bayley<span class="op">$</span>motor.dic<span class="fl">.2</span> &lt;-<span class="st"> </span><span class="kw">cut</span>(bayley<span class="op">$</span>baymotor, <span class="dt">breaks =</span> <span class="kw">c</span>(</a>
-<a class="sourceLine" id="cb367-2" title="2">  <span class="kw">min</span>(bayley<span class="op">$</span>baymotor),</a>
-<a class="sourceLine" id="cb367-3" title="3">  <span class="kw">median</span>(bayley<span class="op">$</span>baymotor),</a>
-<a class="sourceLine" id="cb367-4" title="4">  <span class="kw">max</span>(bayley<span class="op">$</span>baymotor)</a>
-<a class="sourceLine" id="cb367-5" title="5">))</a>
-<a class="sourceLine" id="cb367-6" title="6"><span class="kw">table</span>(bayley<span class="op">$</span>motor.dic<span class="fl">.2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb357-1"><a href="relación-entre-variables-el-análisis.html#cb357-1"></a>bayley<span class="op">$</span>motor.dic<span class="fl">.2</span> &lt;-<span class="st"> </span><span class="kw">cut</span>(bayley<span class="op">$</span>baymotor, <span class="dt">breaks =</span> <span class="kw">c</span>(</span>
+<span id="cb357-2"><a href="relación-entre-variables-el-análisis.html#cb357-2"></a>  <span class="kw">min</span>(bayley<span class="op">$</span>baymotor),</span>
+<span id="cb357-3"><a href="relación-entre-variables-el-análisis.html#cb357-3"></a>  <span class="kw">median</span>(bayley<span class="op">$</span>baymotor),</span>
+<span id="cb357-4"><a href="relación-entre-variables-el-análisis.html#cb357-4"></a>  <span class="kw">max</span>(bayley<span class="op">$</span>baymotor)</span>
+<span id="cb357-5"><a href="relación-entre-variables-el-análisis.html#cb357-5"></a>))</span>
+<span id="cb357-6"><a href="relación-entre-variables-el-análisis.html#cb357-6"></a><span class="kw">table</span>(bayley<span class="op">$</span>motor.dic<span class="fl">.2</span>)</span></code></pre></div>
 <pre><code>## 
 ##  (64,105] (105,150] 
 ##       231       222</code></pre>
@@ -2788,11 +2792,11 @@ Para mostrar la utilidad de las representaciones gráficas, existe un conjunto d
 </div>
 <div id="tetracórico" class="section level4">
 <h4><span class="header-section-number">5.11.2.7</span> Tetracórico</h4>
-<p>El paquete <code>psych</code> <span class="citation">(Revelle <a href="#ref-Revelle2019">2019</a>)</span> cuenta con la función <code>tetrachoric</code>, cuyo argumento es la matriz de datos original y no la tabla de contingencia. Aquí se aplica al análisis de la relación entre los puntajes de las subescalas motora y mental de la prueba de Bayley, dicotomizadas.</p>
+<p>El paquete <code>psych</code> <span class="citation">(Revelle <a href="#ref-Revelle2019" role="doc-biblioref">2019</a>)</span> cuenta con la función <code>tetrachoric</code>, cuyo argumento es la matriz de datos original y no la tabla de contingencia. Aquí se aplica al análisis de la relación entre los puntajes de las subescalas motora y mental de la prueba de Bayley, dicotomizadas.</p>
 <p>Primero se carga el paquete</p>
-<div class="sourceCode" id="cb369"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb369-1" title="1"><span class="kw">library</span>(<span class="st">&quot;psych&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb359-1"><a href="relación-entre-variables-el-análisis.html#cb359-1"></a><span class="kw">library</span>(<span class="st">&quot;psych&quot;</span>)</span></code></pre></div>
 <p>Y luego se aplica la función a la matriz de datos que solo contiene las dos variables dicotomizadas:</p>
-<div class="sourceCode" id="cb370"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb370-1" title="1"><span class="kw">tetrachoric</span>(compara.escalas.dic)</a></code></pre></div>
+<div class="sourceCode" id="cb360"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb360-1"><a href="relación-entre-variables-el-análisis.html#cb360-1"></a><span class="kw">tetrachoric</span>(compara.escalas.dic)</span></code></pre></div>
 <pre><code>## Call: tetrachoric(x = compara.escalas.dic)
 ## tetrachoric correlation 
 ##                  sbscl.mt sbscl.mn
@@ -2807,15 +2811,15 @@ Para mostrar la utilidad de las representaciones gráficas, existe un conjunto d
 <div id="punto-biserial" class="section level4">
 <h4><span class="header-section-number">5.11.2.8</span> Punto biserial</h4>
 <p>Los grupos deben codificarse como cero y uno, para luego solicitar un coeficiente de Pearson. En este ejemplo, se crea la base de datos con siete casos en el grupo control y diez en el experimental. Se codifica a los grupos control y experimental como cero y uno respectivamente, y luego se solicita el coeficiente de correlación de Pearson entre la variable dicotómica que codifica los grupos, y los puntajes.</p>
-<div class="sourceCode" id="cb372"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb372-1" title="1">grupo &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">rep</span>(<span class="st">&quot;control&quot;</span>, <span class="dv">7</span>), <span class="kw">rep</span>(<span class="st">&quot;experimental&quot;</span>, <span class="dv">10</span>))</a>
-<a class="sourceLine" id="cb372-2" title="2">puntaje &lt;-<span class="st"> </span><span class="kw">c</span>(</a>
-<a class="sourceLine" id="cb372-3" title="3">  <span class="dv">8</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">8</span>, <span class="dv">6</span>, <span class="dv">4</span>, <span class="fl">5.6</span>, <span class="fl">5.6</span>, <span class="dv">8</span>, <span class="fl">7.2</span>, <span class="fl">6.4</span>,</a>
-<a class="sourceLine" id="cb372-4" title="4">  <span class="fl">7.2</span>, <span class="dv">8</span>, <span class="dv">8</span>, <span class="fl">7.2</span></a>
-<a class="sourceLine" id="cb372-5" title="5">)</a>
-<a class="sourceLine" id="cb372-6" title="6">grupo.cod &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">rep</span>(<span class="dv">0</span>, <span class="dv">7</span>), <span class="kw">rep</span>(<span class="dv">1</span>, <span class="dv">10</span>))</a>
-<a class="sourceLine" id="cb372-7" title="7">compara.grupos &lt;-<span class="st"> </span><span class="kw">data.frame</span>(grupo, puntaje, grupo.cod)</a>
-<a class="sourceLine" id="cb372-8" title="8"></a>
-<a class="sourceLine" id="cb372-9" title="9"><span class="kw">cor</span>(<span class="dt">x =</span> compara.grupos<span class="op">$</span>puntaje, compara.grupos<span class="op">$</span>grupo.cod)</a></code></pre></div>
+<div class="sourceCode" id="cb362"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb362-1"><a href="relación-entre-variables-el-análisis.html#cb362-1"></a>grupo &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">rep</span>(<span class="st">&quot;control&quot;</span>, <span class="dv">7</span>), <span class="kw">rep</span>(<span class="st">&quot;experimental&quot;</span>, <span class="dv">10</span>))</span>
+<span id="cb362-2"><a href="relación-entre-variables-el-análisis.html#cb362-2"></a>puntaje &lt;-<span class="st"> </span><span class="kw">c</span>(</span>
+<span id="cb362-3"><a href="relación-entre-variables-el-análisis.html#cb362-3"></a>  <span class="dv">8</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">8</span>, <span class="dv">6</span>, <span class="dv">4</span>, <span class="fl">5.6</span>, <span class="fl">5.6</span>, <span class="dv">8</span>, <span class="fl">7.2</span>, <span class="fl">6.4</span>,</span>
+<span id="cb362-4"><a href="relación-entre-variables-el-análisis.html#cb362-4"></a>  <span class="fl">7.2</span>, <span class="dv">8</span>, <span class="dv">8</span>, <span class="fl">7.2</span></span>
+<span id="cb362-5"><a href="relación-entre-variables-el-análisis.html#cb362-5"></a>)</span>
+<span id="cb362-6"><a href="relación-entre-variables-el-análisis.html#cb362-6"></a>grupo.cod &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">rep</span>(<span class="dv">0</span>, <span class="dv">7</span>), <span class="kw">rep</span>(<span class="dv">1</span>, <span class="dv">10</span>))</span>
+<span id="cb362-7"><a href="relación-entre-variables-el-análisis.html#cb362-7"></a>compara.grupos &lt;-<span class="st"> </span><span class="kw">data.frame</span>(grupo, puntaje, grupo.cod)</span>
+<span id="cb362-8"><a href="relación-entre-variables-el-análisis.html#cb362-8"></a></span>
+<span id="cb362-9"><a href="relación-entre-variables-el-análisis.html#cb362-9"></a><span class="kw">cor</span>(<span class="dt">x =</span> compara.grupos<span class="op">$</span>puntaje, compara.grupos<span class="op">$</span>grupo.cod)</span></code></pre></div>
 <pre><code>## [1] 0.1734252</code></pre>
 </div>
 </div>
@@ -2826,9 +2830,9 @@ Para mostrar la utilidad de las representaciones gráficas, existe un conjunto d
 <p>entonces el argumento de lm es</p>
 <p><span class="math display">\[Y \: \tilde{} \: X\]</span></p>
 <p>El modelo se construye así:</p>
-<div class="sourceCode" id="cb374"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb374-1" title="1">modelo<span class="fl">.1</span> &lt;-<span class="st"> </span><span class="kw">lm</span>(ejercic.corr <span class="op">~</span><span class="st"> </span>puntaje.escala)</a></code></pre></div>
+<div class="sourceCode" id="cb364"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb364-1"><a href="relación-entre-variables-el-análisis.html#cb364-1"></a>modelo<span class="fl">.1</span> &lt;-<span class="st"> </span><span class="kw">lm</span>(ejercic.corr <span class="op">~</span><span class="st"> </span>puntaje.escala)</span></code></pre></div>
 <p>El objeto que resulta tiene muchos resultados en su interior, los pedimos así:</p>
-<div class="sourceCode" id="cb375"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb375-1" title="1"><span class="kw">attributes</span>(modelo<span class="fl">.1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb365"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb365-1"><a href="relación-entre-variables-el-análisis.html#cb365-1"></a><span class="kw">attributes</span>(modelo<span class="fl">.1</span>)</span></code></pre></div>
 <pre><code>## $names
 ##  [1] &quot;coefficients&quot;  &quot;residuals&quot;     &quot;effects&quot;       &quot;rank&quot;         
 ##  [5] &quot;fitted.values&quot; &quot;assign&quot;        &quot;qr&quot;            &quot;df.residual&quot;  
@@ -2837,7 +2841,7 @@ Para mostrar la utilidad de las representaciones gráficas, existe un conjunto d
 ## $class
 ## [1] &quot;lm&quot;</code></pre>
 <p>La clase es <code>lm</code>, modelo lineal, un tipo particular de objeto R. De los nombres, por ahora solo nos interesan los coeficientes, a los que evocamos del mismo modo que a las variables de una matriz de datos:</p>
-<div class="sourceCode" id="cb377"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb377-1" title="1">modelo<span class="fl">.1</span><span class="op">$</span>coefficients</a></code></pre></div>
+<div class="sourceCode" id="cb367"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb367-1"><a href="relación-entre-variables-el-análisis.html#cb367-1"></a>modelo<span class="fl">.1</span><span class="op">$</span>coefficients</span></code></pre></div>
 <pre><code>##    (Intercept) puntaje.escala 
 ##     -5.6279603      0.2290977</code></pre>
 <p>Estos son:</p>
@@ -2846,23 +2850,23 @@ Para mostrar la utilidad de las representaciones gráficas, existe un conjunto d
 <li><p><code>puntaje.escala</code>: el nombre de la variable antecedente, es la pendiente de la recta.</p></li>
 </ul>
 <p>Cada uno de estos valores puede accederse separamente, así:</p>
-<div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb379-1" title="1">modelo<span class="fl">.1</span><span class="op">$</span>coefficients[<span class="dv">1</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb369"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb369-1"><a href="relación-entre-variables-el-análisis.html#cb369-1"></a>modelo<span class="fl">.1</span><span class="op">$</span>coefficients[<span class="dv">1</span>]</span></code></pre></div>
 <pre><code>## (Intercept) 
 ##    -5.62796</code></pre>
-<div class="sourceCode" id="cb381"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb381-1" title="1">modelo<span class="fl">.1</span><span class="op">$</span>coefficients[<span class="dv">2</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb371"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb371-1"><a href="relación-entre-variables-el-análisis.html#cb371-1"></a>modelo<span class="fl">.1</span><span class="op">$</span>coefficients[<span class="dv">2</span>]</span></code></pre></div>
 <pre><code>## puntaje.escala 
 ##      0.2290977</code></pre>
 <p>Y luego usarse para calcular un valor de <span class="math inline">\(y\)</span> (aciertos estimados) para un valor elegido de <span class="math inline">\(x\)</span> (puntaje en la escala). El ejemplo hecho manualmente antes resulta ahora:</p>
-<div class="sourceCode" id="cb383"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb383-1" title="1">modelo<span class="fl">.1</span><span class="op">$</span>coefficients[<span class="dv">1</span>] <span class="op">+</span><span class="st"> </span>modelo<span class="fl">.1</span><span class="op">$</span>coefficients[<span class="dv">2</span>] <span class="op">*</span><span class="st"> </span><span class="dv">55</span></a></code></pre></div>
+<div class="sourceCode" id="cb373"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb373-1"><a href="relación-entre-variables-el-análisis.html#cb373-1"></a>modelo<span class="fl">.1</span><span class="op">$</span>coefficients[<span class="dv">1</span>] <span class="op">+</span><span class="st"> </span>modelo<span class="fl">.1</span><span class="op">$</span>coefficients[<span class="dv">2</span>] <span class="op">*</span><span class="st"> </span><span class="dv">55</span></span></code></pre></div>
 <pre><code>## (Intercept) 
 ##    6.972413</code></pre>
 <p>Que se diferencia del obtenido antes por el redondeo y sigue siendo un promedio de siete errores esperados para quienes tienen puntaje 55 en la escala.</p>
 <p>También es posible crear una función para que calcule automáticamente valores de <span class="math inline">\(y\)</span> para cualquier <span class="math inline">\(x\)</span> que se elija. Vamos a llamar <em>yest</em> (<em>y</em> estimada) a esa función:</p>
-<div class="sourceCode" id="cb385"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb385-1" title="1">yest &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</a>
-<a class="sourceLine" id="cb385-2" title="2">  modelo<span class="fl">.1</span><span class="op">$</span>coefficients[<span class="dv">1</span>] <span class="op">+</span><span class="st"> </span>modelo<span class="fl">.1</span><span class="op">$</span>coefficients[<span class="dv">2</span>] <span class="op">*</span><span class="st"> </span>x</a>
-<a class="sourceLine" id="cb385-3" title="3">}</a></code></pre></div>
+<div class="sourceCode" id="cb375"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb375-1"><a href="relación-entre-variables-el-análisis.html#cb375-1"></a>yest &lt;-<span class="st"> </span><span class="cf">function</span>(x) {</span>
+<span id="cb375-2"><a href="relación-entre-variables-el-análisis.html#cb375-2"></a>  modelo<span class="fl">.1</span><span class="op">$</span>coefficients[<span class="dv">1</span>] <span class="op">+</span><span class="st"> </span>modelo<span class="fl">.1</span><span class="op">$</span>coefficients[<span class="dv">2</span>] <span class="op">*</span><span class="st"> </span>x</span>
+<span id="cb375-3"><a href="relación-entre-variables-el-análisis.html#cb375-3"></a>}</span></code></pre></div>
 <p>Para usarla, damos a esta nueva función un valor de <em>x</em>, como en el ejemplo anterior, <span class="math inline">\(x=55\)</span>:</p>
-<div class="sourceCode" id="cb386"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb386-1" title="1"><span class="kw">yest</span>(<span class="dv">55</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb376"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb376-1"><a href="relación-entre-variables-el-análisis.html#cb376-1"></a><span class="kw">yest</span>(<span class="dv">55</span>)</span></code></pre></div>
 <pre><code>## (Intercept) 
 ##    6.972413</code></pre>
 <p>Y se obtiene el valor de <em>y</em> que estima el modelo. Para <span class="math inline">\(x=75\)</span>, es:</p>
@@ -2872,7 +2876,7 @@ Para mostrar la utilidad de las representaciones gráficas, existe un conjunto d
 <div id="cuarteto-de-anscombe" class="section level3">
 <h3><span class="header-section-number">5.11.4</span> Cuarteto de Anscombe</h3>
 <p>El cuarteto de Anscombe, es invento lúdico-pedagógico, desarrollado para destacar la importancia que tiene visualizar los datos, antes de extraer conclusiones a partir de sus medidas descriptivas. Es una matriz de datos de once casos en cuatro pares de variables y viene cargado en R base. Se lo puede ver, llamándolo por su nombre:</p>
-<div class="sourceCode" id="cb389"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb389-1" title="1">anscombe</a></code></pre></div>
+<div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb379-1"><a href="relación-entre-variables-el-análisis.html#cb379-1"></a>anscombe</span></code></pre></div>
 <pre><code>##    x1 x2 x3 x4    y1   y2    y3    y4
 ## 1  10 10 10  8  8.04 9.14  7.46  6.58
 ## 2   8  8  8  8  6.95 8.14  6.77  5.76
@@ -2886,7 +2890,7 @@ Para mostrar la utilidad de las representaciones gráficas, existe un conjunto d
 ## 10  7  7  7  8  4.82 7.26  6.42  7.91
 ## 11  5  5  5  8  5.68 4.74  5.73  6.89</code></pre>
 <p>Para ver las medidas descriptivas, se solicita el resumen completo de la matriz de datos, ya que son pocas variables:</p>
-<div class="sourceCode" id="cb391"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb391-1" title="1"><span class="kw">summary</span>(anscombe)</a></code></pre></div>
+<div class="sourceCode" id="cb381"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb381-1"><a href="relación-entre-variables-el-análisis.html#cb381-1"></a><span class="kw">summary</span>(anscombe)</span></code></pre></div>
 <pre><code>##        x1             x2             x3             x4           y1        
 ##  Min.   : 4.0   Min.   : 4.0   Min.   : 4.0   Min.   : 8   Min.   : 4.260  
 ##  1st Qu.: 6.5   1st Qu.: 6.5   1st Qu.: 6.5   1st Qu.: 8   1st Qu.: 6.315  
@@ -2902,9 +2906,9 @@ Para mostrar la utilidad de las representaciones gráficas, existe un conjunto d
 ##  3rd Qu.:8.950   3rd Qu.: 7.98   3rd Qu.: 8.190  
 ##  Max.   :9.260   Max.   :12.74   Max.   :12.500</code></pre>
 <p>Un modo de expresar el resultado de manera más compacta es usando el paquete <code>dplyr</code>:</p>
-<div class="sourceCode" id="cb393"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb393-1" title="1"><span class="kw">library</span>(<span class="st">&quot;dplyr&quot;</span>)</a>
-<a class="sourceLine" id="cb393-2" title="2"></a>
-<a class="sourceLine" id="cb393-3" title="3"><span class="kw">apply</span>(anscombe, <span class="dv">2</span>, summary)</a></code></pre></div>
+<div class="sourceCode" id="cb383"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb383-1"><a href="relación-entre-variables-el-análisis.html#cb383-1"></a><span class="kw">library</span>(<span class="st">&quot;dplyr&quot;</span>)</span>
+<span id="cb383-2"><a href="relación-entre-variables-el-análisis.html#cb383-2"></a></span>
+<span id="cb383-3"><a href="relación-entre-variables-el-análisis.html#cb383-3"></a><span class="kw">apply</span>(anscombe, <span class="dv">2</span>, summary)</span></code></pre></div>
 <pre><code>##           x1   x2   x3 x4        y1       y2    y3        y4
 ## Min.     4.0  4.0  4.0  8  4.260000 3.100000  5.39  5.250000
 ## 1st Qu.  6.5  6.5  6.5  8  6.315000 6.695000  6.25  6.170000
@@ -2914,60 +2918,60 @@ Para mostrar la utilidad de las representaciones gráficas, existe un conjunto d
 ## Max.    14.0 14.0 14.0 19 10.840000 9.260000 12.74 12.500000</code></pre>
 <p>Se observa la similitud de las medidas resumen de <span class="math inline">\(x_1\)</span>, <span class="math inline">\(x_2\)</span>, <span class="math inline">\(x_3\)</span>, <span class="math inline">\(x_4\)</span> por un lado y de <span class="math inline">\(y_1\)</span>, <span class="math inline">\(y_2\)</span>, <span class="math inline">\(y_3\)</span>, <span class="math inline">\(y_4\)</span> por otro.</p>
 <p>Además, las correlaciones entre los pares son casi idénticas:</p>
-<div class="sourceCode" id="cb395"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb395-1" title="1"><span class="kw">round</span>(<span class="kw">cor</span>(anscombe<span class="op">$</span>x1, anscombe<span class="op">$</span>y1), <span class="dv">3</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb385"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb385-1"><a href="relación-entre-variables-el-análisis.html#cb385-1"></a><span class="kw">round</span>(<span class="kw">cor</span>(anscombe<span class="op">$</span>x1, anscombe<span class="op">$</span>y1), <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## [1] 0.816</code></pre>
-<div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb397-1" title="1"><span class="kw">round</span>(<span class="kw">cor</span>(anscombe<span class="op">$</span>x2, anscombe<span class="op">$</span>y2), <span class="dv">3</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb387"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb387-1"><a href="relación-entre-variables-el-análisis.html#cb387-1"></a><span class="kw">round</span>(<span class="kw">cor</span>(anscombe<span class="op">$</span>x2, anscombe<span class="op">$</span>y2), <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## [1] 0.816</code></pre>
-<div class="sourceCode" id="cb399"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb399-1" title="1"><span class="kw">round</span>(<span class="kw">cor</span>(anscombe<span class="op">$</span>x3, anscombe<span class="op">$</span>y3), <span class="dv">3</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb389"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb389-1"><a href="relación-entre-variables-el-análisis.html#cb389-1"></a><span class="kw">round</span>(<span class="kw">cor</span>(anscombe<span class="op">$</span>x3, anscombe<span class="op">$</span>y3), <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## [1] 0.816</code></pre>
-<div class="sourceCode" id="cb401"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb401-1" title="1"><span class="kw">round</span>(<span class="kw">cor</span>(anscombe<span class="op">$</span>x4, anscombe<span class="op">$</span>y4), <span class="dv">3</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb391"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb391-1"><a href="relación-entre-variables-el-análisis.html#cb391-1"></a><span class="kw">round</span>(<span class="kw">cor</span>(anscombe<span class="op">$</span>x4, anscombe<span class="op">$</span>y4), <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## [1] 0.817</code></pre>
 <p>Y también son muy similares los modelos lineales que ajustan cada relación. Las ordenadas al origen:</p>
-<div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb403-1" title="1"><span class="kw">lm</span>(anscombe<span class="op">$</span>y1 <span class="op">~</span><span class="st"> </span>anscombe<span class="op">$</span>x1)<span class="op">$</span>coefficients[<span class="dv">1</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb393"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb393-1"><a href="relación-entre-variables-el-análisis.html#cb393-1"></a><span class="kw">lm</span>(anscombe<span class="op">$</span>y1 <span class="op">~</span><span class="st"> </span>anscombe<span class="op">$</span>x1)<span class="op">$</span>coefficients[<span class="dv">1</span>]</span></code></pre></div>
 <pre><code>## (Intercept) 
 ##    3.000091</code></pre>
-<div class="sourceCode" id="cb405"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb405-1" title="1"><span class="kw">lm</span>(anscombe<span class="op">$</span>y2 <span class="op">~</span><span class="st"> </span>anscombe<span class="op">$</span>x2)<span class="op">$</span>coefficients[<span class="dv">1</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb395"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb395-1"><a href="relación-entre-variables-el-análisis.html#cb395-1"></a><span class="kw">lm</span>(anscombe<span class="op">$</span>y2 <span class="op">~</span><span class="st"> </span>anscombe<span class="op">$</span>x2)<span class="op">$</span>coefficients[<span class="dv">1</span>]</span></code></pre></div>
 <pre><code>## (Intercept) 
 ##    3.000909</code></pre>
-<div class="sourceCode" id="cb407"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb407-1" title="1"><span class="kw">lm</span>(anscombe<span class="op">$</span>y3 <span class="op">~</span><span class="st"> </span>anscombe<span class="op">$</span>x3)<span class="op">$</span>coefficients[<span class="dv">1</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb397-1"><a href="relación-entre-variables-el-análisis.html#cb397-1"></a><span class="kw">lm</span>(anscombe<span class="op">$</span>y3 <span class="op">~</span><span class="st"> </span>anscombe<span class="op">$</span>x3)<span class="op">$</span>coefficients[<span class="dv">1</span>]</span></code></pre></div>
 <pre><code>## (Intercept) 
 ##    3.002455</code></pre>
-<div class="sourceCode" id="cb409"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb409-1" title="1"><span class="kw">lm</span>(anscombe<span class="op">$</span>y4 <span class="op">~</span><span class="st"> </span>anscombe<span class="op">$</span>x4)<span class="op">$</span>coefficients[<span class="dv">1</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb399"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb399-1"><a href="relación-entre-variables-el-análisis.html#cb399-1"></a><span class="kw">lm</span>(anscombe<span class="op">$</span>y4 <span class="op">~</span><span class="st"> </span>anscombe<span class="op">$</span>x4)<span class="op">$</span>coefficients[<span class="dv">1</span>]</span></code></pre></div>
 <pre><code>## (Intercept) 
 ##    3.001727</code></pre>
 <p>Y las pendientes:</p>
-<div class="sourceCode" id="cb411"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb411-1" title="1"><span class="kw">lm</span>(anscombe<span class="op">$</span>y1 <span class="op">~</span><span class="st"> </span>anscombe<span class="op">$</span>x1)<span class="op">$</span>coefficients[<span class="dv">2</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb401"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb401-1"><a href="relación-entre-variables-el-análisis.html#cb401-1"></a><span class="kw">lm</span>(anscombe<span class="op">$</span>y1 <span class="op">~</span><span class="st"> </span>anscombe<span class="op">$</span>x1)<span class="op">$</span>coefficients[<span class="dv">2</span>]</span></code></pre></div>
 <pre><code>## anscombe$x1 
 ##   0.5000909</code></pre>
-<div class="sourceCode" id="cb413"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb413-1" title="1"><span class="kw">lm</span>(anscombe<span class="op">$</span>y2 <span class="op">~</span><span class="st"> </span>anscombe<span class="op">$</span>x2)<span class="op">$</span>coefficients[<span class="dv">2</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb403-1"><a href="relación-entre-variables-el-análisis.html#cb403-1"></a><span class="kw">lm</span>(anscombe<span class="op">$</span>y2 <span class="op">~</span><span class="st"> </span>anscombe<span class="op">$</span>x2)<span class="op">$</span>coefficients[<span class="dv">2</span>]</span></code></pre></div>
 <pre><code>## anscombe$x2 
 ##         0.5</code></pre>
-<div class="sourceCode" id="cb415"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb415-1" title="1"><span class="kw">lm</span>(anscombe<span class="op">$</span>y3 <span class="op">~</span><span class="st"> </span>anscombe<span class="op">$</span>x3)<span class="op">$</span>coefficients[<span class="dv">2</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb405"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb405-1"><a href="relación-entre-variables-el-análisis.html#cb405-1"></a><span class="kw">lm</span>(anscombe<span class="op">$</span>y3 <span class="op">~</span><span class="st"> </span>anscombe<span class="op">$</span>x3)<span class="op">$</span>coefficients[<span class="dv">2</span>]</span></code></pre></div>
 <pre><code>## anscombe$x3 
 ##   0.4997273</code></pre>
-<div class="sourceCode" id="cb417"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb417-1" title="1"><span class="kw">lm</span>(anscombe<span class="op">$</span>y4 <span class="op">~</span><span class="st"> </span>anscombe<span class="op">$</span>x4)<span class="op">$</span>coefficients[<span class="dv">2</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb407"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb407-1"><a href="relación-entre-variables-el-análisis.html#cb407-1"></a><span class="kw">lm</span>(anscombe<span class="op">$</span>y4 <span class="op">~</span><span class="st"> </span>anscombe<span class="op">$</span>x4)<span class="op">$</span>coefficients[<span class="dv">2</span>]</span></code></pre></div>
 <pre><code>## anscombe$x4 
 ##   0.4999091</code></pre>
 <p>Sin embargo, los diagramas de dispersión muestran que se trata de conjuntos muy diferentes entre sí. Usamos el paquete ggplot para hacer los cuatro gráficos a los que se llama <span class="math inline">\(p_1, p_2, p_3, p_4\)</span>. En la primera capa de cada gráfico colocamos el origen de los datos, que es la matriz <em>anscombe</em>, luego sumamos una capa con puntos correspondientes a <span class="math inline">\(x_1, y_1\)</span> en el primer gráfico y así en los tres siguientes. La tercera capa es la función lineal que mejor ajusta los puntos. Finalmente el theme_tufte da a cada gráfico el formato que elegimos. Para mostrarlos, usamos el comando grid.arrange al que indicamos los cuatro objetos y la dimensión del arreglo, que son dos filas y dos columnas:</p>
-<div class="sourceCode" id="cb419"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb419-1" title="1">p1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(anscombe) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(x1, y1)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_abline</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb419-2" title="2"><span class="st">  </span><span class="kw">theme_tufte</span>()</a>
-<a class="sourceLine" id="cb419-3" title="3">p2 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(anscombe) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(x2, y2)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_abline</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb419-4" title="4"><span class="st">  </span><span class="kw">theme_tufte</span>()</a>
-<a class="sourceLine" id="cb419-5" title="5">p3 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(anscombe) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(x3, y3)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_abline</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb419-6" title="6"><span class="st">  </span><span class="kw">theme_tufte</span>()</a>
-<a class="sourceLine" id="cb419-7" title="7">p4 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(anscombe) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(x4, y4)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_abline</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb419-8" title="8"><span class="st">  </span><span class="kw">theme_tufte</span>()</a>
-<a class="sourceLine" id="cb419-9" title="9"></a>
-<a class="sourceLine" id="cb419-10" title="10"><span class="kw">grid.arrange</span>(p1, p2, p3, p4, <span class="dt">nrow =</span> <span class="dv">2</span>, <span class="dt">ncol =</span> <span class="dv">2</span>) <span class="co"># para ordenar los</span></a></code></pre></div>
+<div class="sourceCode" id="cb409"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb409-1"><a href="relación-entre-variables-el-análisis.html#cb409-1"></a>p1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(anscombe) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(x1, y1)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_abline</span>() <span class="op">+</span></span>
+<span id="cb409-2"><a href="relación-entre-variables-el-análisis.html#cb409-2"></a><span class="st">  </span><span class="kw">theme_tufte</span>()</span>
+<span id="cb409-3"><a href="relación-entre-variables-el-análisis.html#cb409-3"></a>p2 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(anscombe) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(x2, y2)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_abline</span>() <span class="op">+</span></span>
+<span id="cb409-4"><a href="relación-entre-variables-el-análisis.html#cb409-4"></a><span class="st">  </span><span class="kw">theme_tufte</span>()</span>
+<span id="cb409-5"><a href="relación-entre-variables-el-análisis.html#cb409-5"></a>p3 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(anscombe) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(x3, y3)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_abline</span>() <span class="op">+</span></span>
+<span id="cb409-6"><a href="relación-entre-variables-el-análisis.html#cb409-6"></a><span class="st">  </span><span class="kw">theme_tufte</span>()</span>
+<span id="cb409-7"><a href="relación-entre-variables-el-análisis.html#cb409-7"></a>p4 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(anscombe) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(x4, y4)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_abline</span>() <span class="op">+</span></span>
+<span id="cb409-8"><a href="relación-entre-variables-el-análisis.html#cb409-8"></a><span class="st">  </span><span class="kw">theme_tufte</span>()</span>
+<span id="cb409-9"><a href="relación-entre-variables-el-análisis.html#cb409-9"></a></span>
+<span id="cb409-10"><a href="relación-entre-variables-el-análisis.html#cb409-10"></a><span class="kw">grid.arrange</span>(p1, p2, p3, p4, <span class="dt">nrow =</span> <span class="dv">2</span>, <span class="dt">ncol =</span> <span class="dv">2</span>) <span class="co"># para ordenar los</span></span></code></pre></div>
 <p><img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-329-1.svg" width="672" /></p>
-<div class="sourceCode" id="cb420"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb420-1" title="1"><span class="co"># cuatro gráficos en una grilla de 2 x 2</span></a></code></pre></div>
+<div class="sourceCode" id="cb410"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb410-1"><a href="relación-entre-variables-el-análisis.html#cb410-1"></a><span class="co"># cuatro gráficos en una grilla de 2 x 2</span></span></code></pre></div>
 </div>
 <div id="datasaurus" class="section level3">
 <h3><span class="header-section-number">5.11.5</span> Datasaurus</h3>
 <p>Para usar el Datasaurus, se debe primero instalar el paquete y cargarlo en la sesión, la matriz de datos se llama <code>datasaurus_dozen</code>:</p>
-<div class="sourceCode" id="cb421"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb421-1" title="1"><span class="kw">library</span>(<span class="st">&quot;datasauRus&quot;</span>)</a>
-<a class="sourceLine" id="cb421-2" title="2"></a>
-<a class="sourceLine" id="cb421-3" title="3">datasaurus_dozen</a></code></pre></div>
+<div class="sourceCode" id="cb411"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb411-1"><a href="relación-entre-variables-el-análisis.html#cb411-1"></a><span class="kw">library</span>(<span class="st">&quot;datasauRus&quot;</span>)</span>
+<span id="cb411-2"><a href="relación-entre-variables-el-análisis.html#cb411-2"></a></span>
+<span id="cb411-3"><a href="relación-entre-variables-el-análisis.html#cb411-3"></a>datasaurus_dozen</span></code></pre></div>
 <pre><code>## # A tibble: 1,846 x 3
 ##    dataset     x     y
 ##    &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;
@@ -2984,15 +2988,15 @@ Para mostrar la utilidad de las representaciones gráficas, existe un conjunto d
 ## # ... with 1,836 more rows</code></pre>
 <p>Los datos están organizados en tres columnas; la primera, que se llama <code>dataset</code> es el nombre del subconjunto, son 13 subconjuntos en total, que se llaman: “away”, “bullseye”, “circle”, “dino”, “dots”, “h_lines”, “high_lines”, “slant_down”, “slant_up”, “star”, “v_lines”, “wide_lines” y “x_shape”.</p>
 <p>Ahora vamos a usar el paquete <code>dplyr</code>, que facilita hacer las operaciones por grupos con la función <code>group_by</code>. Se solicita que, sobre la matriz <code>datasaurus_dozen</code> agrupe por <code>dataset</code> y resuma, calculando las medias y desviaciones estándar de <span class="math inline">\(x\)</span> y de <span class="math inline">\(y\)</span> y la correlación entre ellas. La aplicación secuencial de estas operaciones se logra por medio del operador <code>%&gt;%</code> “pipe”.</p>
-<div class="sourceCode" id="cb423"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb423-1" title="1">datasaurus_dozen <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb423-2" title="2"><span class="st">  </span><span class="kw">group_by</span>(dataset) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb423-3" title="3"><span class="st">  </span><span class="kw">summarize</span>(</a>
-<a class="sourceLine" id="cb423-4" title="4">    <span class="dt">media_x =</span> <span class="kw">mean</span>(x),</a>
-<a class="sourceLine" id="cb423-5" title="5">    <span class="dt">media_y =</span> <span class="kw">mean</span>(y),</a>
-<a class="sourceLine" id="cb423-6" title="6">    <span class="dt">s_x =</span> <span class="kw">sd</span>(x),</a>
-<a class="sourceLine" id="cb423-7" title="7">    <span class="dt">s_y =</span> <span class="kw">sd</span>(y),</a>
-<a class="sourceLine" id="cb423-8" title="8">    <span class="dt">r_x_y =</span> <span class="kw">cor</span>(x, y)</a>
-<a class="sourceLine" id="cb423-9" title="9">  )</a></code></pre></div>
+<div class="sourceCode" id="cb413"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb413-1"><a href="relación-entre-variables-el-análisis.html#cb413-1"></a>datasaurus_dozen <span class="op">%&gt;%</span></span>
+<span id="cb413-2"><a href="relación-entre-variables-el-análisis.html#cb413-2"></a><span class="st">  </span><span class="kw">group_by</span>(dataset) <span class="op">%&gt;%</span></span>
+<span id="cb413-3"><a href="relación-entre-variables-el-análisis.html#cb413-3"></a><span class="st">  </span><span class="kw">summarize</span>(</span>
+<span id="cb413-4"><a href="relación-entre-variables-el-análisis.html#cb413-4"></a>    <span class="dt">media_x =</span> <span class="kw">mean</span>(x),</span>
+<span id="cb413-5"><a href="relación-entre-variables-el-análisis.html#cb413-5"></a>    <span class="dt">media_y =</span> <span class="kw">mean</span>(y),</span>
+<span id="cb413-6"><a href="relación-entre-variables-el-análisis.html#cb413-6"></a>    <span class="dt">s_x =</span> <span class="kw">sd</span>(x),</span>
+<span id="cb413-7"><a href="relación-entre-variables-el-análisis.html#cb413-7"></a>    <span class="dt">s_y =</span> <span class="kw">sd</span>(y),</span>
+<span id="cb413-8"><a href="relación-entre-variables-el-análisis.html#cb413-8"></a>    <span class="dt">r_x_y =</span> <span class="kw">cor</span>(x, y)</span>
+<span id="cb413-9"><a href="relación-entre-variables-el-análisis.html#cb413-9"></a>  )</span></code></pre></div>
 <pre><code>## # A tibble: 13 x 6
 ##    dataset    media_x media_y   s_x   s_y   r_x_y
 ##    &lt;chr&gt;        &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;
@@ -3010,14 +3014,14 @@ Para mostrar la utilidad de las representaciones gráficas, existe un conjunto d
 ## 12 wide_lines    54.3    47.8  16.8  26.9 -0.0666
 ## 13 x_shape       54.3    47.8  16.8  26.9 -0.0656</code></pre>
 <p>Cada fila corresponde a un subconjunto de datos. En la tabla se observa la similitud de las <span class="math inline">\(x\)</span> y de las <span class="math inline">\(y\)</span> y también de las correlaciones entre ellas. Para completar la idea que se tiene de los subconjuntos de datos, construimos un diagrama de dispersión para cada uno de ellos:</p>
-<div class="sourceCode" id="cb425"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb425-1" title="1"><span class="kw">ggplot</span>(datasaurus_dozen) <span class="op">+</span><span class="st"> </span><span class="co"># haremos un plot con los datos</span></a>
-<a class="sourceLine" id="cb425-2" title="2"><span class="st">  </span><span class="co"># datasaurus_dozen</span></a>
-<a class="sourceLine" id="cb425-3" title="3"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(x, y, <span class="dt">col =</span> dataset)) <span class="op">+</span><span class="st"> </span><span class="co"># puntos x, y, con el color</span></a>
-<a class="sourceLine" id="cb425-4" title="4"><span class="st">  </span><span class="co">## mapeado al nombre de cada conjunto de datos</span></a>
-<a class="sourceLine" id="cb425-5" title="5"><span class="st">  </span><span class="kw">geom_abline</span>() <span class="op">+</span><span class="st"> </span><span class="co"># agregamos una linea recta</span></a>
-<a class="sourceLine" id="cb425-6" title="6"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>dataset, <span class="dt">ncol =</span> <span class="dv">3</span>) <span class="op">+</span><span class="st"> </span><span class="co"># separamos en subplots por dataset</span></a>
-<a class="sourceLine" id="cb425-7" title="7"><span class="st">  </span><span class="kw">theme_tufte</span>() <span class="op">+</span><span class="st"> </span><span class="co"># plantilla estética</span></a>
-<a class="sourceLine" id="cb425-8" title="8"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>) <span class="co"># eliminamos la leyenda</span></a></code></pre></div>
+<div class="sourceCode" id="cb415"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb415-1"><a href="relación-entre-variables-el-análisis.html#cb415-1"></a><span class="kw">ggplot</span>(datasaurus_dozen) <span class="op">+</span><span class="st"> </span><span class="co"># haremos un plot con los datos</span></span>
+<span id="cb415-2"><a href="relación-entre-variables-el-análisis.html#cb415-2"></a><span class="st">  </span><span class="co"># datasaurus_dozen</span></span>
+<span id="cb415-3"><a href="relación-entre-variables-el-análisis.html#cb415-3"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(x, y, <span class="dt">col =</span> dataset)) <span class="op">+</span><span class="st"> </span><span class="co"># puntos x, y, con el color</span></span>
+<span id="cb415-4"><a href="relación-entre-variables-el-análisis.html#cb415-4"></a><span class="st">  </span><span class="co">## mapeado al nombre de cada conjunto de datos</span></span>
+<span id="cb415-5"><a href="relación-entre-variables-el-análisis.html#cb415-5"></a><span class="st">  </span><span class="kw">geom_abline</span>() <span class="op">+</span><span class="st"> </span><span class="co"># agregamos una linea recta</span></span>
+<span id="cb415-6"><a href="relación-entre-variables-el-análisis.html#cb415-6"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>dataset, <span class="dt">ncol =</span> <span class="dv">3</span>) <span class="op">+</span><span class="st"> </span><span class="co"># separamos en subplots por dataset</span></span>
+<span id="cb415-7"><a href="relación-entre-variables-el-análisis.html#cb415-7"></a><span class="st">  </span><span class="kw">theme_tufte</span>() <span class="op">+</span><span class="st"> </span><span class="co"># plantilla estética</span></span>
+<span id="cb415-8"><a href="relación-entre-variables-el-análisis.html#cb415-8"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>) <span class="co"># eliminamos la leyenda</span></span></code></pre></div>
 <p><img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-332-1.svg" width="672" /></p>
 <p>Aquí se mapeó el nombre de cada subconjunto al color de los puntos de los diagramas de dispersión y se agregó la función lineal que mejor los ajusta.
 Como con el cuarteto de Anscombe, los gráfcos aportan una visión muy diferente de los conjuntos de datos, comparada con la que se tenía a partir de la observación solo de sus medidas descriptivas.</p>
@@ -3038,7 +3042,7 @@ Como con el cuarteto de Anscombe, los gráfcos aportan una visión muy diferente
 <li><p>Si a una muestra de pacientes de sexo femenino con diagnóstico de psicosis se administra una droga y se encuentra que produce estabilización en los síntomas en el 90% de ellas, ¿corresponde recomendar que esa droga sea utilizada en las pacientes diagnosticadas como psicóticas?</p></li>
 </ul>
 <p>Como vemos, se trata de llevar los resultados más allá del ámbito en el que fueron obtenidos, se trata de generalizarlos. Para hacer esto será necesario usar conceptos nuevos, a los que nos dedicaremos en los capítulos de esta parte. Veremos cómo seleccionar casos para que lo que se observe en ellos tenga validez general (muestreo), luego cómo decidir en el terreno de la incertidumbre (probabilidad), y finalmente, lo que sucede con las medidas descriptivas que conocemos cuando se las pone en correspondencia con valores generales (distribuciones en el muestreo).</p>
-<p>Sobre la relación entre la probabilidad y la inferencia, <span class="citation">Hacking (<a href="#ref-hacking_2006">2006</a>)</span> cita un pasaje de un relato indio<a href="#fn34" class="footnote-ref" id="fnref34"><sup>34</sup></a> en el que uno de los personajes estima “el número de hojas y frutos que hay en dos grandes ramas de un árbol frondoso. Aparentemente lo hace en base a una sola rama más pequeña que observa. Hay, según afirma, 2095 frutos. [<span class="math inline">\(\ldots\)</span>] y cuando le preguntan ¿cómo pudo saberlo?, responde: <em>Yo de los dados poseo su ciencia y así en los números diestro soy</em>” <span class="citation">(Hacking <a href="#ref-hacking_2006">2006</a>)</span>. De este modo aparecen relacionadas, en este antiguo texto, la capacidad para hacer una estimación de lo que no es observado con “la ciencia de los dados”, desde tan temprano hay indicios de la relación entre estimación y probabilidad.</p>
+<p>Sobre la relación entre la probabilidad y la inferencia, <span class="citation">Hacking (<a href="#ref-hacking_2006" role="doc-biblioref">2006</a>)</span> cita un pasaje de un relato indio<a href="#fn34" class="footnote-ref" id="fnref34"><sup>34</sup></a> en el que uno de los personajes estima “el número de hojas y frutos que hay en dos grandes ramas de un árbol frondoso. Aparentemente lo hace en base a una sola rama más pequeña que observa. Hay, según afirma, 2095 frutos. [<span class="math inline">\(\ldots\)</span>] y cuando le preguntan ¿cómo pudo saberlo?, responde: <em>Yo de los dados poseo su ciencia y así en los números diestro soy</em>” <span class="citation">(Hacking <a href="#ref-hacking_2006" role="doc-biblioref">2006</a>)</span>. De este modo aparecen relacionadas, en este antiguo texto, la capacidad para hacer una estimación de lo que no es observado con “la ciencia de los dados”, desde tan temprano hay indicios de la relación entre estimación y probabilidad.</p>
 <p>Las respuestas a las preguntas que buscan generalidad no pueden ser certeras, como en el relato mítico, sino inciertas. A diferencia de las descripciones, que se limitan a mostrar información recopilada, las inferencias solo pueden ser afirmaciones tentativas, aproximativas, probabilísticas. La diferencia entre la certeza de una descripción y la incertidumbre de una inferencia se ve con claridad al comparar las siguientes expresiones:</p>
 <ol style="list-style-type: decimal">
 <li><p>“El tiempo promedio que tardaron estas 100 personas en responder al cuestionario fue de 12 minutos”</p></li>
@@ -3057,10 +3061,10 @@ Como con el cuarteto de Anscombe, los gráfcos aportan una visión muy diferente
 <p>Cohen, Jacob. 1988. <em>Statistical Power Analysis for the Behavioral Sciences (2nd Edition)</em>. Lawrence Erlbaum Associates.</p>
 </div>
 <div id="ref-furlan2014">
-<p>Furlan, Luis Alberto, María José Ferrero, and Gabriela Gallart. 2014. “Ansiedad Ante Los Exámenes, Procrastinación Y Síntomas Mentales En Estudiantes de La Universidad Nacional de Córdoba.” <em>Revista Argentina de Ciencias Del Comportamiento</em>. <a href="https://www.redalyc.org/articulo.oa?id=333432764005 ">https://www.redalyc.org/articulo.oa?id=333432764005</a>.</p>
+<p>Furlan, Luis Alberto, María José Ferrero, and Gabriela Gallart. 2014. “Ansiedad Ante Los Exámenes, Procrastinación Y Síntomas Mentales En Estudiantes de La Universidad Nacional de Córdoba.” <em>Revista Argentina de Ciencias Del Comportamiento</em>. <a href="https://www.redalyc.org/articulo.oa?id=333432764005%20">https://www.redalyc.org/articulo.oa?id=333432764005</a>.</p>
 </div>
 <div id="ref-galton1877">
-<p>Galton, Francis. 1877. “Typical laws of heredity.” <em>Nature</em> 15. <a href="http://galton.org/bib/JournalItem.aspx{\_}action=view{\_}id=61">http://galton.org/bib/JournalItem.aspx{\_}action=view{\_}id=61</a>.</p>
+<p>Galton, Francis. 1877. “Typical laws of heredity.” <em>Nature</em> 15. <a href="http://galton.org/bib/JournalItem.aspx%7B\_%7Daction=view%7B\_%7Did=61">http://galton.org/bib/JournalItem.aspx{\_}action=view{\_}id=61</a>.</p>
 </div>
 <div id="ref-hacking_2006">
 <p>Hacking, Ian. 2006. <em>The Emergence of Probability: A Philosophical Study of Early Ideas About Probability, Induction and Statistical Inference</em>. 2nd ed. Cambridge University Press. <a href="https://doi.org/10.1017/CBO9780511817557">https://doi.org/10.1017/CBO9780511817557</a>.</p>
@@ -3081,15 +3085,15 @@ Como con el cuarteto de Anscombe, los gráfcos aportan una visión muy diferente
 <div class="footnotes">
 <hr />
 <ol start="26">
-<li id="fn26"><p>Según la clasificación sugerida por el Informe Mundial sobre la Violencia y la Salud, Organización Panamericana de la Salud, 2003.<a href="relación-entre-variables-el-análisis.html#fnref26" class="footnote-back">↩</a></p></li>
-<li id="fn27"><p>El mismo recurso que se usó cuando se definió la varianza y no era posible usar la suma de los desvíos porque daba cero. Nuevamente aquí, usamos el exponente 2 para volver positivos a los números negativos.<a href="relación-entre-variables-el-análisis.html#fnref27" class="footnote-back">↩</a></p></li>
-<li id="fn28"><p>Recordemos que, de manera general la dimensión de la tabla es <span class="math inline">\(f X c\)</span>, filas por columnas.<a href="relación-entre-variables-el-análisis.html#fnref28" class="footnote-back">↩</a></p></li>
-<li id="fn29"><p>Ver Ekström, J. (2011) para las discusiones en torno a este coeficiente en el llamado “debate Pearson-Yule”.<a href="relación-entre-variables-el-análisis.html#fnref29" class="footnote-back">↩</a></p></li>
-<li id="fn30"><p>Esta expresión puede encontrarse un poco diferente en algunos manuales. Si las desviaciones estándar, que se usan para calcular los puntajes z, se calcularan con denominador <span class="math inline">\(n\)</span> (como si correspondieran a observaciones provenientes de toda la población), entonces la fórmula de <span class="math inline">\(r\)</span> llevaría denominador <span class="math inline">\(n\)</span> también. Aquí mantenemos el modo de cálculo de la desviación estándar muestral con denominador <span class="math inline">\(n-1\)</span> y por eso esta fórmula lo lleva así también.<a href="relación-entre-variables-el-análisis.html#fnref30" class="footnote-back">↩</a></p></li>
-<li id="fn31"><p>Es la ordenada correspondiente a un valor de z que deja a derecha e izquierda, en una distribución normal, proporciones del área bajo la curva iguales a <span class="math inline">\(p\)</span> y <span class="math inline">\(1-p\)</span> respectivamente.<a href="relación-entre-variables-el-análisis.html#fnref31" class="footnote-back">↩</a></p></li>
-<li id="fn32"><p>No es posible poner como condición que la recta haga mínimas las distancias porque hay puntos por encima y por debajo, por lo que la suma de las distancias se hace cero (igual a lo que sucedió con la suma de los desvíos alrededor de la media y que llevó a usar sus cuadrados para definir la varianza). Por esa razón se usan los cuadrados de las distancias.<a href="relación-entre-variables-el-análisis.html#fnref32" class="footnote-back">↩</a></p></li>
-<li id="fn33"><p>Para calcular los valores de <span class="math inline">\(y\)</span> estimado (<span class="math inline">\(\widehat{y}\)</span>) hemos conservado más decimales en <span class="math inline">\(b_0\)</span> y <span class="math inline">\(b_1\)</span> que los mostrados.<a href="relación-entre-variables-el-análisis.html#fnref33" class="footnote-back">↩</a></p></li>
-<li id="fn34"><p>Se trata de la epopeya Mahabarata, cuya versión actual habría sido concluida hacia el año 400d.c.<a href="relación-entre-variables-el-análisis.html#fnref34" class="footnote-back">↩</a></p></li>
+<li id="fn26"><p>Según la clasificación sugerida por el Informe Mundial sobre la Violencia y la Salud, Organización Panamericana de la Salud, 2003.<a href="relación-entre-variables-el-análisis.html#fnref26" class="footnote-back">↩︎</a></p></li>
+<li id="fn27"><p>El mismo recurso que se usó cuando se definió la varianza y no era posible usar la suma de los desvíos porque daba cero. Nuevamente aquí, usamos el exponente 2 para volver positivos a los números negativos.<a href="relación-entre-variables-el-análisis.html#fnref27" class="footnote-back">↩︎</a></p></li>
+<li id="fn28"><p>Recordemos que, de manera general la dimensión de la tabla es <span class="math inline">\(f X c\)</span>, filas por columnas.<a href="relación-entre-variables-el-análisis.html#fnref28" class="footnote-back">↩︎</a></p></li>
+<li id="fn29"><p>Ver Ekström, J. (2011) para las discusiones en torno a este coeficiente en el llamado “debate Pearson-Yule”.<a href="relación-entre-variables-el-análisis.html#fnref29" class="footnote-back">↩︎</a></p></li>
+<li id="fn30"><p>Esta expresión puede encontrarse un poco diferente en algunos manuales. Si las desviaciones estándar, que se usan para calcular los puntajes z, se calcularan con denominador <span class="math inline">\(n\)</span> (como si correspondieran a observaciones provenientes de toda la población), entonces la fórmula de <span class="math inline">\(r\)</span> llevaría denominador <span class="math inline">\(n\)</span> también. Aquí mantenemos el modo de cálculo de la desviación estándar muestral con denominador <span class="math inline">\(n-1\)</span> y por eso esta fórmula lo lleva así también.<a href="relación-entre-variables-el-análisis.html#fnref30" class="footnote-back">↩︎</a></p></li>
+<li id="fn31"><p>Es la ordenada correspondiente a un valor de z que deja a derecha e izquierda, en una distribución normal, proporciones del área bajo la curva iguales a <span class="math inline">\(p\)</span> y <span class="math inline">\(1-p\)</span> respectivamente.<a href="relación-entre-variables-el-análisis.html#fnref31" class="footnote-back">↩︎</a></p></li>
+<li id="fn32"><p>No es posible poner como condición que la recta haga mínimas las distancias porque hay puntos por encima y por debajo, por lo que la suma de las distancias se hace cero (igual a lo que sucedió con la suma de los desvíos alrededor de la media y que llevó a usar sus cuadrados para definir la varianza). Por esa razón se usan los cuadrados de las distancias.<a href="relación-entre-variables-el-análisis.html#fnref32" class="footnote-back">↩︎</a></p></li>
+<li id="fn33"><p>Para calcular los valores de <span class="math inline">\(y\)</span> estimado (<span class="math inline">\(\widehat{y}\)</span>) hemos conservado más decimales en <span class="math inline">\(b_0\)</span> y <span class="math inline">\(b_1\)</span> que los mostrados.<a href="relación-entre-variables-el-análisis.html#fnref33" class="footnote-back">↩︎</a></p></li>
+<li id="fn34"><p>Se trata de la epopeya Mahabarata, cuya versión actual habría sido concluida hacia el año 400d.c.<a href="relación-entre-variables-el-análisis.html#fnref34" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>
@@ -3097,7 +3101,7 @@ Como con el cuarteto de Anscombe, los gráfcos aportan una visión muy diferente
           </div>
         </div>
       </div>
-<a href="relaciÃ³n-entre-variables-los-fundamentos.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="relación-entre-variables-los-fundamentos.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="obtención-de-la-muestra.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>

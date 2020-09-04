@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Capítulo 8 Probabilidad: los modelos | Un Recorrido por los Métodos Cuantitativos en Ciencias Sociales a bordo de R</title>
   <meta name="description" content="Capítulo 8 Probabilidad: los modelos | Un Recorrido por los Métodos Cuantitativos en Ciencias Sociales a bordo de R" />
-  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Capítulo 8 Probabilidad: los modelos | Un Recorrido por los Métodos Cuantitativos en Ciencias Sociales a bordo de R" />
   <meta property="og:type" content="book" />
@@ -49,13 +49,14 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -64,14 +65,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -80,9 +83,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -186,7 +189,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.2.3" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#formas-de-recategorizar"><i class="fa fa-check"></i><b>2.2.3</b> Formas de recategorizar</a></li>
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#la-presentación-gráfica-de-los-resultados"><i class="fa fa-check"></i><b>2.3</b> La presentación gráfica de los resultados</a></li>
-<li class="chapter" data-level="2.4" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#hacerlo-en-r-1"><i class="fa fa-check"></i><b>2.4</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="2.4" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>2.4</b> Hacerlo en R</a><ul>
 <li class="chapter" data-level="2.4.1" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#tablas-univariadas"><i class="fa fa-check"></i><b>2.4.1</b> Tablas univariadas</a></li>
 <li class="chapter" data-level="2.4.2" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#recategorización-1"><i class="fa fa-check"></i><b>2.4.2</b> Recategorización</a></li>
 <li class="chapter" data-level="2.4.3" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#representaciones-gráficas"><i class="fa fa-check"></i><b>2.4.3</b> Representaciones gráficas</a></li>
@@ -221,7 +224,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.5.1" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#medidas-de-posición-1"><i class="fa fa-check"></i><b>3.5.1</b> Medidas de posición</a></li>
 <li class="chapter" data-level="3.5.2" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#medidas-de-dispersión-1"><i class="fa fa-check"></i><b>3.5.2</b> Medidas de dispersión</a></li>
 </ul></li>
-<li class="chapter" data-level="3.6" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#hacerlo-en-r-2"><i class="fa fa-check"></i><b>3.6</b> Hacerlo en R</a></li>
+<li class="chapter" data-level="3.6" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>3.6</b> Hacerlo en R</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html"><i class="fa fa-check"></i><b>4</b> Relación entre variables: los fundamentos</a><ul>
 <li class="chapter" data-level="4.1" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#tablas-de-contingencia"><i class="fa fa-check"></i><b>4.1</b> Tablas de contingencia</a></li>
@@ -231,7 +234,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.5" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#concepto-de-riesgo-relativo"><i class="fa fa-check"></i><b>4.5</b> Concepto de riesgo relativo</a></li>
 <li class="chapter" data-level="4.6" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#la-intensidad"><i class="fa fa-check"></i><b>4.6</b> La intensidad</a></li>
 <li class="chapter" data-level="4.7" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#el-concepto-de-independencia-estadística"><i class="fa fa-check"></i><b>4.7</b> El concepto de independencia estadística</a></li>
-<li class="chapter" data-level="4.8" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#hacerlo-en-r-3"><i class="fa fa-check"></i><b>4.8</b> Hacerlo en R</a></li>
+<li class="chapter" data-level="4.8" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>4.8</b> Hacerlo en R</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html"><i class="fa fa-check"></i><b>5</b> Relación entre variables: el análisis</a><ul>
 <li class="chapter" data-level="5.1" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#relaciones-entre-variables-vs.-comparación-de-grupos"><i class="fa fa-check"></i><b>5.1</b> Relaciones entre variables vs. comparación de grupos</a></li>
@@ -253,7 +256,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.9.3" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#obtención-de-la-recta-de-regresión"><i class="fa fa-check"></i><b>5.9.3</b> Obtención de la recta de regresión</a></li>
 </ul></li>
 <li class="chapter" data-level="5.10" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#la-visualización-de-los-datos"><i class="fa fa-check"></i><b>5.10</b> La visualización de los datos</a></li>
-<li class="chapter" data-level="5.11" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#hacerlo-en-r-4"><i class="fa fa-check"></i><b>5.11</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="5.11" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>5.11</b> Hacerlo en R</a><ul>
 <li class="chapter" data-level="5.11.1" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#distancia-chi2"><i class="fa fa-check"></i><b>5.11.1</b> Distancia <span class="math inline">\(\chi^{2}\)</span></a></li>
 <li class="chapter" data-level="5.11.2" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#coeficientes"><i class="fa fa-check"></i><b>5.11.2</b> Coeficientes</a></li>
 <li class="chapter" data-level="5.11.3" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#modelo-lineal"><i class="fa fa-check"></i><b>5.11.3</b> Modelo lineal</a></li>
@@ -282,7 +285,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.3.4" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-accidental-o-según-disponibilidad"><i class="fa fa-check"></i><b>6.3.4</b> Muestreo accidental o según disponibilidad</a></li>
 <li class="chapter" data-level="6.3.5" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-bola-de-nieve"><i class="fa fa-check"></i><b>6.3.5</b> Muestreo bola de nieve</a></li>
 </ul></li>
-<li class="chapter" data-level="6.4" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#hacerlo-en-r-5"><i class="fa fa-check"></i><b>6.4</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="6.4" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>6.4</b> Hacerlo en R</a><ul>
 <li class="chapter" data-level="6.4.1" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#aleatorio-simple"><i class="fa fa-check"></i><b>6.4.1</b> Aleatorio simple</a></li>
 <li class="chapter" data-level="6.4.2" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#estratificado"><i class="fa fa-check"></i><b>6.4.2</b> Estratificado</a></li>
 </ul></li>
@@ -313,7 +316,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.6" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#la-distribución-t-de-student"><i class="fa fa-check"></i><b>8.6</b> La distribución t de Student</a><ul>
 <li class="chapter" data-level="8.6.1" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#la-distribución-f"><i class="fa fa-check"></i><b>8.6.1</b> La distribución F</a></li>
 </ul></li>
-<li class="chapter" data-level="8.7" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#hacerlo-en-r-6"><i class="fa fa-check"></i><b>8.7</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="8.7" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>8.7</b> Hacerlo en R</a><ul>
 <li class="chapter" data-level="8.7.1" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#probabilidades-exactas"><i class="fa fa-check"></i><b>8.7.1</b> Probabilidades exactas</a></li>
 <li class="chapter" data-level="8.7.2" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#probabilidades-acumuladas"><i class="fa fa-check"></i><b>8.7.2</b> Probabilidades acumuladas</a></li>
 <li class="chapter" data-level="8.7.3" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#cuantiles-1"><i class="fa fa-check"></i><b>8.7.3</b> Cuantiles</a></li>
@@ -339,7 +342,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.3.7" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#distribución-del-cociente-de-varianzas"><i class="fa fa-check"></i><b>9.3.7</b> Distribución del cociente de varianzas</a></li>
 </ul></li>
 <li class="chapter" data-level="9.4" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#resumen-de-la-relación-entre-estimadores-y-parámetros"><i class="fa fa-check"></i><b>9.4</b> Resumen de la relación entre estimadores y parámetros</a></li>
-<li class="chapter" data-level="9.5" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#hacerlo-en-r-7"><i class="fa fa-check"></i><b>9.5</b> Hacerlo en R</a></li>
+<li class="chapter" data-level="9.5" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>9.5</b> Hacerlo en R</a></li>
 </ul></li>
 <li class="part"><span><b>III Estadística inferencial</b></span></li>
 <li class="chapter" data-level="10" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html"><i class="fa fa-check"></i><b>10</b> Estimación por intervalo</a><ul>
@@ -356,7 +359,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.5.2" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#el-error-de-estimación-en-la-proporción"><i class="fa fa-check"></i><b>10.5.2</b> El error de estimación en la proporción</a></li>
 </ul></li>
 <li class="chapter" data-level="10.6" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#probabilidad-de-cobertura"><i class="fa fa-check"></i><b>10.6</b> Probabilidad de cobertura</a></li>
-<li class="chapter" data-level="10.7" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#hacerlo-en-r-8"><i class="fa fa-check"></i><b>10.7</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="10.7" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>10.7</b> Hacerlo en R</a><ul>
 <li class="chapter" data-level="10.7.1" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#intervalo-para-la-media"><i class="fa fa-check"></i><b>10.7.1</b> Intervalo para la media</a></li>
 <li class="chapter" data-level="10.7.2" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#intervalo-para-la-proporción"><i class="fa fa-check"></i><b>10.7.2</b> Intervalo para la proporción</a></li>
 <li class="chapter" data-level="10.7.3" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#cobertura"><i class="fa fa-check"></i><b>10.7.3</b> Cobertura</a></li>
@@ -377,7 +380,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.5.2" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#significación-estadística-y-valor-p"><i class="fa fa-check"></i><b>11.5.2</b> Significación estadística y valor <span class="math inline">\(p\)</span></a></li>
 </ul></li>
 <li class="chapter" data-level="11.6" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#muestras-pequeñas-y-pruebas-t"><i class="fa fa-check"></i><b>11.6</b> Muestras pequeñas y pruebas <span class="math inline">\(t\)</span></a></li>
-<li class="chapter" data-level="11.7" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#hacerlo-en-r-9"><i class="fa fa-check"></i><b>11.7</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="11.7" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>11.7</b> Hacerlo en R</a><ul>
 <li class="chapter" data-level="11.7.1" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#prueba-sobre-la-media-1"><i class="fa fa-check"></i><b>11.7.1</b> Prueba sobre la media</a></li>
 <li class="chapter" data-level="11.7.2" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#prueba-sobre-la-proporción-1"><i class="fa fa-check"></i><b>11.7.2</b> Prueba sobre la proporción</a></li>
 </ul></li>
@@ -389,7 +392,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="12.1.2" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#muestras-apareadas"><i class="fa fa-check"></i><b>12.1.2</b> Muestras apareadas</a></li>
 <li class="chapter" data-level="12.1.3" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#coeficiente-r-de-pearson"><i class="fa fa-check"></i><b>12.1.3</b> Coeficiente r de Pearson</a></li>
 </ul></li>
-<li class="chapter" data-level="12.2" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#hacerlo-en-r-10"><i class="fa fa-check"></i><b>12.2</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="12.2" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>12.2</b> Hacerlo en R</a><ul>
 <li class="chapter" data-level="12.2.1" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#ejemplo-1."><i class="fa fa-check"></i><b>12.2.1</b> Ejemplo 1.</a></li>
 <li class="chapter" data-level="12.2.2" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#ejemplo-2."><i class="fa fa-check"></i><b>12.2.2</b> Ejemplo 2.</a></li>
 <li class="chapter" data-level="12.2.3" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#aplicación-a-los-datos-de-población-adulta-mayor"><i class="fa fa-check"></i><b>12.2.3</b> Aplicación a los datos de Población Adulta Mayor</a></li>
@@ -401,12 +404,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13.0.1" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#las-pruebas-ji-cuadrado-o-chi-cuadrado"><i class="fa fa-check"></i><b>13.0.1</b> Las pruebas ji cuadrado (o chi cuadrado)</a></li>
 <li class="chapter" data-level="13.0.2" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#coeficiente-r_s-de-spearman"><i class="fa fa-check"></i><b>13.0.2</b> Coeficiente <span class="math inline">\(r_s\)</span> de Spearman</a></li>
 <li class="chapter" data-level="13.0.3" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#alternativas-no-paramétricas-a-las-pruebas-t"><i class="fa fa-check"></i><b>13.0.3</b> Alternativas no paramétricas a las pruebas t</a></li>
-<li class="chapter" data-level="13.1" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#hacerlo-en-r-11"><i class="fa fa-check"></i><b>13.1</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="13.1" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>13.1</b> Hacerlo en R</a><ul>
 <li class="chapter" data-level="13.1.1" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#ejemplo-1"><i class="fa fa-check"></i><b>13.1.1</b> Ejemplo 1</a></li>
 <li class="chapter" data-level="13.1.2" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#ejemplo-2"><i class="fa fa-check"></i><b>13.1.2</b> Ejemplo 2</a></li>
 <li class="chapter" data-level="13.1.3" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#prueba-de-la-mediana-1"><i class="fa fa-check"></i><b>13.1.3</b> Prueba de la mediana</a></li>
 <li class="chapter" data-level="13.1.4" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#prueba-de-wilcoxon"><i class="fa fa-check"></i><b>13.1.4</b> Prueba de Wilcoxon</a></li>
-<li class="chapter" data-level="13.1.5" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#muestras-apareadas-1"><i class="fa fa-check"></i><b>13.1.5</b> Muestras apareadas</a></li>
+<li class="chapter" data-level="13.1.5" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#muestras-apareadas"><i class="fa fa-check"></i><b>13.1.5</b> Muestras apareadas</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="14" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html"><i class="fa fa-check"></i><b>14</b> Tamaño del efecto</a><ul>
@@ -419,7 +422,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="14.2.5" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#pruebas-ji-cuadrado"><i class="fa fa-check"></i><b>14.2.5</b> Pruebas ji cuadrado</a></li>
 </ul></li>
 <li class="chapter" data-level="14.3" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#análisis-de-la-potencia"><i class="fa fa-check"></i><b>14.3</b> Análisis de la potencia</a></li>
-<li class="chapter" data-level="14.4" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#hacerlo-en-r-12"><i class="fa fa-check"></i><b>14.4</b> Hacerlo en R</a></li>
+<li class="chapter" data-level="14.4" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>14.4</b> Hacerlo en R</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Generado con bookdown</a></li>
@@ -443,7 +446,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="probabilidad-los-modelos" class="section level1">
 <h1><span class="header-section-number">Capítulo 8</span> Probabilidad: los modelos</h1>
-<p>Un modelo es una representación simplificada de un proceso observable, es una formalización de algunos aspectos de la realidad. La expresión “todos los modelos son erroneos, pero algunos son útiles” atribuida a <span class="citation">Box and Draper (<a href="#ref-Box1987">1987</a>)</span>, sintetiza la idea de simplificación, de recorte, de selección deliberada de algunos componentes para describir, explicar y predecir. Por definición, un modelo es teórico y propone articulación entre conceptos, con nexos deductivos, inductivos, de analogía, etc. No es
+<p>Un modelo es una representación simplificada de un proceso observable, es una formalización de algunos aspectos de la realidad. La expresión “todos los modelos son erroneos, pero algunos son útiles” atribuida a <span class="citation">Box and Draper (<a href="#ref-Box1987" role="doc-biblioref">1987</a>)</span>, sintetiza la idea de simplificación, de recorte, de selección deliberada de algunos componentes para describir, explicar y predecir. Por definición, un modelo es teórico y propone articulación entre conceptos, con nexos deductivos, inductivos, de analogía, etc. No es
 arbitrario, ya que deben tenerse razones para suponer que el modelo se
 sostiene: no es espera que esté en contradicción con lo que se observa, pero en todos los casos es una aproximación a lo que sucede en
 la realidad. Tratamos de modelar (o modelizar) lo que observamos a fin
@@ -739,25 +742,25 @@ i
 \end{pmatrix} *p^{i}*(1-p)^{n-i} \]</span></p>
 <p>El cálculo de esta probabilidad por medio de la fórmula es largo, por lo que usamos calculadoras electrónicas para hacerlo. Hay algunas on-line, también pueden usarse hojas de cálculo y la mayoría de los paquetes estadísticos las incluyen; existe una aplicación para teléfonos llamada “Probability Distributions”, algunas de estas calculadoras muestran también el gráfico de la distribución. Por todos estos medios (calculadora on-line, hoja de cálculo, software estadístico, aplicación) se calculan probabilidades bajo diversos modelos, que se verán más adelante. Las diferencias entre ellos están en cuál es la probabilidad que calculan por defecto. Además de la exacta (<span class="math inline">\(P(X=x)\)</span>), lo más frecuente es que ofrezcan la acumulada (<span class="math inline">\(P(X\le x)\)</span>), pero también puede que den su complemento (<span class="math inline">\(P(X&gt;x)\)</span>). En cada caso hay que verificar qué convención se está aplicando para poder interpretar el resultado.<br />
 En R disponemos de las rutinas para calcular probabilidades simples y acumuladas bajo diferentes modelos. Para la binomial, el comando <code>dbinom</code>, tiene como argumentos: el número de éxitos cuya probabilidad se solicita(<span class="math inline">\(x\)</span>), el número de repeticiones (<span class="math inline">\(n\)</span>, que en R se llama <code>size</code>) y la probabilidad de éxito a cada repetición (<span class="math inline">\(p\)</span>, en R, <code>prob</code>). La probabilidad de obtener una cara al lanzar una moneda equilibrada (<span class="math inline">\(p=0.5\)</span>), dos veces es:</p>
-<div class="sourceCode" id="cb436"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb436-1" title="1"><span class="kw">dbinom</span>(<span class="dt">x =</span> <span class="dv">1</span>, <span class="dt">size =</span> <span class="dv">2</span>, <span class="dt">prob =</span> <span class="fl">0.5</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb426"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb426-1"><a href="probabilidad-los-modelos.html#cb426-1"></a><span class="kw">dbinom</span>(<span class="dt">x =</span> <span class="dv">1</span>, <span class="dt">size =</span> <span class="dv">2</span>, <span class="dt">prob =</span> <span class="fl">0.5</span>)</span></code></pre></div>
 <pre><code>## [1] 0.5</code></pre>
 <p>Y la probabilidad de tres caras en cuatro lanzamientos de una moneda equilibrada (<span class="math inline">\(P(X=3)\)</span>) es:</p>
-<div class="sourceCode" id="cb438"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb438-1" title="1"><span class="kw">round</span>(<span class="kw">dbinom</span>(<span class="dt">x =</span> <span class="dv">3</span>, <span class="dt">size =</span> <span class="dv">4</span>, <span class="dt">prob =</span> <span class="fl">0.5</span>), <span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb428-1"><a href="probabilidad-los-modelos.html#cb428-1"></a><span class="kw">round</span>(<span class="kw">dbinom</span>(<span class="dt">x =</span> <span class="dv">3</span>, <span class="dt">size =</span> <span class="dv">4</span>, <span class="dt">prob =</span> <span class="fl">0.5</span>), <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## [1] 0.25</code></pre>
 <p>El la que hemos pedido un redondeo a dos decimales.</p>
 <p>Para pedir la probabilidad acumulada, como por ejemplo la de obtener tres caras o menos (<span class="math inline">\(P(X\leq 3)\)</span>) en cuatro lanzamientos, el comando es <code>pbinom</code>, con los mismos argumentos:</p>
-<div class="sourceCode" id="cb440"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb440-1" title="1"><span class="kw">round</span>(<span class="kw">pbinom</span>(<span class="dv">3</span>, <span class="dt">size =</span> <span class="dv">4</span>, <span class="dt">prob =</span> <span class="fl">0.5</span>), <span class="dv">4</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb430-1"><a href="probabilidad-los-modelos.html#cb430-1"></a><span class="kw">round</span>(<span class="kw">pbinom</span>(<span class="dv">3</span>, <span class="dt">size =</span> <span class="dv">4</span>, <span class="dt">prob =</span> <span class="fl">0.5</span>), <span class="dv">4</span>)</span></code></pre></div>
 <pre><code>## [1] 0.9375</code></pre>
 <p>Que es la suma de las probabillidades exactas desde cero hasta tres:</p>
 <pre><code>## [1] 0.9375</code></pre>
 <p>La respuesta al problema del examen se resuelve en dos pasos, porque para aprobar hacen falta 12 aciertos <em>o más</em>. Entonces, primero calculamos la probabilidad acumulada de 11 (<span class="math inline">\(P(X\leq 11)\)</span>), que es la probabilidad de no aprobar (obtener 11 aciertos o menos):</p>
-<div class="sourceCode" id="cb443"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb443-1" title="1"><span class="kw">round</span>(<span class="kw">pbinom</span>(<span class="dv">11</span>, <span class="dv">20</span>, <span class="fl">.2</span>), <span class="dv">4</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb433"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb433-1"><a href="probabilidad-los-modelos.html#cb433-1"></a><span class="kw">round</span>(<span class="kw">pbinom</span>(<span class="dv">11</span>, <span class="dv">20</span>, <span class="fl">.2</span>), <span class="dv">4</span>)</span></code></pre></div>
 <pre><code>## [1] 0.9999</code></pre>
 <p>Y luego complementamos el resultado para obtener la probabilidad de superar los 11 aciertos</p>
 <p><span class="math inline">\(P(X&gt;11)=\)</span> 1.0210^{-4}.</p>
 <p>Como se observa, si se respeta el orden de los argumentos, <span class="math inline">\(x\)</span>, <span class="math inline">\(n\)</span> y <span class="math inline">\(p\)</span>, no hace falta indicar qué es cada cosa.</p>
 <p>Otro ejemplo es aquel en el que se elige una muestra aleatoria de 15 estudiantes de primer año de la carrera de Biología para un experimento. Si se sabe que la proporción de mujeres de primer año de esa carrera es del 70%, ¿Cuál es la probabilidad que en la muestra resulten todas mujeres?. Cada persona que se selecciona aleatoriamente es una repetición, en la que la probabilidad que esa persona sea mujer es 0.70, y se pregunta por la probabilidad de hallar 15 éxitos. El resultado es:</p>
-<div class="sourceCode" id="cb445"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb445-1" title="1"><span class="kw">dbinom</span>(<span class="dv">15</span>, <span class="dv">15</span>, <span class="fl">.7</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb435"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb435-1"><a href="probabilidad-los-modelos.html#cb435-1"></a><span class="kw">dbinom</span>(<span class="dv">15</span>, <span class="dv">15</span>, <span class="fl">.7</span>)</span></code></pre></div>
 <pre><code>## [1] 0.004747562</code></pre>
 <p>Y se expresa así: <span class="math display">\[P(X=15)=B(15,15,.7)=0.0047\]</span><br />
 Al final del capítulo veremos con más detalle cómo pedir estas probabiidades a R.</p>
@@ -840,7 +843,7 @@ desviación estándar <span class="math inline">\(s\)</span>, entonces <span cla
 <p>Queda delimitada por debajo de <span class="math inline">\(z=2\)</span> un área de 0.9772. <span class="math inline">\(P(z\leq2)=0.9772\)</span>.</p>
 <p>Si solicitamos las probabilidades acumuladas por debajo de diferentes valores de <span class="math inline">\(z\)</span>, empezando con los negativos, pasando por el cero y siguiendo por los positivos, se obtiene la figura <a href="probabilidad-los-modelos.html#fig:variasnormales">8.1</a>.</p>
 <div class="figure" style="text-align: center"><span id="fig:variasnormales"></span>
-<img src="imagenes/ubicaciones_z.png" alt="Probabilidades acumuladas bajo la distribución normal para diferentes valores de $z$" width="274" />
+<img src="imagenes/ubicaciones_z.png" alt="Probabilidades acumuladas bajo la distribución normal para diferentes valores de $z$"  />
 <p class="caption">
 Figura 8.1: Probabilidades acumuladas bajo la distribución normal para diferentes valores de <span class="math inline">\(z\)</span>
 </p>
@@ -1248,7 +1251,7 @@ que ya se mencionó, se verá más adelante.</p>
 </div>
 <div id="la-distribución-t-de-student" class="section level2">
 <h2><span class="header-section-number">8.6</span> La distribución t de Student</h2>
-<p>El tercer modelo especial de probabilidades para variables continuas que nos interesa describir es la distribución t, conocida como “de Student”, por el seudónimo que utilizaba quien la aplicó por primera vez, William Gosset<a href="#fn49" class="footnote-ref" id="fnref49"><sup>49</sup></a> <span class="citation">(Student <a href="#ref-student1908a">1908</a><a href="#ref-student1908a">b</a>, @student1908b)</span>.</p>
+<p>El tercer modelo especial de probabilidades para variables continuas que nos interesa describir es la distribución t, conocida como “de Student”, por el seudónimo que utilizaba quien la aplicó por primera vez, William Gosset<a href="#fn49" class="footnote-ref" id="fnref49"><sup>49</sup></a> <span class="citation">(Student <a href="#ref-student1908a" role="doc-biblioref">1908</a><a href="#ref-student1908a" role="doc-biblioref">b</a>, @student1908b)</span>.</p>
 <p>Se trata de una distribución que, como la normal es simétrica y como la
 <span class="math inline">\(\chi^{2}\)</span> depende de los grados de libertad<a href="#fn50" class="footnote-ref" id="fnref50"><sup>50</sup></a>. Su forma es la
 de los gráficos <a href="probabilidad-los-modelos.html#fig:t3">8.7</a>, <a href="probabilidad-los-modelos.html#fig:t15">8.8</a> y <a href="probabilidad-los-modelos.html#fig:t60">8.9</a> y varía dependiendo de los grados de libertad.</p>
@@ -1376,7 +1379,7 @@ distribuciones, a través del cociente de las varianzas.</p>
 <div style="page-break-after: always;"></div>
 </div>
 </div>
-<div id="hacerlo-en-r-6" class="section level2">
+<div id="hacerlo-en-r" class="section level2">
 <h2><span class="header-section-number">8.7</span> Hacerlo en R</h2>
 <div id="probabilidades-exactas" class="section level3">
 <h3><span class="header-section-number">8.7.1</span> Probabilidades exactas</h3>
@@ -1385,13 +1388,13 @@ dbinom(x, “cantidad de ensayos”, “probabilidad de éxito a cada ensayo”)
 <div id="ejemplo" class="section level4">
 <h4><span class="header-section-number">8.7.1.1</span> Ejemplo</h4>
 <p>Si una variable consiste en la cantidad de éxitos que se obtienen al repetir 15 veces un experimento que a cada repetición tiene probabilidad 0.20 de ser éxito, se trata de una distribución binomial con parámetros <span class="math inline">\(n=15\)</span> y <span class="math inline">\(p=0.20\)</span>. La probabilidad de obtener exactamente 7 éxitos, que es <span class="math inline">\(B(x=7, n=15, p=0.20)\)</span> se pide a R así:</p>
-<div class="sourceCode" id="cb473"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb473-1" title="1"><span class="kw">dbinom</span>(<span class="dt">x =</span> <span class="dv">7</span>, <span class="dt">size =</span> <span class="dv">15</span>, <span class="dt">prob =</span> <span class="fl">.2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb463"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb463-1"><a href="probabilidad-los-modelos.html#cb463-1"></a><span class="kw">dbinom</span>(<span class="dt">x =</span> <span class="dv">7</span>, <span class="dt">size =</span> <span class="dv">15</span>, <span class="dt">prob =</span> <span class="fl">.2</span>)</span></code></pre></div>
 <pre><code>## [1] 0.01381906</code></pre>
 <p>Si se respeta el orden (<span class="math inline">\(x, n, p\)</span>), no es necesario indicar qué representa cada número:</p>
-<div class="sourceCode" id="cb475"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb475-1" title="1"><span class="kw">dbinom</span>(<span class="dv">7</span>, <span class="dv">15</span>, <span class="fl">.2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb465"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb465-1"><a href="probabilidad-los-modelos.html#cb465-1"></a><span class="kw">dbinom</span>(<span class="dv">7</span>, <span class="dv">15</span>, <span class="fl">.2</span>)</span></code></pre></div>
 <pre><code>## [1] 0.01381906</code></pre>
 <p>Para expresar el resultado redondeado a cuatro decimales:</p>
-<div class="sourceCode" id="cb477"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb477-1" title="1"><span class="kw">round</span>(<span class="kw">dbinom</span>(<span class="dv">7</span>, <span class="dv">15</span>, <span class="fl">.2</span>), <span class="dv">4</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb467"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb467-1"><a href="probabilidad-los-modelos.html#cb467-1"></a><span class="kw">round</span>(<span class="kw">dbinom</span>(<span class="dv">7</span>, <span class="dv">15</span>, <span class="fl">.2</span>), <span class="dv">4</span>)</span></code></pre></div>
 <pre><code>## [1] 0.0138</code></pre>
 <p>Este es el valor de la función de densidad binomial, no se calcula para variables continuas.</p>
 </div>
@@ -1413,62 +1416,62 @@ dbinom(x, “cantidad de ensayos”, “probabilidad de éxito a cada ensayo”)
 <div id="binomial" class="section level5">
 <h5><span class="header-section-number">8.7.2.1.1</span> Binomial</h5>
 <p>Para la variable del ejemplos anterior con los mismos parámetros, la probabilidad de obtener 7 éxitos <strong>o menos</strong> se escribe: <span class="math inline">\(B(x\leq7, n=15, p=0.20)\)</span> y se solicita a R con el siguiente comando:</p>
-<div class="sourceCode" id="cb479"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb479-1" title="1"><span class="kw">pbinom</span>(<span class="dv">7</span>, <span class="dv">15</span>, <span class="fl">.20</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb469"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb469-1"><a href="probabilidad-los-modelos.html#cb469-1"></a><span class="kw">pbinom</span>(<span class="dv">7</span>, <span class="dv">15</span>, <span class="fl">.20</span>)</span></code></pre></div>
 <pre><code>## [1] 0.9957603</code></pre>
 <p>Con cuatro decimales, queda:</p>
-<div class="sourceCode" id="cb481"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb481-1" title="1"><span class="kw">round</span>(<span class="kw">pbinom</span>(<span class="dv">7</span>, <span class="dv">15</span>, <span class="fl">.20</span>), <span class="dv">4</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb471"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb471-1"><a href="probabilidad-los-modelos.html#cb471-1"></a><span class="kw">round</span>(<span class="kw">pbinom</span>(<span class="dv">7</span>, <span class="dv">15</span>, <span class="fl">.20</span>), <span class="dv">4</span>)</span></code></pre></div>
 <pre><code>## [1] 0.9958</code></pre>
 </div>
 <div id="normal-estándar" class="section level5">
 <h5><span class="header-section-number">8.7.2.1.2</span> Normal estándar</h5>
 <p>Para obtener la <span class="math inline">\(P(z&lt;1.5)\)</span>, se pide:</p>
-<div class="sourceCode" id="cb483"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb483-1" title="1"><span class="kw">pnorm</span>(<span class="fl">1.5</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb473"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb473-1"><a href="probabilidad-los-modelos.html#cb473-1"></a><span class="kw">pnorm</span>(<span class="fl">1.5</span>)</span></code></pre></div>
 <pre><code>## [1] 0.9331928</code></pre>
 <p>Redondeado a cuatro decimales:</p>
-<div class="sourceCode" id="cb485"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb485-1" title="1"><span class="kw">round</span>(<span class="kw">pnorm</span>(<span class="fl">1.5</span>), <span class="dv">4</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb475"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb475-1"><a href="probabilidad-los-modelos.html#cb475-1"></a><span class="kw">round</span>(<span class="kw">pnorm</span>(<span class="fl">1.5</span>), <span class="dv">4</span>)</span></code></pre></div>
 <pre><code>## [1] 0.9332</code></pre>
 <p>Para <span class="math inline">\(P(z&gt;2.3)\)</span>, hay que complementar a 1 y redondear el resultado:</p>
-<div class="sourceCode" id="cb487"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb487-1" title="1"><span class="kw">round</span>((<span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(<span class="fl">2.3</span>)), <span class="dv">4</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb477"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb477-1"><a href="probabilidad-los-modelos.html#cb477-1"></a><span class="kw">round</span>((<span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(<span class="fl">2.3</span>)), <span class="dv">4</span>)</span></code></pre></div>
 <pre><code>## [1] 0.0107</code></pre>
 </div>
 </div>
 <div id="normal" class="section level4">
 <h4><span class="header-section-number">8.7.2.2</span> Normal</h4>
 <p>Si <span class="math inline">\(x\)</span> tiene distribución normal con media 5 y desviación estándar 2, la <span class="math inline">\(P(x&lt;6.3)\)</span>, redondeada a cuatro decimales se pide:</p>
-<div class="sourceCode" id="cb489"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb489-1" title="1"><span class="kw">round</span>(<span class="kw">pnorm</span>(<span class="fl">6.3</span>, <span class="dv">5</span>, <span class="dv">2</span>), <span class="dv">4</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb479"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb479-1"><a href="probabilidad-los-modelos.html#cb479-1"></a><span class="kw">round</span>(<span class="kw">pnorm</span>(<span class="fl">6.3</span>, <span class="dv">5</span>, <span class="dv">2</span>), <span class="dv">4</span>)</span></code></pre></div>
 <pre><code>## [1] 0.7422</code></pre>
 <p>Y para un intervalo de valores, como <span class="math inline">\(P(6&lt;x&lt;8)\)</span>, se restan sus probabilidades acumuladas:</p>
-<div class="sourceCode" id="cb491"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb491-1" title="1"><span class="kw">round</span>((<span class="kw">pnorm</span>(<span class="dv">8</span>, <span class="dv">5</span>, <span class="dv">2</span>) <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(<span class="dv">6</span>, <span class="dv">5</span>, <span class="dv">2</span>)), <span class="dv">4</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb481"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb481-1"><a href="probabilidad-los-modelos.html#cb481-1"></a><span class="kw">round</span>((<span class="kw">pnorm</span>(<span class="dv">8</span>, <span class="dv">5</span>, <span class="dv">2</span>) <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(<span class="dv">6</span>, <span class="dv">5</span>, <span class="dv">2</span>)), <span class="dv">4</span>)</span></code></pre></div>
 <pre><code>## [1] 0.2417</code></pre>
 </div>
 <div id="chi-cuadrado" class="section level4">
 <h4><span class="header-section-number">8.7.2.3</span> Chi cuadrado</h4>
 <p>La probabilidad de hallar una variable con distribución <span class="math inline">\(\chi^2\)</span> con 15 grados de libertad, por debajo de 10, se escribe <span class="math inline">\(P(\chi^2_{15}&lt;10)\)</span> yse solicita:</p>
-<div class="sourceCode" id="cb493"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb493-1" title="1"><span class="kw">pchisq</span>(<span class="dv">10</span>, <span class="dv">15</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb483"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb483-1"><a href="probabilidad-los-modelos.html#cb483-1"></a><span class="kw">pchisq</span>(<span class="dv">10</span>, <span class="dv">15</span>)</span></code></pre></div>
 <pre><code>## [1] 0.1802601</code></pre>
 <p>Redondeado a cuatro decimales:</p>
-<div class="sourceCode" id="cb495"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb495-1" title="1"><span class="kw">round</span>(<span class="kw">pchisq</span>(<span class="dv">10</span>, <span class="dv">15</span>), <span class="dv">4</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb485"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb485-1"><a href="probabilidad-los-modelos.html#cb485-1"></a><span class="kw">round</span>(<span class="kw">pchisq</span>(<span class="dv">10</span>, <span class="dv">15</span>), <span class="dv">4</span>)</span></code></pre></div>
 <pre><code>## [1] 0.1803</code></pre>
 </div>
 <div id="t-de-student" class="section level4">
 <h4><span class="header-section-number">8.7.2.4</span> t de Student</h4>
 <p>Si una t tiene 10 grados de libertad, la <span class="math inline">\(P(t_{10}&lt;2.5)\)</span> se pide:</p>
-<div class="sourceCode" id="cb497"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb497-1" title="1"><span class="kw">pt</span>(<span class="fl">2.5</span>, <span class="dv">10</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb487"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb487-1"><a href="probabilidad-los-modelos.html#cb487-1"></a><span class="kw">pt</span>(<span class="fl">2.5</span>, <span class="dv">10</span>)</span></code></pre></div>
 <pre><code>## [1] 0.9842766</code></pre>
 <p>O bien, redondeando:</p>
-<div class="sourceCode" id="cb499"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb499-1" title="1"><span class="kw">round</span>(<span class="kw">pt</span>(<span class="fl">2.5</span>, <span class="dv">10</span>), <span class="dv">4</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb489"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb489-1"><a href="probabilidad-los-modelos.html#cb489-1"></a><span class="kw">round</span>(<span class="kw">pt</span>(<span class="fl">2.5</span>, <span class="dv">10</span>), <span class="dv">4</span>)</span></code></pre></div>
 <pre><code>## [1] 0.9843</code></pre>
 <p>Para un área superior, <span class="math inline">\(P(t_{25}&gt;1.8)\)</span>, se complementa a 1:</p>
-<div class="sourceCode" id="cb501"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb501-1" title="1"><span class="kw">round</span>((<span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pt</span>(<span class="fl">1.8</span>, <span class="dv">25</span>)), <span class="dv">4</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb491"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb491-1"><a href="probabilidad-los-modelos.html#cb491-1"></a><span class="kw">round</span>((<span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pt</span>(<span class="fl">1.8</span>, <span class="dv">25</span>)), <span class="dv">4</span>)</span></code></pre></div>
 <pre><code>## [1] 0.042</code></pre>
 </div>
 <div id="f-de-fisher" class="section level4">
 <h4><span class="header-section-number">8.7.2.5</span> F de Fisher</h4>
 <p>Con cinco grados de libertad en el numerador y siete en el denominador, <span class="math inline">\(P(F_{5,7}&lt;2.7)\)</span> se pide así:</p>
-<div class="sourceCode" id="cb503"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb503-1" title="1"><span class="kw">pf</span>(<span class="fl">2.7</span>, <span class="dv">5</span>, <span class="dv">7</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb493"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb493-1"><a href="probabilidad-los-modelos.html#cb493-1"></a><span class="kw">pf</span>(<span class="fl">2.7</span>, <span class="dv">5</span>, <span class="dv">7</span>)</span></code></pre></div>
 <pre><code>## [1] 0.8860769</code></pre>
 <p>Y el área por encima, <span class="math inline">\(P(F_{5,7}&gt;2.7)\)</span> es su complemento a uno:</p>
-<div class="sourceCode" id="cb505"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb505-1" title="1"><span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pf</span>(<span class="fl">2.7</span>, <span class="dv">5</span>, <span class="dv">7</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb495"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb495-1"><a href="probabilidad-los-modelos.html#cb495-1"></a><span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pf</span>(<span class="fl">2.7</span>, <span class="dv">5</span>, <span class="dv">7</span>)</span></code></pre></div>
 <pre><code>## [1] 0.1139231</code></pre>
 </div>
 </div>
@@ -1488,47 +1491,47 @@ dbinom(x, “cantidad de ensayos”, “probabilidad de éxito a cada ensayo”)
 <div id="binomial-1" class="section level5">
 <h5><span class="header-section-number">8.7.3.1.1</span> Binomial</h5>
 <p>Manteniendo el modelo binomial de los ejemplos anteriores (<span class="math inline">\(n=15\)</span> y <span class="math inline">\(p=0.20\)</span>), podemos conocer, por ejemplo, el percentil 90, es decir, el valor de la variable (número de éxitos) por debajo del cual está el 90%. En este caso, <span class="math inline">\(q=0.90\)</span> y los parámetros son los mismos que antes:</p>
-<div class="sourceCode" id="cb507"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb507-1" title="1"><span class="kw">qbinom</span>(.<span class="dv">9</span>, <span class="dv">15</span>, <span class="fl">.2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb497"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb497-1"><a href="probabilidad-los-modelos.html#cb497-1"></a><span class="kw">qbinom</span>(.<span class="dv">9</span>, <span class="dv">15</span>, <span class="fl">.2</span>)</span></code></pre></div>
 <pre><code>## [1] 5</code></pre>
 <p>Que indica que hay una probabilidad 0.90 que el número de éxitos no supere a cinco.</p>
 </div>
 <div id="normal-estándar-1" class="section level5">
 <h5><span class="header-section-number">8.7.3.1.2</span> Normal estándar</h5>
 <p>Puntaje <span class="math inline">\(z\)</span> que acumula el 75% de los casos, es decir, se busca el <span class="math inline">\(P_{75}\)</span> de una distribución normal estándar</p>
-<div class="sourceCode" id="cb509"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb509-1" title="1"><span class="kw">qnorm</span>(.<span class="dv">75</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb499"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb499-1"><a href="probabilidad-los-modelos.html#cb499-1"></a><span class="kw">qnorm</span>(.<span class="dv">75</span>)</span></code></pre></div>
 <pre><code>## [1] 0.6744898</code></pre>
 <p>Con lo que <span class="math inline">\(P(z&lt;.6745)=0.75\)</span><br />
 El <span class="math inline">\(z\)</span> que deja <span class="math inline">\(3\%\)</span> por encima es el cuantil 0.97 (o <span class="math inline">\(P_{97}\)</span>) y vale</p>
-<div class="sourceCode" id="cb511"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb511-1" title="1"><span class="kw">qnorm</span>(.<span class="dv">97</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb501"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb501-1"><a href="probabilidad-los-modelos.html#cb501-1"></a><span class="kw">qnorm</span>(.<span class="dv">97</span>)</span></code></pre></div>
 <pre><code>## [1] 1.880794</code></pre>
 </div>
 <div id="normal-1" class="section level5">
 <h5><span class="header-section-number">8.7.3.1.3</span> Normal</h5>
 <p>Si <span class="math inline">\(x\)</span> tiene una distribución normal con media 100 y desviación estándar 15, el cuantil 99 de esa distribución es:</p>
-<div class="sourceCode" id="cb513"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb513-1" title="1"><span class="kw">qnorm</span>(.<span class="dv">99</span>, <span class="dv">100</span>, <span class="dv">15</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb503"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb503-1"><a href="probabilidad-los-modelos.html#cb503-1"></a><span class="kw">qnorm</span>(.<span class="dv">99</span>, <span class="dv">100</span>, <span class="dv">15</span>)</span></code></pre></div>
 <pre><code>## [1] 134.8952</code></pre>
 <p>Que indica que el <span class="math inline">\(99\%\)</span> de los casos está por debajo de ese valor, o que solo el <span class="math inline">\(1\%\)</span> lo supera</p>
 </div>
 <div id="chi-cuadrado-1" class="section level5">
 <h5><span class="header-section-number">8.7.3.1.4</span> Chi cuadrado</h5>
 <p>Si una variable tiene distribución <span class="math inline">\(\chi^2\)</span> con <span class="math inline">\(5\)</span> grados de libertad, su percentil 95 es:</p>
-<div class="sourceCode" id="cb515"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb515-1" title="1"><span class="kw">qchisq</span>(.<span class="dv">95</span>, <span class="dv">5</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb505"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb505-1"><a href="probabilidad-los-modelos.html#cb505-1"></a><span class="kw">qchisq</span>(.<span class="dv">95</span>, <span class="dv">5</span>)</span></code></pre></div>
 <pre><code>## [1] 11.0705</code></pre>
 <p>Que se escribe <span class="math inline">\(P(\chi^2_5&lt;11.07)=0.95\)</span>. El <span class="math inline">\(5\%\)</span> de los casos está por encima de este valor.</p>
 </div>
 <div id="t-de-student-1" class="section level5">
 <h5><span class="header-section-number">8.7.3.1.5</span> t de Student</h5>
 <p>Si <span class="math inline">\(t_{30}\)</span> es una variable con distribución t con <span class="math inline">\(30\)</span> grados de libertad, entonces, el valor que deja por debajo al <span class="math inline">\(95\%\)</span> de los casos es:</p>
-<div class="sourceCode" id="cb517"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb517-1" title="1"><span class="kw">qt</span>(.<span class="dv">95</span>, <span class="dv">30</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb507"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb507-1"><a href="probabilidad-los-modelos.html#cb507-1"></a><span class="kw">qt</span>(.<span class="dv">95</span>, <span class="dv">30</span>)</span></code></pre></div>
 <pre><code>## [1] 1.697261</code></pre>
 <p>Y el que acumula al <span class="math inline">\(2\%\)</span> es</p>
-<div class="sourceCode" id="cb519"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb519-1" title="1"><span class="kw">qt</span>(.<span class="dv">02</span>, <span class="dv">30</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb509"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb509-1"><a href="probabilidad-los-modelos.html#cb509-1"></a><span class="kw">qt</span>(.<span class="dv">02</span>, <span class="dv">30</span>)</span></code></pre></div>
 <pre><code>## [1] -2.146966</code></pre>
 </div>
 <div id="f-de-fisher-1" class="section level5">
 <h5><span class="header-section-number">8.7.3.1.6</span> F de Fisher</h5>
 <p>Si una variable tiene distribución F con 5 grados de libertad en el numerador y 13 en el denominador, su percentil 99 es:</p>
-<div class="sourceCode" id="cb521"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb521-1" title="1"><span class="kw">qf</span>(.<span class="dv">99</span>, <span class="dv">5</span>, <span class="dv">13</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb511"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb511-1"><a href="probabilidad-los-modelos.html#cb511-1"></a><span class="kw">qf</span>(.<span class="dv">99</span>, <span class="dv">5</span>, <span class="dv">13</span>)</span></code></pre></div>
 <pre><code>## [1] 4.861621</code></pre>
 <p>Y se escribe: <span class="math inline">\(P(F_{5,13}&lt;4.86)=0.99)\)</span>, que es lo mismo que <span class="math inline">\(P(F_{5,13}&gt;4.86)=0.01)\)</span></p>
 </div>
@@ -1538,9 +1541,9 @@ El <span class="math inline">\(z\)</span> que deja <span class="math inline">\(3
 <h3><span class="header-section-number">8.7.4</span> Áreas centrales</h3>
 <p>En lo que sigue será frecuente que se necesiten percentiles de la variable que delimitan determinadas áreas centrales de la distribución. Cualquiera sea el modelo de probabilidad que se use, suele denominarse (<span class="math inline">\(1-\alpha\)</span>) al área central, con lo que <span class="math inline">\(\alpha\)</span> es el área que queda por fuera de la zona central, dividida en dos. Los cuantiles que delimitan esa área central de (<span class="math inline">\(1-\alpha\)</span>) son (<span class="math inline">\(\frac{\alpha}{2}\)</span>) y (<span class="math inline">\(1-\frac{\alpha}{2}\)</span>).</p>
 <p>Por ejemplo, para determinar cuáles son los valores de una distribución <span class="math inline">\(\chi^2\)</span> con 13 grados delibertad que delimitan un 90% de área central, calculamos <span class="math inline">\(\alpha\)</span>, que es el 10% restante y los cuantiles son: 0.05 (<span class="math inline">\(\frac{\alpha}{2}\)</span>) y 0.95 (<span class="math inline">\(1-\frac{\alpha}{2}\)</span>).</p>
-<div class="sourceCode" id="cb523"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb523-1" title="1"><span class="kw">qchisq</span>(.<span class="dv">05</span>, <span class="dv">13</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb513"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb513-1"><a href="probabilidad-los-modelos.html#cb513-1"></a><span class="kw">qchisq</span>(.<span class="dv">05</span>, <span class="dv">13</span>)</span></code></pre></div>
 <pre><code>## [1] 5.891864</code></pre>
-<div class="sourceCode" id="cb525"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb525-1" title="1"><span class="kw">qchisq</span>(.<span class="dv">95</span>, <span class="dv">13</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb515"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb515-1"><a href="probabilidad-los-modelos.html#cb515-1"></a><span class="kw">qchisq</span>(.<span class="dv">95</span>, <span class="dv">13</span>)</span></code></pre></div>
 <pre><code>## [1] 22.36203</code></pre>
 <p>Son los percentiles 5 y 95 (<span class="math inline">\(P_5\)</span> y <span class="math inline">\(P_{95}\)</span>), que gráficamente delimitan el área de la figura <a href="probabilidad-los-modelos.html#fig:areacentralf">8.18</a>:</p>
 <div class="figure"><span id="fig:areacentralf"></span>
@@ -1565,9 +1568,37 @@ Figura 8.18: Área central del 90% bajo una distribución <span class="math inli
 <div class="footnotes">
 <hr />
 <ol start="42">
-<li id="fn42"><p>Con lo que hemos elegido tomar como éxito el resultado <em>cara</em><a href="probabilidad-los-modelos.html#fnref42" class="footnote-back">↩</a></p></li>
-<li id="fn44"><p>Este modelo tiene una expresión matemática más compleja que la primera que vimos, solo a título ilustrativo la mencionamos: <span class="math display">\[P(z &lt; x) = \frac{1}{\sqrt{2\pi}}\int_{- \infty}^{x}e^{- \frac{z^{2}}{2}} dz\]</span> jamás la usaremos para calcular probabilidades.<a href="probabilidad-los-modelos.html#fnref44" class="footnote-back">↩</a></p></li>
-<li id="fn46"><p>El símbolo de esta operación es <span class="math inline">\(\int\)</span>, una <span class="math inline">\(S\)</span> estilizada, que indica su origen en una suma.<a href="probabilidad-los-modelos.html#fnref46" class="footnote-back">↩</a></p></li>
+<li id="fn42"><p>Con lo que hemos elegido tomar como éxito el resultado <em>cara</em><a href="probabilidad-los-modelos.html#fnref42" class="footnote-back">↩︎</a></p></li>
+<li id="fn43"><p>El nombre “normal” de este modelo no hace referencia al sentido
+coloquial del término, como juico acerca de la salud o el
+comportamiento humano, sino a un modelo de distribución en el que es
+más frecuente hallar valores cercanos al promedio y resultan
+igualmente infrecuentes valores extremos mayores o menores.<a href="probabilidad-los-modelos.html#fnref43" class="footnote-back">↩︎</a></p></li>
+<li id="fn44"><p>Este modelo tiene una expresión matemática más compleja que la primera que vimos, solo a título ilustrativo la mencionamos: <span class="math display">\[P(z &lt; x) = \frac{1}{\sqrt{2\pi}}\int_{- \infty}^{x}e^{- \frac{z^{2}}{2}} dz\]</span> jamás la usaremos para calcular probabilidades.<a href="probabilidad-los-modelos.html#fnref44" class="footnote-back">↩︎</a></p></li>
+<li id="fn45"><p>1777-1855, matemático, astrónomo y físico alemán. El primero en
+expresar la función y calcular áreas fue Abraham De Moivre
+matemático francés que trabajó en Inglaterra junto a Newton y Halley <span class="citation">(Tankard <a href="#ref-Tankard1984" role="doc-biblioref">1984</a>)</span>.<a href="probabilidad-los-modelos.html#fnref45" class="footnote-back">↩︎</a></p></li>
+<li id="fn46"><p>El símbolo de esta operación es <span class="math inline">\(\int\)</span>, una <span class="math inline">\(S\)</span> estilizada, que indica su origen en una suma.<a href="probabilidad-los-modelos.html#fnref46" class="footnote-back">↩︎</a></p></li>
+<li id="fn47"><p>Solo nos interesará contar con una idea intuitiva y ejemplos de
+aplicación.<a href="probabilidad-los-modelos.html#fnref47" class="footnote-back">↩︎</a></p></li>
+<li id="fn48"><p>La definición de la variable <span class="math inline">\(\chi^{2}\)</span> con <span class="math inline">\(n\)</span> grados de
+libertad es la suma de <span class="math inline">\(n\)</span> variables aleatorias normales estándar
+elevadas al cuadrado: <span class="math inline">\(\chi^{2} = \sum_{i = 1}^{n}z_{i}^{2}\)</span>, en la
+que cada <span class="math inline">\(z\)</span> es una variable distribuida normalmente con media cero
+y desviación estándar igual a uno.<a href="probabilidad-los-modelos.html#fnref48" class="footnote-back">↩︎</a></p></li>
+<li id="fn49"><p>Químico y Estadístico inglés (1876-1937), era empleado de la
+cervecería Guiness y allí desarrolló procedimientos adecuados para
+trabajar con pequeñas muestras. Una de las versiones acerca de por
+qué publicó con el seudónimo Student es que la empresa temía que se
+revelaran secretos industriales.<a href="probabilidad-los-modelos.html#fnref49" class="footnote-back">↩︎</a></p></li>
+<li id="fn50"><p>La definición de la variable con distribución <span class="math inline">\(t\)</span> con <span class="math inline">\(n\)</span> grados de
+libertad es el cociente entre una variable con distribución normal
+estándar y la raíz cuadrada de una <span class="math inline">\(\chi^{2}\)</span> dividida por sus
+grados de libertad: <span class="math inline">\(t = \frac{z}{\sqrt{\frac{\chi_{n}^{2}}{n}}}\)</span>.<a href="probabilidad-los-modelos.html#fnref50" class="footnote-back">↩︎</a></p></li>
+<li id="fn51"><p>Estos nombres para los grados de libertad se originan en que la <span class="math inline">\(F\)</span>
+se define como el cociente de dos distribuciones <span class="math inline">\(\chi^{2}\)</span>, cada
+una dividida por sus grados de libertad:
+<span class="math inline">\(F_{n_{1},n_{2}} = \frac{\frac{\chi_{1}^{2}}{n_{1}}}{\frac{\chi_{2}^{2}}{n_{2}}}\)</span>.<a href="probabilidad-los-modelos.html#fnref51" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>

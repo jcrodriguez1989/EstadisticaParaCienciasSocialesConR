@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Capítulo 13 Cuando los supuestos no se cumplen | Un Recorrido por los Métodos Cuantitativos en Ciencias Sociales a bordo de R</title>
   <meta name="description" content="Capítulo 13 Cuando los supuestos no se cumplen | Un Recorrido por los Métodos Cuantitativos en Ciencias Sociales a bordo de R" />
-  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Capítulo 13 Cuando los supuestos no se cumplen | Un Recorrido por los Métodos Cuantitativos en Ciencias Sociales a bordo de R" />
   <meta property="og:type" content="book" />
@@ -49,13 +49,14 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -64,14 +65,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -80,9 +83,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -186,7 +189,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.2.3" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#formas-de-recategorizar"><i class="fa fa-check"></i><b>2.2.3</b> Formas de recategorizar</a></li>
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#la-presentación-gráfica-de-los-resultados"><i class="fa fa-check"></i><b>2.3</b> La presentación gráfica de los resultados</a></li>
-<li class="chapter" data-level="2.4" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#hacerlo-en-r-1"><i class="fa fa-check"></i><b>2.4</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="2.4" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>2.4</b> Hacerlo en R</a><ul>
 <li class="chapter" data-level="2.4.1" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#tablas-univariadas"><i class="fa fa-check"></i><b>2.4.1</b> Tablas univariadas</a></li>
 <li class="chapter" data-level="2.4.2" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#recategorización-1"><i class="fa fa-check"></i><b>2.4.2</b> Recategorización</a></li>
 <li class="chapter" data-level="2.4.3" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#representaciones-gráficas"><i class="fa fa-check"></i><b>2.4.3</b> Representaciones gráficas</a></li>
@@ -221,7 +224,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.5.1" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#medidas-de-posición-1"><i class="fa fa-check"></i><b>3.5.1</b> Medidas de posición</a></li>
 <li class="chapter" data-level="3.5.2" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#medidas-de-dispersión-1"><i class="fa fa-check"></i><b>3.5.2</b> Medidas de dispersión</a></li>
 </ul></li>
-<li class="chapter" data-level="3.6" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#hacerlo-en-r-2"><i class="fa fa-check"></i><b>3.6</b> Hacerlo en R</a></li>
+<li class="chapter" data-level="3.6" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>3.6</b> Hacerlo en R</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html"><i class="fa fa-check"></i><b>4</b> Relación entre variables: los fundamentos</a><ul>
 <li class="chapter" data-level="4.1" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#tablas-de-contingencia"><i class="fa fa-check"></i><b>4.1</b> Tablas de contingencia</a></li>
@@ -231,7 +234,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.5" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#concepto-de-riesgo-relativo"><i class="fa fa-check"></i><b>4.5</b> Concepto de riesgo relativo</a></li>
 <li class="chapter" data-level="4.6" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#la-intensidad"><i class="fa fa-check"></i><b>4.6</b> La intensidad</a></li>
 <li class="chapter" data-level="4.7" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#el-concepto-de-independencia-estadística"><i class="fa fa-check"></i><b>4.7</b> El concepto de independencia estadística</a></li>
-<li class="chapter" data-level="4.8" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#hacerlo-en-r-3"><i class="fa fa-check"></i><b>4.8</b> Hacerlo en R</a></li>
+<li class="chapter" data-level="4.8" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>4.8</b> Hacerlo en R</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html"><i class="fa fa-check"></i><b>5</b> Relación entre variables: el análisis</a><ul>
 <li class="chapter" data-level="5.1" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#relaciones-entre-variables-vs.-comparación-de-grupos"><i class="fa fa-check"></i><b>5.1</b> Relaciones entre variables vs. comparación de grupos</a></li>
@@ -253,7 +256,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.9.3" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#obtención-de-la-recta-de-regresión"><i class="fa fa-check"></i><b>5.9.3</b> Obtención de la recta de regresión</a></li>
 </ul></li>
 <li class="chapter" data-level="5.10" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#la-visualización-de-los-datos"><i class="fa fa-check"></i><b>5.10</b> La visualización de los datos</a></li>
-<li class="chapter" data-level="5.11" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#hacerlo-en-r-4"><i class="fa fa-check"></i><b>5.11</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="5.11" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>5.11</b> Hacerlo en R</a><ul>
 <li class="chapter" data-level="5.11.1" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#distancia-chi2"><i class="fa fa-check"></i><b>5.11.1</b> Distancia <span class="math inline">\(\chi^{2}\)</span></a></li>
 <li class="chapter" data-level="5.11.2" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#coeficientes"><i class="fa fa-check"></i><b>5.11.2</b> Coeficientes</a></li>
 <li class="chapter" data-level="5.11.3" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#modelo-lineal"><i class="fa fa-check"></i><b>5.11.3</b> Modelo lineal</a></li>
@@ -282,7 +285,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.3.4" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-accidental-o-según-disponibilidad"><i class="fa fa-check"></i><b>6.3.4</b> Muestreo accidental o según disponibilidad</a></li>
 <li class="chapter" data-level="6.3.5" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-bola-de-nieve"><i class="fa fa-check"></i><b>6.3.5</b> Muestreo bola de nieve</a></li>
 </ul></li>
-<li class="chapter" data-level="6.4" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#hacerlo-en-r-5"><i class="fa fa-check"></i><b>6.4</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="6.4" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>6.4</b> Hacerlo en R</a><ul>
 <li class="chapter" data-level="6.4.1" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#aleatorio-simple"><i class="fa fa-check"></i><b>6.4.1</b> Aleatorio simple</a></li>
 <li class="chapter" data-level="6.4.2" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#estratificado"><i class="fa fa-check"></i><b>6.4.2</b> Estratificado</a></li>
 </ul></li>
@@ -313,7 +316,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.6" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#la-distribución-t-de-student"><i class="fa fa-check"></i><b>8.6</b> La distribución t de Student</a><ul>
 <li class="chapter" data-level="8.6.1" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#la-distribución-f"><i class="fa fa-check"></i><b>8.6.1</b> La distribución F</a></li>
 </ul></li>
-<li class="chapter" data-level="8.7" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#hacerlo-en-r-6"><i class="fa fa-check"></i><b>8.7</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="8.7" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>8.7</b> Hacerlo en R</a><ul>
 <li class="chapter" data-level="8.7.1" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#probabilidades-exactas"><i class="fa fa-check"></i><b>8.7.1</b> Probabilidades exactas</a></li>
 <li class="chapter" data-level="8.7.2" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#probabilidades-acumuladas"><i class="fa fa-check"></i><b>8.7.2</b> Probabilidades acumuladas</a></li>
 <li class="chapter" data-level="8.7.3" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#cuantiles-1"><i class="fa fa-check"></i><b>8.7.3</b> Cuantiles</a></li>
@@ -339,7 +342,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.3.7" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#distribución-del-cociente-de-varianzas"><i class="fa fa-check"></i><b>9.3.7</b> Distribución del cociente de varianzas</a></li>
 </ul></li>
 <li class="chapter" data-level="9.4" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#resumen-de-la-relación-entre-estimadores-y-parámetros"><i class="fa fa-check"></i><b>9.4</b> Resumen de la relación entre estimadores y parámetros</a></li>
-<li class="chapter" data-level="9.5" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#hacerlo-en-r-7"><i class="fa fa-check"></i><b>9.5</b> Hacerlo en R</a></li>
+<li class="chapter" data-level="9.5" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>9.5</b> Hacerlo en R</a></li>
 </ul></li>
 <li class="part"><span><b>III Estadística inferencial</b></span></li>
 <li class="chapter" data-level="10" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html"><i class="fa fa-check"></i><b>10</b> Estimación por intervalo</a><ul>
@@ -356,7 +359,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.5.2" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#el-error-de-estimación-en-la-proporción"><i class="fa fa-check"></i><b>10.5.2</b> El error de estimación en la proporción</a></li>
 </ul></li>
 <li class="chapter" data-level="10.6" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#probabilidad-de-cobertura"><i class="fa fa-check"></i><b>10.6</b> Probabilidad de cobertura</a></li>
-<li class="chapter" data-level="10.7" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#hacerlo-en-r-8"><i class="fa fa-check"></i><b>10.7</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="10.7" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>10.7</b> Hacerlo en R</a><ul>
 <li class="chapter" data-level="10.7.1" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#intervalo-para-la-media"><i class="fa fa-check"></i><b>10.7.1</b> Intervalo para la media</a></li>
 <li class="chapter" data-level="10.7.2" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#intervalo-para-la-proporción"><i class="fa fa-check"></i><b>10.7.2</b> Intervalo para la proporción</a></li>
 <li class="chapter" data-level="10.7.3" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#cobertura"><i class="fa fa-check"></i><b>10.7.3</b> Cobertura</a></li>
@@ -377,7 +380,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.5.2" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#significación-estadística-y-valor-p"><i class="fa fa-check"></i><b>11.5.2</b> Significación estadística y valor <span class="math inline">\(p\)</span></a></li>
 </ul></li>
 <li class="chapter" data-level="11.6" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#muestras-pequeñas-y-pruebas-t"><i class="fa fa-check"></i><b>11.6</b> Muestras pequeñas y pruebas <span class="math inline">\(t\)</span></a></li>
-<li class="chapter" data-level="11.7" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#hacerlo-en-r-9"><i class="fa fa-check"></i><b>11.7</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="11.7" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>11.7</b> Hacerlo en R</a><ul>
 <li class="chapter" data-level="11.7.1" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#prueba-sobre-la-media-1"><i class="fa fa-check"></i><b>11.7.1</b> Prueba sobre la media</a></li>
 <li class="chapter" data-level="11.7.2" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#prueba-sobre-la-proporción-1"><i class="fa fa-check"></i><b>11.7.2</b> Prueba sobre la proporción</a></li>
 </ul></li>
@@ -389,7 +392,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="12.1.2" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#muestras-apareadas"><i class="fa fa-check"></i><b>12.1.2</b> Muestras apareadas</a></li>
 <li class="chapter" data-level="12.1.3" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#coeficiente-r-de-pearson"><i class="fa fa-check"></i><b>12.1.3</b> Coeficiente r de Pearson</a></li>
 </ul></li>
-<li class="chapter" data-level="12.2" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#hacerlo-en-r-10"><i class="fa fa-check"></i><b>12.2</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="12.2" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>12.2</b> Hacerlo en R</a><ul>
 <li class="chapter" data-level="12.2.1" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#ejemplo-1."><i class="fa fa-check"></i><b>12.2.1</b> Ejemplo 1.</a></li>
 <li class="chapter" data-level="12.2.2" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#ejemplo-2."><i class="fa fa-check"></i><b>12.2.2</b> Ejemplo 2.</a></li>
 <li class="chapter" data-level="12.2.3" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#aplicación-a-los-datos-de-población-adulta-mayor"><i class="fa fa-check"></i><b>12.2.3</b> Aplicación a los datos de Población Adulta Mayor</a></li>
@@ -401,12 +404,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13.0.1" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#las-pruebas-ji-cuadrado-o-chi-cuadrado"><i class="fa fa-check"></i><b>13.0.1</b> Las pruebas ji cuadrado (o chi cuadrado)</a></li>
 <li class="chapter" data-level="13.0.2" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#coeficiente-r_s-de-spearman"><i class="fa fa-check"></i><b>13.0.2</b> Coeficiente <span class="math inline">\(r_s\)</span> de Spearman</a></li>
 <li class="chapter" data-level="13.0.3" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#alternativas-no-paramétricas-a-las-pruebas-t"><i class="fa fa-check"></i><b>13.0.3</b> Alternativas no paramétricas a las pruebas t</a></li>
-<li class="chapter" data-level="13.1" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#hacerlo-en-r-11"><i class="fa fa-check"></i><b>13.1</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="13.1" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>13.1</b> Hacerlo en R</a><ul>
 <li class="chapter" data-level="13.1.1" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#ejemplo-1"><i class="fa fa-check"></i><b>13.1.1</b> Ejemplo 1</a></li>
 <li class="chapter" data-level="13.1.2" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#ejemplo-2"><i class="fa fa-check"></i><b>13.1.2</b> Ejemplo 2</a></li>
 <li class="chapter" data-level="13.1.3" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#prueba-de-la-mediana-1"><i class="fa fa-check"></i><b>13.1.3</b> Prueba de la mediana</a></li>
 <li class="chapter" data-level="13.1.4" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#prueba-de-wilcoxon"><i class="fa fa-check"></i><b>13.1.4</b> Prueba de Wilcoxon</a></li>
-<li class="chapter" data-level="13.1.5" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#muestras-apareadas-1"><i class="fa fa-check"></i><b>13.1.5</b> Muestras apareadas</a></li>
+<li class="chapter" data-level="13.1.5" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#muestras-apareadas"><i class="fa fa-check"></i><b>13.1.5</b> Muestras apareadas</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="14" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html"><i class="fa fa-check"></i><b>14</b> Tamaño del efecto</a><ul>
@@ -419,7 +422,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="14.2.5" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#pruebas-ji-cuadrado"><i class="fa fa-check"></i><b>14.2.5</b> Pruebas ji cuadrado</a></li>
 </ul></li>
 <li class="chapter" data-level="14.3" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#análisis-de-la-potencia"><i class="fa fa-check"></i><b>14.3</b> Análisis de la potencia</a></li>
-<li class="chapter" data-level="14.4" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#hacerlo-en-r-12"><i class="fa fa-check"></i><b>14.4</b> Hacerlo en R</a></li>
+<li class="chapter" data-level="14.4" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>14.4</b> Hacerlo en R</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Generado con bookdown</a></li>
@@ -504,7 +507,7 @@ población, entonces no hay alternativa y debe usarse una prueba no
 paramétrica.</p>
 <p>En este capítulo desarrollaremos tres pruebas no paramétricas basadas en
 el puntaje ji cuadrado y dos alternativas a las pruebas t para muestras
-independientes y apareadas. Puede consultarse el manual de <span class="citation">Siegel (<a href="#ref-siegel1957">1957</a>)</span>
+independientes y apareadas. Puede consultarse el manual de <span class="citation">Siegel (<a href="#ref-siegel1957" role="doc-biblioref">1957</a>)</span>
 para una presentación muy completa, aunque no actualizada a
 procedimientos informáticos, .</p>
 <div id="las-pruebas-ji-cuadrado-o-chi-cuadrado" class="section level3">
@@ -1132,7 +1135,7 @@ coeficiente de Spearman paramétrico y <span class="math inline">\(r_s\)</span> 
 estándar de este estimador tiene la misma forma que el de Pearson:</p>
 <p><span class="math display">\[\sigma_{r_{s}} = \sqrt{\frac{1 - r_{s}^{2}}{n - 2}}\]</span></p>
 <p>Y cuando la muestra tiene al menos 10 observaciones, se distribuye con
-una distribución t con n-2 grados de libertad <span class="citation">(Kendall <a href="#ref-Kendall1948">1948</a>)</span>. En consecuencia, el
+una distribución t con n-2 grados de libertad <span class="citation">(Kendall <a href="#ref-Kendall1948" role="doc-biblioref">1948</a>)</span>. En consecuencia, el
 estadístico de prueba será:</p>
 <p><span class="math display">\[t = \frac{r_{s} - \rho_{s}}{\sqrt{\frac{1 - r_{s}^{2}}{n - 2}}}\]</span></p>
 <p>Ejemplo (datos ficticios): se interroga a 20 votantes de un partido político sobre las razones de su voto y a partir de las respuestas se construye un índice que clasifica el compromiso con la ideología del partido en 1. Muy débil, 2. Débil, 3. Fuerte, 4. Muy fuerte. Los resultados de este índice se ponen en correspondencia con el nivel de educación de las personas encuestadas (1. Sin escolarización, 2. Primario incompleto, etc.). En el análisis de la relación entre estas dos variables ordinales obtenemos un coeficiente de correlación de Spearman de 0.32, que indica, en la muestra, una relación positiva y débil entre el compromiso ideológico y la educación. Preguntamos si este
@@ -1158,7 +1161,7 @@ El valor <span class="math inline">\(p\)</span> asociado a esta observación es:
 </div>
 <div id="alternativas-no-paramétricas-a-las-pruebas-t" class="section level3">
 <h3><span class="header-section-number">13.0.3</span> Alternativas no paramétricas a las pruebas t</h3>
-<div id="muestras-independientes-1" class="section level4">
+<div id="muestras-independientes" class="section level4">
 <h4><span class="header-section-number">13.0.3.1</span> Muestras independientes</h4>
 <p>La prueba U de Mann-Whitney es la versión no paramétrica de la prueba t
 de Student, es decir, sirve para comparar la tendencia central entre dos
@@ -1189,71 +1192,71 @@ asociado, y considera tanto el signo, como la magnitud de la diferencia.</p>
 <div style="page-break-after: always;"></div>
 </div>
 </div>
-<div id="hacerlo-en-r-11" class="section level2">
+<div id="hacerlo-en-r" class="section level2">
 <h2><span class="header-section-number">13.1</span> Hacerlo en R</h2>
 <div id="ejemplo-1" class="section level3">
 <h3><span class="header-section-number">13.1.1</span> Ejemplo 1</h3>
 <p>Como se trata de datos ficticios, debemos primero generarlos.</p>
-<div class="sourceCode" id="cb679"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb679-1" title="1">resultado &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">rep</span>(<span class="st">&quot;aprobado&quot;</span>, <span class="dv">90</span>), <span class="kw">rep</span>(<span class="st">&quot;no aprobado&quot;</span>, <span class="dv">40</span>))</a>
-<a class="sourceLine" id="cb679-2" title="2">turno &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">rep</span>(<span class="st">&quot;mañana&quot;</span>, <span class="dv">60</span>), <span class="kw">rep</span>(<span class="st">&quot;tarde&quot;</span>, <span class="dv">30</span>),</a>
-<a class="sourceLine" id="cb679-3" title="3">           <span class="kw">rep</span>(<span class="st">&quot;mañana&quot;</span>, <span class="dv">30</span>), <span class="kw">rep</span>(<span class="st">&quot;tarde&quot;</span>, <span class="dv">10</span>))</a>
-<a class="sourceLine" id="cb679-4" title="4">datos_ejemplo_<span class="dv">1</span>_chi &lt;-<span class="st"> </span><span class="kw">data.frame</span>(resultado, turno)</a></code></pre></div>
+<div class="sourceCode" id="cb669"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb669-1"><a href="cuando-los-supuestos-no-se-cumplen.html#cb669-1"></a>resultado &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">rep</span>(<span class="st">&quot;aprobado&quot;</span>, <span class="dv">90</span>), <span class="kw">rep</span>(<span class="st">&quot;no aprobado&quot;</span>, <span class="dv">40</span>))</span>
+<span id="cb669-2"><a href="cuando-los-supuestos-no-se-cumplen.html#cb669-2"></a>turno &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">rep</span>(<span class="st">&quot;mañana&quot;</span>, <span class="dv">60</span>), <span class="kw">rep</span>(<span class="st">&quot;tarde&quot;</span>, <span class="dv">30</span>),</span>
+<span id="cb669-3"><a href="cuando-los-supuestos-no-se-cumplen.html#cb669-3"></a>           <span class="kw">rep</span>(<span class="st">&quot;mañana&quot;</span>, <span class="dv">30</span>), <span class="kw">rep</span>(<span class="st">&quot;tarde&quot;</span>, <span class="dv">10</span>))</span>
+<span id="cb669-4"><a href="cuando-los-supuestos-no-se-cumplen.html#cb669-4"></a>datos_ejemplo_<span class="dv">1</span>_chi &lt;-<span class="st"> </span><span class="kw">data.frame</span>(resultado, turno)</span></code></pre></div>
 <p>Y construimos la tabla</p>
-<div class="sourceCode" id="cb680"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb680-1" title="1">resultado_por_turno &lt;-<span class="st"> </span><span class="kw">table</span>(</a>
-<a class="sourceLine" id="cb680-2" title="2">  datos_ejemplo_<span class="dv">1</span>_chi<span class="op">$</span>resultado,</a>
-<a class="sourceLine" id="cb680-3" title="3">                             datos_ejemplo_<span class="dv">1</span>_chi<span class="op">$</span>turno)</a>
-<a class="sourceLine" id="cb680-4" title="4">resultado_por_turno</a></code></pre></div>
+<div class="sourceCode" id="cb670"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb670-1"><a href="cuando-los-supuestos-no-se-cumplen.html#cb670-1"></a>resultado_por_turno &lt;-<span class="st"> </span><span class="kw">table</span>(</span>
+<span id="cb670-2"><a href="cuando-los-supuestos-no-se-cumplen.html#cb670-2"></a>  datos_ejemplo_<span class="dv">1</span>_chi<span class="op">$</span>resultado,</span>
+<span id="cb670-3"><a href="cuando-los-supuestos-no-se-cumplen.html#cb670-3"></a>                             datos_ejemplo_<span class="dv">1</span>_chi<span class="op">$</span>turno)</span>
+<span id="cb670-4"><a href="cuando-los-supuestos-no-se-cumplen.html#cb670-4"></a>resultado_por_turno</span></code></pre></div>
 <pre><code>##              
 ##               mañana tarde
 ##   aprobado        60    30
 ##   no aprobado     30    10</code></pre>
 <p>Ahora solicitamos la prueba <span class="math inline">\(\chi^2\)</span>:</p>
-<div class="sourceCode" id="cb682"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb682-1" title="1">prueba &lt;-<span class="st"> </span><span class="kw">chisq.test</span>(resultado_por_turno, <span class="dt">correct =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb672"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb672-1"><a href="cuando-los-supuestos-no-se-cumplen.html#cb672-1"></a>prueba &lt;-<span class="st"> </span><span class="kw">chisq.test</span>(resultado_por_turno, <span class="dt">correct =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
 <p>El objeto “prueba” contiene los resultados, veamos cuáles son:</p>
-<div class="sourceCode" id="cb683"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb683-1" title="1"><span class="kw">names</span>(prueba)</a></code></pre></div>
+<div class="sourceCode" id="cb673"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb673-1"><a href="cuando-los-supuestos-no-se-cumplen.html#cb673-1"></a><span class="kw">names</span>(prueba)</span></code></pre></div>
 <pre><code>## [1] &quot;statistic&quot; &quot;parameter&quot; &quot;p.value&quot;   &quot;method&quot;    &quot;data.name&quot; &quot;observed&quot; 
 ## [7] &quot;expected&quot;  &quot;residuals&quot; &quot;stdres&quot;</code></pre>
 <p>Consultemos algunos de los valores:</p>
-<div class="sourceCode" id="cb685"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb685-1" title="1">prueba<span class="op">$</span>statistic</a></code></pre></div>
+<div class="sourceCode" id="cb675"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb675-1"><a href="cuando-los-supuestos-no-se-cumplen.html#cb675-1"></a>prueba<span class="op">$</span>statistic</span></code></pre></div>
 <pre><code>## X-squared 
 ## 0.9027778</code></pre>
 <p>Es el valor del puntaje <span class="math inline">\(\chi_{obs}^2\)</span>.<br />
 La tabla de frecuencias esperadas es:</p>
-<div class="sourceCode" id="cb687"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb687-1" title="1">prueba<span class="op">$</span>expected</a></code></pre></div>
+<div class="sourceCode" id="cb677"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb677-1"><a href="cuando-los-supuestos-no-se-cumplen.html#cb677-1"></a>prueba<span class="op">$</span>expected</span></code></pre></div>
 <pre><code>##              
 ##                 mañana    tarde
 ##   aprobado    62.30769 27.69231
 ##   no aprobado 27.69231 12.30769</code></pre>
 <p>Se puede solicitar el resultado completo de la prueba:</p>
 <pre><code>## 
-##  Pearson&#39;s Chi-squared test
+## 	Pearson&#39;s Chi-squared test
 ## 
 ## data:  resultado_por_turno
 ## X-squared = 0.90278, df = 1, p-value = 0.342</code></pre>
 <p>Para ver el modo en que se llegó a ese valor <span class="math inline">\(p\)</span>, se calcula la probabilidad de superar el puntaje <span class="math inline">\(\chi_{obs}^2\)</span>. Se lo obtiene complementando la probabilidad acumulada.</p>
-<div class="sourceCode" id="cb690"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb690-1" title="1"><span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pchisq</span>(.<span class="dv">9028</span>, <span class="dv">1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb680"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb680-1"><a href="cuando-los-supuestos-no-se-cumplen.html#cb680-1"></a><span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pchisq</span>(.<span class="dv">9028</span>, <span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## [1] 0.342032</code></pre>
 <p>El resultado conduce a no rechazar la hipótesis nula.</p>
 </div>
 <div id="ejemplo-2" class="section level3">
 <h3><span class="header-section-number">13.1.2</span> Ejemplo 2</h3>
 <p>Nuevamente, hay que generar los datos</p>
-<div class="sourceCode" id="cb692"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb692-1" title="1">condicion &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">rep</span>(<span class="st">&quot;promoción&quot;, 53),</span></a>
-<a class="sourceLine" id="cb692-2" title="2"><span class="st">               rep(&quot;</span>regularidad<span class="st">&quot;, 51), rep(&quot;</span>libres<span class="st">&quot;, 38))</span></a>
-<a class="sourceLine" id="cb692-3" title="3"><span class="st">tabla_condicion &lt;- table(condicion)</span></a>
-<a class="sourceLine" id="cb692-4" title="4"><span class="st">tabla_condicion</span></a></code></pre></div>
+<div class="sourceCode" id="cb682"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb682-1"><a href="cuando-los-supuestos-no-se-cumplen.html#cb682-1"></a>condicion &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">rep</span>(<span class="st">&quot;promoción&quot;, 53),</span></span>
+<span id="cb682-2"><a href="cuando-los-supuestos-no-se-cumplen.html#cb682-2"></a><span class="st">               rep(&quot;</span>regularidad<span class="st">&quot;, 51), rep(&quot;</span>libres<span class="st">&quot;, 38))</span></span>
+<span id="cb682-3"><a href="cuando-los-supuestos-no-se-cumplen.html#cb682-3"></a><span class="st">tabla_condicion &lt;- table(condicion)</span></span>
+<span id="cb682-4"><a href="cuando-los-supuestos-no-se-cumplen.html#cb682-4"></a><span class="st">tabla_condicion</span></span></code></pre></div>
 <pre><code>## condicion
 ##      libres   promoción regularidad 
 ##          38          53          51</code></pre>
 <p>Y la de relativos, redondeada a tres decimales:</p>
-<div class="sourceCode" id="cb694"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb694-1" title="1"><span class="kw">round</span>(<span class="kw">prop.table</span>(tabla_condicion), <span class="dv">3</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb684"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb684-1"><a href="cuando-los-supuestos-no-se-cumplen.html#cb684-1"></a><span class="kw">round</span>(<span class="kw">prop.table</span>(tabla_condicion), <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>## condicion
 ##      libres   promoción regularidad 
 ##       0.268       0.373       0.359</code></pre>
 <p>En la aplicación de la prueba, los argumentos son la tabla univariada y las proporciones esperadas (hipotéticas) en cada categoría (en el orden que aparecen):</p>
-<div class="sourceCode" id="cb696"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb696-1" title="1"><span class="kw">chisq.test</span>(tabla_condicion, <span class="dt">p =</span> <span class="kw">c</span>(.<span class="dv">30</span>, <span class="fl">.35</span>, <span class="fl">.35</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb686"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb686-1"><a href="cuando-los-supuestos-no-se-cumplen.html#cb686-1"></a><span class="kw">chisq.test</span>(tabla_condicion, <span class="dt">p =</span> <span class="kw">c</span>(.<span class="dv">30</span>, <span class="fl">.35</span>, <span class="fl">.35</span>))</span></code></pre></div>
 <pre><code>## 
-##  Chi-squared test for given probabilities
+## 	Chi-squared test for given probabilities
 ## 
 ## data:  tabla_condicion
 ## X-squared = 0.74983, df = 2, p-value = 0.6873</code></pre>
@@ -1262,23 +1265,23 @@ La tabla de frecuencias esperadas es:</p>
 <div id="prueba-de-la-mediana-1" class="section level3">
 <h3><span class="header-section-number">13.1.3</span> Prueba de la mediana</h3>
 <p>Construimos la matriz de datos, codificando del 1 al 5 los conceptos Excelente…. No satisfactorio.</p>
-<div class="sourceCode" id="cb698"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb698-1" title="1">docente_a &lt;-<span class="st"> </span><span class="kw">c</span>(</a>
-<a class="sourceLine" id="cb698-2" title="2">  <span class="kw">rep</span>(<span class="dv">1</span>, <span class="dv">15</span>), <span class="kw">rep</span>(<span class="dv">2</span>, <span class="dv">13</span>), <span class="kw">rep</span>(<span class="dv">3</span>, <span class="dv">4</span>), <span class="kw">rep</span>(<span class="dv">4</span>, <span class="dv">6</span>), <span class="kw">rep</span>(<span class="dv">5</span>, <span class="dv">2</span>))</a>
-<a class="sourceLine" id="cb698-3" title="3"></a>
-<a class="sourceLine" id="cb698-4" title="4">docente_b &lt;-<span class="st"> </span><span class="kw">c</span>(</a>
-<a class="sourceLine" id="cb698-5" title="5">  <span class="kw">rep</span>(<span class="dv">1</span>, <span class="dv">3</span>), <span class="kw">rep</span>(<span class="dv">2</span>, <span class="dv">5</span>), <span class="kw">rep</span>(<span class="dv">3</span>, <span class="dv">8</span>), <span class="kw">rep</span>(<span class="dv">4</span>, <span class="dv">18</span>), <span class="kw">rep</span>(<span class="dv">5</span>, <span class="dv">6</span>))</a>
-<a class="sourceLine" id="cb698-6" title="6"></a>
-<a class="sourceLine" id="cb698-7" title="7">concepto &lt;-<span class="st"> </span><span class="kw">c</span>(docente_a, docente_b)</a>
-<a class="sourceLine" id="cb698-8" title="8">docente &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">rep</span>(<span class="st">&quot;a&quot;</span>, <span class="dv">40</span>), <span class="kw">rep</span>(<span class="st">&quot;b&quot;</span>, <span class="dv">40</span>))</a>
-<a class="sourceLine" id="cb698-9" title="9">datos_prueba_mediana &lt;-<span class="st"> </span><span class="kw">data.frame</span>(concepto, docente)</a></code></pre></div>
+<div class="sourceCode" id="cb688"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb688-1"><a href="cuando-los-supuestos-no-se-cumplen.html#cb688-1"></a>docente_a &lt;-<span class="st"> </span><span class="kw">c</span>(</span>
+<span id="cb688-2"><a href="cuando-los-supuestos-no-se-cumplen.html#cb688-2"></a>  <span class="kw">rep</span>(<span class="dv">1</span>, <span class="dv">15</span>), <span class="kw">rep</span>(<span class="dv">2</span>, <span class="dv">13</span>), <span class="kw">rep</span>(<span class="dv">3</span>, <span class="dv">4</span>), <span class="kw">rep</span>(<span class="dv">4</span>, <span class="dv">6</span>), <span class="kw">rep</span>(<span class="dv">5</span>, <span class="dv">2</span>))</span>
+<span id="cb688-3"><a href="cuando-los-supuestos-no-se-cumplen.html#cb688-3"></a></span>
+<span id="cb688-4"><a href="cuando-los-supuestos-no-se-cumplen.html#cb688-4"></a>docente_b &lt;-<span class="st"> </span><span class="kw">c</span>(</span>
+<span id="cb688-5"><a href="cuando-los-supuestos-no-se-cumplen.html#cb688-5"></a>  <span class="kw">rep</span>(<span class="dv">1</span>, <span class="dv">3</span>), <span class="kw">rep</span>(<span class="dv">2</span>, <span class="dv">5</span>), <span class="kw">rep</span>(<span class="dv">3</span>, <span class="dv">8</span>), <span class="kw">rep</span>(<span class="dv">4</span>, <span class="dv">18</span>), <span class="kw">rep</span>(<span class="dv">5</span>, <span class="dv">6</span>))</span>
+<span id="cb688-6"><a href="cuando-los-supuestos-no-se-cumplen.html#cb688-6"></a></span>
+<span id="cb688-7"><a href="cuando-los-supuestos-no-se-cumplen.html#cb688-7"></a>concepto &lt;-<span class="st"> </span><span class="kw">c</span>(docente_a, docente_b)</span>
+<span id="cb688-8"><a href="cuando-los-supuestos-no-se-cumplen.html#cb688-8"></a>docente &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">rep</span>(<span class="st">&quot;a&quot;</span>, <span class="dv">40</span>), <span class="kw">rep</span>(<span class="st">&quot;b&quot;</span>, <span class="dv">40</span>))</span>
+<span id="cb688-9"><a href="cuando-los-supuestos-no-se-cumplen.html#cb688-9"></a>datos_prueba_mediana &lt;-<span class="st"> </span><span class="kw">data.frame</span>(concepto, docente)</span></code></pre></div>
 <p>La prueba de la mediana está en un paquete que no hemos usado aun, será necesario instalarlo y cargarlo en esta sesión:</p>
-<div class="sourceCode" id="cb699"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb699-1" title="1"><span class="kw">install.packages</span>(<span class="st">&quot;agricolae&quot;</span>)</a></code></pre></div>
-<div class="sourceCode" id="cb700"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb700-1" title="1"><span class="kw">library</span>(<span class="st">&quot;agricolae&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb689"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb689-1"><a href="cuando-los-supuestos-no-se-cumplen.html#cb689-1"></a><span class="kw">install.packages</span>(<span class="st">&quot;agricolae&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb690"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb690-1"><a href="cuando-los-supuestos-no-se-cumplen.html#cb690-1"></a><span class="kw">library</span>(<span class="st">&quot;agricolae&quot;</span>)</span></code></pre></div>
 <p>La prueba tiene como argumentos a las dos variables y se solicita que no haga una corrección interna:</p>
-<div class="sourceCode" id="cb701"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb701-1" title="1">prueba_mediana &lt;-<span class="st"> </span><span class="kw">Median.test</span>(datos_prueba_mediana<span class="op">$</span>concepto,</a>
-<a class="sourceLine" id="cb701-2" title="2">  datos_prueba_mediana<span class="op">$</span>docente,</a>
-<a class="sourceLine" id="cb701-3" title="3">  <span class="dt">correct =</span> <span class="ot">FALSE</span></a>
-<a class="sourceLine" id="cb701-4" title="4">)</a></code></pre></div>
+<div class="sourceCode" id="cb691"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb691-1"><a href="cuando-los-supuestos-no-se-cumplen.html#cb691-1"></a>prueba_mediana &lt;-<span class="st"> </span><span class="kw">Median.test</span>(datos_prueba_mediana<span class="op">$</span>concepto,</span>
+<span id="cb691-2"><a href="cuando-los-supuestos-no-se-cumplen.html#cb691-2"></a>  datos_prueba_mediana<span class="op">$</span>docente,</span>
+<span id="cb691-3"><a href="cuando-los-supuestos-no-se-cumplen.html#cb691-3"></a>  <span class="dt">correct =</span> <span class="ot">FALSE</span></span>
+<span id="cb691-4"><a href="cuando-los-supuestos-no-se-cumplen.html#cb691-4"></a>)</span></code></pre></div>
 <pre><code>## 
 ## The Median Test for datos_prueba_mediana$concepto ~ datos_prueba_mediana$docente 
 ## 
@@ -1299,27 +1302,27 @@ La tabla de frecuencias esperadas es:</p>
 ## b                             4      a
 ## a                             2      b</code></pre>
 <p>Los componentes de este objeto son:</p>
-<div class="sourceCode" id="cb703"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb703-1" title="1"><span class="kw">names</span>(prueba_mediana)</a></code></pre></div>
+<div class="sourceCode" id="cb693"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb693-1"><a href="cuando-los-supuestos-no-se-cumplen.html#cb693-1"></a><span class="kw">names</span>(prueba_mediana)</span></code></pre></div>
 <pre><code>## [1] &quot;statistics&quot; &quot;parameters&quot; &quot;medians&quot;    &quot;comparison&quot; &quot;groups&quot;</code></pre>
 <p>Que tienen los valores:</p>
-<div class="sourceCode" id="cb705"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb705-1" title="1">prueba_mediana<span class="op">$</span>statistics</a></code></pre></div>
+<div class="sourceCode" id="cb695"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb695-1"><a href="cuando-los-supuestos-no-se-cumplen.html#cb695-1"></a>prueba_mediana<span class="op">$</span>statistics</span></code></pre></div>
 <pre><code>##      Chisq Df      p.chisq Median
 ##   13.33333  1 0.0002607296      3</code></pre>
-<div class="sourceCode" id="cb707"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb707-1" title="1">prueba_mediana<span class="op">$</span>parameters</a></code></pre></div>
+<div class="sourceCode" id="cb697"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb697-1"><a href="cuando-los-supuestos-no-se-cumplen.html#cb697-1"></a>prueba_mediana<span class="op">$</span>parameters</span></code></pre></div>
 <pre><code>##     test                       name.t ntr alpha
 ##   Median datos_prueba_mediana$docente   2  0.05</code></pre>
-<div class="sourceCode" id="cb709"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb709-1" title="1">prueba_mediana<span class="op">$</span>medians</a></code></pre></div>
+<div class="sourceCode" id="cb699"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb699-1"><a href="cuando-los-supuestos-no-se-cumplen.html#cb699-1"></a>prueba_mediana<span class="op">$</span>medians</span></code></pre></div>
 <pre><code>##   Median  r Min Max Q25 Q75
 ## a      2 40   1   5   1   3
 ## b      4 40   1   5   3   4</code></pre>
-<div class="sourceCode" id="cb711"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb711-1" title="1">prueba_mediana<span class="op">$</span>comparison</a></code></pre></div>
+<div class="sourceCode" id="cb701"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb701-1"><a href="cuando-los-supuestos-no-se-cumplen.html#cb701-1"></a>prueba_mediana<span class="op">$</span>comparison</span></code></pre></div>
 <pre><code>## NULL</code></pre>
-<div class="sourceCode" id="cb713"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb713-1" title="1">prueba_mediana<span class="op">$</span>groups</a></code></pre></div>
+<div class="sourceCode" id="cb703"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb703-1"><a href="cuando-los-supuestos-no-se-cumplen.html#cb703-1"></a>prueba_mediana<span class="op">$</span>groups</span></code></pre></div>
 <pre><code>##   datos_prueba_mediana$concepto groups
 ## b                             4      a
 ## a                             2      b</code></pre>
 <p>Se puede pedir todo de una vez:</p>
-<div class="sourceCode" id="cb715"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb715-1" title="1">prueba_mediana</a></code></pre></div>
+<div class="sourceCode" id="cb705"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb705-1"><a href="cuando-los-supuestos-no-se-cumplen.html#cb705-1"></a>prueba_mediana</span></code></pre></div>
 <pre><code>## $statistics
 ##      Chisq Df      p.chisq Median
 ##   13.33333  1 0.0002607296      3
@@ -1348,27 +1351,27 @@ La tabla de frecuencias esperadas es:</p>
 <div id="prueba-de-wilcoxon" class="section level3">
 <h3><span class="header-section-number">13.1.4</span> Prueba de Wilcoxon</h3>
 <p>Sea como ejemplo, el caso de la comparación entre los puntajes de un test estandarizado entre los grupos experimental y control, cada uno de los cuales tiene nueve casos. Los datos ficticios son los siguientes:</p>
-<div class="sourceCode" id="cb717"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb717-1" title="1">puntajes_control &lt;-<span class="st"> </span><span class="kw">c</span>(</a>
-<a class="sourceLine" id="cb717-2" title="2">  <span class="fl">38.9</span>, <span class="fl">61.2</span>, <span class="fl">73.3</span>, <span class="fl">21.8</span>, <span class="fl">63.4</span>, <span class="fl">64.6</span>, <span class="fl">48.4</span>, <span class="fl">48.8</span>, <span class="fl">48.5</span>)</a>
-<a class="sourceLine" id="cb717-3" title="3"></a>
-<a class="sourceLine" id="cb717-4" title="4">puntajes_experimental &lt;-<span class="st"> </span><span class="kw">c</span>(</a>
-<a class="sourceLine" id="cb717-5" title="5">  <span class="fl">67.8</span>, <span class="dv">60</span>, <span class="fl">63.4</span>, <span class="dv">76</span>, <span class="fl">89.4</span>, <span class="fl">73.3</span>, <span class="fl">67.3</span>, <span class="fl">61.3</span>, <span class="fl">62.4</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb707"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb707-1"><a href="cuando-los-supuestos-no-se-cumplen.html#cb707-1"></a>puntajes_control &lt;-<span class="st"> </span><span class="kw">c</span>(</span>
+<span id="cb707-2"><a href="cuando-los-supuestos-no-se-cumplen.html#cb707-2"></a>  <span class="fl">38.9</span>, <span class="fl">61.2</span>, <span class="fl">73.3</span>, <span class="fl">21.8</span>, <span class="fl">63.4</span>, <span class="fl">64.6</span>, <span class="fl">48.4</span>, <span class="fl">48.8</span>, <span class="fl">48.5</span>)</span>
+<span id="cb707-3"><a href="cuando-los-supuestos-no-se-cumplen.html#cb707-3"></a></span>
+<span id="cb707-4"><a href="cuando-los-supuestos-no-se-cumplen.html#cb707-4"></a>puntajes_experimental &lt;-<span class="st"> </span><span class="kw">c</span>(</span>
+<span id="cb707-5"><a href="cuando-los-supuestos-no-se-cumplen.html#cb707-5"></a>  <span class="fl">67.8</span>, <span class="dv">60</span>, <span class="fl">63.4</span>, <span class="dv">76</span>, <span class="fl">89.4</span>, <span class="fl">73.3</span>, <span class="fl">67.3</span>, <span class="fl">61.3</span>, <span class="fl">62.4</span>)</span></code></pre></div>
 <p>Los argumentos de la prueba solicitan los dos conjuntos de datos, la lateralidad, el valor bajo la hipótesis nula, y debe indicarse que no es una prueba apareada</p>
 <pre><code>## 
-##  Wilcoxon rank sum test with continuity correction
+## 	Wilcoxon rank sum test with continuity correction
 ## 
 ## data:  puntajes_control and puntajes_experimental
 ## W = 15, p-value = 0.02712
 ## alternative hypothesis: true location shift is not equal to 0</code></pre>
 <p>El resultado, a partir del valor <span class="math inline">\(p\)</span> que ofrece, indica que se rechaza la hipótesis nula.<br />
 Si hubiésemos aplicado la prueba t, primero debe construirse la matriz de datos:</p>
-<div class="sourceCode" id="cb719"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb719-1" title="1">puntajes &lt;-<span class="st"> </span><span class="kw">c</span>(puntajes_control, puntajes_experimental)</a>
-<a class="sourceLine" id="cb719-2" title="2">grupo &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;control&quot;</span>, <span class="st">&quot;experimental&quot;</span>), <span class="dt">each =</span> <span class="dv">9</span>)</a>
-<a class="sourceLine" id="cb719-3" title="3">datos_prueba_wilcoxon &lt;-<span class="st"> </span><span class="kw">data.frame</span>(grupo, puntajes)</a></code></pre></div>
+<div class="sourceCode" id="cb709"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb709-1"><a href="cuando-los-supuestos-no-se-cumplen.html#cb709-1"></a>puntajes &lt;-<span class="st"> </span><span class="kw">c</span>(puntajes_control, puntajes_experimental)</span>
+<span id="cb709-2"><a href="cuando-los-supuestos-no-se-cumplen.html#cb709-2"></a>grupo &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="kw">c</span>(<span class="st">&quot;control&quot;</span>, <span class="st">&quot;experimental&quot;</span>), <span class="dt">each =</span> <span class="dv">9</span>)</span>
+<span id="cb709-3"><a href="cuando-los-supuestos-no-se-cumplen.html#cb709-3"></a>datos_prueba_wilcoxon &lt;-<span class="st"> </span><span class="kw">data.frame</span>(grupo, puntajes)</span></code></pre></div>
 <p>Y luego aplicar la prueba</p>
-<div class="sourceCode" id="cb720"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb720-1" title="1"><span class="kw">t.test</span>(puntajes <span class="op">~</span><span class="st"> </span>grupo, <span class="dt">data =</span> datos_prueba_wilcoxon)</a></code></pre></div>
+<div class="sourceCode" id="cb710"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb710-1"><a href="cuando-los-supuestos-no-se-cumplen.html#cb710-1"></a><span class="kw">t.test</span>(puntajes <span class="op">~</span><span class="st"> </span>grupo, <span class="dt">data =</span> datos_prueba_wilcoxon)</span></code></pre></div>
 <pre><code>## 
-##  Welch Two Sample t-test
+## 	Welch Two Sample t-test
 ## 
 ## data:  puntajes by grupo
 ## t = -2.7842, df = 13.114, p-value = 0.01538
@@ -1380,11 +1383,11 @@ Si hubiésemos aplicado la prueba t, primero debe construirse la matriz de datos
 ##                   52.10000                   68.98889</code></pre>
 <p>El resultado conduce a la misma decisión, pero para interpretarlo debe cuidarse que los puntajes estén medidos a escala cuantitativa.</p>
 </div>
-<div id="muestras-apareadas-1" class="section level3">
+<div id="muestras-apareadas" class="section level3">
 <h3><span class="header-section-number">13.1.5</span> Muestras apareadas</h3>
 <p>Se ilustra con un ejemplo sobre evaluaciones antes y después de una intervención sobre las condiciones de trabajo en una organización, medidas en puntaje de una prueba de satisfacción. Se quiere saber si hay evidencia para creer que después de la intervención los puntajes son mayores. En primer lugar se lee la base (datos ficticios):</p>
 <!--esto no se muestra-->
-<div class="sourceCode" id="cb722"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb722-1" title="1"><span class="kw">read.csv</span>(<span class="st">&quot;bases/archivostxt/datos_apareadas.csv&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb712"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb712-1"><a href="cuando-los-supuestos-no-se-cumplen.html#cb712-1"></a><span class="kw">read.csv</span>(<span class="st">&quot;bases/archivostxt/datos_apareadas.csv&quot;</span>)</span></code></pre></div>
 <pre><code>##     X antes despues
 ## 1   1   5.8     9.2
 ## 2   2   5.5     8.1
@@ -1406,18 +1409,18 @@ Si hubiésemos aplicado la prueba t, primero debe construirse la matriz de datos
 ## 18 18   6.1     8.2
 ## 19 19   4.2    12.3
 ## 20 20   4.6    12.4</code></pre>
-<div class="sourceCode" id="cb724"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb724-1" title="1"><span class="kw">wilcox.test</span>(despues, antes, <span class="dt">alternative =</span> <span class="st">&quot;greater&quot;</span>, <span class="dt">mu =</span> <span class="dv">0</span>, <span class="dt">paired =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb714"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb714-1"><a href="cuando-los-supuestos-no-se-cumplen.html#cb714-1"></a><span class="kw">wilcox.test</span>(despues, antes, <span class="dt">alternative =</span> <span class="st">&quot;greater&quot;</span>, <span class="dt">mu =</span> <span class="dv">0</span>, <span class="dt">paired =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <pre><code>## 
-##  Wilcoxon signed rank test with continuity correction
+## 	Wilcoxon signed rank test with continuity correction
 ## 
 ## data:  despues and antes
 ## V = 199, p-value = 0.0002407
 ## alternative hypothesis: true location shift is greater than 0</code></pre>
 <p>Leemos que, en una prueba unilateral derecha, el valor <span class="math inline">\(p\)</span> es menor a los niveles usuales de significación, por lo que hay evidencia para afirmar que los puntajes son mayores luego de la intervención.</p>
 <p>La realización de esta prueba si la satisfacción esstuviese medida a nivel métrico y se pudiera suponer la normalidad de las distribuciones, sería por medio de una prueba t para muestras apareadas:</p>
-<div class="sourceCode" id="cb726"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb726-1" title="1"><span class="kw">t.test</span>(despues, antes, <span class="dt">paired =</span> <span class="ot">TRUE</span>, <span class="dt">alternative =</span> <span class="st">&quot;greater&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb716"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb716-1"><a href="cuando-los-supuestos-no-se-cumplen.html#cb716-1"></a><span class="kw">t.test</span>(despues, antes, <span class="dt">paired =</span> <span class="ot">TRUE</span>, <span class="dt">alternative =</span> <span class="st">&quot;greater&quot;</span>)</span></code></pre></div>
 <pre><code>## 
-##  Paired t-test
+## 	Paired t-test
 ## 
 ## data:  despues and antes
 ## t = 4.5335, df = 19, p-value = 0.0001136
@@ -1444,10 +1447,10 @@ Si hubiésemos aplicado la prueba t, primero debe construirse la matriz de datos
 <div class="footnotes">
 <hr />
 <ol start="92">
-<li id="fn92"><p>Lo que puede verificarse inicialmente observando el histograma, comparando la media y la mediana, y calculando los coeficientes de asimetría y curtosis.<a href="cuando-los-supuestos-no-se-cumplen.html#fnref92" class="footnote-back">↩</a></p></li>
-<li id="fn93"><p>Como <span class="math inline">\(f_{ij} = \frac{f_{i}*f_{j}}{n}\)</span><a href="cuando-los-supuestos-no-se-cumplen.html#fnref93" class="footnote-back">↩</a></p></li>
-<li id="fn94"><p>Haciendo: <span class="math inline">\(\chi^{2} = \sum_{}^{}\frac{( f_{o} - f_{o} )^{2}}{f_{e}}\)</span><a href="cuando-los-supuestos-no-se-cumplen.html#fnref94" class="footnote-back">↩</a></p></li>
-<li id="fn95"><p>De mismo modo que sucede con las pruebas paramétricas, las hipótesis se refieren a toda la población, aunque aquí no aparezca el nombre de un parámetro reconocible, como <span class="math inline">\(\mu\)</span> o <span class="math inline">\(P\)</span>.<a href="cuando-los-supuestos-no-se-cumplen.html#fnref95" class="footnote-back">↩</a></p></li>
+<li id="fn92"><p>Lo que puede verificarse inicialmente observando el histograma, comparando la media y la mediana, y calculando los coeficientes de asimetría y curtosis.<a href="cuando-los-supuestos-no-se-cumplen.html#fnref92" class="footnote-back">↩︎</a></p></li>
+<li id="fn93"><p>Como <span class="math inline">\(f_{ij} = \frac{f_{i}*f_{j}}{n}\)</span><a href="cuando-los-supuestos-no-se-cumplen.html#fnref93" class="footnote-back">↩︎</a></p></li>
+<li id="fn94"><p>Haciendo: <span class="math inline">\(\chi^{2} = \sum_{}^{}\frac{( f_{o} - f_{o} )^{2}}{f_{e}}\)</span><a href="cuando-los-supuestos-no-se-cumplen.html#fnref94" class="footnote-back">↩︎</a></p></li>
+<li id="fn95"><p>De mismo modo que sucede con las pruebas paramétricas, las hipótesis se refieren a toda la población, aunque aquí no aparezca el nombre de un parámetro reconocible, como <span class="math inline">\(\mu\)</span> o <span class="math inline">\(P\)</span>.<a href="cuando-los-supuestos-no-se-cumplen.html#fnref95" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>
@@ -1455,7 +1458,7 @@ Si hubiésemos aplicado la prueba t, primero debe construirse la matriz de datos
           </div>
         </div>
       </div>
-<a href="prueba-de-hipÃ³tesis-las-aplicaciones.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="prueba-de-hipótesis-las-aplicaciones.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="tamaño-del-efecto.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>

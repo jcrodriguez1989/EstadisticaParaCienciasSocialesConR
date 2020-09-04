@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Capítulo 11 Prueba de hipótesis: la lógica | Un Recorrido por los Métodos Cuantitativos en Ciencias Sociales a bordo de R</title>
   <meta name="description" content="Capítulo 11 Prueba de hipótesis: la lógica | Un Recorrido por los Métodos Cuantitativos en Ciencias Sociales a bordo de R" />
-  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Capítulo 11 Prueba de hipótesis: la lógica | Un Recorrido por los Métodos Cuantitativos en Ciencias Sociales a bordo de R" />
   <meta property="og:type" content="book" />
@@ -49,13 +49,14 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -64,14 +65,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -80,9 +83,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -186,7 +189,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.2.3" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#formas-de-recategorizar"><i class="fa fa-check"></i><b>2.2.3</b> Formas de recategorizar</a></li>
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#la-presentación-gráfica-de-los-resultados"><i class="fa fa-check"></i><b>2.3</b> La presentación gráfica de los resultados</a></li>
-<li class="chapter" data-level="2.4" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#hacerlo-en-r-1"><i class="fa fa-check"></i><b>2.4</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="2.4" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>2.4</b> Hacerlo en R</a><ul>
 <li class="chapter" data-level="2.4.1" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#tablas-univariadas"><i class="fa fa-check"></i><b>2.4.1</b> Tablas univariadas</a></li>
 <li class="chapter" data-level="2.4.2" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#recategorización-1"><i class="fa fa-check"></i><b>2.4.2</b> Recategorización</a></li>
 <li class="chapter" data-level="2.4.3" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#representaciones-gráficas"><i class="fa fa-check"></i><b>2.4.3</b> Representaciones gráficas</a></li>
@@ -221,7 +224,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.5.1" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#medidas-de-posición-1"><i class="fa fa-check"></i><b>3.5.1</b> Medidas de posición</a></li>
 <li class="chapter" data-level="3.5.2" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#medidas-de-dispersión-1"><i class="fa fa-check"></i><b>3.5.2</b> Medidas de dispersión</a></li>
 </ul></li>
-<li class="chapter" data-level="3.6" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#hacerlo-en-r-2"><i class="fa fa-check"></i><b>3.6</b> Hacerlo en R</a></li>
+<li class="chapter" data-level="3.6" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>3.6</b> Hacerlo en R</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html"><i class="fa fa-check"></i><b>4</b> Relación entre variables: los fundamentos</a><ul>
 <li class="chapter" data-level="4.1" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#tablas-de-contingencia"><i class="fa fa-check"></i><b>4.1</b> Tablas de contingencia</a></li>
@@ -231,7 +234,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.5" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#concepto-de-riesgo-relativo"><i class="fa fa-check"></i><b>4.5</b> Concepto de riesgo relativo</a></li>
 <li class="chapter" data-level="4.6" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#la-intensidad"><i class="fa fa-check"></i><b>4.6</b> La intensidad</a></li>
 <li class="chapter" data-level="4.7" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#el-concepto-de-independencia-estadística"><i class="fa fa-check"></i><b>4.7</b> El concepto de independencia estadística</a></li>
-<li class="chapter" data-level="4.8" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#hacerlo-en-r-3"><i class="fa fa-check"></i><b>4.8</b> Hacerlo en R</a></li>
+<li class="chapter" data-level="4.8" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>4.8</b> Hacerlo en R</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html"><i class="fa fa-check"></i><b>5</b> Relación entre variables: el análisis</a><ul>
 <li class="chapter" data-level="5.1" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#relaciones-entre-variables-vs.-comparación-de-grupos"><i class="fa fa-check"></i><b>5.1</b> Relaciones entre variables vs. comparación de grupos</a></li>
@@ -253,7 +256,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.9.3" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#obtención-de-la-recta-de-regresión"><i class="fa fa-check"></i><b>5.9.3</b> Obtención de la recta de regresión</a></li>
 </ul></li>
 <li class="chapter" data-level="5.10" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#la-visualización-de-los-datos"><i class="fa fa-check"></i><b>5.10</b> La visualización de los datos</a></li>
-<li class="chapter" data-level="5.11" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#hacerlo-en-r-4"><i class="fa fa-check"></i><b>5.11</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="5.11" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>5.11</b> Hacerlo en R</a><ul>
 <li class="chapter" data-level="5.11.1" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#distancia-chi2"><i class="fa fa-check"></i><b>5.11.1</b> Distancia <span class="math inline">\(\chi^{2}\)</span></a></li>
 <li class="chapter" data-level="5.11.2" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#coeficientes"><i class="fa fa-check"></i><b>5.11.2</b> Coeficientes</a></li>
 <li class="chapter" data-level="5.11.3" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#modelo-lineal"><i class="fa fa-check"></i><b>5.11.3</b> Modelo lineal</a></li>
@@ -282,7 +285,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.3.4" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-accidental-o-según-disponibilidad"><i class="fa fa-check"></i><b>6.3.4</b> Muestreo accidental o según disponibilidad</a></li>
 <li class="chapter" data-level="6.3.5" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-bola-de-nieve"><i class="fa fa-check"></i><b>6.3.5</b> Muestreo bola de nieve</a></li>
 </ul></li>
-<li class="chapter" data-level="6.4" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#hacerlo-en-r-5"><i class="fa fa-check"></i><b>6.4</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="6.4" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>6.4</b> Hacerlo en R</a><ul>
 <li class="chapter" data-level="6.4.1" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#aleatorio-simple"><i class="fa fa-check"></i><b>6.4.1</b> Aleatorio simple</a></li>
 <li class="chapter" data-level="6.4.2" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#estratificado"><i class="fa fa-check"></i><b>6.4.2</b> Estratificado</a></li>
 </ul></li>
@@ -313,7 +316,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.6" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#la-distribución-t-de-student"><i class="fa fa-check"></i><b>8.6</b> La distribución t de Student</a><ul>
 <li class="chapter" data-level="8.6.1" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#la-distribución-f"><i class="fa fa-check"></i><b>8.6.1</b> La distribución F</a></li>
 </ul></li>
-<li class="chapter" data-level="8.7" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#hacerlo-en-r-6"><i class="fa fa-check"></i><b>8.7</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="8.7" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>8.7</b> Hacerlo en R</a><ul>
 <li class="chapter" data-level="8.7.1" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#probabilidades-exactas"><i class="fa fa-check"></i><b>8.7.1</b> Probabilidades exactas</a></li>
 <li class="chapter" data-level="8.7.2" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#probabilidades-acumuladas"><i class="fa fa-check"></i><b>8.7.2</b> Probabilidades acumuladas</a></li>
 <li class="chapter" data-level="8.7.3" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#cuantiles-1"><i class="fa fa-check"></i><b>8.7.3</b> Cuantiles</a></li>
@@ -339,7 +342,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.3.7" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#distribución-del-cociente-de-varianzas"><i class="fa fa-check"></i><b>9.3.7</b> Distribución del cociente de varianzas</a></li>
 </ul></li>
 <li class="chapter" data-level="9.4" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#resumen-de-la-relación-entre-estimadores-y-parámetros"><i class="fa fa-check"></i><b>9.4</b> Resumen de la relación entre estimadores y parámetros</a></li>
-<li class="chapter" data-level="9.5" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#hacerlo-en-r-7"><i class="fa fa-check"></i><b>9.5</b> Hacerlo en R</a></li>
+<li class="chapter" data-level="9.5" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>9.5</b> Hacerlo en R</a></li>
 </ul></li>
 <li class="part"><span><b>III Estadística inferencial</b></span></li>
 <li class="chapter" data-level="10" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html"><i class="fa fa-check"></i><b>10</b> Estimación por intervalo</a><ul>
@@ -356,7 +359,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.5.2" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#el-error-de-estimación-en-la-proporción"><i class="fa fa-check"></i><b>10.5.2</b> El error de estimación en la proporción</a></li>
 </ul></li>
 <li class="chapter" data-level="10.6" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#probabilidad-de-cobertura"><i class="fa fa-check"></i><b>10.6</b> Probabilidad de cobertura</a></li>
-<li class="chapter" data-level="10.7" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#hacerlo-en-r-8"><i class="fa fa-check"></i><b>10.7</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="10.7" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>10.7</b> Hacerlo en R</a><ul>
 <li class="chapter" data-level="10.7.1" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#intervalo-para-la-media"><i class="fa fa-check"></i><b>10.7.1</b> Intervalo para la media</a></li>
 <li class="chapter" data-level="10.7.2" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#intervalo-para-la-proporción"><i class="fa fa-check"></i><b>10.7.2</b> Intervalo para la proporción</a></li>
 <li class="chapter" data-level="10.7.3" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#cobertura"><i class="fa fa-check"></i><b>10.7.3</b> Cobertura</a></li>
@@ -377,7 +380,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.5.2" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#significación-estadística-y-valor-p"><i class="fa fa-check"></i><b>11.5.2</b> Significación estadística y valor <span class="math inline">\(p\)</span></a></li>
 </ul></li>
 <li class="chapter" data-level="11.6" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#muestras-pequeñas-y-pruebas-t"><i class="fa fa-check"></i><b>11.6</b> Muestras pequeñas y pruebas <span class="math inline">\(t\)</span></a></li>
-<li class="chapter" data-level="11.7" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#hacerlo-en-r-9"><i class="fa fa-check"></i><b>11.7</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="11.7" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>11.7</b> Hacerlo en R</a><ul>
 <li class="chapter" data-level="11.7.1" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#prueba-sobre-la-media-1"><i class="fa fa-check"></i><b>11.7.1</b> Prueba sobre la media</a></li>
 <li class="chapter" data-level="11.7.2" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#prueba-sobre-la-proporción-1"><i class="fa fa-check"></i><b>11.7.2</b> Prueba sobre la proporción</a></li>
 </ul></li>
@@ -389,7 +392,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="12.1.2" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#muestras-apareadas"><i class="fa fa-check"></i><b>12.1.2</b> Muestras apareadas</a></li>
 <li class="chapter" data-level="12.1.3" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#coeficiente-r-de-pearson"><i class="fa fa-check"></i><b>12.1.3</b> Coeficiente r de Pearson</a></li>
 </ul></li>
-<li class="chapter" data-level="12.2" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#hacerlo-en-r-10"><i class="fa fa-check"></i><b>12.2</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="12.2" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>12.2</b> Hacerlo en R</a><ul>
 <li class="chapter" data-level="12.2.1" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#ejemplo-1."><i class="fa fa-check"></i><b>12.2.1</b> Ejemplo 1.</a></li>
 <li class="chapter" data-level="12.2.2" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#ejemplo-2."><i class="fa fa-check"></i><b>12.2.2</b> Ejemplo 2.</a></li>
 <li class="chapter" data-level="12.2.3" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#aplicación-a-los-datos-de-población-adulta-mayor"><i class="fa fa-check"></i><b>12.2.3</b> Aplicación a los datos de Población Adulta Mayor</a></li>
@@ -401,12 +404,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13.0.1" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#las-pruebas-ji-cuadrado-o-chi-cuadrado"><i class="fa fa-check"></i><b>13.0.1</b> Las pruebas ji cuadrado (o chi cuadrado)</a></li>
 <li class="chapter" data-level="13.0.2" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#coeficiente-r_s-de-spearman"><i class="fa fa-check"></i><b>13.0.2</b> Coeficiente <span class="math inline">\(r_s\)</span> de Spearman</a></li>
 <li class="chapter" data-level="13.0.3" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#alternativas-no-paramétricas-a-las-pruebas-t"><i class="fa fa-check"></i><b>13.0.3</b> Alternativas no paramétricas a las pruebas t</a></li>
-<li class="chapter" data-level="13.1" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#hacerlo-en-r-11"><i class="fa fa-check"></i><b>13.1</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="13.1" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>13.1</b> Hacerlo en R</a><ul>
 <li class="chapter" data-level="13.1.1" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#ejemplo-1"><i class="fa fa-check"></i><b>13.1.1</b> Ejemplo 1</a></li>
 <li class="chapter" data-level="13.1.2" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#ejemplo-2"><i class="fa fa-check"></i><b>13.1.2</b> Ejemplo 2</a></li>
 <li class="chapter" data-level="13.1.3" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#prueba-de-la-mediana-1"><i class="fa fa-check"></i><b>13.1.3</b> Prueba de la mediana</a></li>
 <li class="chapter" data-level="13.1.4" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#prueba-de-wilcoxon"><i class="fa fa-check"></i><b>13.1.4</b> Prueba de Wilcoxon</a></li>
-<li class="chapter" data-level="13.1.5" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#muestras-apareadas-1"><i class="fa fa-check"></i><b>13.1.5</b> Muestras apareadas</a></li>
+<li class="chapter" data-level="13.1.5" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#muestras-apareadas"><i class="fa fa-check"></i><b>13.1.5</b> Muestras apareadas</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="14" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html"><i class="fa fa-check"></i><b>14</b> Tamaño del efecto</a><ul>
@@ -419,7 +422,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="14.2.5" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#pruebas-ji-cuadrado"><i class="fa fa-check"></i><b>14.2.5</b> Pruebas ji cuadrado</a></li>
 </ul></li>
 <li class="chapter" data-level="14.3" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#análisis-de-la-potencia"><i class="fa fa-check"></i><b>14.3</b> Análisis de la potencia</a></li>
-<li class="chapter" data-level="14.4" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#hacerlo-en-r-12"><i class="fa fa-check"></i><b>14.4</b> Hacerlo en R</a></li>
+<li class="chapter" data-level="14.4" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>14.4</b> Hacerlo en R</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Generado con bookdown</a></li>
@@ -443,7 +446,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="prueba-de-hipótesis-la-lógica" class="section level1">
 <h1><span class="header-section-number">Capítulo 11</span> Prueba de hipótesis: la lógica</h1>
-<p>En este capítulo ingresamos a uno de los procedimientos de mayor difusión en investigación cuantitativa: la prueba de hipótesis, que se en los mismos principios de estimación de parámetros que fundamentan la construcción de intervalos de confianza, por lo que su objetivo también es hacer uso de resultados muestrales para obtener conocimiento acerca de la población. Este procedimiento no está exento de críticas <span class="citation">(Meehl <a href="#ref-meehl1978">1978</a>, @gelman2006, @vidgen2016, @krueger2017, @greenland2019)</span>; sin embargo es básico para hacer inferencias sobre la población y conserva amplia difusión tanto en ciencias sociales como naturales, <span class="citation">(Halsey <a href="#ref-Halsey2019">2019</a>)</span>. Las propuestas que existen como técnicas alternativas que superan las falencias que acusan sus críticos <span class="citation">(Goedhart <a href="#ref-Goedhart2018">2018</a>)</span>, requieren que se tenga dominio de las pruebas de hipótesis.</p>
+<p>En este capítulo ingresamos a uno de los procedimientos de mayor difusión en investigación cuantitativa: la prueba de hipótesis, que se en los mismos principios de estimación de parámetros que fundamentan la construcción de intervalos de confianza, por lo que su objetivo también es hacer uso de resultados muestrales para obtener conocimiento acerca de la población. Este procedimiento no está exento de críticas <span class="citation">(Meehl <a href="#ref-meehl1978" role="doc-biblioref">1978</a>, @gelman2006, @vidgen2016, @krueger2017, @greenland2019)</span>; sin embargo es básico para hacer inferencias sobre la población y conserva amplia difusión tanto en ciencias sociales como naturales, <span class="citation">(Halsey <a href="#ref-Halsey2019" role="doc-biblioref">2019</a>)</span>. Las propuestas que existen como técnicas alternativas que superan las falencias que acusan sus críticos <span class="citation">(Goedhart <a href="#ref-Goedhart2018" role="doc-biblioref">2018</a>)</span>, requieren que se tenga dominio de las pruebas de hipótesis.</p>
 <div id="el-razonamiento-de-la-prueba-de-hipótesis" class="section level2">
 <h2><span class="header-section-number">11.1</span> El razonamiento de la prueba de hipótesis</h2>
 <p>La prueba de hipótesis tiene como objetivo el de proveer argumentos para
@@ -523,7 +526,7 @@ generales o bien que realizan comparaciones entre grupos. En todos los
 casos la hipótesis nula afirma algo que puede expresarse como “no hay
 diferencia”, o “no hay cambio” o “no hay relación”.</p>
 <p>Hasta este punto se trata de la definición original de estas pruebas,
-desarrolladas inicialmente por Sir Ronald <span class="citation">Fisher (<a href="#ref-Fisher">1925</a>)</span> a las que llamó
+desarrolladas inicialmente por Sir Ronald <span class="citation">Fisher (<a href="#ref-Fisher" role="doc-biblioref">1925</a>)</span> a las que llamó
 <em>pruebas de significación</em>. La idea básica es la de comparar los datos
 observados con la hipótesis que se pone a prueba. Fisher las ideó como
 manera de medir el grado de incompatibilidad de un conjunto de datos con la hipótesis nula, evaluando la probabilidad de hallar resultados como los observados o más extremos, si la hipótesis nula fuera cierta. Si esa probabilidad es muy pequeña, puede suceder que la muestra que se
@@ -531,7 +534,7 @@ seleccionó haya sido excepcional, o bien que la afirmación hipotética
 sea falsa. Fisher argumentó que se trataba de un método objetivo para
 poner a prueba teorías y que puede ser usado en diferentes campos de
 conocimiento.</p>
-<p>Con posterioridad a Fisher, <span class="citation">Neyman and Pearson (<a href="#ref-neyman1928">1928</a>)</span> introducen dos
+<p>Con posterioridad a Fisher, <span class="citation">Neyman and Pearson (<a href="#ref-neyman1928" role="doc-biblioref">1928</a>)</span> introducen dos
 cambios importantes en el procedimiento.</p>
 <ul>
 <li><p>El primero consiste en tratar a las prueba no ya como métodos para
@@ -721,19 +724,19 @@ no-diferencia si se observan valores muy alejados del hipotético. Por el contra
 <p>De manera general, si llamamos <span class="math inline">\(z_{\alpha/2}\)</span> al puntaje <span class="math inline">\(z\)</span> que corresponde a un área acumulada de <span class="math inline">\(\alpha/2\)</span> de la distribución normal estándar (el percentil <span class="math inline">\(\alpha/2\)</span>) y <span class="math inline">\(z_{(1-\alpha/2)}\)</span> al percentil: <span class="math inline">\((1-\alpha/2)\)</span>, la expresión queda:</p>
 <p><span class="math display">\[P(z\leq z_{\alpha/2} \cup z\geq z_{(1-\alpha/2)} / H_{0} V)=\alpha \]</span></p>
 <p>Y las representaciones gráficas de las áreas de rechazo para los tres niveles de significación mencionados son:</p>
-<div class="figure"><span id="fig:unnamed-chunk-5001"></span>
+<div class="figure"><span id="fig:unnamed-chunk-500-1"></span>
 <img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-500-1.svg" alt="Comparación de las zonas de rechazo de $H_{0}$ con niveles de significación del 10, del 5 y del 1%" width="672" />
 <p class="caption">
 Figura 11.4: Comparación de las zonas de rechazo de <span class="math inline">\(H_{0}\)</span> con niveles de significación del 10, del 5 y del 1%
 </p>
 </div>
-<div class="figure"><span id="fig:unnamed-chunk-5002"></span>
+<div class="figure"><span id="fig:unnamed-chunk-500-2"></span>
 <img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-500-2.svg" alt="Comparación de las zonas de rechazo de $H_{0}$ con niveles de significación del 10, del 5 y del 1%" width="672" />
 <p class="caption">
 Figura 11.5: Comparación de las zonas de rechazo de <span class="math inline">\(H_{0}\)</span> con niveles de significación del 10, del 5 y del 1%
 </p>
 </div>
-<div class="figure"><span id="fig:unnamed-chunk-5003"></span>
+<div class="figure"><span id="fig:unnamed-chunk-500-3"></span>
 <img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-500-3.svg" alt="Comparación de las zonas de rechazo de $H_{0}$ con niveles de significación del 10, del 5 y del 1%" width="672" />
 <p class="caption">
 Figura 11.6: Comparación de las zonas de rechazo de <span class="math inline">\(H_{0}\)</span> con niveles de significación del 10, del 5 y del 1%
@@ -914,7 +917,7 @@ neurofisiológicos, cognitivos y comportamentales de seres humanos,
 siendo clave en el ámbito de la psicopatología y terapia psicológica.</p>
 <p>En este contexto, alumnas de Psicología interesadas en la vulnerabilidad
 adolescente hacia el uso y abuso de drogas, recurrieron a un modelo
-animal para estudiar los efectos del alcohol <span class="citation">Dziula and Reyna (<a href="#ref-Dziula2005">2005</a>)</span>. Uno de los posibles
+animal para estudiar los efectos del alcohol <span class="citation">Dziula and Reyna (<a href="#ref-Dziula2005" role="doc-biblioref">2005</a>)</span>. Uno de los posibles
 factores que determinan las primeras aproximaciones a las drogas es la
 búsqueda de nuevas sensaciones, que se manifiesta en niveles elevados
 tanto en adolescentes humanos como no humanos, particularmente en
@@ -1127,7 +1130,7 @@ encima (porque es una prueba unilateral derecha) al 5% de los valores
 posibles. Buscamos el percentil 95 de la distribución binomial corespondiente a los parámetros:
 <span class="math inline">\(n = 50\)</span>, <span class="math inline">\(P = 0.30\)</span> y <span class="math inline">\(P( X &gt; x) = 0.05\)</span></p>
 <p>La probabilidad es la de la cola derecha de la distribución, por ser una prueba unilateral derecha, y corresponde a una probabilidad acumulada de 0.95, de modo que el percentil es 95, que equivale a <span class="math inline">\(P( X \leq x) = 0.95\)</span> es:</p>
-<div class="sourceCode" id="cb613"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb613-1" title="1"><span class="kw">qbinom</span>(.<span class="dv">95</span>, <span class="dv">50</span>, <span class="fl">.30</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb603"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb603-1"><a href="prueba-de-hipótesis-la-lógica.html#cb603-1"></a><span class="kw">qbinom</span>(.<span class="dv">95</span>, <span class="dv">50</span>, <span class="fl">.30</span>)</span></code></pre></div>
 <pre><code>## [1] 20</code></pre>
 <p>El número de éxitos es 20. Por lo que el valor de <span class="math inline">\(\widehat{x}\)</span> que
 es superado por el 5% de los valores muestrales posibles es 20. La
@@ -1403,7 +1406,7 @@ probabilidades de <span class="math inline">\(\overline{x}\)</span> si <span cla
 la verdadera media poblacional fuera <span class="math inline">\(\mu_{1}\)</span> (que es una de las
 posibles entre las mayores que <span class="math inline">\(\mu_{0}\)</span>).</p>
 <div class="figure" style="text-align: center"><span id="fig:etii5"></span>
-<img src="imagenes/etii5.png" alt="Comparación de la probabilidad de hallar a $\overline{x}$ en zona de rechazo o no rechazo, según sea $H_{0}$ verdadera o falsa $(\alpha = 0.05)$" width="396" />
+<img src="imagenes/etii5.png" alt="Comparación de la probabilidad de hallar a $\overline{x}$ en zona de rechazo o no rechazo, según sea $H_{0}$ verdadera o falsa $(\alpha = 0.05)$"  />
 <p class="caption">
 Figura 11.11: Comparación de la probabilidad de hallar a <span class="math inline">\(\overline{x}\)</span> en zona de rechazo o no rechazo, según sea <span class="math inline">\(H_{0}\)</span> verdadera o falsa <span class="math inline">\((\alpha = 0.05)\)</span>
 </p>
@@ -1492,7 +1495,7 @@ sobre su cálculo, y en el último capítulo ofrecemos más detalles.</p>
 ETII.</p>
 <p>Si se cambia el gráfico <a href="prueba-de-hipótesis-la-lógica.html#fig:etii5">11.11</a>, reduciendo el nivel de significación, ahora la posición relativa de las áreas de rechazo y no rechazo queda:</p>
 <div class="figure" style="text-align: center"><span id="fig:etii1"></span>
-<img src="imagenes/etii1.png" alt="Comparación de la probabilidad de hallar a $\overline{x}$ en zona de rechazo o no rechazo, según sea $H_{0}$ verdadera o falsa $(\alpha = 0.01)$" width="396" />
+<img src="imagenes/etii1.png" alt="Comparación de la probabilidad de hallar a $\overline{x}$ en zona de rechazo o no rechazo, según sea $H_{0}$ verdadera o falsa $(\alpha = 0.01)$"  />
 <p class="caption">
 Figura 11.12: Comparación de la probabilidad de hallar a <span class="math inline">\(\overline{x}\)</span> en zona de rechazo o no rechazo, según sea <span class="math inline">\(H_{0}\)</span> verdadera o falsa <span class="math inline">\((\alpha = 0.01)\)</span>
 </p>
@@ -1506,7 +1509,7 @@ chances de rechazar <span class="math inline">\(H_{0}\)</span> por error, del 5 
 los gráficos <a href="prueba-de-hipótesis-la-lógica.html#fig:etii5">11.11</a> y <a href="prueba-de-hipótesis-la-lógica.html#fig:etii1">11.12</a> planteamos como “otra posibilidad” que la verdadera media fuera <span class="math inline">\(\mu_{1}\)</span>, que es una de las formas en que puede ser <span class="math inline">\(H_{0}\)</span> falsa.
 Siendo <span class="math inline">\(H_{0}\)</span> falsa, <span class="math inline">\(\mu\)</span> puede tener distintos valores y ellos incidirán en la probabilidad de cometer ETII. En el gráfico siguiente, además de <span class="math inline">\(\mu_{1}\)</span> agregamos otras dos medias poblacionales posibles <span class="math inline">\(\mu_{2}\)</span> y <span class="math inline">\(\mu_{3}\)</span>.</p>
 <div class="figure" style="text-align: center"><span id="fig:compHallarX"></span>
-<img src="imagenes/image188.png" alt="Comparación de la probabilidad de hallar a $\overline{x}$ en zona de rechazo o no rechazo, según sea $H_0$ verdadera o falsa, de tres modos diferentes" width="588" />
+<img src="imagenes/image188.png" alt="Comparación de la probabilidad de hallar a $\overline{x}$ en zona de rechazo o no rechazo, según sea $H_0$ verdadera o falsa, de tres modos diferentes"  />
 <p class="caption">
 Figura 11.13: Comparación de la probabilidad de hallar a <span class="math inline">\(\overline{x}\)</span> en zona de rechazo o no rechazo, según sea <span class="math inline">\(H_0\)</span> verdadera o falsa, de tres modos diferentes
 </p>
@@ -1523,7 +1526,7 @@ hipótesis son:</p>
 <p>Preguntamos: si la verdadera media de nota al egreso fuera de 6.55, ¿cuál habría sido la probabilidad de haber
 aceptado <span class="math inline">\(H_{0}\)</span>? Dicho de otra forma ¿qué probabilidad hay de creer que la media sigue siendo 6.50 si en realidad ha aumentado a 6.55? Se trata de calcular la probabilidad de cometer ETII, que consiste en aceptar una <span class="math inline">\(H_{0}\)</span> que es falsa. A un nivel de significación del 5%, el punto crítico que habíamos encontrado es 6.60, por lo que:</p>
 <div class="figure" style="text-align: center"><span id="fig:etii"></span>
-<img src="imagenes/image189.png" alt="Ubicación de los tipos de error de la prueba si $H_{0}$ es verdadera o si es falsa" width="507" />
+<img src="imagenes/image189.png" alt="Ubicación de los tipos de error de la prueba si $H_{0}$ es verdadera o si es falsa"  />
 <p class="caption">
 Figura 11.14: Ubicación de los tipos de error de la prueba si <span class="math inline">\(H_{0}\)</span> es verdadera o si es falsa
 </p>
@@ -1534,7 +1537,7 @@ necesario hallar esa área bajo la curva normal centrada en 6.55, lo que
 requiere que se lo transforme a puntaje <span class="math inline">\(z\)</span>:</p>
 <p><span class="math display">\[z = \frac{6.60 - 6.55}{\frac{0.60}{\sqrt{100}}} = \frac{0.05}{0.06} = 0.83\]</span></p>
 <p>Cuya área izquierda asociada es:</p>
-<div class="sourceCode" id="cb615"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb615-1" title="1"><span class="kw">pnorm</span>(.<span class="dv">83</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb605"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb605-1"><a href="prueba-de-hipótesis-la-lógica.html#cb605-1"></a><span class="kw">pnorm</span>(.<span class="dv">83</span>)</span></code></pre></div>
 <pre><code>## [1] 0.7967306</code></pre>
 <p><span class="math inline">\(P(z \leq 0.83)=0.7967\)</span></p>
 <p>Éste es el valor de <span class="math inline">\(\beta\)</span> para esta prueba y esta media alternativa. Leemos
@@ -2000,7 +2003,7 @@ probabilidad, transformamos <span class="math inline">\(\overline{x}\)</span> a 
 <p>Entonces debemos hallar <span class="math inline">\(P( z \geq 2.50 )\)</span> y ya no hace falta
 indicar la condición (si <span class="math inline">\(\mu = 6.50\)</span>), porque está incluida en el
 cálculo de <span class="math inline">\(z\)</span>. Para eso complementamos la probabilidad acumulada hasta <span class="math inline">\(2.50\)</span>:</p>
-<div class="sourceCode" id="cb617"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb617-1" title="1"><span class="kw">round</span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(<span class="fl">2.5</span>), <span class="dv">4</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb607"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb607-1"><a href="prueba-de-hipótesis-la-lógica.html#cb607-1"></a><span class="kw">round</span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(<span class="fl">2.5</span>), <span class="dv">4</span>)</span></code></pre></div>
 <pre><code>## [1] 0.0062</code></pre>
 <p><span class="math display">\[P( z \geq 2.50) = 0.0062\]</span></p>
 <p>Ese es el valor <span class="math inline">\(p\)</span>, e indica cuál es la probabilidad de encontrar un
@@ -2023,7 +2026,7 @@ extremo que éste-, si fuera verdadera <span class="math inline">\(H_{0}\)</span
 <p>Para calcular esta probabilidad transformamos el valor de <span class="math inline">\(\widehat{p}\)</span>
 a puntaje <span class="math inline">\(z\)</span>:</p>
 <p><span class="math display">\[z = \frac{\widehat{p} - P}{\sqrt{\frac{P*(1 - P)}{n}}} = \frac{0.32 - 0.30}{\sqrt{\frac{0.30*(1 - 0.30)}{200}}} = 0.617\]</span></p>
-<div class="sourceCode" id="cb619"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb619-1" title="1"><span class="kw">round</span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(.<span class="dv">617</span>), <span class="dv">4</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb609"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb609-1"><a href="prueba-de-hipótesis-la-lógica.html#cb609-1"></a><span class="kw">round</span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(.<span class="dv">617</span>), <span class="dv">4</span>)</span></code></pre></div>
 <pre><code>## [1] 0.2686</code></pre>
 <p><span class="math display">\[P( \widehat{p} \geq 0.32/P = 0.30)=0.2686\]</span>
 Se trata de una probabilidad “grande”, si se compara con los niveles de
@@ -2037,7 +2040,7 @@ la variable <em>número de éxitos</em>. En el ejemplo, el número observado de
 éxitos era de 16, la probabilidad condicional que corresponde al valor <span class="math inline">\(p\)</span> es entonces la probabilidad de hallar en la muestra de 50 casos, 16
 personas o más que vayan a votar al candidato, si en la población la
 proporción de quienes lo votarán fuera de 30% (<span class="math inline">\(H_0\)</span> verdadera). Se complementa la probabilildad acumulada hasta 15 (variable dicreta):</p>
-<div class="sourceCode" id="cb621"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb621-1" title="1"><span class="kw">round</span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pbinom</span>(<span class="dv">15</span>, <span class="dv">50</span>, <span class="fl">.3</span>), <span class="dv">4</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb611"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb611-1"><a href="prueba-de-hipótesis-la-lógica.html#cb611-1"></a><span class="kw">round</span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pbinom</span>(<span class="dv">15</span>, <span class="dv">50</span>, <span class="fl">.3</span>), <span class="dv">4</span>)</span></code></pre></div>
 <pre><code>## [1] 0.4308</code></pre>
 <p><span class="math display">\[P(\widehat{x} \geq 16/n = 50,\ P = 0.30) = 0.4308\]</span></p>
 <p>Nuevamente es un valor elevado para p, por lo que no se rechaza <span class="math inline">\(H_{0}\)</span>.</p>
@@ -2148,21 +2151,21 @@ nivel de significación que haya fijado. Para facilitar la interpretación, los 
 </tr>
 </tbody>
 </table>
-<p>La recomendación de <span class="citation">APA (<a href="#ref-APA2010">2010</a>)</span> es hasta tres asteriscos, todos los valores <span class="math inline">\(p\)</span> menores a <span class="math inline">\(0.001\)</span> se codifican con <span class="math inline">\(***\)</span></p>
+<p>La recomendación de <span class="citation">APA (<a href="#ref-APA2010" role="doc-biblioref">2010</a>)</span> es hasta tres asteriscos, todos los valores <span class="math inline">\(p\)</span> menores a <span class="math inline">\(0.001\)</span> se codifican con <span class="math inline">\(***\)</span></p>
 <div style="page-break-after: always;"></div>
 </div>
-<div id="hacerlo-en-r-9" class="section level2">
+<div id="hacerlo-en-r" class="section level2">
 <h2><span class="header-section-number">11.7</span> Hacerlo en R</h2>
 <div id="prueba-sobre-la-media-1" class="section level3">
 <h3><span class="header-section-number">11.7.1</span> Prueba sobre la media</h3>
 <p>Sea el caso de una prueba de hipótesis acerca del promedio del número de hijas e hijos por mujer en una comunidad dada. Se busca evidencia para decidir si, según los datos de una muestra de 150 casos, la población de la que esa muestra proviene tiene en promedio dos hijos e hijas por mujer o si ese promedio es mayor a 2. En la muestra de 150 observaciones se obtuvieron las siguientes medidas descriptivas (los datos son ficticios, por lo que se generan aleatoriamente a partir de una distribución normal, la variable se llama <span class="math inline">\(x\)</span>):</p>
-<div class="sourceCode" id="cb623"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb623-1" title="1"><span class="kw">set.seed</span>(<span class="dv">13</span>)</a>
-<a class="sourceLine" id="cb623-2" title="2">x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">150</span>, <span class="fl">2.15</span>, <span class="dv">1</span>)</a></code></pre></div>
-<div class="sourceCode" id="cb624"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb624-1" title="1"><span class="kw">round</span>(<span class="kw">mean</span>(x), <span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb613"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb613-1"><a href="prueba-de-hipótesis-la-lógica.html#cb613-1"></a><span class="kw">set.seed</span>(<span class="dv">13</span>)</span>
+<span id="cb613-2"><a href="prueba-de-hipótesis-la-lógica.html#cb613-2"></a>x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">150</span>, <span class="fl">2.15</span>, <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb614"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb614-1"><a href="prueba-de-hipótesis-la-lógica.html#cb614-1"></a><span class="kw">round</span>(<span class="kw">mean</span>(x), <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## [1] 2.09</code></pre>
-<div class="sourceCode" id="cb626"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb626-1" title="1"><span class="kw">round</span>(<span class="kw">sd</span>(x), <span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb616"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb616-1"><a href="prueba-de-hipótesis-la-lógica.html#cb616-1"></a><span class="kw">round</span>(<span class="kw">sd</span>(x), <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## [1] 0.95</code></pre>
-<div class="sourceCode" id="cb628"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb628-1" title="1"><span class="kw">length</span>(x)</a></code></pre></div>
+<div class="sourceCode" id="cb618"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb618-1"><a href="prueba-de-hipótesis-la-lógica.html#cb618-1"></a><span class="kw">length</span>(x)</span></code></pre></div>
 <pre><code>## [1] 150</code></pre>
 <p>Con el valor muestral de 2.09, la pregunta es si se trata de evidencia suficiente como para afirmar que la media poblacional supera al valor de dos hijos e hijas por mujer.
 Las hipótesis entonces son:</p>
@@ -2175,9 +2178,9 @@ Las hipótesis entonces son:</p>
 <li>Unilateral izquierda: alternative = “less”</li>
 </ul>
 <p>Así, la prueba se pide:</p>
-<div class="sourceCode" id="cb630"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb630-1" title="1"><span class="kw">t.test</span>(x, <span class="dt">alternative =</span> <span class="st">&quot;greater&quot;</span>, <span class="dt">mu =</span> <span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb620"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb620-1"><a href="prueba-de-hipótesis-la-lógica.html#cb620-1"></a><span class="kw">t.test</span>(x, <span class="dt">alternative =</span> <span class="st">&quot;greater&quot;</span>, <span class="dt">mu =</span> <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## 
-##  One Sample t-test
+## 	One Sample t-test
 ## 
 ## data:  x
 ## t = 1.1554, df = 149, p-value = 0.1249
@@ -2192,7 +2195,7 @@ Las hipótesis entonces son:</p>
 </div>
 <div id="prueba-sobre-la-proporción-1" class="section level3">
 <h3><span class="header-section-number">11.7.2</span> Prueba sobre la proporción</h3>
-<p>Sea que interesa comparar la proporción de población adulta de Argentina que sufre de obesidad con los valores mundiales de obesidad de personas adultas. Se define como obesas a las personas cuyo índice de masa corporal (peso en Kg dividido talla en metros al cuadrado) es mayor o igual a 30. Según la Organización Mundial de la Salud <span class="citation">(World Health Organization <a href="#ref-WHO">2016</a>)</span>, en 2016, un 13% de la población mundial sufría de obesidad.</p>
+<p>Sea que interesa comparar la proporción de población adulta de Argentina que sufre de obesidad con los valores mundiales de obesidad de personas adultas. Se define como obesas a las personas cuyo índice de masa corporal (peso en Kg dividido talla en metros al cuadrado) es mayor o igual a 30. Según la Organización Mundial de la Salud <span class="citation">(World Health Organization <a href="#ref-WHO" role="doc-biblioref">2016</a>)</span>, en 2016, un 13% de la población mundial sufría de obesidad.</p>
 <p>Para el problema de interés, la hipótesis se plantea en dirección a que la población adulta de Argentina probablemente tengan una prevalencia de obesidad superior a la media de todo el mundo. La hipótesis nula afirmará que la proporción de personas con sobrepeso en Argentina no es diferente del promedio mundial. Es decir:</p>
 <p><span class="math display">\[H_{0}:P = 0.13\]</span></p>
 <p><span class="math display">\[H_{1}:P &gt; 0.13\]</span></p>
@@ -2204,60 +2207,60 @@ Las hipótesis entonces son:</p>
 <li>9 Ns/Nc peso y/o talla</li>
 </ul>
 <p>Para obtener la distribución, primero se lee la base (que tiene separador de campos el signo “<span class="math inline">\(|\)</span>”), se solicita la tabla con el total y luego la tabla de de frecuencias relativas se redondea a 3 decimales:</p>
-<div class="sourceCode" id="cb632"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb632-1" title="1">ENFR2013 &lt;-<span class="st"> </span><span class="kw">read.csv</span>(</a>
-<a class="sourceLine" id="cb632-2" title="2">  <span class="st">&quot;bases/archivostxt/ENFR2013_baseusuario.txt&quot;</span>,</a>
-<a class="sourceLine" id="cb632-3" title="3">                     <span class="dt">sep =</span> <span class="st">&quot;|&quot;</span>)</a>
-<a class="sourceLine" id="cb632-4" title="4"></a>
-<a class="sourceLine" id="cb632-5" title="5"><span class="kw">addmargins</span>(<span class="kw">table</span>(ENFR2013<span class="op">$</span>IMC_AGRUPADO))</a></code></pre></div>
+<div class="sourceCode" id="cb622"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb622-1"><a href="prueba-de-hipótesis-la-lógica.html#cb622-1"></a>ENFR2013 &lt;-<span class="st"> </span><span class="kw">read.csv</span>(</span>
+<span id="cb622-2"><a href="prueba-de-hipótesis-la-lógica.html#cb622-2"></a>  <span class="st">&quot;bases/archivostxt/ENFR2013_baseusuario.txt&quot;</span>,</span>
+<span id="cb622-3"><a href="prueba-de-hipótesis-la-lógica.html#cb622-3"></a>                     <span class="dt">sep =</span> <span class="st">&quot;|&quot;</span>)</span>
+<span id="cb622-4"><a href="prueba-de-hipótesis-la-lógica.html#cb622-4"></a></span>
+<span id="cb622-5"><a href="prueba-de-hipótesis-la-lógica.html#cb622-5"></a><span class="kw">addmargins</span>(<span class="kw">table</span>(ENFR2013<span class="op">$</span>IMC_AGRUPADO))</span></code></pre></div>
 <pre><code>## 
 ##     1     2     3     9   Sum 
 ## 12442 11343  6505  2075 32365</code></pre>
-<div class="sourceCode" id="cb634"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb634-1" title="1"><span class="kw">round</span>(<span class="kw">addmargins</span>(<span class="kw">prop.table</span>(<span class="kw">table</span>(ENFR2013<span class="op">$</span>IMC_AGRUPADO))), <span class="dv">3</span>) <span class="op">*</span><span class="st"> </span><span class="dv">100</span></a></code></pre></div>
+<div class="sourceCode" id="cb624"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb624-1"><a href="prueba-de-hipótesis-la-lógica.html#cb624-1"></a><span class="kw">round</span>(<span class="kw">addmargins</span>(<span class="kw">prop.table</span>(<span class="kw">table</span>(ENFR2013<span class="op">$</span>IMC_AGRUPADO))), <span class="dv">3</span>) <span class="op">*</span><span class="st"> </span><span class="dv">100</span></span></code></pre></div>
 <pre><code>## 
 ##     1     2     3     9   Sum 
 ##  38.4  35.0  20.1   6.4 100.0</code></pre>
 <p>Esta tabla está construida sobre los datos muestrales, una comparación correcta exige que se usen los factores de ponderación de la encuesta, que están calculados teniendo en cuenta el diseño de la muestra. Para tenerlos en cuenta, hace falta la función “wtd.table” (tabla ponderada), del paquete <code>questionr</code>, y cuyos argumentos son: la o las variables que se van a tabular y la variable que define las ponderaciones.<br />
 Se instala el paquete correspondiente:</p>
-<div class="sourceCode" id="cb636"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb636-1" title="1"><span class="kw">install.packages</span>(<span class="st">&quot;questionr&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb626"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb626-1"><a href="prueba-de-hipótesis-la-lógica.html#cb626-1"></a><span class="kw">install.packages</span>(<span class="st">&quot;questionr&quot;</span>)</span></code></pre></div>
 <p>Y carga en sesión</p>
-<div class="sourceCode" id="cb637"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb637-1" title="1"><span class="kw">library</span>(<span class="st">&quot;questionr&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb627"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb627-1"><a href="prueba-de-hipótesis-la-lógica.html#cb627-1"></a><span class="kw">library</span>(<span class="st">&quot;questionr&quot;</span>)</span></code></pre></div>
 <p>Tomando en cuenta los ponderadores de la ENFR2013, la tabla tiene esta forma:</p>
-<div class="sourceCode" id="cb638"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb638-1" title="1"><span class="kw">addmargins</span>(<span class="kw">wtd.table</span>(ENFR2013<span class="op">$</span>IMC_AGRUPADO, <span class="dt">weights =</span> ENFR2013<span class="op">$</span>PONDERACION))</a></code></pre></div>
+<div class="sourceCode" id="cb628"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb628-1"><a href="prueba-de-hipótesis-la-lógica.html#cb628-1"></a><span class="kw">addmargins</span>(<span class="kw">wtd.table</span>(ENFR2013<span class="op">$</span>IMC_AGRUPADO, <span class="dt">weights =</span> ENFR2013<span class="op">$</span>PONDERACION))</span></code></pre></div>
 <pre><code>##        1        2        3        9      Sum 
 ## 10180480  8953836  5027227  1616044 25777587</code></pre>
-<div class="sourceCode" id="cb640"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb640-1" title="1"><span class="kw">round</span>(</a>
-<a class="sourceLine" id="cb640-2" title="2">  <span class="kw">addmargins</span>(</a>
-<a class="sourceLine" id="cb640-3" title="3">    <span class="kw">prop.table</span>(</a>
-<a class="sourceLine" id="cb640-4" title="4">      <span class="kw">wtd.table</span>(</a>
-<a class="sourceLine" id="cb640-5" title="5">        ENFR2013<span class="op">$</span>IMC_AGRUPADO,</a>
-<a class="sourceLine" id="cb640-6" title="6">        <span class="dt">weights =</span>ENFR2013<span class="op">$</span>PONDERACION))), <span class="dv">3</span>) <span class="op">*</span><span class="st"> </span><span class="dv">100</span></a></code></pre></div>
+<div class="sourceCode" id="cb630"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb630-1"><a href="prueba-de-hipótesis-la-lógica.html#cb630-1"></a><span class="kw">round</span>(</span>
+<span id="cb630-2"><a href="prueba-de-hipótesis-la-lógica.html#cb630-2"></a>  <span class="kw">addmargins</span>(</span>
+<span id="cb630-3"><a href="prueba-de-hipótesis-la-lógica.html#cb630-3"></a>    <span class="kw">prop.table</span>(</span>
+<span id="cb630-4"><a href="prueba-de-hipótesis-la-lógica.html#cb630-4"></a>      <span class="kw">wtd.table</span>(</span>
+<span id="cb630-5"><a href="prueba-de-hipótesis-la-lógica.html#cb630-5"></a>        ENFR2013<span class="op">$</span>IMC_AGRUPADO,</span>
+<span id="cb630-6"><a href="prueba-de-hipótesis-la-lógica.html#cb630-6"></a>        <span class="dt">weights =</span>ENFR2013<span class="op">$</span>PONDERACION))), <span class="dv">3</span>) <span class="op">*</span><span class="st"> </span><span class="dv">100</span></span></code></pre></div>
 <pre><code>##     1     2     3     9   Sum 
 ##  39.5  34.7  19.5   6.3 100.0</code></pre>
 <p>Que expande los aproximadamente 35 mil casos relevados a casi 26 millones de la población a la que la ENFR2013 representa. Las frecuencias relativas de las dos tablas son similares. Aplicar los ponderadores es útil para observar medidas descriptivas, pero no puede usarse para hacer inferencias, ya que se incrementaría de manera artificial el tamaño de la muestra. Esto debe cuidarse en algunos programas de análisis de datos, que permiten fijar poderadores y dejarlos activos para cualquier procedimiento. Una prueba de hipótesis o un intervalo de confianza realizado con los factores de ponderación están mal calculados, porque el tamaño de muestra es falso. Salvo en el caso que los ponderadores estén reescalados a <span class="math inline">\(1\)</span>, porque así no se altera el tamaño de la muestra, solo se ajusta su composición.</p>
 <p>Para realizar la prueba sobre la proporción, se debe construir la categoría de referencia, que en este caso es la 3 de las tablas anteriores (obesidad). Se genera una nueva variable, que se llamará “obesidad” en la matriz de datos, de tal modo que: cuando “IMC_agrupado” valga 3 tengamos lo que llamamos “éxito”; cuando sea 9, sea un caso perdido (NA): y si vale 1 ó 2, vale cero.<br />
 Luego se verifica que las nuevas categorías coincidan con las previstas, por medio de una tabla bivariada entre la variable original y la nueva. Una tabla univariada da los absolutos de “obesidad” y finalmente los relativos, donde se ve que en la muestra, la proporción de personas con obesidad es del <span class="math inline">\(21\%\)</span>.</p>
-<div class="sourceCode" id="cb642"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb642-1" title="1">ENFR2013<span class="op">$</span>obesidad &lt;-<span class="st"> </span><span class="kw">ifelse</span>(ENFR2013<span class="op">$</span>IMC_AGRUPADO <span class="op">==</span><span class="st"> </span><span class="dv">3</span>, <span class="dv">1</span>, <span class="kw">ifelse</span>(ENFR2013<span class="op">$</span>IMC_AGRUPADO <span class="op">==</span><span class="st"> </span><span class="dv">9</span>, <span class="ot">NA</span>, <span class="dv">0</span>))</a>
-<a class="sourceLine" id="cb642-2" title="2"></a>
-<a class="sourceLine" id="cb642-3" title="3"><span class="kw">table</span>(ENFR2013<span class="op">$</span>IMC_AGRUPADO, ENFR2013<span class="op">$</span>obesidad)</a></code></pre></div>
+<div class="sourceCode" id="cb632"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb632-1"><a href="prueba-de-hipótesis-la-lógica.html#cb632-1"></a>ENFR2013<span class="op">$</span>obesidad &lt;-<span class="st"> </span><span class="kw">ifelse</span>(ENFR2013<span class="op">$</span>IMC_AGRUPADO <span class="op">==</span><span class="st"> </span><span class="dv">3</span>, <span class="dv">1</span>, <span class="kw">ifelse</span>(ENFR2013<span class="op">$</span>IMC_AGRUPADO <span class="op">==</span><span class="st"> </span><span class="dv">9</span>, <span class="ot">NA</span>, <span class="dv">0</span>))</span>
+<span id="cb632-2"><a href="prueba-de-hipótesis-la-lógica.html#cb632-2"></a></span>
+<span id="cb632-3"><a href="prueba-de-hipótesis-la-lógica.html#cb632-3"></a><span class="kw">table</span>(ENFR2013<span class="op">$</span>IMC_AGRUPADO, ENFR2013<span class="op">$</span>obesidad)</span></code></pre></div>
 <pre><code>##    
 ##         0     1
 ##   1 12442     0
 ##   2 11343     0
 ##   3     0  6505
 ##   9     0     0</code></pre>
-<div class="sourceCode" id="cb644"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb644-1" title="1"><span class="kw">addmargins</span>(<span class="kw">table</span>(ENFR2013<span class="op">$</span>obesidad))</a></code></pre></div>
+<div class="sourceCode" id="cb634"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb634-1"><a href="prueba-de-hipótesis-la-lógica.html#cb634-1"></a><span class="kw">addmargins</span>(<span class="kw">table</span>(ENFR2013<span class="op">$</span>obesidad))</span></code></pre></div>
 <pre><code>## 
 ##     0     1   Sum 
 ## 23785  6505 30290</code></pre>
-<div class="sourceCode" id="cb646"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb646-1" title="1"><span class="kw">round</span>(<span class="kw">addmargins</span>(<span class="kw">prop.table</span>(<span class="kw">table</span>(ENFR2013<span class="op">$</span>obesidad))), <span class="dv">3</span>) <span class="op">*</span><span class="st"> </span><span class="dv">100</span></a></code></pre></div>
+<div class="sourceCode" id="cb636"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb636-1"><a href="prueba-de-hipótesis-la-lógica.html#cb636-1"></a><span class="kw">round</span>(<span class="kw">addmargins</span>(<span class="kw">prop.table</span>(<span class="kw">table</span>(ENFR2013<span class="op">$</span>obesidad))), <span class="dv">3</span>) <span class="op">*</span><span class="st"> </span><span class="dv">100</span></span></code></pre></div>
 <pre><code>## 
 ##     0     1   Sum 
 ##  78.5  21.5 100.0</code></pre>
 <p>El resultado muestral es una prevalencia de obesidad de <span class="math inline">\(21.5\%\)</span> en los 30290 casos válidos de la muestra, <span class="math inline">\(\widehat{p}=0.215\)</span>. La diferencia con el <span class="math inline">\(20.1\%\)</span> de la primera tabla es porque ahora no se están contando los casos perdidos.<br />
 Ahora puede realizarse una prueba <span class="math inline">\(t\)</span> idéntica a la de la media, porque se cuenta con una variable dicotómica con categorías 0 - 1:</p>
-<div class="sourceCode" id="cb648"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb648-1" title="1"><span class="kw">t.test</span>(ENFR2013<span class="op">$</span>obesidad, <span class="dt">mu =</span> <span class="fl">.13</span>, <span class="dt">alternative =</span> <span class="st">&quot;greater&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb638"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb638-1"><a href="prueba-de-hipótesis-la-lógica.html#cb638-1"></a><span class="kw">t.test</span>(ENFR2013<span class="op">$</span>obesidad, <span class="dt">mu =</span> <span class="fl">.13</span>, <span class="dt">alternative =</span> <span class="st">&quot;greater&quot;</span>)</span></code></pre></div>
 <pre><code>## 
-##  One Sample t-test
+## 	One Sample t-test
 ## 
 ## data:  ENFR2013$obesidad
 ## t = 35.921, df = 30289, p-value &lt; 2.2e-16
@@ -2356,7 +2359,7 @@ hallar un valor como el observado o uno más extremo.</p>
 <p>Halsey, Lewis G. 2019. “The reign of the p-value is over: What alternative analyses could we employ to fill the power vacuum?” <em>Biology Letters</em> 15 (5). <a href="https://doi.org/10.1098/rsbl.2019.0174">https://doi.org/10.1098/rsbl.2019.0174</a>.</p>
 </div>
 <div id="ref-meehl1978">
-<p>Meehl, Paul E. 1978. “Theoretical Risks and Tabular Asterisks: Sir Karl, Sir Ronald, and the Slow Progress of Soft Psychology.” <em>Journal of Consulting and Clinical Psychology</em> 46: 806–34. <a href=" http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.200.7648&amp;rep=rep1&amp;type=pdf ">http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.200.7648&amp;rep=rep1&amp;type=pdf</a>.</p>
+<p>Meehl, Paul E. 1978. “Theoretical Risks and Tabular Asterisks: Sir Karl, Sir Ronald, and the Slow Progress of Soft Psychology.” <em>Journal of Consulting and Clinical Psychology</em> 46: 806–34. <a href="%20http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.200.7648&amp;rep=rep1&amp;type=pdf%20">http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.200.7648&amp;rep=rep1&amp;type=pdf</a>.</p>
 </div>
 <div id="ref-neyman1928">
 <p>Neyman, Jerzy, and Eagon Pearson. 1928. “On the Use and Interpretation of Certain Test Criteria for Purposes of Statistical Inference: Part I.” <em>Biometrika</em> 20A (1/2): 175–240. <a href="http://www.jstor.org/stable/2331945">http://www.jstor.org/stable/2331945</a>.</p>
@@ -2368,19 +2371,19 @@ hallar un valor como el observado o uno más extremo.</p>
 <div class="footnotes">
 <hr />
 <ol start="69">
-<li id="fn69"><p>En 1965, en <em>Statistical methods and scientific inference</em>, Fisher señaló: “Ningún investigador tiene un nivel de significación fijo, al cual año tras año y en toda circunstancia rechaza hipótesis; más bien entrega su mente a cada caso particular a la luz de la evidencia y de sus ideas”.<a href="prueba-de-hipótesis-la-lógica.html#fnref69" class="footnote-back">↩</a></p></li>
-<li id="fn70"><p>Este número es el mismo que usamos al nivel del 10% en pruebas bilaterales. Esto se debe a que en ese caso el 10% extremo se reparte en 5% en cada cola; ahora nos interesa una sola cola, del 5%.<a href="prueba-de-hipótesis-la-lógica.html#fnref70" class="footnote-back">↩</a></p></li>
-<li id="fn71"><p>Se trata de una línea albina de la rata parda. Fue desarrollada en el Wistar Institute en 1906 para fines de investigación biomédica, se trata de la primera rata empleada como organismo modelo (anteriormente se trabajaba con el ratón).<a href="prueba-de-hipótesis-la-lógica.html#fnref71" class="footnote-back">↩</a></p></li>
-<li id="fn72"><p>Algunos de los datos son ficticios debido a la falta de disponibilidad y a la necesidad de adaptar el ejemplo a nuestros fines. Se mantiene la temática del estudio de referencia, aunque los resultados mostrados no corresponden exactamente a él.<a href="prueba-de-hipótesis-la-lógica.html#fnref72" class="footnote-back">↩</a></p></li>
-<li id="fn73"><p>Sumamos y restamos para obtener dos puntos críticos, porque se trata de una prueba bilateral.<a href="prueba-de-hipótesis-la-lógica.html#fnref73" class="footnote-back">↩</a></p></li>
-<li id="fn74"><p>Ver nota anterior<a href="prueba-de-hipótesis-la-lógica.html#fnref74" class="footnote-back">↩</a></p></li>
-<li id="fn75"><p>Solo se suma para obtener el punto crítico de la derecha, porque se trata de una prueba unilateral derecha.<a href="prueba-de-hipótesis-la-lógica.html#fnref75" class="footnote-back">↩</a></p></li>
-<li id="fn76"><p>Solo se resta para obtener el punto crítico izquierdo, porque es una prueba unilateral izquierda.<a href="prueba-de-hipótesis-la-lógica.html#fnref76" class="footnote-back">↩</a></p></li>
-<li id="fn77"><p><span class="math inline">\(\widehat{p} = \frac{16}{50} = 0.32\)</span><a href="prueba-de-hipótesis-la-lógica.html#fnref77" class="footnote-back">↩</a></p></li>
-<li id="fn78"><p>Latinobarómetro es un estudio de opinión pública que aplica anualmente alrededor de 19.000 entrevistas en 18 países de América Latina representando a más de 400 millones de habitantes. Corporación Latinobarómetro es una ONG sin fines de lucro con sede en Santiago de Chile, única responsable de la producción y publicación de los datos. <a href="http://www.latinobarometro.org/">http://www.latinobarometro.org/</a>.<a href="prueba-de-hipótesis-la-lógica.html#fnref78" class="footnote-back">↩</a></p></li>
-<li id="fn79"><p>Aunque ejemplificaremos solo para el caso de la media y para una prueba unilateral derecha, el concepto de errores de tipo I y II es general y vale del mismo modo para la proporción y para pruebas de hipótesis sobre otros parámetros, en pruebas unilaterales o bilaterales.<a href="prueba-de-hipótesis-la-lógica.html#fnref79" class="footnote-back">↩</a></p></li>
-<li id="fn80"><p>Lo que sigue tiene objetivos orientativos, si se necesita un tratamiento más detallado del tema -que requiere considerar que si <span class="math inline">\(H_0\)</span> es falsa entonces la distribución del estimador no es necesariamente simétrica-, puede consultarse <span class="citation">Cumming (<a href="#ref-cumming2012">2012</a>)</span>.<a href="prueba-de-hipótesis-la-lógica.html#fnref80" class="footnote-back">↩</a></p></li>
-<li id="fn81"><p>Existe un procedimiento basado en un resultado importante de la estadística que se conoce como “desigualdad de Tchebycheff”, que establece que la probabilidad de encontrar a una variable a una distancia de su media superior a <span class="math inline">\(k\)</span> desviaciones estándar es menor a <span class="math inline">\(\frac{1}{k^{2}}\)</span>. Se expresa como <span class="math inline">\(P\left( \left| x - E(x) \right| &gt; k\sigma \right) &lt; \frac{1}{k^{2}}\)</span>. También es posible recurrir a la distribución empírica, obtenida por remuestreo. Más adelante se verán pruebas que permiten resolver situaciones en las que no se cumplen los supuestos, como pequeñas muestras, distribución no normal y/o nivel de medición no métrico.<a href="prueba-de-hipótesis-la-lógica.html#fnref81" class="footnote-back">↩</a></p></li>
+<li id="fn69"><p>En 1965, en <em>Statistical methods and scientific inference</em>, Fisher señaló: “Ningún investigador tiene un nivel de significación fijo, al cual año tras año y en toda circunstancia rechaza hipótesis; más bien entrega su mente a cada caso particular a la luz de la evidencia y de sus ideas”.<a href="prueba-de-hipótesis-la-lógica.html#fnref69" class="footnote-back">↩︎</a></p></li>
+<li id="fn70"><p>Este número es el mismo que usamos al nivel del 10% en pruebas bilaterales. Esto se debe a que en ese caso el 10% extremo se reparte en 5% en cada cola; ahora nos interesa una sola cola, del 5%.<a href="prueba-de-hipótesis-la-lógica.html#fnref70" class="footnote-back">↩︎</a></p></li>
+<li id="fn71"><p>Se trata de una línea albina de la rata parda. Fue desarrollada en el Wistar Institute en 1906 para fines de investigación biomédica, se trata de la primera rata empleada como organismo modelo (anteriormente se trabajaba con el ratón).<a href="prueba-de-hipótesis-la-lógica.html#fnref71" class="footnote-back">↩︎</a></p></li>
+<li id="fn72"><p>Algunos de los datos son ficticios debido a la falta de disponibilidad y a la necesidad de adaptar el ejemplo a nuestros fines. Se mantiene la temática del estudio de referencia, aunque los resultados mostrados no corresponden exactamente a él.<a href="prueba-de-hipótesis-la-lógica.html#fnref72" class="footnote-back">↩︎</a></p></li>
+<li id="fn73"><p>Sumamos y restamos para obtener dos puntos críticos, porque se trata de una prueba bilateral.<a href="prueba-de-hipótesis-la-lógica.html#fnref73" class="footnote-back">↩︎</a></p></li>
+<li id="fn74"><p>Ver nota anterior<a href="prueba-de-hipótesis-la-lógica.html#fnref74" class="footnote-back">↩︎</a></p></li>
+<li id="fn75"><p>Solo se suma para obtener el punto crítico de la derecha, porque se trata de una prueba unilateral derecha.<a href="prueba-de-hipótesis-la-lógica.html#fnref75" class="footnote-back">↩︎</a></p></li>
+<li id="fn76"><p>Solo se resta para obtener el punto crítico izquierdo, porque es una prueba unilateral izquierda.<a href="prueba-de-hipótesis-la-lógica.html#fnref76" class="footnote-back">↩︎</a></p></li>
+<li id="fn77"><p><span class="math inline">\(\widehat{p} = \frac{16}{50} = 0.32\)</span><a href="prueba-de-hipótesis-la-lógica.html#fnref77" class="footnote-back">↩︎</a></p></li>
+<li id="fn78"><p>Latinobarómetro es un estudio de opinión pública que aplica anualmente alrededor de 19.000 entrevistas en 18 países de América Latina representando a más de 400 millones de habitantes. Corporación Latinobarómetro es una ONG sin fines de lucro con sede en Santiago de Chile, única responsable de la producción y publicación de los datos. <a href="http://www.latinobarometro.org/">http://www.latinobarometro.org/</a>.<a href="prueba-de-hipótesis-la-lógica.html#fnref78" class="footnote-back">↩︎</a></p></li>
+<li id="fn79"><p>Aunque ejemplificaremos solo para el caso de la media y para una prueba unilateral derecha, el concepto de errores de tipo I y II es general y vale del mismo modo para la proporción y para pruebas de hipótesis sobre otros parámetros, en pruebas unilaterales o bilaterales.<a href="prueba-de-hipótesis-la-lógica.html#fnref79" class="footnote-back">↩︎</a></p></li>
+<li id="fn80"><p>Lo que sigue tiene objetivos orientativos, si se necesita un tratamiento más detallado del tema -que requiere considerar que si <span class="math inline">\(H_0\)</span> es falsa entonces la distribución del estimador no es necesariamente simétrica-, puede consultarse <span class="citation">Cumming (<a href="#ref-cumming2012" role="doc-biblioref">2012</a>)</span>.<a href="prueba-de-hipótesis-la-lógica.html#fnref80" class="footnote-back">↩︎</a></p></li>
+<li id="fn81"><p>Existe un procedimiento basado en un resultado importante de la estadística que se conoce como “desigualdad de Tchebycheff”, que establece que la probabilidad de encontrar a una variable a una distancia de su media superior a <span class="math inline">\(k\)</span> desviaciones estándar es menor a <span class="math inline">\(\frac{1}{k^{2}}\)</span>. Se expresa como <span class="math inline">\(P\left( \left| x - E(x) \right| &gt; k\sigma \right) &lt; \frac{1}{k^{2}}\)</span>. También es posible recurrir a la distribución empírica, obtenida por remuestreo. Más adelante se verán pruebas que permiten resolver situaciones en las que no se cumplen los supuestos, como pequeñas muestras, distribución no normal y/o nivel de medición no métrico.<a href="prueba-de-hipótesis-la-lógica.html#fnref81" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>
@@ -2388,7 +2391,7 @@ hallar un valor como el observado o uno más extremo.</p>
           </div>
         </div>
       </div>
-<a href="estimaciÃ³n-por-intervalo.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="estimación-por-intervalo.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="prueba-de-hipótesis-las-aplicaciones.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>

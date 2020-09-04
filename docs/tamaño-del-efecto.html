@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Capítulo 14 Tamaño del efecto | Un Recorrido por los Métodos Cuantitativos en Ciencias Sociales a bordo de R</title>
   <meta name="description" content="Capítulo 14 Tamaño del efecto | Un Recorrido por los Métodos Cuantitativos en Ciencias Sociales a bordo de R" />
-  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Capítulo 14 Tamaño del efecto | Un Recorrido por los Métodos Cuantitativos en Ciencias Sociales a bordo de R" />
   <meta property="og:type" content="book" />
@@ -49,13 +49,14 @@
 
 
 
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -64,14 +65,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -80,9 +83,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -186,7 +189,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.2.3" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#formas-de-recategorizar"><i class="fa fa-check"></i><b>2.2.3</b> Formas de recategorizar</a></li>
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#la-presentación-gráfica-de-los-resultados"><i class="fa fa-check"></i><b>2.3</b> La presentación gráfica de los resultados</a></li>
-<li class="chapter" data-level="2.4" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#hacerlo-en-r-1"><i class="fa fa-check"></i><b>2.4</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="2.4" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>2.4</b> Hacerlo en R</a><ul>
 <li class="chapter" data-level="2.4.1" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#tablas-univariadas"><i class="fa fa-check"></i><b>2.4.1</b> Tablas univariadas</a></li>
 <li class="chapter" data-level="2.4.2" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#recategorización-1"><i class="fa fa-check"></i><b>2.4.2</b> Recategorización</a></li>
 <li class="chapter" data-level="2.4.3" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#representaciones-gráficas"><i class="fa fa-check"></i><b>2.4.3</b> Representaciones gráficas</a></li>
@@ -221,7 +224,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.5.1" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#medidas-de-posición-1"><i class="fa fa-check"></i><b>3.5.1</b> Medidas de posición</a></li>
 <li class="chapter" data-level="3.5.2" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#medidas-de-dispersión-1"><i class="fa fa-check"></i><b>3.5.2</b> Medidas de dispersión</a></li>
 </ul></li>
-<li class="chapter" data-level="3.6" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#hacerlo-en-r-2"><i class="fa fa-check"></i><b>3.6</b> Hacerlo en R</a></li>
+<li class="chapter" data-level="3.6" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>3.6</b> Hacerlo en R</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html"><i class="fa fa-check"></i><b>4</b> Relación entre variables: los fundamentos</a><ul>
 <li class="chapter" data-level="4.1" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#tablas-de-contingencia"><i class="fa fa-check"></i><b>4.1</b> Tablas de contingencia</a></li>
@@ -231,7 +234,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.5" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#concepto-de-riesgo-relativo"><i class="fa fa-check"></i><b>4.5</b> Concepto de riesgo relativo</a></li>
 <li class="chapter" data-level="4.6" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#la-intensidad"><i class="fa fa-check"></i><b>4.6</b> La intensidad</a></li>
 <li class="chapter" data-level="4.7" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#el-concepto-de-independencia-estadística"><i class="fa fa-check"></i><b>4.7</b> El concepto de independencia estadística</a></li>
-<li class="chapter" data-level="4.8" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#hacerlo-en-r-3"><i class="fa fa-check"></i><b>4.8</b> Hacerlo en R</a></li>
+<li class="chapter" data-level="4.8" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>4.8</b> Hacerlo en R</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html"><i class="fa fa-check"></i><b>5</b> Relación entre variables: el análisis</a><ul>
 <li class="chapter" data-level="5.1" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#relaciones-entre-variables-vs.-comparación-de-grupos"><i class="fa fa-check"></i><b>5.1</b> Relaciones entre variables vs. comparación de grupos</a></li>
@@ -253,7 +256,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.9.3" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#obtención-de-la-recta-de-regresión"><i class="fa fa-check"></i><b>5.9.3</b> Obtención de la recta de regresión</a></li>
 </ul></li>
 <li class="chapter" data-level="5.10" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#la-visualización-de-los-datos"><i class="fa fa-check"></i><b>5.10</b> La visualización de los datos</a></li>
-<li class="chapter" data-level="5.11" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#hacerlo-en-r-4"><i class="fa fa-check"></i><b>5.11</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="5.11" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>5.11</b> Hacerlo en R</a><ul>
 <li class="chapter" data-level="5.11.1" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#distancia-chi2"><i class="fa fa-check"></i><b>5.11.1</b> Distancia <span class="math inline">\(\chi^{2}\)</span></a></li>
 <li class="chapter" data-level="5.11.2" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#coeficientes"><i class="fa fa-check"></i><b>5.11.2</b> Coeficientes</a></li>
 <li class="chapter" data-level="5.11.3" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#modelo-lineal"><i class="fa fa-check"></i><b>5.11.3</b> Modelo lineal</a></li>
@@ -282,7 +285,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.3.4" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-accidental-o-según-disponibilidad"><i class="fa fa-check"></i><b>6.3.4</b> Muestreo accidental o según disponibilidad</a></li>
 <li class="chapter" data-level="6.3.5" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-bola-de-nieve"><i class="fa fa-check"></i><b>6.3.5</b> Muestreo bola de nieve</a></li>
 </ul></li>
-<li class="chapter" data-level="6.4" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#hacerlo-en-r-5"><i class="fa fa-check"></i><b>6.4</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="6.4" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>6.4</b> Hacerlo en R</a><ul>
 <li class="chapter" data-level="6.4.1" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#aleatorio-simple"><i class="fa fa-check"></i><b>6.4.1</b> Aleatorio simple</a></li>
 <li class="chapter" data-level="6.4.2" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#estratificado"><i class="fa fa-check"></i><b>6.4.2</b> Estratificado</a></li>
 </ul></li>
@@ -313,7 +316,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.6" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#la-distribución-t-de-student"><i class="fa fa-check"></i><b>8.6</b> La distribución t de Student</a><ul>
 <li class="chapter" data-level="8.6.1" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#la-distribución-f"><i class="fa fa-check"></i><b>8.6.1</b> La distribución F</a></li>
 </ul></li>
-<li class="chapter" data-level="8.7" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#hacerlo-en-r-6"><i class="fa fa-check"></i><b>8.7</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="8.7" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>8.7</b> Hacerlo en R</a><ul>
 <li class="chapter" data-level="8.7.1" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#probabilidades-exactas"><i class="fa fa-check"></i><b>8.7.1</b> Probabilidades exactas</a></li>
 <li class="chapter" data-level="8.7.2" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#probabilidades-acumuladas"><i class="fa fa-check"></i><b>8.7.2</b> Probabilidades acumuladas</a></li>
 <li class="chapter" data-level="8.7.3" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#cuantiles-1"><i class="fa fa-check"></i><b>8.7.3</b> Cuantiles</a></li>
@@ -339,7 +342,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.3.7" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#distribución-del-cociente-de-varianzas"><i class="fa fa-check"></i><b>9.3.7</b> Distribución del cociente de varianzas</a></li>
 </ul></li>
 <li class="chapter" data-level="9.4" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#resumen-de-la-relación-entre-estimadores-y-parámetros"><i class="fa fa-check"></i><b>9.4</b> Resumen de la relación entre estimadores y parámetros</a></li>
-<li class="chapter" data-level="9.5" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#hacerlo-en-r-7"><i class="fa fa-check"></i><b>9.5</b> Hacerlo en R</a></li>
+<li class="chapter" data-level="9.5" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>9.5</b> Hacerlo en R</a></li>
 </ul></li>
 <li class="part"><span><b>III Estadística inferencial</b></span></li>
 <li class="chapter" data-level="10" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html"><i class="fa fa-check"></i><b>10</b> Estimación por intervalo</a><ul>
@@ -356,7 +359,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.5.2" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#el-error-de-estimación-en-la-proporción"><i class="fa fa-check"></i><b>10.5.2</b> El error de estimación en la proporción</a></li>
 </ul></li>
 <li class="chapter" data-level="10.6" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#probabilidad-de-cobertura"><i class="fa fa-check"></i><b>10.6</b> Probabilidad de cobertura</a></li>
-<li class="chapter" data-level="10.7" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#hacerlo-en-r-8"><i class="fa fa-check"></i><b>10.7</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="10.7" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>10.7</b> Hacerlo en R</a><ul>
 <li class="chapter" data-level="10.7.1" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#intervalo-para-la-media"><i class="fa fa-check"></i><b>10.7.1</b> Intervalo para la media</a></li>
 <li class="chapter" data-level="10.7.2" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#intervalo-para-la-proporción"><i class="fa fa-check"></i><b>10.7.2</b> Intervalo para la proporción</a></li>
 <li class="chapter" data-level="10.7.3" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#cobertura"><i class="fa fa-check"></i><b>10.7.3</b> Cobertura</a></li>
@@ -377,7 +380,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.5.2" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#significación-estadística-y-valor-p"><i class="fa fa-check"></i><b>11.5.2</b> Significación estadística y valor <span class="math inline">\(p\)</span></a></li>
 </ul></li>
 <li class="chapter" data-level="11.6" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#muestras-pequeñas-y-pruebas-t"><i class="fa fa-check"></i><b>11.6</b> Muestras pequeñas y pruebas <span class="math inline">\(t\)</span></a></li>
-<li class="chapter" data-level="11.7" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#hacerlo-en-r-9"><i class="fa fa-check"></i><b>11.7</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="11.7" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>11.7</b> Hacerlo en R</a><ul>
 <li class="chapter" data-level="11.7.1" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#prueba-sobre-la-media-1"><i class="fa fa-check"></i><b>11.7.1</b> Prueba sobre la media</a></li>
 <li class="chapter" data-level="11.7.2" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#prueba-sobre-la-proporción-1"><i class="fa fa-check"></i><b>11.7.2</b> Prueba sobre la proporción</a></li>
 </ul></li>
@@ -389,7 +392,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="12.1.2" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#muestras-apareadas"><i class="fa fa-check"></i><b>12.1.2</b> Muestras apareadas</a></li>
 <li class="chapter" data-level="12.1.3" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#coeficiente-r-de-pearson"><i class="fa fa-check"></i><b>12.1.3</b> Coeficiente r de Pearson</a></li>
 </ul></li>
-<li class="chapter" data-level="12.2" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#hacerlo-en-r-10"><i class="fa fa-check"></i><b>12.2</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="12.2" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>12.2</b> Hacerlo en R</a><ul>
 <li class="chapter" data-level="12.2.1" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#ejemplo-1."><i class="fa fa-check"></i><b>12.2.1</b> Ejemplo 1.</a></li>
 <li class="chapter" data-level="12.2.2" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#ejemplo-2."><i class="fa fa-check"></i><b>12.2.2</b> Ejemplo 2.</a></li>
 <li class="chapter" data-level="12.2.3" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#aplicación-a-los-datos-de-población-adulta-mayor"><i class="fa fa-check"></i><b>12.2.3</b> Aplicación a los datos de Población Adulta Mayor</a></li>
@@ -401,12 +404,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13.0.1" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#las-pruebas-ji-cuadrado-o-chi-cuadrado"><i class="fa fa-check"></i><b>13.0.1</b> Las pruebas ji cuadrado (o chi cuadrado)</a></li>
 <li class="chapter" data-level="13.0.2" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#coeficiente-r_s-de-spearman"><i class="fa fa-check"></i><b>13.0.2</b> Coeficiente <span class="math inline">\(r_s\)</span> de Spearman</a></li>
 <li class="chapter" data-level="13.0.3" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#alternativas-no-paramétricas-a-las-pruebas-t"><i class="fa fa-check"></i><b>13.0.3</b> Alternativas no paramétricas a las pruebas t</a></li>
-<li class="chapter" data-level="13.1" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#hacerlo-en-r-11"><i class="fa fa-check"></i><b>13.1</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="13.1" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>13.1</b> Hacerlo en R</a><ul>
 <li class="chapter" data-level="13.1.1" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#ejemplo-1"><i class="fa fa-check"></i><b>13.1.1</b> Ejemplo 1</a></li>
 <li class="chapter" data-level="13.1.2" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#ejemplo-2"><i class="fa fa-check"></i><b>13.1.2</b> Ejemplo 2</a></li>
 <li class="chapter" data-level="13.1.3" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#prueba-de-la-mediana-1"><i class="fa fa-check"></i><b>13.1.3</b> Prueba de la mediana</a></li>
 <li class="chapter" data-level="13.1.4" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#prueba-de-wilcoxon"><i class="fa fa-check"></i><b>13.1.4</b> Prueba de Wilcoxon</a></li>
-<li class="chapter" data-level="13.1.5" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#muestras-apareadas-1"><i class="fa fa-check"></i><b>13.1.5</b> Muestras apareadas</a></li>
+<li class="chapter" data-level="13.1.5" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#muestras-apareadas"><i class="fa fa-check"></i><b>13.1.5</b> Muestras apareadas</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="14" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html"><i class="fa fa-check"></i><b>14</b> Tamaño del efecto</a><ul>
@@ -419,7 +422,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="14.2.5" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#pruebas-ji-cuadrado"><i class="fa fa-check"></i><b>14.2.5</b> Pruebas ji cuadrado</a></li>
 </ul></li>
 <li class="chapter" data-level="14.3" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#análisis-de-la-potencia"><i class="fa fa-check"></i><b>14.3</b> Análisis de la potencia</a></li>
-<li class="chapter" data-level="14.4" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#hacerlo-en-r-12"><i class="fa fa-check"></i><b>14.4</b> Hacerlo en R</a></li>
+<li class="chapter" data-level="14.4" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>14.4</b> Hacerlo en R</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Generado con bookdown</a></li>
@@ -465,23 +468,23 @@ la diferencia sea insignificante.</p>
 diferencia o un coeficiente, luego de haber obtenido un resultado
 significativo en la prueba de hipótesis. Conocer el tamaño del efecto es
 absolutamente necesario para interpretar los resultados de una
-investigación. La <span class="citation">APA (<a href="#ref-APA2010">2010</a>)</span> destaca que “las pruebas de hipótesis no son sino el punto de partida y se requiere informar elementos adicionales tales como tamaños del efecto, intervalos de confianza y descripciones extensivas” (p. 33, traducción del autor).</p>
+investigación. La <span class="citation">APA (<a href="#ref-APA2010" role="doc-biblioref">2010</a>)</span> destaca que “las pruebas de hipótesis no son sino el punto de partida y se requiere informar elementos adicionales tales como tamaños del efecto, intervalos de confianza y descripciones extensivas” (p. 33, traducción del autor).</p>
 <p>Las medidas de tamaño del efecto expresan de manera estandarizada cuán
 diferente de cero es una diferencia o un coeficiente. Que estén
 estandarizadas permite dos cosas: evaluarlas en su magnitud, dados
 ciertos criterios; y comparar efectos entre experimentos diseñados de
 manera diferente, por ejemplo con distintos tamaños de muestra, lo cual
 permite el meta-análisis<a href="#fn96" class="footnote-ref" id="fnref96"><sup>96</sup></a>. Para decidir cuándo un efecto es grande
-mediano o pequeño, existen criterios, casi todos propuestos por <span class="citation">Cohen (<a href="#ref-Cohen1988">1988</a>)</span>, quien es autor también de la mayoría de las medidas de
+mediano o pequeño, existen criterios, casi todos propuestos por <span class="citation">Cohen (<a href="#ref-Cohen1988" role="doc-biblioref">1988</a>)</span>, quien es autor también de la mayoría de las medidas de
 tamaño del efecto.</p>
 </div>
 <div id="medidas-de-tamaño-del-efecto" class="section level2">
 <h2><span class="header-section-number">14.2</span> Medidas de tamaño del efecto</h2>
-<p>Hay una gran diversidad de medidas del tamaño del efecto, <span class="citation">Kirk (<a href="#ref-kirk1996">1996</a>)</span>
-las estima en más de setenta, y <span class="citation">Ellis (<a href="#ref-ellis2010">2010</a>)</span> las clasifica en dos
+<p>Hay una gran diversidad de medidas del tamaño del efecto, <span class="citation">Kirk (<a href="#ref-kirk1996" role="doc-biblioref">1996</a>)</span>
+las estima en más de setenta, y <span class="citation">Ellis (<a href="#ref-ellis2010" role="doc-biblioref">2010</a>)</span> las clasifica en dos
 familias: las medidas de diferencias entre grupos y las medidas de
 asociación. Para esta presentación, elegiremos algunas medidas de uso
-difundido y sugerimos <span class="citation">Ellis (<a href="#ref-ellis2010">2010</a>)</span>, así como <span class="citation">Cumming (<a href="#ref-cumming2012">2012</a>)</span> para una
+difundido y sugerimos <span class="citation">Ellis (<a href="#ref-ellis2010" role="doc-biblioref">2010</a>)</span>, así como <span class="citation">Cumming (<a href="#ref-cumming2012" role="doc-biblioref">2012</a>)</span> para una
 descripción más detallada. Las siguientes son las medidas que más se
 usan para evaluar el tamaño del efecto, según cuál sea la prueba que se
 haya realizado.</p>
@@ -490,7 +493,7 @@ haya realizado.</p>
 <p>Conocido como <em>d de Cohen</em>, se define como:</p>
 <p><span class="math display">\[\frac{{\overline{x}}_{1} - {\overline{x}}_{2}}{s_{\text{comb}}}\]</span></p>
 <p>Y mide la distancia entre las medias observadas, expresada en términos
-de la desviación estándar combinada de los dos grupos. <span class="citation">Cohen (<a href="#ref-Cohen1988">1988</a>)</span>
+de la desviación estándar combinada de los dos grupos. <span class="citation">Cohen (<a href="#ref-Cohen1988" role="doc-biblioref">1988</a>)</span>
 sugiere que valores de <span class="math inline">\(d\)</span> de 0.20, 0.50, y 0.80 indican tamaños de
 efecto: pequeño, mediano y grande respectivamente. Medidas alternativas
 al d de Cohen son <em>delta de Glass</em> y <em>g de Hedge</em>, que difieren en el
@@ -582,7 +585,7 @@ rechazar una <span class="math inline">\(H_0\)</span> que es falsa) estamos disp
 <p><img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-594-1.svg" width="672" /></p>
 <div style="page-break-after: always;"></div>
 </div>
-<div id="hacerlo-en-r-12" class="section level2">
+<div id="hacerlo-en-r" class="section level2">
 <h2><span class="header-section-number">14.4</span> Hacerlo en R</h2>
 <p>Las relaciones entre el tamaño de muestra, la potencia, el tamaño del
 efecto y el nivel de significación dependen de cuál sea el tipo de
@@ -595,14 +598,14 @@ embargo, esos cálculos dependen de los valores concretos de los
 parámetros (en particular, de las diferencias entre el valor paramétrico
 que sostiene <span class="math inline">\(H_0\)</span> y el que sostienen las diferentes alternativas <span class="math inline">\(H_k\)</span>); ahora, con el tamaño del efecto estandarizado, solo hace falta saber qué prueba se realiza para obtener la curva de potencia.</p>
 <p>Si bien existen calculadoras on line<a href="#fn97" class="footnote-ref" id="fnref97"><sup>97</sup></a>, es recomendable, por su
-flexibilidad, usar el paquete <code>pwr</code> <span class="citation">(Champely <a href="#ref-champely2018">2018</a>)</span> en R. Este conjunto
+flexibilidad, usar el paquete <code>pwr</code> <span class="citation">(Champely <a href="#ref-champely2018" role="doc-biblioref">2018</a>)</span> en R. Este conjunto
 de rutinas genera, para cada prueba estadística, uno de los cuatro
 valores a partir de los otros tres. Para estimar a priori el tamaño de muestra, hay que establecer: el tipo de prueba, el nivel de significación, la potencia que se espera y el tamaño del efecto que se puede detectar. Por ejemplo, ¿Cuántos casos hacen falta en cada grupo si se va a realizar una prueba t unilateral derecha, a un nivel de significación del 5%, y se requiere una probabilidad 0.80 (potencia) de detectar un efecto grande (d=0.85)? Ese es el modo en que debe formularse la pregunta para encontrar uno de los cuatro valores que interjuegan.<br />
 Primero se instala el paquete y se carga en la sesión:</p>
-<div class="sourceCode" id="cb728"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb728-1" title="1"><span class="kw">install.packages</span>(<span class="st">&quot;pwr&quot;</span>)</a></code></pre></div>
-<div class="sourceCode" id="cb729"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb729-1" title="1"><span class="kw">library</span>(<span class="st">&quot;pwr&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb718"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb718-1"><a href="tamaño-del-efecto.html#cb718-1"></a><span class="kw">install.packages</span>(<span class="st">&quot;pwr&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb719"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb719-1"><a href="tamaño-del-efecto.html#cb719-1"></a><span class="kw">library</span>(<span class="st">&quot;pwr&quot;</span>)</span></code></pre></div>
 <p>Las convenciones estándar propuestas por Cohen1988 se solicitan con el comando cohen.ES, al que debe indicarse qué prueba es (las opciones son: “p”, “t”, “r”, “anov”, “chisq”, “f2”) y la magnitud del efecto (con opciones: “small”, “medium”, “large”). Por ejemplo, un tamaño del efecto grande para una prueba t es:</p>
-<div class="sourceCode" id="cb730"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb730-1" title="1"><span class="kw">cohen.ES</span>(<span class="dt">test =</span> <span class="st">&quot;t&quot;</span>, <span class="dt">size =</span> <span class="st">&quot;large&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb720"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb720-1"><a href="tamaño-del-efecto.html#cb720-1"></a><span class="kw">cohen.ES</span>(<span class="dt">test =</span> <span class="st">&quot;t&quot;</span>, <span class="dt">size =</span> <span class="st">&quot;large&quot;</span>)</span></code></pre></div>
 <pre><code>## 
 ##      Conventional effect size from Cohen (1982) 
 ## 
@@ -617,8 +620,8 @@ Primero se instala el paquete y se carga en la sesión:</p>
 - tamaño de la muestra (<span class="math inline">\(n\)</span>).</p>
 <p>Uno de ellos debe quedar sin mención (o como “NULL”), y ese es el que se calcula como función de los demás.<br />
 Para conocer el tamaño de la muestra a partir del tamaño del efecto, la potencia y la significación en una prueba unilateral derecha (no se nombra <span class="math inline">\(n\)</span>):</p>
-<div class="sourceCode" id="cb732"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb732-1" title="1"><span class="kw">pwr.t.test</span>(<span class="dt">sig.level =</span> <span class="fl">.05</span>, <span class="dt">power =</span> <span class="fl">.8</span>, <span class="dt">d =</span> <span class="fl">0.85</span>,</a>
-<a class="sourceLine" id="cb732-2" title="2">           <span class="dt">alternative =</span> <span class="st">&quot;greater&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb722"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb722-1"><a href="tamaño-del-efecto.html#cb722-1"></a><span class="kw">pwr.t.test</span>(<span class="dt">sig.level =</span> <span class="fl">.05</span>, <span class="dt">power =</span> <span class="fl">.8</span>, <span class="dt">d =</span> <span class="fl">0.85</span>,</span>
+<span id="cb722-2"><a href="tamaño-del-efecto.html#cb722-2"></a>           <span class="dt">alternative =</span> <span class="st">&quot;greater&quot;</span>)</span></code></pre></div>
 <pre><code>## 
 ##      Two-sample t test power calculation 
 ## 
@@ -630,8 +633,8 @@ Para conocer el tamaño de la muestra a partir del tamaño del efecto, la potenc
 ## 
 ## NOTE: n is number in *each* group</code></pre>
 <p>Para lograr detectar el mismo tamaño de efecto con una muestra de 25 casos:</p>
-<div class="sourceCode" id="cb734"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb734-1" title="1"><span class="kw">pwr.t.test</span>(<span class="dt">sig.level =</span> <span class="fl">.05</span>, <span class="dt">n=</span><span class="dv">25</span>, <span class="dt">d =</span> <span class="fl">0.85</span>,</a>
-<a class="sourceLine" id="cb734-2" title="2">           <span class="dt">alternative =</span> <span class="st">&quot;greater&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb724"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb724-1"><a href="tamaño-del-efecto.html#cb724-1"></a><span class="kw">pwr.t.test</span>(<span class="dt">sig.level =</span> <span class="fl">.05</span>, <span class="dt">n=</span><span class="dv">25</span>, <span class="dt">d =</span> <span class="fl">0.85</span>,</span>
+<span id="cb724-2"><a href="tamaño-del-efecto.html#cb724-2"></a>           <span class="dt">alternative =</span> <span class="st">&quot;greater&quot;</span>)</span></code></pre></div>
 <pre><code>## 
 ##      Two-sample t test power calculation 
 ## 
@@ -644,8 +647,8 @@ Para conocer el tamaño de la muestra a partir del tamaño del efecto, la potenc
 ## NOTE: n is number in *each* group</code></pre>
 <p>La probabilidad de detectarlo (la potencia) aumenta a 0.90.</p>
 <p>El comando <code>pwr.t.test</code> sirve para pruebas t de una muestra, de diferencia de medias independientes y apareadas, se debe indicar el tipo de prueba en el argumento <code>type</code>, con opciones “two.sample” (dos muestras independientes), “one.sample” (una muestra), “paired” (apareadas). Por ejemplo, para conocer la potencia que tiene una prueba de comparación de medias provenientes de muestras independientes para detectar un efecto de tamaño 0.3, si los grupos tienen 25 casos cada uno, se realiza una prueba bilateral, a un nivel de significación de 0.01. Se solicita:</p>
-<div class="sourceCode" id="cb736"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb736-1" title="1"><span class="kw">pwr.t.test</span>(<span class="dt">n =</span> <span class="dv">25</span>, <span class="dt">d=</span><span class="fl">0.3</span>, <span class="dt">sig.level =</span> <span class="fl">0.01</span>, <span class="dt">power =</span> <span class="ot">NULL</span>,</a>
-<a class="sourceLine" id="cb736-2" title="2">           <span class="dt">type =</span> <span class="st">&quot;two.sample&quot;</span>, <span class="dt">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb726"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb726-1"><a href="tamaño-del-efecto.html#cb726-1"></a><span class="kw">pwr.t.test</span>(<span class="dt">n =</span> <span class="dv">25</span>, <span class="dt">d=</span><span class="fl">0.3</span>, <span class="dt">sig.level =</span> <span class="fl">0.01</span>, <span class="dt">power =</span> <span class="ot">NULL</span>,</span>
+<span id="cb726-2"><a href="tamaño-del-efecto.html#cb726-2"></a>           <span class="dt">type =</span> <span class="st">&quot;two.sample&quot;</span>, <span class="dt">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span></code></pre></div>
 <pre><code>## 
 ##      Two-sample t test power calculation 
 ## 
@@ -657,8 +660,8 @@ Para conocer el tamaño de la muestra a partir del tamaño del efecto, la potenc
 ## 
 ## NOTE: n is number in *each* group</code></pre>
 <p>Si ahora se quisiera, para la misma prueba, elevar la potencia a 0.10, el número de casos requerido es:</p>
-<div class="sourceCode" id="cb738"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb738-1" title="1"><span class="kw">pwr.t.test</span>(<span class="dt">d =</span> <span class="fl">0.3</span>, <span class="dt">sig.level =</span> <span class="fl">0.01</span>, <span class="dt">power =</span> <span class="fl">0.10</span>,</a>
-<a class="sourceLine" id="cb738-2" title="2">           <span class="dt">type =</span> <span class="st">&quot;two.sample&quot;</span>, <span class="dt">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb728"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb728-1"><a href="tamaño-del-efecto.html#cb728-1"></a><span class="kw">pwr.t.test</span>(<span class="dt">d =</span> <span class="fl">0.3</span>, <span class="dt">sig.level =</span> <span class="fl">0.01</span>, <span class="dt">power =</span> <span class="fl">0.10</span>,</span>
+<span id="cb728-2"><a href="tamaño-del-efecto.html#cb728-2"></a>           <span class="dt">type =</span> <span class="st">&quot;two.sample&quot;</span>, <span class="dt">alternative =</span> <span class="st">&quot;two.sided&quot;</span>)</span></code></pre></div>
 <pre><code>## 
 ##      Two-sample t test power calculation 
 ## 
@@ -671,7 +674,7 @@ Para conocer el tamaño de la muestra a partir del tamaño del efecto, la potenc
 ## NOTE: n is number in *each* group</code></pre>
 <p>Hacen falta casi 40 casos en cada grupo.</p>
 <p>Para el Análisis de la Varianza, se agrega como dato requerido, el numero de grupos de comparación. Si se trata de cuatro grupos a un nivel de 5%, para tener una probabilidad de 0.50 (potencia) detectar un efecto de tamaño 0.2, se requieren:</p>
-<div class="sourceCode" id="cb740"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb740-1" title="1"><span class="kw">pwr.anova.test</span>(<span class="dt">power=</span><span class="fl">0.5</span>, <span class="dt">k=</span><span class="dv">4</span>, <span class="dt">f=</span><span class="fl">0.2</span>, <span class="dt">sig.level=</span><span class="fl">0.05</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb730"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb730-1"><a href="tamaño-del-efecto.html#cb730-1"></a><span class="kw">pwr.anova.test</span>(<span class="dt">power=</span><span class="fl">0.5</span>, <span class="dt">k=</span><span class="dv">4</span>, <span class="dt">f=</span><span class="fl">0.2</span>, <span class="dt">sig.level=</span><span class="fl">0.05</span>)</span></code></pre></div>
 <pre><code>## 
 ##      Balanced one-way analysis of variance power calculation 
 ## 
@@ -683,7 +686,7 @@ Para conocer el tamaño de la muestra a partir del tamaño del efecto, la potenc
 ## 
 ## NOTE: n is number in each group</code></pre>
 <p>37 casos en cada uno de los grupos. Pero si solo se cuenta con 15 casos en cada grupo, entonces el tamaño del efecto que se puede detectar con probabilidad 0.50 es:</p>
-<div class="sourceCode" id="cb742"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb742-1" title="1"><span class="kw">pwr.anova.test</span>(<span class="dt">power=</span><span class="fl">0.5</span>, <span class="dt">k=</span><span class="dv">4</span>, <span class="dt">n=</span><span class="dv">15</span>, <span class="dt">sig.level=</span><span class="fl">0.05</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb732"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb732-1"><a href="tamaño-del-efecto.html#cb732-1"></a><span class="kw">pwr.anova.test</span>(<span class="dt">power=</span><span class="fl">0.5</span>, <span class="dt">k=</span><span class="dv">4</span>, <span class="dt">n=</span><span class="dv">15</span>, <span class="dt">sig.level=</span><span class="fl">0.05</span>)</span></code></pre></div>
 <pre><code>## 
 ##      Balanced one-way analysis of variance power calculation 
 ## 
@@ -702,7 +705,7 @@ Para conocer el tamaño de la muestra a partir del tamaño del efecto, la potenc
 <p>Albers, Craig A, and Adam J Grieve. 2007. “Review of Bayley Scales of Infant and Toddler Development–Third Edition.” <em>Journal of Psychoeducational Assessment</em> 25 (2): 180–90. <a href="https://doi.org/10.1177/0734282906297199">https://doi.org/10.1177/0734282906297199</a>.</p>
 </div>
 <div>
-<p>Alvarado, Hugo, and Carmen Batanero. 2007. “Dificultades de Comprensión de la Aproximación Normal a la Distribución Binomial.” <em>NÚMEROS, Revista Digital de Educación Matemática.</em>, no. 67. <a href="http://www.sinewton.org/numeros/numeros/67/ideas{\_}01.php">http://www.sinewton.org/numeros/numeros/67/ideas{\_}01.php</a>.</p>
+<p>Alvarado, Hugo, and Carmen Batanero. 2007. “Dificultades de Comprensión de la Aproximación Normal a la Distribución Binomial.” <em>NÚMEROS, Revista Digital de Educación Matemática.</em>, no. 67. <a href="http://www.sinewton.org/numeros/numeros/67/ideas%7B\_%7D01.php">http://www.sinewton.org/numeros/numeros/67/ideas{\_}01.php</a>.</p>
 </div>
 <div>
 <p>Anscombe, Francis J. 1973. “Graphs in Statistical Analysis.” <em>The American Statistician</em> 27 (1): 17–21.</p>
@@ -714,7 +717,10 @@ Para conocer el tamaño de la muestra a partir del tamaño del efecto, la potenc
 <p>Ballot, Daynia E, Tanusha Ramdin, David Rakotsoane, Faustine Agaba, Victor A Davies, Tobias Chirwa, and Peter A Cooper. 2017. “Use of the Bayley Scales of Infant and Toddler Development, Third Edition, to Assess Developmental Outcome in Infants and Young Children in an Urban Setting in South Africa.” <em>International Scholarly Research Notices</em> 2017: 1631760. <a href="https://doi.org/10.1155/2017/1631760">https://doi.org/10.1155/2017/1631760</a>.</p>
 </div>
 <div>
-<p>Begué, Carolina, Mariana Galante, and Magalí Gaudio. 2013. “Tercera Encuesta Nacional de Factores de Riesgo.” Buenos Aires. <a href="http://www.msal.gob.ar/images/stories/bes/graficos/0000000544cnt-2015{\_}09{\_}04{\_}encuesta{\_}nacional{\_}factores{\_}riesgo.pdf">http://www.msal.gob.ar/images/stories/bes/graficos/0000000544cnt-2015{\_}09{\_}04{\_}encuesta{\_}nacional{\_}factores{\_}riesgo.pdf</a>.</p>
+<p>Begué, Carolina, Mariana Galante, and Magalí Gaudio. 2013. “Tercera Encuesta Nacional de Factores de Riesgo.” Buenos Aires. <a href="http://www.msal.gob.ar/images/stories/bes/graficos/0000000544cnt-2015%7B\_%7D09%7B\_%7D04%7B\_%7Dencuesta%7B\_%7Dnacional%7B\_%7Dfactores%7B\_%7Driesgo.pdf">http://www.msal.gob.ar/images/stories/bes/graficos/0000000544cnt-2015{\_}09{\_}04{\_}encuesta{\_}nacional{\_}factores{\_}riesgo.pdf</a>.</p>
+</div>
+<div>
+<p>Bethlehem, Jelke. 2009. “The rise of survey sampling.” <em>Statistics Netherlands</em>, no. 09015: 1–28.</p>
 </div>
 <div>
 <p>Bologna, Eduardo Leon. 2018. <em>Métodos Estadísticos de Investigación</em>. Córdoba: Brujas.</p>
@@ -756,10 +762,10 @@ Para conocer el tamaño de la muestra a partir del tamaño del efecto, la potenc
 <p>Fisher, Ronald Aylmer. 1925. <em>Statistical methods for research workers</em>. London: Oliver &amp; Boyd.</p>
 </div>
 <div>
-<p>Furlan, Luis Alberto, María José Ferrero, and Gabriela Gallart. 2014. “Ansiedad Ante Los Exámenes, Procrastinación Y Síntomas Mentales En Estudiantes de La Universidad Nacional de Córdoba.” <em>Revista Argentina de Ciencias Del Comportamiento</em>. <a href="https://www.redalyc.org/articulo.oa?id=333432764005 ">https://www.redalyc.org/articulo.oa?id=333432764005</a>.</p>
+<p>Furlan, Luis Alberto, María José Ferrero, and Gabriela Gallart. 2014. “Ansiedad Ante Los Exámenes, Procrastinación Y Síntomas Mentales En Estudiantes de La Universidad Nacional de Córdoba.” <em>Revista Argentina de Ciencias Del Comportamiento</em>. <a href="https://www.redalyc.org/articulo.oa?id=333432764005%20">https://www.redalyc.org/articulo.oa?id=333432764005</a>.</p>
 </div>
 <div>
-<p>Galton, Francis. 1877. “Typical laws of heredity.” <em>Nature</em> 15. <a href="http://galton.org/bib/JournalItem.aspx{\_}action=view{\_}id=61">http://galton.org/bib/JournalItem.aspx{\_}action=view{\_}id=61</a>.</p>
+<p>Galton, Francis. 1877. “Typical laws of heredity.” <em>Nature</em> 15. <a href="http://galton.org/bib/JournalItem.aspx%7B\_%7Daction=view%7B\_%7Did=61">http://galton.org/bib/JournalItem.aspx{\_}action=view{\_}id=61</a>.</p>
 </div>
 <div>
 <p>Gaunt, John. 1662. <em>Natural and Political Observations Mentioned in the following INDEX and made upon the Bills of Mortality</em>. Edited by Royal Society. London: John Martin.</p>
@@ -780,7 +786,7 @@ Para conocer el tamaño de la muestra a partir del tamaño del efecto, la potenc
 <p>Goedhart, Joachim. 2018. “Make a difference: the alternative for p-values.”</p>
 </div>
 <div>
-<p>Gómez, Alicia, Gustavo Álvarez, and Silvia Mario Fernanda. 2004. “El estudio de la pobreza según el Censo Nacional de Población, Hogares y Viviendas 2001 Metodología de elaboración del Índice de Privación Material de los Hogares (IPMH).” <a href="https://www.indec.gob.ar/ftp/cuadros/sociedad/metodologia{\_}ipmh{\_}2016.pdf">https://www.indec.gob.ar/ftp/cuadros/sociedad/metodologia{\_}ipmh{\_}2016.pdf</a>.</p>
+<p>Gómez, Alicia, Gustavo Álvarez, and Silvia Mario Fernanda. 2004. “El estudio de la pobreza según el Censo Nacional de Población, Hogares y Viviendas 2001 Metodología de elaboración del Índice de Privación Material de los Hogares (IPMH).” <a href="https://www.indec.gob.ar/ftp/cuadros/sociedad/metodologia%7B\_%7Dipmh%7B\_%7D2016.pdf">https://www.indec.gob.ar/ftp/cuadros/sociedad/metodologia{\_}ipmh{\_}2016.pdf</a>.</p>
 </div>
 <div>
 <p>Greenland, Sander. 2019. “Valid P-Values Behave Exactly as They Should: Some Misleading Criticisms of P-Values and Their Resolution with S-Values.” <em>The American Statistician</em> 73 (sup1): 106–14. <a href="https://doi.org/10.1080/00031305.2018.1529625">https://doi.org/10.1080/00031305.2018.1529625</a>.</p>
@@ -795,10 +801,10 @@ Para conocer el tamaño de la muestra a partir del tamaño del efecto, la potenc
 <p>Ihaka, Ross, and Robert Gentleman. 1996. “R: a language for data analysis and graphics.” <em>Journal of Computational and Graphical Statistics</em> 5 (3): 299–314.</p>
 </div>
 <div>
-<p>INDEC. 2003. “EPH-Cambios Metodologicos 2003.” <a href="https://www.indec.gob.ar/ftp/cuadros/sociedad/Gacetilla{\_}EPHContinua.pdf">https://www.indec.gob.ar/ftp/cuadros/sociedad/Gacetilla{\_}EPHContinua.pdf</a>.</p>
+<p>INDEC. 2003. “EPH-Cambios Metodologicos 2003.” <a href="https://www.indec.gob.ar/ftp/cuadros/sociedad/Gacetilla%7B\_%7DEPHContinua.pdf">https://www.indec.gob.ar/ftp/cuadros/sociedad/Gacetilla{\_}EPHContinua.pdf</a>.</p>
 </div>
 <div>
-<p>———. 2013. “Encuesta Nacional de Factores de Riesgo 2013 Documento para la utilización de la base de datos usuario.” <a href="https://www.indec.gob.ar/ftp/cuadros/menusuperior/enfr/doc{\_}base{\_}usuario{\_}enfr2013.pdf">https://www.indec.gob.ar/ftp/cuadros/menusuperior/enfr/doc{\_}base{\_}usuario{\_}enfr2013.pdf</a>.</p>
+<p>———. 2013. “Encuesta Nacional de Factores de Riesgo 2013 Documento para la utilización de la base de datos usuario.” <a href="https://www.indec.gob.ar/ftp/cuadros/menusuperior/enfr/doc%7B\_%7Dbase%7B\_%7Dusuario%7B\_%7Denfr2013.pdf">https://www.indec.gob.ar/ftp/cuadros/menusuperior/enfr/doc{\_}base{\_}usuario{\_}enfr2013.pdf</a>.</p>
 </div>
 <div>
 <p>Indec. 2008. “Encuesta Nacional sobre Prevalencias de Consumo de Sustancias Psicoactivas - ENPreCoSP-2008.” <a href="http://www.indec.gov.ar/">http://www.indec.gov.ar/</a>.</p>
@@ -807,7 +813,7 @@ Para conocer el tamaño de la muestra a partir del tamaño del efecto, la potenc
 <p>———. 2008. “Documento para la utilización de la base de datos usuario ENPreCoSP.”</p>
 </div>
 <div>
-<p>———. 2011. “Encuesta Permanente de Hogares Conceptos de Condición de Actividad, Subocupación Horaria y Categoría Ocupacional.” Buenos Aires: INDEC. <a href="https://www.indec.gov.ar/ftp/cuadros/menusuperior/eph/EPH{\_}Conceptos.pdf">https://www.indec.gov.ar/ftp/cuadros/menusuperior/eph/EPH{\_}Conceptos.pdf</a>.</p>
+<p>———. 2011. “Encuesta Permanente de Hogares Conceptos de Condición de Actividad, Subocupación Horaria y Categoría Ocupacional.” Buenos Aires: INDEC. <a href="https://www.indec.gov.ar/ftp/cuadros/menusuperior/eph/EPH%7B\_%7DConceptos.pdf">https://www.indec.gov.ar/ftp/cuadros/menusuperior/eph/EPH{\_}Conceptos.pdf</a>.</p>
 </div>
 <div>
 <p>Inglehart, Ronald, and David Appel. 1989. “The Rise of Postmaterialist Values and Changing Religious Orientations, Gender Roles and Sexual Norms.” <em>International Journal of Public Opinion Research</em> 1 (1): 45–75. <a href="https://doi.org/10.1093/ijpor/1.1.45">https://doi.org/10.1093/ijpor/1.1.45</a>.</p>
@@ -843,13 +849,13 @@ Para conocer el tamaño de la muestra a partir del tamaño del efecto, la potenc
 <p>Locke, Steph. 2018. “The Datasaurus data package.” <a href="https://cran.r-project.org/web/packages/datasauRus/vignettes/Datasaurus.html">https://cran.r-project.org/web/packages/datasauRus/vignettes/Datasaurus.html</a>.</p>
 </div>
 <div>
-<p>Meehl, Paul E. 1978. “Theoretical Risks and Tabular Asterisks: Sir Karl, Sir Ronald, and the Slow Progress of Soft Psychology.” <em>Journal of Consulting and Clinical Psychology</em> 46: 806–34. <a href=" http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.200.7648&amp;rep=rep1&amp;type=pdf ">http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.200.7648&amp;rep=rep1&amp;type=pdf</a>.</p>
+<p>Meehl, Paul E. 1978. “Theoretical Risks and Tabular Asterisks: Sir Karl, Sir Ronald, and the Slow Progress of Soft Psychology.” <em>Journal of Consulting and Clinical Psychology</em> 46: 806–34. <a href="%20http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.200.7648&amp;rep=rep1&amp;type=pdf%20">http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.200.7648&amp;rep=rep1&amp;type=pdf</a>.</p>
 </div>
 <div>
 <p>Morales Quiroga, Mauricio, and Rafael Pineiro Rodriguez. 2010. “Gasto en campana y exito electoral de los candidatos a diputados en chile 2005.” <em>Revista de ciencia politica (Santiago)</em> 30: 645–67. <a href="https://scielo.conicyt.cl/scielo.php?script=sci_arttext&amp;pid=S0718-090X2010000300004&amp;nrm=iso">https://scielo.conicyt.cl/scielo.php?script=sci_arttext&amp;pid=S0718-090X2010000300004&amp;nrm=iso</a>.</p>
 </div>
 <div>
-<p>Newcombe, Robert G. 1998. “Two-Sided Confidence Intervals for the Single Proportion: Comparison of Seven Methods.” <em>Statistics in Medicine</em> 17 (8): 857–72. <a href="https://doi.org/10.1002/(SICI)1097-0258(19980430)17:8&lt;857::AID-SIM777&gt;3.0.CO;2-E">https://doi.org/10.1002/(SICI)1097-0258(19980430)17:8&lt;857::AID-SIM777&gt;3.0.CO;2-E</a>.</p>
+<p>Newcombe, Robert G. 1998. “Two-Sided Confidence Intervals for the Single Proportion: Comparison of Seven Methods.” <em>Statistics in Medicine</em> 17 (8): 857–72. <a href="https://doi.org/10.1002/(SICI)1097-0258(19980430)17:8%3C857::AID-SIM777%3E3.0.CO;2-E">https://doi.org/10.1002/(SICI)1097-0258(19980430)17:8&lt;857::AID-SIM777&gt;3.0.CO;2-E</a>.</p>
 </div>
 <div>
 <p>Newcombe, Robert, and Cesar Merino Soto. 2006. “Intervalos de confianza para las estimaciones de proporciones y las diferencias entre ellas.” <em>INTERDISCIPLINARIA</em> 23 (2): 141–54.</p>
@@ -1152,8 +1158,8 @@ Para conocer el tamaño de la muestra a partir del tamaño del efecto, la potenc
 <div class="footnotes">
 <hr />
 <ol start="96">
-<li id="fn96"><p>Meta-análisis es una revisión sistemática que usa procedimientos estadísticos para comparar los resultados obtenidos en diferentes estudios sobre un determinado tema.<a href="tamaño-del-efecto.html#fnref96" class="footnote-back">↩</a></p></li>
-<li id="fn97"><p>Por ejemplo <a href="http://www.socscistatistics.com/effectsize/Default3.aspx">http://www.socscistatistics.com/effectsize/Default3.aspx</a> o también <a href="https://www.uccs.edu/~lbecker/">https://www.uccs.edu/~lbecker/</a>.<a href="tamaño-del-efecto.html#fnref97" class="footnote-back">↩</a></p></li>
+<li id="fn96"><p>Meta-análisis es una revisión sistemática que usa procedimientos estadísticos para comparar los resultados obtenidos en diferentes estudios sobre un determinado tema.<a href="tamaño-del-efecto.html#fnref96" class="footnote-back">↩︎</a></p></li>
+<li id="fn97"><p>Por ejemplo <a href="http://www.socscistatistics.com/effectsize/Default3.aspx">http://www.socscistatistics.com/effectsize/Default3.aspx</a> o también <a href="https://www.uccs.edu/~lbecker/">https://www.uccs.edu/~lbecker/</a>.<a href="tamaño-del-efecto.html#fnref97" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>
