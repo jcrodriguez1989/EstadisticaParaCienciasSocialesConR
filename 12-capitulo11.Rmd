@@ -172,7 +172,7 @@ poblacional de quienes cursan con el nuevo plan, que no son totalmente accesible
 La hipótesis nula es:
 
 $$H_{0}:\mu = 7.30$$
-A la que oponemos una hipótesis altetrnativa: 
+A la que oponemos una hipótesis alternativa: 
 
 $$H_{1}:\mu \neq 7.30$$
 
@@ -264,20 +264,20 @@ ${\overline{x}}_{obs}$ se llama $z$ observado, se indica como $z_{obs}$, y vale:
 $$z_{obs} = \frac{{\overline{x}}_{obs} - \mu}{\frac{s}{\sqrt{n}}} = \frac{7.50 - 7.30}{\frac{1.30}{\sqrt{100}}} = 1.54$$
 
 Se trata de la transformación a puntaje $z$ del valor observado de la
-media muestral. Se conoce con el nombre de **estadístico de prueba**.
+media muestral, que mide a cuántas desviaciones estándar se encuentra $\bar{x}$ de la media hipotética $\mu$. Se conoce con el nombre de **estadístico de prueba**.
 
 Este puntaje no está en la zona extrema, porque no va más allá de 1.96;
 por el contrario, está entre -1.96 y 1.96 que pertenece a la parte de
 valores centrales de la distribución, los más probables. En
 consecuencia, la decisión es la de no rechazar $H_{0}$ y concluir que no hay evidencia para creer que el tiempo se tarda en completar la carrera haya cambiado respecto del valor histórico. Dicho de otra manera, el valor observado de
 ${\overline{x}}_{obs} = 7.50$ es un resultado esperable si la
-media poblacional fuera de $7.30$. Una media muestral de $7.50$ es compatible con una media problacional de $7.30$
+media poblacional fuera de $7.30$. Una media muestral de $7.50$ es compatible con una media problacional de $7.30$.
 
 Por la forma en que hemos razonado y tomado la decisión, se comprende
 que a los valores de $z$ comprendidos entre -1.96 y 1.96 se los denomine **zona de no rechazo de $H_{0}$**. El otro conjunto de valores de $z$, los mayores a 1.96 junto a los menores a -1.96, constituyen la **zona de rechazo de $H_{0}$**.
 
 Luego de haber considerado a 0.05 como la probabilidad a la que llamamos "pequeña", quedaron determinados los
-valores de $z_{c}$ que indican las zonas de aceptación y de rechazo.
+valores de $z_{c}$ que indican las zonas de rechazo y de no rechazo.  
 
 ||
 |:--:|
@@ -503,7 +503,7 @@ $$z_{\text{obs}} = \frac{{\overline{x}}_{\text{obs}} - \mu}{\frac{s}{\sqrt{n}}}$
 3.  Observar la posición de este valor transformado en la distribución
     de probabilidades z
 
-Para un nivel de significación de 0.05 (ó 5%), en el ejemplo:
+Para un nivel de significación de 0.05 (ó 5%), en el ejemplo, el gráfico es el \@ref(fig:rechZ):
 
 ```{r rechZ, echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Ubicación de la zona de rechazo de $H_{0}$ a un nivel de significación de 0.05, sobre puntajes estándar ($z$), y del valor observado"}
 library("ggplot2")
@@ -539,26 +539,27 @@ $${\overline{x}}_{c} = \mu \pm z_{c}*\frac{s}{\sqrt{n}}$$
 3. Ver la posición de ${\overline{x}}_{\text{obs}}$ en la distribución
 de probabilidades de $\overline{x}$.
 
-Para el nivel de significación de 0.05 y el mismo ejemplo, resulta:
+Para el nivel de significación de 0.05 y el mismo ejemplo, resulta el gráfico \@ref(fig:rechX).
 
 ```{r rechX, echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Ubicación de la zona de rechazo de $H_{0}$ a un nivel de significación de 0.05, sobre valores de la variable $\\overline{x}$, y del valor observado"}
 
-ggplot(data = data.frame(z = c(6.7, 7.9)), aes(z)) +
-  geom_area(stat = "function", fun = dnorm, args = list(mean = 7.3, sd = .13), fill = "green", xlim = c(6.7, qnorm(.025, 7.3, .13)), col = "black") +
-  geom_area(stat = "function", fun = dnorm, args = list(mean = 7.3, sd = .13), fill = "white", xlim = c(qnorm(.025, 7.3, .13), qnorm(.975, 7.3, .13)), col = "black") +
-  geom_area(stat = "function", fun = dnorm, args = list(mean = 7.3, sd = .13), fill = "green", xlim = c(qnorm(.975, 7.3, .13), 7.9), col = "black") +
+ggplot(data = data.frame(z = c(-4, 4)), aes(z)) +
+  geom_area(stat = "function", fun = dnorm, fill = "green", xlim = c(-4, qnorm(.025)), col = "black") +
+  geom_area(stat = "function", fun = dnorm, fill = "white", xlim = c(qnorm(.025), qnorm(.975)), col = "black") +
+  geom_area(stat = "function", fun = dnorm, fill = "green", xlim = c(qnorm(.975), 4), col = "black") +
   ylab("") + xlab("") + scale_x_discrete(breaks = NULL) +
-  geom_segment(x = 6.7, xend = 7.9, y = 0, yend = 0) +
+  geom_segment(x = -4, xend = 4, y = 0, yend = 0) +
   scale_y_continuous(breaks = NULL) + theme_tufte() +
-  geom_text(aes(label = "7.3"), x = 0, y = -.02) +
-  geom_text(aes(label = "7.04"), x = 7.045, y = -.1) +
-  geom_text(aes(label = "7.55"), x = 7.555, y = -.1) +
-  geom_text(aes(label = TeX("$\\bar{x}$", output = "character")), x = 8, y = -.1, parse = TRUE) +
-  annotate(geom = "rect", xmin = 7.298, xmax = 7.302, ymin = -.05, ymax = .05, col = "red") +
-  geom_text(aes(label = TeX("$\\bar{x}_{obs} = 7.5$", output = "character")), x = 7.7, y = 1.3, parse = TRUE) +
+  geom_text(aes(label = "7.3"), x = 0, y = -.019) +
+  geom_text(aes(label = "7.04"), x = -1.96, y = -.019) +
+  geom_text(aes(label = "7.55"), x = 1.96, y = -.019) +
+   geom_text(aes(label = TeX("$\\bar{x}$", output = "character")), x = 3.5, y = -.01, parse = TRUE) +
+    geom_text(aes(label = "0.025"), x = 2.25, y = .011, size = 4) + geom_text(aes(label = "0.025"), x = -2.25, y = .011, size = 4) +
+    annotate(geom = "rect", xmin = -.01, xmax = .01, ymin = -.01, ymax = .01, col = "red") +
+  geom_text(aes(label = TeX("$\\bar{x}_{obs} = 7.5$", output = "character")), x = 2, y = .22, parse = TRUE) +
   geom_text(aes(label = TeX("$\\mu = 7.3", output = "character")), x = 7.3, y = .1, parse = TRUE) +
-  geom_point(aes(x = 7.5, y = 0), col = "green", size = 5) +
-  geom_segment(x = 7.6, xend = 7.5, y = 1.2, yend = 0, arrow = arrow())
+  geom_point(aes(x = 1.54, y = 0), col = "green", size = 5) +
+  geom_segment(x = 1.54, xend = 1.54, y = .2, yend = 0, arrow = arrow())
 ```
 
 
@@ -569,7 +570,7 @@ muestral observado de ${\overline{x}}_{obs}$.
 
 En el segundo modo, los $z_{c}$ se transforman (al revés) en puntos críticos de ${\overline{x}}_{c}$ y luego se compara el ${\overline{x}}_{obs}$ directamente, sin transformarlo.
 
-Los gráficos \@ref(fig:rechZ) y \@ref(fig:rechX) expresan lo mismo, el primero en el lenguaje estandarizado de $z$, el segundo en el de $\overline{x}$. Los procedimientos son equivalentes y puede vérselos aplicados de manera indiferenciada. La diferente amplitud de las campanas es porque se mantuvo la misma escala y la primera corresponde a una normal estándar, con $\sigma = 1$, mientras que la segunda es la distribución normal de las $\overline{x}$, con $\sigma_{\overline{x}} = \frac{\sigma}{\sqrt{n}} = 0.13$. En adelante ajusta la escala para dar claridad a los gráficos, pero no debe olvidarse que la variabilidad es diferente entre las dos distribuciones, la primera está estandarizada a uno y la segunda depende de la varianza poblacional y del tamaño de la muestra.  
+Los gráficos \@ref(fig:rechZ) y \@ref(fig:rechX) expresan lo mismo, el primero en el lenguaje estandarizado de $z$, el segundo en el de $\overline{x}$. Los procedimientos son equivalentes y puede vérselos aplicados de manera indiferenciada. Las campanas tienen la escala del eje horizontal ajustada para que mantengan la misma forma, y así quede clara la equivalencia de los procedimientos, pero no debe olvidarse que la variabilidad es diferente entre las dos distribuciones. La primera está estandarizada a uno y la segunda depende de la varianza poblacional y del tamaño de la muestra. La primera corresponde a una normal estándar, con $\sigma = 1$, mientras que, en este ejemplo, la segunda es la distribución normal de las $\overline{x}$, con $\sigma_{\overline{x}} = \frac{\sigma}{\sqrt{n}} = 0.13$.   
 
 ### Pruebas unilaterales
 

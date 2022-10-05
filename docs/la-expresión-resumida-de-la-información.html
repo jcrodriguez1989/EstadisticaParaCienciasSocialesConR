@@ -6,12 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Capítulo 3 La expresión resumida de la información | Un Recorrido por los Métodos Cuantitativos en Ciencias Sociales a bordo de R</title>
   <meta name="description" content="Capítulo 3 La expresión resumida de la información | Un Recorrido por los Métodos Cuantitativos en Ciencias Sociales a bordo de R" />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Capítulo 3 La expresión resumida de la información | Un Recorrido por los Métodos Cuantitativos en Ciencias Sociales a bordo de R" />
   <meta property="og:type" content="book" />
-  
-  <meta property="og:image" content="imagenes/cover.jpg" />
+  <meta property="og:image" content="/imagenes/cover.jpg" />
   
   <meta name="github-repo" content="jcrodriguez1989/EstadisticaParaCienciasSocialesConR" />
 
@@ -19,7 +18,7 @@
   <meta name="twitter:title" content="Capítulo 3 La expresión resumida de la información | Un Recorrido por los Métodos Cuantitativos en Ciencias Sociales a bordo de R" />
   
   
-  <meta name="twitter:image" content="imagenes/cover.jpg" />
+  <meta name="twitter:image" content="/imagenes/cover.jpg" />
 
 <meta name="author" content="Eduardo Bologna" />
 
@@ -32,7 +31,8 @@
   
 <link rel="prev" href="distribuciones-de-frecuencia.html"/>
 <link rel="next" href="relación-entre-variables-los-fundamentos.html"/>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -48,24 +48,26 @@
 
 
 
-
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -85,7 +87,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -118,6 +120,29 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 
@@ -134,17 +159,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">Estadística para Ciencias Sociales con R</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Colaboradores</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Colaboradores</a>
+<ul>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#comité-editorial"><i class="fa fa-check"></i>Comité Editorial</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#edición-en-bookdown"><i class="fa fa-check"></i>Edición en bookdown</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#revisión-de-lenguaje-incluyente"><i class="fa fa-check"></i>Revisión de lenguaje incluyente</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="presentación.html"><a href="presentación.html"><i class="fa fa-check"></i>Presentación</a><ul>
+<li class="chapter" data-level="" data-path="presentación.html"><a href="presentación.html"><i class="fa fa-check"></i>Presentación</a>
+<ul>
 <li class="chapter" data-level="" data-path="presentación.html"><a href="presentación.html#recorridos-posibles"><i class="fa fa-check"></i>Recorridos posibles</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="introducción.html"><a href="introducción.html"><i class="fa fa-check"></i>Introducción</a></li>
-<li class="chapter" data-level="" data-path="antes-de-empezar.html"><a href="antes-de-empezar.html"><i class="fa fa-check"></i>Antes de empezar</a><ul>
-<li class="chapter" data-level="" data-path="antes-de-empezar.html"><a href="antes-de-empezar.html#materiales"><i class="fa fa-check"></i>Materiales</a><ul>
+<li class="chapter" data-level="" data-path="antes-de-empezar.html"><a href="antes-de-empezar.html"><i class="fa fa-check"></i>Antes de empezar</a>
+<ul>
+<li class="chapter" data-level="" data-path="antes-de-empezar.html"><a href="antes-de-empezar.html#materiales"><i class="fa fa-check"></i>Materiales</a>
+<ul>
 <li class="chapter" data-level="" data-path="antes-de-empezar.html"><a href="antes-de-empezar.html#encuesta-permanente-de-hogares"><i class="fa fa-check"></i>Encuesta Permanente de Hogares</a></li>
 <li class="chapter" data-level="" data-path="antes-de-empezar.html"><a href="antes-de-empezar.html#encuesta-nacional-de-factores-de-riesgo"><i class="fa fa-check"></i>Encuesta Nacional de Factores de Riesgo</a></li>
 <li class="chapter" data-level="" data-path="antes-de-empezar.html"><a href="antes-de-empezar.html#latinobarómetro"><i class="fa fa-check"></i>Latinobarómetro</a></li>
@@ -152,7 +181,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="antes-de-empezar.html"><a href="antes-de-empezar.html#aplicación-de-la-escala-de-bayley"><i class="fa fa-check"></i>Aplicación de la escala de Bayley</a></li>
 <li class="chapter" data-level="" data-path="antes-de-empezar.html"><a href="antes-de-empezar.html#tercera-edad"><i class="fa fa-check"></i>Tercera edad</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="antes-de-empezar.html"><a href="antes-de-empezar.html#herramientas"><i class="fa fa-check"></i>Herramientas</a><ul>
+<li class="chapter" data-level="" data-path="antes-de-empezar.html"><a href="antes-de-empezar.html#herramientas"><i class="fa fa-check"></i>Herramientas</a>
+<ul>
 <li class="chapter" data-level="" data-path="antes-de-empezar.html"><a href="antes-de-empezar.html#la-elección-de-r"><i class="fa fa-check"></i>La elección de R</a></li>
 <li class="chapter" data-level="" data-path="antes-de-empezar.html"><a href="antes-de-empezar.html#instalación-de-r-y-rstudio"><i class="fa fa-check"></i>Instalación de R y RStudio</a></li>
 <li class="chapter" data-level="" data-path="antes-de-empezar.html"><a href="antes-de-empezar.html#los-componentes-de-rstudio"><i class="fa fa-check"></i>Los componentes de RStudio</a></li>
@@ -161,40 +191,49 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul></li>
 <li class="part"><span><b>I Estadística Descriptiva</b></span></li>
-<li class="chapter" data-level="1" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html"><i class="fa fa-check"></i><b>1</b> Los datos estadísticos</a><ul>
+<li class="chapter" data-level="1" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html"><i class="fa fa-check"></i><b>1</b> Los datos estadísticos</a>
+<ul>
 <li class="chapter" data-level="1.1" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#la-selección-de-la-información-pertinente"><i class="fa fa-check"></i><b>1.1</b> La selección de la información pertinente</a></li>
 <li class="chapter" data-level="1.2" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#las-entidades"><i class="fa fa-check"></i><b>1.2</b> Las entidades</a></li>
 <li class="chapter" data-level="1.3" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#las-variables"><i class="fa fa-check"></i><b>1.3</b> Las variables</a></li>
-<li class="chapter" data-level="1.4" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#las-categorías"><i class="fa fa-check"></i><b>1.4</b> Las categorías</a><ul>
+<li class="chapter" data-level="1.4" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#las-categorías"><i class="fa fa-check"></i><b>1.4</b> Las categorías</a>
+<ul>
 <li class="chapter" data-level="1.4.1" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#requisitos-de-las-categorías"><i class="fa fa-check"></i><b>1.4.1</b> Requisitos de las categorías</a></li>
 </ul></li>
 <li class="chapter" data-level="1.5" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#los-símbolos-numéricos"><i class="fa fa-check"></i><b>1.5</b> Los símbolos numéricos</a></li>
-<li class="chapter" data-level="1.6" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#la-medición"><i class="fa fa-check"></i><b>1.6</b> La medición</a><ul>
+<li class="chapter" data-level="1.6" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#la-medición"><i class="fa fa-check"></i><b>1.6</b> La medición</a>
+<ul>
 <li class="chapter" data-level="1.6.1" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#niveles-de-medición"><i class="fa fa-check"></i><b>1.6.1</b> Niveles de medición</a></li>
 </ul></li>
 <li class="chapter" data-level="1.7" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#resumen-de-los-niveles-de-medición"><i class="fa fa-check"></i><b>1.7</b> Resumen de los niveles de medición</a></li>
-<li class="chapter" data-level="1.8" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>1.8</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="1.8" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>1.8</b> Hacerlo en R</a>
+<ul>
 <li class="chapter" data-level="1.8.1" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#lectura-de-la-base"><i class="fa fa-check"></i><b>1.8.1</b> Lectura de la base</a></li>
 <li class="chapter" data-level="1.8.2" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#las-variables-1"><i class="fa fa-check"></i><b>1.8.2</b> Las variables</a></li>
 <li class="chapter" data-level="1.8.3" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#los-niveles-de-medición-en-r"><i class="fa fa-check"></i><b>1.8.3</b> Los niveles de medición en R</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html"><i class="fa fa-check"></i><b>2</b> Distribuciones de frecuencia</a><ul>
+<li class="chapter" data-level="2" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html"><i class="fa fa-check"></i><b>2</b> Distribuciones de frecuencia</a>
+<ul>
 <li class="chapter" data-level="2.1" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#tablas-de-distribución-de-frecuencia"><i class="fa fa-check"></i><b>2.1</b> Tablas de distribución de frecuencia</a></li>
-<li class="chapter" data-level="2.2" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#recategorización"><i class="fa fa-check"></i><b>2.2</b> Recategorización</a><ul>
+<li class="chapter" data-level="2.2" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#recategorización"><i class="fa fa-check"></i><b>2.2</b> Recategorización</a>
+<ul>
 <li class="chapter" data-level="2.2.1" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#variable-discreta-con-muchas-categorías"><i class="fa fa-check"></i><b>2.2.1</b> Variable discreta con muchas categorías</a></li>
 <li class="chapter" data-level="2.2.2" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#variable-continua"><i class="fa fa-check"></i><b>2.2.2</b> Variable continua</a></li>
 <li class="chapter" data-level="2.2.3" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#formas-de-recategorizar"><i class="fa fa-check"></i><b>2.2.3</b> Formas de recategorizar</a></li>
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#la-presentación-gráfica-de-los-resultados"><i class="fa fa-check"></i><b>2.3</b> La presentación gráfica de los resultados</a></li>
-<li class="chapter" data-level="2.4" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>2.4</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="2.4" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#hacerlo-en-r-1"><i class="fa fa-check"></i><b>2.4</b> Hacerlo en R</a>
+<ul>
 <li class="chapter" data-level="2.4.1" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#tablas-univariadas"><i class="fa fa-check"></i><b>2.4.1</b> Tablas univariadas</a></li>
 <li class="chapter" data-level="2.4.2" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#recategorización-1"><i class="fa fa-check"></i><b>2.4.2</b> Recategorización</a></li>
 <li class="chapter" data-level="2.4.3" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#representaciones-gráficas"><i class="fa fa-check"></i><b>2.4.3</b> Representaciones gráficas</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html"><i class="fa fa-check"></i><b>3</b> La expresión resumida de la información</a><ul>
-<li class="chapter" data-level="3.1" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#medidas-de-posición"><i class="fa fa-check"></i><b>3.1</b> Medidas de posición</a><ul>
+<li class="chapter" data-level="3" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html"><i class="fa fa-check"></i><b>3</b> La expresión resumida de la información</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#medidas-de-posición"><i class="fa fa-check"></i><b>3.1</b> Medidas de posición</a>
+<ul>
 <li class="chapter" data-level="3.1.1" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#variables-nominales-proporciones"><i class="fa fa-check"></i><b>3.1.1</b> Variables nominales: proporciones</a></li>
 <li class="chapter" data-level="3.1.2" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#variables-nominales-tasas"><i class="fa fa-check"></i><b>3.1.2</b> Variables nominales: tasas</a></li>
 <li class="chapter" data-level="3.1.3" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#variables-nominales-razones"><i class="fa fa-check"></i><b>3.1.3</b> Variables nominales: razones</a></li>
@@ -202,12 +241,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.1.5" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#variables-ordinales-cuantiles"><i class="fa fa-check"></i><b>3.1.5</b> Variables ordinales: cuantiles</a></li>
 <li class="chapter" data-level="3.1.6" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#variables-métricas-la-media-o-promedio"><i class="fa fa-check"></i><b>3.1.6</b> Variables métricas: la media o promedio</a></li>
 </ul></li>
-<li class="chapter" data-level="3.2" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#la-forma-de-la-distribución"><i class="fa fa-check"></i><b>3.2</b> La forma de la distribución</a><ul>
+<li class="chapter" data-level="3.2" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#la-forma-de-la-distribución"><i class="fa fa-check"></i><b>3.2</b> La forma de la distribución</a>
+<ul>
 <li class="chapter" data-level="3.2.1" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#asimetría"><i class="fa fa-check"></i><b>3.2.1</b> Asimetría</a></li>
 <li class="chapter" data-level="3.2.2" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#curtosis"><i class="fa fa-check"></i><b>3.2.2</b> Curtosis</a></li>
 <li class="chapter" data-level="3.2.3" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#box-plots"><i class="fa fa-check"></i><b>3.2.3</b> Box-plots</a></li>
 </ul></li>
-<li class="chapter" data-level="3.3" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#medidas-de-dispersión"><i class="fa fa-check"></i><b>3.3</b> Medidas de dispersión</a><ul>
+<li class="chapter" data-level="3.3" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#medidas-de-dispersión"><i class="fa fa-check"></i><b>3.3</b> Medidas de dispersión</a>
+<ul>
 <li class="chapter" data-level="3.3.1" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#recorrido"><i class="fa fa-check"></i><b>3.3.1</b> Recorrido</a></li>
 <li class="chapter" data-level="3.3.2" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#amplitud-intercuartílica"><i class="fa fa-check"></i><b>3.3.2</b> Amplitud intercuartílica</a></li>
 <li class="chapter" data-level="3.3.3" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#medidas-de-dispersión-basadas-en-la-media"><i class="fa fa-check"></i><b>3.3.3</b> Medidas de dispersión basadas en la media</a></li>
@@ -218,13 +259,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.3.8" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#medida-de-la-dispersión-cuando-no-hay-distancias"><i class="fa fa-check"></i><b>3.3.8</b> Medida de la dispersión cuando no hay distancias</a></li>
 </ul></li>
 <li class="chapter" data-level="3.4" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#el-individuo-en-relación-a-su-grupo"><i class="fa fa-check"></i><b>3.4</b> El individuo en relación a su grupo</a></li>
-<li class="chapter" data-level="3.5" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#resumen-de-medidas-descriptivas"><i class="fa fa-check"></i><b>3.5</b> Resumen de medidas descriptivas</a><ul>
+<li class="chapter" data-level="3.5" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#resumen-de-medidas-descriptivas"><i class="fa fa-check"></i><b>3.5</b> Resumen de medidas descriptivas</a>
+<ul>
 <li class="chapter" data-level="3.5.1" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#medidas-de-posición-1"><i class="fa fa-check"></i><b>3.5.1</b> Medidas de posición</a></li>
 <li class="chapter" data-level="3.5.2" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#medidas-de-dispersión-1"><i class="fa fa-check"></i><b>3.5.2</b> Medidas de dispersión</a></li>
 </ul></li>
-<li class="chapter" data-level="3.6" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>3.6</b> Hacerlo en R</a></li>
+<li class="chapter" data-level="3.6" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#hacerlo-en-r-2"><i class="fa fa-check"></i><b>3.6</b> Hacerlo en R</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html"><i class="fa fa-check"></i><b>4</b> Relación entre variables: los fundamentos</a><ul>
+<li class="chapter" data-level="4" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html"><i class="fa fa-check"></i><b>4</b> Relación entre variables: los fundamentos</a>
+<ul>
 <li class="chapter" data-level="4.1" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#tablas-de-contingencia"><i class="fa fa-check"></i><b>4.1</b> Tablas de contingencia</a></li>
 <li class="chapter" data-level="4.2" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#frecuencias-relativas"><i class="fa fa-check"></i><b>4.2</b> Frecuencias relativas</a></li>
 <li class="chapter" data-level="4.3" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#una-clasificación-en-referencia-al-tiempo"><i class="fa fa-check"></i><b>4.3</b> Una clasificación en referencia al tiempo</a></li>
@@ -232,29 +275,34 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.5" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#concepto-de-riesgo-relativo"><i class="fa fa-check"></i><b>4.5</b> Concepto de riesgo relativo</a></li>
 <li class="chapter" data-level="4.6" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#la-intensidad"><i class="fa fa-check"></i><b>4.6</b> La intensidad</a></li>
 <li class="chapter" data-level="4.7" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#el-concepto-de-independencia-estadística"><i class="fa fa-check"></i><b>4.7</b> El concepto de independencia estadística</a></li>
-<li class="chapter" data-level="4.8" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>4.8</b> Hacerlo en R</a></li>
+<li class="chapter" data-level="4.8" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#hacerlo-en-r-3"><i class="fa fa-check"></i><b>4.8</b> Hacerlo en R</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html"><i class="fa fa-check"></i><b>5</b> Relación entre variables: el análisis</a><ul>
+<li class="chapter" data-level="5" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html"><i class="fa fa-check"></i><b>5</b> Relación entre variables: el análisis</a>
+<ul>
 <li class="chapter" data-level="5.1" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#relaciones-entre-variables-vs.-comparación-de-grupos"><i class="fa fa-check"></i><b>5.1</b> Relaciones entre variables vs. comparación de grupos</a></li>
-<li class="chapter" data-level="5.2" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#variables-nominales"><i class="fa fa-check"></i><b>5.2</b> Variables nominales</a><ul>
+<li class="chapter" data-level="5.2" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#variables-nominales"><i class="fa fa-check"></i><b>5.2</b> Variables nominales</a>
+<ul>
 <li class="chapter" data-level="5.2.1" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#coeficientes-de-asociación-para-variables-nominales"><i class="fa fa-check"></i><b>5.2.1</b> Coeficientes de asociación para variables nominales</a></li>
 </ul></li>
 <li class="chapter" data-level="5.3" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#variables-de-nivel-ordinal"><i class="fa fa-check"></i><b>5.3</b> Variables de nivel ordinal</a></li>
 <li class="chapter" data-level="5.4" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#nivel-intervalar-o-proporcional"><i class="fa fa-check"></i><b>5.4</b> Nivel intervalar o proporcional</a></li>
 <li class="chapter" data-level="5.5" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#dicotomías-reales-y-artificiales"><i class="fa fa-check"></i><b>5.5</b> Dicotomías reales y artificiales</a></li>
-<li class="chapter" data-level="5.6" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#niveles-de-medición-combinados"><i class="fa fa-check"></i><b>5.6</b> Niveles de medición combinados</a><ul>
+<li class="chapter" data-level="5.6" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#niveles-de-medición-combinados"><i class="fa fa-check"></i><b>5.6</b> Niveles de medición combinados</a>
+<ul>
 <li class="chapter" data-level="5.6.1" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#una-variable-dicotómica-real-y-una-proporcional"><i class="fa fa-check"></i><b>5.6.1</b> Una variable dicotómica real y una proporcional</a></li>
 <li class="chapter" data-level="5.6.2" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#una-variable-continua-dicotomizada-y-una-proporcional"><i class="fa fa-check"></i><b>5.6.2</b> Una variable continua dicotomizada y una proporcional</a></li>
 </ul></li>
 <li class="chapter" data-level="5.7" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#resumen-de-coeficientes-de-asociación"><i class="fa fa-check"></i><b>5.7</b> Resumen de coeficientes de asociación</a></li>
 <li class="chapter" data-level="5.8" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#matriz-de-correlaciones"><i class="fa fa-check"></i><b>5.8</b> Matriz de correlaciones</a></li>
-<li class="chapter" data-level="5.9" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#la-forma-de-la-relación"><i class="fa fa-check"></i><b>5.9</b> La forma de la relación</a><ul>
+<li class="chapter" data-level="5.9" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#la-forma-de-la-relación"><i class="fa fa-check"></i><b>5.9</b> La forma de la relación</a>
+<ul>
 <li class="chapter" data-level="5.9.1" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#ordenada-al-origen"><i class="fa fa-check"></i><b>5.9.1</b> Ordenada al origen</a></li>
 <li class="chapter" data-level="5.9.2" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#pendiente"><i class="fa fa-check"></i><b>5.9.2</b> Pendiente</a></li>
 <li class="chapter" data-level="5.9.3" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#obtención-de-la-recta-de-regresión"><i class="fa fa-check"></i><b>5.9.3</b> Obtención de la recta de regresión</a></li>
 </ul></li>
 <li class="chapter" data-level="5.10" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#la-visualización-de-los-datos"><i class="fa fa-check"></i><b>5.10</b> La visualización de los datos</a></li>
-<li class="chapter" data-level="5.11" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>5.11</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="5.11" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#hacerlo-en-r-4"><i class="fa fa-check"></i><b>5.11</b> Hacerlo en R</a>
+<ul>
 <li class="chapter" data-level="5.11.1" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#distancia-chi2"><i class="fa fa-check"></i><b>5.11.1</b> Distancia <span class="math inline">\(\chi^{2}\)</span></a></li>
 <li class="chapter" data-level="5.11.2" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#coeficientes"><i class="fa fa-check"></i><b>5.11.2</b> Coeficientes</a></li>
 <li class="chapter" data-level="5.11.3" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#modelo-lineal"><i class="fa fa-check"></i><b>5.11.3</b> Modelo lineal</a></li>
@@ -263,11 +311,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul></li>
 <li class="part"><span><b>II De la descripción a la inferencia</b></span></li>
-<li class="chapter" data-level="6" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html"><i class="fa fa-check"></i><b>6</b> Obtención de la muestra</a><ul>
-<li class="chapter" data-level="6.1" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#población"><i class="fa fa-check"></i><b>6.1</b> Población</a><ul>
+<li class="chapter" data-level="6" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html"><i class="fa fa-check"></i><b>6</b> Obtención de la muestra</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#población"><i class="fa fa-check"></i><b>6.1</b> Población</a>
+<ul>
 <li class="chapter" data-level="6.1.1" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestra"><i class="fa fa-check"></i><b>6.1.1</b> Muestra</a></li>
 </ul></li>
-<li class="chapter" data-level="6.2" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreos-probabilísticos"><i class="fa fa-check"></i><b>6.2</b> Muestreos probabilísticos</a><ul>
+<li class="chapter" data-level="6.2" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreos-probabilísticos"><i class="fa fa-check"></i><b>6.2</b> Muestreos probabilísticos</a>
+<ul>
 <li class="chapter" data-level="6.2.1" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-irrestricto-aleatorio-o-aleatorio-simple"><i class="fa fa-check"></i><b>6.2.1</b> Muestreo irrestricto aleatorio o aleatorio simple</a></li>
 <li class="chapter" data-level="6.2.2" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-sistemático"><i class="fa fa-check"></i><b>6.2.2</b> Muestreo sistemático</a></li>
 <li class="chapter" data-level="6.2.3" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-estratificado"><i class="fa fa-check"></i><b>6.2.3</b> Muestreo estratificado</a></li>
@@ -276,61 +327,75 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.2.6" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#uso-combinado-de-técnicas-de-muestreo"><i class="fa fa-check"></i><b>6.2.6</b> Uso combinado de técnicas de muestreo</a></li>
 <li class="chapter" data-level="6.2.7" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-de-panel"><i class="fa fa-check"></i><b>6.2.7</b> Muestreo de panel</a></li>
 </ul></li>
-<li class="chapter" data-level="6.3" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreos-no-probabilísticos"><i class="fa fa-check"></i><b>6.3</b> Muestreos no probabilísticos</a><ul>
+<li class="chapter" data-level="6.3" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreos-no-probabilísticos"><i class="fa fa-check"></i><b>6.3</b> Muestreos no probabilísticos</a>
+<ul>
 <li class="chapter" data-level="6.3.1" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-por-cuotas"><i class="fa fa-check"></i><b>6.3.1</b> Muestreo por cuotas</a></li>
 <li class="chapter" data-level="6.3.2" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-de-juicio-o-intencional"><i class="fa fa-check"></i><b>6.3.2</b> Muestreo de juicio o intencional</a></li>
 <li class="chapter" data-level="6.3.3" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-autoelegido"><i class="fa fa-check"></i><b>6.3.3</b> Muestreo autoelegido</a></li>
 <li class="chapter" data-level="6.3.4" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-accidental-o-según-disponibilidad"><i class="fa fa-check"></i><b>6.3.4</b> Muestreo accidental o según disponibilidad</a></li>
 <li class="chapter" data-level="6.3.5" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-bola-de-nieve"><i class="fa fa-check"></i><b>6.3.5</b> Muestreo bola de nieve</a></li>
 </ul></li>
-<li class="chapter" data-level="6.4" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>6.4</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="6.4" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#hacerlo-en-r-5"><i class="fa fa-check"></i><b>6.4</b> Hacerlo en R</a>
+<ul>
 <li class="chapter" data-level="6.4.1" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#aleatorio-simple"><i class="fa fa-check"></i><b>6.4.1</b> Aleatorio simple</a></li>
 <li class="chapter" data-level="6.4.2" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#estratificado"><i class="fa fa-check"></i><b>6.4.2</b> Estratificado</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html"><i class="fa fa-check"></i><b>7</b> Probabilidad: los fundamentos</a><ul>
-<li class="chapter" data-level="7.1" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#formas-para-asignar-probabilidades"><i class="fa fa-check"></i><b>7.1</b> Formas para asignar probabilidades</a><ul>
+<li class="chapter" data-level="7" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html"><i class="fa fa-check"></i><b>7</b> Probabilidad: los fundamentos</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#formas-para-asignar-probabilidades"><i class="fa fa-check"></i><b>7.1</b> Formas para asignar probabilidades</a>
+<ul>
 <li class="chapter" data-level="7.1.1" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#asignación-a-priori"><i class="fa fa-check"></i><b>7.1.1</b> Asignación a priori</a></li>
 <li class="chapter" data-level="7.1.2" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#asignación-a-posteriori"><i class="fa fa-check"></i><b>7.1.2</b> Asignación a posteriori</a></li>
 <li class="chapter" data-level="7.1.3" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#la-relación-entre-asignación-a-priori-y-a-posteriori"><i class="fa fa-check"></i><b>7.1.3</b> La relación entre asignación a priori y a posteriori</a></li>
 </ul></li>
-<li class="chapter" data-level="7.2" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#operando-con-probabilidades"><i class="fa fa-check"></i><b>7.2</b> Operando con probabilidades</a><ul>
+<li class="chapter" data-level="7.2" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#operando-con-probabilidades"><i class="fa fa-check"></i><b>7.2</b> Operando con probabilidades</a>
+<ul>
 <li class="chapter" data-level="7.2.1" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#con-probabilidades-frecuenciales"><i class="fa fa-check"></i><b>7.2.1</b> Con probabilidades frecuenciales</a></li>
 <li class="chapter" data-level="7.2.2" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#con-probabilidades-a-priori"><i class="fa fa-check"></i><b>7.2.2</b> Con probabilidades a priori</a></li>
 </ul></li>
 <li class="chapter" data-level="7.3" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#el-teorema-de-bayes"><i class="fa fa-check"></i><b>7.3</b> El teorema de Bayes</a></li>
 <li class="chapter" data-level="7.4" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#variables-aleatorias"><i class="fa fa-check"></i><b>7.4</b> Variables aleatorias</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html"><i class="fa fa-check"></i><b>8</b> Probabilidad: los modelos</a><ul>
+<li class="chapter" data-level="8" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html"><i class="fa fa-check"></i><b>8</b> Probabilidad: los modelos</a>
+<ul>
 <li class="chapter" data-level="8.1" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#concepto-de-modelización"><i class="fa fa-check"></i><b>8.1</b> Concepto de modelización</a></li>
-<li class="chapter" data-level="8.2" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#distribución-binomial"><i class="fa fa-check"></i><b>8.2</b> Distribución binomial</a><ul>
+<li class="chapter" data-level="8.2" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#distribución-binomial"><i class="fa fa-check"></i><b>8.2</b> Distribución binomial</a>
+<ul>
 <li class="chapter" data-level="8.2.1" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#esperanza-y-varianza"><i class="fa fa-check"></i><b>8.2.1</b> Esperanza y varianza</a></li>
 </ul></li>
-<li class="chapter" data-level="8.3" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#distribución-normal"><i class="fa fa-check"></i><b>8.3</b> Distribución normal</a><ul>
+<li class="chapter" data-level="8.3" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#distribución-normal"><i class="fa fa-check"></i><b>8.3</b> Distribución normal</a>
+<ul>
 <li class="chapter" data-level="8.3.1" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#cuantiles"><i class="fa fa-check"></i><b>8.3.1</b> Cuantiles</a></li>
 </ul></li>
 <li class="chapter" data-level="8.4" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#la-idea-de-grados-de-libertad"><i class="fa fa-check"></i><b>8.4</b> La idea de grados de libertad</a></li>
 <li class="chapter" data-level="8.5" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#la-distribución-ji-cuadrado-chi2"><i class="fa fa-check"></i><b>8.5</b> La distribución ji cuadrado (<span class="math inline">\(\chi^{2}\)</span>)</a></li>
-<li class="chapter" data-level="8.6" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#la-distribución-t-de-student"><i class="fa fa-check"></i><b>8.6</b> La distribución t de Student</a><ul>
+<li class="chapter" data-level="8.6" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#la-distribución-t-de-student"><i class="fa fa-check"></i><b>8.6</b> La distribución t de Student</a>
+<ul>
 <li class="chapter" data-level="8.6.1" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#la-distribución-f"><i class="fa fa-check"></i><b>8.6.1</b> La distribución F</a></li>
 </ul></li>
-<li class="chapter" data-level="8.7" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>8.7</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="8.7" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#hacerlo-en-r-6"><i class="fa fa-check"></i><b>8.7</b> Hacerlo en R</a>
+<ul>
 <li class="chapter" data-level="8.7.1" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#probabilidades-exactas"><i class="fa fa-check"></i><b>8.7.1</b> Probabilidades exactas</a></li>
 <li class="chapter" data-level="8.7.2" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#probabilidades-acumuladas"><i class="fa fa-check"></i><b>8.7.2</b> Probabilidades acumuladas</a></li>
 <li class="chapter" data-level="8.7.3" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#cuantiles-1"><i class="fa fa-check"></i><b>8.7.3</b> Cuantiles</a></li>
 <li class="chapter" data-level="8.7.4" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#áreas-centrales"><i class="fa fa-check"></i><b>8.7.4</b> Áreas centrales</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html"><i class="fa fa-check"></i><b>9</b> Distribuciones en el muestreo</a><ul>
-<li class="chapter" data-level="9.1" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#variabilidad-muestral"><i class="fa fa-check"></i><b>9.1</b> Variabilidad muestral</a><ul>
+<li class="chapter" data-level="9" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html"><i class="fa fa-check"></i><b>9</b> Distribuciones en el muestreo</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#variabilidad-muestral"><i class="fa fa-check"></i><b>9.1</b> Variabilidad muestral</a>
+<ul>
 <li class="chapter" data-level="9.1.1" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#dos-aspectos-importantes-para-recordar-cuando-se-usan-muestras"><i class="fa fa-check"></i><b>9.1.1</b> Dos aspectos importantes para recordar cuando se usan muestras:</a></li>
 </ul></li>
-<li class="chapter" data-level="9.2" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#características-de-los-estimadores"><i class="fa fa-check"></i><b>9.2</b> Características de los estimadores</a><ul>
+<li class="chapter" data-level="9.2" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#características-de-los-estimadores"><i class="fa fa-check"></i><b>9.2</b> Características de los estimadores</a>
+<ul>
 <li class="chapter" data-level="9.2.1" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#insesgabilidad"><i class="fa fa-check"></i><b>9.2.1</b> Insesgabilidad</a></li>
 <li class="chapter" data-level="9.2.2" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#consistencia"><i class="fa fa-check"></i><b>9.2.2</b> Consistencia</a></li>
 <li class="chapter" data-level="9.2.3" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#eficiencia"><i class="fa fa-check"></i><b>9.2.3</b> Eficiencia</a></li>
 </ul></li>
-<li class="chapter" data-level="9.3" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#distribuciones-de-probabilidad-de-los-estimadores"><i class="fa fa-check"></i><b>9.3</b> Distribuciones de probabilidad de los estimadores</a><ul>
+<li class="chapter" data-level="9.3" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#distribuciones-de-probabilidad-de-los-estimadores"><i class="fa fa-check"></i><b>9.3</b> Distribuciones de probabilidad de los estimadores</a>
+<ul>
 <li class="chapter" data-level="9.3.1" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#primera-aproximación"><i class="fa fa-check"></i><b>9.3.1</b> Primera aproximación</a></li>
 <li class="chapter" data-level="9.3.2" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#distribución-de-la-media-muestral"><i class="fa fa-check"></i><b>9.3.2</b> Distribución de la media muestral</a></li>
 <li class="chapter" data-level="9.3.3" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#distribución-de-la-proporción-muestral"><i class="fa fa-check"></i><b>9.3.3</b> Distribución de la proporción muestral</a></li>
@@ -340,32 +405,38 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.3.7" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#distribución-del-cociente-de-varianzas"><i class="fa fa-check"></i><b>9.3.7</b> Distribución del cociente de varianzas</a></li>
 </ul></li>
 <li class="chapter" data-level="9.4" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#resumen-de-la-relación-entre-estimadores-y-parámetros"><i class="fa fa-check"></i><b>9.4</b> Resumen de la relación entre estimadores y parámetros</a></li>
-<li class="chapter" data-level="9.5" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>9.5</b> Hacerlo en R</a></li>
+<li class="chapter" data-level="9.5" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#hacerlo-en-r-7"><i class="fa fa-check"></i><b>9.5</b> Hacerlo en R</a></li>
 </ul></li>
 <li class="part"><span><b>III Estadística inferencial</b></span></li>
-<li class="chapter" data-level="10" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html"><i class="fa fa-check"></i><b>10</b> Estimación por intervalo</a><ul>
+<li class="chapter" data-level="10" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html"><i class="fa fa-check"></i><b>10</b> Estimación por intervalo</a>
+<ul>
 <li class="chapter" data-level="10.1" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#estimación-puntual"><i class="fa fa-check"></i><b>10.1</b> Estimación puntual</a></li>
 <li class="chapter" data-level="10.2" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#intervalos-de-confianza"><i class="fa fa-check"></i><b>10.2</b> Intervalos de confianza</a></li>
 <li class="chapter" data-level="10.3" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#estimación-de-la-media"><i class="fa fa-check"></i><b>10.3</b> Estimación de la media</a></li>
-<li class="chapter" data-level="10.4" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#estimación-de-la-proporción"><i class="fa fa-check"></i><b>10.4</b> Estimación de la proporción</a><ul>
+<li class="chapter" data-level="10.4" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#estimación-de-la-proporción"><i class="fa fa-check"></i><b>10.4</b> Estimación de la proporción</a>
+<ul>
 <li class="chapter" data-level="10.4.1" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#intervalo-de-clopper-pearson"><i class="fa fa-check"></i><b>10.4.1</b> Intervalo de Clopper-Pearson</a></li>
 <li class="chapter" data-level="10.4.2" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#intervalo-de-wald"><i class="fa fa-check"></i><b>10.4.2</b> Intervalo de Wald</a></li>
 <li class="chapter" data-level="10.4.3" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#intervalo-de-wilson"><i class="fa fa-check"></i><b>10.4.3</b> Intervalo de Wilson</a></li>
 </ul></li>
-<li class="chapter" data-level="10.5" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#la-calidad-de-las-estimaciones-por-intervalo"><i class="fa fa-check"></i><b>10.5</b> La calidad de las estimaciones por intervalo</a><ul>
+<li class="chapter" data-level="10.5" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#la-calidad-de-las-estimaciones-por-intervalo"><i class="fa fa-check"></i><b>10.5</b> La calidad de las estimaciones por intervalo</a>
+<ul>
 <li class="chapter" data-level="10.5.1" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#el-error-de-estimación-en-la-media"><i class="fa fa-check"></i><b>10.5.1</b> El error de estimación en la media</a></li>
 <li class="chapter" data-level="10.5.2" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#el-error-de-estimación-en-la-proporción"><i class="fa fa-check"></i><b>10.5.2</b> El error de estimación en la proporción</a></li>
 </ul></li>
 <li class="chapter" data-level="10.6" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#probabilidad-de-cobertura"><i class="fa fa-check"></i><b>10.6</b> Probabilidad de cobertura</a></li>
-<li class="chapter" data-level="10.7" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>10.7</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="10.7" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#hacerlo-en-r-8"><i class="fa fa-check"></i><b>10.7</b> Hacerlo en R</a>
+<ul>
 <li class="chapter" data-level="10.7.1" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#intervalo-para-la-media"><i class="fa fa-check"></i><b>10.7.1</b> Intervalo para la media</a></li>
 <li class="chapter" data-level="10.7.2" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#intervalo-para-la-proporción"><i class="fa fa-check"></i><b>10.7.2</b> Intervalo para la proporción</a></li>
 <li class="chapter" data-level="10.7.3" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#cobertura"><i class="fa fa-check"></i><b>10.7.3</b> Cobertura</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html"><i class="fa fa-check"></i><b>11</b> Prueba de hipótesis: la lógica</a><ul>
+<li class="chapter" data-level="11" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html"><i class="fa fa-check"></i><b>11</b> Prueba de hipótesis: la lógica</a>
+<ul>
 <li class="chapter" data-level="11.1" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#el-razonamiento-de-la-prueba-de-hipótesis"><i class="fa fa-check"></i><b>11.1</b> El razonamiento de la prueba de hipótesis</a></li>
-<li class="chapter" data-level="11.2" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#prueba-sobre-la-media"><i class="fa fa-check"></i><b>11.2</b> Prueba sobre la media</a><ul>
+<li class="chapter" data-level="11.2" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#prueba-sobre-la-media"><i class="fa fa-check"></i><b>11.2</b> Prueba sobre la media</a>
+<ul>
 <li class="chapter" data-level="11.2.1" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#la-toma-de-decisión"><i class="fa fa-check"></i><b>11.2.1</b> La toma de decisión</a></li>
 <li class="chapter" data-level="11.2.2" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#los-puntos-críticos-en-términos-del-estimador"><i class="fa fa-check"></i><b>11.2.2</b> Los puntos críticos en términos del estimador</a></li>
 <li class="chapter" data-level="11.2.3" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#pruebas-unilaterales"><i class="fa fa-check"></i><b>11.2.3</b> Pruebas unilaterales</a></li>
@@ -373,24 +444,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="11.3" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#prueba-sobre-la-proporción"><i class="fa fa-check"></i><b>11.3</b> Prueba sobre la proporción</a></li>
 <li class="chapter" data-level="11.4" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#tipos-de-error-en-las-pruebas-de-hipótesis"><i class="fa fa-check"></i><b>11.4</b> Tipos de error en las pruebas de hipótesis</a></li>
-<li class="chapter" data-level="11.5" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#etii-mu-alpha-y-n"><i class="fa fa-check"></i><b>11.5</b> <em>ETII:</em> <span class="math inline">\(\mu\)</span>, <span class="math inline">\(\alpha\)</span> y <span class="math inline">\(n\)</span></a><ul>
+<li class="chapter" data-level="11.5" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#etii-mu-alpha-y-n"><i class="fa fa-check"></i><b>11.5</b> <em>ETII:</em> <span class="math inline">\(\mu\)</span>, <span class="math inline">\(\alpha\)</span> y <span class="math inline">\(n\)</span></a>
+<ul>
 <li class="chapter" data-level="11.5.1" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#curva-de-potencia"><i class="fa fa-check"></i><b>11.5.1</b> Curva de potencia</a></li>
 <li class="chapter" data-level="11.5.2" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#significación-estadística-y-valor-p"><i class="fa fa-check"></i><b>11.5.2</b> Significación estadística y valor <span class="math inline">\(p\)</span></a></li>
 </ul></li>
 <li class="chapter" data-level="11.6" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#muestras-pequeñas-y-pruebas-t"><i class="fa fa-check"></i><b>11.6</b> Muestras pequeñas y pruebas <span class="math inline">\(t\)</span></a></li>
-<li class="chapter" data-level="11.7" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>11.7</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="11.7" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#hacerlo-en-r-9"><i class="fa fa-check"></i><b>11.7</b> Hacerlo en R</a>
+<ul>
 <li class="chapter" data-level="11.7.1" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#prueba-sobre-la-media-1"><i class="fa fa-check"></i><b>11.7.1</b> Prueba sobre la media</a></li>
 <li class="chapter" data-level="11.7.2" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#prueba-sobre-la-proporción-1"><i class="fa fa-check"></i><b>11.7.2</b> Prueba sobre la proporción</a></li>
 </ul></li>
 <li class="chapter" data-level="11.8" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#resumen-de-pruebas-sobre-una-muestra"><i class="fa fa-check"></i><b>11.8</b> Resumen de pruebas sobre una muestra</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html"><i class="fa fa-check"></i><b>12</b> Prueba de hipótesis: las aplicaciones</a><ul>
-<li class="chapter" data-level="12.1" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#muestras-independientes"><i class="fa fa-check"></i><b>12.1</b> Muestras independientes</a><ul>
+<li class="chapter" data-level="12" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html"><i class="fa fa-check"></i><b>12</b> Prueba de hipótesis: las aplicaciones</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#muestras-independientes"><i class="fa fa-check"></i><b>12.1</b> Muestras independientes</a>
+<ul>
 <li class="chapter" data-level="12.1.1" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#prueba-de-diferencia-de-medias"><i class="fa fa-check"></i><b>12.1.1</b> Prueba de diferencia de medias</a></li>
 <li class="chapter" data-level="12.1.2" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#muestras-apareadas"><i class="fa fa-check"></i><b>12.1.2</b> Muestras apareadas</a></li>
 <li class="chapter" data-level="12.1.3" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#coeficiente-r-de-pearson"><i class="fa fa-check"></i><b>12.1.3</b> Coeficiente r de Pearson</a></li>
 </ul></li>
-<li class="chapter" data-level="12.2" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>12.2</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="12.2" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#hacerlo-en-r-10"><i class="fa fa-check"></i><b>12.2</b> Hacerlo en R</a>
+<ul>
 <li class="chapter" data-level="12.2.1" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#ejemplo-1."><i class="fa fa-check"></i><b>12.2.1</b> Ejemplo 1.</a></li>
 <li class="chapter" data-level="12.2.2" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#ejemplo-2."><i class="fa fa-check"></i><b>12.2.2</b> Ejemplo 2.</a></li>
 <li class="chapter" data-level="12.2.3" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#aplicación-a-los-datos-de-población-adulta-mayor"><i class="fa fa-check"></i><b>12.2.3</b> Aplicación a los datos de Población Adulta Mayor</a></li>
@@ -398,21 +474,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="12.2.5" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#coeficiente-de-correlación"><i class="fa fa-check"></i><b>12.2.5</b> Coeficiente de correlación</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html"><i class="fa fa-check"></i><b>13</b> Cuando los supuestos no se cumplen</a><ul>
+<li class="chapter" data-level="13" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html"><i class="fa fa-check"></i><b>13</b> Cuando los supuestos no se cumplen</a>
+<ul>
 <li class="chapter" data-level="13.0.1" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#las-pruebas-ji-cuadrado-o-chi-cuadrado"><i class="fa fa-check"></i><b>13.0.1</b> Las pruebas ji cuadrado (o chi cuadrado)</a></li>
 <li class="chapter" data-level="13.0.2" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#coeficiente-r_s-de-spearman"><i class="fa fa-check"></i><b>13.0.2</b> Coeficiente <span class="math inline">\(r_s\)</span> de Spearman</a></li>
 <li class="chapter" data-level="13.0.3" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#alternativas-no-paramétricas-a-las-pruebas-t"><i class="fa fa-check"></i><b>13.0.3</b> Alternativas no paramétricas a las pruebas t</a></li>
-<li class="chapter" data-level="13.1" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>13.1</b> Hacerlo en R</a><ul>
+<li class="chapter" data-level="13.1" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#hacerlo-en-r-11"><i class="fa fa-check"></i><b>13.1</b> Hacerlo en R</a>
+<ul>
 <li class="chapter" data-level="13.1.1" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#ejemplo-1"><i class="fa fa-check"></i><b>13.1.1</b> Ejemplo 1</a></li>
 <li class="chapter" data-level="13.1.2" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#ejemplo-2"><i class="fa fa-check"></i><b>13.1.2</b> Ejemplo 2</a></li>
 <li class="chapter" data-level="13.1.3" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#prueba-de-la-mediana-1"><i class="fa fa-check"></i><b>13.1.3</b> Prueba de la mediana</a></li>
 <li class="chapter" data-level="13.1.4" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#prueba-de-wilcoxon"><i class="fa fa-check"></i><b>13.1.4</b> Prueba de Wilcoxon</a></li>
-<li class="chapter" data-level="13.1.5" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#muestras-apareadas"><i class="fa fa-check"></i><b>13.1.5</b> Muestras apareadas</a></li>
+<li class="chapter" data-level="13.1.5" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#muestras-apareadas-1"><i class="fa fa-check"></i><b>13.1.5</b> Muestras apareadas</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html"><i class="fa fa-check"></i><b>14</b> Tamaño del efecto</a><ul>
+<li class="chapter" data-level="14" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html"><i class="fa fa-check"></i><b>14</b> Tamaño del efecto</a>
+<ul>
 <li class="chapter" data-level="14.1" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#significación-estadística-y-significación-práctica"><i class="fa fa-check"></i><b>14.1</b> Significación estadística y significación práctica</a></li>
-<li class="chapter" data-level="14.2" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#medidas-de-tamaño-del-efecto"><i class="fa fa-check"></i><b>14.2</b> Medidas de tamaño del efecto</a><ul>
+<li class="chapter" data-level="14.2" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#medidas-de-tamaño-del-efecto"><i class="fa fa-check"></i><b>14.2</b> Medidas de tamaño del efecto</a>
+<ul>
 <li class="chapter" data-level="14.2.1" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#prueba-t-para-diferencia-de-medias"><i class="fa fa-check"></i><b>14.2.1</b> Prueba t para diferencia de medias</a></li>
 <li class="chapter" data-level="14.2.2" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#análisis-de-la-varianza"><i class="fa fa-check"></i><b>14.2.2</b> Análisis de la varianza</a></li>
 <li class="chapter" data-level="14.2.3" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#correlaciones"><i class="fa fa-check"></i><b>14.2.3</b> Correlaciones</a></li>
@@ -420,7 +500,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="14.2.5" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#pruebas-ji-cuadrado"><i class="fa fa-check"></i><b>14.2.5</b> Pruebas ji cuadrado</a></li>
 </ul></li>
 <li class="chapter" data-level="14.3" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#análisis-de-la-potencia"><i class="fa fa-check"></i><b>14.3</b> Análisis de la potencia</a></li>
-<li class="chapter" data-level="14.4" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>14.4</b> Hacerlo en R</a></li>
+<li class="chapter" data-level="14.4" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#hacerlo-en-r-12"><i class="fa fa-check"></i><b>14.4</b> Hacerlo en R</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Generado con bookdown</a></li>
@@ -442,18 +522,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="la-expresión-resumida-de-la-información" class="section level1">
-<h1><span class="header-section-number">Capítulo 3</span> La expresión resumida de la información</h1>
+<div id="la-expresión-resumida-de-la-información" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">Capítulo 3</span> La expresión resumida de la información<a href="la-expresión-resumida-de-la-información.html#la-expresión-resumida-de-la-información" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>La segunda etapa en la descripción de datos consiste en calcular medidas que los resuman, que los expresen de manera sintética. Esta etapa implica un nuevo alejamiento de la información bruta, ya que se pierde de vista no solo a los individuos, que están presentes en la matriz de datos, sino también a las distribuciones de frecuencia. La ventaja de resumir es la posibilidad de presentar la información de modo muy sintético; con unas pocas medidas descriptivas se ofrece bastante información sobre los datos que se observan.</p>
 <p>Estas medidas requieren operaciones de diferente nivel de complejidad, por lo que apelan a diferentes propiedades de las escalas de medición, entonces no serán las mismas las medidas que se puedan calcular en una escala nominal que en una ordinal, intervalar o proporcional.</p>
 <p>El objetivo de describir el conjunto de datos se logrará indicando tres tipos diferentes de medidas. En primer lugar, haremos referencia a las medidas de <strong>posición</strong>. Estas medidas indican en torno a qué valores se distribuyen las observaciones. En segundo lugar, se describe la <strong>forma</strong> que toma la distribución, medida con dos indicadores: <strong>simetría</strong> y <strong>curtosis</strong>. En tercer lugar, se presentan las medidas de <strong>dispersión</strong> (conocidas también como de <strong>variabilidad</strong>), que muestran si los datos están concentrados alrededor de las medidas de centralidad o si están alejados de esas medidas centrales.</p>
 <p>A los fines de la notación usada para referirse a cada una de estas
 medidas descriptivas, asumiremos que trabajamos sobre datos provenientes de una muestra, de la que <em>n</em> representa la cantidad de casos observados.</p>
-<div id="medidas-de-posición" class="section level2">
-<h2><span class="header-section-number">3.1</span> Medidas de posición</h2>
+<div id="medidas-de-posición" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> Medidas de posición<a href="la-expresión-resumida-de-la-información.html#medidas-de-posición" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Como las operaciones que pueda hacerse entre las categorías dependen del nivel de medición de las variables, las medidas que se puedan calcular también dependerán de él. Por eso las presentaremos separadamente para cada nivel, siempre recordando que las operaciones que son válidas a un determinado nivel de medición también son válidas para niveles más altos. Por ejemplo: lo que pueda hacerse con variables nominales, vale también para ordinales y métricas, con los ajustes de casa caso.</p>
-<div id="variables-nominales-proporciones" class="section level3">
-<h3><span class="header-section-number">3.1.1</span> Variables nominales: proporciones</h3>
+<div id="variables-nominales-proporciones" class="section level3 hasAnchor" number="3.1.1">
+<h3><span class="header-section-number">3.1.1</span> Variables nominales: proporciones<a href="la-expresión-resumida-de-la-información.html#variables-nominales-proporciones" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Cuando se trabaja con una variable de nivel nominal, una manera
 sintética de presentar la información que ofrece la tabla de
 distribución de frecuencias es indicando la <strong>proporción</strong> de casos que se encuentran en una determinada categoría. Se trata de la frecuencia relativa simple (<span class="math inline">\(f&#39;\)</span>) de una categoría particular. La siguiente es la distribución de las respuestas a la pregunta “¿Con cuál de las siguientes frases está Ud. más de acuerdo?” (P8STGBS), proveniente de la base latinobarómetro (2017, fraseo textual):</p>
@@ -498,17 +578,17 @@ distribución de frecuencias es indicando la <strong>proporción</strong> de cas
 <p>Esta proporción puede también indicarse en variables de nivel de medición
 superior al nominal, pero no resulta de interés cuando hay gran cantidad de categorías. Así, por ejemplo, si se trata de la distribución de las notas de un parcial, no resulta útil indicar cuál es la proporción de cada calificación e indicar algo como “el 20% sacó 8” (lo que se vería en una tabla de distribución de frecuencias de las notas). Por el contrario, es común construir variables nominales a partir de las notas y, sí es de mucho interés indicar, por ejemplo, la proporción de quienes <em>promocionaron</em>, o la proporción de quienes <em>quedaron libres</em>, luego de haber categorizado las notas con un criterio teórico (el que define quiénes alcanzan las condiciones de promocional, regular y libre)</p>
 </div>
-<div id="variables-nominales-tasas" class="section level3">
-<h3><span class="header-section-number">3.1.2</span> Variables nominales: tasas</h3>
+<div id="variables-nominales-tasas" class="section level3 hasAnchor" number="3.1.2">
+<h3><span class="header-section-number">3.1.2</span> Variables nominales: tasas<a href="la-expresión-resumida-de-la-información.html#variables-nominales-tasas" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Se define habitualmente como <strong>tasa</strong> a la frecuencia relativa de un
 fenómeno en referencia a una población total, con la característica de tener en cuenta un período de tiempo. También es común el uso del
 término cuando se trata de hechos de poca incidencia, es decir que su
 frecuencia es pequeña. En esos casos se la suele expresar cada 1.000,
-cada 10.000, o inclusive cada 100.000 casos, en lugar de porciento. Por ejemplo, la tasa de desocupación en Argentina se define como la proporción de personas desocupadas, respecto del total de personas activas. Estas últimas son quienes tienen una ocupación o que sin tenerla la están buscando activamente. Está compuesta por la población ocupada más la población desocupada <span class="citation">(INDEC <a href="#ref-INDEC2011a" role="doc-biblioref">2011</a>)</span>. Según INDEC, la tasa de desocupación en el segundo semestre de 2019 fue de 10.6% (<a href="https://www.indec.gob.ar/uploads/informesdeprensa/mercado_trabajo_eph_2trim19ED75D3E4D2.pdf" class="uri">https://www.indec.gob.ar/uploads/informesdeprensa/mercado_trabajo_eph_2trim19ED75D3E4D2.pdf</a>). Según la Organización Mundial de la Salud, en el año 2017, el cinco por mil de la población mundial vivía con VIH (<a href="https://www.who.int/features/factfiles/hiv/es/" class="uri">https://www.who.int/features/factfiles/hiv/es/</a>)</p>
+cada 10.000, o inclusive cada 100.000 casos, en lugar de porciento. Por ejemplo, la tasa de desocupación en Argentina se define como la proporción de personas desocupadas, respecto del total de personas activas. Estas últimas son quienes tienen una ocupación o que sin tenerla la están buscando activamente. Está compuesta por la población ocupada más la población desocupada <span class="citation">(<a href="#ref-INDEC2011a" role="doc-biblioref">INDEC 2011</a>)</span>. Según INDEC, la tasa de desocupación en el segundo semestre de 2019 fue de 10.6% (<a href="https://www.indec.gob.ar/uploads/informesdeprensa/mercado_trabajo_eph_2trim19ED75D3E4D2.pdf" class="uri">https://www.indec.gob.ar/uploads/informesdeprensa/mercado_trabajo_eph_2trim19ED75D3E4D2.pdf</a>). Según la Organización Mundial de la Salud, en el año 2017, el cinco por mil de la población mundial vivía con VIH (<a href="https://www.who.int/features/factfiles/hiv/es/" class="uri">https://www.who.int/features/factfiles/hiv/es/</a>)</p>
 <p>Las tasas se usan especialmente para resumir procesos que suceden a lo largo del tiempo y se resumen en un momento dado. Esos procesos se captan mediante registros continuos, como los registros de nacimientos, defunciones, matrimoniales, de ingresos a hospitales, de declaración de residencia en municipios que lo solicitan. Por ejemplo, la tasa bruta de mortalidad se calcula dividiendo la cantidad de defunciones ocurridas en un período de tiempo (usualmente un año) y en un espacio geográfico (país, provincia, etc), por el total de la población que vivía en ese espacio geográfico a la mitad de ese año. La palabra “bruta” se refiere a que el cálculo de esta tasa no hace distinción por características de la población, como sexo o edad. Por el contrario, si se dividen las defunciones anuales de personas de una edad determinada por la cantidad de personas de esa edad que había a la mitad del año, se obtiene una tasa específica (por oposición a bruta) de mortalidad para esa edad.</p>
 </div>
-<div id="variables-nominales-razones" class="section level3">
-<h3><span class="header-section-number">3.1.3</span> Variables nominales: razones</h3>
+<div id="variables-nominales-razones" class="section level3 hasAnchor" number="3.1.3">
+<h3><span class="header-section-number">3.1.3</span> Variables nominales: razones<a href="la-expresión-resumida-de-la-información.html#variables-nominales-razones" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Las <strong>razones</strong> son cocientes calculados entre conjuntos que no tienen elementos en común. Por ejemplo, se llama razón de masculinidad a la cantidad de hombres por cada 100 mujeres que hay en una población. Se obtiene dividiendo el total de varones por el total de mujeres (y luego multiplicando por 100), que son dos conjuntos que no se superponen. Esta medida se conoce también como índice de masculinidad.</p>
 <p>Según el censo de 2010, la siguiente es el distribución por sexos de la población de Argentina en ese momento:</p>
 <table>
@@ -540,8 +620,8 @@ cada 10.000, o inclusive cada 100.000 casos, en lugar de porciento. Por ejemplo,
 <p>La proporción de varones es 48.7% y la de mujeres de 51.3%; se calculan respecto de la población total. La razón de feminidad se obtiene dividiendo el total de mujeres en el de varones y a la inversa para la de masculinidad. El cociente <span class="math inline">\(\frac{20593330}{19523766}*100\)</span>, que es 105.5 indica que hay en la población 105 mujeres por cada 100 varones.</p>
 <p>Lo que distingue a las razones de las tasas y de las proporciones es que el numerador no está incluido en el denominador.</p>
 </div>
-<div id="variables-nominales-el-modo" class="section level3">
-<h3><span class="header-section-number">3.1.4</span> Variables nominales: el modo</h3>
+<div id="variables-nominales-el-modo" class="section level3 hasAnchor" number="3.1.4">
+<h3><span class="header-section-number">3.1.4</span> Variables nominales: el modo<a href="la-expresión-resumida-de-la-información.html#variables-nominales-el-modo" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>El <strong>modo</strong> o <strong>moda</strong> o <strong>valor modal</strong> es el valor de la variable
 (la categoría) que tiene la mayor frecuencia. Dicho de otra manera, el valor de la variable más frecuentemente observado<a href="#fn12" class="footnote-ref" id="fnref12"><sup>12</sup></a>. Esta medida no requiere ningún cálculo, no exige ninguna propiedad de la escala de
 medición, por lo tanto se puede indicar en variables desde el nivel
@@ -810,7 +890,7 @@ Arquitectura y Psicología. Decimos en este caso que la distribución es <strong
 </tbody>
 </table>
 <p>Una representación gráfica de una distribución bimodal, para la variable <em>número de respuestas correctas en una prueba de opción múltiple</em>, la siguiente:</p>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-158"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-158"></span>
 <img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-158-1.svg" alt="Distribución del  número de aciertos" width="288" />
 <p class="caption">
 Figura 3.1: Distribución del número de aciertos
@@ -857,8 +937,8 @@ tienen la misma moda (<span class="math inline">\(M_o = Pública\)</span>), aunq
 </tbody>
 </table>
 </div>
-<div id="variables-ordinales-cuantiles" class="section level3">
-<h3><span class="header-section-number">3.1.5</span> Variables ordinales: cuantiles</h3>
+<div id="variables-ordinales-cuantiles" class="section level3 hasAnchor" number="3.1.5">
+<h3><span class="header-section-number">3.1.5</span> Variables ordinales: cuantiles<a href="la-expresión-resumida-de-la-información.html#variables-ordinales-cuantiles" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Como ya hemos visto, cuando las categorías de la variable están
 ordenadas pueden hacerse juicios como “mayor que” (<span class="math inline">\(&gt;\)</span>) o “menor que”
 (<span class="math inline">\(&lt;\)</span>), y el nivel de medición es ordinal. En este tipo de variables
@@ -1040,8 +1120,8 @@ Es muy frecuente expresar los cuantiles en términos de porcentaje, para facilit
 </table>
 <p>Los cuantiles tienen utilidad como medidas resumen cuando hay un volumen importante de observaciones, de lo contrario, es preferible mostrar la serie de datos. Su aplicación es que permiten describir cada valor de la variable de manera relativa al conjunto completo. Si alguien obtuvo una nota que corresponde al percentil 95 (cuantil 0.95), se sabe que es una nota alta, porque el 95% del conjunto de quienes participaron de la prueba tiene una nota como esa o inferior, o bien que solo el 5% del conjunto tiene nota superior a la de él.</p>
 <p>A continuación veremos algunos medidas que se definen del mismo modo que los cuantiles; en base a las frecuencias relativas acumuladas.</p>
-<div id="la-mediana" class="section level4">
-<h4><span class="header-section-number">3.1.5.1</span> La mediana</h4>
+<div id="la-mediana" class="section level4 hasAnchor" number="3.1.5.1">
+<h4><span class="header-section-number">3.1.5.1</span> La mediana<a href="la-expresión-resumida-de-la-información.html#la-mediana" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>La <strong>mediana</strong> es el cuantil <span class="math inline">\(0.50\)</span> o bien el percentil <span class="math inline">\(50\)</span>. Se define como el valor que <em>supera a</em> y <em>es superado por</em> no más de la mitad de las observaciones. Es el valor que deja por debajo de sí y por encima de sí <em>a lo sumo</em> la mitad de las observaciones. Es importante tener en cuenta que se trata de la mitad de los casos y no la mitad de las categorías. La siguiente distribución presenta en serie simple ordenada el número de sesiones de psicoterapia que recibieron 9 pacientes en un hospital:</p>
 <p><span class="math display">\[2,\: 2,\: 3,\: 5,\: 7,\: 10, \:15, \:19, \:50\]</span></p>
 <p>La mediana de estos datos es 7, porque es el valor que deja cuatro casos por debajo y también cuatro casos por encima, que es menos de la mitad de los 9 casos. La serie simple tiene que estar ordenada para poder identificar a la mediana.</p>
@@ -1310,8 +1390,8 @@ matriz de datos, el cálculo debe hacerse usando todos los valores
 observados de la variable. Como esto es largo para hacer manualmente, se
 solicita a un software especializado.</p>
 </div>
-<div id="los-cuartiles" class="section level4">
-<h4><span class="header-section-number">3.1.5.2</span> Los cuartiles</h4>
+<div id="los-cuartiles" class="section level4 hasAnchor" number="3.1.5.2">
+<h4><span class="header-section-number">3.1.5.2</span> Los cuartiles<a href="la-expresión-resumida-de-la-información.html#los-cuartiles" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Cuando la variable tiene un nivel de medición ordinal o superior, se puede usar el mismo razonamiento con el que definimos la mediana para
 hacer cortes más finos en una distribución de frecuencia. Así, si la
 mediana nos indica el valor de la variable que deja por debajo la mitad
@@ -1320,6 +1400,9 @@ debajo un cuarto de los casos, o también el que deja por debajo las tres
 cuartas partes de las observaciones. Estos puntos de corte se denominan
 respectivamente: <strong>primer cuartil</strong> y <strong>tercer cuartil</strong>.</p>
 <table>
+<colgroup>
+<col width="100%" />
+</colgroup>
 <tbody>
 <tr class="odd">
 <td align="center">El <strong>primer cuartil</strong> es el valor de la variable que deja por debajo un</td>
@@ -1330,6 +1413,9 @@ respectivamente: <strong>primer cuartil</strong> y <strong>tercer cuartil</stron
 </tbody>
 </table>
 <table>
+<colgroup>
+<col width="100%" />
+</colgroup>
 <tbody>
 <tr class="odd">
 <td align="center">El <strong>tercer cuartil</strong> es el valor que deja por debajo las tres cuartas</td>
@@ -1497,8 +1583,8 @@ variable que acumula las dos cuartas partes de los casos, pero como las
 dos cuartas partes es la mitad, se trata simplemente de la mediana
 <span class="math inline">\(Q_{2} = M_{dn}\)</span>, el cuantil 0.50.</p>
 </div>
-<div id="los-percentiles" class="section level4">
-<h4><span class="header-section-number">3.1.5.3</span> Los percentiles</h4>
+<div id="los-percentiles" class="section level4 hasAnchor" number="3.1.5.3">
+<h4><span class="header-section-number">3.1.5.3</span> Los percentiles<a href="la-expresión-resumida-de-la-información.html#los-percentiles" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Por el mismo camino pueden definirse cortes en otros puntos de la
 distribución, los más frecuentemente usados, por su generalidad, se
 conocen como <strong>percentiles</strong>. Se trata de valores de la variable que dejan
@@ -1560,10 +1646,10 @@ mencionada para la mediana.</p>
 <p>Así, la mediana, los cuartiles, quintiles, deciles y percentiles son todos cuantiles particulares. La mediana es el cuantil 0.50, define dos grupos con la mitad de los casos en cada uno; los cuartiles definen cuatro (con 25% en cada uno), los quintiles cinco (con 20% en cada uno), los deciles diez. Los percentiles cortan el campo de variación de la variable en 100 grupos, cada uno de los cuales tiene al 1% del total de casos.<br />
 Todas estas medidas tienen en cuenta el orden de las categorías y se calculan en base a la frecuencia acumulada (absoluta o relativa).</p>
 </div>
-<div id="obtención-gráfica-de-los-cuantiles" class="section level4">
-<h4><span class="header-section-number">3.1.5.4</span> Obtención gráfica de los cuantiles</h4>
+<div id="obtención-gráfica-de-los-cuantiles" class="section level4 hasAnchor" number="3.1.5.4">
+<h4><span class="header-section-number">3.1.5.4</span> Obtención gráfica de los cuantiles<a href="la-expresión-resumida-de-la-información.html#obtención-gráfica-de-los-cuantiles" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Todas las medidas que hacen uso de las frecuencias acumuladas, es decir los cuantiles (mediana, cuartiles, quintiles, deciles, percentiles) pueden obtenerse de manera aproximada a través del gráfico de frecuencias acumuladas, la ojiva de Galton. Veamos el recorte de los niveles de ingresos salariales en cinco grupos, por medio de los quintiles:</p>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-168"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-168"></span>
 <img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-168-1.svg" alt="Obtención gráfica de los puntos de corte que delimitan cinco grupos con igual proporción de casos" width="288" />
 <p class="caption">
 Figura 3.2: Obtención gráfica de los puntos de corte que delimitan cinco grupos con igual proporción de casos
@@ -1582,8 +1668,8 @@ Una medida de distribución de salarios se obtiene dividiendo dos percentiles ex
 Esta medida, junto con el coeficiente de Gini y otros cocientes de percentiles, como <span class="math inline">\(\frac{P_{90}}{P_{50}}\)</span>, <span class="math inline">\(\frac{P_{50}}{P_{10}}\)</span> y <span class="math inline">\(\frac{P_{80}}{P_{20}}\)</span> se usan para medir el grado de desigualdad en la distribución de los ingresos.</p>
 </div>
 </div>
-<div id="variables-métricas-la-media-o-promedio" class="section level3">
-<h3><span class="header-section-number">3.1.6</span> Variables métricas: la media o promedio</h3>
+<div id="variables-métricas-la-media-o-promedio" class="section level3 hasAnchor" number="3.1.6">
+<h3><span class="header-section-number">3.1.6</span> Variables métricas: la media o promedio<a href="la-expresión-resumida-de-la-información.html#variables-métricas-la-media-o-promedio" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Si se ha alcanzado un nivel de medición intervalar o proporcional, es
 posible hacer uso de las propiedades<a href="#fn14" class="footnote-ref" id="fnref14"><sup>14</sup></a> que tienen estas escalas.
 Recordemos que además de designar y ordenar, las escalas intervalares
@@ -1802,8 +1888,8 @@ doble que quien obtiene 5). Aun así, es habitual que se calcule
 incorrectamente el “promedio de las notas”.</p>
 </div>
 </div>
-<div id="la-forma-de-la-distribución" class="section level2">
-<h2><span class="header-section-number">3.2</span> La forma de la distribución</h2>
+<div id="la-forma-de-la-distribución" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> La forma de la distribución<a href="la-expresión-resumida-de-la-información.html#la-forma-de-la-distribución" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>La media es una medida muy completa como resumen de los datos, ya que los considera a todos con la frecuencia de cada uno. Opera como un punto de equilibrio en un conjunto de datos. Sin embargo esto puede ser una dificultad en algunos tipos de distribución. Consideremos el siguiente
 ejemplo simple, que proviene de una matriz de datos ficticia:</p>
 <table>
@@ -1855,7 +1941,7 @@ característica de tener en cuenta todos los valores de la distribución.
 Por esa razón, cuando la distribución se presenta como la anterior, la
 media no es una buena medida de centralidad.</p>
 <p>El histograma siguiente muestra la forma de la distribución:</p>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-174"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-174"></span>
 <img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-174-1.svg" alt="Visualización de valores atípicos" width="288" />
 <p class="caption">
 Figura 3.3: Visualización de valores atípicos
@@ -1867,15 +1953,15 @@ que la distribución es asimétrica.</p>
 <p>Este inconveniente de la media aparece a menudo en las discusiones
 salariales por sectores. A menudo se escucha que no se justifica un
 aumento porque el salario promedio del sector es de <em>X pesos</em>. Argumento al que se contrapone (expresado de diferentes maneras) que ese promedio incluye al personal que tiene salarios muy altos. Se trata de distribuciones asimétricas, que tienen la mayor parte de los casos con salarios bajos o intermedios y unos pocos casos con salarios muy superiores, como lo muestra el histograma siguiente.</p>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-175"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-175"></span>
 <img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-175-1.svg" alt="Distribución de los ingresos salariales" width="288" />
 <p class="caption">
 Figura 3.4: Distribución de los ingresos salariales
 </p>
 </div>
 <p>Por eso cuando se calcula la media se obtiene un resultado que representa mal al conjunto de datos.</p>
-<div id="asimetría" class="section level3">
-<h3><span class="header-section-number">3.2.1</span> Asimetría</h3>
+<div id="asimetría" class="section level3 hasAnchor" number="3.2.1">
+<h3><span class="header-section-number">3.2.1</span> Asimetría<a href="la-expresión-resumida-de-la-información.html#asimetría" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>La <strong>asimetría</strong> de una distribución se indica señalando hacia dónde se
 sitúan los valores extremos. Si, como en los ejemplos anteriores, los valores
 extremos son mayores que la mayor parte de los datos, la asimetría es
@@ -1922,7 +2008,7 @@ particularmente pequeñas y en ese caso se tratará de una distribución
 </tbody>
 </table>
 <p>Cuyo histograma es:</p>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-178"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-178"></span>
 <img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-178-1.svg" alt="Ejemplo de distribución asimétrica a la izquierda" width="288" />
 <p class="caption">
 Figura 3.5: Ejemplo de distribución asimétrica a la izquierda
@@ -1936,19 +2022,19 @@ es:</p>
 <p>Un resultado que está por debajo de esos valores que concentran muchos
 casos. Decimos ahora que la asimetría es hacia la izquierda.</p>
 <p>Los siguientes histogramas, son ejemplos de formas posibles en cuanto a simetría:</p>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-179-1"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-179-1"></span>
 <img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-179-1.svg" alt="Histogramas de variables con diferente asimetría" width="288" />
 <p class="caption">
 Figura 3.6: Histogramas de variables con diferente asimetría
 </p>
 </div>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-179-2"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-179-2"></span>
 <img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-179-2.svg" alt="Histogramas de variables con diferente asimetría" width="288" />
 <p class="caption">
 Figura 3.7: Histogramas de variables con diferente asimetría
 </p>
 </div>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-179-3"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-179-3"></span>
 <img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-179-3.svg" alt="Histogramas de variables con diferente asimetría" width="288" />
 <p class="caption">
 Figura 3.8: Histogramas de variables con diferente asimetría
@@ -1968,6 +2054,10 @@ la izquierda.</p>
 <li>x3: media = 58.68, mediana = 61.75</li>
 </ul>
 <table>
+<colgroup>
+<col width="59%" />
+<col width="40%" />
+</colgroup>
 <thead>
 <tr class="header">
 <th align="center">Posición relativa de la media y la mediana:</th>
@@ -2000,19 +2090,19 @@ la izquierda.</p>
 </tbody>
 </table>
 Las siguientes ojivas de Galton corresponden a las tres distribuciones anteriores. De estos gráficos interesa la zona en que crecen más rápido, porque allí es donde está la mayor concentración de casos. Cuando la distribución es simétrica, la parte de crecimiento rápido (donde la curva tiene a ser más vertical) está al centro, si es asimétrica a la derecha, crece rápido al principio, mientras que cuando es asimetrica a la izquierda, la parte de crecimiento rápido corresponde a los valores más altos de la variable.
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-180-1"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-180-1"></span>
 <img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-180-1.svg" alt="Ojivas de Galton correspondientes a variables con diferente asimetría" width="288" />
 <p class="caption">
 Figura 3.9: Ojivas de Galton correspondientes a variables con diferente asimetría
 </p>
 </div>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-180-2"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-180-2"></span>
 <img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-180-2.svg" alt="Ojivas de Galton correspondientes a variables con diferente asimetría" width="288" />
 <p class="caption">
 Figura 3.10: Ojivas de Galton correspondientes a variables con diferente asimetría
 </p>
 </div>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-180-3"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-180-3"></span>
 <img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-180-3.svg" alt="Ojivas de Galton correspondientes a variables con diferente asimetría" width="288" />
 <p class="caption">
 Figura 3.11: Ojivas de Galton correspondientes a variables con diferente asimetría
@@ -2038,25 +2128,25 @@ coeficiente de asimetría de Fisher<a href="#fn15" class="footnote-ref" id="fnre
 por lo que se considera simétrica a una distribución cuyo coeficiente
 esté entre <span class="math inline">\(-0.5\)</span> y <span class="math inline">\(0.5\)</span>.</p>
 </div>
-<div id="curtosis" class="section level3">
-<h3><span class="header-section-number">3.2.2</span> Curtosis</h3>
+<div id="curtosis" class="section level3 hasAnchor" number="3.2.2">
+<h3><span class="header-section-number">3.2.2</span> Curtosis<a href="la-expresión-resumida-de-la-información.html#curtosis" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Además de la simetría, disponemos de otro indicador de la forma de la
 distribución, una medida de cuán “puntiaguda” es la curva, se denomina
 <strong>curtosis</strong> y distingue distribuciones con forma estrecha y elevada de que
 tienen forma amplia y baja. Como en los siguientes gráficos:</p>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-181-1"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-181-1"></span>
 <img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-181-1.svg" alt="Histogramas de variables con diferente curtosis" width="288" />
 <p class="caption">
 Figura 3.12: Histogramas de variables con diferente curtosis
 </p>
 </div>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-181-2"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-181-2"></span>
 <img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-181-2.svg" alt="Histogramas de variables con diferente curtosis" width="288" />
 <p class="caption">
 Figura 3.13: Histogramas de variables con diferente curtosis
 </p>
 </div>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-181-3"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-181-3"></span>
 <img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-181-3.svg" alt="Histogramas de variables con diferente curtosis" width="288" />
 <p class="caption">
 Figura 3.14: Histogramas de variables con diferente curtosis
@@ -2078,14 +2168,14 @@ positivo para las leptocúrticas. Su cálculo es:</p>
 que se trata como mesocúrtica a una distribución cuyo coeficiente se
 encuentre entre -0,5 y 0,5.</p>
 </div>
-<div id="box-plots" class="section level3">
-<h3><span class="header-section-number">3.2.3</span> Box-plots</h3>
+<div id="box-plots" class="section level3 hasAnchor" number="3.2.3">
+<h3><span class="header-section-number">3.2.3</span> Box-plots<a href="la-expresión-resumida-de-la-información.html#box-plots" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Un gráfico que puede resumir de manera muy compacta la información sobre
 una distribución de frecuencias es el que se llama <strong>diagrama de caja</strong>,
 o también <strong>diagrama de caja y bigotes</strong> o <strong>box-plot</strong>, que fue
-propuesto por John Tukey en 1970, pero no se hizo conocido hasta la publicación posterior <span class="citation">(Tukey <a href="#ref-tukey77" role="doc-biblioref">1977</a>)</span>.
+propuesto por John Tukey en 1970, pero no se hizo conocido hasta la publicación posterior <span class="citation">(<a href="#ref-tukey77" role="doc-biblioref">Tukey 1977</a>)</span>.
 Aplicado a las edades de quienes están cursando en la universidad según la EPH, genera:</p>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-182"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-182"></span>
 <img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-182-1.svg" alt="Box plot de las edades de estudiantes en la universidad" width="288" />
 <p class="caption">
 Figura 3.15: Box plot de las edades de estudiantes en la universidad
@@ -2093,7 +2183,7 @@ Figura 3.15: Box plot de las edades de estudiantes en la universidad
 </div>
 <p>Este gráfico representa sobre el eje vertical los valores de la variable y muestra una “caja” delimitada por los cuartiles 1 y 3. Según la definición de los cuartiles, esa caja contiene al 50% central de los casos. Dentro de la caja se muestra la mediana en la línea horizontal. Se aprecia la concentración de casos en los valores bajos de la variable y unos pocos casos extremos que acusan la asimetría hacia la derecha de la distribución.</p>
 <p>El box-plot es adecuado para comparar grupos, en este ejemplo, se puede incluir la condición de actividad y obtener:</p>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-183"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-183"></span>
 <img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-183-1.svg" alt="Box plot de las edades de estudiantes en la universidad, según estado laboral" width="288" />
 <p class="caption">
 Figura 3.16: Box plot de las edades de estudiantes en la universidad, según estado laboral
@@ -2102,19 +2192,19 @@ Figura 3.16: Box plot de las edades de estudiantes en la universidad, según est
 <p>Se observa que, aunque en todos los grupos existen casos de estudiantes con edades altas, quienes no tienen actividad laboral (inactives) se concentran en las edades más bajas.</p>
 <p>Además de la caja, se ven dos segmentos que se extienden por encima y por debajo de ella. La longitud de estos segmentos (llamados a veces “bigotes”) depende de una caracteírística de la distribución que se trata en el apartado siguiente: la dispersión.</p>
 <p>El box plot puede aparecer presentado de manera vertical u horizontal. Los siguientes corresponden a distribuciones de diferente asimetría.</p>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-184-1"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-184-1"></span>
 <img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-184-1.svg" alt="Box plots correspondientes a variables de diferente asimetría" width="288" />
 <p class="caption">
 Figura 3.17: Box plots correspondientes a variables de diferente asimetría
 </p>
 </div>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-184-2"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-184-2"></span>
 <img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-184-2.svg" alt="Box plots correspondientes a variables de diferente asimetría" width="288" />
 <p class="caption">
 Figura 3.18: Box plots correspondientes a variables de diferente asimetría
 </p>
 </div>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-184-3"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-184-3"></span>
 <img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-184-3.svg" alt="Box plots correspondientes a variables de diferente asimetría" width="288" />
 <p class="caption">
 Figura 3.19: Box plots correspondientes a variables de diferente asimetría
@@ -2122,13 +2212,13 @@ Figura 3.19: Box plots correspondientes a variables de diferente asimetría
 </div>
 </div>
 </div>
-<div id="medidas-de-dispersión" class="section level2">
-<h2><span class="header-section-number">3.3</span> Medidas de dispersión</h2>
+<div id="medidas-de-dispersión" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> Medidas de dispersión<a href="la-expresión-resumida-de-la-información.html#medidas-de-dispersión" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Además de indicar alrededor de qué valores se distribuyen los datos, también es necesario indicar si se encuentran concentrados alrededor de esos valores (si son cercanos a ellos) o dispersos (si están alejados). Por ejemplo, un promedio de 20 sesiones de psicoterapia puede provenir de cuatro casos que utilizaron 18, 19, 21 y 22 sesiones o de otros cuatro que hayan insumido 5, 10, 30 y 35 sesiones. En la primer situación las cuatro observaciones son cercanas entre sí, están concentradas, mientras que en la segunda están lejos, dispersas. Diremos que en el primer caso la distribución es homogénea o que presenta poca dispersión y en el segundo que es heterogénea o que presenta mucha dispersión.</p>
 <p>Conocer esto tiene importancia para poder evaluar la calidad de las medidas de centralidad, en particular de la media. Esto es así porque en una distribución muy dispersa, la media será un promedio de valores muy diferentes entre sí y no será tan fiel a los datos como si estos valores fueran similares. La media de 20 sesiones del primer ejemplo es una mejor medida resumen que la misma media de 20 del segundo, porque la primera refleja mejor los datos de origen. Debido a esto, decimos que en la primera de las situaciones del ejemplo, la media es más <em>representativa</em> de los datos de los que proviene.</p>
 <p>Nos ocuparemos ahora del modo en que puede medirse esa dispersión, cómo transformarla en una medida resumen que indique brevemente si los datos están dispersos o concentrados.</p>
-<div id="recorrido" class="section level3">
-<h3><span class="header-section-number">3.3.1</span> Recorrido</h3>
+<div id="recorrido" class="section level3 hasAnchor" number="3.3.1">
+<h3><span class="header-section-number">3.3.1</span> Recorrido<a href="la-expresión-resumida-de-la-información.html#recorrido" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Una primera aproximación al problema es la de considerar la distancia que hay entre los valores extremos, desde el más pequeño hasta el más grande. Si usamos este procedimiento en el ejemplo anterior vemos que en la primera distribución hay 4 unidades entre la primera y la última observación (de 18 a 22) y en la segunda hay 30 unidades de extremo a extremo (de 5 a 35). Por lo que ésta sería una medida de la dispersión.
 Esta medida se llama <strong>recorrido</strong>, se indica con la letra <span class="math inline">\(R\)</span> y la expresión formal de su cálculo es:</p>
 <p><span class="math display">\[R = x_{\max} - x_{\min}\]</span></p>
@@ -2162,8 +2252,8 @@ que nos puede hacer pensar que todos los datos están dispersos. Por esa
 razón se dice que es una medida “gruesa” de la variabilidad de los
 datos.</p>
 </div>
-<div id="amplitud-intercuartílica" class="section level3">
-<h3><span class="header-section-number">3.3.2</span> Amplitud intercuartílica</h3>
+<div id="amplitud-intercuartílica" class="section level3 hasAnchor" number="3.3.2">
+<h3><span class="header-section-number">3.3.2</span> Amplitud intercuartílica<a href="la-expresión-resumida-de-la-información.html#amplitud-intercuartílica" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Un modo de afinar la calidad de esta medida es la de tomar la distancia
 que hay, no ya entre los valores extremos, sino entre los cuartiles
 primero y tercero. La medida que usa esta distancia se llama amplitud
@@ -2195,8 +2285,8 @@ el primero:</p>
 <p>Que en el Box-plot representa al mitad de la altura de la caja.</p>
 <p><span class="math display">\[SRIC = \frac{Q_{3}{- Q}_{1}}{2}\]</span></p>
 </div>
-<div id="medidas-de-dispersión-basadas-en-la-media" class="section level3">
-<h3><span class="header-section-number">3.3.3</span> Medidas de dispersión basadas en la media</h3>
+<div id="medidas-de-dispersión-basadas-en-la-media" class="section level3 hasAnchor" number="3.3.3">
+<h3><span class="header-section-number">3.3.3</span> Medidas de dispersión basadas en la media<a href="la-expresión-resumida-de-la-información.html#medidas-de-dispersión-basadas-en-la-media" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Las medidas de variabilidad que más se usan son las que tienen en cuenta
 todas las observaciones, es decir aquellas que están basadas en la
 media. Una manera de ver si el conjunto de datos está concentrado o
@@ -2251,7 +2341,7 @@ estén por debajo de ella. Acabamos de ver también que su suma vale cero,
 es decir que <span class="math inline">\(\sum_{i = 1}^{n}{\left( x_{i} - \overline{x} \right) = 0}\)</span>
 y que esta es una cualidad de la media, que no depende de los datos<a href="#fn17" class="footnote-ref" id="fnref17"><sup>17</sup></a>.</p>
 <p>La representación gráfica de esta propiedad puede verse pensando en una analogía física; como si cada caso graficado en el histograma fuese un bloque de cierto peso, situado en el valor de la variable. Con esa idea, la ubicación de la media es el punto donde habria que apoyar el histograma para que éste quede en equilibrio:</p>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-185"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-185"></span>
 <img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-185-1.svg" alt="Esquema de la ubicación de la media en el punto de equilibrio del histograma" width="288" />
 <p class="caption">
 Figura 3.20: Esquema de la ubicación de la media en el punto de equilibrio del histograma
@@ -2277,8 +2367,8 @@ hecho que todo número elevado a una potencia par es positivo, sin
 importar el signo que haya tenido el número. Elevaremos entonces al
 cuadrado cada una de los desvíos y así se perderá su signo y ya no será cero la suma de todos ellos.</p>
 </div>
-<div id="varianza" class="section level3">
-<h3><span class="header-section-number">3.3.4</span> Varianza</h3>
+<div id="varianza" class="section level3 hasAnchor" number="3.3.4">
+<h3><span class="header-section-number">3.3.4</span> Varianza<a href="la-expresión-resumida-de-la-información.html#varianza" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Usando ese recurso, definimos la <strong>varianza<a href="#fn18" class="footnote-ref" id="fnref18"><sup>18</sup></a></strong>, a la que simbolizaremos como <span class="math inline">\(V(x)\)</span> o más frecuentemente como <span class="math inline">\(s^2\)</span> de la siguiente forma:</p>
 <p><span class="math display">\[s^{2} = \frac{\sum_{i = 1}^{n}\left( x_{i} - \overline{x} \right)^{2}}{n - 1}\]</span></p>
 <table>
@@ -2312,13 +2402,16 @@ inconvenientes. Uno es que sus unidades están elevadas al cuadrado; por lo que,
 grande y no tenemos con qué compararla para saber si indica una gran
 variabilidad o si es grande porque los valores de la variable lo son.</p>
 </div>
-<div id="desviación-estándar" class="section level3">
-<h3><span class="header-section-number">3.3.5</span> Desviación estándar</h3>
+<div id="desviación-estándar" class="section level3 hasAnchor" number="3.3.5">
+<h3><span class="header-section-number">3.3.5</span> Desviación estándar<a href="la-expresión-resumida-de-la-información.html#desviación-estándar" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Para resolver el primer inconveniente, definiremos una medida derivada de la varianza, que se denomina <strong>desviación estándar</strong> (en algunos textos y programas de análisis de datos es llamada desviación típica). Esta medida, indicada con la letra <span class="math inline">\(s\)</span> es la raíz cuadrada de la varianza:</p>
 <p><span class="math display">\[s = \sqrt{\frac{\sum_{i = 1}^{n}\left( x_{i} - \overline{x} \right)^{2}}{n - 1}}\]</span></p>
 <p>O más simplemente:</p>
 <p><span class="math display">\[s = \sqrt{s^{2}}\]</span></p>
 <table>
+<colgroup>
+<col width="100%" />
+</colgroup>
 <tbody>
 <tr class="odd">
 <td align="center">La <strong>desviación estándar</strong> es la raíz cuadrada de la varianza. Se indica <span class="math inline">\(s\)</span>.</td>
@@ -2328,8 +2421,8 @@ variabilidad o si es grande porque los valores de la variable lo son.</p>
 <p>Ahora, por el sencillo trámite de introducir una raíz cuadrada, las
 unidades de <em>s</em> son las mismas que las de la variable original y se resuelve el primer problema.</p>
 </div>
-<div id="coeficiente-de-variación" class="section level3">
-<h3><span class="header-section-number">3.3.6</span> Coeficiente de variación</h3>
+<div id="coeficiente-de-variación" class="section level3 hasAnchor" number="3.3.6">
+<h3><span class="header-section-number">3.3.6</span> Coeficiente de variación<a href="la-expresión-resumida-de-la-información.html#coeficiente-de-variación" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Para hacer frente al segundo problema, la magnitud de la varianza y la comparación de la dispersión entre medidas expresadas en diferentes unidades ─que sigue siéndolo para la desviación estándar─, definimos una medida relativa de la dispersión: el <strong>coeficiente de variación</strong>, indicado como CV como el cociente entre la desviación estándar y la media:</p>
 <p><span class="math display">\[CV=\frac{s}{\overline{x}}*100\]</span></p>
 <p>Esta medida carece de unidades, porque la media tiene las mismas que las de la desviación estándar, por lo que se trata de una medida relativa de la dispersión. Indica la importancia relativa de la desviación estándar respecto de la media. El factor 100 que acompaña al cociente cumple la función de expresarlo como porcentaje, por comodidad para la lectura.</p>
@@ -2416,8 +2509,8 @@ cuales es diagnosticada la depresión es de siete. Sin embargo este
 número de síntomas es bastante variable según los casos y,
 seguramente también entre terapeutas.</p>
 </div>
-<div id="box-plots-y-dispersión" class="section level3">
-<h3><span class="header-section-number">3.3.7</span> Box-plots y dispersión</h3>
+<div id="box-plots-y-dispersión" class="section level3 hasAnchor" number="3.3.7">
+<h3><span class="header-section-number">3.3.7</span> Box-plots y dispersión<a href="la-expresión-resumida-de-la-información.html#box-plots-y-dispersión" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>La observación del diagrama de caja (box-plot) nos da también indicios acerca de la dispersión de la variable que se analiza. Cuando la caja es larga estamos en presencia de distribuciones muy dispersas en la parte central, los cuartiles están lejanos, hay mucha amplitud intercuartilar.
 Mientras que si la caja es corta, se trata de una concentración de datos
 de la parte central de la distribución. La longitud de los bigotes
@@ -2464,7 +2557,7 @@ lejanas”. Las zonas son las siguientes:</p>
 <p>La división en zonas puede verse más claramente en un box-plot. En ese gráfico se toma la distancia entre los cuartiles tercero y
 primero (la amplitud intercuartílica) como unidad de medida, luego se calcula una vez y media esa medida (<span class="math inline">\(1.5*AIQ\)</span>) y tres veces esa
 medida (<span class="math inline">\(3*AIQ\)</span>) como puntos de corte para decidir cuándo una observación se aleja excepcionalmente del grupo. Los segmentos del box plot se cortan si se alcanza el máximo de la distribución (hacia arriba) o el mínimo (hacia abajo). Así, los segmentos tienen una longitud que es o bien <span class="math inline">\(1.5*AIQ\)</span> o bien la distancia hasta el máximo o mínimo.</p>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-187"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-187"></span>
 <img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-187-1.svg" alt="Ubicación visual de observaciones lejanas por medio del box plot" width="288" />
 <p class="caption">
 Figura 3.21: Ubicación visual de observaciones lejanas por medio del box plot
@@ -2472,8 +2565,8 @@ Figura 3.21: Ubicación visual de observaciones lejanas por medio del box plot
 </div>
 <p>Los puntos que se ven más allá de los segmentos, son tratados como “lejanos”, porque están más allá de <span class="math inline">\(1.5*AIQ\)</span> del primero o del tercer cuartil.</p>
 </div>
-<div id="medida-de-la-dispersión-cuando-no-hay-distancias" class="section level3">
-<h3><span class="header-section-number">3.3.8</span> Medida de la dispersión cuando no hay distancias</h3>
+<div id="medida-de-la-dispersión-cuando-no-hay-distancias" class="section level3 hasAnchor" number="3.3.8">
+<h3><span class="header-section-number">3.3.8</span> Medida de la dispersión cuando no hay distancias<a href="la-expresión-resumida-de-la-información.html#medida-de-la-dispersión-cuando-no-hay-distancias" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Todo lo indicado hasta el momento acerca de la variabilidad ha
 necesitado de la medición de la distancia entre las observaciones: desde el comienzo hablamos de cercanía o lejanía entre los datos. Por lo tanto,
 estas medidas, desde el recorrido hasta el coeficiente de variación,
@@ -2598,8 +2691,8 @@ La medida de esta variabilidad también se llama varianza, pero su cálculo es m
 La desviación estándar es: <span class="math display">\[s=\sqrt{p*(1-p)}\]</span> Cuyo máximo es <span class="math inline">\(\sqrt{0.5*0.5}=0.5\)</span></p>
 </div>
 </div>
-<div id="el-individuo-en-relación-a-su-grupo" class="section level2">
-<h2><span class="header-section-number">3.4</span> El individuo en relación a su grupo</h2>
+<div id="el-individuo-en-relación-a-su-grupo" class="section level2 hasAnchor" number="3.4">
+<h2><span class="header-section-number">3.4</span> El individuo en relación a su grupo<a href="la-expresión-resumida-de-la-información.html#el-individuo-en-relación-a-su-grupo" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Un uso muy frecuente de las medidas que acabamos de ver es que permiten decidir si un <em>valor particular</em> está cerca o lejos del promedio, o bien si se sitúa o no en los extremos de una distribución. Un valor particular en este caso se
 refiere al valor de la variable en un <em>caso</em>, por
 ejemplo, el puntaje que una persona obtiene en una prueba, el ingreso de un hogar, la PBI per cápita de un país. Así formulado
@@ -2612,8 +2705,8 @@ media del grupo completo hubiese sido 60 puntos, entonces 80 sería un
 valor elevado, pero si la media hubiese sido de 85, entonces el caso que estamos considerando se encontraría por debajo del promedio. Más aún, si el promedio fuese 60 y la mayoría de las personas evaluadas hubiese obtenido puntajes cercanos a 60 (poca variabilidad), entonces el valor 80 podría considerarse como muy elevado. Solo conocer su puntaje individual no nos dice nada acerca de la posición de un sujeto particular. Dos ejemplos:</p>
 <ul>
 <li><p>Nos informan que un niño obtuvo un puntaje bruto de 85 en
-la escala de desarrollo infantil de Bayley <span class="citation">(Ballot et al. <a href="#ref-Ballot2017" role="doc-biblioref">2017</a>)</span>, no tenemos, en principio ningún criterio para decidir si ese puntaje es alto o bajo.</p></li>
-<li><p>El Índice de Democracia <span class="citation">(Economist Intelligence Unit <a href="#ref-demindex2011" role="doc-biblioref">2011</a>)</span> de un país es 6.5. ¿Dónde se ubica este país en el conjunto de democracias del mundo? ¿Es alto, medio…?</p></li>
+la escala de desarrollo infantil de Bayley <span class="citation">(<a href="#ref-Ballot2017" role="doc-biblioref">Ballot et al. 2017</a>)</span>, no tenemos, en principio ningún criterio para decidir si ese puntaje es alto o bajo.</p></li>
+<li><p>El Índice de Democracia <span class="citation">(<a href="#ref-demindex2011" role="doc-biblioref">Economist Intelligence Unit 2011</a>)</span> de un país es 6.5. ¿Dónde se ubica este país en el conjunto de democracias del mundo? ¿Es alto, medio…?</p></li>
 </ul>
 <p>Para situaciones como éstas, muy frecuentes en evaluaciones
 cuantitativas, será necesario conocer cuál es la posición <em>relativa</em> que un puntaje ocupa respecto del conjunto completo de observaciones.</p>
@@ -2926,14 +3019,14 @@ Ese resultado se conoce como desigualdad de Chebycheff</p>
 en el intervalo de <strong>una</strong> desviación estándar de la media se encuentra aproximadamente el 68% de los casos, a <strong>dos</strong> desviaciones el 95 y a <strong>tres</strong>, el 99%. Este resultado se conoce como <strong>regla empírica</strong>.<br />
 Con estos criterios, podemos evaluar los valores de la variable como pertenecientes al conjunto más frecuente o a los extremos, menos frecuentes, de la distribución. Por ejemplo, si en una distribución simétrica, a un caso le corresponde un puntaje <span class="math inline">\(z=3\)</span> se trata de un caso excepcionalmente elevado, porque pertenece a una distancia que solo es superada por el <span class="math inline">\(0.5\%\)</span> del total de observaciones. Usaremos el criterio de considerar a los casos que estén a menos de dos desviaciones por encima o por debajo de la media como “esperables”, porque están en la región de mayor frecuencia. Los casos que estén entre dos y tres desviaciones estándar serán valores “elevados” si <span class="math inline">\(z&gt;0\)</span> y “bajos” si <span class="math inline">\(z&lt;0\)</span>. Los casos que se ubican a tres o más desviaciones estándar (<span class="math inline">\(|z|\geq 3\)</span>) serán considerados “excepcionalmente” altos o bajos según el signo de z.</p>
 <p>El gráfico siguiente muestra el intervalo de dos desviaciones estándar para una distribución no cumple los supuestos mencionados, a la que se aplica la desigualdad de Chebycheff.</p>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-195"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-195"></span>
 <img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-195-1.svg" alt="Distribución no unimodal: la desigualdad de Chebycheff establece un mínimo para la proporción de casos que hay a dos desviaciones estándar de la media" width="288" />
 <p class="caption">
 Figura 3.22: Distribución no unimodal: la desigualdad de Chebycheff establece un mínimo para la proporción de casos que hay a dos desviaciones estándar de la media
 </p>
 </div>
 <p>Mientras que la siguiente distribución es unimodal y aproximadamente simétrica, por lo que es válida la regla empírica.</p>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-196"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-196"></span>
 <img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-196-1.svg" alt="Distribución unimodal y simétrica: la regla empírica ofrece una aproximación la proporción de casos que hay a dos desviaciones estándar de la media" width="384" />
 <p class="caption">
 Figura 3.23: Distribución unimodal y simétrica: la regla empírica ofrece una aproximación la proporción de casos que hay a dos desviaciones estándar de la media
@@ -2941,10 +3034,10 @@ Figura 3.23: Distribución unimodal y simétrica: la regla empírica ofrece una 
 </div>
 <p>Volveremos sobre este tema con más detalle cuando tratemos una distribución teórica que se llama distribución normal.</p>
 </div>
-<div id="resumen-de-medidas-descriptivas" class="section level2">
-<h2><span class="header-section-number">3.5</span> Resumen de medidas descriptivas</h2>
-<div id="medidas-de-posición-1" class="section level3">
-<h3><span class="header-section-number">3.5.1</span> Medidas de posición</h3>
+<div id="resumen-de-medidas-descriptivas" class="section level2 hasAnchor" number="3.5">
+<h2><span class="header-section-number">3.5</span> Resumen de medidas descriptivas<a href="la-expresión-resumida-de-la-información.html#resumen-de-medidas-descriptivas" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="medidas-de-posición-1" class="section level3 hasAnchor" number="3.5.1">
+<h3><span class="header-section-number">3.5.1</span> Medidas de posición<a href="la-expresión-resumida-de-la-información.html#medidas-de-posición-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <table>
 <thead>
 <tr class="header">
@@ -2987,8 +3080,8 @@ Figura 3.23: Distribución unimodal y simétrica: la regla empírica ofrece una 
 </tbody>
 </table>
 </div>
-<div id="medidas-de-dispersión-1" class="section level3">
-<h3><span class="header-section-number">3.5.2</span> Medidas de dispersión</h3>
+<div id="medidas-de-dispersión-1" class="section level3 hasAnchor" number="3.5.2">
+<h3><span class="header-section-number">3.5.2</span> Medidas de dispersión<a href="la-expresión-resumida-de-la-información.html#medidas-de-dispersión-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <table>
 <thead>
 <tr class="header">
@@ -3033,49 +3126,51 @@ Figura 3.23: Distribución unimodal y simétrica: la regla empírica ofrece una 
 <div style="page-break-after: always;"></div>
 </div>
 </div>
-<div id="hacerlo-en-r" class="section level2">
-<h2><span class="header-section-number">3.6</span> Hacerlo en R</h2>
+<div id="hacerlo-en-r-2" class="section level2 hasAnchor" number="3.6">
+<h2><span class="header-section-number">3.6</span> Hacerlo en R<a href="la-expresión-resumida-de-la-información.html#hacerlo-en-r-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Para los ejemplos de este apartado vamos a trabajar sobre los datos de la Encuesta Permanente de Hogares, tercer trimestre de 2018. Leemos la base, indicando que la primera fila son los nombres de las variables y que el separador de campos es “;”, y la llamamos eph.3.18:</p>
-<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="la-expresión-resumida-de-la-información.html#cb251-1"></a>eph.<span class="fl">3.18</span> &lt;-<span class="st"> </span><span class="kw">read.table</span>(</span>
-<span id="cb251-2"><a href="la-expresión-resumida-de-la-información.html#cb251-2"></a>  <span class="st">&quot;bases/archivostxt/usu_individual_T318.txt&quot;</span>,</span>
-<span id="cb251-3"><a href="la-expresión-resumida-de-la-información.html#cb251-3"></a>  <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">sep =</span> <span class="st">&quot;;&quot;</span></span>
-<span id="cb251-4"><a href="la-expresión-resumida-de-la-información.html#cb251-4"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="la-expresión-resumida-de-la-información.html#cb249-1" aria-hidden="true" tabindex="-1"></a>eph.<span class="fl">3.18</span> <span class="ot">&lt;-</span> <span class="fu">read.table</span>(</span>
+<span id="cb249-2"><a href="la-expresión-resumida-de-la-información.html#cb249-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;bases/archivostxt/usu_individual_T318.txt&quot;</span>,</span>
+<span id="cb249-3"><a href="la-expresión-resumida-de-la-información.html#cb249-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">sep =</span> <span class="st">&quot;;&quot;</span></span>
+<span id="cb249-4"><a href="la-expresión-resumida-de-la-información.html#cb249-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <p>Ahora retendremos solo a las personas que trabajan por un salario (CAT_OCUP = 3) que tienen ingreso mayor a cero (PP08D1&gt;0 y que no son NA), la nueva base se llama “asalariades”:</p>
-<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="la-expresión-resumida-de-la-información.html#cb252-1"></a>asalariades &lt;-<span class="st"> </span><span class="kw">subset</span>(eph.<span class="fl">3.18</span>, eph.<span class="fl">3.18</span><span class="op">$</span>CAT_OCUP <span class="op">==</span><span class="st"> </span><span class="dv">3</span> <span class="op">&amp;</span></span>
-<span id="cb252-2"><a href="la-expresión-resumida-de-la-información.html#cb252-2"></a><span class="st">  </span>eph.<span class="fl">3.18</span><span class="op">$</span>PP08D1 <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span> <span class="op">&amp;</span><span class="st"> </span><span class="kw">is.na</span>(eph.<span class="fl">3.18</span><span class="op">$</span>PP08D1) <span class="op">==</span><span class="st"> </span><span class="ot">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="la-expresión-resumida-de-la-información.html#cb250-1" aria-hidden="true" tabindex="-1"></a>asalariades <span class="ot">&lt;-</span> <span class="fu">subset</span>(eph.<span class="fl">3.18</span>, eph.<span class="fl">3.18</span><span class="sc">$</span>CAT_OCUP <span class="sc">==</span> <span class="dv">3</span> <span class="sc">&amp;</span></span>
+<span id="cb250-2"><a href="la-expresión-resumida-de-la-información.html#cb250-2" aria-hidden="true" tabindex="-1"></a>  eph.<span class="fl">3.18</span><span class="sc">$</span>PP08D1 <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">&amp;</span> <span class="fu">is.na</span>(eph.<span class="fl">3.18</span><span class="sc">$</span>PP08D1) <span class="sc">==</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <p>Los nombres de las medidas descriptivas en R están en inglés, por lo que hay que recordarlas. Sobre esta base, vamos a describir los ingresos salariales. Las medidas de posición se piden así:</p>
-<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="la-expresión-resumida-de-la-información.html#cb253-1"></a><span class="kw">length</span>(asalariades<span class="op">$</span>PP08D1) <span class="co"># la cantidad de casos (n)</span></span></code></pre></div>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="la-expresión-resumida-de-la-información.html#cb251-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(asalariades<span class="sc">$</span>PP08D1) <span class="co"># la cantidad de casos (n)</span></span></code></pre></div>
 <pre><code>## [1] 14623</code></pre>
-<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="la-expresión-resumida-de-la-información.html#cb255-1"></a><span class="kw">mean</span>(asalariades<span class="op">$</span>PP08D1) <span class="co"># la media</span></span></code></pre></div>
+<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="la-expresión-resumida-de-la-información.html#cb253-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(asalariades<span class="sc">$</span>PP08D1) <span class="co"># la media</span></span></code></pre></div>
 <pre><code>## [1] 17214.27</code></pre>
-<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="la-expresión-resumida-de-la-información.html#cb257-1"></a><span class="kw">median</span>(asalariades<span class="op">$</span>PP08D1) <span class="co"># la mediana</span></span></code></pre></div>
+<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="la-expresión-resumida-de-la-información.html#cb255-1" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(asalariades<span class="sc">$</span>PP08D1) <span class="co"># la mediana</span></span></code></pre></div>
 <pre><code>## [1] 15000</code></pre>
 <p>Para los cuantiles, se debe especificar cuál o cuáles se piden, con la proporción de casos acumulados como segundo argumento:</p>
-<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="la-expresión-resumida-de-la-información.html#cb259-1"></a><span class="kw">quantile</span>(asalariades<span class="op">$</span>PP08D1, <span class="fl">.2</span>) <span class="co"># cuantil 0.20 ó percentil 20</span></span></code></pre></div>
+<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="la-expresión-resumida-de-la-información.html#cb257-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(asalariades<span class="sc">$</span>PP08D1, .<span class="dv">2</span>) <span class="co"># cuantil 0.20 ó percentil 20</span></span></code></pre></div>
 <pre><code>##  20% 
 ## 7500</code></pre>
-<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="la-expresión-resumida-de-la-información.html#cb261-1"></a><span class="kw">quantile</span>(asalariades<span class="op">$</span>PP08D1, <span class="fl">.05</span>) <span class="co"># percentil 5</span></span></code></pre></div>
+<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="la-expresión-resumida-de-la-información.html#cb259-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(asalariades<span class="sc">$</span>PP08D1, .<span class="dv">05</span>) <span class="co"># percentil 5</span></span></code></pre></div>
 <pre><code>##   5% 
 ## 3200</code></pre>
-<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="la-expresión-resumida-de-la-información.html#cb263-1"></a><span class="kw">quantile</span>(asalariades<span class="op">$</span>PP08D1, <span class="fl">.95</span>) <span class="co"># percentil 95</span></span></code></pre></div>
+<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="la-expresión-resumida-de-la-información.html#cb261-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(asalariades<span class="sc">$</span>PP08D1, .<span class="dv">95</span>) <span class="co"># percentil 95</span></span></code></pre></div>
 <pre><code>##   95% 
 ## 40000</code></pre>
-<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="la-expresión-resumida-de-la-información.html#cb265-1"></a><span class="kw">quantile</span>(asalariades<span class="op">$</span>PP08D1, <span class="fl">.5</span>) <span class="co"># percentil 50, coincide con la mediana</span></span></code></pre></div>
+<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="la-expresión-resumida-de-la-información.html#cb263-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(asalariades<span class="sc">$</span>PP08D1, .<span class="dv">5</span>) <span class="co"># percentil 50, coincide con la mediana</span></span></code></pre></div>
 <pre><code>##   50% 
 ## 15000</code></pre>
 <p>Si se necesitan varios juntos, por ejemplo los quintiles, se usa el comando <code>c</code>, para “concatenar” los valores:</p>
-<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="la-expresión-resumida-de-la-información.html#cb267-1"></a><span class="kw">quantile</span>(asalariades<span class="op">$</span>PP08D1, <span class="kw">c</span>(.<span class="dv">2</span>, <span class="fl">.4</span>, <span class="fl">.6</span>, <span class="fl">.8</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="la-expresión-resumida-de-la-información.html#cb265-1" aria-hidden="true" tabindex="-1"></a><span class="fu">quantile</span>(asalariades<span class="sc">$</span>PP08D1, <span class="fu">c</span>(.<span class="dv">2</span>, .<span class="dv">4</span>, .<span class="dv">6</span>, .<span class="dv">8</span>))</span></code></pre></div>
 <pre><code>##   20%   40%   60%   80% 
 ##  7500 13000 18000 25000</code></pre>
 <p>Esta descripción de los datos se lee:
 En la muestra de 14623 personas que trabajan en relación de dependencia, el salario promedio es de 17214.27. El 50% tiene salario de 15000, el 20% de más bajos salarios está de 7500 para abajo y el 5% de los menores salarios son de 3200 o menos. El 95% tiene salario de 40000 o menos; que es lo mismo que decir que el 5% de los salarios superan los 40000.</p>
 <p>Repitamos la categorización con los tres criterios vistos antes, por medio del comando <code>cut</code> que se aplica sobre una variable cuantitativa y se controla la cantidad de intervalos y la forma de construirlos en el argumento <code>breaks</code>. Para categorizar la edad de la base EPH en cuatro intervalos de igual amplitud, se indica ese número en el argumento. El resultado de esa categorización se guarda en una nueva variable a la que llamamos edad_4_igual y luego se solicita su distribución de frecuencia:</p>
-<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="la-expresión-resumida-de-la-información.html#cb269-1"></a>edad_<span class="dv">4</span>_igual &lt;-<span class="st"> </span><span class="kw">cut</span>(eph.<span class="fl">3.18</span><span class="op">$</span>CH06, <span class="dt">breaks =</span> <span class="dv">4</span>)</span>
-<span id="cb269-2"><a href="la-expresión-resumida-de-la-información.html#cb269-2"></a></span>
-<span id="cb269-3"><a href="la-expresión-resumida-de-la-información.html#cb269-3"></a><span class="kw">library</span>(<span class="st">&quot;summarytools&quot;</span>)</span>
-<span id="cb269-4"><a href="la-expresión-resumida-de-la-información.html#cb269-4"></a></span>
-<span id="cb269-5"><a href="la-expresión-resumida-de-la-información.html#cb269-5"></a><span class="kw">freq</span>(edad_<span class="dv">4</span>_igual, <span class="dt">report.nas =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="la-expresión-resumida-de-la-información.html#cb267-1" aria-hidden="true" tabindex="-1"></a>edad_4_igual <span class="ot">&lt;-</span> <span class="fu">cut</span>(eph.<span class="fl">3.18</span><span class="sc">$</span>CH06, <span class="at">breaks =</span> <span class="dv">4</span>)</span>
+<span id="cb267-2"><a href="la-expresión-resumida-de-la-información.html#cb267-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb267-3"><a href="la-expresión-resumida-de-la-información.html#cb267-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;summarytools&quot;</span>)</span>
+<span id="cb267-4"><a href="la-expresión-resumida-de-la-información.html#cb267-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb267-5"><a href="la-expresión-resumida-de-la-información.html#cb267-5" aria-hidden="true" tabindex="-1"></a><span class="fu">freq</span>(edad_4_igual, <span class="at">report.nas =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <pre><code>## Frequencies  
+## edad_4_igual  
+## Type: Factor  
 ## 
 ##                      Freq        %   % Cum.
 ## ----------------- ------- -------- --------
@@ -3086,15 +3181,17 @@ En la muestra de 14623 personas que trabajan en relación de dependencia, el sal
 ##             Total   56879   100.00   100.00</code></pre>
 <p>El límite inferior del primer intervalo es negativo por la aplicación de una fórmula de cálculo de las amplitudes, cuando se edita para presentarla, ese número debe ser cero.</p>
 <p>La otra opción del argumento <code>breaks</code> es indicarle un vector con los límites de los intervalos que se desea. La categorización con criterio proporcional debe indicar que los puntos de corte sean los cuantiles correspondientes a la cantidad requerida, para cuatro intervalos, se indica el mínimo de la variable como inicio, luego los cuartiles (cuantiles 0.25, 0.50 y 0.75) y termina en el máximo:</p>
-<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="la-expresión-resumida-de-la-información.html#cb271-1"></a>edad_<span class="dv">4</span>_prop &lt;-<span class="st"> </span><span class="kw">cut</span>(eph.<span class="fl">3.18</span><span class="op">$</span>CH06, <span class="dt">breaks =</span> <span class="kw">c</span>(</span>
-<span id="cb271-2"><a href="la-expresión-resumida-de-la-información.html#cb271-2"></a>  <span class="dv">0</span>,</span>
-<span id="cb271-3"><a href="la-expresión-resumida-de-la-información.html#cb271-3"></a>  <span class="kw">quantile</span>(eph.<span class="fl">3.18</span><span class="op">$</span>CH06, <span class="fl">.25</span>),</span>
-<span id="cb271-4"><a href="la-expresión-resumida-de-la-información.html#cb271-4"></a>  <span class="kw">quantile</span>(eph.<span class="fl">3.18</span><span class="op">$</span>CH06, <span class="fl">.5</span>),</span>
-<span id="cb271-5"><a href="la-expresión-resumida-de-la-información.html#cb271-5"></a>  <span class="kw">quantile</span>(eph.<span class="fl">3.18</span><span class="op">$</span>CH06, <span class="fl">.75</span>),</span>
-<span id="cb271-6"><a href="la-expresión-resumida-de-la-información.html#cb271-6"></a>  <span class="kw">max</span>(eph.<span class="fl">3.18</span><span class="op">$</span>CH06)</span>
-<span id="cb271-7"><a href="la-expresión-resumida-de-la-información.html#cb271-7"></a>))</span>
-<span id="cb271-8"><a href="la-expresión-resumida-de-la-información.html#cb271-8"></a><span class="kw">freq</span>(edad_<span class="dv">4</span>_prop, <span class="dt">report.nas =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="la-expresión-resumida-de-la-información.html#cb269-1" aria-hidden="true" tabindex="-1"></a>edad_4_prop <span class="ot">&lt;-</span> <span class="fu">cut</span>(eph.<span class="fl">3.18</span><span class="sc">$</span>CH06, <span class="at">breaks =</span> <span class="fu">c</span>(</span>
+<span id="cb269-2"><a href="la-expresión-resumida-de-la-información.html#cb269-2" aria-hidden="true" tabindex="-1"></a>  <span class="dv">0</span>,</span>
+<span id="cb269-3"><a href="la-expresión-resumida-de-la-información.html#cb269-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">quantile</span>(eph.<span class="fl">3.18</span><span class="sc">$</span>CH06, .<span class="dv">25</span>),</span>
+<span id="cb269-4"><a href="la-expresión-resumida-de-la-información.html#cb269-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">quantile</span>(eph.<span class="fl">3.18</span><span class="sc">$</span>CH06, .<span class="dv">5</span>),</span>
+<span id="cb269-5"><a href="la-expresión-resumida-de-la-información.html#cb269-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">quantile</span>(eph.<span class="fl">3.18</span><span class="sc">$</span>CH06, .<span class="dv">75</span>),</span>
+<span id="cb269-6"><a href="la-expresión-resumida-de-la-información.html#cb269-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">max</span>(eph.<span class="fl">3.18</span><span class="sc">$</span>CH06)</span>
+<span id="cb269-7"><a href="la-expresión-resumida-de-la-información.html#cb269-7" aria-hidden="true" tabindex="-1"></a>))</span>
+<span id="cb269-8"><a href="la-expresión-resumida-de-la-información.html#cb269-8" aria-hidden="true" tabindex="-1"></a><span class="fu">freq</span>(edad_4_prop, <span class="at">report.nas =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <pre><code>## Frequencies  
+## edad_4_prop  
+## Type: Factor  
 ## 
 ##                   Freq        %   % Cum.
 ## -------------- ------- -------- --------
@@ -3105,15 +3202,17 @@ En la muestra de 14623 personas que trabajan en relación de dependencia, el sal
 ##          Total   56158   100.00   100.00</code></pre>
 <p>Con estos cortes, los grupos tienen cantidades de casos similares.</p>
 <p>Si el criterio es teórico, se eligen los puntos de corte y se indican en <code>breaks</code>. Para hacer cuatro grupos de: hasta 14 años, de 15 a 44, de 45 a 64 y 65 o más, se solicita:</p>
-<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="la-expresión-resumida-de-la-información.html#cb273-1"></a>edad_<span class="dv">4</span>_teo &lt;-<span class="st"> </span><span class="kw">cut</span>(eph.<span class="fl">3.18</span><span class="op">$</span>CH06, <span class="dt">breaks =</span> <span class="kw">c</span>(</span>
-<span id="cb273-2"><a href="la-expresión-resumida-de-la-información.html#cb273-2"></a>  <span class="dv">0</span>,</span>
-<span id="cb273-3"><a href="la-expresión-resumida-de-la-información.html#cb273-3"></a>  <span class="dv">14</span>,</span>
-<span id="cb273-4"><a href="la-expresión-resumida-de-la-información.html#cb273-4"></a>  <span class="dv">44</span>,</span>
-<span id="cb273-5"><a href="la-expresión-resumida-de-la-información.html#cb273-5"></a>  <span class="dv">64</span>,</span>
-<span id="cb273-6"><a href="la-expresión-resumida-de-la-información.html#cb273-6"></a>  <span class="kw">max</span>(eph.<span class="fl">3.18</span><span class="op">$</span>CH06)</span>
-<span id="cb273-7"><a href="la-expresión-resumida-de-la-información.html#cb273-7"></a>))</span>
-<span id="cb273-8"><a href="la-expresión-resumida-de-la-información.html#cb273-8"></a><span class="kw">freq</span>(edad_<span class="dv">4</span>_teo, <span class="dt">report.nas =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="la-expresión-resumida-de-la-información.html#cb271-1" aria-hidden="true" tabindex="-1"></a>edad_4_teo <span class="ot">&lt;-</span> <span class="fu">cut</span>(eph.<span class="fl">3.18</span><span class="sc">$</span>CH06, <span class="at">breaks =</span> <span class="fu">c</span>(</span>
+<span id="cb271-2"><a href="la-expresión-resumida-de-la-información.html#cb271-2" aria-hidden="true" tabindex="-1"></a>  <span class="dv">0</span>,</span>
+<span id="cb271-3"><a href="la-expresión-resumida-de-la-información.html#cb271-3" aria-hidden="true" tabindex="-1"></a>  <span class="dv">14</span>,</span>
+<span id="cb271-4"><a href="la-expresión-resumida-de-la-información.html#cb271-4" aria-hidden="true" tabindex="-1"></a>  <span class="dv">44</span>,</span>
+<span id="cb271-5"><a href="la-expresión-resumida-de-la-información.html#cb271-5" aria-hidden="true" tabindex="-1"></a>  <span class="dv">64</span>,</span>
+<span id="cb271-6"><a href="la-expresión-resumida-de-la-información.html#cb271-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">max</span>(eph.<span class="fl">3.18</span><span class="sc">$</span>CH06)</span>
+<span id="cb271-7"><a href="la-expresión-resumida-de-la-información.html#cb271-7" aria-hidden="true" tabindex="-1"></a>))</span>
+<span id="cb271-8"><a href="la-expresión-resumida-de-la-información.html#cb271-8" aria-hidden="true" tabindex="-1"></a><span class="fu">freq</span>(edad_4_teo, <span class="at">report.nas =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <pre><code>## Frequencies  
+## edad_4_teo  
+## Type: Factor  
 ## 
 ##                   Freq        %   % Cum.
 ## -------------- ------- -------- --------
@@ -3123,74 +3222,74 @@ En la muestra de 14623 personas que trabajan en relación de dependencia, el sal
 ##       (64,101]    6993    12.45   100.00
 ##          Total   56158   100.00   100.00</code></pre>
 <p>La solicitud de algunas medidas de dispersión es directa en R, otras deben calcularse. El Recorrido (R), la Amplitud Intercuartílica (AIQ), el Semirrecorrido Intercuartílico (SRIC) así como el Coeficiente de Variación (CV) deben computarse según su definición. Para los ingresos, de la base “asalarides”:</p>
-<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="la-expresión-resumida-de-la-información.html#cb275-1"></a>R &lt;-<span class="st"> </span><span class="kw">max</span>(asalariades<span class="op">$</span>PP08D1) <span class="op">-</span></span>
-<span id="cb275-2"><a href="la-expresión-resumida-de-la-información.html#cb275-2"></a><span class="st">  </span><span class="kw">min</span>(asalariades<span class="op">$</span>PP08D1) <span class="co"># se define R</span></span>
-<span id="cb275-3"><a href="la-expresión-resumida-de-la-información.html#cb275-3"></a><span class="kw">names</span>(R) &lt;-<span class="st"> &quot;R&quot;</span> <span class="co"># se le da un nombre</span></span>
-<span id="cb275-4"><a href="la-expresión-resumida-de-la-información.html#cb275-4"></a><span class="kw">round</span>(R, <span class="dv">2</span>) <span class="co"># se lo redondea a dos decimales</span></span></code></pre></div>
+<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="la-expresión-resumida-de-la-información.html#cb273-1" aria-hidden="true" tabindex="-1"></a>R <span class="ot">&lt;-</span> <span class="fu">max</span>(asalariades<span class="sc">$</span>PP08D1) <span class="sc">-</span></span>
+<span id="cb273-2"><a href="la-expresión-resumida-de-la-información.html#cb273-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">min</span>(asalariades<span class="sc">$</span>PP08D1) <span class="co"># se define R</span></span>
+<span id="cb273-3"><a href="la-expresión-resumida-de-la-información.html#cb273-3" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(R) <span class="ot">&lt;-</span> <span class="st">&quot;R&quot;</span> <span class="co"># se le da un nombre</span></span>
+<span id="cb273-4"><a href="la-expresión-resumida-de-la-información.html#cb273-4" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(R, <span class="dv">2</span>) <span class="co"># se lo redondea a dos decimales</span></span></code></pre></div>
 <pre><code>##      R 
 ## 219800</code></pre>
-<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="la-expresión-resumida-de-la-información.html#cb277-1"></a>AIQ &lt;-<span class="st"> </span><span class="kw">quantile</span>(asalariades<span class="op">$</span>PP08D1, <span class="fl">.75</span>) <span class="op">-</span></span>
-<span id="cb277-2"><a href="la-expresión-resumida-de-la-información.html#cb277-2"></a><span class="st">  </span><span class="kw">quantile</span>(asalariades<span class="op">$</span>PP08D1, <span class="fl">.25</span>)</span>
-<span id="cb277-3"><a href="la-expresión-resumida-de-la-información.html#cb277-3"></a><span class="kw">names</span>(AIQ) &lt;-<span class="st"> &quot;AIQ&quot;</span></span>
-<span id="cb277-4"><a href="la-expresión-resumida-de-la-información.html#cb277-4"></a><span class="kw">round</span>(AIQ, <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="la-expresión-resumida-de-la-información.html#cb275-1" aria-hidden="true" tabindex="-1"></a>AIQ <span class="ot">&lt;-</span> <span class="fu">quantile</span>(asalariades<span class="sc">$</span>PP08D1, .<span class="dv">75</span>) <span class="sc">-</span></span>
+<span id="cb275-2"><a href="la-expresión-resumida-de-la-información.html#cb275-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">quantile</span>(asalariades<span class="sc">$</span>PP08D1, .<span class="dv">25</span>)</span>
+<span id="cb275-3"><a href="la-expresión-resumida-de-la-información.html#cb275-3" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(AIQ) <span class="ot">&lt;-</span> <span class="st">&quot;AIQ&quot;</span></span>
+<span id="cb275-4"><a href="la-expresión-resumida-de-la-información.html#cb275-4" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(AIQ, <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>##   AIQ 
 ## 13500</code></pre>
-<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="la-expresión-resumida-de-la-información.html#cb279-1"></a>SRIC &lt;-<span class="st"> </span>(<span class="kw">quantile</span>(asalariades<span class="op">$</span>PP08D1, <span class="fl">.75</span>) <span class="op">-</span></span>
-<span id="cb279-2"><a href="la-expresión-resumida-de-la-información.html#cb279-2"></a><span class="st">           </span><span class="kw">quantile</span>(asalariades<span class="op">$</span>PP08D1, <span class="fl">.25</span>)) <span class="op">/</span><span class="st"> </span><span class="dv">2</span></span>
-<span id="cb279-3"><a href="la-expresión-resumida-de-la-información.html#cb279-3"></a><span class="kw">names</span>(SRIC) &lt;-<span class="st"> &quot;SRIC&quot;</span></span>
-<span id="cb279-4"><a href="la-expresión-resumida-de-la-información.html#cb279-4"></a><span class="kw">round</span>(SRIC, <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="la-expresión-resumida-de-la-información.html#cb277-1" aria-hidden="true" tabindex="-1"></a>SRIC <span class="ot">&lt;-</span> (<span class="fu">quantile</span>(asalariades<span class="sc">$</span>PP08D1, .<span class="dv">75</span>) <span class="sc">-</span></span>
+<span id="cb277-2"><a href="la-expresión-resumida-de-la-información.html#cb277-2" aria-hidden="true" tabindex="-1"></a>           <span class="fu">quantile</span>(asalariades<span class="sc">$</span>PP08D1, .<span class="dv">25</span>)) <span class="sc">/</span> <span class="dv">2</span></span>
+<span id="cb277-3"><a href="la-expresión-resumida-de-la-información.html#cb277-3" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(SRIC) <span class="ot">&lt;-</span> <span class="st">&quot;SRIC&quot;</span></span>
+<span id="cb277-4"><a href="la-expresión-resumida-de-la-información.html#cb277-4" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(SRIC, <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## SRIC 
 ## 6750</code></pre>
-<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="la-expresión-resumida-de-la-información.html#cb281-1"></a>var &lt;-<span class="st"> </span><span class="kw">var</span>(asalariades<span class="op">$</span>PP08D1) <span class="co"># el cálculo de la varianza está en</span></span>
-<span id="cb281-2"><a href="la-expresión-resumida-de-la-información.html#cb281-2"></a><span class="co"># el paquete {base}</span></span>
-<span id="cb281-3"><a href="la-expresión-resumida-de-la-información.html#cb281-3"></a><span class="kw">names</span>(var) &lt;-<span class="st"> &quot;s2&quot;</span></span>
-<span id="cb281-4"><a href="la-expresión-resumida-de-la-información.html#cb281-4"></a><span class="kw">round</span>(var, <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="la-expresión-resumida-de-la-información.html#cb279-1" aria-hidden="true" tabindex="-1"></a>var <span class="ot">&lt;-</span> <span class="fu">var</span>(asalariades<span class="sc">$</span>PP08D1) <span class="co"># el cálculo de la varianza está en</span></span>
+<span id="cb279-2"><a href="la-expresión-resumida-de-la-información.html#cb279-2" aria-hidden="true" tabindex="-1"></a><span class="co"># el paquete {base}</span></span>
+<span id="cb279-3"><a href="la-expresión-resumida-de-la-información.html#cb279-3" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(var) <span class="ot">&lt;-</span> <span class="st">&quot;s2&quot;</span></span>
+<span id="cb279-4"><a href="la-expresión-resumida-de-la-información.html#cb279-4" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(var, <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>##        s2 
 ## 155835526</code></pre>
-<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="la-expresión-resumida-de-la-información.html#cb283-1"></a>s &lt;-<span class="st"> </span><span class="kw">sd</span>(asalariades<span class="op">$</span>PP08D1) <span class="co"># también la desviación estándar</span></span>
-<span id="cb283-2"><a href="la-expresión-resumida-de-la-información.html#cb283-2"></a><span class="kw">names</span>(s) &lt;-<span class="st"> &quot;s&quot;</span></span>
-<span id="cb283-3"><a href="la-expresión-resumida-de-la-información.html#cb283-3"></a><span class="kw">round</span>(s, <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="la-expresión-resumida-de-la-información.html#cb281-1" aria-hidden="true" tabindex="-1"></a>s <span class="ot">&lt;-</span> <span class="fu">sd</span>(asalariades<span class="sc">$</span>PP08D1) <span class="co"># también la desviación estándar</span></span>
+<span id="cb281-2"><a href="la-expresión-resumida-de-la-información.html#cb281-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(s) <span class="ot">&lt;-</span> <span class="st">&quot;s&quot;</span></span>
+<span id="cb281-3"><a href="la-expresión-resumida-de-la-información.html#cb281-3" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(s, <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>##        s 
 ## 12483.41</code></pre>
-<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="la-expresión-resumida-de-la-información.html#cb285-1"></a><span class="co"># al CV hay que definirlo</span></span>
-<span id="cb285-2"><a href="la-expresión-resumida-de-la-información.html#cb285-2"></a>CV &lt;-<span class="st"> </span><span class="kw">sd</span>(asalariades<span class="op">$</span>PP08D1) <span class="op">/</span><span class="st"> </span><span class="kw">mean</span>(asalariades<span class="op">$</span>PP08D1) <span class="op">*</span><span class="st"> </span><span class="dv">100</span> </span>
-<span id="cb285-3"><a href="la-expresión-resumida-de-la-información.html#cb285-3"></a></span>
-<span id="cb285-4"><a href="la-expresión-resumida-de-la-información.html#cb285-4"></a><span class="kw">names</span>(CV) &lt;-<span class="st"> &quot;CV&quot;</span></span>
-<span id="cb285-5"><a href="la-expresión-resumida-de-la-información.html#cb285-5"></a><span class="kw">round</span>(CV, <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="la-expresión-resumida-de-la-información.html#cb283-1" aria-hidden="true" tabindex="-1"></a><span class="co"># al CV hay que definirlo</span></span>
+<span id="cb283-2"><a href="la-expresión-resumida-de-la-información.html#cb283-2" aria-hidden="true" tabindex="-1"></a>CV <span class="ot">&lt;-</span> <span class="fu">sd</span>(asalariades<span class="sc">$</span>PP08D1) <span class="sc">/</span> <span class="fu">mean</span>(asalariades<span class="sc">$</span>PP08D1) <span class="sc">*</span> <span class="dv">100</span> </span>
+<span id="cb283-3"><a href="la-expresión-resumida-de-la-información.html#cb283-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb283-4"><a href="la-expresión-resumida-de-la-información.html#cb283-4" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(CV) <span class="ot">&lt;-</span> <span class="st">&quot;CV&quot;</span></span>
+<span id="cb283-5"><a href="la-expresión-resumida-de-la-información.html#cb283-5" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(CV, <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>##    CV 
 ## 72.52</code></pre>
 <p>En el paquete {base}, hay una función que ofrece el cálculo de algunas medidas descriptivas, se llama ‘summary’:</p>
-<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="la-expresión-resumida-de-la-información.html#cb287-1"></a><span class="kw">summary</span>(asalariades<span class="op">$</span>PP08D1)</span></code></pre></div>
+<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="la-expresión-resumida-de-la-información.html#cb285-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(asalariades<span class="sc">$</span>PP08D1)</span></code></pre></div>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##     200    8500   15000   17214   22000  220000</code></pre>
 <p>La medida relativa de la variabilidad (el <span class="math inline">\(CV\)</span>) es adecuada para comparar variables que tienen diferentes unidades, por ejemplo, sobre la base que contiene los puntajes que la muestra de niñas y niños obtuvo en una prueba de desarrollo de Bayley cabe preguntar ¿qué es más variable, el puntaje en la subescala motora o en la mental? Es decir, ¿en cuál de esas dos medidas se diferencian más los niños y las niñas que se sometieron a evaluación? Leemos la base:</p>
 <p>Calculamos los coeficientes de variación de los puntajes de las escalas motora y mental, por medio del cociente de la desviación estándar y la media de cada una, multiplicado por cien y redondeado a un decimal:</p>
-<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="la-expresión-resumida-de-la-información.html#cb289-1"></a>cv_motora &lt;-<span class="st"> </span><span class="kw">round</span>(</span>
-<span id="cb289-2"><a href="la-expresión-resumida-de-la-información.html#cb289-2"></a>  <span class="dv">100</span> <span class="op">*</span><span class="st"> </span><span class="kw">sd</span>(bayley<span class="op">$</span>baymotor) <span class="op">/</span><span class="st"> </span><span class="kw">mean</span>(bayley<span class="op">$</span>baymotor), <span class="dv">1</span>)</span>
-<span id="cb289-3"><a href="la-expresión-resumida-de-la-información.html#cb289-3"></a></span>
-<span id="cb289-4"><a href="la-expresión-resumida-de-la-información.html#cb289-4"></a>cv_mental &lt;-<span class="st"> </span><span class="kw">round</span>(</span>
-<span id="cb289-5"><a href="la-expresión-resumida-de-la-información.html#cb289-5"></a>  <span class="dv">100</span> <span class="op">*</span><span class="st"> </span><span class="kw">sd</span>(bayley<span class="op">$</span>bayment) <span class="op">/</span><span class="st"> </span><span class="kw">mean</span>(bayley<span class="op">$</span>bayment), <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="la-expresión-resumida-de-la-información.html#cb287-1" aria-hidden="true" tabindex="-1"></a>cv_motora <span class="ot">&lt;-</span> <span class="fu">round</span>(</span>
+<span id="cb287-2"><a href="la-expresión-resumida-de-la-información.html#cb287-2" aria-hidden="true" tabindex="-1"></a>  <span class="dv">100</span> <span class="sc">*</span> <span class="fu">sd</span>(bayley<span class="sc">$</span>baymotor) <span class="sc">/</span> <span class="fu">mean</span>(bayley<span class="sc">$</span>baymotor), <span class="dv">1</span>)</span>
+<span id="cb287-3"><a href="la-expresión-resumida-de-la-información.html#cb287-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb287-4"><a href="la-expresión-resumida-de-la-información.html#cb287-4" aria-hidden="true" tabindex="-1"></a>cv_mental <span class="ot">&lt;-</span> <span class="fu">round</span>(</span>
+<span id="cb287-5"><a href="la-expresión-resumida-de-la-información.html#cb287-5" aria-hidden="true" tabindex="-1"></a>  <span class="dv">100</span> <span class="sc">*</span> <span class="fu">sd</span>(bayley<span class="sc">$</span>bayment) <span class="sc">/</span> <span class="fu">mean</span>(bayley<span class="sc">$</span>bayment), <span class="dv">1</span>)</span></code></pre></div>
 <p>Y los observamos:</p>
-<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="la-expresión-resumida-de-la-información.html#cb290-1"></a><span class="kw">paste</span>(cv_motora, <span class="st">&quot;%&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="la-expresión-resumida-de-la-información.html#cb288-1" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(cv_motora, <span class="st">&quot;%&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;13.5 %&quot;</code></pre>
-<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="la-expresión-resumida-de-la-información.html#cb292-1"></a><span class="kw">paste</span>(cv_mental, <span class="st">&quot;%&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="la-expresión-resumida-de-la-información.html#cb290-1" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(cv_mental, <span class="st">&quot;%&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;14.9 %&quot;</code></pre>
 
 </div>
 </div>
 <h3>References</h3>
-<div id="refs" class="references">
-<div id="ref-Ballot2017">
-<p>Ballot, Daynia E, Tanusha Ramdin, David Rakotsoane, Faustine Agaba, Victor A Davies, Tobias Chirwa, and Peter A Cooper. 2017. “Use of the Bayley Scales of Infant and Toddler Development, Third Edition, to Assess Developmental Outcome in Infants and Young Children in an Urban Setting in South Africa.” <em>International Scholarly Research Notices</em> 2017: 1631760. <a href="https://doi.org/10.1155/2017/1631760">https://doi.org/10.1155/2017/1631760</a>.</p>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-Ballot2017" class="csl-entry">
+Ballot, Daynia E, Tanusha Ramdin, David Rakotsoane, Faustine Agaba, Victor A Davies, Tobias Chirwa, and Peter A Cooper. 2017. <span>“<span class="nocase">Use of the Bayley Scales of Infant and Toddler Development, Third Edition, to Assess Developmental Outcome in Infants and Young Children in an Urban Setting in South Africa.</span>”</span> <em>International Scholarly Research Notices</em> 2017: 1631760. <a href="https://doi.org/10.1155/2017/1631760">https://doi.org/10.1155/2017/1631760</a>.
 </div>
-<div id="ref-demindex2011">
-<p>Economist Intelligence Unit. 2011. “Democracy Index 2011.” London: EIU. <a href="https://ictlogy.net/bibliography/reports/projects.php?idp=2065">https://ictlogy.net/bibliography/reports/projects.php?idp=2065</a>.</p>
+<div id="ref-demindex2011" class="csl-entry">
+Economist Intelligence Unit. 2011. <span>“<span>Democracy Index 2011</span>.”</span> London: EIU. <a href="https://ictlogy.net/bibliography/reports/projects.php?idp=2065">https://ictlogy.net/bibliography/reports/projects.php?idp=2065</a>.
 </div>
-<div id="ref-INDEC2011a">
-<p>Indec. 2011. “Encuesta Permanente de Hogares Conceptos de Condición de Actividad, Subocupación Horaria y Categoría Ocupacional.” Buenos Aires: INDEC. <a href="https://www.indec.gov.ar/ftp/cuadros/menusuperior/eph/EPH%7B\_%7DConceptos.pdf">https://www.indec.gov.ar/ftp/cuadros/menusuperior/eph/EPH{\_}Conceptos.pdf</a>.</p>
+<div id="ref-INDEC2011a" class="csl-entry">
+INDEC. 2011. <span>“<span class="nocase">Encuesta Permanente de Hogares Conceptos de Condici<span class="nocase">ó</span>n de Actividad, Subocupaci<span class="nocase">ó</span>n Horaria y Categor<span class="nocase">í</span>a Ocupacional</span>.”</span> Buenos Aires: INDEC. <a href="https://www.indec.gov.ar/ftp/cuadros/menusuperior/eph/EPH{\_}Conceptos.pdf">https://www.indec.gov.ar/ftp/cuadros/menusuperior/eph/EPH{\_}Conceptos.pdf</a>.
 </div>
-<div id="ref-tukey77">
-<p>Tukey, John W. 1977. <em>Exploratory Data Analysis</em>. Addison-Wesley.</p>
+<div id="ref-tukey77" class="csl-entry">
+Tukey, John W. 1977. <em>Exploratory Data Analysis</em>. Addison-Wesley.
 </div>
 </div>
 <div class="footnotes">
@@ -3273,7 +3372,6 @@ propiedades de la media, resulta:</p>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -3292,6 +3390,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
@@ -3312,6 +3411,10 @@ gitbook.start({
 "text": null
 },
 "download": ["EstadisticaParaCienciasSocialesConR.pdf", "EstadisticaParaCienciasSocialesConR.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }
@@ -3325,7 +3428,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

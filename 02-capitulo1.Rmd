@@ -59,7 +59,7 @@ kableExtra::kable_styling(
 )
 ```
 
-Se lee que Clínica es un área preferida por cuatro estudiantes, Laboral y Educacional atrae a dos y a Social solo tiene una mención. Las personas desaparecieron, ya no hay nombres, hemos abstraído para referirnos al área preferida, no a las personas que las prefieren. En la tabla se ve que lo más frecuente es que se prefiera Clínica, y que Social es poco frecuente. Se pasó de la lista de personas reconocibles a la tabla de valores. Nos despegamos de los casos a fin de buscar la regularidad en el conjunto. Más adelante diremos que se ha pasado de la matriz de datos a la distribución de frecuencias, que constituye una reducción o un primer resumen de la información disponible. Esta operación es menos obvia de lo que puede parecer y es tardía en la historia de las idean, tiene origen en la publicación, de @gaunt1662 “Observaciones naturales y políticas hechas sobre los boletines de mortalidad”, quien tomó las listas de defunciones sucedidas en Londres durante veinte años en tiempos de la peste y las resumió en orden cronológico. Su operación fue la de cambiar la lista por la tabla, para observar al proceso (la mortalidad a lo largo del tiempo), en lugar de las muertes registradas individualmente.
+Se lee que Clínica es un área preferida por cuatro estudiantes, Laboral y Educacional atrae a dos y a Social solo tiene una mención. Las personas desaparecieron, ya no hay nombres, hemos abstraído para referirnos al área preferida, no a las personas que las prefieren. En la tabla se ve que lo más frecuente es que se prefiera Clínica, y que Social es poco frecuente. Se pasó de la lista de personas reconocibles a la tabla de valores. Nos despegamos de los casos a fin de buscar la regularidad en el conjunto. Más adelante diremos que se ha pasado de la matriz de datos a la distribución de frecuencias, que constituye una reducción o un primer resumen de la información disponible. Esta operación es menos obvia de lo que puede parecer y es tardía en la historia de las ideas, tiene origen en la publicación, de @gaunt1662 “Observaciones naturales y políticas hechas sobre los boletines de mortalidad”, quien tomó las listas de defunciones sucedidas en Londres durante veinte años en tiempos de la peste y las resumió en orden cronológico. Su operación fue la de cambiar la lista por la tabla, para observar al proceso (la mortalidad a lo largo del tiempo), en lugar de las muertes registradas individualmente.
 
 Consideremos el siguiente cuestionario, que se aplicó en 2019 a personas con edades 18 y 35 años. 
 
@@ -269,10 +269,10 @@ Es el nivel más elemental de medición: las variables de este nivel tienen cate
 ```{r}
 aux_table <- tibble::tribble(
   ~Código, ~Carrera, ~Código, ~Área,
-  1, "Psicología", 1, "Clínica",
-  2, "Filosofía", 2, "Educacional",
-  3, "Medicina", 3, "Jurídica",
-  4, "Otras", 4, "Laboral",
+  "1", "Psicología", 1, "Clínica",
+  "2", "Filosofía", 2, "Educacional",
+  "3", "Medicina", 3, "Jurídica",
+  "4", "Otras", 4, "Laboral",
   "", "", 5, "Sanitaria",
   "", "", 6, "Social",
   "", "", 7, "Experimental",
@@ -593,7 +593,7 @@ La lectura de los archivos .txt se puede realizar con varios comandos, que depen
 
 Conviene mirar la base original, desde el archivo .txt, que puede abrirse con bloc de notas, para asegurarse qué sepadores tiene.
 
-A continuación se usarán datos de la matriz de datos que proviene de la aplicación del cuestionario de la Figura \@ref(fig:cuestionario). La matriz (o base) de datos que tiene los datos cargados está en formato txt, tiene los campos separados por espacios en blanco y se llama base2019.txt. Para leer esa base, primero se ubica la ruta del archivo:
+A continuación se usarán datos de la matriz de datos que proviene de la aplicación del cuestionario que se mostró antes. La matriz (o base) de datos que tiene los datos cargados está en formato txt, tiene los campos separados por espacios en blanco y se llama base2019.txt. Para leer esa base, primero se ubica la ruta del archivo:
 
 ```{r eval=FALSE, echo=TRUE}
 file.choose()

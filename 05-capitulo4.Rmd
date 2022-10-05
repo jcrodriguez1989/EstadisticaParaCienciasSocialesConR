@@ -149,11 +149,11 @@ Si hemos recogido datos sobre estas características, la tabla podría quedar as
 aux_table <- tibble::tribble(
   ~"", ~"Relación", ~"con los", ~"pares", ~"",
   "**Tipo de hogar**", "Sumisión", "Rebeldía", "Liderazgo", "Total",
-  "Monoparental materno", 20, 30, 50, 100,
-  "Monoparental paterno", 10, 40, 15, 65,
-  "Nuclear", 5, 10, 25, 40,
-  "Extendido", 30, 20, 10, 60,
-  "Total", 65, 100, 100, 265,
+  "Monoparental materno", "20", "30", "50", "100",
+  "Monoparental paterno", "10", "40", "15", "65",
+  "Nuclear", "5", "10", "25", "40",
+  "Extendido", "30", "20", "10", "60",
+  "Total", "65", "100", "100", "265",
 )
 kableExtra::kable_styling(
   knitr::kable(aux_table,
@@ -213,11 +213,11 @@ dividirlas en el total general. Resulta así:
 aux_table <- tibble::tribble(
   ~"", ~"Relación", ~"con los", ~"pares", ~"",
   "**Tipo de hogar**", "Sumisión", "Rebeldía", "Liderazgo", "Total",
-  "Monoparental materno", 0.08, 0.11, 0.19, "**0.38**",
-  "Monoparental paterno", 0.04, "**0.15**", 0.06, 0.25,
-  "Nuclear", 0.02, 0.04, 0.09, 0.15,
-  "Extendido", 0.11, 0.08, 0.04, 0.23,
-  "Total", "**0.25**", 0.38, 0.38, 1.00,
+  "Monoparental materno", "0.08", "0.11", "0.19", "**0.38**",
+  "Monoparental paterno", "0.04", "**0.15**", "0.06", "0.25",
+  "Nuclear", "0.02", "0.04", "0.09", "0.15",
+  "Extendido", "0.11", "0.08", "0.04", "0.23",
+  "Total", "**0.25**", "0.38", "0.38", "1.00",
 )
 kableExtra::kable_styling(
   knitr::kable(aux_table,
@@ -464,8 +464,10 @@ Ejemplo (datos reales): usamos una pregunta del cuestionario del  Operativo Naci
 
 ```{r}
 one <- read.csv("bases/archivostxt/ONE_2000_cordoba.txt", sep = ";")
-levels(one$P16) <- c(NA, "si", "no", NA)
-one$P16 <- factor(one$P16)
+one$P16<-as.factor(one$P16)
+one<-subset(one, one$P16=="1" | one$P16=="2")
+one$P16<-droplevels(one$P16) 
+levels(one$P16)<- c("si", "no")
 levels(one$CATRENLEN) <- c(NA, "bajo", "alto")
 one$CATRENLEN <- factor(one$CATRENLEN)
 lectura_rendim_absolutas <- addmargins(table(one$P16, one$CATRENLEN))
@@ -475,6 +477,7 @@ dimnames(lectura_rendim_absolutas)[[2]][3] <- "Total"
 lectura_rendim_relativas <- round(addmargins(prop.table(table(one$P16, one$CATRENLEN), 1), 2), 2)
 dimnames(lectura_rendim_relativas)[[2]][3] <- "Total"
 
+
 ```
 
 
@@ -482,9 +485,9 @@ dimnames(lectura_rendim_relativas)[[2]][3] <- "Total"
 aux_table <- tibble::tribble(
   ~"Durante los últimos dos meses ¿Leíste o estás leyendo algún libro, además de los que te pidieron en la escuela?", ~"Puntaje prueba", ~"de de", ~"la Lengua",
   "", "Bajos", "Altos", "Total",
-  "Si", 2416, 9892, 12308,
-  "No", 3597, 9265, 12862,
-  "Total", 6013, 19157, 25170,
+  "Si", "2416", "9892", "12308",
+  "No", "3597", "9265", "12862",
+  "Total", "6013", "19157", "25170",
 )
 kableExtra::kable_styling(
   knitr::kable(aux_table, format = "markdown", booktabs = TRUE, align = "lccc", caption = "Distribución conjunta de la lectura extraescolar y el resultado en la prueba de lengua"),
@@ -541,9 +544,9 @@ rendimiento de sus estudiantes:
 aux_table <- tibble::tribble(
   ~"", ~"", ~"rendimiento", ~"", ~"",
   "**tipo de docente**", "alto", "medio", "bajo", "Total",
-  "Autoritario", 5, 35, 50, 90,
-  "Democrático", 260, 40, 10, 310,
-  "Total", 265, 75, 60, 400,
+  "Autoritario", "5", "35", "50", "90",
+  "Democrático", "260", "40", "10", "310",
+  "Total", "265", "75", "60", "400",
 )
 kableExtra::kable_styling(
   knitr::kable(aux_table,
