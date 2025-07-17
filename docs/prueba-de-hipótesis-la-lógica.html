@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Capítulo 11 Prueba de hipótesis: la lógica | Un Recorrido por los Métodos Cuantitativos en Ciencias Sociales a bordo de R</title>
   <meta name="description" content="Capítulo 11 Prueba de hipótesis: la lógica | Un Recorrido por los Métodos Cuantitativos en Ciencias Sociales a bordo de R" />
-  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Capítulo 11 Prueba de hipótesis: la lógica | Un Recorrido por los Métodos Cuantitativos en Ciencias Sociales a bordo de R" />
   <meta property="og:type" content="book" />
@@ -57,7 +57,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -67,7 +67,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -93,7 +93,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -106,7 +106,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -121,10 +121,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </style>
 
 <style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
 /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
 .hanging div.csl-entry {
   margin-left:2em;
@@ -161,146 +166,146 @@ div.csl-indent {
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Colaboradores</a>
 <ul>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#comité-editorial"><i class="fa fa-check"></i>Comité Editorial</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#edición-en-bookdown"><i class="fa fa-check"></i>Edición en bookdown</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#revisión-de-lenguaje-incluyente"><i class="fa fa-check"></i>Revisión de lenguaje incluyente</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#comit%C3%A9-editorial"><i class="fa fa-check"></i>Comité Editorial</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#edici%C3%B3n-en-bookdown"><i class="fa fa-check"></i>Edición en bookdown</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#revisi%C3%B3n-de-lenguaje-incluyente"><i class="fa fa-check"></i>Revisión de lenguaje incluyente</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="presentación.html"><a href="presentación.html"><i class="fa fa-check"></i>Presentación</a>
+<li class="chapter" data-level="" data-path=""><a href="#presentaci%C3%B3n"><i class="fa fa-check"></i>Presentación</a>
 <ul>
-<li class="chapter" data-level="" data-path="presentación.html"><a href="presentación.html#recorridos-posibles"><i class="fa fa-check"></i>Recorridos posibles</a></li>
+<li class="chapter" data-level="" data-path="presentación.html"><a href="presentación.html"><i class="fa fa-check"></i>Recorridos posibles</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="introducción.html"><a href="introducción.html"><i class="fa fa-check"></i>Introducción</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#introducci%C3%B3n"><i class="fa fa-check"></i>Introducción</a></li>
 <li class="chapter" data-level="" data-path="antes-de-empezar.html"><a href="antes-de-empezar.html"><i class="fa fa-check"></i>Antes de empezar</a>
 <ul>
 <li class="chapter" data-level="" data-path="antes-de-empezar.html"><a href="antes-de-empezar.html#materiales"><i class="fa fa-check"></i>Materiales</a>
 <ul>
 <li class="chapter" data-level="" data-path="antes-de-empezar.html"><a href="antes-de-empezar.html#encuesta-permanente-de-hogares"><i class="fa fa-check"></i>Encuesta Permanente de Hogares</a></li>
 <li class="chapter" data-level="" data-path="antes-de-empezar.html"><a href="antes-de-empezar.html#encuesta-nacional-de-factores-de-riesgo"><i class="fa fa-check"></i>Encuesta Nacional de Factores de Riesgo</a></li>
-<li class="chapter" data-level="" data-path="antes-de-empezar.html"><a href="antes-de-empezar.html#latinobarómetro"><i class="fa fa-check"></i>Latinobarómetro</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#latinobar%C3%B3metro"><i class="fa fa-check"></i>Latinobarómetro</a></li>
 <li class="chapter" data-level="" data-path="antes-de-empezar.html"><a href="antes-de-empezar.html#encuesta-nacional-sobre-prevalencias-de-consumo-de-sustancias-psicoactivas"><i class="fa fa-check"></i>Encuesta Nacional sobre Prevalencias de Consumo de Sustancias Psicoactivas</a></li>
-<li class="chapter" data-level="" data-path="antes-de-empezar.html"><a href="antes-de-empezar.html#aplicación-de-la-escala-de-bayley"><i class="fa fa-check"></i>Aplicación de la escala de Bayley</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#aplicaci%C3%B3n-de-la-escala-de-bayley"><i class="fa fa-check"></i>Aplicación de la escala de Bayley</a></li>
 <li class="chapter" data-level="" data-path="antes-de-empezar.html"><a href="antes-de-empezar.html#tercera-edad"><i class="fa fa-check"></i>Tercera edad</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="antes-de-empezar.html"><a href="antes-de-empezar.html#herramientas"><i class="fa fa-check"></i>Herramientas</a>
 <ul>
-<li class="chapter" data-level="" data-path="antes-de-empezar.html"><a href="antes-de-empezar.html#la-elección-de-r"><i class="fa fa-check"></i>La elección de R</a></li>
-<li class="chapter" data-level="" data-path="antes-de-empezar.html"><a href="antes-de-empezar.html#instalación-de-r-y-rstudio"><i class="fa fa-check"></i>Instalación de R y RStudio</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#la-elecci%C3%B3n-de-r"><i class="fa fa-check"></i>La elección de R</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#instalaci%C3%B3n-de-r-y-rstudio"><i class="fa fa-check"></i>Instalación de R y RStudio</a></li>
 <li class="chapter" data-level="" data-path="antes-de-empezar.html"><a href="antes-de-empezar.html#los-componentes-de-rstudio"><i class="fa fa-check"></i>Los componentes de RStudio</a></li>
 <li class="chapter" data-level="" data-path="antes-de-empezar.html"><a href="antes-de-empezar.html#operaciones-en-el-script"><i class="fa fa-check"></i>Operaciones en el script</a></li>
-<li class="chapter" data-level="" data-path="antes-de-empezar.html"><a href="antes-de-empezar.html#instalación-de-paquetes"><i class="fa fa-check"></i>Instalación de paquetes</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#instalaci%C3%B3n-de-paquetes"><i class="fa fa-check"></i>Instalación de paquetes</a></li>
 </ul></li>
 </ul></li>
 <li class="part"><span><b>I Estadística Descriptiva</b></span></li>
-<li class="chapter" data-level="1" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html"><i class="fa fa-check"></i><b>1</b> Los datos estadísticos</a>
+<li class="chapter" data-level="1" data-path="12-capitulo11.html"><a href="#los-datos-estad%C3%ADsticos"><i class="fa fa-check"></i><b>1</b> Los datos estadísticos</a>
 <ul>
-<li class="chapter" data-level="1.1" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#la-selección-de-la-información-pertinente"><i class="fa fa-check"></i><b>1.1</b> La selección de la información pertinente</a></li>
-<li class="chapter" data-level="1.2" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#las-entidades"><i class="fa fa-check"></i><b>1.2</b> Las entidades</a></li>
+<li class="chapter" data-level="1.1" data-path="12-capitulo11.html"><a href="#la-selecci%C3%B3n-de-la-informaci%C3%B3n-pertinente"><i class="fa fa-check"></i><b>1.1</b> La selección de la información pertinente</a></li>
+<li class="chapter" data-level="1.2" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html"><i class="fa fa-check"></i><b>1.2</b> Las entidades</a></li>
 <li class="chapter" data-level="1.3" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#las-variables"><i class="fa fa-check"></i><b>1.3</b> Las variables</a></li>
-<li class="chapter" data-level="1.4" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#las-categorías"><i class="fa fa-check"></i><b>1.4</b> Las categorías</a>
+<li class="chapter" data-level="1.4" data-path="12-capitulo11.html"><a href="#las-categor%C3%ADas"><i class="fa fa-check"></i><b>1.4</b> Las categorías</a>
 <ul>
-<li class="chapter" data-level="1.4.1" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#requisitos-de-las-categorías"><i class="fa fa-check"></i><b>1.4.1</b> Requisitos de las categorías</a></li>
+<li class="chapter" data-level="1.4.1" data-path="12-capitulo11.html"><a href="#requisitos-de-las-categor%C3%ADas"><i class="fa fa-check"></i><b>1.4.1</b> Requisitos de las categorías</a></li>
 </ul></li>
-<li class="chapter" data-level="1.5" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#los-símbolos-numéricos"><i class="fa fa-check"></i><b>1.5</b> Los símbolos numéricos</a></li>
-<li class="chapter" data-level="1.6" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#la-medición"><i class="fa fa-check"></i><b>1.6</b> La medición</a>
+<li class="chapter" data-level="1.5" data-path="12-capitulo11.html"><a href="#los-s%C3%ADmbolos-num%C3%A9ricos"><i class="fa fa-check"></i><b>1.5</b> Los símbolos numéricos</a></li>
+<li class="chapter" data-level="1.6" data-path="12-capitulo11.html"><a href="#la-medici%C3%B3n"><i class="fa fa-check"></i><b>1.6</b> La medición</a>
 <ul>
-<li class="chapter" data-level="1.6.1" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#niveles-de-medición"><i class="fa fa-check"></i><b>1.6.1</b> Niveles de medición</a></li>
+<li class="chapter" data-level="1.6.1" data-path="12-capitulo11.html"><a href="#niveles-de-medici%C3%B3n"><i class="fa fa-check"></i><b>1.6.1</b> Niveles de medición</a></li>
 </ul></li>
-<li class="chapter" data-level="1.7" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#resumen-de-los-niveles-de-medición"><i class="fa fa-check"></i><b>1.7</b> Resumen de los niveles de medición</a></li>
+<li class="chapter" data-level="1.7" data-path="12-capitulo11.html"><a href="#resumen-de-los-niveles-de-medici%C3%B3n"><i class="fa fa-check"></i><b>1.7</b> Resumen de los niveles de medición</a></li>
 <li class="chapter" data-level="1.8" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>1.8</b> Hacerlo en R</a>
 <ul>
 <li class="chapter" data-level="1.8.1" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#lectura-de-la-base"><i class="fa fa-check"></i><b>1.8.1</b> Lectura de la base</a></li>
 <li class="chapter" data-level="1.8.2" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#las-variables-1"><i class="fa fa-check"></i><b>1.8.2</b> Las variables</a></li>
-<li class="chapter" data-level="1.8.3" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#los-niveles-de-medición-en-r"><i class="fa fa-check"></i><b>1.8.3</b> Los niveles de medición en R</a></li>
+<li class="chapter" data-level="1.8.3" data-path="12-capitulo11.html"><a href="#los-niveles-de-medici%C3%B3n-en-r"><i class="fa fa-check"></i><b>1.8.3</b> Los niveles de medición en R</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html"><i class="fa fa-check"></i><b>2</b> Distribuciones de frecuencia</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#tablas-de-distribución-de-frecuencia"><i class="fa fa-check"></i><b>2.1</b> Tablas de distribución de frecuencia</a></li>
-<li class="chapter" data-level="2.2" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#recategorización"><i class="fa fa-check"></i><b>2.2</b> Recategorización</a>
+<li class="chapter" data-level="2.1" data-path="12-capitulo11.html"><a href="#tablas-de-distribuci%C3%B3n-de-frecuencia"><i class="fa fa-check"></i><b>2.1</b> Tablas de distribución de frecuencia</a></li>
+<li class="chapter" data-level="2.2" data-path="12-capitulo11.html"><a href="#recategorizaci%C3%B3n"><i class="fa fa-check"></i><b>2.2</b> Recategorización</a>
 <ul>
-<li class="chapter" data-level="2.2.1" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#variable-discreta-con-muchas-categorías"><i class="fa fa-check"></i><b>2.2.1</b> Variable discreta con muchas categorías</a></li>
+<li class="chapter" data-level="2.2.1" data-path="12-capitulo11.html"><a href="#variable-discreta-con-muchas-categor%C3%ADas"><i class="fa fa-check"></i><b>2.2.1</b> Variable discreta con muchas categorías</a></li>
 <li class="chapter" data-level="2.2.2" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#variable-continua"><i class="fa fa-check"></i><b>2.2.2</b> Variable continua</a></li>
 <li class="chapter" data-level="2.2.3" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#formas-de-recategorizar"><i class="fa fa-check"></i><b>2.2.3</b> Formas de recategorizar</a></li>
 </ul></li>
-<li class="chapter" data-level="2.3" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#la-presentación-gráfica-de-los-resultados"><i class="fa fa-check"></i><b>2.3</b> La presentación gráfica de los resultados</a></li>
+<li class="chapter" data-level="2.3" data-path="12-capitulo11.html"><a href="#la-presentaci%C3%B3n-gr%C3%A1fica-de-los-resultados"><i class="fa fa-check"></i><b>2.3</b> La presentación gráfica de los resultados</a></li>
 <li class="chapter" data-level="2.4" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#hacerlo-en-r-1"><i class="fa fa-check"></i><b>2.4</b> Hacerlo en R</a>
 <ul>
 <li class="chapter" data-level="2.4.1" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#tablas-univariadas"><i class="fa fa-check"></i><b>2.4.1</b> Tablas univariadas</a></li>
-<li class="chapter" data-level="2.4.2" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#recategorización-1"><i class="fa fa-check"></i><b>2.4.2</b> Recategorización</a></li>
-<li class="chapter" data-level="2.4.3" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#representaciones-gráficas"><i class="fa fa-check"></i><b>2.4.3</b> Representaciones gráficas</a></li>
+<li class="chapter" data-level="2.4.2" data-path="12-capitulo11.html"><a href="#recategorizaci%C3%B3n-1"><i class="fa fa-check"></i><b>2.4.2</b> Recategorización</a></li>
+<li class="chapter" data-level="2.4.3" data-path="12-capitulo11.html"><a href="#representaciones-gr%C3%A1ficas"><i class="fa fa-check"></i><b>2.4.3</b> Representaciones gráficas</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html"><i class="fa fa-check"></i><b>3</b> La expresión resumida de la información</a>
+<li class="chapter" data-level="3" data-path="12-capitulo11.html"><a href="#la-expresi%C3%B3n-resumida-de-la-informaci%C3%B3n"><i class="fa fa-check"></i><b>3</b> La expresión resumida de la información</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#medidas-de-posición"><i class="fa fa-check"></i><b>3.1</b> Medidas de posición</a>
+<li class="chapter" data-level="3.1" data-path="12-capitulo11.html"><a href="#medidas-de-posici%C3%B3n"><i class="fa fa-check"></i><b>3.1</b> Medidas de posición</a>
 <ul>
-<li class="chapter" data-level="3.1.1" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#variables-nominales-proporciones"><i class="fa fa-check"></i><b>3.1.1</b> Variables nominales: proporciones</a></li>
+<li class="chapter" data-level="3.1.1" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html"><i class="fa fa-check"></i><b>3.1.1</b> Variables nominales: proporciones</a></li>
 <li class="chapter" data-level="3.1.2" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#variables-nominales-tasas"><i class="fa fa-check"></i><b>3.1.2</b> Variables nominales: tasas</a></li>
 <li class="chapter" data-level="3.1.3" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#variables-nominales-razones"><i class="fa fa-check"></i><b>3.1.3</b> Variables nominales: razones</a></li>
 <li class="chapter" data-level="3.1.4" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#variables-nominales-el-modo"><i class="fa fa-check"></i><b>3.1.4</b> Variables nominales: el modo</a></li>
 <li class="chapter" data-level="3.1.5" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#variables-ordinales-cuantiles"><i class="fa fa-check"></i><b>3.1.5</b> Variables ordinales: cuantiles</a></li>
-<li class="chapter" data-level="3.1.6" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#variables-métricas-la-media-o-promedio"><i class="fa fa-check"></i><b>3.1.6</b> Variables métricas: la media o promedio</a></li>
+<li class="chapter" data-level="3.1.6" data-path="12-capitulo11.html"><a href="#variables-m%C3%A9tricas-la-media-o-promedio"><i class="fa fa-check"></i><b>3.1.6</b> Variables métricas: la media o promedio</a></li>
 </ul></li>
-<li class="chapter" data-level="3.2" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#la-forma-de-la-distribución"><i class="fa fa-check"></i><b>3.2</b> La forma de la distribución</a>
+<li class="chapter" data-level="3.2" data-path="12-capitulo11.html"><a href="#la-forma-de-la-distribuci%C3%B3n"><i class="fa fa-check"></i><b>3.2</b> La forma de la distribución</a>
 <ul>
-<li class="chapter" data-level="3.2.1" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#asimetría"><i class="fa fa-check"></i><b>3.2.1</b> Asimetría</a></li>
+<li class="chapter" data-level="3.2.1" data-path="12-capitulo11.html"><a href="#asimetr%C3%ADa"><i class="fa fa-check"></i><b>3.2.1</b> Asimetría</a></li>
 <li class="chapter" data-level="3.2.2" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#curtosis"><i class="fa fa-check"></i><b>3.2.2</b> Curtosis</a></li>
 <li class="chapter" data-level="3.2.3" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#box-plots"><i class="fa fa-check"></i><b>3.2.3</b> Box-plots</a></li>
 </ul></li>
-<li class="chapter" data-level="3.3" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#medidas-de-dispersión"><i class="fa fa-check"></i><b>3.3</b> Medidas de dispersión</a>
+<li class="chapter" data-level="3.3" data-path="12-capitulo11.html"><a href="#medidas-de-dispersi%C3%B3n"><i class="fa fa-check"></i><b>3.3</b> Medidas de dispersión</a>
 <ul>
 <li class="chapter" data-level="3.3.1" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#recorrido"><i class="fa fa-check"></i><b>3.3.1</b> Recorrido</a></li>
-<li class="chapter" data-level="3.3.2" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#amplitud-intercuartílica"><i class="fa fa-check"></i><b>3.3.2</b> Amplitud intercuartílica</a></li>
-<li class="chapter" data-level="3.3.3" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#medidas-de-dispersión-basadas-en-la-media"><i class="fa fa-check"></i><b>3.3.3</b> Medidas de dispersión basadas en la media</a></li>
+<li class="chapter" data-level="3.3.2" data-path="12-capitulo11.html"><a href="#amplitud-intercuart%C3%ADlica"><i class="fa fa-check"></i><b>3.3.2</b> Amplitud intercuartílica</a></li>
+<li class="chapter" data-level="3.3.3" data-path="12-capitulo11.html"><a href="#medidas-de-dispersi%C3%B3n-basadas-en-la-media"><i class="fa fa-check"></i><b>3.3.3</b> Medidas de dispersión basadas en la media</a></li>
 <li class="chapter" data-level="3.3.4" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#varianza"><i class="fa fa-check"></i><b>3.3.4</b> Varianza</a></li>
-<li class="chapter" data-level="3.3.5" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#desviación-estándar"><i class="fa fa-check"></i><b>3.3.5</b> Desviación estándar</a></li>
-<li class="chapter" data-level="3.3.6" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#coeficiente-de-variación"><i class="fa fa-check"></i><b>3.3.6</b> Coeficiente de variación</a></li>
-<li class="chapter" data-level="3.3.7" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#box-plots-y-dispersión"><i class="fa fa-check"></i><b>3.3.7</b> Box-plots y dispersión</a></li>
-<li class="chapter" data-level="3.3.8" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#medida-de-la-dispersión-cuando-no-hay-distancias"><i class="fa fa-check"></i><b>3.3.8</b> Medida de la dispersión cuando no hay distancias</a></li>
+<li class="chapter" data-level="3.3.5" data-path="12-capitulo11.html"><a href="#desviaci%C3%B3n-est%C3%A1ndar"><i class="fa fa-check"></i><b>3.3.5</b> Desviación estándar</a></li>
+<li class="chapter" data-level="3.3.6" data-path="12-capitulo11.html"><a href="#coeficiente-de-variaci%C3%B3n"><i class="fa fa-check"></i><b>3.3.6</b> Coeficiente de variación</a></li>
+<li class="chapter" data-level="3.3.7" data-path="12-capitulo11.html"><a href="#box-plots-y-dispersi%C3%B3n"><i class="fa fa-check"></i><b>3.3.7</b> Box-plots y dispersión</a></li>
+<li class="chapter" data-level="3.3.8" data-path="12-capitulo11.html"><a href="#medida-de-la-dispersi%C3%B3n-cuando-no-hay-distancias"><i class="fa fa-check"></i><b>3.3.8</b> Medida de la dispersión cuando no hay distancias</a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#el-individuo-en-relación-a-su-grupo"><i class="fa fa-check"></i><b>3.4</b> El individuo en relación a su grupo</a></li>
+<li class="chapter" data-level="3.4" data-path="12-capitulo11.html"><a href="#el-individuo-en-relaci%C3%B3n-a-su-grupo"><i class="fa fa-check"></i><b>3.4</b> El individuo en relación a su grupo</a></li>
 <li class="chapter" data-level="3.5" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#resumen-de-medidas-descriptivas"><i class="fa fa-check"></i><b>3.5</b> Resumen de medidas descriptivas</a>
 <ul>
-<li class="chapter" data-level="3.5.1" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#medidas-de-posición-1"><i class="fa fa-check"></i><b>3.5.1</b> Medidas de posición</a></li>
-<li class="chapter" data-level="3.5.2" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#medidas-de-dispersión-1"><i class="fa fa-check"></i><b>3.5.2</b> Medidas de dispersión</a></li>
+<li class="chapter" data-level="3.5.1" data-path="12-capitulo11.html"><a href="#medidas-de-posici%C3%B3n-1"><i class="fa fa-check"></i><b>3.5.1</b> Medidas de posición</a></li>
+<li class="chapter" data-level="3.5.2" data-path="12-capitulo11.html"><a href="#medidas-de-dispersi%C3%B3n-1"><i class="fa fa-check"></i><b>3.5.2</b> Medidas de dispersión</a></li>
 </ul></li>
 <li class="chapter" data-level="3.6" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#hacerlo-en-r-2"><i class="fa fa-check"></i><b>3.6</b> Hacerlo en R</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html"><i class="fa fa-check"></i><b>4</b> Relación entre variables: los fundamentos</a>
+<li class="chapter" data-level="4" data-path="12-capitulo11.html"><a href="#relaci%C3%B3n-entre-variables-los-fundamentos"><i class="fa fa-check"></i><b>4</b> Relación entre variables: los fundamentos</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#tablas-de-contingencia"><i class="fa fa-check"></i><b>4.1</b> Tablas de contingencia</a></li>
+<li class="chapter" data-level="4.1" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html"><i class="fa fa-check"></i><b>4.1</b> Tablas de contingencia</a></li>
 <li class="chapter" data-level="4.2" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#frecuencias-relativas"><i class="fa fa-check"></i><b>4.2</b> Frecuencias relativas</a></li>
-<li class="chapter" data-level="4.3" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#una-clasificación-en-referencia-al-tiempo"><i class="fa fa-check"></i><b>4.3</b> Una clasificación en referencia al tiempo</a></li>
-<li class="chapter" data-level="4.4" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#la-dirección-de-la-relación"><i class="fa fa-check"></i><b>4.4</b> La dirección de la relación</a></li>
+<li class="chapter" data-level="4.3" data-path="12-capitulo11.html"><a href="#una-clasificaci%C3%B3n-en-referencia-al-tiempo"><i class="fa fa-check"></i><b>4.3</b> Una clasificación en referencia al tiempo</a></li>
+<li class="chapter" data-level="4.4" data-path="12-capitulo11.html"><a href="#la-direcci%C3%B3n-de-la-relaci%C3%B3n"><i class="fa fa-check"></i><b>4.4</b> La dirección de la relación</a></li>
 <li class="chapter" data-level="4.5" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#concepto-de-riesgo-relativo"><i class="fa fa-check"></i><b>4.5</b> Concepto de riesgo relativo</a></li>
 <li class="chapter" data-level="4.6" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#la-intensidad"><i class="fa fa-check"></i><b>4.6</b> La intensidad</a></li>
-<li class="chapter" data-level="4.7" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#el-concepto-de-independencia-estadística"><i class="fa fa-check"></i><b>4.7</b> El concepto de independencia estadística</a></li>
+<li class="chapter" data-level="4.7" data-path="12-capitulo11.html"><a href="#el-concepto-de-independencia-estad%C3%ADstica"><i class="fa fa-check"></i><b>4.7</b> El concepto de independencia estadística</a></li>
 <li class="chapter" data-level="4.8" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#hacerlo-en-r-3"><i class="fa fa-check"></i><b>4.8</b> Hacerlo en R</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html"><i class="fa fa-check"></i><b>5</b> Relación entre variables: el análisis</a>
+<li class="chapter" data-level="5" data-path="12-capitulo11.html"><a href="#relaci%C3%B3n-entre-variables-el-an%C3%A1lisis"><i class="fa fa-check"></i><b>5</b> Relación entre variables: el análisis</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#relaciones-entre-variables-vs.-comparación-de-grupos"><i class="fa fa-check"></i><b>5.1</b> Relaciones entre variables vs. comparación de grupos</a></li>
-<li class="chapter" data-level="5.2" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#variables-nominales"><i class="fa fa-check"></i><b>5.2</b> Variables nominales</a>
+<li class="chapter" data-level="5.1" data-path="12-capitulo11.html"><a href="#relaciones-entre-variables-vs.-comparaci%C3%B3n-de-grupos"><i class="fa fa-check"></i><b>5.1</b> Relaciones entre variables vs. comparación de grupos</a></li>
+<li class="chapter" data-level="5.2" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html"><i class="fa fa-check"></i><b>5.2</b> Variables nominales</a>
 <ul>
-<li class="chapter" data-level="5.2.1" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#coeficientes-de-asociación-para-variables-nominales"><i class="fa fa-check"></i><b>5.2.1</b> Coeficientes de asociación para variables nominales</a></li>
+<li class="chapter" data-level="5.2.1" data-path="12-capitulo11.html"><a href="#coeficientes-de-asociaci%C3%B3n-para-variables-nominales"><i class="fa fa-check"></i><b>5.2.1</b> Coeficientes de asociación para variables nominales</a></li>
 </ul></li>
 <li class="chapter" data-level="5.3" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#variables-de-nivel-ordinal"><i class="fa fa-check"></i><b>5.3</b> Variables de nivel ordinal</a></li>
 <li class="chapter" data-level="5.4" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#nivel-intervalar-o-proporcional"><i class="fa fa-check"></i><b>5.4</b> Nivel intervalar o proporcional</a></li>
-<li class="chapter" data-level="5.5" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#dicotomías-reales-y-artificiales"><i class="fa fa-check"></i><b>5.5</b> Dicotomías reales y artificiales</a></li>
-<li class="chapter" data-level="5.6" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#niveles-de-medición-combinados"><i class="fa fa-check"></i><b>5.6</b> Niveles de medición combinados</a>
+<li class="chapter" data-level="5.5" data-path="12-capitulo11.html"><a href="#dicotom%C3%ADas-reales-y-artificiales"><i class="fa fa-check"></i><b>5.5</b> Dicotomías reales y artificiales</a></li>
+<li class="chapter" data-level="5.6" data-path="12-capitulo11.html"><a href="#niveles-de-medici%C3%B3n-combinados"><i class="fa fa-check"></i><b>5.6</b> Niveles de medición combinados</a>
 <ul>
-<li class="chapter" data-level="5.6.1" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#una-variable-dicotómica-real-y-una-proporcional"><i class="fa fa-check"></i><b>5.6.1</b> Una variable dicotómica real y una proporcional</a></li>
+<li class="chapter" data-level="5.6.1" data-path="12-capitulo11.html"><a href="#una-variable-dicot%C3%B3mica-real-y-una-proporcional"><i class="fa fa-check"></i><b>5.6.1</b> Una variable dicotómica real y una proporcional</a></li>
 <li class="chapter" data-level="5.6.2" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#una-variable-continua-dicotomizada-y-una-proporcional"><i class="fa fa-check"></i><b>5.6.2</b> Una variable continua dicotomizada y una proporcional</a></li>
 </ul></li>
-<li class="chapter" data-level="5.7" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#resumen-de-coeficientes-de-asociación"><i class="fa fa-check"></i><b>5.7</b> Resumen de coeficientes de asociación</a></li>
+<li class="chapter" data-level="5.7" data-path="12-capitulo11.html"><a href="#resumen-de-coeficientes-de-asociaci%C3%B3n"><i class="fa fa-check"></i><b>5.7</b> Resumen de coeficientes de asociación</a></li>
 <li class="chapter" data-level="5.8" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#matriz-de-correlaciones"><i class="fa fa-check"></i><b>5.8</b> Matriz de correlaciones</a></li>
-<li class="chapter" data-level="5.9" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#la-forma-de-la-relación"><i class="fa fa-check"></i><b>5.9</b> La forma de la relación</a>
+<li class="chapter" data-level="5.9" data-path="12-capitulo11.html"><a href="#la-forma-de-la-relaci%C3%B3n"><i class="fa fa-check"></i><b>5.9</b> La forma de la relación</a>
 <ul>
 <li class="chapter" data-level="5.9.1" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#ordenada-al-origen"><i class="fa fa-check"></i><b>5.9.1</b> Ordenada al origen</a></li>
 <li class="chapter" data-level="5.9.2" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#pendiente"><i class="fa fa-check"></i><b>5.9.2</b> Pendiente</a></li>
-<li class="chapter" data-level="5.9.3" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#obtención-de-la-recta-de-regresión"><i class="fa fa-check"></i><b>5.9.3</b> Obtención de la recta de regresión</a></li>
+<li class="chapter" data-level="5.9.3" data-path="12-capitulo11.html"><a href="#obtenci%C3%B3n-de-la-recta-de-regresi%C3%B3n"><i class="fa fa-check"></i><b>5.9.3</b> Obtención de la recta de regresión</a></li>
 </ul></li>
-<li class="chapter" data-level="5.10" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#la-visualización-de-los-datos"><i class="fa fa-check"></i><b>5.10</b> La visualización de los datos</a></li>
+<li class="chapter" data-level="5.10" data-path="12-capitulo11.html"><a href="#la-visualizaci%C3%B3n-de-los-datos"><i class="fa fa-check"></i><b>5.10</b> La visualización de los datos</a></li>
 <li class="chapter" data-level="5.11" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#hacerlo-en-r-4"><i class="fa fa-check"></i><b>5.11</b> Hacerlo en R</a>
 <ul>
 <li class="chapter" data-level="5.11.1" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#distancia-chi2"><i class="fa fa-check"></i><b>5.11.1</b> Distancia <span class="math inline">\(\chi^{2}\)</span></a></li>
@@ -311,28 +316,28 @@ div.csl-indent {
 </ul></li>
 </ul></li>
 <li class="part"><span><b>II De la descripción a la inferencia</b></span></li>
-<li class="chapter" data-level="6" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html"><i class="fa fa-check"></i><b>6</b> Obtención de la muestra</a>
+<li class="chapter" data-level="6" data-path="12-capitulo11.html"><a href="#obtenci%C3%B3n-de-la-muestra"><i class="fa fa-check"></i><b>6</b> Obtención de la muestra</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#población"><i class="fa fa-check"></i><b>6.1</b> Población</a>
+<li class="chapter" data-level="6.1" data-path="12-capitulo11.html"><a href="#poblaci%C3%B3n"><i class="fa fa-check"></i><b>6.1</b> Población</a>
 <ul>
-<li class="chapter" data-level="6.1.1" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestra"><i class="fa fa-check"></i><b>6.1.1</b> Muestra</a></li>
+<li class="chapter" data-level="6.1.1" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html"><i class="fa fa-check"></i><b>6.1.1</b> Muestra</a></li>
 </ul></li>
-<li class="chapter" data-level="6.2" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreos-probabilísticos"><i class="fa fa-check"></i><b>6.2</b> Muestreos probabilísticos</a>
+<li class="chapter" data-level="6.2" data-path="12-capitulo11.html"><a href="#muestreos-probabil%C3%ADsticos"><i class="fa fa-check"></i><b>6.2</b> Muestreos probabilísticos</a>
 <ul>
 <li class="chapter" data-level="6.2.1" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-irrestricto-aleatorio-o-aleatorio-simple"><i class="fa fa-check"></i><b>6.2.1</b> Muestreo irrestricto aleatorio o aleatorio simple</a></li>
-<li class="chapter" data-level="6.2.2" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-sistemático"><i class="fa fa-check"></i><b>6.2.2</b> Muestreo sistemático</a></li>
+<li class="chapter" data-level="6.2.2" data-path="12-capitulo11.html"><a href="#muestreo-sistem%C3%A1tico"><i class="fa fa-check"></i><b>6.2.2</b> Muestreo sistemático</a></li>
 <li class="chapter" data-level="6.2.3" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-estratificado"><i class="fa fa-check"></i><b>6.2.3</b> Muestreo estratificado</a></li>
 <li class="chapter" data-level="6.2.4" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-por-conglomerados"><i class="fa fa-check"></i><b>6.2.4</b> Muestreo por conglomerados</a></li>
-<li class="chapter" data-level="6.2.5" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#método-de-kish"><i class="fa fa-check"></i><b>6.2.5</b> Método de Kish</a></li>
-<li class="chapter" data-level="6.2.6" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#uso-combinado-de-técnicas-de-muestreo"><i class="fa fa-check"></i><b>6.2.6</b> Uso combinado de técnicas de muestreo</a></li>
+<li class="chapter" data-level="6.2.5" data-path="12-capitulo11.html"><a href="#m%C3%A9todo-de-kish"><i class="fa fa-check"></i><b>6.2.5</b> Método de Kish</a></li>
+<li class="chapter" data-level="6.2.6" data-path="12-capitulo11.html"><a href="#uso-combinado-de-t%C3%A9cnicas-de-muestreo"><i class="fa fa-check"></i><b>6.2.6</b> Uso combinado de técnicas de muestreo</a></li>
 <li class="chapter" data-level="6.2.7" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-de-panel"><i class="fa fa-check"></i><b>6.2.7</b> Muestreo de panel</a></li>
 </ul></li>
-<li class="chapter" data-level="6.3" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreos-no-probabilísticos"><i class="fa fa-check"></i><b>6.3</b> Muestreos no probabilísticos</a>
+<li class="chapter" data-level="6.3" data-path="12-capitulo11.html"><a href="#muestreos-no-probabil%C3%ADsticos"><i class="fa fa-check"></i><b>6.3</b> Muestreos no probabilísticos</a>
 <ul>
 <li class="chapter" data-level="6.3.1" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-por-cuotas"><i class="fa fa-check"></i><b>6.3.1</b> Muestreo por cuotas</a></li>
 <li class="chapter" data-level="6.3.2" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-de-juicio-o-intencional"><i class="fa fa-check"></i><b>6.3.2</b> Muestreo de juicio o intencional</a></li>
 <li class="chapter" data-level="6.3.3" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-autoelegido"><i class="fa fa-check"></i><b>6.3.3</b> Muestreo autoelegido</a></li>
-<li class="chapter" data-level="6.3.4" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-accidental-o-según-disponibilidad"><i class="fa fa-check"></i><b>6.3.4</b> Muestreo accidental o según disponibilidad</a></li>
+<li class="chapter" data-level="6.3.4" data-path="12-capitulo11.html"><a href="#muestreo-accidental-o-seg%C3%BAn-disponibilidad"><i class="fa fa-check"></i><b>6.3.4</b> Muestreo accidental o según disponibilidad</a></li>
 <li class="chapter" data-level="6.3.5" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-bola-de-nieve"><i class="fa fa-check"></i><b>6.3.5</b> Muestreo bola de nieve</a></li>
 </ul></li>
 <li class="chapter" data-level="6.4" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#hacerlo-en-r-5"><i class="fa fa-check"></i><b>6.4</b> Hacerlo en R</a>
@@ -345,9 +350,9 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="7.1" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#formas-para-asignar-probabilidades"><i class="fa fa-check"></i><b>7.1</b> Formas para asignar probabilidades</a>
 <ul>
-<li class="chapter" data-level="7.1.1" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#asignación-a-priori"><i class="fa fa-check"></i><b>7.1.1</b> Asignación a priori</a></li>
-<li class="chapter" data-level="7.1.2" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#asignación-a-posteriori"><i class="fa fa-check"></i><b>7.1.2</b> Asignación a posteriori</a></li>
-<li class="chapter" data-level="7.1.3" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#la-relación-entre-asignación-a-priori-y-a-posteriori"><i class="fa fa-check"></i><b>7.1.3</b> La relación entre asignación a priori y a posteriori</a></li>
+<li class="chapter" data-level="7.1.1" data-path="12-capitulo11.html"><a href="#asignaci%C3%B3n-a-priori"><i class="fa fa-check"></i><b>7.1.1</b> Asignación a priori</a></li>
+<li class="chapter" data-level="7.1.2" data-path="12-capitulo11.html"><a href="#asignaci%C3%B3n-a-posteriori"><i class="fa fa-check"></i><b>7.1.2</b> Asignación a posteriori</a></li>
+<li class="chapter" data-level="7.1.3" data-path="12-capitulo11.html"><a href="#la-relaci%C3%B3n-entre-asignaci%C3%B3n-a-priori-y-a-posteriori"><i class="fa fa-check"></i><b>7.1.3</b> La relación entre asignación a priori y a posteriori</a></li>
 </ul></li>
 <li class="chapter" data-level="7.2" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#operando-con-probabilidades"><i class="fa fa-check"></i><b>7.2</b> Operando con probabilidades</a>
 <ul>
@@ -359,27 +364,27 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="8" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html"><i class="fa fa-check"></i><b>8</b> Probabilidad: los modelos</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#concepto-de-modelización"><i class="fa fa-check"></i><b>8.1</b> Concepto de modelización</a></li>
-<li class="chapter" data-level="8.2" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#distribución-binomial"><i class="fa fa-check"></i><b>8.2</b> Distribución binomial</a>
+<li class="chapter" data-level="8.1" data-path="12-capitulo11.html"><a href="#concepto-de-modelizaci%C3%B3n"><i class="fa fa-check"></i><b>8.1</b> Concepto de modelización</a></li>
+<li class="chapter" data-level="8.2" data-path="12-capitulo11.html"><a href="#distribuci%C3%B3n-binomial"><i class="fa fa-check"></i><b>8.2</b> Distribución binomial</a>
 <ul>
 <li class="chapter" data-level="8.2.1" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#esperanza-y-varianza"><i class="fa fa-check"></i><b>8.2.1</b> Esperanza y varianza</a></li>
 </ul></li>
-<li class="chapter" data-level="8.3" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#distribución-normal"><i class="fa fa-check"></i><b>8.3</b> Distribución normal</a>
+<li class="chapter" data-level="8.3" data-path="12-capitulo11.html"><a href="#distribuci%C3%B3n-normal"><i class="fa fa-check"></i><b>8.3</b> Distribución normal</a>
 <ul>
 <li class="chapter" data-level="8.3.1" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#cuantiles"><i class="fa fa-check"></i><b>8.3.1</b> Cuantiles</a></li>
 </ul></li>
 <li class="chapter" data-level="8.4" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#la-idea-de-grados-de-libertad"><i class="fa fa-check"></i><b>8.4</b> La idea de grados de libertad</a></li>
-<li class="chapter" data-level="8.5" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#la-distribución-ji-cuadrado-chi2"><i class="fa fa-check"></i><b>8.5</b> La distribución ji cuadrado (<span class="math inline">\(\chi^{2}\)</span>)</a></li>
-<li class="chapter" data-level="8.6" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#la-distribución-t-de-student"><i class="fa fa-check"></i><b>8.6</b> La distribución t de Student</a>
+<li class="chapter" data-level="8.5" data-path="12-capitulo11.html"><a href="#la-distribuci%C3%B3n-ji-cuadrado-chi2"><i class="fa fa-check"></i><b>8.5</b> La distribución ji cuadrado (<span class="math inline">\(\chi^{2}\)</span>)</a></li>
+<li class="chapter" data-level="8.6" data-path="12-capitulo11.html"><a href="#la-distribuci%C3%B3n-t-de-student"><i class="fa fa-check"></i><b>8.6</b> La distribución t de Student</a>
 <ul>
-<li class="chapter" data-level="8.6.1" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#la-distribución-f"><i class="fa fa-check"></i><b>8.6.1</b> La distribución F</a></li>
+<li class="chapter" data-level="8.6.1" data-path="12-capitulo11.html"><a href="#la-distribuci%C3%B3n-f"><i class="fa fa-check"></i><b>8.6.1</b> La distribución F</a></li>
 </ul></li>
 <li class="chapter" data-level="8.7" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#hacerlo-en-r-6"><i class="fa fa-check"></i><b>8.7</b> Hacerlo en R</a>
 <ul>
 <li class="chapter" data-level="8.7.1" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#probabilidades-exactas"><i class="fa fa-check"></i><b>8.7.1</b> Probabilidades exactas</a></li>
 <li class="chapter" data-level="8.7.2" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#probabilidades-acumuladas"><i class="fa fa-check"></i><b>8.7.2</b> Probabilidades acumuladas</a></li>
 <li class="chapter" data-level="8.7.3" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#cuantiles-1"><i class="fa fa-check"></i><b>8.7.3</b> Cuantiles</a></li>
-<li class="chapter" data-level="8.7.4" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#áreas-centrales"><i class="fa fa-check"></i><b>8.7.4</b> Áreas centrales</a></li>
+<li class="chapter" data-level="8.7.4" data-path="12-capitulo11.html"><a href="#%C3%A1reas-centrales"><i class="fa fa-check"></i><b>8.7.4</b> Áreas centrales</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html"><i class="fa fa-check"></i><b>9</b> Distribuciones en el muestreo</a>
@@ -388,7 +393,7 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="9.1.1" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#dos-aspectos-importantes-para-recordar-cuando-se-usan-muestras"><i class="fa fa-check"></i><b>9.1.1</b> Dos aspectos importantes para recordar cuando se usan muestras:</a></li>
 </ul></li>
-<li class="chapter" data-level="9.2" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#características-de-los-estimadores"><i class="fa fa-check"></i><b>9.2</b> Características de los estimadores</a>
+<li class="chapter" data-level="9.2" data-path="12-capitulo11.html"><a href="#caracter%C3%ADsticas-de-los-estimadores"><i class="fa fa-check"></i><b>9.2</b> Características de los estimadores</a>
 <ul>
 <li class="chapter" data-level="9.2.1" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#insesgabilidad"><i class="fa fa-check"></i><b>9.2.1</b> Insesgabilidad</a></li>
 <li class="chapter" data-level="9.2.2" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#consistencia"><i class="fa fa-check"></i><b>9.2.2</b> Consistencia</a></li>
@@ -396,24 +401,24 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="9.3" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#distribuciones-de-probabilidad-de-los-estimadores"><i class="fa fa-check"></i><b>9.3</b> Distribuciones de probabilidad de los estimadores</a>
 <ul>
-<li class="chapter" data-level="9.3.1" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#primera-aproximación"><i class="fa fa-check"></i><b>9.3.1</b> Primera aproximación</a></li>
-<li class="chapter" data-level="9.3.2" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#distribución-de-la-media-muestral"><i class="fa fa-check"></i><b>9.3.2</b> Distribución de la media muestral</a></li>
-<li class="chapter" data-level="9.3.3" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#distribución-de-la-proporción-muestral"><i class="fa fa-check"></i><b>9.3.3</b> Distribución de la proporción muestral</a></li>
-<li class="chapter" data-level="9.3.4" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#muestras-pequeñas"><i class="fa fa-check"></i><b>9.3.4</b> Muestras pequeñas</a></li>
-<li class="chapter" data-level="9.3.5" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#distribución-de-la-varianza"><i class="fa fa-check"></i><b>9.3.5</b> Distribución de la varianza</a></li>
+<li class="chapter" data-level="9.3.1" data-path="12-capitulo11.html"><a href="#primera-aproximaci%C3%B3n"><i class="fa fa-check"></i><b>9.3.1</b> Primera aproximación</a></li>
+<li class="chapter" data-level="9.3.2" data-path="12-capitulo11.html"><a href="#distribuci%C3%B3n-de-la-media-muestral"><i class="fa fa-check"></i><b>9.3.2</b> Distribución de la media muestral</a></li>
+<li class="chapter" data-level="9.3.3" data-path="12-capitulo11.html"><a href="#distribuci%C3%B3n-de-la-proporci%C3%B3n-muestral"><i class="fa fa-check"></i><b>9.3.3</b> Distribución de la proporción muestral</a></li>
+<li class="chapter" data-level="9.3.4" data-path="12-capitulo11.html"><a href="#muestras-peque%C3%B1as"><i class="fa fa-check"></i><b>9.3.4</b> Muestras pequeñas</a></li>
+<li class="chapter" data-level="9.3.5" data-path="12-capitulo11.html"><a href="#distribuci%C3%B3n-de-la-varianza"><i class="fa fa-check"></i><b>9.3.5</b> Distribución de la varianza</a></li>
 <li class="chapter" data-level="9.3.6" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#muestreo-desde-dos-poblaciones"><i class="fa fa-check"></i><b>9.3.6</b> Muestreo desde dos poblaciones</a></li>
-<li class="chapter" data-level="9.3.7" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#distribución-del-cociente-de-varianzas"><i class="fa fa-check"></i><b>9.3.7</b> Distribución del cociente de varianzas</a></li>
+<li class="chapter" data-level="9.3.7" data-path="12-capitulo11.html"><a href="#distribuci%C3%B3n-del-cociente-de-varianzas"><i class="fa fa-check"></i><b>9.3.7</b> Distribución del cociente de varianzas</a></li>
 </ul></li>
-<li class="chapter" data-level="9.4" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#resumen-de-la-relación-entre-estimadores-y-parámetros"><i class="fa fa-check"></i><b>9.4</b> Resumen de la relación entre estimadores y parámetros</a></li>
+<li class="chapter" data-level="9.4" data-path="12-capitulo11.html"><a href="#resumen-de-la-relaci%C3%B3n-entre-estimadores-y-par%C3%A1metros"><i class="fa fa-check"></i><b>9.4</b> Resumen de la relación entre estimadores y parámetros</a></li>
 <li class="chapter" data-level="9.5" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#hacerlo-en-r-7"><i class="fa fa-check"></i><b>9.5</b> Hacerlo en R</a></li>
 </ul></li>
 <li class="part"><span><b>III Estadística inferencial</b></span></li>
-<li class="chapter" data-level="10" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html"><i class="fa fa-check"></i><b>10</b> Estimación por intervalo</a>
+<li class="chapter" data-level="10" data-path="12-capitulo11.html"><a href="#estimaci%C3%B3n-por-intervalo"><i class="fa fa-check"></i><b>10</b> Estimación por intervalo</a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#estimación-puntual"><i class="fa fa-check"></i><b>10.1</b> Estimación puntual</a></li>
-<li class="chapter" data-level="10.2" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#intervalos-de-confianza"><i class="fa fa-check"></i><b>10.2</b> Intervalos de confianza</a></li>
-<li class="chapter" data-level="10.3" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#estimación-de-la-media"><i class="fa fa-check"></i><b>10.3</b> Estimación de la media</a></li>
-<li class="chapter" data-level="10.4" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#estimación-de-la-proporción"><i class="fa fa-check"></i><b>10.4</b> Estimación de la proporción</a>
+<li class="chapter" data-level="10.1" data-path="12-capitulo11.html"><a href="#estimaci%C3%B3n-puntual"><i class="fa fa-check"></i><b>10.1</b> Estimación puntual</a></li>
+<li class="chapter" data-level="10.2" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html"><i class="fa fa-check"></i><b>10.2</b> Intervalos de confianza</a></li>
+<li class="chapter" data-level="10.3" data-path="12-capitulo11.html"><a href="#estimaci%C3%B3n-de-la-media"><i class="fa fa-check"></i><b>10.3</b> Estimación de la media</a></li>
+<li class="chapter" data-level="10.4" data-path="12-capitulo11.html"><a href="#estimaci%C3%B3n-de-la-proporci%C3%B3n"><i class="fa fa-check"></i><b>10.4</b> Estimación de la proporción</a>
 <ul>
 <li class="chapter" data-level="10.4.1" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#intervalo-de-clopper-pearson"><i class="fa fa-check"></i><b>10.4.1</b> Intervalo de Clopper-Pearson</a></li>
 <li class="chapter" data-level="10.4.2" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#intervalo-de-wald"><i class="fa fa-check"></i><b>10.4.2</b> Intervalo de Wald</a></li>
@@ -421,45 +426,45 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="10.5" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#la-calidad-de-las-estimaciones-por-intervalo"><i class="fa fa-check"></i><b>10.5</b> La calidad de las estimaciones por intervalo</a>
 <ul>
-<li class="chapter" data-level="10.5.1" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#el-error-de-estimación-en-la-media"><i class="fa fa-check"></i><b>10.5.1</b> El error de estimación en la media</a></li>
-<li class="chapter" data-level="10.5.2" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#el-error-de-estimación-en-la-proporción"><i class="fa fa-check"></i><b>10.5.2</b> El error de estimación en la proporción</a></li>
+<li class="chapter" data-level="10.5.1" data-path="12-capitulo11.html"><a href="#el-error-de-estimaci%C3%B3n-en-la-media"><i class="fa fa-check"></i><b>10.5.1</b> El error de estimación en la media</a></li>
+<li class="chapter" data-level="10.5.2" data-path="12-capitulo11.html"><a href="#el-error-de-estimaci%C3%B3n-en-la-proporci%C3%B3n"><i class="fa fa-check"></i><b>10.5.2</b> El error de estimación en la proporción</a></li>
 </ul></li>
 <li class="chapter" data-level="10.6" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#probabilidad-de-cobertura"><i class="fa fa-check"></i><b>10.6</b> Probabilidad de cobertura</a></li>
 <li class="chapter" data-level="10.7" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#hacerlo-en-r-8"><i class="fa fa-check"></i><b>10.7</b> Hacerlo en R</a>
 <ul>
 <li class="chapter" data-level="10.7.1" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#intervalo-para-la-media"><i class="fa fa-check"></i><b>10.7.1</b> Intervalo para la media</a></li>
-<li class="chapter" data-level="10.7.2" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#intervalo-para-la-proporción"><i class="fa fa-check"></i><b>10.7.2</b> Intervalo para la proporción</a></li>
+<li class="chapter" data-level="10.7.2" data-path="12-capitulo11.html"><a href="#intervalo-para-la-proporci%C3%B3n"><i class="fa fa-check"></i><b>10.7.2</b> Intervalo para la proporción</a></li>
 <li class="chapter" data-level="10.7.3" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#cobertura"><i class="fa fa-check"></i><b>10.7.3</b> Cobertura</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html"><i class="fa fa-check"></i><b>11</b> Prueba de hipótesis: la lógica</a>
+<li class="chapter" data-level="11" data-path="12-capitulo11.html"><a href="#prueba-de-hip%C3%B3tesis-la-l%C3%B3gica"><i class="fa fa-check"></i><b>11</b> Prueba de hipótesis: la lógica</a>
 <ul>
-<li class="chapter" data-level="11.1" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#el-razonamiento-de-la-prueba-de-hipótesis"><i class="fa fa-check"></i><b>11.1</b> El razonamiento de la prueba de hipótesis</a></li>
-<li class="chapter" data-level="11.2" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#prueba-sobre-la-media"><i class="fa fa-check"></i><b>11.2</b> Prueba sobre la media</a>
+<li class="chapter" data-level="11.1" data-path="12-capitulo11.html"><a href="#el-razonamiento-de-la-prueba-de-hip%C3%B3tesis"><i class="fa fa-check"></i><b>11.1</b> El razonamiento de la prueba de hipótesis</a></li>
+<li class="chapter" data-level="11.2" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html"><i class="fa fa-check"></i><b>11.2</b> Prueba sobre la media</a>
 <ul>
-<li class="chapter" data-level="11.2.1" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#la-toma-de-decisión"><i class="fa fa-check"></i><b>11.2.1</b> La toma de decisión</a></li>
-<li class="chapter" data-level="11.2.2" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#los-puntos-críticos-en-términos-del-estimador"><i class="fa fa-check"></i><b>11.2.2</b> Los puntos críticos en términos del estimador</a></li>
+<li class="chapter" data-level="11.2.1" data-path="12-capitulo11.html"><a href="#la-toma-de-decisi%C3%B3n"><i class="fa fa-check"></i><b>11.2.1</b> La toma de decisión</a></li>
+<li class="chapter" data-level="11.2.2" data-path="12-capitulo11.html"><a href="#los-puntos-cr%C3%ADticos-en-t%C3%A9rminos-del-estimador"><i class="fa fa-check"></i><b>11.2.2</b> Los puntos críticos en términos del estimador</a></li>
 <li class="chapter" data-level="11.2.3" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#pruebas-unilaterales"><i class="fa fa-check"></i><b>11.2.3</b> Pruebas unilaterales</a></li>
-<li class="chapter" data-level="11.2.4" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#otros-ejemplos-de-prueba-de-hipótesis-sobre-la-media"><i class="fa fa-check"></i><b>11.2.4</b> Otros ejemplos de prueba de hipótesis sobre la media</a></li>
+<li class="chapter" data-level="11.2.4" data-path="12-capitulo11.html"><a href="#otros-ejemplos-de-prueba-de-hip%C3%B3tesis-sobre-la-media"><i class="fa fa-check"></i><b>11.2.4</b> Otros ejemplos de prueba de hipótesis sobre la media</a></li>
 </ul></li>
-<li class="chapter" data-level="11.3" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#prueba-sobre-la-proporción"><i class="fa fa-check"></i><b>11.3</b> Prueba sobre la proporción</a></li>
-<li class="chapter" data-level="11.4" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#tipos-de-error-en-las-pruebas-de-hipótesis"><i class="fa fa-check"></i><b>11.4</b> Tipos de error en las pruebas de hipótesis</a></li>
+<li class="chapter" data-level="11.3" data-path="12-capitulo11.html"><a href="#prueba-sobre-la-proporci%C3%B3n"><i class="fa fa-check"></i><b>11.3</b> Prueba sobre la proporción</a></li>
+<li class="chapter" data-level="11.4" data-path="12-capitulo11.html"><a href="#tipos-de-error-en-las-pruebas-de-hip%C3%B3tesis"><i class="fa fa-check"></i><b>11.4</b> Tipos de error en las pruebas de hipótesis</a></li>
 <li class="chapter" data-level="11.5" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#etii-mu-alpha-y-n"><i class="fa fa-check"></i><b>11.5</b> <em>ETII:</em> <span class="math inline">\(\mu\)</span>, <span class="math inline">\(\alpha\)</span> y <span class="math inline">\(n\)</span></a>
 <ul>
 <li class="chapter" data-level="11.5.1" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#curva-de-potencia"><i class="fa fa-check"></i><b>11.5.1</b> Curva de potencia</a></li>
-<li class="chapter" data-level="11.5.2" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#significación-estadística-y-valor-p"><i class="fa fa-check"></i><b>11.5.2</b> Significación estadística y valor <span class="math inline">\(p\)</span></a></li>
+<li class="chapter" data-level="11.5.2" data-path="12-capitulo11.html"><a href="#significaci%C3%B3n-estad%C3%ADstica-y-valor-p"><i class="fa fa-check"></i><b>11.5.2</b> Significación estadística y valor <span class="math inline">\(p\)</span></a></li>
 </ul></li>
-<li class="chapter" data-level="11.6" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#muestras-pequeñas-y-pruebas-t"><i class="fa fa-check"></i><b>11.6</b> Muestras pequeñas y pruebas <span class="math inline">\(t\)</span></a></li>
+<li class="chapter" data-level="11.6" data-path="12-capitulo11.html"><a href="#muestras-peque%C3%B1as-y-pruebas-t"><i class="fa fa-check"></i><b>11.6</b> Muestras pequeñas y pruebas <span class="math inline">\(t\)</span></a></li>
 <li class="chapter" data-level="11.7" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#hacerlo-en-r-9"><i class="fa fa-check"></i><b>11.7</b> Hacerlo en R</a>
 <ul>
 <li class="chapter" data-level="11.7.1" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#prueba-sobre-la-media-1"><i class="fa fa-check"></i><b>11.7.1</b> Prueba sobre la media</a></li>
-<li class="chapter" data-level="11.7.2" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#prueba-sobre-la-proporción-1"><i class="fa fa-check"></i><b>11.7.2</b> Prueba sobre la proporción</a></li>
+<li class="chapter" data-level="11.7.2" data-path="12-capitulo11.html"><a href="#prueba-sobre-la-proporci%C3%B3n-1"><i class="fa fa-check"></i><b>11.7.2</b> Prueba sobre la proporción</a></li>
 </ul></li>
 <li class="chapter" data-level="11.8" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#resumen-de-pruebas-sobre-una-muestra"><i class="fa fa-check"></i><b>11.8</b> Resumen de pruebas sobre una muestra</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html"><i class="fa fa-check"></i><b>12</b> Prueba de hipótesis: las aplicaciones</a>
+<li class="chapter" data-level="12" data-path="12-capitulo11.html"><a href="#prueba-de-hip%C3%B3tesis-las-aplicaciones"><i class="fa fa-check"></i><b>12</b> Prueba de hipótesis: las aplicaciones</a>
 <ul>
-<li class="chapter" data-level="12.1" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#muestras-independientes"><i class="fa fa-check"></i><b>12.1</b> Muestras independientes</a>
+<li class="chapter" data-level="12.1" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html"><i class="fa fa-check"></i><b>12.1</b> Muestras independientes</a>
 <ul>
 <li class="chapter" data-level="12.1.1" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#prueba-de-diferencia-de-medias"><i class="fa fa-check"></i><b>12.1.1</b> Prueba de diferencia de medias</a></li>
 <li class="chapter" data-level="12.1.2" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#muestras-apareadas"><i class="fa fa-check"></i><b>12.1.2</b> Muestras apareadas</a></li>
@@ -469,16 +474,16 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="12.2.1" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#ejemplo-1."><i class="fa fa-check"></i><b>12.2.1</b> Ejemplo 1.</a></li>
 <li class="chapter" data-level="12.2.2" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#ejemplo-2."><i class="fa fa-check"></i><b>12.2.2</b> Ejemplo 2.</a></li>
-<li class="chapter" data-level="12.2.3" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#aplicación-a-los-datos-de-población-adulta-mayor"><i class="fa fa-check"></i><b>12.2.3</b> Aplicación a los datos de Población Adulta Mayor</a></li>
+<li class="chapter" data-level="12.2.3" data-path="12-capitulo11.html"><a href="#aplicaci%C3%B3n-a-los-datos-de-poblaci%C3%B3n-adulta-mayor"><i class="fa fa-check"></i><b>12.2.3</b> Aplicación a los datos de Población Adulta Mayor</a></li>
 <li class="chapter" data-level="12.2.4" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#prueba-apareada"><i class="fa fa-check"></i><b>12.2.4</b> Prueba apareada</a></li>
-<li class="chapter" data-level="12.2.5" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#coeficiente-de-correlación"><i class="fa fa-check"></i><b>12.2.5</b> Coeficiente de correlación</a></li>
+<li class="chapter" data-level="12.2.5" data-path="12-capitulo11.html"><a href="#coeficiente-de-correlaci%C3%B3n"><i class="fa fa-check"></i><b>12.2.5</b> Coeficiente de correlación</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html"><i class="fa fa-check"></i><b>13</b> Cuando los supuestos no se cumplen</a>
 <ul>
 <li class="chapter" data-level="13.0.1" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#las-pruebas-ji-cuadrado-o-chi-cuadrado"><i class="fa fa-check"></i><b>13.0.1</b> Las pruebas ji cuadrado (o chi cuadrado)</a></li>
 <li class="chapter" data-level="13.0.2" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#coeficiente-r_s-de-spearman"><i class="fa fa-check"></i><b>13.0.2</b> Coeficiente <span class="math inline">\(r_s\)</span> de Spearman</a></li>
-<li class="chapter" data-level="13.0.3" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#alternativas-no-paramétricas-a-las-pruebas-t"><i class="fa fa-check"></i><b>13.0.3</b> Alternativas no paramétricas a las pruebas t</a></li>
+<li class="chapter" data-level="13.0.3" data-path="12-capitulo11.html"><a href="#alternativas-no-param%C3%A9tricas-a-las-pruebas-t"><i class="fa fa-check"></i><b>13.0.3</b> Alternativas no paramétricas a las pruebas t</a></li>
 <li class="chapter" data-level="13.1" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#hacerlo-en-r-11"><i class="fa fa-check"></i><b>13.1</b> Hacerlo en R</a>
 <ul>
 <li class="chapter" data-level="13.1.1" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#ejemplo-1"><i class="fa fa-check"></i><b>13.1.1</b> Ejemplo 1</a></li>
@@ -488,18 +493,18 @@ div.csl-indent {
 <li class="chapter" data-level="13.1.5" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#muestras-apareadas-1"><i class="fa fa-check"></i><b>13.1.5</b> Muestras apareadas</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html"><i class="fa fa-check"></i><b>14</b> Tamaño del efecto</a>
+<li class="chapter" data-level="14" data-path="12-capitulo11.html"><a href="#tama%C3%B1o-del-efecto"><i class="fa fa-check"></i><b>14</b> Tamaño del efecto</a>
 <ul>
-<li class="chapter" data-level="14.1" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#significación-estadística-y-significación-práctica"><i class="fa fa-check"></i><b>14.1</b> Significación estadística y significación práctica</a></li>
-<li class="chapter" data-level="14.2" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#medidas-de-tamaño-del-efecto"><i class="fa fa-check"></i><b>14.2</b> Medidas de tamaño del efecto</a>
+<li class="chapter" data-level="14.1" data-path="12-capitulo11.html"><a href="#significaci%C3%B3n-estad%C3%ADstica-y-significaci%C3%B3n-pr%C3%A1ctica"><i class="fa fa-check"></i><b>14.1</b> Significación estadística y significación práctica</a></li>
+<li class="chapter" data-level="14.2" data-path="12-capitulo11.html"><a href="#medidas-de-tama%C3%B1o-del-efecto"><i class="fa fa-check"></i><b>14.2</b> Medidas de tamaño del efecto</a>
 <ul>
-<li class="chapter" data-level="14.2.1" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#prueba-t-para-diferencia-de-medias"><i class="fa fa-check"></i><b>14.2.1</b> Prueba t para diferencia de medias</a></li>
-<li class="chapter" data-level="14.2.2" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#análisis-de-la-varianza"><i class="fa fa-check"></i><b>14.2.2</b> Análisis de la varianza</a></li>
+<li class="chapter" data-level="14.2.1" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html"><i class="fa fa-check"></i><b>14.2.1</b> Prueba t para diferencia de medias</a></li>
+<li class="chapter" data-level="14.2.2" data-path="12-capitulo11.html"><a href="#an%C3%A1lisis-de-la-varianza"><i class="fa fa-check"></i><b>14.2.2</b> Análisis de la varianza</a></li>
 <li class="chapter" data-level="14.2.3" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#correlaciones"><i class="fa fa-check"></i><b>14.2.3</b> Correlaciones</a></li>
-<li class="chapter" data-level="14.2.4" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#regresión-lineal"><i class="fa fa-check"></i><b>14.2.4</b> Regresión lineal</a></li>
+<li class="chapter" data-level="14.2.4" data-path="12-capitulo11.html"><a href="#regresi%C3%B3n-lineal"><i class="fa fa-check"></i><b>14.2.4</b> Regresión lineal</a></li>
 <li class="chapter" data-level="14.2.5" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#pruebas-ji-cuadrado"><i class="fa fa-check"></i><b>14.2.5</b> Pruebas ji cuadrado</a></li>
 </ul></li>
-<li class="chapter" data-level="14.3" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#análisis-de-la-potencia"><i class="fa fa-check"></i><b>14.3</b> Análisis de la potencia</a></li>
+<li class="chapter" data-level="14.3" data-path="12-capitulo11.html"><a href="#an%C3%A1lisis-de-la-potencia"><i class="fa fa-check"></i><b>14.3</b> Análisis de la potencia</a></li>
 <li class="chapter" data-level="14.4" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#hacerlo-en-r-12"><i class="fa fa-check"></i><b>14.4</b> Hacerlo en R</a></li>
 </ul></li>
 <li class="divider"></li>
@@ -523,10 +528,10 @@ div.csl-indent {
 
             <section class="normal" id="section-">
 <div id="prueba-de-hipótesis-la-lógica" class="section level1 hasAnchor" number="11">
-<h1><span class="header-section-number">Capítulo 11</span> Prueba de hipótesis: la lógica<a href="prueba-de-hipótesis-la-lógica.html#prueba-de-hipótesis-la-lógica" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>En este capítulo ingresamos a uno de los procedimientos de mayor difusión en investigación cuantitativa: la prueba de hipótesis, que se en los mismos principios de estimación de parámetros que fundamentan la construcción de intervalos de confianza, por lo que su objetivo también es hacer uso de resultados muestrales para obtener conocimiento acerca de la población. Este procedimiento no está exento de críticas <span class="citation">Greenland (<a href="#ref-greenland2019" role="doc-biblioref">2019</a>)</span>; sin embargo es básico para hacer inferencias sobre la población y conserva amplia difusión tanto en ciencias sociales como naturales, <span class="citation">(<a href="#ref-Halsey2019" role="doc-biblioref">Halsey 2019</a>)</span>. Las propuestas que existen como técnicas alternativas que superan las falencias que acusan sus críticos <span class="citation">(<a href="#ref-Goedhart2018" role="doc-biblioref">Goedhart 2018</a>)</span>, requieren que se tenga dominio de las pruebas de hipótesis.</p>
+<h1><span class="header-section-number">Capítulo 11</span> Prueba de hipótesis: la lógica<a href="#prueba-de-hip%C3%B3tesis-la-l%C3%B3gica" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>En este capítulo ingresamos a uno de los procedimientos de mayor difusión en investigación cuantitativa: la prueba de hipótesis, que se en los mismos principios de estimación de parámetros que fundamentan la construcción de intervalos de confianza, por lo que su objetivo también es hacer uso de resultados muestrales para obtener conocimiento acerca de la población. Este procedimiento no está exento de críticas <span class="citation">Greenland (<a href="#ref-greenland2019">2019</a>)</span>; sin embargo es básico para hacer inferencias sobre la población y conserva amplia difusión tanto en ciencias sociales como naturales, <span class="citation">(<a href="#ref-Halsey2019">Halsey 2019</a>)</span>. Las propuestas que existen como técnicas alternativas que superan las falencias que acusan sus críticos <span class="citation">(<a href="#ref-Goedhart2018">Goedhart 2018</a>)</span>, requieren que se tenga dominio de las pruebas de hipótesis.</p>
 <div id="el-razonamiento-de-la-prueba-de-hipótesis" class="section level2 hasAnchor" number="11.1">
-<h2><span class="header-section-number">11.1</span> El razonamiento de la prueba de hipótesis<a href="prueba-de-hipótesis-la-lógica.html#el-razonamiento-de-la-prueba-de-hipótesis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<h2><span class="header-section-number">11.1</span> El razonamiento de la prueba de hipótesis<a href="#el-razonamiento-de-la-prueba-de-hip%C3%B3tesis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>La prueba de hipótesis tiene como objetivo el de proveer argumentos para
 decidir en contextos de incertidumbre. A partir de lo que sabemos sobre
 las distribuciones en el muestreo, ése es el caso cuando necesitamos
@@ -544,7 +549,7 @@ compatible con lo que se observa, pero no a la inversa: no será posible
 todos los datos necesarios para reconstruir la situación y dar una
 respuesta absolutamente inequívoca, pero si hay suficiente evidencia, se dará la hipótesis nula por rechazada. La decisión de condenar a la persona acusada solo se tomará cuando haya muy poco riesgo de equivocarse, cuando la probabilidad de decidir de manera errada sea muy pequeña.</p>
 <p>En este ejemplo, la población es el conjunto completo de información necesaria para tomar la decisión de manera certera, sin error. Se trataría de un conjunto infinito de datos que permitiría la reconstrucción exacta de los hechos en los que participó la persona acusada. Por cierto, esa información nunca está disponible, por lo que la decisión debe tomarse a partir de un fragmento de ella, que son las pruebas que han podido reunirse (la evidencia). En la analogía que hacemos con nuestros procedimientos, esta evidencia constituye la
-muestra a partir de la que se juzgará la hipótesis nula: aceptarla o
+muestra a partir de la que se juzgará la hipótesis nula: rechazarla o no
 rechazarla. La muestra constituye el fragmento de información
 disponible, solo que en el caso de la estimación, ésta es obtenida con
 procedimientos que buscan su representatividad.</p>
@@ -575,7 +580,7 @@ evidencia”, para creer que la moneda no está equilibrada?</p>
 de no rechazar la hipótesis nula, porque los resultados muestrales
 hallados serían esperables (muy probables) bajo <span class="math inline">\(H_{0}\)</span>. Al contrario, si la respuesta es “muy poco probable” decidiremos rechazar <span class="math inline">\(H_{0}\)</span>, ya que se trata de un resultado poco esperable si <span class="math inline">\(H_{0}\)</span> fuera cierta.</p>
 <p>En investigación, la prueba de hipótesis suele formularse de tal modo
-que rechazar <span class="math inline">\(H_{0}\)</span> implica aportar un nuevo hallazgo, por el contrario, aceptar <span class="math inline">\(H_{0}\)</span> equivale a que no hay cambios respecto de alguna situación inicial.</p>
+que rechazar <span class="math inline">\(H_{0}\)</span> implica aportar un nuevo hallazgo, por el contrario, no rechazar <span class="math inline">\(H_{0}\)</span> equivale a que no hay cambios respecto de alguna situación inicial.</p>
 <p>Algunos ejemplos de hipótesis nulas:</p>
 <ul>
 <li><p>Esta droga no produce ningún efecto sobre la memoria.</p></li>
@@ -594,7 +599,7 @@ rechazar la <span class="math inline">\(H_{0}\)</span>, porque eso significa que
 </colgroup>
 <tbody>
 <tr class="odd">
-<td align="center"><strong>La hipótesis nula es una afirmación sobre un parámetro que indica ausencia de diferencia.</strong></td>
+<td align="center">La hipótesis nula es una <strong>afirmación</strong> sobre un <strong>parámetro</strong> que indica ausencia de diferencia en ralción a cierto valor de referencia.</td>
 </tr>
 </tbody>
 </table>
@@ -604,7 +609,7 @@ generales o bien que realizan comparaciones entre grupos. En todos los
 casos la hipótesis nula afirma algo que puede expresarse como “no hay
 diferencia”, o “no hay cambio” o “no hay relación”.</p>
 <p>Hasta este punto se trata de la definición original de estas pruebas,
-desarrolladas inicialmente por Sir Ronald <span class="citation">Fisher (<a href="#ref-Fisher" role="doc-biblioref">1925</a>)</span> a las que llamó
+desarrolladas inicialmente por Sir Ronald <span class="citation">Fisher (<a href="#ref-Fisher">1925</a>)</span> a las que llamó
 <em>pruebas de significación</em>. La idea básica es la de comparar los datos
 observados con la hipótesis que se pone a prueba. Fisher las ideó como
 manera de medir el grado de incompatibilidad de un conjunto de datos con la hipótesis nula, evaluando la probabilidad de hallar resultados como los observados o más extremos, si la hipótesis nula fuera cierta. Si esa probabilidad es muy pequeña, puede suceder que la muestra que se
@@ -612,7 +617,7 @@ seleccionó haya sido excepcional, o bien que la afirmación hipotética
 sea falsa. Fisher argumentó que se trataba de un método objetivo para
 poner a prueba teorías y que puede ser usado en diferentes campos de
 conocimiento.</p>
-<p>Con posterioridad a Fisher, <span class="citation">Neyman and Pearson (<a href="#ref-neyman1928" role="doc-biblioref">1928</a>)</span> introducen dos
+<p>Con posterioridad a Fisher, <span class="citation">Neyman and Pearson (<a href="#ref-neyman1928">1928</a>)</span> introducen dos
 cambios importantes en el procedimiento.</p>
 <ul>
 <li><p>El primero consiste en tratar a las prueba no ya como métodos para
@@ -704,7 +709,7 @@ mismo, un valor máximo para el área extrema donde consideraremos que se
 encuentran los valores “alejados”.</p>
 <p><strong>¿cuán alejado? <span class="math inline">\(\rightarrow\)</span> ¿cuán poco probable?</strong></p>
 <div id="la-toma-de-decisión" class="section level3 hasAnchor" number="11.2.1">
-<h3><span class="header-section-number">11.2.1</span> La toma de decisión<a href="prueba-de-hipótesis-la-lógica.html#la-toma-de-decisión" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<h3><span class="header-section-number">11.2.1</span> La toma de decisión<a href="#la-toma-de-decisi%C3%B3n" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>La <span class="math inline">\(H_{0}\)</span> se rechaza si hay poca probabilidad de hallar un valor como el observado o uno más extremo que él. Lo que llamamos poca probabilidad,
 puede establecerse a priori, por ejemplo en 0.05. Eso indica que
 consideraremos a los resultados con probabilidad menor a 0.05 como muy
@@ -851,7 +856,7 @@ promedio muestral de 6.65 por azar. Como esa probabilidad es pequeña,
 decidimos rechazar <span class="math inline">\(H_{0}\)</span>.</p>
 </div>
 <div id="los-puntos-críticos-en-términos-del-estimador" class="section level3 hasAnchor" number="11.2.2">
-<h3><span class="header-section-number">11.2.2</span> Los puntos críticos en términos del estimador<a href="prueba-de-hipótesis-la-lógica.html#los-puntos-críticos-en-términos-del-estimador" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<h3><span class="header-section-number">11.2.2</span> Los puntos críticos en términos del estimador<a href="#los-puntos-cr%C3%ADticos-en-t%C3%A9rminos-del-estimador" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Hay una manera diferente de establecer las zonas de aceptación y
 rechazo, que consiste en fijar los puntos críticos en términos de
 <span class="math inline">\(\overline{x}\)</span>, en lugar de hacerlo como puntajes <span class="math inline">\(z\)</span>. Por lo que en lugar
@@ -985,7 +990,7 @@ ejemplo, si en una prueba bilateral y luego de transformar el valor
 observado a puntaje <span class="math inline">\(z\)</span>, se obtiene <span class="math inline">\(z=2.3\)</span>, este resultado conducirá a que se rechace <span class="math inline">\(H_{0}\)</span> al 5% (porque <span class="math inline">\(2.3\)</span> es mayor que <span class="math inline">\(1.96\)</span>) pero que no se rechace al 1% (porque <span class="math inline">\(2.3\)</span> no es mayor que <span class="math inline">\(2.56\)</span>). En ese caso diremos que se obtienen resultados significativos al 5% pero no al 1%. Luego veremos que esta clasificación puede hacerse más precisa.</p>
 </div>
 <div id="otros-ejemplos-de-prueba-de-hipótesis-sobre-la-media" class="section level3 hasAnchor" number="11.2.4">
-<h3><span class="header-section-number">11.2.4</span> Otros ejemplos de prueba de hipótesis sobre la media<a href="prueba-de-hipótesis-la-lógica.html#otros-ejemplos-de-prueba-de-hipótesis-sobre-la-media" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<h3><span class="header-section-number">11.2.4</span> Otros ejemplos de prueba de hipótesis sobre la media<a href="#otros-ejemplos-de-prueba-de-hip%C3%B3tesis-sobre-la-media" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>La investigación con sujetos animales en Psicología se basa en que
 distintas especies comparten mecanismos básicos, y los animales no
 humanos presentan un nivel de complejidad menor, lo que facilita la
@@ -995,7 +1000,7 @@ neurofisiológicos, cognitivos y comportamentales de seres humanos,
 siendo clave en el ámbito de la psicopatología y terapia psicológica.</p>
 <p>En este contexto, alumnas de Psicología interesadas en la vulnerabilidad
 adolescente hacia el uso y abuso de drogas, recurrieron a un modelo
-animal para estudiar los efectos del alcohol <span class="citation">Dziula and Reyna (<a href="#ref-Dziula2005" role="doc-biblioref">2005</a>)</span>. Uno de los posibles
+animal para estudiar los efectos del alcohol <span class="citation">Dziula and Reyna (<a href="#ref-Dziula2005">2005</a>)</span>. Uno de los posibles
 factores que determinan las primeras aproximaciones a las drogas es la
 búsqueda de nuevas sensaciones, que se manifiesta en niveles elevados
 tanto en adolescentes humanos como no humanos, particularmente en
@@ -1173,7 +1178,7 @@ Unilateral izquierda
 </div>
 </div>
 <div id="prueba-sobre-la-proporción" class="section level2 hasAnchor" number="11.3">
-<h2><span class="header-section-number">11.3</span> Prueba sobre la proporción<a href="prueba-de-hipótesis-la-lógica.html#prueba-sobre-la-proporción" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<h2><span class="header-section-number">11.3</span> Prueba sobre la proporción<a href="#prueba-sobre-la-proporci%C3%B3n" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>De modo equivalente a los intervalos de confianza, comenzaremos con la
 prueba de hipótesis sobre una proporción usando la distribución
 binomial, para luego usar la aproximación normal, si los supuestos se
@@ -1208,7 +1213,7 @@ encima (porque es una prueba unilateral derecha) al 5% de los valores
 posibles. Buscamos el percentil 95 de la distribución binomial corespondiente a los parámetros:
 <span class="math inline">\(n = 50\)</span>, <span class="math inline">\(P = 0.30\)</span> y <span class="math inline">\(P( X &gt; x) = 0.05\)</span></p>
 <p>La probabilidad es la de la cola derecha de la distribución, por ser una prueba unilateral derecha, y corresponde a una probabilidad acumulada de 0.95, de modo que el percentil es 95, que equivale a <span class="math inline">\(P( X \leq x) = 0.95\)</span> es:</p>
-<div class="sourceCode" id="cb601"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb601-1"><a href="prueba-de-hipótesis-la-lógica.html#cb601-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qbinom</span>(.<span class="dv">95</span>, <span class="dv">50</span>, .<span class="dv">30</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb567"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb567-1"><a href="prueba-de-hipótesis-la-lógica.html#cb567-1" tabindex="-1"></a><span class="fu">qbinom</span>(.<span class="dv">95</span>, <span class="dv">50</span>, .<span class="dv">30</span>)</span></code></pre></div>
 <pre><code>## [1] 20</code></pre>
 <p>El número de éxitos es 20. Por lo que el valor de <span class="math inline">\(\widehat{x}\)</span> que
 es superado por el 5% de los valores muestrales posibles es 20. La
@@ -1373,7 +1378,7 @@ interés en la política en el año 2005 es significativamente menor a
 0.11.</p>
 </div>
 <div id="tipos-de-error-en-las-pruebas-de-hipótesis" class="section level2 hasAnchor" number="11.4">
-<h2><span class="header-section-number">11.4</span> Tipos de error en las pruebas de hipótesis<a href="prueba-de-hipótesis-la-lógica.html#tipos-de-error-en-las-pruebas-de-hipótesis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<h2><span class="header-section-number">11.4</span> Tipos de error en las pruebas de hipótesis<a href="#tipos-de-error-en-las-pruebas-de-hip%C3%B3tesis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Dado que la decisión de aceptar o rechazar la <span class="math inline">\(H_{0}\)</span> se toma de manera
 probabilística, siempre existe la posibilidad de tomar una decisión
 incorrecta. Esto sucede porque las muestras son tomadas al azar y puede
@@ -1615,7 +1620,7 @@ necesario hallar esa área bajo la curva normal centrada en 6.55, lo que
 requiere que se lo transforme a puntaje <span class="math inline">\(z\)</span>:</p>
 <p><span class="math display">\[z = \frac{6.60 - 6.55}{\frac{0.60}{\sqrt{100}}} = \frac{0.05}{0.06} = 0.83\]</span></p>
 <p>Cuya área izquierda asociada es:</p>
-<div class="sourceCode" id="cb603"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb603-1"><a href="prueba-de-hipótesis-la-lógica.html#cb603-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>(.<span class="dv">83</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb569"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb569-1"><a href="prueba-de-hipótesis-la-lógica.html#cb569-1" tabindex="-1"></a><span class="fu">pnorm</span>(.<span class="dv">83</span>)</span></code></pre></div>
 <pre><code>## [1] 0.7967306</code></pre>
 <p><span class="math inline">\(P(z \leq 0.83)=0.7967\)</span></p>
 <p>Éste es el valor de <span class="math inline">\(\beta\)</span> para esta prueba y esta media alternativa. Leemos
@@ -1990,7 +1995,7 @@ tratamiento detallado de este tema, en el apéndice regresaremos sobre
 ellas.</p>
 </div>
 <div id="significación-estadística-y-valor-p" class="section level3 hasAnchor" number="11.5.2">
-<h3><span class="header-section-number">11.5.2</span> Significación estadística y valor <span class="math inline">\(p\)</span><a href="prueba-de-hipótesis-la-lógica.html#significación-estadística-y-valor-p" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<h3><span class="header-section-number">11.5.2</span> Significación estadística y valor <span class="math inline">\(p\)</span><a href="#significaci%C3%B3n-estad%C3%ADstica-y-valor-p" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Hasta este punto se ha indicado que el equipo de investigación establece el nivel
 de significación estadística al realizar una prueba de hipótesis, a
 partir de lo cual se determinan zonas de rechazo y no rechazo de la
@@ -2081,7 +2086,7 @@ probabilidad, transformamos <span class="math inline">\(\overline{x}\)</span> a 
 <p>Entonces debemos hallar <span class="math inline">\(P( z \geq 2.50 )\)</span> y ya no hace falta
 indicar la condición (si <span class="math inline">\(\mu = 6.50\)</span>), porque está incluida en el
 cálculo de <span class="math inline">\(z\)</span>. Para eso complementamos la probabilidad acumulada hasta <span class="math inline">\(2.50\)</span>:</p>
-<div class="sourceCode" id="cb605"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb605-1"><a href="prueba-de-hipótesis-la-lógica.html#cb605-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="dv">1</span> <span class="sc">-</span> <span class="fu">pnorm</span>(<span class="fl">2.5</span>), <span class="dv">4</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb571"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb571-1"><a href="prueba-de-hipótesis-la-lógica.html#cb571-1" tabindex="-1"></a><span class="fu">round</span>(<span class="dv">1</span> <span class="sc">-</span> <span class="fu">pnorm</span>(<span class="fl">2.5</span>), <span class="dv">4</span>)</span></code></pre></div>
 <pre><code>## [1] 0.0062</code></pre>
 <p><span class="math display">\[P( z \geq 2.50) = 0.0062\]</span></p>
 <p>Ese es el valor <span class="math inline">\(p\)</span>, e indica cuál es la probabilidad de encontrar un
@@ -2104,7 +2109,7 @@ extremo que éste-, si fuera verdadera <span class="math inline">\(H_{0}\)</span
 <p>Para calcular esta probabilidad transformamos el valor de <span class="math inline">\(\widehat{p}\)</span>
 a puntaje <span class="math inline">\(z\)</span>:</p>
 <p><span class="math display">\[z = \frac{\widehat{p} - P}{\sqrt{\frac{P*(1 - P)}{n}}} = \frac{0.32 - 0.30}{\sqrt{\frac{0.30*(1 - 0.30)}{200}}} = 0.617\]</span></p>
-<div class="sourceCode" id="cb607"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb607-1"><a href="prueba-de-hipótesis-la-lógica.html#cb607-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="dv">1</span> <span class="sc">-</span> <span class="fu">pnorm</span>(.<span class="dv">617</span>), <span class="dv">4</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb573"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb573-1"><a href="prueba-de-hipótesis-la-lógica.html#cb573-1" tabindex="-1"></a><span class="fu">round</span>(<span class="dv">1</span> <span class="sc">-</span> <span class="fu">pnorm</span>(.<span class="dv">617</span>), <span class="dv">4</span>)</span></code></pre></div>
 <pre><code>## [1] 0.2686</code></pre>
 <p><span class="math display">\[P( \widehat{p} \geq 0.32/P = 0.30)=0.2686\]</span>
 Se trata de una probabilidad “grande”, si se compara con los niveles de
@@ -2118,7 +2123,7 @@ la variable <em>número de éxitos</em>. En el ejemplo, el número observado de
 éxitos era de 16, la probabilidad condicional que corresponde al valor <span class="math inline">\(p\)</span> es entonces la probabilidad de hallar en la muestra de 50 casos, 16
 personas o más que vayan a votar al candidato, si en la población la
 proporción de quienes lo votarán fuera de 30% (<span class="math inline">\(H_0\)</span> verdadera). Se complementa la probabilildad acumulada hasta 15 (variable dicreta):</p>
-<div class="sourceCode" id="cb609"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb609-1"><a href="prueba-de-hipótesis-la-lógica.html#cb609-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="dv">1</span> <span class="sc">-</span> <span class="fu">pbinom</span>(<span class="dv">15</span>, <span class="dv">50</span>, .<span class="dv">3</span>), <span class="dv">4</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb575"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb575-1"><a href="prueba-de-hipótesis-la-lógica.html#cb575-1" tabindex="-1"></a><span class="fu">round</span>(<span class="dv">1</span> <span class="sc">-</span> <span class="fu">pbinom</span>(<span class="dv">15</span>, <span class="dv">50</span>, .<span class="dv">3</span>), <span class="dv">4</span>)</span></code></pre></div>
 <pre><code>## [1] 0.4308</code></pre>
 <p><span class="math display">\[P(\widehat{x} \geq 16/n = 50,\ P = 0.30) = 0.4308\]</span></p>
 <p>Nuevamente es un valor elevado para p, por lo que no se rechaza <span class="math inline">\(H_{0}\)</span>.</p>
@@ -2127,7 +2132,7 @@ de hipótesis este valor, a veces llamado <span class="math inline">\(p\)</span>
 </div>
 </div>
 <div id="muestras-pequeñas-y-pruebas-t" class="section level2 hasAnchor" number="11.6">
-<h2><span class="header-section-number">11.6</span> Muestras pequeñas y pruebas <span class="math inline">\(t\)</span><a href="prueba-de-hipótesis-la-lógica.html#muestras-pequeñas-y-pruebas-t" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<h2><span class="header-section-number">11.6</span> Muestras pequeñas y pruebas <span class="math inline">\(t\)</span><a href="#muestras-peque%C3%B1as-y-pruebas-t" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Se ha mencionado que la distribución <em>t de Student</em>, es un modelo de
 probabilidades con una forma similar a la distribución normal, pero más
 aplanada y dependiente de un dato al que se llama “grados de libertad”.
@@ -2234,7 +2239,7 @@ nivel de significación que haya fijado. Para facilitar la interpretación, los 
 </tr>
 </tbody>
 </table>
-<p>La recomendación de <span class="citation">APA (<a href="#ref-APA2010" role="doc-biblioref">2010</a>)</span> es hasta tres asteriscos, todos los valores <span class="math inline">\(p\)</span> menores a <span class="math inline">\(0.001\)</span> se codifican con <span class="math inline">\(***\)</span></p>
+<p>La recomendación de <span class="citation">APA (<a href="#ref-APA2010">2010</a>)</span> es hasta tres asteriscos, todos los valores <span class="math inline">\(p\)</span> menores a <span class="math inline">\(0.001\)</span> se codifican con <span class="math inline">\(***\)</span></p>
 <div style="page-break-after: always;"></div>
 </div>
 <div id="hacerlo-en-r-9" class="section level2 hasAnchor" number="11.7">
@@ -2242,13 +2247,13 @@ nivel de significación que haya fijado. Para facilitar la interpretación, los 
 <div id="prueba-sobre-la-media-1" class="section level3 hasAnchor" number="11.7.1">
 <h3><span class="header-section-number">11.7.1</span> Prueba sobre la media<a href="prueba-de-hipótesis-la-lógica.html#prueba-sobre-la-media-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Sea el caso de una prueba de hipótesis acerca del promedio del número de hijas e hijos por mujer en una comunidad dada. Se busca evidencia para decidir si, según los datos de una muestra de 150 casos, la población de la que esa muestra proviene tiene en promedio dos hijos e hijas por mujer o si ese promedio es mayor a 2. En la muestra de 150 observaciones se obtuvieron las siguientes medidas descriptivas (los datos son ficticios, por lo que se generan aleatoriamente a partir de una distribución normal, la variable se llama <span class="math inline">\(x\)</span>):</p>
-<div class="sourceCode" id="cb611"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb611-1"><a href="prueba-de-hipótesis-la-lógica.html#cb611-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">13</span>)</span>
-<span id="cb611-2"><a href="prueba-de-hipótesis-la-lógica.html#cb611-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">150</span>, <span class="fl">2.15</span>, <span class="dv">1</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb612"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb612-1"><a href="prueba-de-hipótesis-la-lógica.html#cb612-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">mean</span>(x), <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb577"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb577-1"><a href="prueba-de-hipótesis-la-lógica.html#cb577-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">13</span>)</span>
+<span id="cb577-2"><a href="prueba-de-hipótesis-la-lógica.html#cb577-2" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">150</span>, <span class="fl">2.15</span>, <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb578"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb578-1"><a href="prueba-de-hipótesis-la-lógica.html#cb578-1" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">mean</span>(x), <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## [1] 2.09</code></pre>
-<div class="sourceCode" id="cb614"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb614-1"><a href="prueba-de-hipótesis-la-lógica.html#cb614-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">sd</span>(x), <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb580"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb580-1"><a href="prueba-de-hipótesis-la-lógica.html#cb580-1" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">sd</span>(x), <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## [1] 0.95</code></pre>
-<div class="sourceCode" id="cb616"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb616-1"><a href="prueba-de-hipótesis-la-lógica.html#cb616-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(x)</span></code></pre></div>
+<div class="sourceCode" id="cb582"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb582-1"><a href="prueba-de-hipótesis-la-lógica.html#cb582-1" tabindex="-1"></a><span class="fu">length</span>(x)</span></code></pre></div>
 <pre><code>## [1] 150</code></pre>
 <p>Con el valor muestral de 2.09, la pregunta es si se trata de evidencia suficiente como para afirmar que la media poblacional supera al valor de dos hijos e hijas por mujer.
 Las hipótesis entonces son:</p>
@@ -2261,7 +2266,7 @@ Las hipótesis entonces son:</p>
 <li>Unilateral izquierda: alternative = “less”</li>
 </ul>
 <p>Así, la prueba se pide:</p>
-<div class="sourceCode" id="cb618"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb618-1"><a href="prueba-de-hipótesis-la-lógica.html#cb618-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(x, <span class="at">alternative =</span> <span class="st">&quot;greater&quot;</span>, <span class="at">mu =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb584"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb584-1"><a href="prueba-de-hipótesis-la-lógica.html#cb584-1" tabindex="-1"></a><span class="fu">t.test</span>(x, <span class="at">alternative =</span> <span class="st">&quot;greater&quot;</span>, <span class="at">mu =</span> <span class="dv">2</span>)</span></code></pre></div>
 <pre><code>## 
 ##  One Sample t-test
 ## 
@@ -2277,8 +2282,8 @@ Las hipótesis entonces son:</p>
 <p>Luego, la salida ofrece un intervalo que tiene un solo límite; el inferior. Es un intervalo unilateral derecho, porque así es como fue formulada la <span class="math inline">\(H_{1}\)</span>, que indica que, con una confianza de 95%, el número medio de descendientes por mujer supera el valor <span class="math inline">\(1.96\)</span>. Como este intervalo, que comienza en <span class="math inline">\(1.96\)</span> y sigue hacia la derecha, contiene al valor hipotético (<span class="math inline">\(2\)</span>), es compatible con la decisión de no rechazar <span class="math inline">\(H_0\)</span>.</p>
 </div>
 <div id="prueba-sobre-la-proporción-1" class="section level3 hasAnchor" number="11.7.2">
-<h3><span class="header-section-number">11.7.2</span> Prueba sobre la proporción<a href="prueba-de-hipótesis-la-lógica.html#prueba-sobre-la-proporción-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Sea que interesa comparar la proporción de población adulta de Argentina que sufre de obesidad con los valores mundiales de obesidad de personas adultas. Se define como obesas a las personas cuyo índice de masa corporal (peso en Kg dividido talla en metros al cuadrado) es mayor o igual a 30. Según la Organización Mundial de la Salud <span class="citation">(<a href="#ref-WHO" role="doc-biblioref">World Health Organization 2016</a>)</span>, en 2016, un 13% de la población mundial sufría de obesidad.</p>
+<h3><span class="header-section-number">11.7.2</span> Prueba sobre la proporción<a href="#prueba-sobre-la-proporci%C3%B3n-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Sea que interesa comparar la proporción de población adulta de Argentina que sufre de obesidad con los valores mundiales de obesidad de personas adultas. Se define como obesas a las personas cuyo índice de masa corporal (peso en Kg dividido talla en metros al cuadrado) es mayor o igual a 30. Según la Organización Mundial de la Salud <span class="citation">(<a href="#ref-WHO">World Health Organization 2016</a>)</span>, en 2016, un 13% de la población mundial sufría de obesidad.</p>
 <p>Para el problema de interés, la hipótesis se plantea en dirección a que la población adulta de Argentina probablemente tengan una prevalencia de obesidad superior a la media de todo el mundo. La hipótesis nula afirmará que la proporción de personas con sobrepeso en Argentina no es diferente del promedio mundial. Es decir:</p>
 <p><span class="math display">\[H_{0}:P = 0.13\]</span></p>
 <p><span class="math display">\[H_{1}:P &gt; 0.13\]</span></p>
@@ -2290,58 +2295,58 @@ Las hipótesis entonces son:</p>
 <li>9 Ns/Nc peso y/o talla</li>
 </ul>
 <p>Para obtener la distribución, primero se lee la base (que tiene separador de campos el signo “<span class="math inline">\(|\)</span>”), se solicita la tabla con el total y luego la tabla de de frecuencias relativas se redondea a 3 decimales:</p>
-<div class="sourceCode" id="cb620"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb620-1"><a href="prueba-de-hipótesis-la-lógica.html#cb620-1" aria-hidden="true" tabindex="-1"></a>ENFR2013 <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(</span>
-<span id="cb620-2"><a href="prueba-de-hipótesis-la-lógica.html#cb620-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;bases/archivostxt/ENFR2013_baseusuario.txt&quot;</span>,</span>
-<span id="cb620-3"><a href="prueba-de-hipótesis-la-lógica.html#cb620-3" aria-hidden="true" tabindex="-1"></a>                     <span class="at">sep =</span> <span class="st">&quot;|&quot;</span>)</span>
-<span id="cb620-4"><a href="prueba-de-hipótesis-la-lógica.html#cb620-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb620-5"><a href="prueba-de-hipótesis-la-lógica.html#cb620-5" aria-hidden="true" tabindex="-1"></a><span class="fu">addmargins</span>(<span class="fu">table</span>(ENFR2013<span class="sc">$</span>IMC_AGRUPADO))</span></code></pre></div>
+<div class="sourceCode" id="cb586"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb586-1"><a href="prueba-de-hipótesis-la-lógica.html#cb586-1" tabindex="-1"></a>ENFR2013 <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(</span>
+<span id="cb586-2"><a href="prueba-de-hipótesis-la-lógica.html#cb586-2" tabindex="-1"></a>  <span class="st">&quot;bases/archivostxt/ENFR2013_baseusuario.txt&quot;</span>,</span>
+<span id="cb586-3"><a href="prueba-de-hipótesis-la-lógica.html#cb586-3" tabindex="-1"></a>                     <span class="at">sep =</span> <span class="st">&quot;|&quot;</span>)</span>
+<span id="cb586-4"><a href="prueba-de-hipótesis-la-lógica.html#cb586-4" tabindex="-1"></a></span>
+<span id="cb586-5"><a href="prueba-de-hipótesis-la-lógica.html#cb586-5" tabindex="-1"></a><span class="fu">addmargins</span>(<span class="fu">table</span>(ENFR2013<span class="sc">$</span>IMC_AGRUPADO))</span></code></pre></div>
 <pre><code>## 
 ##     1     2     3     9   Sum 
 ## 12442 11343  6505  2075 32365</code></pre>
-<div class="sourceCode" id="cb622"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb622-1"><a href="prueba-de-hipótesis-la-lógica.html#cb622-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">addmargins</span>(<span class="fu">prop.table</span>(<span class="fu">table</span>(ENFR2013<span class="sc">$</span>IMC_AGRUPADO))), <span class="dv">3</span>) <span class="sc">*</span> <span class="dv">100</span></span></code></pre></div>
+<div class="sourceCode" id="cb588"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb588-1"><a href="prueba-de-hipótesis-la-lógica.html#cb588-1" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">addmargins</span>(<span class="fu">prop.table</span>(<span class="fu">table</span>(ENFR2013<span class="sc">$</span>IMC_AGRUPADO))), <span class="dv">3</span>) <span class="sc">*</span> <span class="dv">100</span></span></code></pre></div>
 <pre><code>## 
 ##     1     2     3     9   Sum 
 ##  38.4  35.0  20.1   6.4 100.0</code></pre>
 <p>Esta tabla está construida sobre los datos muestrales, una comparación correcta exige que se usen los factores de ponderación de la encuesta, que están calculados teniendo en cuenta el diseño de la muestra. Para tenerlos en cuenta, hace falta la función “wtd.table” (tabla ponderada), del paquete <code>questionr</code>, y cuyos argumentos son: la o las variables que se van a tabular y la variable que define las ponderaciones.<br />
 Se instala el paquete correspondiente:</p>
-<div class="sourceCode" id="cb624"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb624-1"><a href="prueba-de-hipótesis-la-lógica.html#cb624-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;questionr&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb590"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb590-1"><a href="prueba-de-hipótesis-la-lógica.html#cb590-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;questionr&quot;</span>)</span></code></pre></div>
 <p>Y carga en sesión</p>
-<div class="sourceCode" id="cb625"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb625-1"><a href="prueba-de-hipótesis-la-lógica.html#cb625-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;questionr&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb591"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb591-1"><a href="prueba-de-hipótesis-la-lógica.html#cb591-1" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;questionr&quot;</span>)</span></code></pre></div>
 <p>Tomando en cuenta los ponderadores de la ENFR2013, la tabla tiene esta forma:</p>
-<div class="sourceCode" id="cb626"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb626-1"><a href="prueba-de-hipótesis-la-lógica.html#cb626-1" aria-hidden="true" tabindex="-1"></a><span class="fu">addmargins</span>(<span class="fu">wtd.table</span>(ENFR2013<span class="sc">$</span>IMC_AGRUPADO, <span class="at">weights =</span> ENFR2013<span class="sc">$</span>PONDERACION))</span></code></pre></div>
+<div class="sourceCode" id="cb592"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb592-1"><a href="prueba-de-hipótesis-la-lógica.html#cb592-1" tabindex="-1"></a><span class="fu">addmargins</span>(<span class="fu">wtd.table</span>(ENFR2013<span class="sc">$</span>IMC_AGRUPADO, <span class="at">weights =</span> ENFR2013<span class="sc">$</span>PONDERACION))</span></code></pre></div>
 <pre><code>##        1        2        3        9      Sum 
 ## 10180480  8953836  5027227  1616044 25777587</code></pre>
-<div class="sourceCode" id="cb628"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb628-1"><a href="prueba-de-hipótesis-la-lógica.html#cb628-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(</span>
-<span id="cb628-2"><a href="prueba-de-hipótesis-la-lógica.html#cb628-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">addmargins</span>(</span>
-<span id="cb628-3"><a href="prueba-de-hipótesis-la-lógica.html#cb628-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">prop.table</span>(</span>
-<span id="cb628-4"><a href="prueba-de-hipótesis-la-lógica.html#cb628-4" aria-hidden="true" tabindex="-1"></a>      <span class="fu">wtd.table</span>(</span>
-<span id="cb628-5"><a href="prueba-de-hipótesis-la-lógica.html#cb628-5" aria-hidden="true" tabindex="-1"></a>        ENFR2013<span class="sc">$</span>IMC_AGRUPADO,</span>
-<span id="cb628-6"><a href="prueba-de-hipótesis-la-lógica.html#cb628-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">weights =</span>ENFR2013<span class="sc">$</span>PONDERACION))), <span class="dv">3</span>) <span class="sc">*</span> <span class="dv">100</span></span></code></pre></div>
+<div class="sourceCode" id="cb594"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb594-1"><a href="prueba-de-hipótesis-la-lógica.html#cb594-1" tabindex="-1"></a><span class="fu">round</span>(</span>
+<span id="cb594-2"><a href="prueba-de-hipótesis-la-lógica.html#cb594-2" tabindex="-1"></a>  <span class="fu">addmargins</span>(</span>
+<span id="cb594-3"><a href="prueba-de-hipótesis-la-lógica.html#cb594-3" tabindex="-1"></a>    <span class="fu">prop.table</span>(</span>
+<span id="cb594-4"><a href="prueba-de-hipótesis-la-lógica.html#cb594-4" tabindex="-1"></a>      <span class="fu">wtd.table</span>(</span>
+<span id="cb594-5"><a href="prueba-de-hipótesis-la-lógica.html#cb594-5" tabindex="-1"></a>        ENFR2013<span class="sc">$</span>IMC_AGRUPADO,</span>
+<span id="cb594-6"><a href="prueba-de-hipótesis-la-lógica.html#cb594-6" tabindex="-1"></a>        <span class="at">weights =</span>ENFR2013<span class="sc">$</span>PONDERACION))), <span class="dv">3</span>) <span class="sc">*</span> <span class="dv">100</span></span></code></pre></div>
 <pre><code>##     1     2     3     9   Sum 
 ##  39.5  34.7  19.5   6.3 100.0</code></pre>
 <p>Que expande los aproximadamente 35 mil casos relevados a casi 26 millones de la población a la que la ENFR2013 representa. Las frecuencias relativas de las dos tablas son similares. Aplicar los ponderadores es útil para observar medidas descriptivas, pero no puede usarse para hacer inferencias, ya que se incrementaría de manera artificial el tamaño de la muestra. Esto debe cuidarse en algunos programas de análisis de datos, que permiten fijar poderadores y dejarlos activos para cualquier procedimiento. Una prueba de hipótesis o un intervalo de confianza realizado con los factores de ponderación están mal calculados, porque el tamaño de muestra es falso. Salvo en el caso que los ponderadores estén reescalados a <span class="math inline">\(1\)</span>, porque así no se altera el tamaño de la muestra, solo se ajusta su composición.</p>
 <p>Para realizar la prueba sobre la proporción, se debe construir la categoría de referencia, que en este caso es la 3 de las tablas anteriores (obesidad). Se genera una nueva variable, que se llamará “obesidad” en la matriz de datos, de tal modo que: cuando “IMC_agrupado” valga 3 tengamos lo que llamamos “éxito”; cuando sea 9, sea un caso perdido (NA): y si vale 1 ó 2, vale cero.<br />
 Luego se verifica que las nuevas categorías coincidan con las previstas, por medio de una tabla bivariada entre la variable original y la nueva. Una tabla univariada da los absolutos de “obesidad” y finalmente los relativos, donde se ve que en la muestra, la proporción de personas con obesidad es del <span class="math inline">\(21\%\)</span>.</p>
-<div class="sourceCode" id="cb630"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb630-1"><a href="prueba-de-hipótesis-la-lógica.html#cb630-1" aria-hidden="true" tabindex="-1"></a>ENFR2013<span class="sc">$</span>obesidad <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(ENFR2013<span class="sc">$</span>IMC_AGRUPADO <span class="sc">==</span> <span class="dv">3</span>, <span class="dv">1</span>, <span class="fu">ifelse</span>(ENFR2013<span class="sc">$</span>IMC_AGRUPADO <span class="sc">==</span> <span class="dv">9</span>, <span class="cn">NA</span>, <span class="dv">0</span>))</span>
-<span id="cb630-2"><a href="prueba-de-hipótesis-la-lógica.html#cb630-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb630-3"><a href="prueba-de-hipótesis-la-lógica.html#cb630-3" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(ENFR2013<span class="sc">$</span>IMC_AGRUPADO, ENFR2013<span class="sc">$</span>obesidad)</span></code></pre></div>
+<div class="sourceCode" id="cb596"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb596-1"><a href="prueba-de-hipótesis-la-lógica.html#cb596-1" tabindex="-1"></a>ENFR2013<span class="sc">$</span>obesidad <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(ENFR2013<span class="sc">$</span>IMC_AGRUPADO <span class="sc">==</span> <span class="dv">3</span>, <span class="dv">1</span>, <span class="fu">ifelse</span>(ENFR2013<span class="sc">$</span>IMC_AGRUPADO <span class="sc">==</span> <span class="dv">9</span>, <span class="cn">NA</span>, <span class="dv">0</span>))</span>
+<span id="cb596-2"><a href="prueba-de-hipótesis-la-lógica.html#cb596-2" tabindex="-1"></a></span>
+<span id="cb596-3"><a href="prueba-de-hipótesis-la-lógica.html#cb596-3" tabindex="-1"></a><span class="fu">table</span>(ENFR2013<span class="sc">$</span>IMC_AGRUPADO, ENFR2013<span class="sc">$</span>obesidad)</span></code></pre></div>
 <pre><code>##    
 ##         0     1
 ##   1 12442     0
 ##   2 11343     0
 ##   3     0  6505
 ##   9     0     0</code></pre>
-<div class="sourceCode" id="cb632"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb632-1"><a href="prueba-de-hipótesis-la-lógica.html#cb632-1" aria-hidden="true" tabindex="-1"></a><span class="fu">addmargins</span>(<span class="fu">table</span>(ENFR2013<span class="sc">$</span>obesidad))</span></code></pre></div>
+<div class="sourceCode" id="cb598"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb598-1"><a href="prueba-de-hipótesis-la-lógica.html#cb598-1" tabindex="-1"></a><span class="fu">addmargins</span>(<span class="fu">table</span>(ENFR2013<span class="sc">$</span>obesidad))</span></code></pre></div>
 <pre><code>## 
 ##     0     1   Sum 
 ## 23785  6505 30290</code></pre>
-<div class="sourceCode" id="cb634"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb634-1"><a href="prueba-de-hipótesis-la-lógica.html#cb634-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">addmargins</span>(<span class="fu">prop.table</span>(<span class="fu">table</span>(ENFR2013<span class="sc">$</span>obesidad))), <span class="dv">3</span>) <span class="sc">*</span> <span class="dv">100</span></span></code></pre></div>
+<div class="sourceCode" id="cb600"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb600-1"><a href="prueba-de-hipótesis-la-lógica.html#cb600-1" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">addmargins</span>(<span class="fu">prop.table</span>(<span class="fu">table</span>(ENFR2013<span class="sc">$</span>obesidad))), <span class="dv">3</span>) <span class="sc">*</span> <span class="dv">100</span></span></code></pre></div>
 <pre><code>## 
 ##     0     1   Sum 
 ##  78.5  21.5 100.0</code></pre>
 <p>El resultado muestral es una prevalencia de obesidad de <span class="math inline">\(21.5\%\)</span> en los 30290 casos válidos de la muestra, <span class="math inline">\(\widehat{p}=0.215\)</span>. La diferencia con el <span class="math inline">\(20.1\%\)</span> de la primera tabla es porque ahora no se están contando los casos perdidos.<br />
 Ahora puede realizarse una prueba <span class="math inline">\(t\)</span> idéntica a la de la media, porque se cuenta con una variable dicotómica con categorías 0 - 1:</p>
-<div class="sourceCode" id="cb636"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb636-1"><a href="prueba-de-hipótesis-la-lógica.html#cb636-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(ENFR2013<span class="sc">$</span>obesidad, <span class="at">mu =</span> .<span class="dv">13</span>, <span class="at">alternative =</span> <span class="st">&quot;greater&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb602"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb602-1"><a href="prueba-de-hipótesis-la-lógica.html#cb602-1" tabindex="-1"></a><span class="fu">t.test</span>(ENFR2013<span class="sc">$</span>obesidad, <span class="at">mu =</span> .<span class="dv">13</span>, <span class="at">alternative =</span> <span class="st">&quot;greater&quot;</span>)</span></code></pre></div>
 <pre><code>## 
 ##  One Sample t-test
 ## 
@@ -2425,7 +2430,7 @@ hallar un valor como el observado o uno más extremo.</p>
 </div>
 </div>
 <h3>References</h3>
-<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="refs" class="references csl-bib-body hanging-indent" entry-spacing="0">
 <div id="ref-APA2010" class="csl-entry">
 APA. 2010. <em><span class="nocase">Publication manual of the American Psychological Association</span></em>. Edited by American Psychological Association. 6th ed. Washington, DC.
 </div>
@@ -2468,7 +2473,7 @@ World Health Organization. 2016. <span>“<span class="nocase">Obesity and overw
 <li id="fn77"><p><span class="math inline">\(\widehat{p} = \frac{16}{50} = 0.32\)</span><a href="prueba-de-hipótesis-la-lógica.html#fnref77" class="footnote-back">↩︎</a></p></li>
 <li id="fn78"><p>Latinobarómetro es un estudio de opinión pública que aplica anualmente alrededor de 19.000 entrevistas en 18 países de América Latina representando a más de 400 millones de habitantes. Corporación Latinobarómetro es una ONG sin fines de lucro con sede en Santiago de Chile, única responsable de la producción y publicación de los datos. <a href="http://www.latinobarometro.org/">http://www.latinobarometro.org/</a>.<a href="prueba-de-hipótesis-la-lógica.html#fnref78" class="footnote-back">↩︎</a></p></li>
 <li id="fn79"><p>Aunque ejemplificaremos solo para el caso de la media y para una prueba unilateral derecha, el concepto de errores de tipo I y II es general y vale del mismo modo para la proporción y para pruebas de hipótesis sobre otros parámetros, en pruebas unilaterales o bilaterales.<a href="prueba-de-hipótesis-la-lógica.html#fnref79" class="footnote-back">↩︎</a></p></li>
-<li id="fn80"><p>Lo que sigue tiene objetivos orientativos, si se necesita un tratamiento más detallado del tema -que requiere considerar que si <span class="math inline">\(H_0\)</span> es falsa entonces la distribución del estimador no es necesariamente simétrica-, puede consultarse <span class="citation">Cumming (<a href="#ref-cumming2012" role="doc-biblioref">2012</a>)</span>.<a href="prueba-de-hipótesis-la-lógica.html#fnref80" class="footnote-back">↩︎</a></p></li>
+<li id="fn80"><p>Lo que sigue tiene objetivos orientativos, si se necesita un tratamiento más detallado del tema -que requiere considerar que si <span class="math inline">\(H_0\)</span> es falsa entonces la distribución del estimador no es necesariamente simétrica-, puede consultarse <span class="citation">Cumming (<a href="#ref-cumming2012">2012</a>)</span>.<a href="prueba-de-hipótesis-la-lógica.html#fnref80" class="footnote-back">↩︎</a></p></li>
 <li id="fn81"><p>Existe un procedimiento basado en un resultado importante de la estadística que se conoce como “desigualdad de Tchebycheff”, que establece que la probabilidad de encontrar a una variable a una distancia de su media superior a <span class="math inline">\(k\)</span> desviaciones estándar es menor a <span class="math inline">\(\frac{1}{k^{2}}\)</span>. Se expresa como <span class="math inline">\(P\left( \left| x - E(x) \right| &gt; k\sigma \right) &lt; \frac{1}{k^{2}}\)</span>. También es posible recurrir a la distribución empírica, obtenida por remuestreo. Más adelante se verán pruebas que permiten resolver situaciones en las que no se cumplen los supuestos, como pequeñas muestras, distribución no normal y/o nivel de medición no métrico.<a href="prueba-de-hipótesis-la-lógica.html#fnref81" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
@@ -2492,42 +2497,42 @@ World Health Organization. 2016. <span>“<span class="nocase">Obesity and overw
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": "https://github.com/jcrodriguez1989/EstadisticaParaCienciasSocialesConR/edit/master/12-capitulo11.Rmd",
-"text": "Edit"
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": ["EstadisticaParaCienciasSocialesConR.pdf", "EstadisticaParaCienciasSocialesConR.epub"],
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "subsection"
-}
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/jcrodriguez1989/EstadisticaParaCienciasSocialesConR/edit/master/12-capitulo11.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["EstadisticaParaCienciasSocialesConR.pdf", "EstadisticaParaCienciasSocialesConR.epub"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
 });
 });
 </script>

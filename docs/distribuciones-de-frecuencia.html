@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Capítulo 2 Distribuciones de frecuencia | Un Recorrido por los Métodos Cuantitativos en Ciencias Sociales a bordo de R</title>
   <meta name="description" content="Capítulo 2 Distribuciones de frecuencia | Un Recorrido por los Métodos Cuantitativos en Ciencias Sociales a bordo de R" />
-  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Capítulo 2 Distribuciones de frecuencia | Un Recorrido por los Métodos Cuantitativos en Ciencias Sociales a bordo de R" />
   <meta property="og:type" content="book" />
@@ -57,7 +57,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -67,7 +67,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -93,7 +93,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -106,7 +106,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -121,10 +121,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </style>
 
 <style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
 /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
 .hanging div.csl-entry {
   margin-left:2em;
@@ -161,146 +166,146 @@ div.csl-indent {
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Colaboradores</a>
 <ul>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#comité-editorial"><i class="fa fa-check"></i>Comité Editorial</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#edición-en-bookdown"><i class="fa fa-check"></i>Edición en bookdown</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#revisión-de-lenguaje-incluyente"><i class="fa fa-check"></i>Revisión de lenguaje incluyente</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#comit%C3%A9-editorial"><i class="fa fa-check"></i>Comité Editorial</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#edici%C3%B3n-en-bookdown"><i class="fa fa-check"></i>Edición en bookdown</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#revisi%C3%B3n-de-lenguaje-incluyente"><i class="fa fa-check"></i>Revisión de lenguaje incluyente</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="presentación.html"><a href="presentación.html"><i class="fa fa-check"></i>Presentación</a>
+<li class="chapter" data-level="" data-path=""><a href="#presentaci%C3%B3n"><i class="fa fa-check"></i>Presentación</a>
 <ul>
-<li class="chapter" data-level="" data-path="presentación.html"><a href="presentación.html#recorridos-posibles"><i class="fa fa-check"></i>Recorridos posibles</a></li>
+<li class="chapter" data-level="" data-path="presentación.html"><a href="presentación.html"><i class="fa fa-check"></i>Recorridos posibles</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="introducción.html"><a href="introducción.html"><i class="fa fa-check"></i>Introducción</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#introducci%C3%B3n"><i class="fa fa-check"></i>Introducción</a></li>
 <li class="chapter" data-level="" data-path="antes-de-empezar.html"><a href="antes-de-empezar.html"><i class="fa fa-check"></i>Antes de empezar</a>
 <ul>
 <li class="chapter" data-level="" data-path="antes-de-empezar.html"><a href="antes-de-empezar.html#materiales"><i class="fa fa-check"></i>Materiales</a>
 <ul>
 <li class="chapter" data-level="" data-path="antes-de-empezar.html"><a href="antes-de-empezar.html#encuesta-permanente-de-hogares"><i class="fa fa-check"></i>Encuesta Permanente de Hogares</a></li>
 <li class="chapter" data-level="" data-path="antes-de-empezar.html"><a href="antes-de-empezar.html#encuesta-nacional-de-factores-de-riesgo"><i class="fa fa-check"></i>Encuesta Nacional de Factores de Riesgo</a></li>
-<li class="chapter" data-level="" data-path="antes-de-empezar.html"><a href="antes-de-empezar.html#latinobarómetro"><i class="fa fa-check"></i>Latinobarómetro</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#latinobar%C3%B3metro"><i class="fa fa-check"></i>Latinobarómetro</a></li>
 <li class="chapter" data-level="" data-path="antes-de-empezar.html"><a href="antes-de-empezar.html#encuesta-nacional-sobre-prevalencias-de-consumo-de-sustancias-psicoactivas"><i class="fa fa-check"></i>Encuesta Nacional sobre Prevalencias de Consumo de Sustancias Psicoactivas</a></li>
-<li class="chapter" data-level="" data-path="antes-de-empezar.html"><a href="antes-de-empezar.html#aplicación-de-la-escala-de-bayley"><i class="fa fa-check"></i>Aplicación de la escala de Bayley</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#aplicaci%C3%B3n-de-la-escala-de-bayley"><i class="fa fa-check"></i>Aplicación de la escala de Bayley</a></li>
 <li class="chapter" data-level="" data-path="antes-de-empezar.html"><a href="antes-de-empezar.html#tercera-edad"><i class="fa fa-check"></i>Tercera edad</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="antes-de-empezar.html"><a href="antes-de-empezar.html#herramientas"><i class="fa fa-check"></i>Herramientas</a>
 <ul>
-<li class="chapter" data-level="" data-path="antes-de-empezar.html"><a href="antes-de-empezar.html#la-elección-de-r"><i class="fa fa-check"></i>La elección de R</a></li>
-<li class="chapter" data-level="" data-path="antes-de-empezar.html"><a href="antes-de-empezar.html#instalación-de-r-y-rstudio"><i class="fa fa-check"></i>Instalación de R y RStudio</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#la-elecci%C3%B3n-de-r"><i class="fa fa-check"></i>La elección de R</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#instalaci%C3%B3n-de-r-y-rstudio"><i class="fa fa-check"></i>Instalación de R y RStudio</a></li>
 <li class="chapter" data-level="" data-path="antes-de-empezar.html"><a href="antes-de-empezar.html#los-componentes-de-rstudio"><i class="fa fa-check"></i>Los componentes de RStudio</a></li>
 <li class="chapter" data-level="" data-path="antes-de-empezar.html"><a href="antes-de-empezar.html#operaciones-en-el-script"><i class="fa fa-check"></i>Operaciones en el script</a></li>
-<li class="chapter" data-level="" data-path="antes-de-empezar.html"><a href="antes-de-empezar.html#instalación-de-paquetes"><i class="fa fa-check"></i>Instalación de paquetes</a></li>
+<li class="chapter" data-level="" data-path=""><a href="#instalaci%C3%B3n-de-paquetes"><i class="fa fa-check"></i>Instalación de paquetes</a></li>
 </ul></li>
 </ul></li>
 <li class="part"><span><b>I Estadística Descriptiva</b></span></li>
-<li class="chapter" data-level="1" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html"><i class="fa fa-check"></i><b>1</b> Los datos estadísticos</a>
+<li class="chapter" data-level="1" data-path="03-capitulo2.html"><a href="#los-datos-estad%C3%ADsticos"><i class="fa fa-check"></i><b>1</b> Los datos estadísticos</a>
 <ul>
-<li class="chapter" data-level="1.1" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#la-selección-de-la-información-pertinente"><i class="fa fa-check"></i><b>1.1</b> La selección de la información pertinente</a></li>
-<li class="chapter" data-level="1.2" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#las-entidades"><i class="fa fa-check"></i><b>1.2</b> Las entidades</a></li>
+<li class="chapter" data-level="1.1" data-path="03-capitulo2.html"><a href="#la-selecci%C3%B3n-de-la-informaci%C3%B3n-pertinente"><i class="fa fa-check"></i><b>1.1</b> La selección de la información pertinente</a></li>
+<li class="chapter" data-level="1.2" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html"><i class="fa fa-check"></i><b>1.2</b> Las entidades</a></li>
 <li class="chapter" data-level="1.3" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#las-variables"><i class="fa fa-check"></i><b>1.3</b> Las variables</a></li>
-<li class="chapter" data-level="1.4" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#las-categorías"><i class="fa fa-check"></i><b>1.4</b> Las categorías</a>
+<li class="chapter" data-level="1.4" data-path="03-capitulo2.html"><a href="#las-categor%C3%ADas"><i class="fa fa-check"></i><b>1.4</b> Las categorías</a>
 <ul>
-<li class="chapter" data-level="1.4.1" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#requisitos-de-las-categorías"><i class="fa fa-check"></i><b>1.4.1</b> Requisitos de las categorías</a></li>
+<li class="chapter" data-level="1.4.1" data-path="03-capitulo2.html"><a href="#requisitos-de-las-categor%C3%ADas"><i class="fa fa-check"></i><b>1.4.1</b> Requisitos de las categorías</a></li>
 </ul></li>
-<li class="chapter" data-level="1.5" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#los-símbolos-numéricos"><i class="fa fa-check"></i><b>1.5</b> Los símbolos numéricos</a></li>
-<li class="chapter" data-level="1.6" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#la-medición"><i class="fa fa-check"></i><b>1.6</b> La medición</a>
+<li class="chapter" data-level="1.5" data-path="03-capitulo2.html"><a href="#los-s%C3%ADmbolos-num%C3%A9ricos"><i class="fa fa-check"></i><b>1.5</b> Los símbolos numéricos</a></li>
+<li class="chapter" data-level="1.6" data-path="03-capitulo2.html"><a href="#la-medici%C3%B3n"><i class="fa fa-check"></i><b>1.6</b> La medición</a>
 <ul>
-<li class="chapter" data-level="1.6.1" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#niveles-de-medición"><i class="fa fa-check"></i><b>1.6.1</b> Niveles de medición</a></li>
+<li class="chapter" data-level="1.6.1" data-path="03-capitulo2.html"><a href="#niveles-de-medici%C3%B3n"><i class="fa fa-check"></i><b>1.6.1</b> Niveles de medición</a></li>
 </ul></li>
-<li class="chapter" data-level="1.7" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#resumen-de-los-niveles-de-medición"><i class="fa fa-check"></i><b>1.7</b> Resumen de los niveles de medición</a></li>
+<li class="chapter" data-level="1.7" data-path="03-capitulo2.html"><a href="#resumen-de-los-niveles-de-medici%C3%B3n"><i class="fa fa-check"></i><b>1.7</b> Resumen de los niveles de medición</a></li>
 <li class="chapter" data-level="1.8" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#hacerlo-en-r"><i class="fa fa-check"></i><b>1.8</b> Hacerlo en R</a>
 <ul>
 <li class="chapter" data-level="1.8.1" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#lectura-de-la-base"><i class="fa fa-check"></i><b>1.8.1</b> Lectura de la base</a></li>
 <li class="chapter" data-level="1.8.2" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#las-variables-1"><i class="fa fa-check"></i><b>1.8.2</b> Las variables</a></li>
-<li class="chapter" data-level="1.8.3" data-path="los-datos-estadísticos.html"><a href="los-datos-estadísticos.html#los-niveles-de-medición-en-r"><i class="fa fa-check"></i><b>1.8.3</b> Los niveles de medición en R</a></li>
+<li class="chapter" data-level="1.8.3" data-path="03-capitulo2.html"><a href="#los-niveles-de-medici%C3%B3n-en-r"><i class="fa fa-check"></i><b>1.8.3</b> Los niveles de medición en R</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html"><i class="fa fa-check"></i><b>2</b> Distribuciones de frecuencia</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#tablas-de-distribución-de-frecuencia"><i class="fa fa-check"></i><b>2.1</b> Tablas de distribución de frecuencia</a></li>
-<li class="chapter" data-level="2.2" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#recategorización"><i class="fa fa-check"></i><b>2.2</b> Recategorización</a>
+<li class="chapter" data-level="2.1" data-path="03-capitulo2.html"><a href="#tablas-de-distribuci%C3%B3n-de-frecuencia"><i class="fa fa-check"></i><b>2.1</b> Tablas de distribución de frecuencia</a></li>
+<li class="chapter" data-level="2.2" data-path="03-capitulo2.html"><a href="#recategorizaci%C3%B3n"><i class="fa fa-check"></i><b>2.2</b> Recategorización</a>
 <ul>
-<li class="chapter" data-level="2.2.1" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#variable-discreta-con-muchas-categorías"><i class="fa fa-check"></i><b>2.2.1</b> Variable discreta con muchas categorías</a></li>
+<li class="chapter" data-level="2.2.1" data-path="03-capitulo2.html"><a href="#variable-discreta-con-muchas-categor%C3%ADas"><i class="fa fa-check"></i><b>2.2.1</b> Variable discreta con muchas categorías</a></li>
 <li class="chapter" data-level="2.2.2" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#variable-continua"><i class="fa fa-check"></i><b>2.2.2</b> Variable continua</a></li>
 <li class="chapter" data-level="2.2.3" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#formas-de-recategorizar"><i class="fa fa-check"></i><b>2.2.3</b> Formas de recategorizar</a></li>
 </ul></li>
-<li class="chapter" data-level="2.3" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#la-presentación-gráfica-de-los-resultados"><i class="fa fa-check"></i><b>2.3</b> La presentación gráfica de los resultados</a></li>
+<li class="chapter" data-level="2.3" data-path="03-capitulo2.html"><a href="#la-presentaci%C3%B3n-gr%C3%A1fica-de-los-resultados"><i class="fa fa-check"></i><b>2.3</b> La presentación gráfica de los resultados</a></li>
 <li class="chapter" data-level="2.4" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#hacerlo-en-r-1"><i class="fa fa-check"></i><b>2.4</b> Hacerlo en R</a>
 <ul>
 <li class="chapter" data-level="2.4.1" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#tablas-univariadas"><i class="fa fa-check"></i><b>2.4.1</b> Tablas univariadas</a></li>
-<li class="chapter" data-level="2.4.2" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#recategorización-1"><i class="fa fa-check"></i><b>2.4.2</b> Recategorización</a></li>
-<li class="chapter" data-level="2.4.3" data-path="distribuciones-de-frecuencia.html"><a href="distribuciones-de-frecuencia.html#representaciones-gráficas"><i class="fa fa-check"></i><b>2.4.3</b> Representaciones gráficas</a></li>
+<li class="chapter" data-level="2.4.2" data-path="03-capitulo2.html"><a href="#recategorizaci%C3%B3n-1"><i class="fa fa-check"></i><b>2.4.2</b> Recategorización</a></li>
+<li class="chapter" data-level="2.4.3" data-path="03-capitulo2.html"><a href="#representaciones-gr%C3%A1ficas"><i class="fa fa-check"></i><b>2.4.3</b> Representaciones gráficas</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html"><i class="fa fa-check"></i><b>3</b> La expresión resumida de la información</a>
+<li class="chapter" data-level="3" data-path="03-capitulo2.html"><a href="#la-expresi%C3%B3n-resumida-de-la-informaci%C3%B3n"><i class="fa fa-check"></i><b>3</b> La expresión resumida de la información</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#medidas-de-posición"><i class="fa fa-check"></i><b>3.1</b> Medidas de posición</a>
+<li class="chapter" data-level="3.1" data-path="03-capitulo2.html"><a href="#medidas-de-posici%C3%B3n"><i class="fa fa-check"></i><b>3.1</b> Medidas de posición</a>
 <ul>
-<li class="chapter" data-level="3.1.1" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#variables-nominales-proporciones"><i class="fa fa-check"></i><b>3.1.1</b> Variables nominales: proporciones</a></li>
+<li class="chapter" data-level="3.1.1" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html"><i class="fa fa-check"></i><b>3.1.1</b> Variables nominales: proporciones</a></li>
 <li class="chapter" data-level="3.1.2" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#variables-nominales-tasas"><i class="fa fa-check"></i><b>3.1.2</b> Variables nominales: tasas</a></li>
 <li class="chapter" data-level="3.1.3" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#variables-nominales-razones"><i class="fa fa-check"></i><b>3.1.3</b> Variables nominales: razones</a></li>
 <li class="chapter" data-level="3.1.4" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#variables-nominales-el-modo"><i class="fa fa-check"></i><b>3.1.4</b> Variables nominales: el modo</a></li>
 <li class="chapter" data-level="3.1.5" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#variables-ordinales-cuantiles"><i class="fa fa-check"></i><b>3.1.5</b> Variables ordinales: cuantiles</a></li>
-<li class="chapter" data-level="3.1.6" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#variables-métricas-la-media-o-promedio"><i class="fa fa-check"></i><b>3.1.6</b> Variables métricas: la media o promedio</a></li>
+<li class="chapter" data-level="3.1.6" data-path="03-capitulo2.html"><a href="#variables-m%C3%A9tricas-la-media-o-promedio"><i class="fa fa-check"></i><b>3.1.6</b> Variables métricas: la media o promedio</a></li>
 </ul></li>
-<li class="chapter" data-level="3.2" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#la-forma-de-la-distribución"><i class="fa fa-check"></i><b>3.2</b> La forma de la distribución</a>
+<li class="chapter" data-level="3.2" data-path="03-capitulo2.html"><a href="#la-forma-de-la-distribuci%C3%B3n"><i class="fa fa-check"></i><b>3.2</b> La forma de la distribución</a>
 <ul>
-<li class="chapter" data-level="3.2.1" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#asimetría"><i class="fa fa-check"></i><b>3.2.1</b> Asimetría</a></li>
+<li class="chapter" data-level="3.2.1" data-path="03-capitulo2.html"><a href="#asimetr%C3%ADa"><i class="fa fa-check"></i><b>3.2.1</b> Asimetría</a></li>
 <li class="chapter" data-level="3.2.2" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#curtosis"><i class="fa fa-check"></i><b>3.2.2</b> Curtosis</a></li>
 <li class="chapter" data-level="3.2.3" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#box-plots"><i class="fa fa-check"></i><b>3.2.3</b> Box-plots</a></li>
 </ul></li>
-<li class="chapter" data-level="3.3" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#medidas-de-dispersión"><i class="fa fa-check"></i><b>3.3</b> Medidas de dispersión</a>
+<li class="chapter" data-level="3.3" data-path="03-capitulo2.html"><a href="#medidas-de-dispersi%C3%B3n"><i class="fa fa-check"></i><b>3.3</b> Medidas de dispersión</a>
 <ul>
 <li class="chapter" data-level="3.3.1" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#recorrido"><i class="fa fa-check"></i><b>3.3.1</b> Recorrido</a></li>
-<li class="chapter" data-level="3.3.2" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#amplitud-intercuartílica"><i class="fa fa-check"></i><b>3.3.2</b> Amplitud intercuartílica</a></li>
-<li class="chapter" data-level="3.3.3" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#medidas-de-dispersión-basadas-en-la-media"><i class="fa fa-check"></i><b>3.3.3</b> Medidas de dispersión basadas en la media</a></li>
+<li class="chapter" data-level="3.3.2" data-path="03-capitulo2.html"><a href="#amplitud-intercuart%C3%ADlica"><i class="fa fa-check"></i><b>3.3.2</b> Amplitud intercuartílica</a></li>
+<li class="chapter" data-level="3.3.3" data-path="03-capitulo2.html"><a href="#medidas-de-dispersi%C3%B3n-basadas-en-la-media"><i class="fa fa-check"></i><b>3.3.3</b> Medidas de dispersión basadas en la media</a></li>
 <li class="chapter" data-level="3.3.4" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#varianza"><i class="fa fa-check"></i><b>3.3.4</b> Varianza</a></li>
-<li class="chapter" data-level="3.3.5" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#desviación-estándar"><i class="fa fa-check"></i><b>3.3.5</b> Desviación estándar</a></li>
-<li class="chapter" data-level="3.3.6" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#coeficiente-de-variación"><i class="fa fa-check"></i><b>3.3.6</b> Coeficiente de variación</a></li>
-<li class="chapter" data-level="3.3.7" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#box-plots-y-dispersión"><i class="fa fa-check"></i><b>3.3.7</b> Box-plots y dispersión</a></li>
-<li class="chapter" data-level="3.3.8" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#medida-de-la-dispersión-cuando-no-hay-distancias"><i class="fa fa-check"></i><b>3.3.8</b> Medida de la dispersión cuando no hay distancias</a></li>
+<li class="chapter" data-level="3.3.5" data-path="03-capitulo2.html"><a href="#desviaci%C3%B3n-est%C3%A1ndar"><i class="fa fa-check"></i><b>3.3.5</b> Desviación estándar</a></li>
+<li class="chapter" data-level="3.3.6" data-path="03-capitulo2.html"><a href="#coeficiente-de-variaci%C3%B3n"><i class="fa fa-check"></i><b>3.3.6</b> Coeficiente de variación</a></li>
+<li class="chapter" data-level="3.3.7" data-path="03-capitulo2.html"><a href="#box-plots-y-dispersi%C3%B3n"><i class="fa fa-check"></i><b>3.3.7</b> Box-plots y dispersión</a></li>
+<li class="chapter" data-level="3.3.8" data-path="03-capitulo2.html"><a href="#medida-de-la-dispersi%C3%B3n-cuando-no-hay-distancias"><i class="fa fa-check"></i><b>3.3.8</b> Medida de la dispersión cuando no hay distancias</a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#el-individuo-en-relación-a-su-grupo"><i class="fa fa-check"></i><b>3.4</b> El individuo en relación a su grupo</a></li>
+<li class="chapter" data-level="3.4" data-path="03-capitulo2.html"><a href="#el-individuo-en-relaci%C3%B3n-a-su-grupo"><i class="fa fa-check"></i><b>3.4</b> El individuo en relación a su grupo</a></li>
 <li class="chapter" data-level="3.5" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#resumen-de-medidas-descriptivas"><i class="fa fa-check"></i><b>3.5</b> Resumen de medidas descriptivas</a>
 <ul>
-<li class="chapter" data-level="3.5.1" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#medidas-de-posición-1"><i class="fa fa-check"></i><b>3.5.1</b> Medidas de posición</a></li>
-<li class="chapter" data-level="3.5.2" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#medidas-de-dispersión-1"><i class="fa fa-check"></i><b>3.5.2</b> Medidas de dispersión</a></li>
+<li class="chapter" data-level="3.5.1" data-path="03-capitulo2.html"><a href="#medidas-de-posici%C3%B3n-1"><i class="fa fa-check"></i><b>3.5.1</b> Medidas de posición</a></li>
+<li class="chapter" data-level="3.5.2" data-path="03-capitulo2.html"><a href="#medidas-de-dispersi%C3%B3n-1"><i class="fa fa-check"></i><b>3.5.2</b> Medidas de dispersión</a></li>
 </ul></li>
 <li class="chapter" data-level="3.6" data-path="la-expresión-resumida-de-la-información.html"><a href="la-expresión-resumida-de-la-información.html#hacerlo-en-r-2"><i class="fa fa-check"></i><b>3.6</b> Hacerlo en R</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html"><i class="fa fa-check"></i><b>4</b> Relación entre variables: los fundamentos</a>
+<li class="chapter" data-level="4" data-path="03-capitulo2.html"><a href="#relaci%C3%B3n-entre-variables-los-fundamentos"><i class="fa fa-check"></i><b>4</b> Relación entre variables: los fundamentos</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#tablas-de-contingencia"><i class="fa fa-check"></i><b>4.1</b> Tablas de contingencia</a></li>
+<li class="chapter" data-level="4.1" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html"><i class="fa fa-check"></i><b>4.1</b> Tablas de contingencia</a></li>
 <li class="chapter" data-level="4.2" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#frecuencias-relativas"><i class="fa fa-check"></i><b>4.2</b> Frecuencias relativas</a></li>
-<li class="chapter" data-level="4.3" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#una-clasificación-en-referencia-al-tiempo"><i class="fa fa-check"></i><b>4.3</b> Una clasificación en referencia al tiempo</a></li>
-<li class="chapter" data-level="4.4" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#la-dirección-de-la-relación"><i class="fa fa-check"></i><b>4.4</b> La dirección de la relación</a></li>
+<li class="chapter" data-level="4.3" data-path="03-capitulo2.html"><a href="#una-clasificaci%C3%B3n-en-referencia-al-tiempo"><i class="fa fa-check"></i><b>4.3</b> Una clasificación en referencia al tiempo</a></li>
+<li class="chapter" data-level="4.4" data-path="03-capitulo2.html"><a href="#la-direcci%C3%B3n-de-la-relaci%C3%B3n"><i class="fa fa-check"></i><b>4.4</b> La dirección de la relación</a></li>
 <li class="chapter" data-level="4.5" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#concepto-de-riesgo-relativo"><i class="fa fa-check"></i><b>4.5</b> Concepto de riesgo relativo</a></li>
 <li class="chapter" data-level="4.6" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#la-intensidad"><i class="fa fa-check"></i><b>4.6</b> La intensidad</a></li>
-<li class="chapter" data-level="4.7" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#el-concepto-de-independencia-estadística"><i class="fa fa-check"></i><b>4.7</b> El concepto de independencia estadística</a></li>
+<li class="chapter" data-level="4.7" data-path="03-capitulo2.html"><a href="#el-concepto-de-independencia-estad%C3%ADstica"><i class="fa fa-check"></i><b>4.7</b> El concepto de independencia estadística</a></li>
 <li class="chapter" data-level="4.8" data-path="relación-entre-variables-los-fundamentos.html"><a href="relación-entre-variables-los-fundamentos.html#hacerlo-en-r-3"><i class="fa fa-check"></i><b>4.8</b> Hacerlo en R</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html"><i class="fa fa-check"></i><b>5</b> Relación entre variables: el análisis</a>
+<li class="chapter" data-level="5" data-path="03-capitulo2.html"><a href="#relaci%C3%B3n-entre-variables-el-an%C3%A1lisis"><i class="fa fa-check"></i><b>5</b> Relación entre variables: el análisis</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#relaciones-entre-variables-vs.-comparación-de-grupos"><i class="fa fa-check"></i><b>5.1</b> Relaciones entre variables vs. comparación de grupos</a></li>
-<li class="chapter" data-level="5.2" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#variables-nominales"><i class="fa fa-check"></i><b>5.2</b> Variables nominales</a>
+<li class="chapter" data-level="5.1" data-path="03-capitulo2.html"><a href="#relaciones-entre-variables-vs.-comparaci%C3%B3n-de-grupos"><i class="fa fa-check"></i><b>5.1</b> Relaciones entre variables vs. comparación de grupos</a></li>
+<li class="chapter" data-level="5.2" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html"><i class="fa fa-check"></i><b>5.2</b> Variables nominales</a>
 <ul>
-<li class="chapter" data-level="5.2.1" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#coeficientes-de-asociación-para-variables-nominales"><i class="fa fa-check"></i><b>5.2.1</b> Coeficientes de asociación para variables nominales</a></li>
+<li class="chapter" data-level="5.2.1" data-path="03-capitulo2.html"><a href="#coeficientes-de-asociaci%C3%B3n-para-variables-nominales"><i class="fa fa-check"></i><b>5.2.1</b> Coeficientes de asociación para variables nominales</a></li>
 </ul></li>
 <li class="chapter" data-level="5.3" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#variables-de-nivel-ordinal"><i class="fa fa-check"></i><b>5.3</b> Variables de nivel ordinal</a></li>
 <li class="chapter" data-level="5.4" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#nivel-intervalar-o-proporcional"><i class="fa fa-check"></i><b>5.4</b> Nivel intervalar o proporcional</a></li>
-<li class="chapter" data-level="5.5" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#dicotomías-reales-y-artificiales"><i class="fa fa-check"></i><b>5.5</b> Dicotomías reales y artificiales</a></li>
-<li class="chapter" data-level="5.6" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#niveles-de-medición-combinados"><i class="fa fa-check"></i><b>5.6</b> Niveles de medición combinados</a>
+<li class="chapter" data-level="5.5" data-path="03-capitulo2.html"><a href="#dicotom%C3%ADas-reales-y-artificiales"><i class="fa fa-check"></i><b>5.5</b> Dicotomías reales y artificiales</a></li>
+<li class="chapter" data-level="5.6" data-path="03-capitulo2.html"><a href="#niveles-de-medici%C3%B3n-combinados"><i class="fa fa-check"></i><b>5.6</b> Niveles de medición combinados</a>
 <ul>
-<li class="chapter" data-level="5.6.1" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#una-variable-dicotómica-real-y-una-proporcional"><i class="fa fa-check"></i><b>5.6.1</b> Una variable dicotómica real y una proporcional</a></li>
+<li class="chapter" data-level="5.6.1" data-path="03-capitulo2.html"><a href="#una-variable-dicot%C3%B3mica-real-y-una-proporcional"><i class="fa fa-check"></i><b>5.6.1</b> Una variable dicotómica real y una proporcional</a></li>
 <li class="chapter" data-level="5.6.2" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#una-variable-continua-dicotomizada-y-una-proporcional"><i class="fa fa-check"></i><b>5.6.2</b> Una variable continua dicotomizada y una proporcional</a></li>
 </ul></li>
-<li class="chapter" data-level="5.7" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#resumen-de-coeficientes-de-asociación"><i class="fa fa-check"></i><b>5.7</b> Resumen de coeficientes de asociación</a></li>
+<li class="chapter" data-level="5.7" data-path="03-capitulo2.html"><a href="#resumen-de-coeficientes-de-asociaci%C3%B3n"><i class="fa fa-check"></i><b>5.7</b> Resumen de coeficientes de asociación</a></li>
 <li class="chapter" data-level="5.8" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#matriz-de-correlaciones"><i class="fa fa-check"></i><b>5.8</b> Matriz de correlaciones</a></li>
-<li class="chapter" data-level="5.9" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#la-forma-de-la-relación"><i class="fa fa-check"></i><b>5.9</b> La forma de la relación</a>
+<li class="chapter" data-level="5.9" data-path="03-capitulo2.html"><a href="#la-forma-de-la-relaci%C3%B3n"><i class="fa fa-check"></i><b>5.9</b> La forma de la relación</a>
 <ul>
 <li class="chapter" data-level="5.9.1" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#ordenada-al-origen"><i class="fa fa-check"></i><b>5.9.1</b> Ordenada al origen</a></li>
 <li class="chapter" data-level="5.9.2" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#pendiente"><i class="fa fa-check"></i><b>5.9.2</b> Pendiente</a></li>
-<li class="chapter" data-level="5.9.3" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#obtención-de-la-recta-de-regresión"><i class="fa fa-check"></i><b>5.9.3</b> Obtención de la recta de regresión</a></li>
+<li class="chapter" data-level="5.9.3" data-path="03-capitulo2.html"><a href="#obtenci%C3%B3n-de-la-recta-de-regresi%C3%B3n"><i class="fa fa-check"></i><b>5.9.3</b> Obtención de la recta de regresión</a></li>
 </ul></li>
-<li class="chapter" data-level="5.10" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#la-visualización-de-los-datos"><i class="fa fa-check"></i><b>5.10</b> La visualización de los datos</a></li>
+<li class="chapter" data-level="5.10" data-path="03-capitulo2.html"><a href="#la-visualizaci%C3%B3n-de-los-datos"><i class="fa fa-check"></i><b>5.10</b> La visualización de los datos</a></li>
 <li class="chapter" data-level="5.11" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#hacerlo-en-r-4"><i class="fa fa-check"></i><b>5.11</b> Hacerlo en R</a>
 <ul>
 <li class="chapter" data-level="5.11.1" data-path="relación-entre-variables-el-análisis.html"><a href="relación-entre-variables-el-análisis.html#distancia-chi2"><i class="fa fa-check"></i><b>5.11.1</b> Distancia <span class="math inline">\(\chi^{2}\)</span></a></li>
@@ -311,28 +316,28 @@ div.csl-indent {
 </ul></li>
 </ul></li>
 <li class="part"><span><b>II De la descripción a la inferencia</b></span></li>
-<li class="chapter" data-level="6" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html"><i class="fa fa-check"></i><b>6</b> Obtención de la muestra</a>
+<li class="chapter" data-level="6" data-path="03-capitulo2.html"><a href="#obtenci%C3%B3n-de-la-muestra"><i class="fa fa-check"></i><b>6</b> Obtención de la muestra</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#población"><i class="fa fa-check"></i><b>6.1</b> Población</a>
+<li class="chapter" data-level="6.1" data-path="03-capitulo2.html"><a href="#poblaci%C3%B3n"><i class="fa fa-check"></i><b>6.1</b> Población</a>
 <ul>
-<li class="chapter" data-level="6.1.1" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestra"><i class="fa fa-check"></i><b>6.1.1</b> Muestra</a></li>
+<li class="chapter" data-level="6.1.1" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html"><i class="fa fa-check"></i><b>6.1.1</b> Muestra</a></li>
 </ul></li>
-<li class="chapter" data-level="6.2" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreos-probabilísticos"><i class="fa fa-check"></i><b>6.2</b> Muestreos probabilísticos</a>
+<li class="chapter" data-level="6.2" data-path="03-capitulo2.html"><a href="#muestreos-probabil%C3%ADsticos"><i class="fa fa-check"></i><b>6.2</b> Muestreos probabilísticos</a>
 <ul>
 <li class="chapter" data-level="6.2.1" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-irrestricto-aleatorio-o-aleatorio-simple"><i class="fa fa-check"></i><b>6.2.1</b> Muestreo irrestricto aleatorio o aleatorio simple</a></li>
-<li class="chapter" data-level="6.2.2" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-sistemático"><i class="fa fa-check"></i><b>6.2.2</b> Muestreo sistemático</a></li>
+<li class="chapter" data-level="6.2.2" data-path="03-capitulo2.html"><a href="#muestreo-sistem%C3%A1tico"><i class="fa fa-check"></i><b>6.2.2</b> Muestreo sistemático</a></li>
 <li class="chapter" data-level="6.2.3" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-estratificado"><i class="fa fa-check"></i><b>6.2.3</b> Muestreo estratificado</a></li>
 <li class="chapter" data-level="6.2.4" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-por-conglomerados"><i class="fa fa-check"></i><b>6.2.4</b> Muestreo por conglomerados</a></li>
-<li class="chapter" data-level="6.2.5" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#método-de-kish"><i class="fa fa-check"></i><b>6.2.5</b> Método de Kish</a></li>
-<li class="chapter" data-level="6.2.6" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#uso-combinado-de-técnicas-de-muestreo"><i class="fa fa-check"></i><b>6.2.6</b> Uso combinado de técnicas de muestreo</a></li>
+<li class="chapter" data-level="6.2.5" data-path="03-capitulo2.html"><a href="#m%C3%A9todo-de-kish"><i class="fa fa-check"></i><b>6.2.5</b> Método de Kish</a></li>
+<li class="chapter" data-level="6.2.6" data-path="03-capitulo2.html"><a href="#uso-combinado-de-t%C3%A9cnicas-de-muestreo"><i class="fa fa-check"></i><b>6.2.6</b> Uso combinado de técnicas de muestreo</a></li>
 <li class="chapter" data-level="6.2.7" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-de-panel"><i class="fa fa-check"></i><b>6.2.7</b> Muestreo de panel</a></li>
 </ul></li>
-<li class="chapter" data-level="6.3" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreos-no-probabilísticos"><i class="fa fa-check"></i><b>6.3</b> Muestreos no probabilísticos</a>
+<li class="chapter" data-level="6.3" data-path="03-capitulo2.html"><a href="#muestreos-no-probabil%C3%ADsticos"><i class="fa fa-check"></i><b>6.3</b> Muestreos no probabilísticos</a>
 <ul>
 <li class="chapter" data-level="6.3.1" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-por-cuotas"><i class="fa fa-check"></i><b>6.3.1</b> Muestreo por cuotas</a></li>
 <li class="chapter" data-level="6.3.2" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-de-juicio-o-intencional"><i class="fa fa-check"></i><b>6.3.2</b> Muestreo de juicio o intencional</a></li>
 <li class="chapter" data-level="6.3.3" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-autoelegido"><i class="fa fa-check"></i><b>6.3.3</b> Muestreo autoelegido</a></li>
-<li class="chapter" data-level="6.3.4" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-accidental-o-según-disponibilidad"><i class="fa fa-check"></i><b>6.3.4</b> Muestreo accidental o según disponibilidad</a></li>
+<li class="chapter" data-level="6.3.4" data-path="03-capitulo2.html"><a href="#muestreo-accidental-o-seg%C3%BAn-disponibilidad"><i class="fa fa-check"></i><b>6.3.4</b> Muestreo accidental o según disponibilidad</a></li>
 <li class="chapter" data-level="6.3.5" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#muestreo-bola-de-nieve"><i class="fa fa-check"></i><b>6.3.5</b> Muestreo bola de nieve</a></li>
 </ul></li>
 <li class="chapter" data-level="6.4" data-path="obtención-de-la-muestra.html"><a href="obtención-de-la-muestra.html#hacerlo-en-r-5"><i class="fa fa-check"></i><b>6.4</b> Hacerlo en R</a>
@@ -345,9 +350,9 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="7.1" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#formas-para-asignar-probabilidades"><i class="fa fa-check"></i><b>7.1</b> Formas para asignar probabilidades</a>
 <ul>
-<li class="chapter" data-level="7.1.1" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#asignación-a-priori"><i class="fa fa-check"></i><b>7.1.1</b> Asignación a priori</a></li>
-<li class="chapter" data-level="7.1.2" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#asignación-a-posteriori"><i class="fa fa-check"></i><b>7.1.2</b> Asignación a posteriori</a></li>
-<li class="chapter" data-level="7.1.3" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#la-relación-entre-asignación-a-priori-y-a-posteriori"><i class="fa fa-check"></i><b>7.1.3</b> La relación entre asignación a priori y a posteriori</a></li>
+<li class="chapter" data-level="7.1.1" data-path="03-capitulo2.html"><a href="#asignaci%C3%B3n-a-priori"><i class="fa fa-check"></i><b>7.1.1</b> Asignación a priori</a></li>
+<li class="chapter" data-level="7.1.2" data-path="03-capitulo2.html"><a href="#asignaci%C3%B3n-a-posteriori"><i class="fa fa-check"></i><b>7.1.2</b> Asignación a posteriori</a></li>
+<li class="chapter" data-level="7.1.3" data-path="03-capitulo2.html"><a href="#la-relaci%C3%B3n-entre-asignaci%C3%B3n-a-priori-y-a-posteriori"><i class="fa fa-check"></i><b>7.1.3</b> La relación entre asignación a priori y a posteriori</a></li>
 </ul></li>
 <li class="chapter" data-level="7.2" data-path="probabilidad-los-fundamentos.html"><a href="probabilidad-los-fundamentos.html#operando-con-probabilidades"><i class="fa fa-check"></i><b>7.2</b> Operando con probabilidades</a>
 <ul>
@@ -359,27 +364,27 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="8" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html"><i class="fa fa-check"></i><b>8</b> Probabilidad: los modelos</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#concepto-de-modelización"><i class="fa fa-check"></i><b>8.1</b> Concepto de modelización</a></li>
-<li class="chapter" data-level="8.2" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#distribución-binomial"><i class="fa fa-check"></i><b>8.2</b> Distribución binomial</a>
+<li class="chapter" data-level="8.1" data-path="03-capitulo2.html"><a href="#concepto-de-modelizaci%C3%B3n"><i class="fa fa-check"></i><b>8.1</b> Concepto de modelización</a></li>
+<li class="chapter" data-level="8.2" data-path="03-capitulo2.html"><a href="#distribuci%C3%B3n-binomial"><i class="fa fa-check"></i><b>8.2</b> Distribución binomial</a>
 <ul>
 <li class="chapter" data-level="8.2.1" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#esperanza-y-varianza"><i class="fa fa-check"></i><b>8.2.1</b> Esperanza y varianza</a></li>
 </ul></li>
-<li class="chapter" data-level="8.3" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#distribución-normal"><i class="fa fa-check"></i><b>8.3</b> Distribución normal</a>
+<li class="chapter" data-level="8.3" data-path="03-capitulo2.html"><a href="#distribuci%C3%B3n-normal"><i class="fa fa-check"></i><b>8.3</b> Distribución normal</a>
 <ul>
 <li class="chapter" data-level="8.3.1" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#cuantiles"><i class="fa fa-check"></i><b>8.3.1</b> Cuantiles</a></li>
 </ul></li>
 <li class="chapter" data-level="8.4" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#la-idea-de-grados-de-libertad"><i class="fa fa-check"></i><b>8.4</b> La idea de grados de libertad</a></li>
-<li class="chapter" data-level="8.5" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#la-distribución-ji-cuadrado-chi2"><i class="fa fa-check"></i><b>8.5</b> La distribución ji cuadrado (<span class="math inline">\(\chi^{2}\)</span>)</a></li>
-<li class="chapter" data-level="8.6" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#la-distribución-t-de-student"><i class="fa fa-check"></i><b>8.6</b> La distribución t de Student</a>
+<li class="chapter" data-level="8.5" data-path="03-capitulo2.html"><a href="#la-distribuci%C3%B3n-ji-cuadrado-chi2"><i class="fa fa-check"></i><b>8.5</b> La distribución ji cuadrado (<span class="math inline">\(\chi^{2}\)</span>)</a></li>
+<li class="chapter" data-level="8.6" data-path="03-capitulo2.html"><a href="#la-distribuci%C3%B3n-t-de-student"><i class="fa fa-check"></i><b>8.6</b> La distribución t de Student</a>
 <ul>
-<li class="chapter" data-level="8.6.1" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#la-distribución-f"><i class="fa fa-check"></i><b>8.6.1</b> La distribución F</a></li>
+<li class="chapter" data-level="8.6.1" data-path="03-capitulo2.html"><a href="#la-distribuci%C3%B3n-f"><i class="fa fa-check"></i><b>8.6.1</b> La distribución F</a></li>
 </ul></li>
 <li class="chapter" data-level="8.7" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#hacerlo-en-r-6"><i class="fa fa-check"></i><b>8.7</b> Hacerlo en R</a>
 <ul>
 <li class="chapter" data-level="8.7.1" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#probabilidades-exactas"><i class="fa fa-check"></i><b>8.7.1</b> Probabilidades exactas</a></li>
 <li class="chapter" data-level="8.7.2" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#probabilidades-acumuladas"><i class="fa fa-check"></i><b>8.7.2</b> Probabilidades acumuladas</a></li>
 <li class="chapter" data-level="8.7.3" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#cuantiles-1"><i class="fa fa-check"></i><b>8.7.3</b> Cuantiles</a></li>
-<li class="chapter" data-level="8.7.4" data-path="probabilidad-los-modelos.html"><a href="probabilidad-los-modelos.html#áreas-centrales"><i class="fa fa-check"></i><b>8.7.4</b> Áreas centrales</a></li>
+<li class="chapter" data-level="8.7.4" data-path="03-capitulo2.html"><a href="#%C3%A1reas-centrales"><i class="fa fa-check"></i><b>8.7.4</b> Áreas centrales</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html"><i class="fa fa-check"></i><b>9</b> Distribuciones en el muestreo</a>
@@ -388,7 +393,7 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="9.1.1" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#dos-aspectos-importantes-para-recordar-cuando-se-usan-muestras"><i class="fa fa-check"></i><b>9.1.1</b> Dos aspectos importantes para recordar cuando se usan muestras:</a></li>
 </ul></li>
-<li class="chapter" data-level="9.2" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#características-de-los-estimadores"><i class="fa fa-check"></i><b>9.2</b> Características de los estimadores</a>
+<li class="chapter" data-level="9.2" data-path="03-capitulo2.html"><a href="#caracter%C3%ADsticas-de-los-estimadores"><i class="fa fa-check"></i><b>9.2</b> Características de los estimadores</a>
 <ul>
 <li class="chapter" data-level="9.2.1" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#insesgabilidad"><i class="fa fa-check"></i><b>9.2.1</b> Insesgabilidad</a></li>
 <li class="chapter" data-level="9.2.2" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#consistencia"><i class="fa fa-check"></i><b>9.2.2</b> Consistencia</a></li>
@@ -396,24 +401,24 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="9.3" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#distribuciones-de-probabilidad-de-los-estimadores"><i class="fa fa-check"></i><b>9.3</b> Distribuciones de probabilidad de los estimadores</a>
 <ul>
-<li class="chapter" data-level="9.3.1" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#primera-aproximación"><i class="fa fa-check"></i><b>9.3.1</b> Primera aproximación</a></li>
-<li class="chapter" data-level="9.3.2" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#distribución-de-la-media-muestral"><i class="fa fa-check"></i><b>9.3.2</b> Distribución de la media muestral</a></li>
-<li class="chapter" data-level="9.3.3" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#distribución-de-la-proporción-muestral"><i class="fa fa-check"></i><b>9.3.3</b> Distribución de la proporción muestral</a></li>
-<li class="chapter" data-level="9.3.4" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#muestras-pequeñas"><i class="fa fa-check"></i><b>9.3.4</b> Muestras pequeñas</a></li>
-<li class="chapter" data-level="9.3.5" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#distribución-de-la-varianza"><i class="fa fa-check"></i><b>9.3.5</b> Distribución de la varianza</a></li>
+<li class="chapter" data-level="9.3.1" data-path="03-capitulo2.html"><a href="#primera-aproximaci%C3%B3n"><i class="fa fa-check"></i><b>9.3.1</b> Primera aproximación</a></li>
+<li class="chapter" data-level="9.3.2" data-path="03-capitulo2.html"><a href="#distribuci%C3%B3n-de-la-media-muestral"><i class="fa fa-check"></i><b>9.3.2</b> Distribución de la media muestral</a></li>
+<li class="chapter" data-level="9.3.3" data-path="03-capitulo2.html"><a href="#distribuci%C3%B3n-de-la-proporci%C3%B3n-muestral"><i class="fa fa-check"></i><b>9.3.3</b> Distribución de la proporción muestral</a></li>
+<li class="chapter" data-level="9.3.4" data-path="03-capitulo2.html"><a href="#muestras-peque%C3%B1as"><i class="fa fa-check"></i><b>9.3.4</b> Muestras pequeñas</a></li>
+<li class="chapter" data-level="9.3.5" data-path="03-capitulo2.html"><a href="#distribuci%C3%B3n-de-la-varianza"><i class="fa fa-check"></i><b>9.3.5</b> Distribución de la varianza</a></li>
 <li class="chapter" data-level="9.3.6" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#muestreo-desde-dos-poblaciones"><i class="fa fa-check"></i><b>9.3.6</b> Muestreo desde dos poblaciones</a></li>
-<li class="chapter" data-level="9.3.7" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#distribución-del-cociente-de-varianzas"><i class="fa fa-check"></i><b>9.3.7</b> Distribución del cociente de varianzas</a></li>
+<li class="chapter" data-level="9.3.7" data-path="03-capitulo2.html"><a href="#distribuci%C3%B3n-del-cociente-de-varianzas"><i class="fa fa-check"></i><b>9.3.7</b> Distribución del cociente de varianzas</a></li>
 </ul></li>
-<li class="chapter" data-level="9.4" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#resumen-de-la-relación-entre-estimadores-y-parámetros"><i class="fa fa-check"></i><b>9.4</b> Resumen de la relación entre estimadores y parámetros</a></li>
+<li class="chapter" data-level="9.4" data-path="03-capitulo2.html"><a href="#resumen-de-la-relaci%C3%B3n-entre-estimadores-y-par%C3%A1metros"><i class="fa fa-check"></i><b>9.4</b> Resumen de la relación entre estimadores y parámetros</a></li>
 <li class="chapter" data-level="9.5" data-path="distribuciones-en-el-muestreo.html"><a href="distribuciones-en-el-muestreo.html#hacerlo-en-r-7"><i class="fa fa-check"></i><b>9.5</b> Hacerlo en R</a></li>
 </ul></li>
 <li class="part"><span><b>III Estadística inferencial</b></span></li>
-<li class="chapter" data-level="10" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html"><i class="fa fa-check"></i><b>10</b> Estimación por intervalo</a>
+<li class="chapter" data-level="10" data-path="03-capitulo2.html"><a href="#estimaci%C3%B3n-por-intervalo"><i class="fa fa-check"></i><b>10</b> Estimación por intervalo</a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#estimación-puntual"><i class="fa fa-check"></i><b>10.1</b> Estimación puntual</a></li>
-<li class="chapter" data-level="10.2" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#intervalos-de-confianza"><i class="fa fa-check"></i><b>10.2</b> Intervalos de confianza</a></li>
-<li class="chapter" data-level="10.3" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#estimación-de-la-media"><i class="fa fa-check"></i><b>10.3</b> Estimación de la media</a></li>
-<li class="chapter" data-level="10.4" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#estimación-de-la-proporción"><i class="fa fa-check"></i><b>10.4</b> Estimación de la proporción</a>
+<li class="chapter" data-level="10.1" data-path="03-capitulo2.html"><a href="#estimaci%C3%B3n-puntual"><i class="fa fa-check"></i><b>10.1</b> Estimación puntual</a></li>
+<li class="chapter" data-level="10.2" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html"><i class="fa fa-check"></i><b>10.2</b> Intervalos de confianza</a></li>
+<li class="chapter" data-level="10.3" data-path="03-capitulo2.html"><a href="#estimaci%C3%B3n-de-la-media"><i class="fa fa-check"></i><b>10.3</b> Estimación de la media</a></li>
+<li class="chapter" data-level="10.4" data-path="03-capitulo2.html"><a href="#estimaci%C3%B3n-de-la-proporci%C3%B3n"><i class="fa fa-check"></i><b>10.4</b> Estimación de la proporción</a>
 <ul>
 <li class="chapter" data-level="10.4.1" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#intervalo-de-clopper-pearson"><i class="fa fa-check"></i><b>10.4.1</b> Intervalo de Clopper-Pearson</a></li>
 <li class="chapter" data-level="10.4.2" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#intervalo-de-wald"><i class="fa fa-check"></i><b>10.4.2</b> Intervalo de Wald</a></li>
@@ -421,45 +426,45 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="10.5" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#la-calidad-de-las-estimaciones-por-intervalo"><i class="fa fa-check"></i><b>10.5</b> La calidad de las estimaciones por intervalo</a>
 <ul>
-<li class="chapter" data-level="10.5.1" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#el-error-de-estimación-en-la-media"><i class="fa fa-check"></i><b>10.5.1</b> El error de estimación en la media</a></li>
-<li class="chapter" data-level="10.5.2" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#el-error-de-estimación-en-la-proporción"><i class="fa fa-check"></i><b>10.5.2</b> El error de estimación en la proporción</a></li>
+<li class="chapter" data-level="10.5.1" data-path="03-capitulo2.html"><a href="#el-error-de-estimaci%C3%B3n-en-la-media"><i class="fa fa-check"></i><b>10.5.1</b> El error de estimación en la media</a></li>
+<li class="chapter" data-level="10.5.2" data-path="03-capitulo2.html"><a href="#el-error-de-estimaci%C3%B3n-en-la-proporci%C3%B3n"><i class="fa fa-check"></i><b>10.5.2</b> El error de estimación en la proporción</a></li>
 </ul></li>
 <li class="chapter" data-level="10.6" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#probabilidad-de-cobertura"><i class="fa fa-check"></i><b>10.6</b> Probabilidad de cobertura</a></li>
 <li class="chapter" data-level="10.7" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#hacerlo-en-r-8"><i class="fa fa-check"></i><b>10.7</b> Hacerlo en R</a>
 <ul>
 <li class="chapter" data-level="10.7.1" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#intervalo-para-la-media"><i class="fa fa-check"></i><b>10.7.1</b> Intervalo para la media</a></li>
-<li class="chapter" data-level="10.7.2" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#intervalo-para-la-proporción"><i class="fa fa-check"></i><b>10.7.2</b> Intervalo para la proporción</a></li>
+<li class="chapter" data-level="10.7.2" data-path="03-capitulo2.html"><a href="#intervalo-para-la-proporci%C3%B3n"><i class="fa fa-check"></i><b>10.7.2</b> Intervalo para la proporción</a></li>
 <li class="chapter" data-level="10.7.3" data-path="estimación-por-intervalo.html"><a href="estimación-por-intervalo.html#cobertura"><i class="fa fa-check"></i><b>10.7.3</b> Cobertura</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html"><i class="fa fa-check"></i><b>11</b> Prueba de hipótesis: la lógica</a>
+<li class="chapter" data-level="11" data-path="03-capitulo2.html"><a href="#prueba-de-hip%C3%B3tesis-la-l%C3%B3gica"><i class="fa fa-check"></i><b>11</b> Prueba de hipótesis: la lógica</a>
 <ul>
-<li class="chapter" data-level="11.1" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#el-razonamiento-de-la-prueba-de-hipótesis"><i class="fa fa-check"></i><b>11.1</b> El razonamiento de la prueba de hipótesis</a></li>
-<li class="chapter" data-level="11.2" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#prueba-sobre-la-media"><i class="fa fa-check"></i><b>11.2</b> Prueba sobre la media</a>
+<li class="chapter" data-level="11.1" data-path="03-capitulo2.html"><a href="#el-razonamiento-de-la-prueba-de-hip%C3%B3tesis"><i class="fa fa-check"></i><b>11.1</b> El razonamiento de la prueba de hipótesis</a></li>
+<li class="chapter" data-level="11.2" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html"><i class="fa fa-check"></i><b>11.2</b> Prueba sobre la media</a>
 <ul>
-<li class="chapter" data-level="11.2.1" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#la-toma-de-decisión"><i class="fa fa-check"></i><b>11.2.1</b> La toma de decisión</a></li>
-<li class="chapter" data-level="11.2.2" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#los-puntos-críticos-en-términos-del-estimador"><i class="fa fa-check"></i><b>11.2.2</b> Los puntos críticos en términos del estimador</a></li>
+<li class="chapter" data-level="11.2.1" data-path="03-capitulo2.html"><a href="#la-toma-de-decisi%C3%B3n"><i class="fa fa-check"></i><b>11.2.1</b> La toma de decisión</a></li>
+<li class="chapter" data-level="11.2.2" data-path="03-capitulo2.html"><a href="#los-puntos-cr%C3%ADticos-en-t%C3%A9rminos-del-estimador"><i class="fa fa-check"></i><b>11.2.2</b> Los puntos críticos en términos del estimador</a></li>
 <li class="chapter" data-level="11.2.3" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#pruebas-unilaterales"><i class="fa fa-check"></i><b>11.2.3</b> Pruebas unilaterales</a></li>
-<li class="chapter" data-level="11.2.4" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#otros-ejemplos-de-prueba-de-hipótesis-sobre-la-media"><i class="fa fa-check"></i><b>11.2.4</b> Otros ejemplos de prueba de hipótesis sobre la media</a></li>
+<li class="chapter" data-level="11.2.4" data-path="03-capitulo2.html"><a href="#otros-ejemplos-de-prueba-de-hip%C3%B3tesis-sobre-la-media"><i class="fa fa-check"></i><b>11.2.4</b> Otros ejemplos de prueba de hipótesis sobre la media</a></li>
 </ul></li>
-<li class="chapter" data-level="11.3" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#prueba-sobre-la-proporción"><i class="fa fa-check"></i><b>11.3</b> Prueba sobre la proporción</a></li>
-<li class="chapter" data-level="11.4" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#tipos-de-error-en-las-pruebas-de-hipótesis"><i class="fa fa-check"></i><b>11.4</b> Tipos de error en las pruebas de hipótesis</a></li>
+<li class="chapter" data-level="11.3" data-path="03-capitulo2.html"><a href="#prueba-sobre-la-proporci%C3%B3n"><i class="fa fa-check"></i><b>11.3</b> Prueba sobre la proporción</a></li>
+<li class="chapter" data-level="11.4" data-path="03-capitulo2.html"><a href="#tipos-de-error-en-las-pruebas-de-hip%C3%B3tesis"><i class="fa fa-check"></i><b>11.4</b> Tipos de error en las pruebas de hipótesis</a></li>
 <li class="chapter" data-level="11.5" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#etii-mu-alpha-y-n"><i class="fa fa-check"></i><b>11.5</b> <em>ETII:</em> <span class="math inline">\(\mu\)</span>, <span class="math inline">\(\alpha\)</span> y <span class="math inline">\(n\)</span></a>
 <ul>
 <li class="chapter" data-level="11.5.1" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#curva-de-potencia"><i class="fa fa-check"></i><b>11.5.1</b> Curva de potencia</a></li>
-<li class="chapter" data-level="11.5.2" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#significación-estadística-y-valor-p"><i class="fa fa-check"></i><b>11.5.2</b> Significación estadística y valor <span class="math inline">\(p\)</span></a></li>
+<li class="chapter" data-level="11.5.2" data-path="03-capitulo2.html"><a href="#significaci%C3%B3n-estad%C3%ADstica-y-valor-p"><i class="fa fa-check"></i><b>11.5.2</b> Significación estadística y valor <span class="math inline">\(p\)</span></a></li>
 </ul></li>
-<li class="chapter" data-level="11.6" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#muestras-pequeñas-y-pruebas-t"><i class="fa fa-check"></i><b>11.6</b> Muestras pequeñas y pruebas <span class="math inline">\(t\)</span></a></li>
+<li class="chapter" data-level="11.6" data-path="03-capitulo2.html"><a href="#muestras-peque%C3%B1as-y-pruebas-t"><i class="fa fa-check"></i><b>11.6</b> Muestras pequeñas y pruebas <span class="math inline">\(t\)</span></a></li>
 <li class="chapter" data-level="11.7" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#hacerlo-en-r-9"><i class="fa fa-check"></i><b>11.7</b> Hacerlo en R</a>
 <ul>
 <li class="chapter" data-level="11.7.1" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#prueba-sobre-la-media-1"><i class="fa fa-check"></i><b>11.7.1</b> Prueba sobre la media</a></li>
-<li class="chapter" data-level="11.7.2" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#prueba-sobre-la-proporción-1"><i class="fa fa-check"></i><b>11.7.2</b> Prueba sobre la proporción</a></li>
+<li class="chapter" data-level="11.7.2" data-path="03-capitulo2.html"><a href="#prueba-sobre-la-proporci%C3%B3n-1"><i class="fa fa-check"></i><b>11.7.2</b> Prueba sobre la proporción</a></li>
 </ul></li>
 <li class="chapter" data-level="11.8" data-path="prueba-de-hipótesis-la-lógica.html"><a href="prueba-de-hipótesis-la-lógica.html#resumen-de-pruebas-sobre-una-muestra"><i class="fa fa-check"></i><b>11.8</b> Resumen de pruebas sobre una muestra</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html"><i class="fa fa-check"></i><b>12</b> Prueba de hipótesis: las aplicaciones</a>
+<li class="chapter" data-level="12" data-path="03-capitulo2.html"><a href="#prueba-de-hip%C3%B3tesis-las-aplicaciones"><i class="fa fa-check"></i><b>12</b> Prueba de hipótesis: las aplicaciones</a>
 <ul>
-<li class="chapter" data-level="12.1" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#muestras-independientes"><i class="fa fa-check"></i><b>12.1</b> Muestras independientes</a>
+<li class="chapter" data-level="12.1" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html"><i class="fa fa-check"></i><b>12.1</b> Muestras independientes</a>
 <ul>
 <li class="chapter" data-level="12.1.1" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#prueba-de-diferencia-de-medias"><i class="fa fa-check"></i><b>12.1.1</b> Prueba de diferencia de medias</a></li>
 <li class="chapter" data-level="12.1.2" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#muestras-apareadas"><i class="fa fa-check"></i><b>12.1.2</b> Muestras apareadas</a></li>
@@ -469,16 +474,16 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="12.2.1" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#ejemplo-1."><i class="fa fa-check"></i><b>12.2.1</b> Ejemplo 1.</a></li>
 <li class="chapter" data-level="12.2.2" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#ejemplo-2."><i class="fa fa-check"></i><b>12.2.2</b> Ejemplo 2.</a></li>
-<li class="chapter" data-level="12.2.3" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#aplicación-a-los-datos-de-población-adulta-mayor"><i class="fa fa-check"></i><b>12.2.3</b> Aplicación a los datos de Población Adulta Mayor</a></li>
+<li class="chapter" data-level="12.2.3" data-path="03-capitulo2.html"><a href="#aplicaci%C3%B3n-a-los-datos-de-poblaci%C3%B3n-adulta-mayor"><i class="fa fa-check"></i><b>12.2.3</b> Aplicación a los datos de Población Adulta Mayor</a></li>
 <li class="chapter" data-level="12.2.4" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#prueba-apareada"><i class="fa fa-check"></i><b>12.2.4</b> Prueba apareada</a></li>
-<li class="chapter" data-level="12.2.5" data-path="prueba-de-hipótesis-las-aplicaciones.html"><a href="prueba-de-hipótesis-las-aplicaciones.html#coeficiente-de-correlación"><i class="fa fa-check"></i><b>12.2.5</b> Coeficiente de correlación</a></li>
+<li class="chapter" data-level="12.2.5" data-path="03-capitulo2.html"><a href="#coeficiente-de-correlaci%C3%B3n"><i class="fa fa-check"></i><b>12.2.5</b> Coeficiente de correlación</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html"><i class="fa fa-check"></i><b>13</b> Cuando los supuestos no se cumplen</a>
 <ul>
 <li class="chapter" data-level="13.0.1" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#las-pruebas-ji-cuadrado-o-chi-cuadrado"><i class="fa fa-check"></i><b>13.0.1</b> Las pruebas ji cuadrado (o chi cuadrado)</a></li>
 <li class="chapter" data-level="13.0.2" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#coeficiente-r_s-de-spearman"><i class="fa fa-check"></i><b>13.0.2</b> Coeficiente <span class="math inline">\(r_s\)</span> de Spearman</a></li>
-<li class="chapter" data-level="13.0.3" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#alternativas-no-paramétricas-a-las-pruebas-t"><i class="fa fa-check"></i><b>13.0.3</b> Alternativas no paramétricas a las pruebas t</a></li>
+<li class="chapter" data-level="13.0.3" data-path="03-capitulo2.html"><a href="#alternativas-no-param%C3%A9tricas-a-las-pruebas-t"><i class="fa fa-check"></i><b>13.0.3</b> Alternativas no paramétricas a las pruebas t</a></li>
 <li class="chapter" data-level="13.1" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#hacerlo-en-r-11"><i class="fa fa-check"></i><b>13.1</b> Hacerlo en R</a>
 <ul>
 <li class="chapter" data-level="13.1.1" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#ejemplo-1"><i class="fa fa-check"></i><b>13.1.1</b> Ejemplo 1</a></li>
@@ -488,18 +493,18 @@ div.csl-indent {
 <li class="chapter" data-level="13.1.5" data-path="cuando-los-supuestos-no-se-cumplen.html"><a href="cuando-los-supuestos-no-se-cumplen.html#muestras-apareadas-1"><i class="fa fa-check"></i><b>13.1.5</b> Muestras apareadas</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html"><i class="fa fa-check"></i><b>14</b> Tamaño del efecto</a>
+<li class="chapter" data-level="14" data-path="03-capitulo2.html"><a href="#tama%C3%B1o-del-efecto"><i class="fa fa-check"></i><b>14</b> Tamaño del efecto</a>
 <ul>
-<li class="chapter" data-level="14.1" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#significación-estadística-y-significación-práctica"><i class="fa fa-check"></i><b>14.1</b> Significación estadística y significación práctica</a></li>
-<li class="chapter" data-level="14.2" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#medidas-de-tamaño-del-efecto"><i class="fa fa-check"></i><b>14.2</b> Medidas de tamaño del efecto</a>
+<li class="chapter" data-level="14.1" data-path="03-capitulo2.html"><a href="#significaci%C3%B3n-estad%C3%ADstica-y-significaci%C3%B3n-pr%C3%A1ctica"><i class="fa fa-check"></i><b>14.1</b> Significación estadística y significación práctica</a></li>
+<li class="chapter" data-level="14.2" data-path="03-capitulo2.html"><a href="#medidas-de-tama%C3%B1o-del-efecto"><i class="fa fa-check"></i><b>14.2</b> Medidas de tamaño del efecto</a>
 <ul>
-<li class="chapter" data-level="14.2.1" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#prueba-t-para-diferencia-de-medias"><i class="fa fa-check"></i><b>14.2.1</b> Prueba t para diferencia de medias</a></li>
-<li class="chapter" data-level="14.2.2" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#análisis-de-la-varianza"><i class="fa fa-check"></i><b>14.2.2</b> Análisis de la varianza</a></li>
+<li class="chapter" data-level="14.2.1" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html"><i class="fa fa-check"></i><b>14.2.1</b> Prueba t para diferencia de medias</a></li>
+<li class="chapter" data-level="14.2.2" data-path="03-capitulo2.html"><a href="#an%C3%A1lisis-de-la-varianza"><i class="fa fa-check"></i><b>14.2.2</b> Análisis de la varianza</a></li>
 <li class="chapter" data-level="14.2.3" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#correlaciones"><i class="fa fa-check"></i><b>14.2.3</b> Correlaciones</a></li>
-<li class="chapter" data-level="14.2.4" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#regresión-lineal"><i class="fa fa-check"></i><b>14.2.4</b> Regresión lineal</a></li>
+<li class="chapter" data-level="14.2.4" data-path="03-capitulo2.html"><a href="#regresi%C3%B3n-lineal"><i class="fa fa-check"></i><b>14.2.4</b> Regresión lineal</a></li>
 <li class="chapter" data-level="14.2.5" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#pruebas-ji-cuadrado"><i class="fa fa-check"></i><b>14.2.5</b> Pruebas ji cuadrado</a></li>
 </ul></li>
-<li class="chapter" data-level="14.3" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#análisis-de-la-potencia"><i class="fa fa-check"></i><b>14.3</b> Análisis de la potencia</a></li>
+<li class="chapter" data-level="14.3" data-path="03-capitulo2.html"><a href="#an%C3%A1lisis-de-la-potencia"><i class="fa fa-check"></i><b>14.3</b> Análisis de la potencia</a></li>
 <li class="chapter" data-level="14.4" data-path="tamaño-del-efecto.html"><a href="tamaño-del-efecto.html#hacerlo-en-r-12"><i class="fa fa-check"></i><b>14.4</b> Hacerlo en R</a></li>
 </ul></li>
 <li class="divider"></li>
@@ -539,7 +544,7 @@ El siguiente fragmento de matriz de datos:</p>
 <p>Así presentada, la secuencia se llama serie simple y solo puede analizarse cuando son muy pocos casos, sería imposible en este ejemplo, con 56879 filas.</p>
 <p>El más elemental de los resúmenes consiste en contar, para una variable determinada, cuantas apariciones tiene cada categoría. En la columna encabezada CH04 (sexo) pueden contarse cuántos unos (1s) y cuántos doses (2s) hay en total.</p>
 <div id="tablas-de-distribución-de-frecuencia" class="section level2 hasAnchor" number="2.1">
-<h2><span class="header-section-number">2.1</span> Tablas de distribución de frecuencia<a href="distribuciones-de-frecuencia.html#tablas-de-distribución-de-frecuencia" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<h2><span class="header-section-number">2.1</span> Tablas de distribución de frecuencia<a href="#tablas-de-distribuci%C3%B3n-de-frecuencia" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Las tablas resumen los recuentos, en este ejemplo:</p>
 <table>
 <caption><span id="tab:unnamed-chunk-100">Tabla 2.1: </span>Distribución por sexos.</caption>
@@ -1317,10 +1322,10 @@ Así, además de indicar cuántos casos (o qué porcentaje de ellos) tiene deter
 </table>
 </div>
 <div id="recategorización" class="section level2 hasAnchor" number="2.2">
-<h2><span class="header-section-number">2.2</span> Recategorización<a href="distribuciones-de-frecuencia.html#recategorización" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<h2><span class="header-section-number">2.2</span> Recategorización<a href="#recategorizaci%C3%B3n" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Como se señaló antes, hay dos situaciones en que se apela a la presentación de los valores de la variable en forma agrupada, es decir que se recategoriza la variable en intervalos: si se trata de una variable discreta con muchas categorías (como la edad) o si es una variable continua.</p>
 <div id="variable-discreta-con-muchas-categorías" class="section level3 hasAnchor" number="2.2.1">
-<h3><span class="header-section-number">2.2.1</span> Variable discreta con muchas categorías<a href="distribuciones-de-frecuencia.html#variable-discreta-con-muchas-categorías" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<h3><span class="header-section-number">2.2.1</span> Variable discreta con muchas categorías<a href="#variable-discreta-con-muchas-categor%C3%ADas" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>La construcción de intervalos es una elección; podríamos optar por mostrar todas las categorías, con lo que quedaría una tabla grande, pero muy detallada; o bien agrupar para ganar en sencillez de presentación. Es muy común optar por la construcción de intervalos, de manera de mantener la cantidad de categorías entre cinco y diez. En tablas en que se precisa mostrar mucho detalle, se opta por la enumeración de todas las categorías.</p>
 </div>
 <div id="variable-continua" class="section level3 hasAnchor" number="2.2.2">
@@ -1395,7 +1400,7 @@ Así, además de indicar cuántos casos (o qué porcentaje de ellos) tiene deter
 <p>Ahora la distribución está más equilibrada (hay alrededor de 1000 casos en cada una), y los intervalos tienen amplitud diferente. El último intervalo, de 26 años de amplitud, tiene casi la misma cantidad de casos que el primero, que cubre tres años.</p>
 </div>
 <div id="intervalos-de-amplitud-teórica" class="section level4 hasAnchor" number="2.2.3.3">
-<h4><span class="header-section-number">2.2.3.3</span> Intervalos de amplitud teórica<a href="distribuciones-de-frecuencia.html#intervalos-de-amplitud-teórica" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<h4><span class="header-section-number">2.2.3.3</span> Intervalos de amplitud teórica<a href="#intervalos-de-amplitud-te%C3%B3rica" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Aquí la decisión por el lugar donde establecer los puntos de corte para definir los intervalos ha sido decidida, por lo que está explícita y fundamentada en la investigación. Si se considera que, según el año en que ingresaron a la carrera, la edad esperada de las personas observadas es entre 19 y 20 años, se pueden hacer cuatro intervalos con quienes tienen menos de esa edad, quienes tienen la edad esperada, quienes tienen más de esa edad y el grupo “más mayor” (superan los 40 años). Los intervalos resultan así:</p>
 <table>
 <caption><span id="tab:unnamed-chunk-111">Tabla 2.12: </span>Categorización de la edad con un criterio teórico.</caption>
@@ -1429,7 +1434,7 @@ Así, además de indicar cuántos casos (o qué porcentaje de ellos) tiene deter
 </div>
 </div>
 <div id="la-presentación-gráfica-de-los-resultados" class="section level2 hasAnchor" number="2.3">
-<h2><span class="header-section-number">2.3</span> La presentación gráfica de los resultados<a href="distribuciones-de-frecuencia.html#la-presentación-gráfica-de-los-resultados" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<h2><span class="header-section-number">2.3</span> La presentación gráfica de los resultados<a href="#la-presentaci%C3%B3n-gr%C3%A1fica-de-los-resultados" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>En la misma dirección de ofrecer una presentación de los datos recogidos que sea accesible para la interpretación, se muestran a continuación las representaciones gráficas que más se usan para describir información cuantitativa. Nuevamente aquí se debe aceptar la pérdida de parte de la información que se muestra, en aras del impacto visual y facilidad de lectura que proveen los gráficos.
 Cuando se trata de variables nominales, normalmente con pocas categorías, son adecuados los <strong>gráficos de barras</strong>. En el gráfico <a href="distribuciones-de-frecuencia.html#fig:estadobarras">2.1</a> se muestra un ejemplo para la tabla de la variable “ESTADO”.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:estadobarras"></span>
@@ -1554,78 +1559,78 @@ Figura 2.12: Identificación de los valores de la variable para determinadas fre
 <div id="hacerlo-en-r-1" class="section level2 hasAnchor" number="2.4">
 <h2><span class="header-section-number">2.4</span> Hacerlo en R<a href="distribuciones-de-frecuencia.html#hacerlo-en-r-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Volvemos a leer la base que se trabajó en el capítulo anterior:</p>
-<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="distribuciones-de-frecuencia.html#cb200-1" aria-hidden="true" tabindex="-1"></a>base.ejemplo <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;bases/archivostxt/base2019.txt&quot;</span>,</span>
-<span id="cb200-2"><a href="distribuciones-de-frecuencia.html#cb200-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">sep =</span> <span class="st">&quot; &quot;</span>, <span class="at">na.strings =</span> <span class="st">&quot;999&quot;</span></span>
-<span id="cb200-3"><a href="distribuciones-de-frecuencia.html#cb200-3" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="distribuciones-de-frecuencia.html#cb166-1" tabindex="-1"></a>base.ejemplo <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;bases/archivostxt/base2019.txt&quot;</span>,</span>
+<span id="cb166-2"><a href="distribuciones-de-frecuencia.html#cb166-2" tabindex="-1"></a>  <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">sep =</span> <span class="st">&quot; &quot;</span>, <span class="at">na.strings =</span> <span class="st">&quot;999&quot;</span></span>
+<span id="cb166-3"><a href="distribuciones-de-frecuencia.html#cb166-3" tabindex="-1"></a>)</span></code></pre></div>
 <p>Y repetimos las operaciones anteriores, de dar nombre a las variables, y de tranformar en factor y etiquetar las variables que corresponda (para esto alcanza con copiar y pegar las instrucciones del capítulo anterior):</p>
-<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="distribuciones-de-frecuencia.html#cb201-1" aria-hidden="true" tabindex="-1"></a><span class="co"># nombres de columnas:</span></span>
-<span id="cb201-2"><a href="distribuciones-de-frecuencia.html#cb201-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(base.ejemplo) <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb201-3"><a href="distribuciones-de-frecuencia.html#cb201-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;caso&quot;</span>, <span class="st">&quot;grupo&quot;</span>, <span class="st">&quot;n.cuest&quot;</span>, <span class="st">&quot;nombre&quot;</span>, <span class="st">&quot;sexo&quot;</span>, <span class="st">&quot;genero&quot;</span>,</span>
-<span id="cb201-4"><a href="distribuciones-de-frecuencia.html#cb201-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;edad&quot;</span>, <span class="st">&quot;acceso.redes&quot;</span>, <span class="st">&quot;red.usada&quot;</span>, <span class="st">&quot;red.otra&quot;</span>,</span>
-<span id="cb201-5"><a href="distribuciones-de-frecuencia.html#cb201-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;tiempo.red&quot;</span>, <span class="st">&quot;con.q.vive&quot;</span>, <span class="st">&quot;relacion.otres&quot;</span>,</span>
-<span id="cb201-6"><a href="distribuciones-de-frecuencia.html#cb201-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;q.aporta&quot;</span>, <span class="st">&quot;q.aporta.amigues&quot;</span>, <span class="st">&quot;edad.partida&quot;</span>,</span>
-<span id="cb201-7"><a href="distribuciones-de-frecuencia.html#cb201-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;razon.partida&quot;</span>,</span>
-<span id="cb201-8"><a href="distribuciones-de-frecuencia.html#cb201-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;razon.partida.otra&quot;</span>, <span class="st">&quot;calidad.sueño&quot;</span>,</span>
-<span id="cb201-9"><a href="distribuciones-de-frecuencia.html#cb201-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;preocupacion&quot;</span>, <span class="st">&quot;golpeo&quot;</span>, <span class="st">&quot;robo&quot;</span>, <span class="st">&quot;cuanto.da&quot;</span>, <span class="st">&quot;comision&quot;</span></span>
-<span id="cb201-10"><a href="distribuciones-de-frecuencia.html#cb201-10" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb201-11"><a href="distribuciones-de-frecuencia.html#cb201-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb201-12"><a href="distribuciones-de-frecuencia.html#cb201-12" aria-hidden="true" tabindex="-1"></a><span class="co"># transformar en factor y etiquetar las nominales:</span></span>
-<span id="cb201-13"><a href="distribuciones-de-frecuencia.html#cb201-13" aria-hidden="true" tabindex="-1"></a>base.ejemplo<span class="sc">$</span>sexo <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(base.ejemplo<span class="sc">$</span>sexo)</span>
-<span id="cb201-14"><a href="distribuciones-de-frecuencia.html#cb201-14" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(base.ejemplo<span class="sc">$</span>sexo) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;varones&quot;</span>, <span class="st">&quot;mujeres&quot;</span>)</span>
-<span id="cb201-15"><a href="distribuciones-de-frecuencia.html#cb201-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb201-16"><a href="distribuciones-de-frecuencia.html#cb201-16" aria-hidden="true" tabindex="-1"></a>base.ejemplo<span class="sc">$</span>con.q.vive <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(base.ejemplo<span class="sc">$</span>con.q.vive)</span>
-<span id="cb201-17"><a href="distribuciones-de-frecuencia.html#cb201-17" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(base.ejemplo<span class="sc">$</span>con.q.vive) <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb201-18"><a href="distribuciones-de-frecuencia.html#cb201-18" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;flia.origen&quot;</span>, <span class="st">&quot;flia.nueva&quot;</span>,</span>
-<span id="cb201-19"><a href="distribuciones-de-frecuencia.html#cb201-19" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;hermanes.o.amigues&quot;</span>, <span class="st">&quot;solo&quot;</span>,</span>
-<span id="cb201-20"><a href="distribuciones-de-frecuencia.html#cb201-20" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;con.otres&quot;</span></span>
-<span id="cb201-21"><a href="distribuciones-de-frecuencia.html#cb201-21" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb201-22"><a href="distribuciones-de-frecuencia.html#cb201-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb201-23"><a href="distribuciones-de-frecuencia.html#cb201-23" aria-hidden="true" tabindex="-1"></a>base.ejemplo<span class="sc">$</span>q.aporta <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(base.ejemplo<span class="sc">$</span>q.aporta)</span>
-<span id="cb201-24"><a href="distribuciones-de-frecuencia.html#cb201-24" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(base.ejemplo<span class="sc">$</span>q.aporta) <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb201-25"><a href="distribuciones-de-frecuencia.html#cb201-25" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;si.misme&quot;</span>, <span class="st">&quot;flia.origen&quot;</span>,</span>
-<span id="cb201-26"><a href="distribuciones-de-frecuencia.html#cb201-26" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;flia.nueva&quot;</span>, <span class="st">&quot;entre.amigues&quot;</span></span>
-<span id="cb201-27"><a href="distribuciones-de-frecuencia.html#cb201-27" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb201-28"><a href="distribuciones-de-frecuencia.html#cb201-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb201-29"><a href="distribuciones-de-frecuencia.html#cb201-29" aria-hidden="true" tabindex="-1"></a>base.ejemplo<span class="sc">$</span>acceso.redes <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(base.ejemplo<span class="sc">$</span>acceso.redes)</span>
-<span id="cb201-30"><a href="distribuciones-de-frecuencia.html#cb201-30" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(base.ejemplo<span class="sc">$</span>acceso.redes) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;si&quot;</span>, <span class="st">&quot;no&quot;</span>)</span>
-<span id="cb201-31"><a href="distribuciones-de-frecuencia.html#cb201-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb201-32"><a href="distribuciones-de-frecuencia.html#cb201-32" aria-hidden="true" tabindex="-1"></a>base.ejemplo<span class="sc">$</span>red.usada <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(base.ejemplo<span class="sc">$</span>red.usada)</span>
-<span id="cb201-33"><a href="distribuciones-de-frecuencia.html#cb201-33" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(base.ejemplo<span class="sc">$</span>red.usada) <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb201-34"><a href="distribuciones-de-frecuencia.html#cb201-34" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Instagram&quot;</span>, <span class="st">&quot;Facebook&quot;</span>, <span class="st">&quot;Twitter&quot;</span>,</span>
-<span id="cb201-35"><a href="distribuciones-de-frecuencia.html#cb201-35" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Linkedin&quot;</span>, <span class="st">&quot;Tinder/Grindr/happn&quot;</span>,</span>
-<span id="cb201-36"><a href="distribuciones-de-frecuencia.html#cb201-36" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;Snapchat&quot;</span>, <span class="st">&quot;Ninguna&quot;</span>, <span class="st">&quot;Otra&quot;</span></span>
-<span id="cb201-37"><a href="distribuciones-de-frecuencia.html#cb201-37" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb201-38"><a href="distribuciones-de-frecuencia.html#cb201-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb201-39"><a href="distribuciones-de-frecuencia.html#cb201-39" aria-hidden="true" tabindex="-1"></a>base.ejemplo<span class="sc">$</span>razon.partida <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(</span>
-<span id="cb201-40"><a href="distribuciones-de-frecuencia.html#cb201-40" aria-hidden="true" tabindex="-1"></a>  base.ejemplo<span class="sc">$</span>razon.partida</span>
-<span id="cb201-41"><a href="distribuciones-de-frecuencia.html#cb201-41" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb201-42"><a href="distribuciones-de-frecuencia.html#cb201-42" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(base.ejemplo<span class="sc">$</span>razon.partida) <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
-<span id="cb201-43"><a href="distribuciones-de-frecuencia.html#cb201-43" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;estudio&quot;</span>, <span class="st">&quot;nueva.flia&quot;</span>, <span class="st">&quot;ganas&quot;</span>, <span class="st">&quot;otras&quot;</span></span>
-<span id="cb201-44"><a href="distribuciones-de-frecuencia.html#cb201-44" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="distribuciones-de-frecuencia.html#cb167-1" tabindex="-1"></a><span class="co"># nombres de columnas:</span></span>
+<span id="cb167-2"><a href="distribuciones-de-frecuencia.html#cb167-2" tabindex="-1"></a><span class="fu">names</span>(base.ejemplo) <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb167-3"><a href="distribuciones-de-frecuencia.html#cb167-3" tabindex="-1"></a>  <span class="st">&quot;caso&quot;</span>, <span class="st">&quot;grupo&quot;</span>, <span class="st">&quot;n.cuest&quot;</span>, <span class="st">&quot;nombre&quot;</span>, <span class="st">&quot;sexo&quot;</span>, <span class="st">&quot;genero&quot;</span>,</span>
+<span id="cb167-4"><a href="distribuciones-de-frecuencia.html#cb167-4" tabindex="-1"></a>  <span class="st">&quot;edad&quot;</span>, <span class="st">&quot;acceso.redes&quot;</span>, <span class="st">&quot;red.usada&quot;</span>, <span class="st">&quot;red.otra&quot;</span>,</span>
+<span id="cb167-5"><a href="distribuciones-de-frecuencia.html#cb167-5" tabindex="-1"></a>  <span class="st">&quot;tiempo.red&quot;</span>, <span class="st">&quot;con.q.vive&quot;</span>, <span class="st">&quot;relacion.otres&quot;</span>,</span>
+<span id="cb167-6"><a href="distribuciones-de-frecuencia.html#cb167-6" tabindex="-1"></a>  <span class="st">&quot;q.aporta&quot;</span>, <span class="st">&quot;q.aporta.amigues&quot;</span>, <span class="st">&quot;edad.partida&quot;</span>,</span>
+<span id="cb167-7"><a href="distribuciones-de-frecuencia.html#cb167-7" tabindex="-1"></a>  <span class="st">&quot;razon.partida&quot;</span>,</span>
+<span id="cb167-8"><a href="distribuciones-de-frecuencia.html#cb167-8" tabindex="-1"></a>  <span class="st">&quot;razon.partida.otra&quot;</span>, <span class="st">&quot;calidad.sueño&quot;</span>,</span>
+<span id="cb167-9"><a href="distribuciones-de-frecuencia.html#cb167-9" tabindex="-1"></a>  <span class="st">&quot;preocupacion&quot;</span>, <span class="st">&quot;golpeo&quot;</span>, <span class="st">&quot;robo&quot;</span>, <span class="st">&quot;cuanto.da&quot;</span>, <span class="st">&quot;comision&quot;</span></span>
+<span id="cb167-10"><a href="distribuciones-de-frecuencia.html#cb167-10" tabindex="-1"></a>)</span>
+<span id="cb167-11"><a href="distribuciones-de-frecuencia.html#cb167-11" tabindex="-1"></a></span>
+<span id="cb167-12"><a href="distribuciones-de-frecuencia.html#cb167-12" tabindex="-1"></a><span class="co"># transformar en factor y etiquetar las nominales:</span></span>
+<span id="cb167-13"><a href="distribuciones-de-frecuencia.html#cb167-13" tabindex="-1"></a>base.ejemplo<span class="sc">$</span>sexo <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(base.ejemplo<span class="sc">$</span>sexo)</span>
+<span id="cb167-14"><a href="distribuciones-de-frecuencia.html#cb167-14" tabindex="-1"></a><span class="fu">levels</span>(base.ejemplo<span class="sc">$</span>sexo) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;varones&quot;</span>, <span class="st">&quot;mujeres&quot;</span>)</span>
+<span id="cb167-15"><a href="distribuciones-de-frecuencia.html#cb167-15" tabindex="-1"></a></span>
+<span id="cb167-16"><a href="distribuciones-de-frecuencia.html#cb167-16" tabindex="-1"></a>base.ejemplo<span class="sc">$</span>con.q.vive <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(base.ejemplo<span class="sc">$</span>con.q.vive)</span>
+<span id="cb167-17"><a href="distribuciones-de-frecuencia.html#cb167-17" tabindex="-1"></a><span class="fu">levels</span>(base.ejemplo<span class="sc">$</span>con.q.vive) <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb167-18"><a href="distribuciones-de-frecuencia.html#cb167-18" tabindex="-1"></a>  <span class="st">&quot;flia.origen&quot;</span>, <span class="st">&quot;flia.nueva&quot;</span>,</span>
+<span id="cb167-19"><a href="distribuciones-de-frecuencia.html#cb167-19" tabindex="-1"></a>  <span class="st">&quot;hermanes.o.amigues&quot;</span>, <span class="st">&quot;solo&quot;</span>,</span>
+<span id="cb167-20"><a href="distribuciones-de-frecuencia.html#cb167-20" tabindex="-1"></a>  <span class="st">&quot;con.otres&quot;</span></span>
+<span id="cb167-21"><a href="distribuciones-de-frecuencia.html#cb167-21" tabindex="-1"></a>)</span>
+<span id="cb167-22"><a href="distribuciones-de-frecuencia.html#cb167-22" tabindex="-1"></a></span>
+<span id="cb167-23"><a href="distribuciones-de-frecuencia.html#cb167-23" tabindex="-1"></a>base.ejemplo<span class="sc">$</span>q.aporta <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(base.ejemplo<span class="sc">$</span>q.aporta)</span>
+<span id="cb167-24"><a href="distribuciones-de-frecuencia.html#cb167-24" tabindex="-1"></a><span class="fu">levels</span>(base.ejemplo<span class="sc">$</span>q.aporta) <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb167-25"><a href="distribuciones-de-frecuencia.html#cb167-25" tabindex="-1"></a>  <span class="st">&quot;si.misme&quot;</span>, <span class="st">&quot;flia.origen&quot;</span>,</span>
+<span id="cb167-26"><a href="distribuciones-de-frecuencia.html#cb167-26" tabindex="-1"></a>  <span class="st">&quot;flia.nueva&quot;</span>, <span class="st">&quot;entre.amigues&quot;</span></span>
+<span id="cb167-27"><a href="distribuciones-de-frecuencia.html#cb167-27" tabindex="-1"></a>)</span>
+<span id="cb167-28"><a href="distribuciones-de-frecuencia.html#cb167-28" tabindex="-1"></a></span>
+<span id="cb167-29"><a href="distribuciones-de-frecuencia.html#cb167-29" tabindex="-1"></a>base.ejemplo<span class="sc">$</span>acceso.redes <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(base.ejemplo<span class="sc">$</span>acceso.redes)</span>
+<span id="cb167-30"><a href="distribuciones-de-frecuencia.html#cb167-30" tabindex="-1"></a><span class="fu">levels</span>(base.ejemplo<span class="sc">$</span>acceso.redes) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;si&quot;</span>, <span class="st">&quot;no&quot;</span>)</span>
+<span id="cb167-31"><a href="distribuciones-de-frecuencia.html#cb167-31" tabindex="-1"></a></span>
+<span id="cb167-32"><a href="distribuciones-de-frecuencia.html#cb167-32" tabindex="-1"></a>base.ejemplo<span class="sc">$</span>red.usada <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(base.ejemplo<span class="sc">$</span>red.usada)</span>
+<span id="cb167-33"><a href="distribuciones-de-frecuencia.html#cb167-33" tabindex="-1"></a><span class="fu">levels</span>(base.ejemplo<span class="sc">$</span>red.usada) <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb167-34"><a href="distribuciones-de-frecuencia.html#cb167-34" tabindex="-1"></a>  <span class="st">&quot;Instagram&quot;</span>, <span class="st">&quot;Facebook&quot;</span>, <span class="st">&quot;Twitter&quot;</span>,</span>
+<span id="cb167-35"><a href="distribuciones-de-frecuencia.html#cb167-35" tabindex="-1"></a>  <span class="st">&quot;Linkedin&quot;</span>, <span class="st">&quot;Tinder/Grindr/happn&quot;</span>,</span>
+<span id="cb167-36"><a href="distribuciones-de-frecuencia.html#cb167-36" tabindex="-1"></a>  <span class="st">&quot;Snapchat&quot;</span>, <span class="st">&quot;Ninguna&quot;</span>, <span class="st">&quot;Otra&quot;</span></span>
+<span id="cb167-37"><a href="distribuciones-de-frecuencia.html#cb167-37" tabindex="-1"></a>)</span>
+<span id="cb167-38"><a href="distribuciones-de-frecuencia.html#cb167-38" tabindex="-1"></a></span>
+<span id="cb167-39"><a href="distribuciones-de-frecuencia.html#cb167-39" tabindex="-1"></a>base.ejemplo<span class="sc">$</span>razon.partida <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(</span>
+<span id="cb167-40"><a href="distribuciones-de-frecuencia.html#cb167-40" tabindex="-1"></a>  base.ejemplo<span class="sc">$</span>razon.partida</span>
+<span id="cb167-41"><a href="distribuciones-de-frecuencia.html#cb167-41" tabindex="-1"></a>)</span>
+<span id="cb167-42"><a href="distribuciones-de-frecuencia.html#cb167-42" tabindex="-1"></a><span class="fu">levels</span>(base.ejemplo<span class="sc">$</span>razon.partida) <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb167-43"><a href="distribuciones-de-frecuencia.html#cb167-43" tabindex="-1"></a>  <span class="st">&quot;estudio&quot;</span>, <span class="st">&quot;nueva.flia&quot;</span>, <span class="st">&quot;ganas&quot;</span>, <span class="st">&quot;otras&quot;</span></span>
+<span id="cb167-44"><a href="distribuciones-de-frecuencia.html#cb167-44" tabindex="-1"></a>)</span></code></pre></div>
 <div id="tablas-univariadas" class="section level3 hasAnchor" number="2.4.1">
 <h3><span class="header-section-number">2.4.1</span> Tablas univariadas<a href="distribuciones-de-frecuencia.html#tablas-univariadas" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Las tablas de distribución de frecuencias se solicitan con un comando del paquete {base} que se llama <code>table</code>, que tiene como argumento la variable cuya tabla se pide. Recordemos que para hacer referencia a una variable, se debe indicar el nombre de la matriz de datos de donde proviene, seguida del signo pesos y luego el nombre de la variable. Así, para la tabla de distribución de frecuencias de la variable sexo:</p>
-<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="distribuciones-de-frecuencia.html#cb202-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(base.ejemplo<span class="sc">$</span>sexo)</span></code></pre></div>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="distribuciones-de-frecuencia.html#cb168-1" tabindex="-1"></a><span class="fu">table</span>(base.ejemplo<span class="sc">$</span>sexo)</span></code></pre></div>
 <pre><code>## 
 ## varones mujeres 
 ##    2240    2755</code></pre>
 <p>Para “quien aporta”:</p>
-<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="distribuciones-de-frecuencia.html#cb204-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(base.ejemplo<span class="sc">$</span>q.aporta)</span></code></pre></div>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="distribuciones-de-frecuencia.html#cb170-1" tabindex="-1"></a><span class="fu">table</span>(base.ejemplo<span class="sc">$</span>q.aporta)</span></code></pre></div>
 <pre><code>## 
 ##      si.misme   flia.origen    flia.nueva entre.amigues 
 ##           974          2692           456           422</code></pre>
 <p>Por defecto, este comando descarta los casos perdidos (los NA). Si se los quiere ver, hay que pedirlo expresamente:</p>
-<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="distribuciones-de-frecuencia.html#cb206-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(base.ejemplo<span class="sc">$</span>q.aporta, <span class="at">useNA =</span> <span class="st">&quot;always&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="distribuciones-de-frecuencia.html#cb172-1" tabindex="-1"></a><span class="fu">table</span>(base.ejemplo<span class="sc">$</span>q.aporta, <span class="at">useNA =</span> <span class="st">&quot;always&quot;</span>)</span></code></pre></div>
 <pre><code>## 
 ##      si.misme   flia.origen    flia.nueva entre.amigues          &lt;NA&gt; 
 ##           974          2692           456           422           459</code></pre>
 <p>Las opciones de <code>useNA</code> son “<span class="math inline">\(no\)</span>”, que es la que se aplica por defecto, “<span class="math inline">\(ifany\)</span>” (si hay alguno) y la que hemos usado en este ejemplo, “<span class="math inline">\(always\)</span>” (siempre).</p>
 <p>Existe un paquete especializado para descripciones estadísticas, llamado {summarytools} que contiene herramientas que simplifican operaciones y ofrecen una presentación más familiar de las tablas. Primero se lo debe instalar:</p>
-<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="distribuciones-de-frecuencia.html#cb208-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;summarytools&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="distribuciones-de-frecuencia.html#cb174-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;summarytools&quot;</span>)</span></code></pre></div>
 <p>Y cargarlo en la sesión:</p>
-<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="distribuciones-de-frecuencia.html#cb209-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;summarytools&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="distribuciones-de-frecuencia.html#cb175-1" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;summarytools&quot;</span>)</span></code></pre></div>
 <p>En este paquete, el comando para pedir una tabla es <code>freq</code>. Para la misma variable anterior:</p>
-<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="distribuciones-de-frecuencia.html#cb210-1" aria-hidden="true" tabindex="-1"></a><span class="fu">freq</span>(base.ejemplo<span class="sc">$</span>q.aporta)</span></code></pre></div>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="distribuciones-de-frecuencia.html#cb176-1" tabindex="-1"></a><span class="fu">freq</span>(base.ejemplo<span class="sc">$</span>q.aporta)</span></code></pre></div>
 <pre><code>## Frequencies  
 ## base.ejemplo$q.aporta  
 ## Type: Factor  
@@ -1639,7 +1644,7 @@ Figura 2.12: Identificación de los valores de la variable para determinadas fre
 ##                &lt;NA&gt;    459                               9.17         100.00
 ##               Total   5003    100.00         100.00    100.00         100.00</code></pre>
 <p>La diferencia entre frecuencias válidas y totales es que las primeras descuentan los casos perdidos (NA). Si bien la tabla tiene ahora mejor aspecto, las columnas 3 y 5 (correspondientes a frecuencias acumuladas), no pueden interpretarse, porque esta variable no admite frecuencias acumuladas, que este comando calcula por defecto. Puede solicitarse expresamente que no lo haga:</p>
-<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="distribuciones-de-frecuencia.html#cb212-1" aria-hidden="true" tabindex="-1"></a><span class="fu">freq</span>(base.ejemplo<span class="sc">$</span>q.aporta, <span class="at">cumul =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb178-1"><a href="distribuciones-de-frecuencia.html#cb178-1" tabindex="-1"></a><span class="fu">freq</span>(base.ejemplo<span class="sc">$</span>q.aporta, <span class="at">cumul =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <pre><code>## Frequencies  
 ## base.ejemplo$q.aporta  
 ## Type: Factor  
@@ -1654,7 +1659,7 @@ Figura 2.12: Identificación de los valores de la variable para determinadas fre
 ##               Total   5003    100.00    100.00</code></pre>
 <p>Y se obtienen frecuencias absolutas y relativas, estas últimas respecto de los casos válidos y respecto del total de casos.<br />
 Si la variable es ordinal, las frecuencias acumuladas sí admiten interpretación. Para la variable “ocasión en que golpeó a alguien”, tenemos:</p>
-<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="distribuciones-de-frecuencia.html#cb214-1" aria-hidden="true" tabindex="-1"></a><span class="fu">freq</span>(base.ejemplo<span class="sc">$</span>golpeo)</span></code></pre></div>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="distribuciones-de-frecuencia.html#cb180-1" tabindex="-1"></a><span class="fu">freq</span>(base.ejemplo<span class="sc">$</span>golpeo)</span></code></pre></div>
 <pre><code>## Frequencies  
 ## base.ejemplo$golpeo  
 ## Type: Integer  
@@ -1672,7 +1677,7 @@ Si la variable es ordinal, las frecuencias acumuladas sí admiten interpretació
 ##        &lt;NA&gt;      4                               0.08         100.00
 ##       Total   5003    100.00         100.00    100.00         100.00</code></pre>
 <p>La salida se puede simplificar si no hay interés en un análisis puntual sobre los casos perdidos, eliminando su aparición. En el comando <code>freq</code>, el argumento <code>report.nas=FALSE</code> establece que se elimine la referencia a los casos perdidos, ya que aun cuando no haya, la tabla los menciona, con frecuencia cero.</p>
-<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="distribuciones-de-frecuencia.html#cb216-1" aria-hidden="true" tabindex="-1"></a><span class="fu">freq</span>(base.ejemplo<span class="sc">$</span>golpeo, <span class="at">report.nas =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="distribuciones-de-frecuencia.html#cb182-1" tabindex="-1"></a><span class="fu">freq</span>(base.ejemplo<span class="sc">$</span>golpeo, <span class="at">report.nas =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <pre><code>## Frequencies  
 ## base.ejemplo$golpeo  
 ## Type: Integer  
@@ -1691,20 +1696,20 @@ Si la variable es ordinal, las frecuencias acumuladas sí admiten interpretació
 <p>Que es la versión más familiar de la tabla. con frecuencias absolutas, relativas simples y acumuladas y ya no hay mención a válidos o totales, porque solo están presentes los válidos.</p>
 </div>
 <div id="recategorización-1" class="section level3 hasAnchor" number="2.4.2">
-<h3><span class="header-section-number">2.4.2</span> Recategorización<a href="distribuciones-de-frecuencia.html#recategorización-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<h3><span class="header-section-number">2.4.2</span> Recategorización<a href="#recategorizaci%C3%B3n-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>La construcción de categorías a partir de una variable continua, se realiza con el comando <code>cut</code>, cuyo argumento contiene a la variable que se va a recategorizar, y una instrucción <code>breaks=</code> que especifica el modo de hacer los cortes, esta instrucción difiere según los tipos de recategorización.<br />
 Para ver los comandos, vamos a generar nuevas variables en la base, que se llaman edad4i, edad4p y edad4t (edad en cuatro categorías, con criterio de amplitud igual, proporcional y teórica), y definimos esas categorías de las tres maneras diferentes que se han visto. Antes de eso vamos a eliminar de la base los casos que no tengan información en la variable edad. El modo de hacerlo es redefinir el data frame base.ejemplo, como un subconjunto de él que solo contenga los casos para los cuales la variable edad no es NA:</p>
-<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="distribuciones-de-frecuencia.html#cb218-1" aria-hidden="true" tabindex="-1"></a>base.ejemplo <span class="ot">&lt;-</span> <span class="fu">subset</span>(</span>
-<span id="cb218-2"><a href="distribuciones-de-frecuencia.html#cb218-2" aria-hidden="true" tabindex="-1"></a>  base.ejemplo,</span>
-<span id="cb218-3"><a href="distribuciones-de-frecuencia.html#cb218-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">is.na</span>(base.ejemplo<span class="sc">$</span>edad) <span class="sc">==</span> <span class="cn">FALSE</span></span>
-<span id="cb218-4"><a href="distribuciones-de-frecuencia.html#cb218-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="distribuciones-de-frecuencia.html#cb184-1" tabindex="-1"></a>base.ejemplo <span class="ot">&lt;-</span> <span class="fu">subset</span>(</span>
+<span id="cb184-2"><a href="distribuciones-de-frecuencia.html#cb184-2" tabindex="-1"></a>  base.ejemplo,</span>
+<span id="cb184-3"><a href="distribuciones-de-frecuencia.html#cb184-3" tabindex="-1"></a>  <span class="fu">is.na</span>(base.ejemplo<span class="sc">$</span>edad) <span class="sc">==</span> <span class="cn">FALSE</span></span>
+<span id="cb184-4"><a href="distribuciones-de-frecuencia.html#cb184-4" tabindex="-1"></a>)</span></code></pre></div>
 <p>Ahora la base tiene 4991 observaciones, como se ve en el panel superior derecho.</p>
 <div id="intervalos-de-amplitud-igual-1" class="section level4 hasAnchor" number="2.4.2.1">
 <h4><span class="header-section-number">2.4.2.1</span> Intervalos de amplitud igual<a href="distribuciones-de-frecuencia.html#intervalos-de-amplitud-igual-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Para que los intervalos sean iguales, en el argumento <code>breaks</code> solo se indica la cantidad de ellos que se quiere, en este caso, cuatro:</p>
-<div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="distribuciones-de-frecuencia.html#cb219-1" aria-hidden="true" tabindex="-1"></a>base.ejemplo<span class="sc">$</span>edad4i <span class="ot">&lt;-</span> <span class="fu">cut</span>(base.ejemplo<span class="sc">$</span>edad, <span class="at">breaks =</span> <span class="dv">4</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="distribuciones-de-frecuencia.html#cb185-1" tabindex="-1"></a>base.ejemplo<span class="sc">$</span>edad4i <span class="ot">&lt;-</span> <span class="fu">cut</span>(base.ejemplo<span class="sc">$</span>edad, <span class="at">breaks =</span> <span class="dv">4</span>)</span></code></pre></div>
 <p>Y pedimos una tabla:</p>
-<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="distribuciones-de-frecuencia.html#cb220-1" aria-hidden="true" tabindex="-1"></a><span class="fu">freq</span>(base.ejemplo<span class="sc">$</span>edad4i, <span class="at">report.nas =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="distribuciones-de-frecuencia.html#cb186-1" tabindex="-1"></a><span class="fu">freq</span>(base.ejemplo<span class="sc">$</span>edad4i, <span class="at">report.nas =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <pre><code>## Frequencies  
 ## base.ejemplo$edad4i  
 ## Type: Factor  
@@ -1721,15 +1726,15 @@ Para ver los comandos, vamos a generar nuevas variables en la base, que se llama
 <div id="intervalos-de-amplitud-proporcional-1" class="section level4 hasAnchor" number="2.4.2.2">
 <h4><span class="header-section-number">2.4.2.2</span> Intervalos de amplitud proporcional<a href="distribuciones-de-frecuencia.html#intervalos-de-amplitud-proporcional-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Para lograr que cada intervalo tenga aproximadamente la misma proporción de casos, primero hay que saber cuál es esa proporción. En este ejemplo, son cuatro intervalos, por lo que un cuarto de los casos debe estar en cada uno, es decir el 25%. En el próximo capítulo se definirán medidas resumen que marcan estos puntos de corte, se denominan cuantiles. Para este ejemplo, hay que cortar el campo de variación en los valores de la variable que acumulen 25%, 50% y 75%, de modo que entre cada par de ellos quede 25% de casos. Esos números se llaman cuantiles 0.25, 0.50 y 0.75. En el argumento <code>breaks</code> se indican, concatenados, cada uno de los límites de los intervalos desde el mínimo valor de la variable (<code>min()</code>), los cuantiles .25, .50 y .75 y finalmente el máximo (<code>max()</code>):</p>
-<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="distribuciones-de-frecuencia.html#cb222-1" aria-hidden="true" tabindex="-1"></a>base.ejemplo<span class="sc">$</span>edad4p <span class="ot">&lt;-</span> <span class="fu">cut</span>(base.ejemplo<span class="sc">$</span>edad,</span>
-<span id="cb222-2"><a href="distribuciones-de-frecuencia.html#cb222-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">breaks =</span> <span class="fu">c</span>(</span>
-<span id="cb222-3"><a href="distribuciones-de-frecuencia.html#cb222-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">min</span>(base.ejemplo<span class="sc">$</span>edad), <span class="co"># inicio</span></span>
-<span id="cb222-4"><a href="distribuciones-de-frecuencia.html#cb222-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">quantile</span>(base.ejemplo<span class="sc">$</span>edad, .<span class="dv">25</span>), <span class="co"># primer corte: 25% acumulado</span></span>
-<span id="cb222-5"><a href="distribuciones-de-frecuencia.html#cb222-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">quantile</span>(base.ejemplo<span class="sc">$</span>edad, .<span class="dv">50</span>), <span class="co"># segundo corte: 50% acumulado</span></span>
-<span id="cb222-6"><a href="distribuciones-de-frecuencia.html#cb222-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">quantile</span>(base.ejemplo<span class="sc">$</span>edad, .<span class="dv">75</span>), <span class="co"># tercer corte: 75% acumulado</span></span>
-<span id="cb222-7"><a href="distribuciones-de-frecuencia.html#cb222-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">max</span>(base.ejemplo<span class="sc">$</span>edad) <span class="co"># fin</span></span>
-<span id="cb222-8"><a href="distribuciones-de-frecuencia.html#cb222-8" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb222-9"><a href="distribuciones-de-frecuencia.html#cb222-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="distribuciones-de-frecuencia.html#cb188-1" tabindex="-1"></a>base.ejemplo<span class="sc">$</span>edad4p <span class="ot">&lt;-</span> <span class="fu">cut</span>(base.ejemplo<span class="sc">$</span>edad,</span>
+<span id="cb188-2"><a href="distribuciones-de-frecuencia.html#cb188-2" tabindex="-1"></a>  <span class="at">breaks =</span> <span class="fu">c</span>(</span>
+<span id="cb188-3"><a href="distribuciones-de-frecuencia.html#cb188-3" tabindex="-1"></a>    <span class="fu">min</span>(base.ejemplo<span class="sc">$</span>edad), <span class="co"># inicio</span></span>
+<span id="cb188-4"><a href="distribuciones-de-frecuencia.html#cb188-4" tabindex="-1"></a>    <span class="fu">quantile</span>(base.ejemplo<span class="sc">$</span>edad, .<span class="dv">25</span>), <span class="co"># primer corte: 25% acumulado</span></span>
+<span id="cb188-5"><a href="distribuciones-de-frecuencia.html#cb188-5" tabindex="-1"></a>    <span class="fu">quantile</span>(base.ejemplo<span class="sc">$</span>edad, .<span class="dv">50</span>), <span class="co"># segundo corte: 50% acumulado</span></span>
+<span id="cb188-6"><a href="distribuciones-de-frecuencia.html#cb188-6" tabindex="-1"></a>    <span class="fu">quantile</span>(base.ejemplo<span class="sc">$</span>edad, .<span class="dv">75</span>), <span class="co"># tercer corte: 75% acumulado</span></span>
+<span id="cb188-7"><a href="distribuciones-de-frecuencia.html#cb188-7" tabindex="-1"></a>    <span class="fu">max</span>(base.ejemplo<span class="sc">$</span>edad) <span class="co"># fin</span></span>
+<span id="cb188-8"><a href="distribuciones-de-frecuencia.html#cb188-8" tabindex="-1"></a>  )</span>
+<span id="cb188-9"><a href="distribuciones-de-frecuencia.html#cb188-9" tabindex="-1"></a>)</span></code></pre></div>
 <p>La tabla es:</p>
 <pre><code>## Frequencies  
 ## base.ejemplo$edad4p  
@@ -1745,16 +1750,16 @@ Para ver los comandos, vamos a generar nuevas variables en la base, que se llama
 <p>Como se trata de una variable discreta, la aproximación del 25% en cada intervalo no es muy cercana. En este ejemplo sucede que la edad 18 años tiene muchos casos, por lo que incluirla en el primer intervalo o en el segundo, cambia mucho la proporción de casos que quedan dentro del intervalo.</p>
 </div>
 <div id="intervalos-de-amplitud-teórica-1" class="section level4 hasAnchor" number="2.4.2.3">
-<h4><span class="header-section-number">2.4.2.3</span> Intervalos de amplitud teórica<a href="distribuciones-de-frecuencia.html#intervalos-de-amplitud-teórica-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<h4><span class="header-section-number">2.4.2.3</span> Intervalos de amplitud teórica<a href="#intervalos-de-amplitud-te%C3%B3rica-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>De mismo modo que antes, se indica al argumento <code>breaks</code>, la concatenación de los puntos de corte, solo que éstos se establecen de antemano, por ejemplo, para hacer grupos 15-18, 19-23, 24-35 y 36 en adelante, pedimos:</p>
-<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="distribuciones-de-frecuencia.html#cb224-1" aria-hidden="true" tabindex="-1"></a>base.ejemplo<span class="sc">$</span>edad4t <span class="ot">&lt;-</span> <span class="fu">cut</span>(base.ejemplo<span class="sc">$</span>edad,</span>
-<span id="cb224-2"><a href="distribuciones-de-frecuencia.html#cb224-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">breaks =</span> <span class="fu">c</span>(</span>
-<span id="cb224-3"><a href="distribuciones-de-frecuencia.html#cb224-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">min</span>(base.ejemplo<span class="sc">$</span>edad), <span class="dv">18</span>,</span>
-<span id="cb224-4"><a href="distribuciones-de-frecuencia.html#cb224-4" aria-hidden="true" tabindex="-1"></a>    <span class="dv">23</span>, <span class="dv">35</span>, <span class="fu">max</span>(base.ejemplo<span class="sc">$</span>edad)</span>
-<span id="cb224-5"><a href="distribuciones-de-frecuencia.html#cb224-5" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb224-6"><a href="distribuciones-de-frecuencia.html#cb224-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="distribuciones-de-frecuencia.html#cb190-1" tabindex="-1"></a>base.ejemplo<span class="sc">$</span>edad4t <span class="ot">&lt;-</span> <span class="fu">cut</span>(base.ejemplo<span class="sc">$</span>edad,</span>
+<span id="cb190-2"><a href="distribuciones-de-frecuencia.html#cb190-2" tabindex="-1"></a>  <span class="at">breaks =</span> <span class="fu">c</span>(</span>
+<span id="cb190-3"><a href="distribuciones-de-frecuencia.html#cb190-3" tabindex="-1"></a>    <span class="fu">min</span>(base.ejemplo<span class="sc">$</span>edad), <span class="dv">18</span>,</span>
+<span id="cb190-4"><a href="distribuciones-de-frecuencia.html#cb190-4" tabindex="-1"></a>    <span class="dv">23</span>, <span class="dv">35</span>, <span class="fu">max</span>(base.ejemplo<span class="sc">$</span>edad)</span>
+<span id="cb190-5"><a href="distribuciones-de-frecuencia.html#cb190-5" tabindex="-1"></a>  )</span>
+<span id="cb190-6"><a href="distribuciones-de-frecuencia.html#cb190-6" tabindex="-1"></a>)</span></code></pre></div>
 <p>La tabla resulta:</p>
-<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="distribuciones-de-frecuencia.html#cb225-1" aria-hidden="true" tabindex="-1"></a><span class="fu">freq</span>(base.ejemplo<span class="sc">$</span>edad4t, <span class="at">report.nas =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="distribuciones-de-frecuencia.html#cb191-1" tabindex="-1"></a><span class="fu">freq</span>(base.ejemplo<span class="sc">$</span>edad4t, <span class="at">report.nas =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <pre><code>## Frequencies  
 ## base.ejemplo$edad4t  
 ## Type: Factor  
@@ -1769,11 +1774,11 @@ Para ver los comandos, vamos a generar nuevas variables en la base, que se llama
 </div>
 </div>
 <div id="representaciones-gráficas" class="section level3 hasAnchor" number="2.4.3">
-<h3><span class="header-section-number">2.4.3</span> Representaciones gráficas<a href="distribuciones-de-frecuencia.html#representaciones-gráficas" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<h3><span class="header-section-number">2.4.3</span> Representaciones gráficas<a href="#representaciones-gr%C3%A1ficas" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>El paquete {base} contiene rutinas elementales de graficación, sin embargo, desde aquí vamos a empezar a usar un paquete específico para eso; <code>ggplot2</code>, que debe instalarse</p>
-<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="distribuciones-de-frecuencia.html#cb227-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;ggplot2&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="distribuciones-de-frecuencia.html#cb193-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;ggplot2&quot;</span>)</span></code></pre></div>
 <p>y cargarse en la sesión</p>
-<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="distribuciones-de-frecuencia.html#cb228-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;ggplot2&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="distribuciones-de-frecuencia.html#cb194-1" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;ggplot2&quot;</span>)</span></code></pre></div>
 <p>La construcción de los gráficos en <code>ggplot</code> se hace por medio de capas que se van agregando. Las capas tienen cinco componentes:</p>
 <ul>
 <li>Los datos, que es la base de donde provienen la variables que se van a graficar. Si más tarde se grafica lo mismo para otra base, solo se debe cambiar ese origen, lo mismo si la base se modifica.<br />
@@ -1786,86 +1791,86 @@ Para ver los comandos, vamos a generar nuevas variables en la base, que se llama
 </ul>
 <p>Cada figura geométrica (<code>geom</code>) tiene asociada una transformación estadística por defecto, por lo que no es necesario especificarla, salvo que se quiera modificar. Por ejemplo si los datos para un gráfico provienen de una matriz de datos (<code>data.frame</code>), la tranformación consiste en contar las ocurrencias de cada valor, ese es el <code>stat</code> por defecto. Pero si se quiere graficar desde una tabla de distribución de frecuencias, entonces en lugar de contar las veces que aparece cada categoría, hay que considerar las frecuencias. En este último caso, será necesario especificar una transformación diferente.</p>
 <div id="creación-de-un-gráfico" class="section level4 hasAnchor" number="2.4.3.1">
-<h4><span class="header-section-number">2.4.3.1</span> Creación de un gráfico<a href="distribuciones-de-frecuencia.html#creación-de-un-gráfico" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<h4><span class="header-section-number">2.4.3.1</span> Creación de un gráfico<a href="#creaci%C3%B3n-de-un-gr%C3%A1fico" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>La primera instrucción para crear un gráfico es <code>ggplot()</code>. Esta instrucción va a tener como argumento, la matriz de donde provienen las variables a graficar. Puede incluirse el mapeo estético también, pero en este ejemplo lo vamos a agregar en las capas que indican el tipo de gráfico.<br />
 Si se aplica ese comando a la base.ejemplo:</p>
-<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="distribuciones-de-frecuencia.html#cb229-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(base.ejemplo) <span class="sc">+</span> <span class="fu">theme_gray</span>(<span class="at">base_size =</span> <span class="dv">9</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="distribuciones-de-frecuencia.html#cb195-1" tabindex="-1"></a><span class="fu">ggplot</span>(base.ejemplo) <span class="sc">+</span> <span class="fu">theme_gray</span>(<span class="at">base_size =</span> <span class="dv">9</span>)</span></code></pre></div>
 <p><img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-133-1.svg" width="288" style="display: block; margin: auto;" /></p>
 <p>El resultado son solo los ejes, no se ha indicado aun qué variables graficar ni qué tipo de gráfico hacer. Eso se especifica en las capas.<br />
 Para hacer un gráfico de barras, luego de indicar sobre qué base se va a trabajar, en el argumento de ggplot, se agrega una capa de barras (<code>geom_bar</code>) con la variable que se va a representar (no hace falta indicar de qué matriz de datos proviene, eso ya está en el argumento de <code>ggplot</code>):</p>
-<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="distribuciones-de-frecuencia.html#cb230-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(base.ejemplo) <span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="fu">aes</span>(red.usada)) <span class="sc">+</span> <span class="fu">theme_gray</span>(<span class="at">base_size =</span> <span class="dv">9</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="distribuciones-de-frecuencia.html#cb196-1" tabindex="-1"></a><span class="fu">ggplot</span>(base.ejemplo) <span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="fu">aes</span>(red.usada)) <span class="sc">+</span> <span class="fu">theme_gray</span>(<span class="at">base_size =</span> <span class="dv">9</span>)</span></code></pre></div>
 <p><img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-134-1.svg" width="288" style="display: block; margin: auto;" /></p>
 <p>Y vamos a mejorarlo en su aspecto. Para quitar los NA, tomamos como argumento de ggplot, no la base completa, sino un subconjunto que no tenga NA en esta variable:</p>
-<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="distribuciones-de-frecuencia.html#cb231-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">subset</span>(base.ejemplo, <span class="fu">is.na</span>(base.ejemplo<span class="sc">$</span>red.usada) <span class="sc">==</span> <span class="cn">FALSE</span>)) <span class="sc">+</span></span>
-<span id="cb231-2"><a href="distribuciones-de-frecuencia.html#cb231-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(red.usada)) <span class="sc">+</span> <span class="fu">theme_gray</span>(<span class="at">base_size =</span> <span class="dv">9</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="distribuciones-de-frecuencia.html#cb197-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">subset</span>(base.ejemplo, <span class="fu">is.na</span>(base.ejemplo<span class="sc">$</span>red.usada) <span class="sc">==</span> <span class="cn">FALSE</span>)) <span class="sc">+</span></span>
+<span id="cb197-2"><a href="distribuciones-de-frecuencia.html#cb197-2" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(red.usada)) <span class="sc">+</span> <span class="fu">theme_gray</span>(<span class="at">base_size =</span> <span class="dv">9</span>)</span></code></pre></div>
 <p><img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-135-1.svg" width="288" style="display: block; margin: auto;" /></p>
 <p>Además de hacer el gráfico (ejecutar el comando) podemos guardarlo como un objeto, lo llamamos p1:</p>
-<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="distribuciones-de-frecuencia.html#cb232-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="fu">subset</span>(base.ejemplo, <span class="fu">is.na</span>(base.ejemplo<span class="sc">$</span>red.usada) <span class="sc">==</span> <span class="cn">FALSE</span>)) <span class="sc">+</span></span>
-<span id="cb232-2"><a href="distribuciones-de-frecuencia.html#cb232-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(red.usada)) <span class="sc">+</span></span>
-<span id="cb232-3"><a href="distribuciones-de-frecuencia.html#cb232-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_gray</span>(<span class="at">base_size =</span> <span class="dv">9</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="distribuciones-de-frecuencia.html#cb198-1" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="fu">subset</span>(base.ejemplo, <span class="fu">is.na</span>(base.ejemplo<span class="sc">$</span>red.usada) <span class="sc">==</span> <span class="cn">FALSE</span>)) <span class="sc">+</span></span>
+<span id="cb198-2"><a href="distribuciones-de-frecuencia.html#cb198-2" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(red.usada)) <span class="sc">+</span></span>
+<span id="cb198-3"><a href="distribuciones-de-frecuencia.html#cb198-3" tabindex="-1"></a>  <span class="fu">theme_gray</span>(<span class="at">base_size =</span> <span class="dv">9</span>)</span></code></pre></div>
 <p>El objeto (de clase <code>ggplot</code>) aparece en el panel superior derecho. A las capas subsiguientes las agregamos sobre p1. Una capa de rótulos y se crea p2:</p>
-<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="distribuciones-de-frecuencia.html#cb233-1" aria-hidden="true" tabindex="-1"></a>(p2 <span class="ot">&lt;-</span> p1 <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">&quot;Red más usada&quot;</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">&quot;cantidad de casos&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="distribuciones-de-frecuencia.html#cb199-1" tabindex="-1"></a>(p2 <span class="ot">&lt;-</span> p1 <span class="sc">+</span> <span class="fu">xlab</span>(<span class="st">&quot;Red más usada&quot;</span>) <span class="sc">+</span> <span class="fu">ylab</span>(<span class="st">&quot;cantidad de casos&quot;</span>))</span></code></pre></div>
 <p><img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-137-1.svg" width="288" style="display: block; margin: auto;" /></p>
 <p>El paréntesis que encierra toda la expresión se usa para que, al mismo tiempo que se defina el objeto p2, se ejecute el comando y se vea el gráfico.
 Las etiquetas de los ejes se vuelven más legibles si se giran los ejes:</p>
-<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="distribuciones-de-frecuencia.html#cb234-1" aria-hidden="true" tabindex="-1"></a>p2 <span class="sc">+</span> <span class="fu">coord_flip</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="distribuciones-de-frecuencia.html#cb200-1" tabindex="-1"></a>p2 <span class="sc">+</span> <span class="fu">coord_flip</span>()</span></code></pre></div>
 <p><img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-138-1.svg" width="288" style="display: block; margin: auto;" /></p>
 <p>Vamos a usar este ejemplo para ilustrar la diferencia entre “fijar” y “mapear” a un atributo estético, que en este caso será el color de relleno de las barras, con el comando <code>fill</code> (rellenar). Fijar el color es simplemente establecerlo como preferencia para todas las barras, es un argumento de la capa <code>geom_bar</code>:</p>
-<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="distribuciones-de-frecuencia.html#cb235-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">subset</span>(base.ejemplo, <span class="fu">is.na</span>(base.ejemplo<span class="sc">$</span>red.usada) <span class="sc">==</span> <span class="cn">FALSE</span>)) <span class="sc">+</span></span>
-<span id="cb235-2"><a href="distribuciones-de-frecuencia.html#cb235-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(red.usada), <span class="at">fill =</span> <span class="st">&quot;green&quot;</span>) <span class="sc">+</span> <span class="fu">coord_flip</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="distribuciones-de-frecuencia.html#cb201-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">subset</span>(base.ejemplo, <span class="fu">is.na</span>(base.ejemplo<span class="sc">$</span>red.usada) <span class="sc">==</span> <span class="cn">FALSE</span>)) <span class="sc">+</span></span>
+<span id="cb201-2"><a href="distribuciones-de-frecuencia.html#cb201-2" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(red.usada), <span class="at">fill =</span> <span class="st">&quot;green&quot;</span>) <span class="sc">+</span> <span class="fu">coord_flip</span>()</span></code></pre></div>
 <p><img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-139-1.svg" width="288" style="display: block; margin: auto;" /></p>
 <p>Por el contrario, “mapear” es pedir que el color de relleno cambie en base a las categorías de una variable que se especifica, éste es un argumento de <code>aes</code>. Solo para ver los efectos, lo usamos con la misma variable que se representa en el eje:</p>
-<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="distribuciones-de-frecuencia.html#cb236-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">subset</span>(base.ejemplo, <span class="fu">is.na</span>(base.ejemplo<span class="sc">$</span>red.usada) <span class="sc">==</span> <span class="cn">FALSE</span>)) <span class="sc">+</span></span>
-<span id="cb236-2"><a href="distribuciones-de-frecuencia.html#cb236-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(red.usada, <span class="at">fill =</span> red.usada)) <span class="sc">+</span> <span class="fu">coord_flip</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="distribuciones-de-frecuencia.html#cb202-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">subset</span>(base.ejemplo, <span class="fu">is.na</span>(base.ejemplo<span class="sc">$</span>red.usada) <span class="sc">==</span> <span class="cn">FALSE</span>)) <span class="sc">+</span></span>
+<span id="cb202-2"><a href="distribuciones-de-frecuencia.html#cb202-2" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(red.usada, <span class="at">fill =</span> red.usada)) <span class="sc">+</span> <span class="fu">coord_flip</span>()</span></code></pre></div>
 <p><img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-140-1.svg" width="288" style="display: block; margin: auto;" /></p>
 <p>Y en el gráfico el cambio se ve en que se usó un color para cada categoría de red.usada.</p>
 <p>Dos diferencias importantes en la sintaxis:<br />
 - el comando <code>fill</code> va dentro de <code>aes</code> cuando se mapea y fuera cuando se fija<br />
 - el color fijo (green en este ejemplo) va entre comillas, el nombre de la variable, no.</p>
 <p>En este ejemplo, el mapeo no aporta ninguna información nueva, ya que el nombre de la red está en el eje. Sin embargo, el mapeo es muy útil para introducir otra variable y ver las diferencias, por ejemplo, para observar la diferencia en la preferencia de redes según sexo. Para hacerlo, se recorta la matriz de datos y se retienen solo los casos que no sean NA en red.usada ni tampoco en sexo. Para que se cumplan las dos condiciones indicamos la conjunción <span class="math inline">\(y\)</span>, con el símbolo <span class="math inline">\(\&amp;\)</span>:</p>
-<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="distribuciones-de-frecuencia.html#cb237-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">subset</span>(</span>
-<span id="cb237-2"><a href="distribuciones-de-frecuencia.html#cb237-2" aria-hidden="true" tabindex="-1"></a>  base.ejemplo, <span class="fu">is.na</span>(</span>
-<span id="cb237-3"><a href="distribuciones-de-frecuencia.html#cb237-3" aria-hidden="true" tabindex="-1"></a>    base.ejemplo<span class="sc">$</span>red.usada</span>
-<span id="cb237-4"><a href="distribuciones-de-frecuencia.html#cb237-4" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">==</span> <span class="cn">FALSE</span> <span class="sc">&amp;</span> <span class="fu">is.na</span>(</span>
-<span id="cb237-5"><a href="distribuciones-de-frecuencia.html#cb237-5" aria-hidden="true" tabindex="-1"></a>    base.ejemplo<span class="sc">$</span>sexo</span>
-<span id="cb237-6"><a href="distribuciones-de-frecuencia.html#cb237-6" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">==</span> <span class="cn">FALSE</span></span>
-<span id="cb237-7"><a href="distribuciones-de-frecuencia.html#cb237-7" aria-hidden="true" tabindex="-1"></a>)) <span class="sc">+</span></span>
-<span id="cb237-8"><a href="distribuciones-de-frecuencia.html#cb237-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(red.usada, <span class="at">fill =</span> sexo)) <span class="sc">+</span> <span class="fu">coord_flip</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="distribuciones-de-frecuencia.html#cb203-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">subset</span>(</span>
+<span id="cb203-2"><a href="distribuciones-de-frecuencia.html#cb203-2" tabindex="-1"></a>  base.ejemplo, <span class="fu">is.na</span>(</span>
+<span id="cb203-3"><a href="distribuciones-de-frecuencia.html#cb203-3" tabindex="-1"></a>    base.ejemplo<span class="sc">$</span>red.usada</span>
+<span id="cb203-4"><a href="distribuciones-de-frecuencia.html#cb203-4" tabindex="-1"></a>  ) <span class="sc">==</span> <span class="cn">FALSE</span> <span class="sc">&amp;</span> <span class="fu">is.na</span>(</span>
+<span id="cb203-5"><a href="distribuciones-de-frecuencia.html#cb203-5" tabindex="-1"></a>    base.ejemplo<span class="sc">$</span>sexo</span>
+<span id="cb203-6"><a href="distribuciones-de-frecuencia.html#cb203-6" tabindex="-1"></a>  ) <span class="sc">==</span> <span class="cn">FALSE</span></span>
+<span id="cb203-7"><a href="distribuciones-de-frecuencia.html#cb203-7" tabindex="-1"></a>)) <span class="sc">+</span></span>
+<span id="cb203-8"><a href="distribuciones-de-frecuencia.html#cb203-8" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(red.usada, <span class="at">fill =</span> sexo)) <span class="sc">+</span> <span class="fu">coord_flip</span>()</span></code></pre></div>
 <p><img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-141-1.svg" width="288" style="display: block; margin: auto;" /></p>
 <p>Aquí vemos que la preferencia por redes está bastante equilibrada entre mujeres y varones.</p>
 <p>El histograma tiene su propia capa, <code>geom_histogram</code>. Para el caso de la variable edad:</p>
-<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="distribuciones-de-frecuencia.html#cb238-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(base.ejemplo) <span class="sc">+</span></span>
-<span id="cb238-2"><a href="distribuciones-de-frecuencia.html#cb238-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(edad))</span></code></pre></div>
+<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="distribuciones-de-frecuencia.html#cb204-1" tabindex="-1"></a><span class="fu">ggplot</span>(base.ejemplo) <span class="sc">+</span></span>
+<span id="cb204-2"><a href="distribuciones-de-frecuencia.html#cb204-2" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(edad))</span></code></pre></div>
 <p><img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-142-1.svg" width="288" style="display: block; margin: auto;" /></p>
 <p>Por defecto, se generan 30 intervalos, lo cual puede ajustarse, por ejemplo, a 15:</p>
-<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="distribuciones-de-frecuencia.html#cb239-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(base.ejemplo) <span class="sc">+</span></span>
-<span id="cb239-2"><a href="distribuciones-de-frecuencia.html#cb239-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(edad), <span class="at">bins =</span> <span class="dv">15</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="distribuciones-de-frecuencia.html#cb205-1" tabindex="-1"></a><span class="fu">ggplot</span>(base.ejemplo) <span class="sc">+</span></span>
+<span id="cb205-2"><a href="distribuciones-de-frecuencia.html#cb205-2" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(edad), <span class="at">bins =</span> <span class="dv">15</span>)</span></code></pre></div>
 <p><img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-143-1.svg" width="288" style="display: block; margin: auto;" /></p>
 <p>Las opciones de mapeo son como con <code>geom_bar</code>:</p>
-<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="distribuciones-de-frecuencia.html#cb240-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">subset</span>(</span>
-<span id="cb240-2"><a href="distribuciones-de-frecuencia.html#cb240-2" aria-hidden="true" tabindex="-1"></a>  base.ejemplo,</span>
-<span id="cb240-3"><a href="distribuciones-de-frecuencia.html#cb240-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">is.na</span>(base.ejemplo<span class="sc">$</span>sexo) <span class="sc">==</span> <span class="cn">FALSE</span></span>
-<span id="cb240-4"><a href="distribuciones-de-frecuencia.html#cb240-4" aria-hidden="true" tabindex="-1"></a>)) <span class="sc">+</span></span>
-<span id="cb240-5"><a href="distribuciones-de-frecuencia.html#cb240-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(edad, <span class="at">fill =</span> sexo), <span class="at">bins =</span> <span class="dv">15</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="distribuciones-de-frecuencia.html#cb206-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">subset</span>(</span>
+<span id="cb206-2"><a href="distribuciones-de-frecuencia.html#cb206-2" tabindex="-1"></a>  base.ejemplo,</span>
+<span id="cb206-3"><a href="distribuciones-de-frecuencia.html#cb206-3" tabindex="-1"></a>  <span class="fu">is.na</span>(base.ejemplo<span class="sc">$</span>sexo) <span class="sc">==</span> <span class="cn">FALSE</span></span>
+<span id="cb206-4"><a href="distribuciones-de-frecuencia.html#cb206-4" tabindex="-1"></a>)) <span class="sc">+</span></span>
+<span id="cb206-5"><a href="distribuciones-de-frecuencia.html#cb206-5" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(edad, <span class="at">fill =</span> sexo), <span class="at">bins =</span> <span class="dv">15</span>)</span></code></pre></div>
 <p><img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-144-1.svg" width="288" style="display: block; margin: auto;" /></p>
 <p>El polígono de frecuencias es una capa que se agrega al histograma:</p>
-<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="distribuciones-de-frecuencia.html#cb241-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(base.ejemplo) <span class="sc">+</span></span>
-<span id="cb241-2"><a href="distribuciones-de-frecuencia.html#cb241-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(edad)) <span class="sc">+</span></span>
-<span id="cb241-3"><a href="distribuciones-de-frecuencia.html#cb241-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_freqpoly</span>(<span class="fu">aes</span>(edad))</span></code></pre></div>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="distribuciones-de-frecuencia.html#cb207-1" tabindex="-1"></a><span class="fu">ggplot</span>(base.ejemplo) <span class="sc">+</span></span>
+<span id="cb207-2"><a href="distribuciones-de-frecuencia.html#cb207-2" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(edad)) <span class="sc">+</span></span>
+<span id="cb207-3"><a href="distribuciones-de-frecuencia.html#cb207-3" tabindex="-1"></a>  <span class="fu">geom_freqpoly</span>(<span class="fu">aes</span>(edad))</span></code></pre></div>
 <p><img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-145-1.svg" width="288" style="display: block; margin: auto;" /></p>
 <p>Si se quiere ajustar el número de intervalos, conviene hacerlo igual en las dos capas:</p>
-<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="distribuciones-de-frecuencia.html#cb242-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(base.ejemplo) <span class="sc">+</span></span>
-<span id="cb242-2"><a href="distribuciones-de-frecuencia.html#cb242-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(edad), <span class="at">bins =</span> <span class="dv">15</span>) <span class="sc">+</span></span>
-<span id="cb242-3"><a href="distribuciones-de-frecuencia.html#cb242-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_freqpoly</span>(<span class="fu">aes</span>(edad), <span class="at">bins =</span> <span class="dv">15</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="distribuciones-de-frecuencia.html#cb208-1" tabindex="-1"></a><span class="fu">ggplot</span>(base.ejemplo) <span class="sc">+</span></span>
+<span id="cb208-2"><a href="distribuciones-de-frecuencia.html#cb208-2" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(edad), <span class="at">bins =</span> <span class="dv">15</span>) <span class="sc">+</span></span>
+<span id="cb208-3"><a href="distribuciones-de-frecuencia.html#cb208-3" tabindex="-1"></a>  <span class="fu">geom_freqpoly</span>(<span class="fu">aes</span>(edad), <span class="at">bins =</span> <span class="dv">15</span>)</span></code></pre></div>
 <p><img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-146-1.svg" width="288" style="display: block; margin: auto;" /></p>
 <p>La ojiva tiene una capa llamada <code>stat_ecdf</code>, para el cálculo de la distribución de frecuencias acumuladas empíricas. Su sintaxis sigue la misma lógica: en <code>aes</code> se indica la variable que se grafica:</p>
-<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="distribuciones-de-frecuencia.html#cb243-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(base.ejemplo) <span class="sc">+</span> <span class="fu">stat_ecdf</span>(<span class="fu">aes</span>(edad))</span></code></pre></div>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="distribuciones-de-frecuencia.html#cb209-1" tabindex="-1"></a><span class="fu">ggplot</span>(base.ejemplo) <span class="sc">+</span> <span class="fu">stat_ecdf</span>(<span class="fu">aes</span>(edad))</span></code></pre></div>
 <p><img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-147-1.svg" width="288" style="display: block; margin: auto;" /></p>
 <p>Por defecto grafica escalones, que representan los saltos de frecuencia, se puede modificar por puntos, con el argumento <code>geom</code>:</p>
-<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="distribuciones-de-frecuencia.html#cb244-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(base.ejemplo) <span class="sc">+</span> <span class="fu">stat_ecdf</span>(<span class="fu">aes</span>(edad), <span class="at">geom =</span> <span class="st">&quot;point&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="distribuciones-de-frecuencia.html#cb210-1" tabindex="-1"></a><span class="fu">ggplot</span>(base.ejemplo) <span class="sc">+</span> <span class="fu">stat_ecdf</span>(<span class="fu">aes</span>(edad), <span class="at">geom =</span> <span class="st">&quot;point&quot;</span>)</span></code></pre></div>
 <p><img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-148-1.svg" width="288" style="display: block; margin: auto;" /></p>
 <p>O estilizando los escalones con una línea:</p>
-<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="distribuciones-de-frecuencia.html#cb245-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(base.ejemplo) <span class="sc">+</span> <span class="fu">stat_ecdf</span>(<span class="fu">aes</span>(edad), <span class="at">geom =</span> <span class="st">&quot;line&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="distribuciones-de-frecuencia.html#cb211-1" tabindex="-1"></a><span class="fu">ggplot</span>(base.ejemplo) <span class="sc">+</span> <span class="fu">stat_ecdf</span>(<span class="fu">aes</span>(edad), <span class="at">geom =</span> <span class="st">&quot;line&quot;</span>)</span></code></pre></div>
 <p><img src="EstadisticaParaCienciasSocialesConR_files/figure-html/unnamed-chunk-149-1.svg" width="288" style="display: block; margin: auto;" /></p>
 <p>Hay muchas opciones para mejorar la visualización de estos gráficos, que se irán presentando más adelante.</p>
 
@@ -1901,42 +1906,42 @@ Las etiquetas de los ejes se vuelven más legibles si se giran los ejes:</p>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": {
-"github": false,
-"facebook": true,
-"twitter": true,
-"linkedin": false,
-"weibo": false,
-"instapaper": false,
-"vk": false,
-"whatsapp": false,
-"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-},
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": "https://github.com/jcrodriguez1989/EstadisticaParaCienciasSocialesConR/edit/master/03-capitulo2.Rmd",
-"text": "Edit"
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": ["EstadisticaParaCienciasSocialesConR.pdf", "EstadisticaParaCienciasSocialesConR.epub"],
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "subsection"
-}
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/jcrodriguez1989/EstadisticaParaCienciasSocialesConR/edit/master/03-capitulo2.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["EstadisticaParaCienciasSocialesConR.pdf", "EstadisticaParaCienciasSocialesConR.epub"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
 });
 });
 </script>
